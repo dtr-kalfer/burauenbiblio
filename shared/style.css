@@ -1,0 +1,643 @@
+/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
+ * See the file COPYRIGHT.html for more details.
+ */
+ 
+/* This file builds upon the structures defined within "../shared/base3.css"
+ * we start here assuming a small mobile screen less than 720px wide
+ * larger screens will be progressively enhanced at the end of this document 
+ *
+ * All colors, fonts, and button style are set by .../themes/xxx/theme.css - June 2017
+ *
+ */
+
+body { width:auto; height:auto; /*padding:1rem;*/ margin:0; padding:0; }
+.ie body {width:540px;}
+
+/*************************************************/
+/*  Basic components, may be used anywhere       */
+
+.error { font-weight:bold;
+	}
+.warning { font-weight:bold;
+	}
+.bold { font-size:1.5rem; font-weight:bold;
+	}
+.note { font-size:0.7rem; font-weight:bold;
+	}
+.info { font-weight:bold;
+	}
+.help { font-size:0.7rem; display:none;
+	}
+.italic { font-size:0.7rem; font-style:italic;
+	}
+#userMsgDiv userMsg:empty { display:none;
+	}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font:1rem sans-serif; text-align:center;
+	border:solid black 1px;
+	margin:2px;
+	}
+
+img { margin:3px 3px 0 3px;
+	}
+
+.reqd,
+sup,
+span.reqd,
+#reqdNote { text-align:center;
+	}
+.smallType { font-size:75%;
+	}
+p { margin:2px; padding:0;
+	}
+hr {
+	display:block; position:relative; 
+	padding:0; margin:8px auto;
+	clear:both; width:90%;
+	border:none; border-top:1px solid #AAA; border-bottom:1px solid #000;
+	/*font-size:1px; line-height:0;*/
+	overflow:visible;
+	}
+figure { border:1px solid gray;
+	}
+legend { font-weight:bold; margin:0 10px 0 10px; padding:0 5px 0 5px;
+	}
+label { margin:0; padding:0;
+	}
+
+/*fieldset {  max-width:100%; border:1px solid black; margin:2px; margin-top: 5px; padding-bottom:2px;*/
+fieldset { border:0; margin:0; padding:0; }
+	}
+fieldset.inlineFldSet { float:left; width:auto; border:0; margin-right:0.5rem; padding:0;
+	}
+fieldset.inlineFldSet label { display:inline;
+	}
+.inline { display:inline;
+	}
+
+/* tables & parts of */
+table { /*margin:2px;*/ margin:0; padding:0; width:99%; border-spacing:0;
+	}
+td,th { padding:0 5px 0 5px; vertical-align:top;
+	}
+td.number { text-align:right;
+	}
+td.center, th.center { text-align:center;
+	}
+td.label { text-align:left; white-space:nowrap;
+	}
+th,
+label,
+.lblFld { font-size:0.75rem; font-weight:bold; margin-left:2px;
+	}
+tfoot.topBorder {  border-top:1px solid #AAA; margin-top:5px;
+	}
+thead.bottomBorder {  border-bottom:1px solid #AAA; margin-top:5px;
+	}
+
+/* self-adjusting grid dsiplay, mainly used for cover-photo galary */
+#fotoDiv { margin-right:1em;  margin-left:1em; width:auto;
+	}
+.grid-display {
+	display:flex;
+	flex-direction:row;
+	flex-wrap:wrap;
+	justify-content:center;
+    list-style-type: none;
+	padding:0; margin:0;
+	}
+.grid-display li {
+	flex-grow:1;
+	flex-basis:12em;
+	max-width:30em;
+	}
+
+/* form user-input fields */
+input:disabled { cursor:not-allowed; }
+input,
+select,
+textarea { margin:2px; }
+/*input:not([type=button]):not([type=select]):not([attr=readonly]):focus, select:focus,*/
+input[readonly] { /*border:none;*/ }
+input[type=checkbox] { padding-left:5px; }
+input[type=text],
+textarea,
+select { font-size:1.0rem; box-sizing:border-box; width:auto; }
+/*
+input[type=text] { width:100%; }
+span.WIDE { display: block; overflow: hidden; }
+*/
+textarea { width:100%; }
+
+::placeholder { font-style:italic; }
+
+/*************************************************/
+aside { 
+	width:auto; margin:0; padding:0; margin-bottom:2px; border:0.15em solid black;
+	}
+.obInstall .notForInstall { display:none;
+	}
+#obLogo { display:none;
+	}
+aside input[type=submit] { position:relative; left:30%; }
+
+/*************************************************/
+h1.theHead {
+	display:block; width:100%;
+	text-align:right;
+	font:bold 2rem serif;
+	margin:0; padding:0;
+	}
+#logo { display:none;
+	}
+.hdrSpacer { display:none;
+	}
+#library_name, 
+#library_hours, 
+#library_phone { margin:0; font:1.0rem sans-serif;
+	}
+#library_name { font-size:2.0rem; }
+
+/*************************************************/
+ul.nav_main {
+	max-width:100%;
+	margin-top:0; margin-left:0; 
+	list-style-type:none;
+	text-align:center;
+	}
+ul.nav_main li {
+	margin-bottom:1.1rem;
+	white-space:nowrap;
+	margin-left:2px;
+	display:inline; padding-right:1rem;
+	}
+ul.nav_main li:last-child { padding:0; margin-bottom:0;
+ 	}
+ul.nav_main > li.nav_selected {
+	max-width:93%;
+	border-left:solid black 1px;
+	border-top:solid black 1px;
+	border-right:solid grey 1px;
+	border-bottom:solid grey 1px;
+	margin-right:-28px;
+	margin-left:-0px;
+	padding:2px;
+	position:relative;
+	border-radius:5px;
+	}
+ul.nav_sub {
+	width:120px; /*FL change  */
+	margin-left:0; padding-left:1rem;
+	list-style-type:circle; 
+	}
+ul.nav_sub ul.nav_sub { padding-left:1em }
+ul.nav_sub li { margin-bottom:0; font-weight:normal; }
+ul.nav_sub li.nav_selected { font-weight:bold; list-style-type:disc; }
+	
+nav a.button {
+	border:solid black 2px;
+	padding:3px;
+	text-decoration:none;
+	}
+nav a.button:hover { text-decoration:underline; }
+
+/*************************************************/
+footer { margin-top:10px; text-align:center; font:0.75em serif;/* 12/16 */ }
+
+/*************************************************/
+#content {
+  left:0; vertical-align:top; border:solid black 1px; padding:0;
+	/*width:720px;*/  max-width:100%;
+	}
+#content > div { display:none; /* hide child screen elements until wanted */
+	}
+.ie #content figure { width:480px;
+	}
+
+#copyList td,
+table#copyList th,
+table#biblioTbl td,
+table#biblioTbl th  {
+	border-width:1px; padding:2px; border-style:solid; border-color:black;
+	}
+#editTbl { margin-left:0; padding-left:0;
+	}
+#editTbl li { list-style-type:none; margin:0; padding:0;
+	}
+
+#srchSpecs { display:flex; flex-direction:column;
+	}
+.inlineFS { order:1;
+	}
+
+/* button-related stuff */
+/* lozenge shape buttons - from "CSS3 for Web Designers", Jeffrey Zeldman " */
+/* moved to theme.css - FL June2017*/
+
+input[type=button],
+input[type=submit],
+button { font-size:0.9rem;
+	}
+
+#btnRow,
+.btnRow { margin-left:0; padding-left:0; text-align:left; margin:0; padding:0;
+	}
+#btnRow li,
+ul.btnRow li { display:inline; margin-right:1rem;
+	}
+#btnRow li input[value="Delete"],
+.btnRow li input[value="Delete This Item"],
+.btnRow li input[value="Delete"] { float:right; margin-right:0;
+	}
+
+.btnRow.flexBoxed { display:flex;
+	flex-direction:row; justify-content:space-around;
+	}
+.btnRow.flexBoxed > input[type=button] { flex:auto; max-width:15em;
+	}
+/*
+.btnRow.gridded { display:grid; grid-template-columns: repeat(5, 1fr);
+	}
+.btnRow.gridded > [type=button].col1 {   grid-column: 1 / 5;
+	}
+.btnRow.gridded > [type=button].col2 {   grid-column: 2 / 5;
+	}
+.btnRow.gridded > [type=button].col3 {   grid-column: 3 / 5;
+	}
+.btnRow.gridded > [type=button].col4 {   grid-column: 4 / 5;
+	}
+.btnRow.gridded > [type=button].col5 {   grid-column: 5 / 5;
+	}
+*/
+/*
+.gridded { display:grid;
+	grid-template-columns: 20% 20% 20% 20% 20%; grid-auto-columns: 20%;
+	}
+.gridded > .col1 {   grid-column: 1;
+	}
+.gridded > .col2 {   grid-column: 2;
+	}
+.gridded > .col3 {   grid-column: 3;
+	}
+.gridded > .col4 {   grid-column: 4;
+	}
+.gridded > .col5 {   grid-column: 5;
+	}
+*/
+#vertSep { width:0; height:3rem; margin-right:0.5rem; padding:0; border:1px solid gray
+	}
+
+ul.pagBtns { float:left; margin:0; padding:0; width:100%;
+	}
+ul.pagBtns li { display:block; list-style:none; margin:0; padding:0;
+	}
+
+/**********************************************************************************/
+xul.pagBtns li:first-child { float:left; color:red; }   /* should this be removed?? */
+xul.pagBtns li:last-child { float:right; color:green; }   /* should this be removed?? */
+ 
+/*************************************************/
+ul#calList { float:left; margin:0; padding:0; width:100%; }
+ul#calList li { display:block; list-style:none; margin:0; padding:0; }
+.calendarClosed {
+	background:url('../../images/Ximage.jpg') center center no-repeat;
+	background-size:auto;
+	}
+
+/*************************************************/
+/* simple tabbed pages */
+/*#tabs form { border-left:1px solid black; border-bottom:1px solid black; border-right:1px solid black; }*/
+#tabs ul { margin:0; padding:0; margin-bottom:2em; }
+#tabs .controls li {
+  	list-style:none; float:left; margin:0; margin-bottom:1em;
+	white-space:nowrap; border-radius:5px 5px 0 0;
+	}
+#tabs li {
+	display:block; float:left; padding:0.5em;
+	text-decoration:none; font-weight:bold;
+	border:1px solid black;
+	}
+#tabs .controls .active {  border-bottom:0; border-top:1px; }
+#tabs .block { padding:1.25em; display:none; }
+#tabs .block.active	{ display:block; }
+
+/*************************************************/
+#barcodeSearch { display:none;  /* reserved for desktop users */
+	}
+#phraseSearch #searchType  { display:block;
+	}
+#phraseSearch legend { display:none;
+	}
+.searchListItem { /*font-size:smaller;*/ }
+
+/* search results displays */
+#biblioListDiv { width:100%; }
+.listTbl { max-width:100%; text-align:left; }
+.title {
+	font:1.25rem sans-serif; /* 20/16 */
+	text-align:center;
+	border:solid black 2px;
+	margin-bottom:5px;
+	}
+.results_found,
+.results_pages,
+.search_terms { font:0.75rem serif; /* 12/16 */ }
+.results_found,
+.results_pages { text-align:right; }
+.results_found { margin:0.5rem 0; }
+.results_pages { float:right; }
+.search_terms { font-weight:bold; margin:0.5rem 0; }
+.results_list { margin-top:10px; padding:10px 5px; border-top:solid #90b0b8 4px; }
+.search_result {
+	border:solid #90b0b8 4px;
+	padding:3px;
+	margin:5px;
+	width:100%;
+	}
+.search_result td { vertical-align:top; }
+
+.itemVisual {
+	display:inline-block;
+	display:-webkit-flex; display:flex;
+	-webkit-flex-direction:row; flex-direction:row;
+	/*width:120px;*/
+	}
+.photos,
+.dashBds,
+.galleryBox { display:inline-block; margin:0; padding:0; }
+.dashBds {
+	display:-webkit-flex; display:flex;
+	-webkit-flex-direction:row; flex-direction:column;
+	-webkit-justify-content:flex-end; justify-content:flex-end;
+	}
+.dashBdsA,
+.dashBdsB, .dashBdsC {
+	display:-webkit-flex; display:flex;
+	-webkit-flex-direction:row; flex-direction: row;
+	}
+.flgDot { width:20px; height:20px; vertical-align:bottom; }
+.itemInfo { float:left; width:95%; }
+
+.biblioImage { border:1px solid green; height:auto; width:50px; padding:0; }
+.biblioImage.hover:hover { top:30px; left:200px;
+	-webkit-transform:scale(5.0); -webkit-transform-origin:bottom right;
+	-moz-transform:scale(5.0); 		-moz-transform-origin:bottom right;
+	-ms-transform:scale(5.0); 		-ms-transform-origin:bottom right;
+	-o-transform:scale(5.0);
+	transform:scale(5.0);  				transform-origin:bottom right;
+	}
+
+.cover_image { width:75px; }
+.cover_image img { border:solid black 2px; width:75px; }
+.fotoSrceBtns { display:inline; }
+
+#bibBlks,
+fotoBlks { position:relative; top:0px; left:0px; width:auto; }
+#bibBlkA,
+fotoBlkA { display:inline-block; float:left; width:85% }
+#bibBlkB,
+fotoBlkB { display:inline-block; float:right; }
+#biblioFoto,
+#foto { width:100px; height:125px; padding:0; margin-right:0px; border:1px solid green }
+#biblioFoto.hover:hover {
+	top:20px;
+	-webkit-transform:scale(3.0); -webkit-transform-origin:bottom right;
+	-moz-transform:scale(3.0); -moz-transform-origin:bottom right;
+	-ms-transform:scale(3.0); -ms-transform-origin:bottom right;
+	-o-transform:scale(3.0);
+	transform:scale(3.0); transform-origin:top left;
+}
+
+#flagInfo li { list-style:none; }
+/* end of search results display */
+/*************************************************/
+
+.call_media {
+/*	font:1.0em sans-serif;*/ /* 16/16 */
+	width:40px;
+	padding:0 16px;
+	}
+.compact_info_display table.header {
+	border:none;
+	padding:0;
+	margin:0;
+	}
+.compact_info_display th.title {
+	background:none;
+	border:none;
+/*	font:1.0em serif regular;*/	/* 16/16 */
+	text-align:left;
+	}
+.compact_info_display th.author {
+	background:none;
+	border:none;
+/*	font:1.0em serif regular;*/	/* 16/16 */
+	text-align:left;
+	}
+.compact_info_display ul {
+	margin:0; padding:0;
+	list-style-type:none;
+	}
+.compact_info_display li {
+/*	font:0.87em serif;*/	/* 14/16 */
+	margin-left:2rem;
+	text-indent:-2rem;
+	}
+.compact_info_display .heading { font-weight:bold; }
+.search_result .right_info {
+	width:125px;
+	text-align:center; vertical-align:middle
+	}
+.search_result .available {
+	margin-top:12px;
+/*	font:0.87em serif;*/	/* 14/16 */
+	}
+
+/*************************************************/
+table.sigh { width:100%; }
+table.sigh .spacer { width:5px; }
+tr.searchRow { height:35px; }
+	
+/*************************************************/
+/* for draggable configuration screens */
+div#configDiv{
+	width:auto;
+	}
+#configDiv fieldset#existingSpace {
+	display:inline;
+	float:left;
+	}
+#configDiv fieldset#potentialSpace {
+	display:inline;
+  	float:right;
+	}
+#configDiv fieldset#potentialSpace select {
+	margin-bottom:10px;
+	}
+#configDiv ul#existing,ul#potential {
+	list-style-type:none;
+	margin:0; padding:0; margin-right:5px;
+	}
+#configDiv ul#existing li,ul#potential li {
+	margin-bottom:2px;
+	/*font-size:1.2rem;	/* 20/16 */
+	}
+#typeChoice fieldset {
+	margin:0; padding:5px;
+	text-align:center;
+	}
+
+/*************************************************/
+/* unique report items */
+.report_category { font-weight:bold; }
+.report_name { font-weight:normal; }
+.cntlArea { padding:1em; display:-webkit-flex; display:flex; justify-content:space-between; }
+.resize {
+	-webkit-transform:scale(3.0); -webkit-transform-origin:top left;
+	-moz-transform:scale(3.0); -moz-transform-origin:top left;
+	-ms-transform:scale(3.0); -ms-transform-origin:top left;
+	-o-transform:scale(3.0);
+	transform:scale(5.0); transform-origin:center center;
+	}
+.fotoBox {
+		padding-bottom:15px;
+		display:-webkit-flex; -webkit-flex-direction:column;
+		display:flex; flex-direction:column;
+	}
+
+/** Accessibility skip to main content **/
+#skiptocontent a {
+	padding:6px;
+	position: absolute;
+	top:-40px;
+	left:0px;
+	color:white;
+	border-right:1px solid white;
+	border-bottom:1px solid white;
+	border-bottom-right-radius:8px;
+	background:transparent;
+	-webkit-transition: top 1s ease-out, background 1s linear;
+    transition: top 1s ease-out, background 1s linear;
+    z-index: 100;
+}
+#skiptocontent a:focus {
+	position:absolute;
+	left:0px;
+	top:0px;
+	outline:0;
+	-webkit-transition: top .1s ease-in, background .5s linear;
+    transition: top .1s ease-in, background .5s linear;
+}
+
+/* ####################################################### */
+/* For Tablets and Desktops */
+/* ####################################################### */
+@media screen and (min-width:700px) {
+	/* For Tablets */
+	body { padding:1rem; }
+	}
+	
+@media screen and (min-width:800px) {
+	/* For Desktops */
+	body { font-size:90%; }
+	/* rounded corners and shadows for major layout elements */
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	fieldset,
+	img,
+	aside,
+	header,
+	#content {
+		border-radius:0.3rem;
+		}
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	aside,
+	#content {
+		box-shadow:3px 6px 8px -4px #000;
+		}
+	/*************************************************/
+	aside { 
+		position:fixed; top:1%; left:1%; float:left; width:15%;
+		padding-bottom:0.2rem; height:auto;
+		font-size:0.87rem; /* 14/16 */
+		box-shadow:0.2rem 0.4rem 0.6rem -0.2rem #000;
+		}
+	#obLogo { display:block; }
+	#logo { 
+		padding:3px; margin-bottom:5px; 
+		border:2px solid #ddd; width:90%; 
+		display:block; 
+		}
+
+	/*************************************************/
+	h3.theHead {
+		display:block;
+		text-align:center;
+/*		font:bold 1.0em serif;*/ /* 16/16 */
+/*		color:white;*/
+		margin:0;
+		}
+	.hdrSpacer { display:block; width:25%; }
+	.about,
+	#library_name, 
+	#library_hours, 
+	#library_phone { margin:2px 5px 2px 5px; font:0.82em sans-serif; }
+	
+	/*************************************************/
+	ul.nav_main { padding-left:0.5rem; text-align:left; }
+	ul.nav_main li { display:block; padding:0; }
+	
+	/*************************************************/
+	main#content { position:absolute; top:1%; left:17.5%; width:auto; padding:2px 2px 2px 2px; }
+
+	table { margin:2px; }
+
+	#srchSpecs { /*display:box; box-orient:horizontal;*/ }
+	.inlineFS { display:inline-block; /*box-flex:1; box-align:start;*/ }
+	#srchHosts { /*position:absolute; max-width:25%; top:0; left:68%;*/ }
+	
+	#barcodeSearch { display:block; }
+	#phraseSearch #searchType  { display:inline; }
+	#phraseSearch legend { display:inline; }
+
+	/*.listItem { float:left; margin:5px 0 5px; padding:0; width:100%; }*/
+	/*listItem li { float:left; margin:0 0.1rem; padding:0; list-style:none; }*/
+	#itemVisual { /*width:auto; height:auto;*/
+		display:-webkit-flex; -webkit-align-items:baseline;
+		display:flex;
+		}
+	#photo, #dashBd { display:-webkit-flex; display:flex; }
+
+	#flagInfo {text-align:center; margin:0; padding:0; }
+	#flagInfo li { float:left; display:inline; list-style:none; margin:0; padding:0; margin-right:15px; }
+	.flgDot {
+		-webkit-transform:	scale(0.75);
+		-moz-transform:		scale(0.75);
+		-ms-transform:			scale(0.75);
+		-o-transform:			scale(0.75);
+		transform:				 	scale(0.75);
+		vertical-align:bottom;
+		}
+
+	ul.pagBtns { float:left; margin:0; padding:0; width:100%; }
+	ul.pagBtns li { display:inline; list-style:none; margin:0; padding:0; }
+	ul.pagBtns li:first-child { float:left; }
+	ul.pagBtns li:last-child { float:right; }
+ 
+}
+

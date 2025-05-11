@@ -1,0 +1,37 @@
+.title "New Items"
+.category "Cataloging"
+.layout catalog title="Print Catalog"
+.column bibid hidden
+.column added title="Date Added" sort=added
+.column callnum title="Call No." sort=callnum
+.column title func=biblio_link title=Title sort=title
+.parameters
+.	string days title="Added in the last N days"
+.	order_by default="added!r"
+.		item added title="Date Added" expr="b.create_dt"
+.		item callnum title="Call Number" expr="cs.subfield_data"
+.		item title title="Title" expr='ts.subfield_data' type=MARC skip_indicator="tf.ind2_cd"
+.	end order_by
+.end parameters
+
+.sql
+SELECT b.bibid,
+			 cs.subfield_data AS callnum,
+       date_format(b.create_dt, '%%c/%%e/%%Y') AS added,
+       concat(ts.subfield_data, ' ',
+       ifnull(sub.subfield_data, '')) AS title
+FROM biblio b
+	JOIN biblio_field AS tf
+	JOIN biblio_subfield AS ts
+	JOIN biblio_field AS cf
+	JOIN biblio_subfield AS cs
+	LEFT JOIN biblio_subfield AS sub
+					ON (sub.fieldid=tf.fieldid) AND (sub.subfield_cd='b')
+	WHERE (tf.bibid=b.bibid)
+	  AND ((tf.tag='240') OR (tf.tag='245') OR (tf.tag='246'))
+	  AND (ts.fieldid=tf.fieldid) AND (ts.subfield_cd='a')
+	  AND (cf.bibid=b.bibid) AND (cf.tag='099')
+	  AND (cs.fieldid=cf.fieldid) AND (cs.subfield_cd='a')
+	  AND (b.create_dt >= (now() - interval %#days% day))
+.	order_by_expr
+.end sql

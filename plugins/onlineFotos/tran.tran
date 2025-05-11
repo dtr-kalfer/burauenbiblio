@@ -1,0 +1,13 @@
+<?php
+/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
+ * See the file COPYRIGHT.html for more details.
+ */
+#****************************************************************************
+#*  Translation text for page onlineFotosplugin
+#****************************************************************************
+$trans["enable"] = "Enable";
+$trans["fetchPhoto"] = "Fetch Photo";
+$trans["onlineFotos"] = "Online Cover Photos";
+$trans["openLibrary"] = "OpenLibrary";
+$trans["Save"] = "Save";
+$trans["sourceSelection"] = "Source Selection";

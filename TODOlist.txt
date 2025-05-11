@@ -1,0 +1,770 @@
+############### Open issues, oldest at top #########################
+
+- Fred
+unable to return to non-circulating list after clicking on an item.
+
+- Fred
+consider using 'e.setCustomValidity' for Password Checking
+
+- Fred
+simplify search if YAZ is not available thus using SRU via html 
+(limit selection and search criteria)
+
+- Neil Redgate
+Report Generator does not handle all fields correctly (item search and csv output)
+
+- Fred / Neil
+Add a backup mechanism to Tool or Admin menu
+
+01 Mar 2010 - Luuk Jansen
+In the process of another test I deleted all the entries in my system
+(using the web-interface). Just checking the tables, which should all be empty,
+I found that the Custom Fields are still there.
+So the remove function should include custom fields, which is currently probably not the case.
+
+12 Jun 2013 - Fred
+deleting a biblio does not remove copy-status records
+
+19 Jun 2013 - Neil
+Reports: NewItems report produces 'No Results' for 0 (zero) days. It should report today's items.
+
+25 Jun 2013 - Fred
+Research: menu needs external LoC-type search link. Integrate parts of Lookup;
+
+25 Jun 2013 - Fred
+Reports: Next/Prior should look the same in reports as on Existing item search.
+
+28 Jun 2013 - Fred
+move conditionals from BiblioDiv of srchForms to srchJs
+
+- Fred
+MARC import needs facelift
+update to look/work like CSV import
+
+14 July 2013 - Fred
+Edit Biblio does not allow entering more than one subject line at a time.  Look into
+using more of code from 'new item' server process.
+
+27 July 2013 - Fred
+Reports: CopySearch needs to use input field type=date, pull down for site.
+
+28 July 2013 - Neil
+> after shelving, when I immediately search for the shelved item
+(existing item search) the availability icon still remains red.
+Similarly, if I have to change the status manually in the copy edit page
+- when I update the copy and 'go back' from the item summary page,
+there is no change in the availability icon (still red)
+To rectify, reload the page and repeat search and the icon is now green.
+
+28 July 2013 - Fred
+verify functionality of:
+Marc input, barcode printing, barcode input, .....
+
+6 Sep 2013 - Fred
+consider identifying foreign keys in all DB tables as appropriate to
+improve referential integrity
+
+24 Sep 2013 - Fred
+OB Localize class and related material need to make use of PHP5 INTL / LOCALE
+module. Rgis would require user to add this module to PHP at the server. This
+should be integrated with Javascrit's INTL API as well.
+
+28 Sep 2013 - Fred
+Remove excess trans.php entries.
+Remove key prefixes to expose many duplicates.
+
+12 Apr 2016 - Fred
+ListManager needs Add/Edit features.
+
+##############################################################################
+###################### Completed, most recent at top #########################
+##############################################################################
+5 Sep 2013 - Fred, done, May 2016
+Consider moving from mysqli to PDO for db interface to loosen dependence on mysql
+
+5 Sep 2013 - Fred, deleted, 9 July 2016
+consider changing MySql db engine to InoDB to enable transactions.
+- PHP backend now uses PDO so that user can use an engine of choice
+i.e PostgreSql, or InoDB, or whatever.
+
+25 Jun 2014 - Kees, deleted, not reproducible here. FL 9 July 2016
+Admin & Tool menus do not fit 16:9 screen
+
+1 Apr 2016 - Sandberg, deleted, solution already exists, FL 9 July 2016.
+There should be a simple way to include locale-specific strings for plugins
+-plug-in specific strings should go into tran.tran in the plug-in's folder.
+
+11 Aug 2014 - Kees, fixed 27 Apr 2016
+Maybe you want to make a note somewhere that the Database name can not contain hyphens,
+or the other way around, specify a list a of allowed characters.
+note 27 Apr 2016:
+Added a note to the documentation that it's safest to use alphanumeric characters and
+underscore characters.
+
+12 Apr 2016 - Fred, fixed bad link references, 13 Apr 2016
+Biblio fields Maintennace is broken - no jQueryUI.sortable()
+
+12 May 2013 - Fred, fixed 10 Apr 2016
+investigate making school grade, teacher, optional.  If not used then 'Audience Level'
+should not appear on advanced search screen.
+note 26 May 2013:
+teacher & grade are custom copy fields.
+
+12 May 2013 - Neil Redgate, fixed 10 Apr 2016
+>  Advanced search options:-
+> Whilst investigating the above and the importance/relevance of the level column
+> in the report page, I examined the advanced search options for existing items.
+> The 'audience level' drop down menu has a predetermined list
+> (in -/catalog/SrchForms.php line 113). I assume 'audience level' refers to member type?
+> If so, this drop down menu does not reflect the current member type list
+note 10 Apr 2016:
+Audience is now pulled from 521 field of MARC record
+
+1 Apr 2016 - Sandberg, fixed 1 Apr
+I get a blank screen when I try to switch the locale to French.
+
+30 Mar 2016 - Fred, fixed 30 Mar
+BUG - Copy Reports spec display cuts off after 'Newer Than' label.
+
+12 Aug 2014 - Kees
+Just trying to add a new site to my test database and noticed that there is
+no 'Country' field for the site. Can this be added anywhere in the admin interface?
+
+Requires new table entry:
+"ALTER TABLE `site` ADD `country` VARCHAR( 32 ) NOT NULL DEFAULT 'US';"
+
+12 Aug 2014 - Kees, done 27 Mar
+Make State 'Default Y/N' a checkbox
+
+26 MAr 2016 - Sandberg, fixed 27 Mar
+Cataloging: new item manual entry media type keeps changing to book despite switching to
+a different media form. 
+
+-- unknown 0.70 users, Sandberg fixed 26 Mar
+We would like to add e-books in our library with direct links to their
+respective PDFs. We were not able to add any HTML codes to the book entries,
+in order to create a hyperlink to the e-book download.
+
+6 Feb 2015 - Charlie, done 6 Feb
+I added a width of 85% to the css for the search table so the image stays in the
+top right even with long comments.
+
+5 Feb 2015 - Fred, fixed - had bad DB reference - 5 Feb
+Member Fields 'edit' buttone not working
+
+25 Jun 2014 - Kees, done 25 Jun
+Install Instructions need updating to ver 1.0
+
+25 Jun 2014 - Fred, fixed 25 Jun
+Library info suppression not working
+
+25 Jun 2014 - Kees, fixed 25 Jun
+Tools|System settings broken, Changed System::getFormfields() to static
+
+28 Sep 2013 - Fred, done globally 2 Oct
+Place trailing ':' outside of the translation to eliminate aprox 50 dupes.
+
+28 Sep 2013 - Fred, done 29 Sep
+Run all translationsthrough some form of 'escape'er to address embedded quotes.
+
+23 sep 2013 - Fred/Jansen - dropped since Keyword search already does this. 24 Sep
+Advanced search needs a MARC tag selector with the tag list changing based on
+selected Media Type.
+
+28 July 2013 - Fred, MARC output returns results, but nonsense to me 21 Sep
+verify functionality of Marc output
+
+28 July 2013 - Fred, CVS out working, but screen makes no sense (Ref Packing List) 20 Sep
+verify functionality of cvs output
+
+6 Sep 2013 - Fred, implemented and tested with ISBN & ISSN fields 7 Sep
+complete work on patterns for biblio input validations.
+'material_fields' table needs additional form_type allowed,
+new validation_cd column needed pointing to 'validations' table,
+Admin | Biblio Fields edit screen must support these data items,
+PHP and JS input_flds() functions must use this information when available to set
+	the input field 'type="aaaa"' and 'pattern="xxxxxx"' as specified.
+
+5 Jul 2013 - Fred, done 3 Sep
+consolidate ../classes/SrchDb.php into ../model/Biblios.php, its really a SuperBiblios class.
+
+26 Aug 2013 - Fred, fixed 30 Aug
+'price' custom field not being saved for new copies; updates work fine.
+
+29 Aug 2013 - Fred, data now being collected 29 Aug
+Online data fetch for existing item is not working
+
+26 Aug 2013 - Fred, fixed 29 Aug
+custom copy fields are not saved for new items
+
+25 Aug 2013 - Fred, dropped as not feasable 26 Aug
+When books are downloaded, collection should default to 'non-Fiction' unless 'PS'
+
+24 Aug 2013 - Fred, fixed 25 Aug
+copy editor is not being passed the bibid by whicever module is calling it.
+
+unknown - Fred, now works 24 Aug
+Install needs to work for new installations
+
+22 Aug 2013 - Fred, fixed 22 Aug
+unable to modify content of biblio copy (description specifically))
+
+14 Aug 2013 - Jan, ignored, unable to duplicate problem, 21 Aug
+.htaccess causing Apache problems.
+
+14 Aug 2013 - Fred, fixed 21 Aug
+New Item manual entry - pub date field using type=textarea
+
+14 Aug 2013 - Jan, fixed 21 Aug
+Adding items *almost* works - it accepts the record, lets me enter the copy -
+but the database only saves the copy, not the bibliographic record.
+
+14 Aug 2013 - Jan, unable to duplicate, cvs working fine 20 Aug
+CSV import doesn't seem to work - it accepts the file, but doesn't get any items in.
+
+8 Aug 2013 - Fred, fixed 8 Aug
+Content updates are not being accepted.
+
+28 Jun 2013 - Neil, fixed 31 July
+The member's 'history' page does not work. (not yet implemented.)
+note: no idea what was intended to be displayed- FL 1 July 2013
+
+7 Aug 2013 - Fred, fixed 8 Aug
+Cover Photos: edit-delete removes photo, but adding new photo results in old
+photo being shown.
+
+14 July 2013 - Fred, date uncertain
+Login does not start with id field having focus.
+
+23 July 2013 - Fred, date uncertain
+make more use of ListSrvr for getOpts() and other lookup table use.
+Remove from the various xxxSrvr.php files.
+
+19 July 2013 - Fred. fixed 7 Aug, YAZ is now part of PHP-PECL
+Online search is not working. Z3950 failing due to no YAZ installed.
+SRU/SRW failing due to lack of search results from host.
+
+27 July 2013 - Fred, removed, duplicate entry 31 July
+New Report front end needs confirmed access to export choices.
+
+28 July 2013 - Fred, fixed 28 July
+If I try and  check-out an item on a "closed day" (see calendar)
+- get a large amount of red code. It looks very disconcerting
+and I thought something serious had occurred.
+Discovered that it was due to a "closed" day - removed X from calendar
+Would it be possible to have a message stating
+"library is closed and no loans can be taken out today"
+
+28 July 2013 - Fred, fixed 28 July
+The hold delete operation is suffering from the last/single entry phenomenon that we
+had with transactions.
+
+27 July 2013 - Fred, fixed 28 July
+New Report front end needs common menu like original.
+
+23 July 2013 - Fred, fixed 27 July
+Member screen: Hold list not showing entries in database.
+
+26 July 2013 - Neil, fixed 26 July
+>  If I open the edit page for a copy with CHECKED-OUT to member status (summary table),
+the text "current: checked-out" is displayed to the right of the blank drop-down menu.
+> If I update this copy, I get all the red sql/dbase error messages.
+
+26 July 2013 - Neil, fixed 26 July
+If I update the edit page of a currently: checked in item (ie: with drop-down menu blank) -
+the status of the copy (in the summary table) is now changed to NULL and the
+availability icon (in search results) changes from green (available) to Red (on loan).
+Epiphany, Chromium, Firefox)
+If I open the edit page for a copy with NULL status, the text "current: checked-in"
+is displayed to the right of the blank drop-down menu.
+
+26 July 2013 - Neil, fixed 26 July
+Member accounts.
+The add / delete functions work perfectly.
+One minor issue - the data entered into the 'description' and 'amount' fields
+(when adding new transaction) are not removed when the transaction is displayed below.
+In fact if I go straight to any other member's account, this data is visible in the
+two fields until I leave the circulation "environment" - identical to the problem of
+deleting a single transaction
+The added transaction remains displayed with the correct member (as it should).
+
+24 July 2013 - Neil, fixed 25 July
+Item search report: first page listed correctly but the links to subsequent pages
+do not work - just shows the results page headers and no items.
+Images & Subject search reports: same problem
+
+24 July 2013 - Neil, fixed 25 July
+>  When I view the edit page for any copy currently out on loan, the status drop down
+menu is blank - is this normal/expected behaviour? The summary page clearly shows the
+copy out on loan and to which member
+> Typically, an non-checked out copy has 'checked in' showing in the status drop-down menu
+> If an item is loaned out, should this status box show 'on loan' ?
+Certainly 'in, out, hold' should not be allowed as choices or all control goes bad.
+The other book maintenance related values make sense as there is no other way to take book
+off the shelve to patrons.
+
+24 July 2013 - Neil, fixed 24 July
+Shelving Cart:
+manually select (tick box): works, 'mark all' button: does not work, 'clear all' button: works
+
+24 July 2013 - Neil, trans table fixed, 24 July
+Checking-in:
+list barcode, select 'add to shelving cart' : message "added to shelving cart"
+appears (the text needs translating as it appears between T! ) and the returned item is
+immediately shown on screen
+
+24 July 2013 - Neil, withdrawn, unable to duplicate 24 July
+> Delete transaction: message 'deleted' appears but transaction remains on screen.
+Have to leave the circulation "environment" (eg select cataloging | existing items)
+and then return to the accounts page to see that the deleted transaction is no longer displayed.
+
+23 July 2013 - Neil, fixed 23 July
+Can delete transaction: delete message appears but the transaction remains visible.
+Only after logging out is the transaction removed from the display (Epiphany, Chrome & Firefox)
+
+21 July 2013 - Fred, fixed 23 July
+Check in does not fully work -
+I can enter a barcode and select "add to shelving cart" button
+- message "added" pops up but no item is listed in the shelving cart section.
+Selecting "mark all" and then "shelve selected items" does not work
+- the item still remains booked out to the member in question.
+
+22 July 2013 - Neil, fixed 23 July
+Checking-In: cannot add any item to shelving cart. Thence not able to mark and
+shelve items to clear loan material
+
+22 July 2013 - Neil, fixed 22 JUly
+Member's details: opens in a new screen. Cannot update
+Member's accounts: Cannot add or delete transactions
+Add New Member: Not working -  selecting 'add new member' opens up an existing member's account details
+
+21 July 2013 - Neil, fixed 21 July
+I like the new arrangement of the member's details appearing in a box below
+the member's summary information box.
+
+21 July 2013 - Neil, fixed 21 July
+In the copy summary table the correct details are shown for each separate barcode.
+However, if I select to edit the copy with the lowest or a lower barcode,
+the edit page lists the details for the most recent copy added (ie highest barcode).
+
+15 Jul 2013 - Neil/Fred, seems to be working now, 20 July
+Member search:
+In Chrome, I cannot search the members list -clicking on search results in nothing happening
+Works with FF and Epiphany.
+
+19 July 2013 - Neil, withdrawn, unable to reproduce 20 July
+Items with 2 or more copies show intermingling of copy info.
+May be caused by use of Inegrity checker following addition of new copies.
+
+15 July 2013 - Fred, withdrawn, unable to duplicate 19 July
+DB Integrity Check is broken, my end only; probably bad DB entries here.
+
+9 July 2013 - Neil, fixed 19 July
+After selecting a barcode for the item to check out and select 'check out' the item is not displayed.
+
+15 July 2013 - Neil/Fred, fixed 19 July
+Checkout:
+Checkout does not work - after entering barcode number and pressing "check out" - nothing happens.
+
+15 July 2013 - Neil/Fred, fixed 17 July
+Checkout:
+Checkout list is inconsistent, some times not complete, sometimes absent
+
+15 July 2013 - Neil, fixed 17 July
+Update button of item copy editor produces lot of red text.
+
+15 July 2013 - Neil, reverted for consistancy 15 July
+I have only noticed this problem now and so I am not aware of when it first appeared
+(this problem is still present with changeset 810) - see attached image of library settings -
+the field entries are placed before the field title
+This occurs with with Tools | system settings (see image) but not with Admin |
+online options (see image)
+
+15 Jul 2013 - Neil, line break insertion now allowed - 15 July
+In phpMyAdmin, I have added (0 = auto arrange) to the new photo column field title
+but cannot get it to sit below the field title (see image library settings) -
+thought it would be useful to give the user this option?
+I have relabelled some of my fields - see attached images.
+UPDATE `openbibliowork`.`settings` SET `title` = 'Photo Columns<br>(0 for auto)' WHERE `settings`.`name` = 'item_columns';
+
+19 May 2013 - Fred, proposal withdrawn by Fred 13 July
+on-line papers, articles, blogs, etc. Sites go away, or change URL.
+why can't I store that entire document right in OB, along with all the usual
+biblio information. Then when I search for a topic, that paper will spring up
+just like any other, and the call number will imediately me its in local storage,
+and perhaps via circ/checkout allow me to retrieve a copy.
+
+11 July 2013 - Fred, done 13 July
+Cover Photos - click to expand works on every-other image only.
+
+3 Jul 2013 - Fred, done 13 July, both features available
+Research Image viewer needs user controls to set rows & columns displayed.
+Or make display adapt to current width and set nmbr of rows accordingly.
+
+9 July 2013 - Neil, done 13 July, Photo Columns Settings must be zero to work
+The Research | Cover photo page appears to be restricted to 7 images in a row.
+I presume this is to keep it usable for the smaller screen of any mobile device?
+Is it possible to allow the number of images in a row to expand automatically for a pc monitor?
+Sometime ago, I recall you mentioning something similar to this about pages (search results?)
+automatically adjusting themselves according to  screen (browser window) size
+
+20 Jun 2013 - Neil, fixed early July
+CSV import:
+The collection and media-type are not retained through the import process.
+OBs default selection for these are provided for each item imported.
+(I no longer have columns for these categories in my csv file)
+I don't think they are actually registered with the item initially -
+immediately after import, if I locate the new items in the existing items search window,
+the icon for the media-type is missing.
+The icon only becomes visible after I  have edited (and updated) the item.
+
+29 Jun 2013 - Fred, fixed early July
+Adding a new item via on-line lookup does not go to PhotoEditor after new copy.
+
+25 Jun 2013 - Fred, new Cover Photo app deals with this 6 July
+Research Image Viewer image links do not provide return to gallery page. Instead
+the return is to the Local Search function. Same applies to all reports.
+
+2 Jul 2013 - Fred, done 4 July
+Move OB's db models to PHP's mysqli interface, preferably using the OO mode;
+
+11 May 2013 - Fred, withdrawn 2 July
+Add New Copy screen should show suggested CallNmbr
+with suggested cpy no. (c.x) if not first copy.
+
+27 Jun 2013 - Neil, fixed 2 July
+checkout overdue fine should be limited by 'max fine' in member-type in admin menu.
+
+29 Jun 2013 - Neil, fixed 2 July
+>  Member account transactions: delete works fine. After deleting, the user is taken back
+straight to the member's summary page. If more than one transaction is to be deleted,
+user will need to return to account page.
+
+30 Jun 2013 - Neil/Fred, fixed 1 July
+all text fields of Biblio Summary screen should be multi-line with wordwrap.
+
+28  Jun 2013 - Neil, fixed 29 June
+I have observed the following for a member's account page
+The delete button for any transaction does not work.
+
+27 Jun 2013 - Fred, fixed 29 June
+bulk delete fails to start
+
+25 Jun 2013 - Fred, fixed 28 June
+camera related features should be supressed if video not supported.
+photo editing should be surpressed if no canvas or fileReader support.
+
+25 Jun 2013 - Fred, done 26 June
+Research menu needs doi search links. Integrate doi plugin;
+
+21 Jun 2013 - Fred
+OPAC image browser image links to biblios are not working.
+Make call.no appear below images (see Meyer's "more on CSS")
+
+23 Jun 2013 - Neil, fixed 25 Jun
+prior / next links are missing on Research/OPAC | image browser.
+
+22 Jun 2013 - Fred, fixed 25 Jun, changed internal menu name to 'Research'
+Going to OPAC menu area looses all other parts of menu.
+
+22 Jun 2013 - Fred, fixed 24 Jun
+ImageDisplay meeds a container for all txt fields so they can be sized to 100%
+instead of using size= for text, and cols= for textarea.
+
+22 Jun 2013 - Neil, fixed 23 Jun
+Removing a MARC tag via Admin | BiblioFields causes Search Results list to loose all right-side info.
+
+21 Jun 2013 - Fred, fixed 21 Jun
+tag 024$a not saved to database. problem is in saving new 0xx tags.
+
+20 Jun 2013 - Neil, fixed 20 Jun - now returns to list page last viewed
+Viewing item's summary information & search results
+After viewing an item's information, I press 'go back' and I am returned to the
+top of the very first page of the search results.
+Would it be possible to be returned to the viewed item's position/page in the search results?
+
+22 May 2013 - Neil/Fred, available as beta plug-in in 'under construction' menu
+investigate 'doi' for lookup consideration.
+
+12 Jun 2013 - Neil, unable to duplicate 18 Jun
+Chrome 27, There is a slight problem after the initial login -
+I get a blank page (no LH menu and library banner). However, if I select the
+browser's back button, I return to the login page (see attached image) but
+I can simply select where I want to go using the LH menu.
+
+14 Jun 2013 - Fred, fixed 17 Jun
+DB integrity reports 2 status problems, fix db problem or code to auto-repair
+
+14 Jun 2013 - Fred, fixed 17 Jun
+Photos do not appear on biblio summary reached through member page.
+
+16 Jun 2013 - Fred, fixed 16 Jun
+checkout list is common to ALL members? Each member should show only own items.
+
+16 Jun 2013 - Fred, done 16 Jun
+Display amount due on checkout list
+
+16 Jun 2013 - Fred, mis-spoke, works fine 16 Jun
+Unable to search for a Call Nmbr that has a '.' in it
+
+16 Jun 2013 - Neil/Fred, fixed 16 Jun
+Calculation of due date:
+This is not altered if any closed day falls within the pre-determined loan period
+for the media-type in question. For example, 10 day loan period from today
+(15th June) = 25 June. This due date remains the same regardless of whether
+there any closed days.  Should compute for 'business' days only'.
+
+15 Jun 2013 - Neil, fixed 15 Jun
+Checking in:
+When the items being returned are listed and checked, only the 'shelve selected
+items' button works. The 'shelve all items' button does not.
+
+12 Jun 2013 - Neil/Fred, fixed 14 Jun 2013
+> How do you remove unwanted calendars?
+dump existing and write new without using report generator.
+
+12 Jun 2103 - Fred, fixed 12 Jun
+New Item Copies, site list is unpopulated, no default selected too?
+No success message. No photo screen.
+
+12 Jun 2013 - Neil, fixed 12 Jun
+>  The file browser facility does not work - I can select the image source and
+provide a file name. When I select 'add new' the red message 'cover photo posted'
+appears but the thumbnail box does not show the image.
+> The cover image that is posted to the item is all black.
+
+11 Jun 2013 - Fred, done 11 Jun
+CopyEditor, ItemEditor & ItemDisplay should be modularized like PhotoEditor.
+
+11 Jun 2013 - Fred, done 11 Jun
+Photo editor should work in NewItems, and popup after new Copy screen.
+
+08 May 2013 - Fred, working now 10 Jun
+Admin Calendars does not appear to be working; unable to edit.
+
+10 Jun 2013 - Fred/Neil, fixed 10 Jun
+Thumbnail sizes set in Settings is ignored, fix it!
+
+9 Jun 2013 - Fred, cannot duplicate 10 Jun
+Existing copy unable to display barcode of multiple copies.
+see 'Borland Delphi', #29
+
+8 Jun 2013 - Fred, fixed 9 Jun
+New Copy should offer current location as default.
+
+19 May 2013 - Fred, done 2 Jun 2013
+we need an admin function to import / export a media layout.
+
+31 May 2013 - Fred, done 1 Jun 2013
+Item photo editor need to show photo selected or to be deleted.
+Needs success/failure messages.
+When complete, item display needs to refresh so photo is shown.
+
+28 May 2013 - Neil
+When clicking on the title of an item in the report results page, I am taken to
+the existing item search window and not directly to the item's summary page.
+I cannot remember if this link worked in the past or not.
+
+28 May 2013 - Neil, srch screns fixed 28 May, mbr scrnsfixed 29 May
+The perennial edit/delete buttons in the copy information:
+These buttons are present in both member & existing item pages but they are not
+functional (tested with both yours and my dbase).
+
+07 May 2013 - Neil Redgate, member & checkin fixed 26 May 2013
+Whilst in Circulation | Member | Current member, I cannot logout.
+When Log out button is clicked - nothing happens.
+However, in any other Circulation page, I can log out immediately
+
+09 May 2013 - UWE, fixed 26 May 2013
+Unable to add new site using Chrome Browser. Works fine with FF.
+Problem appears to be inability to acess 'clicked' button via form.submit
+
+11 May 2013 - Fred, fixed 26 May 2013
+When online search fails, GOBack should leave search screen contents intact
+so search can be refined.
+
+25 May 2013 - Fred, done 26 May 2013
+verify new member is working correctly
+
+23 May 2013 - Fred, completed 25 May 2013
+consolidate all pull-down lists services into single server used by all modules.
+construct test/verification plugin for develop and test.
+
+18 MAy 2013 - Neil
+Copy edit dialog does not show current location of copy.  Code should set current
+site 'selected' when editor dialo is displayed.
+
+18 May 2013 - Neil, fixed 23 May 2013
+> copy edit dialog for new copy via csvImport- status: blank. Change to 'Checked In'.
+(Would it be wise to make this the default setting for CSV import
+or would it complicate matters if copy status had a default setting?)
+Certainly makes sense to me that they be be checked in!
+
+20 May 2013 - Neil, edit/del buttons not available to circ users - 22 May 2013
+Member checked-out books: book detail screen copy area has trouble with edit & delete buttons.
+
+20 May 2013 - Neil, fixed 22 May 2013
+Member checked-out books: book detail screen bibid number is missing.
+
+21 May 2013 - Fred, fixed 22 May 2013
+description tag 245c is being truncated at ',' in Admin|BiblioFields
+
+21 May 2013 - Fred, fixed 22 May 2013
+MediaType screen is loosing the media image during updates.
+
+20 May 2013 - Neil/Fred, done 21 May 2013
+implement copy of Neil's DB for test purposes.
+
+21 May 2013 - Neil/Fred, done 21 May 2013
+The 'N' in sechJs.php needs a user interface.
+
+19 May 2013 - Fred, done 20 May 2013
+Modify Item_search Report to use material_fields to control display.
+
+12 May 2013 - Fred, fixed 20 May 2013
+Report results page does not indicate what report is being viewed. Needs Title.
+
+17 May 2013 - Fred, working as of 20 May 2013
+Existing Item search by Publisher is not working following new tagGroup.json use.
+
+17 May 2013, working as of 20 May 2013
+Item Search Report only working for keywod searchs following new tagGroup.json use.
+
+18 May 2013 - Neil, working now! - 19 May 2013
+a publisher search in existing items produces a lot of error text (see attached image, publisher error)
+a publisher search in Report | Item search - works reasonably well.
+
+16 May 2013 - Neil/Fred, now allows 240,245,246,773 - 16 May 2013
+Copy search
+As with Checkout, the search and results are limited to items that use field 245.
+
+16 May 2013 - Neil, now allows 240,245,246,773 - 16 May 2013
+Checkout list does not include items not havng a 245a tag. It needs to allow use
+of ANY title tag.
+
+16 May 2013 - Neil, fixed to request/use card/barcode number - 16 May 2013
+Checkout Report requirs Member's ID but should use either Name, or card No (Barcode)
+
+14 May 2013 Fred, fixed 15 May 2015
+Unable to enter, edit or search for ISSN for a magazine (i.e. 'Make:')
+
+15 May 2013 - Fred
+When editing an existing item, Fetch On-line data is not working.
+Also it should use LCCN, ISSN, Title (in that order) if ISBN is not available
+
+13 May 2013 Neil Redgate - now works, 14 May 2013
+> The option series in the 'search existing items drop down menu' does not work.
+> Should it be removed from the drop down menu (line 155)?
+
+14 May 2013 - Fred - feature added to advanced search 14 May 2013
+Unable to search by collection
+
+14 May 2013 - Fred - fixed 14 May 2013
+Unable to edit a collection - 'Must fill in' flag for invisable field
+
+14 May 2013 - Neil Redgate - fixed, One record at a time is now sent to Server. 14 May 2013
+Unable to load more than 16 CSV records in a batch.
+
+- Neil Redgate - verified as draggable and droppable into existing 8 May 2013
+field 260g not 'dragable' in Biblio Field editor
+
+- Fred - verified as present 8 May 2013
+online search screen needs a mechanism to select which host to use
+
+02 May 2013 - Neil Redgate - fixed 8 May 2013, line disabled
+Whilst I was searching through files, I noticed that in classes/report.php  -  
+line34: refers to /shared/biblio_search.php file
+Is  this correct - I can not find this file at that location but it is in 
+the /reports/defs/ subdirectory
+
+02 May 2013 - Neil Redgate - fixed 8 May 2013 (see end of BiblioRows.php)
+The displayed results of Item Serach only shows the entry in fields 245a & 245b,
+Would it be possible to show the entry in either field 245a,b or 240a 
+(as with the existing items search results) and make which ever is displayed linked to the item?
+If it is not possible to have a link created to one of two possible fields, 
+would it be better to add a row number of the barcode that would be a fixed field 
+to which the link can be created?
+
+07 May 2013 - Neil Redgate - fixd 8 May 2013
+I just started adding new items tomy newly created OB dbase but I have got a major problem.
+When I select manual entry the fields shown are those for the default media type. 
+If I select another from the drop down menu - there is no change.
+I have the same results when I use your OB data as well as using a fresh install of  OB (changeset 630)
+On a couple of occasions OB would not launch - blank loginform.php page: firebug 
+came up with 'no-js no-obinstall' as the reason for not being able to open OB 
+(this was even with a fresh OB install)
+
+07 May 2013 - Neil Redgate - fixed 7 May 2013
+Bulk Delete: on clicking on the menu item, I just get the title "Bulk Delete Items" and no box.
+
+07 May 2013 - Neil Redgate - fixed 7 May 2013
+Site: cannot delete a site
+
+07 May 2013 - Neil Redgate - fixed 7 May 2013
+Add/Edit state: the code box is missing
+
+07 May 2013 - Neil Redgate - only present if not auto-barcode, no changes 7 May 2013
+Edit/Add Member Field box: the code box is missing
+
+07 May 2013 - Neil Redgate - missing support for default type radio button, fixed 7 May 2013
+Edit/Add Member Type: cannot add new type; cannot set default (Y/N)
+
+03 May 2013 - Neil Redgate - fixed 3 May 2013
+I have noticed that the 'Exact Match' option works for - 
+Call No., keyword; author, title, subject, date, Publisher
+It does not work for either collection or media-type, Barcode.
+For example, if I type 'taxon' (instead of taxonomy) for collection, 
+I get no results regardless of whether Exact Match 'No' or 'Yes' is selected. 
+If the full name is entered, I get results with either 'No' or 'Yes' (as you would expect)
+I have not tested it with Address, Grade Level
+
+02 May 2013 - Neil Redgate - fixed 3 May 2013
+Looking at both lists through the admin menu - media-type has the numeric code listed 
+(so, easy to refer to).
+Collections list does not have such a list
+
+29 Apr 2013 - Neil Redgate - fixed 3 May 2013
+When I open the edit existing item box for the most recently added item, 
+the correct collection option (in the drop down menu) is not displayed 
+- it is the very first collection item in the drop down list that is displayed 
+(see image, edit existing item - should read ecology not archaeology), 
+even though the correct collection name was entered originally.
+However, with the remaining items the collection displayed is correct.
+
+01 May 2013 - Fred - done 2 May 2013
+standalone tools for translation maintenance need to be added to Tools menu.
+
+- Fred - done 30 Apr 2013
+Tools, need ability to set colation/charset of ALL tables
+
+29 Apr 2013 - Neil Redgate - now text will be displayed on multiple lines as needed, 29 Apr 2013
+Following on from the increased field size for long titles, 
+I have a problem with the display of these items. (see attached image)
+An item with <125 characters in the title is displayed correctly.
+An item with 146 characters in the title is not - 
+all the MARC field info is displaced below the 'more info' button.
+
+- Fred - fixed 28 Apr 2013
+trans.php function T() no longer alows variable insertion (%xxx%)
+
+28 Apr 2013 - Neil Redgate - increased limit to 256, 28 Apr 2013
+The title & subtitle fields only allow 75 characters.
+Can I change its size (from within OB or myPHP admin) or is this something that 
+you have to amend within the programme to ensure full synchronicity?
+Would this be a useful edit option to have for each filed listed in the 
+biblio fields Maintenance page -so users can adjust their dbase according to their needs?
+(Something in the back of my mind is saying that I may have asked about this very early on and,
+I apologise, I cannot remember what your comment was - 
+as to whether there is a physical limit from mysql/OB 
+or it was something to be looked at a later date?)
+
+7 Apr 2013 - Neil Redgate - fixed, 27 Apr 2013
+>  As a result of the above, I reworked my biblio fields for my book type.
+> I noticed that some of the tags are not "draggable" to the layout column, 
+even though they are listed in the field/tag column.
+> For example, 260g (Date of Manufacture) 
+(I was looking at this option as a reprint date, when I was investigating the above)
+> This is not a problem for me at the moment 
+(all fields required have been dragged to the layout column)
+
+

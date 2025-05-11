@@ -1,0 +1,14 @@
+<?php
+/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
+ * See the file COPYRIGHT.html for more details.
+ */
+#****************************************************************************
+#*  Translation text for page lookup_form.php
+#****************************************************************************
+$trans["CheckForOrphanFiles"] = "Check for Orphan Files";
+$trans["files are referenced"] = "files are referenced in OB";
+$trans["files exist"] = "files exist in OB";
+$trans["filenames starting with an -x- are already marked for possible removal"] = "filenames starting with an -x- are already marked for possible removal";
+$trans["OrphanFiles"] = "Orphan Files";
+$trans["OrphanFileFinder"] = "Orphan File Finder";
+$trans["some files may only be selected dynamically and may incorrectly appear unused"] = "some files may only be selected dynamically and may incorrectly appear unused";

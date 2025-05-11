@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>OpenBiblio Installation Instructions</title>
+</head>
+<body>
+
+<h1>📘 OpenBiblio Installation Guide (with Sample Data)</h1>
+
+<ol>
+  <li>
+    <strong>Install WAMP</strong><br>
+    Download and install <a href="https://wampserver.aviatechno.net/">WAMP</a> with PHP version <code>7.4.26</code> or <code>8.0.13</code>.
+  </li>
+
+  <li>
+    <strong>Set MySQL root password</strong><br>
+    During installation or afterward via phpMyAdmin, configure the MySQL root password.
+  </li>
+
+  <li>
+    <strong>Extract files</strong><br>
+    Unzip the provided OpenBiblio package into:
+    <pre>C:\wamp64\www\</pre>
+  </li>
+
+  <li>
+    <strong>Prepare the sample SQL file</strong><br>
+    Copy the file <code>burauenbib_sample_complete.sql</code> from the <code>sql</code> folder into:
+    <pre>C:\wamp64\tmp\</pre>
+  </li>
+
+  <li>
+    <strong>Import sample database</strong><br>
+    Open a Command Prompt and log in to MySQL:
+    <pre>mysql -u root -p</pre>
+    Then enter the following SQL commands:
+    <pre>
+CREATE DATABASE IF NOT EXISTS burauenbib;
+
+USE burauenbib;
+
+SOURCE C:\wamp64\tmp\burauenbib_sample_complete.sql;
+    </pre>
+  </li>
+
+  <li>
+    <strong>Create a database user</strong><br>
+    Still inside the MySQL prompt, create a user and grant permissions (This allows the biblio app and mysql server to communicate):
+    <pre>
+CREATE USER 'burauenuser'@'localhost' IDENTIFIED BY 'burauenpassword';
+GRANT ALL PRIVILEGES ON `burauenbib`.* TO 'burauenuser'@'localhost';
+    </pre>
+  </li>
+
+  <li>
+    <strong>Update database credentials in the app</strong><br>
+    Open the file <code>dbParams.php</code> inside the extracted folder and verify or update the following values:
+    <pre><code>&lt;?php
+$this->dsn["dbEngine"] = 'mysql';
+$this->dsn["host"] = 'localhost';
+$this->dsn["username"] = 'burauenuser';
+$this->dsn["pwd"] = 'burauenpassword';
+$this->dsn["database"] = 'burauenbib';
+$this->dsn["mode"] = 'haveConst';
+?&gt;</code></pre>
+  </li>
+<em>⚠️ Note: You may change the username and password for security. Make sure they match the ones in dbParams.php.</em>
+<br/>
+<br/>
+  <li>
+    <strong>Start WAMP and access the site</strong><br>
+    Launch WAMP and open your browser (Chrome or Firefox).  
+    Visit: <code>http://localhost/</code>
+  </li>
+<br/>
+  <li>
+    <strong>Login into the Burauenbiblio</strong><br>
+    Use the following credentials:
+    <ul>
+      <li><strong>Username:</strong> admin</li>
+      <li><strong>Password:</strong> admin</li>
+    </ul>
+    <em>⚠️ Important: For security reasons, change these credentials immediately via the Admin menu.</em><br/>
+  </li>
+</ol>
+
+<hr>
+
+<p><strong>Note:</strong> This installation includes a sample database with fictional member records and bibliographic data to help you get started. This is not intended for production use.</p>
+
+</body>
+</html>
