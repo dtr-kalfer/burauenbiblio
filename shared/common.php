@@ -1,15 +1,5 @@
 <?php
-	/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
-	 * See the file COPYRIGHT.html for more details.
-	 */
 
-    #### --- For those unable to set their time zone in PHP.ini --- ####
-    #### for valid entries see: http://www.php.net/manual/en/timezones.php
-    //date_default_timezone_set ( "America/New_York" );
-	//echo "at start of common.php <br />\n";
-	# added dev mode here for php8.0 preparation --> F.Tumulak 
-	# set to false if you wish to skip out notices, using php7.4.26 for the moment later using 8.0
-	
 	define('DEV_MODE', true);
 
 	if (DEV_MODE) {
@@ -22,7 +12,6 @@
 			ini_set('display_errors', 0);
 	}
 	# ----------------------------------------------------
-
 
     # Forcibly disable register_globals
     if (ini_get('register_globals')) {

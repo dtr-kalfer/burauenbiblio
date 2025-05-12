@@ -29,6 +29,7 @@ define("OBIB_SEARCH_NAME","5");
 define("OBIB_SEARCH_KEYWORD","6");
 define("OBIB_SEARCH_PUBLISHER","7");
 define("OBIB_SEARCH_SERIES","8");
+define("OBIB_DATABASE", ""); // added global constant OBIB_DATABASE not defined --F.T.
 
 /****************************************************************************
  *  Misc. system constants

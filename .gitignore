@@ -31,6 +31,10 @@
 # But do not ignore .sql files in the sql/ folder
 !sql/*.sql
 
+# neon files #
+##############
+*.neon
+
 # OS generated files #
 ######################
 .DS_Store

@@ -686,7 +686,7 @@ var mf = {
 		$.post(mf.url, parms, function(response) {
 		    //console.log('Server response: ' + response);
 			if (response == 0) {
-
+								
                 //$('#updateMsg').html('<?php echo T("Added");?>');
                 //'$('#updateMsg').show();
                 mf.rtnToSrch();
