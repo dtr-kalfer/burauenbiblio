@@ -3,7 +3,8 @@
 ## Project Credit & Intent
 
 BurauenBiblio is a derivative work of the original OpenBiblio system, tailored for modern PHP8.0 environments and localized school library needs in the Philippines.
-Maintained as a community-driven, open-source initiative to revitalize and extend OpenBiblio's functionality designed to aid small libraries and school.
+Maintained as a community-driven, open-source initiative to revitalize and extend OpenBiblio's functionality designed to aid small libraries and schools.
+It is named in honor of my hometown in Leyte, Burauen.
 
 - Original Authors:  
   David Stevens, Joe Hagerty, Micah Stetson, Fred LaPlante  
@@ -14,9 +15,9 @@ Maintained as a community-driven, open-source initiative to revitalize and exten
 This repository includes a small set of sample bibliographic records (books) and fictional member accounts as part of the included SQL data.
 These are provided solely for the purpose of demonstrating and testing the functionality of the OpenBiblio system.
 
-    The book entries are either fictional or based on public domain sources, and any associated thumbnail images are used under public domain or fair use for educational/demo purposes.
+The book entries are either fictional or based on public domain sources, and any associated thumbnail images are used under public domain or fair use for educational/demo purposes.
 
-    The member records are entirely fictitious and do not represent real individuals.
+The member records are entirely fictitious and do not represent real individuals.
 
 This sample data is not intended for production use and should be modified or removed accordingly before deployment.
 

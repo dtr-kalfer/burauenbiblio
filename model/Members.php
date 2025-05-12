@@ -234,18 +234,19 @@ class Members extends CoreTable {
 }
 class MembersIter extends Iter {
 	public function __construct($rows) {
-		parent::__construct();
+		//parent::__construct(); Fatal error: Uncaught Error: Cannot call constructor in C:\wamp64\www\openbiblio\model\Members.php on line 240 -F.T.
 		$this->rows = $rows;
 	}
 	function next() {
-		$row = $this->rows->next();
+		$row = $this->rows->fetch(PDO::FETCH_ASSOC);
 		if (!$row)
 			return NULL;
-		if ($row['password']) {
+		if (!empty($row['password'])) {
 			$row['password'] = '*encrypted*';
 		}
 		return $row;
 	}
+
 	function skip() {
 		$this->rows->skip();
 	}
