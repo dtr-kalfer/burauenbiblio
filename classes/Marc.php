@@ -43,7 +43,7 @@ class MarcHelpers {
 					$t .= str_repeat('\\', strlen($m[0]));
 					$s = substr($s, strlen($m[0]));
 				} else {
-					$t .= $s{0};
+					$t .= $s[0]; //fixed curly braces into square brackets --F.T.
 					$s = substr($s, 1);
 				}
 			}
@@ -70,7 +70,7 @@ class MarcHelpers {
 				}
 			}
 			if (!$did_subst) {
-				$t .= $s{0};
+				$t .= $s[0]; //fixed curly braces into square brackets --F.T.
 				$s = substr($s, 1);
 			}
 		}
@@ -531,7 +531,7 @@ $r->baseAddr = substr($rec, 12, 5);
 //echo "in MarcParser::parseDirectory()<br />";
 //echo "MARC record dir: ";print_r($directory);echo "<br />";
 //return array();
-		if (!$this->lenient and $directory{strlen($directory)-1} != MARC_FT) {
+		if (!$this->lenient and $directory[strlen($directory)-1] != MARC_FT) {
 			return $this->_error('directory unterminated');
 		}
 //echo "directory termination OK.<br />";
@@ -581,7 +581,7 @@ $r->baseAddr = substr($rec, 12, 5);
 	private function parseField($tag, $field) {
 //echo "in MarcParser::parseField()<br />";
 //echo "working tag ".$tag."<br />";
-		if (!$this->lenient and $field{strlen($field)-1} != MARC_FT) {
+		if (!$this->lenient and $field[strlen($field)-1] != MARC_FT) {
 			return $this->_error('variable field unterminated: '+$field);
 		}
 		$field = substr($field, 0, -1);
@@ -608,7 +608,7 @@ $r->baseAddr = substr($rec, 12, 5);
 		$f->subfields = array();
 		foreach ($elems as $e) {
 			# $e{0} is the subfield code
-			array_push($f->subfields, new MarcSubfield($e{0}, substr($e, 1)));
+			array_push($f->subfields, new MarcSubfield($e[0], substr($e, 1)));
 		}
 		return $f;
 	}
@@ -650,9 +650,9 @@ class MarcMnemParser extends MarcBaseParser {
 		foreach ($lines as $l) {
 			// Correct for explode() removing the newlines.
 			$l .= "\n";
-			if ($l{0} == '#') {
+			if ($l[0] == '#') {
 				// Comment
-			} else if ($l{0} == '=') {
+			} else if ($l[0] == '=') {
 				$err = $this->_addField($this->_field);
 				if (is_a($err, 'MarcParseError')) {
 					return $err;
@@ -685,7 +685,7 @@ class MarcMnemParser extends MarcBaseParser {
 		if (!$field) {
 			return;
 		}
-		if ($field{0} != '=') {
+		if ($field[0] != '=') {
 			return $this->_error("can't happen: non-field data in _field");
 		}
 		$field = rtrim($field, "\r\n");		# lose final newline
@@ -726,7 +726,7 @@ class MarcMnemParser extends MarcBaseParser {
 			foreach ($subs as $s) {
 				$d = MarcHelpers::fromMnem(substr($s, 1));
 				# $s{0} is the subfield code
-				array_push($f->subfields, new MarcSubfield($s{0}, $d));
+				array_push($f->subfields, new MarcSubfield($s[0], $d));
 			}
 		}
 		array_push($this->_rec->fields, $f);

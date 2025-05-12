@@ -159,6 +159,12 @@
 
 		case 'doGetMbr':
 			$mbrDflt = $members->maybeGetOne($_POST['mbrid']);
+			if (!is_array($mbrDflt)) {
+				// Return an error response or empty data
+				// Fixed Warning: array_merge(): Expected parameter 1 to be an array, bool given in C:\wamp64\www\openbiblio\circ\memberServer.php on line 168 -- Ferdinand Tumulak
+				echo json_encode(['error' => 'Member not found.']);
+				break;
+			}
 			$cstmFlds = $members->getCustomfields($_POST['mbrid']);
 			$mbrCstm = array();
 			foreach ($cstmFlds as $fld) {
@@ -166,7 +172,7 @@
 			}
 			$mbr = array_merge($mbrDflt, $mbrCstm);
 			echo json_encode($mbr);
-	  		break;
+			break;
 		case 'getNewBarCd':
 			$barCd = $members->getNewBarCode($_POST['width']);
 			echo $barCd;

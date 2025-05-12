@@ -70,7 +70,7 @@ class Queryi {
 	 *
 	 * this may only work if complete OB database is in place; -FL
 	*/
-private function set_encoding() { //Fixed: Deprecated: Cannot use "parent" when current class scope has no parent in C:\wamp64\www\burauenbiblio\classes\Queryi.php on line 78
+private function set_encoding() {
     $core = DbCore::getInstance();
     $r = $core->dbh->query("SELECT value FROM settings where name='charset'");
     if ($r->num_rows == 1) {
