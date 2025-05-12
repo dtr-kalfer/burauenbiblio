@@ -70,18 +70,18 @@ class Queryi {
 	 *
 	 * this may only work if complete OB database is in place; -FL
 	*/
-	private function set_encoding() {
-        $core = DbCore::getInstance();
-		$r = $core->dbh->query("SELECT value FROM settings where name='charset'");
-		if ($r->num_rows == 1) {
-			$row = $r->fetch_assoc();
-			if (!parent::set_charset($row['value']))  {
-				parent::set_charset('utf8');
-			}
-		} else {
-			parent::set_charset('utf8');
+private function set_encoding() { //Fixed: Deprecated: Cannot use "parent" when current class scope has no parent in C:\wamp64\www\burauenbiblio\classes\Queryi.php on line 78
+    $core = DbCore::getInstance();
+    $r = $core->dbh->query("SELECT value FROM settings where name='charset'");
+    if ($r->num_rows == 1) {
+        $row = $r->fetch_assoc();
+        if (!$this->dbh->set_charset($row['value']))  {
+            $this->dbh->set_charset('utf8');
         }
-	}
+    } else {
+        $this->dbh->set_charset('utf8');
+    }
+}
 	private function _act($sql) {
         $core = DbCore::getInstance();
 		$r =  $core->dbh->query($sql);

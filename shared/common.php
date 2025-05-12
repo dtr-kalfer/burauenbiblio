@@ -7,6 +7,22 @@
     #### for valid entries see: http://www.php.net/manual/en/timezones.php
     //date_default_timezone_set ( "America/New_York" );
 	//echo "at start of common.php <br />\n";
+	# added dev mode here for php8.0 preparation --> F.Tumulak 
+	# set to false if you wish to skip out notices, using php7.4.26 for the moment later using 8.0
+	
+	define('DEV_MODE', true);
+
+	if (DEV_MODE) {
+			ini_set('display_errors', 1);
+			ini_set('display_startup_errors', 1);
+			ini_set('track_errors', 1);
+			error_reporting(E_ALL);
+	} else {
+			error_reporting(E_ALL & ~(E_DEPRECATED | E_STRICT | E_NOTICE));
+			ini_set('display_errors', 0);
+	}
+	# ----------------------------------------------------
+
 
     # Forcibly disable register_globals
     if (ini_get('register_globals')) {
