@@ -25,6 +25,12 @@
 *.log
 *.sqlite
 
+# Ignore all .sql files anywhere
+*.sql
+
+# But do not ignore .sql files in the sql/ folder
+!sql/*.sql
+
 # OS generated files #
 ######################
 .DS_Store
