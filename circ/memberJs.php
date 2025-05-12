@@ -221,7 +221,8 @@ var mf = {
 
 	doBarCdSearch: function () {
 		var barcd = $.trim($('#searchByBarcd').val());
-		barcd = flos.pad(barcd,mf.opts.mbr_barcode_width,'0');
+		//note: the flos.pad is causing error failing the barcode search --Ferdinand Tumulak
+		
 		$('#searchByBarcd').val(barcd); // redisplay expanded value
 
 	  mf.srchType = 'barCd';
