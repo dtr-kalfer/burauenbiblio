@@ -685,7 +685,7 @@ var mf = {
 		var parms = $('#editForm').serialize();
 		$.post(mf.url, parms, function(response) {
 		    //console.log('Server response: ' + response);
-			if (response == 1) {
+			if (response == 0) {
 
                 //$('#updateMsg').html('<?php echo T("Added");?>');
                 //'$('#updateMsg').show();
@@ -735,11 +735,13 @@ var mf = {
 
   	var parms = {	'mode':'d-3-L-3-tMember', 'mbrid':mf.mbrid };
   	$.post(mf.url, parms, function(response){
-			if (response != 1) {
-				//console.log('rcvd error msg from server :<br />'+response);
+			if (response != 0) {
+				// console.log('rcvd error msg from server :<br />'+response);
+				// response is one, failed to delete
 				mf.showMsg(response);
 			}
 			else {
+								// response is zero, success ->corrected by Ferdinand Tumulak
                 mf.rtnToSrch();
 				mf.showMsg('<?php echo T('Member deleted!'); ?>');
                 setTimeout( function(){
