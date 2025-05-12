@@ -179,6 +179,7 @@
 			break;
 		case 'doBarcdSearch':
 			$mbrDflt = $members->getMbrByBarcode($_POST['barcdNmbr']);
+			$mbrDflt['mbrid'] = isset($mbrDflt['mbrid']) ? $mbrDflt['mbrid'] : '0'; // fix value of type null $mbrDflt['mbrid'] --F.Tumulak
 			$cstmFlds = $members->getCustomfields($mbrDflt['mbrid']);
 			$mbrCstm = array();
 			foreach ($cstmFlds as $fld) {
