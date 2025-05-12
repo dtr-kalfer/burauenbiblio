@@ -209,14 +209,14 @@ private function set_encoding() {
 			if (strlen($fmt) < $p+2) {
 				Fatal::internalError($badSqlFmt);
 			}
-			if ($fmt{$p+1} == '%') {
+			if ($fmt[$p+1] == '%') {
 				$SQL .= "%";
 			} else {
 				if ($i >= $n) {
 					Fatal::internalError(T("Not enough arguments given to mkSQL()."));
 				}
 				$arg = $params[$i++];
-				switch ($fmt{$p+1}) {
+				switch ($fmt[$p+1]) {
 				case '!':
 					/* very dangerous, but sometimes very useful -- be careful */
 					$SQL .= $arg;
