@@ -206,7 +206,7 @@ class Members extends CoreTable {
 	function deleteMatches($fields) {
 		$this->lock();
 		$rows = $this->getMatches($fields);
-		while (($row = $rows->fetch_assoc()) !== NULL) {
+		while (($row = $rows->next()) !== NULL) { //Fixed Fatal error: Uncaught Error: Call to undefined method MembersIter::fetch_assoc() --F.T.
 			$this->deleteOne($row['mbrid']);
 		}
 		$this->unlock();
