@@ -167,7 +167,7 @@ class MarcStore extends Queryi{
 		//echo "MarcStore: in _putField()<br/>\n";
 		$sql = $this->mkSQL("insert into biblio_field values "
 			. "(%N, NULL, %N, %Q, %Q, %Q, NULL, NULL) ",
-			$bibid, $seq, $tag, $ind{0}, $ind{1});
+			$bibid, $seq, $tag, $ind[0], $ind[1]); // Fixed: Deprecated Array and string offset access syntax with curly braces -F.T.
 		//echo "sql={$sql}<br/>\n";
 		$this->act($sql);
 		return $this->getInsertID();
