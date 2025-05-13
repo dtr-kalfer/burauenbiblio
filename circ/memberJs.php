@@ -4,8 +4,8 @@
  */
 $current_timestamp = time();
 ?>
-
 <script language="JavaScript" defer>
+
 // JavaScript Document
 //------------------------------------------------------------------------------
 "use strict";
@@ -238,7 +238,7 @@ var mf = {
 		// Proceed with search
 		mf.srchType = 'barCd';
 		var params = 'mode=doBarcdSearch&barcdNmbr=' + barcd;
-		$.post(mf.url, params, mf.handleMbrResponse);
+		$.post(mf.url, params, mf.handleMbrResponse_barcd);
 		return false;
 	},
 	doNameSearch: function () {
@@ -296,6 +296,8 @@ var mf = {
 		});
 	},
 
+	// --------------------- for doNameSearch use ----------------
+
 	handleMbrResponse: function (jsonInpt) {
 			if ($.trim(jsonInpt).substr(0,1) != '{') {
 				$('#errSpace').html(jsonInpt).show();
@@ -312,12 +314,53 @@ var mf = {
 		  $('#searchDiv').hide();
 	    $('#mbrDiv').show();
 	},
+
 	getMbrSite: function () {
 		$.post(mf.url,{mode:'getSite', 'siteid':mf.mbr.siteid}, function (response) {
 			mf.calCd = response['calendar'];
 			mf.getMbrType();
 		}, 'json');
 	},
+
+	// --------------------- for doBarCdSearch use ----------------
+	
+	handleMbrResponse_barcd: function (jsonInpt) {
+		if ($.trim(jsonInpt).substr(0, 1) != '{') {
+			$('#errSpace').html(jsonInpt).show();
+			$('#mbrDiv').hide(); // Hide form if error
+			return;
+		}
+
+		mf.mbr = JSON.parse(jsonInpt);
+		console.log("Parsed mf.mbr:", mf.mbr);
+
+		if (!mf.mbr || mf.mbr.mbrid === "0") {
+			mf.showMsg('<?php echo T("Nothing Found") ?>');
+			$('#mbrDiv').hide();
+			return;
+		}
+
+		// Wait until we finish getting the site
+		mf.multiMode = false;
+		mf.getMbrSite_barcd(); // -> will continue in its callback
+	},
+	
+	getMbrSite_barcd: function () {
+		$.post(mf.url, { mode: 'getSite', siteid: mf.mbr.siteid }, function (response) {
+			mf.calCd = response['calendar'];
+			mf.getMbrType(); // this may also be async
+
+			// ✅ Final validation AFTER all info fetched
+ 
+				$('#mbrDiv').show();
+				$('#searchDiv').hide();
+
+		}, 'json');
+	},
+	
+
+	// -------------------------------
+	
 	getMbrType: function () {
 		$.post(mf.url,{mode:'getMbrType', 'classification':mf.mbr.classification}, function (response) {
 			mf.typeInfo = response;
