@@ -23,4 +23,6 @@ This sample data is not intended for production use and should be modified or re
 
 This project aims to preserve the spirit of OpenBiblio while modernizing its codebase, interface, and usability for current and future librarians and developers.
 
+> ⚠️ **Note:** Some warnings, deprecation notices, or non-functional buttons may still be present. Development has primarily focused on ensuring core functionality and basic operations. Future updates may improve compatibility and user interface responsiveness.
+
 ## 📦 Installation (see --> how_to_install.html)
