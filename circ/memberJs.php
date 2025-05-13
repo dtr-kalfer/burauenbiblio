@@ -219,15 +219,26 @@ var mf = {
 		return false;
 	},
 
-	doBarCdSearch: function () {
-		var barcd = $.trim($('#searchByBarcd').val());
-		//note: the flos.pad is causing error failing the barcode search --Ferdinand Tumulak
-		
-		$('#searchByBarcd').val(barcd); // redisplay expanded value
+	doBarCdSearch: function () { // improved: added validity check (6 to 8 digits) for empty input --F.Tumulak
+		var barcdInput = $('#searchByBarcd')[0]; // get the DOM element
+		var barcd = $.trim(barcdInput.value);
 
-	  mf.srchType = 'barCd';
-	  var params = 'mode=doBarcdSearch&barcdNmbr='+barcd;
-	  $.post(mf.url,params, mf.handleMbrResponse);
+		// Update input value (cleaned one)
+		$('#searchByBarcd').val(barcd);
+
+		// Check if empty or invalid (manual check or HTML5 validity)
+		if (!barcd || !/^\d{6,8}$/.test(barcd)) {
+			barcdInput.setCustomValidity("Please enter 6 to 8 digits.");
+			barcdInput.reportValidity(); // Show the browser's native tooltip
+			return false; // stop the function
+		} else {
+			barcdInput.setCustomValidity(""); // clear any custom message
+		}
+
+		// Proceed with search
+		mf.srchType = 'barCd';
+		var params = 'mode=doBarcdSearch&barcdNmbr=' + barcd;
+		$.post(mf.url, params, mf.handleMbrResponse);
 		return false;
 	},
 	doNameSearch: function () {

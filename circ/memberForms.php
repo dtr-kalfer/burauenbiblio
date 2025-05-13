@@ -38,7 +38,7 @@
 			<td nowrap="true">
 				<label for="searchByBarcd"><?php echo T("Library Card Number");?>:</label>
 				<!-- This oninput pattern match will force text-input to accept numbers only with 6 digits F. Tumulak -->
-				<input type="text" oninput="this.value = this.value.replace(/\D/g, '').slice(0, 6)" pattern="\d*" id="searchByBarcd" name="searchByBarcd" size="20" />
+				<input type="text" oninput="this.value = this.value.replace(/\D/g, '').slice(0, 8)" pattern="\d*" id="searchByBarcd" name="searchByBarcd" size="20" />
 				<input type="button" id="barCdSrchBtn" value="<?php echo T("Search"); ?>" />
 			</td>
 		</tr>
