@@ -238,7 +238,7 @@ class RptParser {
 					$str = substr($str, 1);
 				}
 				array_push($list, array('WORD', $w));
-			} else if ($str{0} == '"' or $str{0} == '\'') {
+			} else if ($str[0] == '"' or $str[0] == '\'') {
 				list($w, $str) = $this->getQuoted($str);
 				array_push($list, array('WORD', $w));
 			} else {
@@ -255,10 +255,10 @@ class RptParser {
 		if (empty($str)) {
 			Fatal::internalError(T("getQuoted() called with empty %str%",array('str'=>$str)));
 		}
-		$q = $str{0};
+		$q = $str[0];
 		$w = '';
 		for ($n=1; $n < strlen($str); $n++) {
-			if ($str{$n} == $q) {
+			if ($str[$n] == $q) {
 				break;
 			}
 			if ($str{$n} == '\\') {
