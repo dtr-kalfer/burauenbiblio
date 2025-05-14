@@ -267,7 +267,7 @@ class RptParser {
 					break;
 				}
 			}
-			$w .= $str{$n};
+			$w .= $str[$n];
 		}
 		return array($w, substr($str, $n+1));
 	}
