@@ -9,8 +9,8 @@ function staff_menu() {
 		Nav::node('circulation/searchform', T("Members"), '../circ/memberForms.php');
 		Nav::node('circulation/search', T("SearchResults"));
 
-		Nav::node('circulation/bookings', T("Bookings"), '../circ/bookings.php');
-		Nav::node('circulation/bookings/cart', T("Booking Cart"), '../circ/booking_cart.php');
+		Nav::node('circulation/bookings', T("Bookings"), '../circ/bookings.php?type=holds');
+		Nav::node('circulation/bookings/cart', T("Booking Cart")); //booking cart removed --Ferdinand Tumulak
 		Nav::node('circulation/bookings/pending', T("Pending Bookings"));
 
 		if (isset($_REQUEST['bookingid'])) {
