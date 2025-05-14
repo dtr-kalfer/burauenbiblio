@@ -17,20 +17,20 @@
 		require_once(REL(__FILE__, "../shared/logincheck.php"));
 	}
 
-	assert('preg_match("/^[-_A-Za-z0-9]+\$/", $_REQUEST["name"])');
+	assert(preg_match("/^[-_A-Za-z0-9]+\$/", $_REQUEST["name"]));
 	$filename = '../layouts/'.$_REQUEST["name"].'.php';
 	if (!is_readable($filename)) {
 		$filename = '../layouts/default/'.$_REQUEST["name"].'.php';
 	}
-	assert('is_readable($filename)');
+	assert(is_readable($filename));
 	require_once($filename);
 	## get reference to class contained in '$filename'
 	$classname = 'Layout_'.$_REQUEST["name"];
-	assert('class_exists($classname)');
+	assert(class_exists($classname));
 
 	$rpt = Report::load($_REQUEST['rpt']);
 	//$rpt = Report::load($_REQUEST['rpt'],1,9999);
-	assert('$rpt != NULL');
+	assert($rpt != NULL);
 
 	// Rendering a large layout can take a while.
 	set_time_limit(90);

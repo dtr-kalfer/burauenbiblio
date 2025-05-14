@@ -683,7 +683,7 @@ class Lay {
 	function pushFont($name, $size) {
 		# FIXME - verify that the font name is available
 		list($p, $errs) = $this->handleParams(array(array('size', 'y-length', 0)), array('size'=>$size));
-		assert('!$errs');	# FIXME
+		assert(!$errs);	# FIXME
 		array_unshift($this->fonts, array($name, $p['size']));
 	}
 	function popFont() {
