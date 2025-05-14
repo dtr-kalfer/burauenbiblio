@@ -72,7 +72,7 @@
   <meta name="author" content="Micah Stetson">
   <meta name="tester" content="Neil Redgate">
   <meta name="tester" content="Charlie Tudor">
-
+	
   <!-- this line MUST precede all .css & JS files - FL
   		 Based on the browser in use, it places many conditional classes
   		 into the <body> tag for use by feature-specific CSS & JS statements.
@@ -96,16 +96,16 @@
   		 to match industry best practices and to improve overall performance -->
 
   <!-- This style sheet resets all browsers to a common default style -->
-  <link rel="stylesheet" href="../shared/normalize.css" />
+  <!-- <link rel="stylesheet" href="../shared/normalize.css" /> -->
   <!-- OpenBiblio style is set here -->
-  <link rel="stylesheet" href="../shared/style.css" />
+  <link rel="stylesheet" href="../shared/style6.css" />
 
   <!-- This style sheet is specific to the jQuery UI library -->
   <link rel="stylesheet" href="../shared/jquery/jquery-ui.min.css" />
 
   <!-- User-selected theme colors, fonts, and button style are set here -->
-  <link rel="stylesheet" href="<?php echo H($params['theme_dir_url']) ?>/theme.css" />
+  <link rel="stylesheet" href="<?php echo H($params['theme_dir_url']) ?>/style_day.css" />
 
     <?php if ($tab == 'opac') { ?>
-	 <link rel="stylesheet" href="../opac/opac.css" />
+	 <link rel="stylesheet" href="../opac/opac_new.css" />
 	<?php } ?>

@@ -1,0 +1,255 @@
+/* Day mode styles */
+html { font-size: calc(1.0*(1em + 1vw)); } /* adjust font to size of user's screen */
+
+body {
+    color:#000000;
+}
+
+/* useful classes that may appear anywhere */
+.note { color:gray; }
+.error { color:red; /*!important;*/ }
+.warning { color:orange; /*!important;*/ }
+.hiWarning {color:white; background:orange; }
+.info { color: green }
+.italic { color:lightblue; }
+
+/* headers */
+h1,h2,h3,h4,h5,h6 {
+	font:1rem sans-serif; text-align:center;
+	color:white; background:#bf9f9f;
+}
+.reqd, sup, span.reqd, #reqdNote { color:red; }
+span.reqd { font-weight:bold; }
+h5#reqdNote { background:#EFDB8A;}
+
+fieldset { border:0; margin:0; padding:0; }
+fieldset, ledgend { background-color:#ffffdd; }
+
+::placeholder, .placeholder { color:#000; }
+
+/* lozenge shape buttons - from "CSS3 for Web Designers", Jeffrey Zeldman " */
+/* to revert to normal OS button style, remove this block */
+input[type=button], input[type=submit], button, #somebutton {
+	padding:2px 4px;
+	color:#222; background-color: bisque; border:1px dash black;
+	border-radius:5px;
+	transition: background-color 0.3s;
+	}
+	
+input[type=button]:hover, input[type=submit]:hover, button:hover, #somebutton:hover {
+    background-color: #ffa500; /* Change background color on hover */
+    color: #fff; /* Change text color on hover */
+    border-color: #AAA; /* Change border color on hover */
+}	
+
+input:focus { background:rgb(230,255,255); }
+input:disabled,
+button:disabled { background:#dddddd; color:#888888; }
+input[readonly] { background-color:#ffffdd; }
+
+textarea:focus { box-shadow:0 0 12px rgba(51,204,255, 0.5); } /* blue shadow */
+
+ui-datepicker { background:green }
+
+/*************************************************/
+aside { color:black; background: bisque; }
+
+#menuBtn { color:white; background:#a0c0c8; }
+#menuBtn svg { width:2em; height:2em; border: 1px dashed yellow; }
+
+h1.theHead { color:white; }
+#library_name { color:black; }
+
+ul.nav_main > li.nav_selected { border: 4px dashed white; border-radius: 5px;}
+nav a { color:darkblue; }
+nav a:visited { color:darkblue; }
+nav a.button { font:0.75em serif; /* 12/16 */ color:black; background:#b2dae4; }
+nav a.button:visited { color:black; }
+
+/*************************************************/
+#content { background:white; }
+#content .altBG { background:#dddddd; }
+
+#tabs ul { background:#90b0b8; }
+#tabs li a { border-color:#fff #333 #222 #fff; background:#ccc; color:#333; }
+#tabs li a:hover { background:#333; color:#ccc; border-color:#000 #ccc #ccc #000; }
+#tabs ul.controls li.active a { color:blue; background-color:#ffffdd; }
+
+.title { font:1.25rem sans-serif; /* 20/16 */ color:white; background:#ccb470; }
+
+#onlineMsg { color:blue; }
+.call_media { font:1.0em sans-serif; /* 16/16 */ }
+.compact_info_display th.title { font:1.0em serif regular;	/* 16/16 */ }
+.compact_info_display th.author { font:1.0em serif regular;	/* 16/16 */ }
+.compact_info_display li { font:0.87em serif;	/* 14/16 */ }
+.hilite { color:white; background-color:green; }
+.search_result .available { font:0.87em serif;	/* 14/16 */ }
+
+/*************************************************/
+span.highLite { color:#FF8A00; }
+
+#configDiv ul#existing li { color:black; background:#FFFF99; }
+#configDiv ul#potential li { color:black; background:#CCFFFF; }
+
+#skiptocontent a { color:white; }
+
+/* ####################################################### */
+/* For Tablets and Desktops */
+/* ####################################################### */
+
+
+tbody.striped tr:nth-child(odd) { background-color:#DED; }
+tbody.striped tr:nth-child(even) { background-color:#CDC; }
+
+.opacsearch {
+	background-color: bisque;
+	text-align: center;
+	padding: 15px;
+	border: 1px solid green;
+}
+.opacsearch a:hover {
+	color: red;
+	padding: 5px;
+	border: 1px solid green;
+	
+}
+
+@media screen and (min-width:800px) {
+	/* For Desktops */
+		html { font-size: calc(0.5*(1em + 1vw)); } /* adjust font to size of user's screen */
+
+		h3.theHead { font:bold 1.0em serif; /* 16/16 */ color:white;}
+
+	/* Additional night mode styles can be added or modified here */
+
+	#password {
+		padding: 3px;
+	}
+
+	.theHead, #sidebar, #content {
+		transition: background-color 0.3s ease;
+	}
+
+}
+
+/* ################### custom day+night slider #################### */
+:root {
+	--bg1: #e0e0e0;
+	--bg2: #100f12;
+	--orange: #ffc207;
+	--dark-purple: #27173A;
+}
+
+.slidecontainer {
+	margin: 5px;
+	padding: 5px;
+	border-sizing: border-box;
+	height: auto;
+	/* background-color: var(--bg1); */
+	transition: all 0.8s;
+	display: grid;
+	place-items: center;
+}
+
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 80px;
+	height: 40px;
+	border-radius: 50px;
+	/* background: bisque; */
+	overflow: hidden;
+}
+
+#invisible {
+	/* in tutorial, this is defined as input element */
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.slider {
+	position: absolute;
+	background-color: blue;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	border-radius: 50px;
+	transition: all 0.6s;
+	cursor: pointer;
+	box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.slider::before {
+	position: absolute;
+	content: "";
+	background: var(--orange);
+	height: 30px;
+	width: 30px;
+	border-radius: 50%; 
+	left: 5px;
+	bottom: 5px;
+	transition: all 0.5s;
+	/* box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.7); */
+	box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.7), 0 2px 3px rgba(0, 0, 0, 0.7);
+}
+
+.slider::after {
+	position: absolute;
+	content: "";
+	height: 30px;
+	width: 30px;
+	background: blue;
+	border-radius: 50%;
+	left: -30px;
+	bottom: 4px;
+	transition: all 0.5s;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#invisible:checked + .slider::before {
+	transform: translateX(40px);
+}
+
+#invisible:checked + .slider::after {
+	transform: translateX(60px);
+}
+
+.quote-container {
+	display: grid;
+	place-content: center;
+	width: 436px;
+  height: auto;
+  border-width: 10px; /* Adjust border width as needed */
+  border-style: solid;
+  border-image: url('circle_orange.png') 10 repeat; /* Replace 'border-image.png' with the path to your border image */
+  padding: 20px; /* Adjust padding as needed */
+  box-sizing: border-box; /* Ensure padding is included in the width and height */
+	/* background-image: url('day_skyline.jpg'); */
+	background-image: linear-gradient(blue, skyblue);
+	background-size: cover;
+	position: relative;
+}
+
+.quote-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Inherit the width of the quote-container */
+  height: 100%; /* Inherit the height of the quote-container */
+  /* background: rgba(0, 0, 0, 0.4);  */
+}
+
+.quote-text {
+	width: 100%;
+	font-family: consolas, sans-serif; /* Choose your preferred font family */
+  font-size: 24px; /* Adjust font size as needed */
+	font-weight: bold;
+  text-align: center;
+  line-height: 1.5; /* Adjust line height as needed */
+	color: white;
+	text-shadow: 3px 3px 3px black;
+	z-index: 1;
+}
