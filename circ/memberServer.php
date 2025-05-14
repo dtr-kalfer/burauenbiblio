@@ -74,16 +74,19 @@
 			$history = new History;
 			require_once(REL(__FILE__, "../classes/Biblio.php"));
 			break;
-		case 'doHold':
-		case 'getHolds':
+		case 'doHold': //  Uncaught Error: Call to a member function getByBarcode() on null, fill in missing definitions --> F.Tumulak
+			require_once(REL(__FILE__, "../classes/Copy.php"));
+			require_once(REL(__FILE__, "../model/Copies.php"));
+			$copies = new Copies;		
+		case 'getHolds': // Fatal error: Uncaught Error: Class 'Copy' not found memberServer.php on line 310 -- F.Tumulak
 			require_once(REL(__FILE__, "../model/Holds.php"));
 			$holds = new Holds;
+			require_once(REL(__FILE__, "../model/Copies.php"));
+			require_once(REL(__FILE__, "../classes/Copy.php"));
+			require_once(REL(__FILE__, "../classes/Biblio.php"));
+			require_once(REL(__FILE__, "../model/Biblios.php"));
 			break;
-        case 'getOpts':
-            //require_once(REL(__FILE__, "../model/Settings.php"));
-            //$settings = new Settings;
-            break;
-        case 'd-3-L-3-tHold':
+    case 'd-3-L-3-tHold':
 			require_once(REL(__FILE__, "../model/Holds.php"));
 			$holds = new Holds;
 			require_once(REL(__FILE__, "../model/Copies.php"));

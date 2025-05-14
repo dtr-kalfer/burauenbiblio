@@ -547,7 +547,7 @@ class Copies extends CoreTable {
 		$this->custom->deleteMatches(array('copyid'=>$copyid));
 		foreach ($customFldsarr as $code => $data) {
 			$fields= array(
-                'bibid'=>$bibid,
+        'bibid'=>$bibid,
 				'copyid'=>$copyid ,
 				'code'=>$code,
 				'data'=>$data

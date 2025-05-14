@@ -602,7 +602,8 @@ var mf = {
 	//------------------------------
 	doHold: function () {
 		var barcd = $.trim($('#holdBarcd').val());
-		barcd = flos.pad(barcd,mf.opts.item_barcode_width,'0');
+		//barcd = flos.pad(barcd,mf.opts.item_barcode_width,'0');
+		console.log('value of barcd', barcd);
 		$('#holdBarcd').val(barcd); // redisplay expanded value
 
 		var parms = {'mode':'doHold', 'mbrid':mf.mbrid, 'barcodeNmbr':barcd};
