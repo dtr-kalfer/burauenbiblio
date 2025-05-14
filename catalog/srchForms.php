@@ -43,7 +43,7 @@
 <form role="form" id="barcodeSearch" name="barcodeSearch" method="post">
 <fieldset>
 	<legend><?php echo T("Find Item by Barcode"); ?></legend>
-	<label for="bc_searchBarcd"><?php echo T("Barcode");?>:</label>
+	<label for="bc_searchBarcd" style="margin-left: 15px;"><?php echo T("Barcode");?>:</label>
 	<input type="text" id="bc_searchBarcd" name="searchBarcd" size="20" />
 	<input type="submit" id="barcdSrchBtn" name="barcdSrchBtn" value="<?php echo T("Search"); ?>" class="srchByBarcdBtn" />
 	<input type="hidden" id="bc_searchType" name="searchType" value="barcodeNmbr" />
