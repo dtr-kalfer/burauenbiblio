@@ -670,7 +670,7 @@ div#configDiv{
 	ul.pagBtns li:last-child { float:right; }
 
 	/* ------------------ custom built css here ----------------- */
-	#hideMe, #mbrAcntBtn, #bkgBtn, #holdBtn {display: none;}
+	/* #hideMe, #mbrAcntBtn, #bkgBtn, #holdBtn {display: none;} */
 	input[type=button]:hover, input[type=submit]:hover, button:hover, #somebutton:hover {
 			background-color: #ffa500; /* Change background color on hover */
 			color: #fff; /* Change text color on hover */
