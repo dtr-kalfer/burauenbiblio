@@ -300,7 +300,7 @@ class RptParser {
 					$sql = '';
 				}
 				if (array_key_exists($ref[0], $conversions)) {
-					$conv = $conversions[$ref{0}];
+					$conv = $conversions[$ref[0]];
 					$ref = substr($ref, 1);
 				} else {
 					$conv = '%Q';
