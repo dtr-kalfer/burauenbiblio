@@ -202,10 +202,10 @@ class RptParser {
 		# NOTE: Lines longer than 4096 bytes will mess things up.
 		while ($line = fgets($this->fd, 4096)) {
 			$this->line++;
-			if ($line == "\n" or $line == "\r\n" or $line == "\r" or $line{0} == '#') {
+			if ($line == "\n" or $line == "\r\n" or $line == "\r" or $line[0] == '#') { // fixed deprecated,
 				continue;
 			}
-			if ($line{0} == '.') {
+			if ($line[0] == '.') { // fixed deprecated, Array and string offset access syntax with curly braces --F.Tumulak
 				$this->_tokens = $this->getCmdTokens(trim(substr($line, 1)));
 			} else {
 				$this->_tokens = $this->getSqlTokens(trim($line));
