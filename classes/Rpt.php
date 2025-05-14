@@ -242,7 +242,7 @@ class RptParser {
 				list($w, $str) = $this->getQuoted($str);
 				array_push($list, array('WORD', $w));
 			} else {
-				array_push($list, array($str{0}));
+				array_push($list, array($str[0]));
 				$str = substr($str, 1);
 			}
 		}
