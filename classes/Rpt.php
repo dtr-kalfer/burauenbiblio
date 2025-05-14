@@ -299,7 +299,7 @@ class RptParser {
 					array_push($list, array('SQLCODE', $sql));
 					$sql = '';
 				}
-				if (array_key_exists($ref{0}, $conversions)) {
+				if (array_key_exists($ref[0], $conversions)) {
 					$conv = $conversions[$ref{0}];
 					$ref = substr($ref, 1);
 				} else {
