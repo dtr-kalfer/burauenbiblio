@@ -217,7 +217,7 @@ function postBiblioChange($nav) {
 //	/* Set field display values -- TODO */
 
 	## Sort fields by tag and display value ##
-	usort($fields, fieldCmp);
+	usort($fields, 'fieldCmp'); //fixed Warning: Use of undefined constant fieldCmp - assumed 'fieldCmp' --F.Tumulak
 
 	## prepare the update/insert biblio structure
 	## note: relocated from top of function to where used ##
