@@ -414,6 +414,7 @@ $trans["FileName"] = "Item Name or Id";
 $trans["Find Item by Barcode"] = "Find Item by Barcode";
 $trans["Find Member by Barcode"] = "Search Member by Barcode";
 $trans["Find Member by Name"] = "Search Member by Name";
+$trans["Find Member by Surname"] = "Search Member by Surname";
 $trans["First day of week"] = "First Day of Week";
 $trans["FirstName"] = "First Name";
 $trans["FIXED"] = "FIXED";

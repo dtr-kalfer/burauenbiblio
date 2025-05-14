@@ -48,7 +48,7 @@
 	
 	<form role="form" id="nameSrchForm" name="nameSrchForm" action="">
 	<fieldset>
-	<legend><?php echo T("Find Member by Name"); ?></legend>
+	<legend><?php echo T("Find Member by Surname"); ?></legend>
 	<table>
 		<tr>
 			<td nowrap="true">
