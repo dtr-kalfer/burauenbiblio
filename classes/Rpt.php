@@ -227,11 +227,11 @@ class RptParser {
 			'else', 'subselect', 'end', 'order_by_expr');
 		$list = array();
 		while (!empty($str)) {
-			if ($str{0} == ' ' or $str{0} == "\t") {
+			if ($str[0] == ' ' or $str[0] == "\t") {
 				$str = substr($str, 1);
 				continue;
 			}
-			if (ctype_alnum($str{0})) {
+			if (ctype_alnum($str[0])) {
 				$w = '';
 				while (ctype_alnum($str{0}) or $str{0} == '_') {
 					$w .= $str{0};
