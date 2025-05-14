@@ -69,20 +69,20 @@
     ?>
   </title>
 
-  <meta name="description" content="OpenBiblio ver 1.0a">
-  <meta name="author" content="Luuk Jansen">
-  <meta name="author" content="Fred LaPlante">
-  <meta name="author" content="Jane Sandberg">
-  <meta name="author" content="Micah Stetson">
-  <meta name="tester" content="Neil Redgate">
-  <meta name="tester" content="Charlie Tudor">
-  
+	<!-- Project Metadata for OpenBiblio -->
+	<meta name="description" content="OpenBiblio Library System - Originally developed as version 1.0a">
+	<meta name="author" content="Luuk Jansen, Fred LaPlante, Jane Sandberg, Micah Stetson">
+	<meta name="generator" content="OpenBiblio 1.0a - https://obiblio.sourceforge.net/">
+	<meta name="tester" content="Neil Redgate, Charlie Tudor">
+	<meta name="burauenbiblio-maintainer" content="Ferdinand Tumulak">
+	<meta name="burauenbiblio-fork-date" content="2025-05-07">
+	<meta name="project-url" content="https://github.com/dtr-kalfer/burauenbiblio">
+	
 	<script src="../shared/modernizr-2.6.2.min.js"></script>
   <script src="../shared/jquery/jquery-3.2.1.min.js"></script>
   <link rel="stylesheet" href="../shared/style6.css" />
 
   <link rel="stylesheet" href="../shared/jquery/jquery-ui.min.css" />
-
   <link rel="stylesheet" href="<?php echo H($params['theme_dir_url']) ?>/style_day.css" />
 
   <?php if ($tab == 'opac') { ?>
