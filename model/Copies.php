@@ -543,14 +543,14 @@ class Copies extends CoreTable {
 		return $this->custom->deleteMatches(array('copyid'=>$copyid));
 	}
 
-	public function setCustomFields($bibid, $copyid, $customFldsarr) {
+	public function setCustomFields($bibid, $copyid, $customFldsarr) { //Fixed: Warning: Use of undefined constant bibid - assumed 'bibid' --F.T.
 		$this->custom->deleteMatches(array('copyid'=>$copyid));
 		foreach ($customFldsarr as $code => $data) {
 			$fields= array(
-                bibid=>$bibid,
-				copyid=>$copyid ,
-				code=>$code,
-				data=>$data
+                'bibid'=>$bibid,
+				'copyid'=>$copyid ,
+				'code'=>$code,
+				'data'=>$data
 			);
 			list($seqVal, $err) = $this->custom->insert($fields);
             if($err != "Success") throw new Exception("Error saving the fields.");
