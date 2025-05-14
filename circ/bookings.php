@@ -2,42 +2,119 @@
 /* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
  * See the file COPYRIGHT.html for more details.
  */
+ // Use this as a generic template for informational query + custom sql --F.Tumulak
 
 	require_once("../shared/common.php");
 
-	$tab = "circulation";
-	$nav = "bookings";
-	$focus_form_name = "booking_pending";
-	$focus_form_field = "rpt_out_before";
-
-	require_once(REL(__FILE__, "../shared/logincheck.php"));
-	require_once(REL(__FILE__, "../functions/inputFuncs.php"));
-	Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
-	require_once(REL(__FILE__, "../classes/Date.php"));
-
-	if (isset($_REQUEST['msg'])) {
-		echo '<p class="error">'.H($_REQUEST['msg']).'</p>';
+	$tab="circulation";
+	$nav="bookings";
+	if (isset($_REQUEST['tab'])) {
+		$tab = $_REQUEST['tab'];
 	}
+	if (isset($_REQUEST['nav'])) {
+		$nav = $_REQUEST['nav'];
+	}
+	require_once(REL(__FILE__, "../shared/logincheck.php"));
+
+	require_once(REL(__FILE__, "../classes/Report.php"));
+	require_once(REL(__FILE__, "../classes/ReportDisplay.php"));
+	require_once(REL(__FILE__, "../classes/TableDisplay.php"));
+	require_once(REL(__FILE__, "../classes/Links.php"));
+
+	if (!$_REQUEST['type']) {
+		header('Location: ../reports/index.php');
+		exit(0);
+	}
+	if ($_REQUEST['type'] == 'previous') {
+		$rpt = Report::load('Report');
+	} else {
+		$rpt = Report::create($_REQUEST['type'], 'Report');
+	}
+	if (!$rpt) {
+		header('Location: ../reports/index.php');
+		exit(0);
+	}
+
+	if ($_REQUEST['type'] == 'previous') {
+		if (isset($_REQUEST['rpt_order_by'])) {
+			$rpt = $rpt->variant(array('order_by'=>$_REQUEST['rpt_order_by']));
+		}
+	} else {
+		$errs = $rpt->initCgi_el();
+		if (!empty($errs)) {
+			FieldError::backToForm('../reports/report_criteria.php', $errs);
+		}
+	}
+	if (isset($_REQUEST['page'])) {
+		$page = $_REQUEST['page'];
+	} else {
+		$page = $rpt->curPage();
+	}
+
+	foreach ($rpt->layouts() as $l) {
+		if ($l['title']) {
+			$title = $l['title'];
+		} else {
+			$title = $l['name'];
+		}
+		Nav::node('reports/results/'.$l['name'], $title,
+			'../shared/layout.php?rpt=Report&name='.U($l['name']));
+	}
+	Nav::node('reports/results/list', T("Print List"),
+		'../shared/layout.php?rpt=Report&name=list');
+	Nav::node('reports/reportcriteria', T("Report Criteria"),
+		'../reports/report_criteria.php?type='.U($rpt->type()));
+
+	Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 ?>
-
-<h3><?php echo T("Manage Bookings"); ?></h3>
-<form role="form" name="booking_pending" method="get" action="../circ/booking_pending.php">
-<fieldset>
-<legend><?php echo T("Pending Bookings"); ?></legend>
-<table class="primary">
-	<tbody class="unStriped">
-	<tr>
-		<td nowrap="true" class="primary">
-			<label for="rpt_out_before"><?php echo T("For Date"); ?>:</label>
-			<?php echo inputfield('text', 'rpt_out_before', 'today', array('size'=>10)); ?>
-			<input type="submit" value="<?php echo T("Search"); ?>" class="button" />
-		</td>
-	</tr>
-	</tbody>
-</table>
-</fieldset>
-</form>
-
+<h3><?php echo T("Booking Information"); // Make the title compatible with the navigation --F.Tumulak ?></h3>
 <?php
+	if (isset($_REQUEST["msg"]) && !empty($_REQUEST["msg"])) {
+		echo '<p class="error">'.H($_REQUEST["msg"]).'</p><br /><br />';
+	}
 
-	 ;
+	if ($rpt->count() == 0) {
+		echo T("No results found.");
+		exit();
+	}
+
+	$p = array('type'=>'previous', 'tab'=>$tab, 'nav'=>$nav);
+	$page_url = new LinkUrl("../circ/bookings.php",
+		'page', $p);
+	$sort_url = new LinkUrl("../circ/bookings.php",
+		'rpt_order_by', $p);
+	$disp = new ReportDisplay($rpt);
+	echo '<div class="results_count">';
+	echo T("%count% results found.", array('count'=>$rpt->count()));
+	echo '</div>';
+	echo $disp->pages($page_url, $page);
+	echo '<p style="text-align: center;">'.$rpt->count().' reservations found.</p>'; // inform number of reservations made --F.Tumulak
+?>
+<!--table class="resultshead">
+	<tr>
+			<th><?php echo T("Report Results"); ?></th>
+		<td class="resultshead">
+<table class="buttons">
+<tr-->
+<?php
+# Fill in report actions here
+?>
+<!--/tr>
+</table>
+</td>
+	</tr>
+</table-->
+<fieldset>
+<?php
+	$t = new TableDisplay;
+	$t->columns = $disp->columns($sort_url);
+	echo $t->begin();
+	$pg = $rpt->pageIter($page);
+	while ($r = $pg->next()) {
+		echo $t->rowArray($disp->row($r));
+	}
+	echo $t->end();
+
+	echo $disp->pages($page_url, $page);
+?>
+</fieldset>

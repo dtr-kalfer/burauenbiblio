@@ -74,25 +74,25 @@ class Search {
 		for($i=0; $i<strlen($str); $i++) {
 			if ($q) {
 				if ($bs) {
-					$s .= $str{$i};
+					$s .= $str[$i];
 					$bs = false;
-				} else if ($str{$i} == "\\") {
+				} else if ($str[$i] == "\\") {
 					$bs = true;
-				} else if ($str{$i} == "\"") {
+				} else if ($str[$i] == "\"") {
 					$q = false;
 				} else {
-					$s .= $str{$i};
+					$s .= $str[$i];
 				}
 			} else {
-				if ($str{$i} == "\"") {
+				if ($str[$i] == "\"") {
 					$q = true;
-				} else if ($str{$i} == " " or $str{$i} == "\t" or $str{$i} == "\r" or $str{$i} == "\n") {
+				} else if ($str[$i] == " " or $str[$i] == "\t" or $str[$i] == "\r" or $str[$i] == "\n") {
 					if (strlen($s)) {
 						$elements[] = $s;
 						$s = "";
 					}
 				} else {
-					$s .= $str{$i};
+					$s .= $str[$i];
 				}
 			}
 		}
