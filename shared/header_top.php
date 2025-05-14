@@ -72,40 +72,15 @@
   <meta name="author" content="Micah Stetson">
   <meta name="tester" content="Neil Redgate">
   <meta name="tester" content="Charlie Tudor">
-	
-  <!-- this line MUST precede all .css & JS files - FL
-  		 Based on the browser in use, it places many conditional classes
-  		 into the <body> tag for use by feature-specific CSS & JS statements.
-  		 It also deals with html5 support issues for older IE browsers. 	 -->
-  <script src="../shared/modernizr-2.6.2.min.js"></script>
-
-  <!-- *********************************************************************** -->
-  <!-- prefixFree.js adds appropriate vendor prefixes to CSS as needed -->
-  <!-- this is considered to be temporary until the use of prefixes ends -->
-  <!--script src="../shared/prefixfree.min.js"></script> <!-- review yearly -->
-  <!-- *********************************************************************** -->
-
-  <!-- we place these JS files here because several JS modules loaded in line -->
-  <!-- depend on them being in place. -->
-  <!--[if lt IE 9]><script src="../shared/jquery/jquery-1.10.2.min.js"></script><!--<![endif]-->
-  <!--[if gt IE 8]><!-->
+  
+	<script src="../shared/modernizr-2.6.2.min.js"></script>
   <script src="../shared/jquery/jquery-3.2.1.min.js"></script>
-  <!--<![endif]-->
-
-  <!-- All other JavaScript is placed at the end of <body> (see footer.php)
-  		 to match industry best practices and to improve overall performance -->
-
-  <!-- This style sheet resets all browsers to a common default style -->
-  <!-- <link rel="stylesheet" href="../shared/normalize.css" /> -->
-  <!-- OpenBiblio style is set here -->
   <link rel="stylesheet" href="../shared/style6.css" />
 
-  <!-- This style sheet is specific to the jQuery UI library -->
   <link rel="stylesheet" href="../shared/jquery/jquery-ui.min.css" />
 
-  <!-- User-selected theme colors, fonts, and button style are set here -->
   <link rel="stylesheet" href="<?php echo H($params['theme_dir_url']) ?>/style_day.css" />
 
-    <?php if ($tab == 'opac') { ?>
-	 <link rel="stylesheet" href="../opac/opac_new.css" />
+  <?php if ($tab == 'opac') { ?>
+		<link rel="stylesheet" href="../opac/opac_new.css" />
 	<?php } ?>

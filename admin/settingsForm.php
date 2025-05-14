@@ -52,7 +52,7 @@
 						<input type="checkbox" id="show_lib_info" name="show_lib_info" value="Y" />
 					</fieldset>
 					<fieldset class="inlineFldSet">
-						<img id="libImg" width="150" height="125" />
+						<img id="libImg" width="150" height="150" />
 					</fieldset>
 				</div>
 				<div id="localePage" class="block">
