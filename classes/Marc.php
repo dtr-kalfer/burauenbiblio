@@ -296,7 +296,7 @@ class MarcRecord {
 			}
 			$ldr .= $s;
 		}
-		assert('strlen($ldr) == 24');
+		assert(strlen($ldr) == 24);
 		return $ldr;
 	}
 
