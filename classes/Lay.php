@@ -715,7 +715,7 @@ class Lay {
 			switch ($type) {
 			case 'x-length':
 			case 'y-length':
-				list($len, $err) = $this->lengthToPoints($p[$name], $type{0});
+				list($len, $err) = $this->lengthToPoints($p[$name], $type[0]);
 				$p[$name] = $len;
 				break;
 			case 'x-align':
@@ -725,8 +725,8 @@ class Lay {
 				$atypes['y'] = array('top', 'bottom');
 				$atypes['both'] = array('center', 'justify', 'strict-justify', 'baseline');
 				if (!in_array($p[$name], $atypes['both'])
-						and !in_array($p[$name], $atypes[$type{0}])) {
-					$err = 'invalid '.$type{0}.' alignment type';
+						and !in_array($p[$name], $atypes[$type[0]])) {
+					$err = 'invalid '.$type[0].' alignment type';
 				}
 				break;
 			case 'boolean':

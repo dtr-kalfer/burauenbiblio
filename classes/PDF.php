@@ -19,7 +19,7 @@
 * You may use, modify and redistribute this software as you wish.              *
 *******************************************************************************/
 if (!defined('FPDF_VERSION')) {
-    define('FPDF_VERSION', '1.8'); // Replace '1.8' with your actual FPDF version
+    define('FPDF_VERSION', '1.8'); // Fixed, warning: Use of undefined constant FPDF_VERSION
 }
 
 class PDF {
@@ -154,7 +154,7 @@ class PDF {
 		$w=0;
 		$l=strlen($s);
 		for($i=0;$i<$l;$i++) {
-			$w+=$cw[$s{$i}];
+			$w+=$cw[$s[$i]];
 		}
 		# array(x-min, y-min, x-max, y-max) -- LOWER-LEFT ORIGIN
 		$bbox = $this->currentFont['bbox'];
@@ -565,13 +565,13 @@ class PDF {
 			$compressed=(substr($file,-2)=='.z');
 			if(!$compressed && isset($info['length2']))
 			{
-				$header=(ord($font{0})==128);
+				$header=(ord($font[0])==128);
 				if($header)
 				{
 					//Strip first binary header
 					$font=substr($font,6);
 				}
-				if($header && ord($font{$info['length1']})==128)
+				if($header && ord($font[$info['length1']])==128)
 				{
 					//Strip second binary header
 					$font=substr($font,0,$info['length1']).substr($font,$info['length1']+6);
