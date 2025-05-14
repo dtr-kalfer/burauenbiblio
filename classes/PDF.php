@@ -18,6 +18,9 @@
 *                                                                              *
 * You may use, modify and redistribute this software as you wish.              *
 *******************************************************************************/
+if (!defined('FPDF_VERSION')) {
+    define('FPDF_VERSION', '1.8'); // Replace '1.8' with your actual FPDF version
+}
 
 class PDF {
 	//Private properties
