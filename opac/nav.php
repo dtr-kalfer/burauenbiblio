@@ -46,15 +46,15 @@
 				<hr class="hdrSpacer" />
 				<footer>
 				  <div id="obLogo">
-						<a href="https://bitbucket.org/mstetson/obiblio-1.0-wip/">
-							<img src="../images/powered_by_openbiblio.gif" width="125" height="44" border="0" alt="Powered by OpenBiblio" />
+						<a href="#">
+							<img src="../images/burauen_biblio_sm.webp" width="125" height="44" border="0" alt="BurauenBiblio" />
 						</a>
 						<br />
 					</div>
 
-					OpenBiblio Version: <?php echo H(OBIB_CODE_VERSION);?>
+					<?php // echo H(OBIB_CODE_VERSION);?>
 					<br />
-					For <a href="../COPYRIGHT.html">Legal Info</a>.
+					<a href="../COPYRIGHT.html">Copyright Info.</a>.
 				</footer>
 	        </div>
 	    </section>

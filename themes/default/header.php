@@ -103,7 +103,7 @@ if ($tab != 'help') {
 		  <div id="obLogo">
 				<!--a href="http://obiblio.sourceforge.net/"-->
 				<a href="#">
-					<img src="../images/burauen_biblio_sm.webp" width="125" height="44" border="0" alt="Powered by OpenBiblio" />
+					<img src="../images/burauen_biblio_sm.webp" width="125" height="44" border="0" alt="BurauenBiblio" />
 				</a>
 				<br />
 			</div>
