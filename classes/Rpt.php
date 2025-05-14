@@ -261,7 +261,7 @@ class RptParser {
 			if ($str[$n] == $q) {
 				break;
 			}
-			if ($str{$n} == '\\') {
+			if ($str[$n] == '\\') {
 				$n++;
 				if ($n >= strlen($str)) {
 					break;
