@@ -233,8 +233,8 @@ class RptParser {
 			}
 			if (ctype_alnum($str[0])) {
 				$w = '';
-				while (ctype_alnum($str{0}) or $str{0} == '_') {
-					$w .= $str{0};
+				while (ctype_alnum($str[0]) or $str[0] == '_') {
+					$w .= $str[0];
 					$str = substr($str, 1);
 				}
 				array_push($list, array('WORD', $w));
