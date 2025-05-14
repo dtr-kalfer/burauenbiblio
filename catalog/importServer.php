@@ -185,7 +185,7 @@ echo "bibid ".print_r($bibid);echo " added to Biblios<br />";
 				
   #-.-.-.-.-.-.-.-.-.-.-.-.-
 	default:
-	    echo T("invalid mode").": $_POST['mode'] <br />";
+	    echo T("invalid mode") . " : " . $_POST['mode'] . "<br />";
 		break;
 }
 

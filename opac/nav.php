@@ -45,9 +45,9 @@
 
 				<hr class="hdrSpacer" />
 				<footer>
-				  <div id="obLogo">
+				  <div id="obLogo" style="width: 100%; padding: 0;" >
 						<a href="#">
-							<img src="../images/burauen_biblio_sm.webp" width="125" height="44" border="0" alt="BurauenBiblio" />
+							<img src="../images/burauen_biblio_sm.webp" border="0" alt="BurauenBiblio" />
 						</a>
 						<br />
 					</div>
