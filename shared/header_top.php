@@ -24,7 +24,11 @@
   <!-- select browser-top icon -->
   <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
   <!--link rel="apple-touch-icon" href="../apple-touch-icon.png"-->
-
+  <style>
+    html, body {
+      background-color: #111;
+    }
+  </style>
   <!-- build title using library's name (or current-site name) from database -->
   <title>
     <?php

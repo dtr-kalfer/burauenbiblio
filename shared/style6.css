@@ -1,12 +1,7 @@
 body {
     font-family:verdana,arial,helvetica, serif;
     color:#000000;
-    background-image: linear-gradient(#000000 4.4px, transparent 4.4px), 
-                      linear-gradient(90deg, #000000 4.4px, transparent 4.4px), 
-                      linear-gradient(#000000 2.2px, transparent 2.2px), 
-                      linear-gradient(90deg, #000000 2.2px, #051105 2.2px); /* Darker background pattern */
-    background-size: 110px 110px, 110px 110px, 22px 22px, 22px 22px;
-    background-position: -4.4px -4.4px, -4.4px -4.4px, -2.2px -2.2px, -2.2px -2.2px;
+    background-color: #111;
 }
 .ie body {width:540px;}
 
