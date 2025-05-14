@@ -227,7 +227,7 @@ function postBiblioChange($nav) {
 		$biblio = $biblios->getOne($_POST["bibid"]);
 	} else {
 		## create new empty structure
-		$biblio = array(marc=>new MarcRecord);
+		$biblio = array('marc' => new MarcRecord);
 	}
 	assert($biblio != NULL);
 
