@@ -296,7 +296,7 @@ class MarcRecord {
 			}
 			$ldr .= $s;
 		}
-		assert(strlen($ldr) == 24);
+		assert(strlen($ldr) == 24); //Fixed: Deprecated: assert(): Calling assert() with a string argument is deprecated --F.Tumulak
 		return $ldr;
 	}
 

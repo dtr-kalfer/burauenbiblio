@@ -242,7 +242,7 @@ function postBiblioChange($nav) {
 	else
 		$biblio['collection_cd'] = $_POST['collection_cd'];
 	$biblio['last_change_userid'] = $_POST["userid"];
-	$biblio['opac_flg'] = isset($_POST["opac_flg"]) ? Y : N;
+	$biblio['opac_flg'] = isset($_POST["opac_flg"]) ? 'Y' : 'N';
 
 	##  Insert/Update bibliography ##
 	if ($nav == "newconfirm") {
