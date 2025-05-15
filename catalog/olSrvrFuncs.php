@@ -150,27 +150,27 @@
 	      $indicie = $datafield . $code;
 	      $extratrim = '';
 	      switch($indicie) {
-	      case MARC_ISBN:
+	      case 'MARC_ISBN':
 	        if (substr($value,0,3) == '978')
 	        	$value = substr($value, 0, 13);
 					else
 	        	$value = substr($value, 0, 10);
 	        break;
-	      case MARC_TITLE:
-	      case MARC_PUBLICATION_PLACE:
+	      case 'MARC_TITLE':
+	      case 'MARC_PUBLICATION_PLACE':
 	        $extratrim = ':/';
 	        break;
-	      case MARC_SUBTITLE:
+	      case 'MARC_SUBTITLE':
 	        $extratrim = '/';
 	        break;
-	      case MARC_PUBLISHER:
+	      case 'MARC_PUBLISHER':
 	        $extratrim = ',';
 	        break;
-	      case MARC_PAGES:
+	      case 'MARC_PAGES':
 	        $value = (int)($value);
 	        break;
 	      }
-	      if($indicie != MARC_SUBJECT)       {
+	      if($indicie != 'MARC_SUBJECT')       {
 	        if(isset($marc[$recordposition][$indicie]) && !empty($marc[$recordposition][$indicie])) {
 	          $marc[$recordposition][$indicie] .= ', ' . trim($value, ' '.$extratrim);
 	        } else {
