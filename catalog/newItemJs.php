@@ -527,7 +527,7 @@ var ni = {
                 var maxHits = ni.opts.maxHits;
 				//console.log('maxHits = '+maxHits);
 				if (numHits < 1) {
-                    console.log('nothing found');
+            console.log('Search failed and Nothing found');
 				    //{'ttlHits':$ttlHits,'maxHits':$postVars[maxHits],
 					// 'msg':".$lookLoc->getText('lookup_NothingFound'),
 					// 'srch1':['byName':$srchByName,'val':$lookupVal],
@@ -560,14 +560,14 @@ var ni = {
 				else if (numHits > 1){
                     //console.log('more than one hit: '+numHits);
 					$('#choiceSpace').empty();
-					$('#ttlHits').html(numHits);
+					$('#ttlHits').html('Number of Hits: ' + (numHits - 1)); //since we know 2 Hits means 1 result -->F.T.
 					ni.singleHit = false;
 					console.log('number of hits:', numHits);
 					var nHits = 0, html;
 					ni.hostData = rslts.data;
 					$.each(rslts.data, function(hostIndex,hostData) {
 					  if (typeof(hostData) != undefined) {
-						  $('#choiceSpace').append('<h4>Repository: '+ni.hostJSON[hostIndex].name+'</h4>');
+						  $('#choiceSpace').append('<h4 id="id_repo">Repository: '+ni.hostJSON[hostIndex].name+'</h4>');
 						  if (!hostData) {
 							  $('#choiceSpace').append('<fieldset>' + ni.empty + '</fieldset>');
 							}
@@ -620,11 +620,12 @@ var ni = {
 
 					// i added this logic and throw the result in another div item 
 					// instead of showing the newItemForm.php, which is not correct --F.T.
+					// Also added a translation data --F.T.
 					var data_result = '';
 					if (typeof data !== 'undefined' && data) {
-							data_result = 'Data is not empty';
+							data_result = T("Data is not empty!");
 					} else {
-							data_result = 'No record found!';
+							data_result = T("No record found!");
 					}
 					console.log('data: ', data_result);
 

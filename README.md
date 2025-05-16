@@ -12,6 +12,8 @@ It is named in honor of my hometown in Leyte, Burauen.
 
 - Modifications © 2025 by Ferdinand Tumulak
 
+![OpenBiblio Screenshot](./opac_system2.webp "OpenBiblio Homepage")
+
 This repository includes a small set of sample bibliographic records (books) and fictional member accounts as part of the included SQL data.
 These are provided solely for the purpose of demonstrating and testing the functionality of the OpenBiblio system.
 
