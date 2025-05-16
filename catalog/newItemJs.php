@@ -562,7 +562,7 @@ var ni = {
 					$('#choiceSpace').empty();
 					$('#ttlHits').html(numHits);
 					ni.singleHit = false;
-
+					console.log('number of hits:', numHits);
 					var nHits = 0, html;
 					ni.hostData = rslts.data;
 					$.each(rslts.data, function(hostIndex,hostData) {
@@ -573,11 +573,11 @@ var ni = {
 							}
 							else {
 							  $.each(hostData, function(hitIndex,hitData) {
-							    nHits++;
+							    // nHits++; //lets hide this one, so it won't be shown in the divbox since it is in the console.log
 							    html  = '<fieldset>';
-						if (hitData['err']) {
-							html += hitData['err'];
-						} else {
+									if (hitData['err']) {
+										html += hitData['err'];
+									} else {
 							    
 							    html += '<form role="form" class="hitForm"><table border="0">';
 							    html += '<tr><td>LCCN</th><td>'+hitData['010a']+'</td></tr>';
@@ -590,6 +590,8 @@ var ni = {
 									var id = 'host'+hostIndex+'-hit'+hitIndex;
 							    html += '<td id="'+id+'"><input type="button" value="<?php echo T("This One"); ?>" /></td></tr>';
 									html += '</table></form>';
+									// This below gets populated if valid isbn is met --ft
+									//console.log('html: ', html); 
 						}
 									html += '</fieldset>';
 									$('#choiceSpace').append(html);
@@ -606,22 +608,41 @@ var ni = {
 				} // else if (rslts.ttlHits > 1)
 				
 				else if (rslts.ttlHits == 1){
-				    var data;
-				    ni.singleHit = true;
-                    console.log('single hit found');
+					var data;
+					ni.singleHit = true;
+					console.log('This is empty no results found! : ', rslts.ttlHits);
 					ni.hostData = rslts.data;
 					$.each(rslts.data, function(hostIndex,hostData) {
-					  $.each(hostData, function(hitIndex,hitData) {
-					  	data = hitData;
-					  });
+						$.each(hostData, function(hitIndex,hitData) {
+							data = hitData;
+						});
 					});
-					ni.crntData = data;
-					ni.doClearItemForm();
-					ni.doMakeItemForm();
+
+					// i added this logic and throw the result in another div item 
+					// instead of showing the newItemForm.php, which is not correct --F.T.
+					var data_result = '';
+					if (typeof data !== 'undefined' && data) {
+							data_result = 'Data is not empty';
+					} else {
+							data_result = 'No record found!';
+					}
+					console.log('data: ', data_result);
+
+					// comment these below..
+					//	ni.crntData = data;
+					//	ni.doClearItemForm();
+					//	ni.doMakeItemForm();
+					ni.doShowEmpty(data_result);
 				}
 			} // else
 	},
 	
+	doShowEmpty: function (data_result) {
+			$('#searchDiv').hide();
+			$('#choiceDiv').show();
+			$('#ttlHits').text(data_result);  // this updates the text inside the <span id="ttlHits">
+	},
+
 	doSelectOne: function (e) {
 	  var host = e.data.host;
 	  var hit = e.data.hit;

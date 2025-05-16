@@ -55,31 +55,31 @@ th.colHead { white-space: nowrap; }
 			  	<span style="display:inline-block">
 			  		<label for="lookupVal" style="display:block"><?php echo T("What to search for"); ?>:</label>
 		  			<input id="lookupVal" name="lookupVal" type="text" class="criteria" autofocus required aria-required="true" />
-				</span>
-				<span style="display:inline-block">
-			  		<label for="srchBy" style="display:block"><?php echo T("Which is a"); ?>:</label>
-			  		<select id="srchBy" name="srchBy" class="criteria">
-			  		<option value="7" selected><?php echo $isbnTxt; ?></option>
-			  		<option value="8"><?php echo $issnTxt; ?></option>
-			  		<option value="9"><?php echo $lccnTxt; ?></option>
-			  		<option value="4"><?php echo $titleTxt; ?></option>
-			  		<option value="1016"><?php echo $keywordTxt; ?></option>
-					</select>
-				</span>
+					</span>
+					<span style="display:inline-block">
+							<label for="srchBy" style="display:block"><?php echo T("Which is a"); ?>:</label>
+							<select id="srchBy" name="srchBy" class="criteria">
+								<option value="7" selected><?php echo $isbnTxt; ?></option>
+								<option value="8"><?php echo $issnTxt; ?></option>
+								<option value="9"><?php echo $lccnTxt; ?></option>
+								<option value="4"><?php echo $titleTxt; ?></option>
+								<option value="1016"><?php echo $keywordTxt; ?></option>
+							</select>
+					</span>
 			  </div>
 			  <label><?php echo T("And"); ?></label>
-			  <div id="fldset2">
-			  	<input id="lookupVal2" name="lookupVal2" type="text" class="criteria" />
-			  	<select id="srchBy2" name="srchBy2" class="criteria">
-			  		<option value="0"></option>
-			  		<option value="1004"><?php echo $authorTxt; ?></option>
-			  		<option value="1016"><?php echo $keywordTxt; ?></option>
-			  		<option value="1031"><?php echo $mediaTxt; ?></option>
-			  		<option value="1018"><?php echo $pubNameTxt; ?></option>
-			  		<option value="59"><?php echo $pubLocTxt; ?></option>
-			  		<option value="31"><?php echo $pubDateTxt; ?></option>
-					</select>
-				</div>
+					<div id="fldset2">
+						<input id="lookupVal2" name="lookupVal2" type="text" class="criteria" />
+						<select id="srchBy2" name="srchBy2" class="criteria">
+							<option value="0"></option>
+							<option value="1004"><?php echo $authorTxt; ?></option>
+							<option value="1016"><?php echo $keywordTxt; ?></option>
+							<option value="1031"><?php echo $mediaTxt; ?></option>
+							<option value="1018"><?php echo $pubNameTxt; ?></option>
+							<option value="59"><?php echo $pubLocTxt; ?></option>
+							<option value="31"><?php echo $pubDateTxt; ?></option>
+						</select>
+					</div>
 				<label><?php echo T("And");?></label>
 				<div id="fldset3">
 			  	<input id="lookupVal3" name="lookupVal3" type="text" class="criteria" />
@@ -147,8 +147,8 @@ th.colHead { white-space: nowrap; }
 		  	<td colspan="1"><span id="waitText"></span></td>
 		</tr>
 		<tr>
-	    	<td align="center" colspan="1">
-	      		<fieldset><?php echo T("lookup_resetInstr");?></fieldset>
+			<td align="center" colspan="1">
+					<fieldset><?php echo T("lookup_resetInstr");?></fieldset>
 			</td>
 		</tr>
 		</table>
@@ -171,9 +171,9 @@ th.colHead { white-space: nowrap; }
 			<input id="choiceBtn1" type="button" class="col4" value="<?php echo T("Go Back");?>" />
 		</div>
 		<span id="hitInfo">
-			<?php echo T("Success")."! "; ?><span id="ttlHits"></span><?php echo " ".T("results found."); ?>
+			<p><span id="ttlHits">To be filled by server --F.T.</span></p>
 		</span>
-	  	<div id="choiceSpace"> Search Results go here </div>
+	  	<div id="choiceSpace"></div>
 		<div class="btnRow gridded">
 			<input id="choiceBtn2" type="button" class="col4" value="<?php echo T("Go Back");?>" />
 		</div>
