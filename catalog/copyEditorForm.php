@@ -4,6 +4,7 @@
  */
  
     require_once("../shared/common.php");
+	// "From where I am now (this file), how do I get to that file over there?"
  	require_once(REL(__FILE__, "../model/BiblioCopyFields.php"));
 	require_once(REL(__FILE__, "../model/CopyStatus.php"));	
 ?>

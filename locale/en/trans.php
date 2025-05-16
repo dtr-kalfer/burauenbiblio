@@ -673,6 +673,7 @@ $trans["modelBookingsPayFinesFirst"] = "Checkouts blocked until all fines are pa
 $trans["modelBookingsSetForOtherBooking"] = "The copy with barcode %barcode% is set to be checked out for another booking in this batch.";
 $trans['Monday'] = 'Monday';
 $trans["More info"] = "More info";
+$trans["Mode"] = "Acquired thru";
 $trans["Must be numeric"] = "Must be numeric";
 $trans["Must Returns"] = "Must Returns";
 $trans["My Account"] = "My Account";
