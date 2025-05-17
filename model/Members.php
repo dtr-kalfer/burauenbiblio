@@ -220,9 +220,9 @@ class Members extends CoreTable {
 	    $this->deleteCustomFields($mbrid);
 		foreach ($customFldsarr as $code => $data) {
 			$fields= array(
-				mbrid=>$mbrid ,
-				code=>$code,
-				data=>$data
+				'mbrid'=>$mbrid ,
+				'code'=>$code,
+				'data'=>$data
 			);
 			$this->custom->insert($fields);
 		}
