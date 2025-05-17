@@ -23,10 +23,10 @@
 			require_once(REL(__FILE__, "../model/OpenHours.php"));
 			$ptr = new OpenHours;
 			break;
-        case 'integrity':
-            require_once(REL(__FILE__, "../classes/Integrity.php"));
-            $ptr = new Integrity;
-            break;
+		case 'integrity':
+			require_once(REL(__FILE__, "../classes/Integrity.php"));
+			$ptr = new Integrity;
+			break;
 		case 'media':
 			require_once(REL(__FILE__, "../model/MediaTypes.php"));
 			$ptr = new MediaTypes;

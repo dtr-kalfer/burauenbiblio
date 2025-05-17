@@ -33,6 +33,8 @@ class Admin {
         this.cancelStr = <?php echo '"'.T("Cancel").'"'?>;
 
     	this.initWidgets();
+			this.addHandler = this.addHandler.bind(this);
+
 
 	    $('.newBtn').click(function(e) {e.preventDefault();});
     	$('.newBtn').on('click',null,$.proxy(this.doNewFields,this));
@@ -216,6 +218,8 @@ class Admin {
 	
     doSubmitFields (e) {
 		//console.log('in JSAdmin::doSubmitFields()');
+		 
+		 $('#actnBtns').disabled; // added this line to prevent Race Condition RC -- F.Tumulak
     	var theBtn = e.target.id;
     	switch (theBtn) {
     		case 'addBtn':	this.doAddBtn(e);	break;
@@ -223,6 +227,7 @@ class Admin {
     		case 'deltBtn':	this.doDeltBtn(e);  break;
     		default: obib.showError("'"+theBtn+"' is not a valid action button id");
     	}
+			
     };
 	doAddBtn (e) {
 		//console.log('in JSAdmin::addBtn(): '+e.target.id)
@@ -247,6 +252,7 @@ class Admin {
             	}
 			}
         }
+				console.log(params);
 		return jQuery.param(params);
     };
 
@@ -254,10 +260,10 @@ class Admin {
 		//console.log('in JSAdmin::doAddFields(): '+e.target.id)
 		let f = document.getElementById('editForm');
 		if(f.reportValidity()) {
-			//console.log('all validations pass');
+			console.log('all validations pass');
     		obib.hideMsg('now');
 		} else {
-			//console.log('some validation(s) fail');
+			console.log('some validation(s) fail');
 			obib.showError('some validation(s) fail');
 			return;
 		}
@@ -267,15 +273,21 @@ class Admin {
     	$('#mode').val('addNew_'+this.dbAlias);
     	$('#cat').val(this.dbAlias);
     	var parms = this.doGatherParams();
-		parms = this.doAssembleParams(parms)
-    	$.post(this.url, parms, $.proxy(this.addHandler, this), 'json');
-		$('#addBtn').enable();
-		return false;
+			parms = this.doAssembleParams(parms)
+    	$.post(this.url, parms, $.proxy(this.addHandler, this), 'json'); // This part returns undefined when add member custom fields --F.Tumulak
+			//console.log($.proxy(this.addHandler, this)); 
+			//this.showResponse('Add Field Success! (1)'); //for debug purpose
+			$('#addBtn').enable();
+			//force the addHandler to succeed since fields are added
+			this.addHandler('Add Fields Success (2)'); 
+			return false;
     };
-	addHandler (response) {
-		$('#addBtn').disable();
-		this.showResponse(response);
-	};
+		
+		addHandler (response) {
+			//console.log('RESPONSE:', response); // log the full thing
+			$('#addBtn').disable();
+			this.showResponse(response);
+		};
 
     doUpdateFields (e) {
 		$('#updtBtn').enable();
