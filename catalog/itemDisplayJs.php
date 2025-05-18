@@ -224,11 +224,13 @@ var idis = {
     						html += '		<input type="hidden" value="'+copy.copyid+'" />\n';
     						html += '	</td>\n';
     				<?php } ?>
-					if ((copy.siteid) && (multiSite == true)) {
-						html += "	<td>"+idis.sites[copy.siteid]+"</td>\n";
+						
+					if ((copy.siteid) && (multiSite === true) && idis && idis.sites && idis.sites[copy.siteid]) {
+							html += "	<td>" + idis.sites[copy.siteid] + "</td>\n";
 					} else {
-						$('#siteFld').hide();
+							$('#siteFld').hide();
 					}
+
 
 					html += "	<td>"+copy.barcode+"</td>\n";
 
