@@ -112,7 +112,7 @@ var bbd = {
 			// delete rejected
 			return false;
 		} else {
-						console.log('bibAray: ' +bibAray);
+						//console.log('bibAray: ' +bibAray);
 						$('#crntMbrDiv_new').html('<h4>WARNING! Delete the following: <b>' + bibAray + '</b></h4>').show();
             bbd.deleteBibs(bibAray);
         }

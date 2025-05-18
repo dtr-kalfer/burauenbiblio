@@ -254,17 +254,17 @@ public function deleteOne() {
     return $result->rowCount();
 }
 
-public function deleteOne_new($bibid) {
+public function deleteOne_new($bibid) { //Added new function for exclusive for bulk delete --F.Tumulak
     $this->lock();
-    echo "deleteOne received bibid: $bibid<br>";
-		$sql = $this->mkSQL('DELETE FROM %I WHERE %I = %N', $this->name, 'bibid', $bibid);
+    //echo "deleteOne received bibid: $bibid<br>";
+		$sql = $this->mkSQL('DELETE FROM %I WHERE %I = %N', $this->name, 'bibid', $bibid); // set correct input 'bibid' --F.Tumulak
     //$sql = $this->mkSQL('DELETE FROM %I WHERE %I = %N', $this->name, $this->_key, $bibid);
-    echo "Attempting SQL: $sql<br>";
+    //echo "Attempting SQL: $sql<br>";
 
     $result = $this->act($sql);
     $this->unlock();
 
-    echo "Rows affected: " . $result->rowCount() . "<br>";
+    echo "Records affected: " . $result->rowCount() . "<br>";
     return $result->rowCount();
 }
 
