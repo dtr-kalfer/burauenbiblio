@@ -79,6 +79,7 @@ function staff_menu() {
 
 	##-------------------------------------------------------------------------------------##
 	if($_SESSION["hasAdminAuth"]){
+		// use this format --> Nav::node('parent dir./child dir.', T("locale"), '../path_to/file.php');
 		Nav::node('admin', T("Admin"), '../admin/index.php');
 		Nav::node('admin/settings', T("Library Settings"), '../admin/settingsForm.php');
 		Nav::node('admin/staff', T("Staff Admin"), '../admin/staffForm.php');
@@ -87,7 +88,7 @@ function staff_menu() {
 		Nav::node('admin/calendar', T("Calendar Manager"), '../admin/calendarForm.php');
 		Nav::node('admin/collections', T("Collections"), '../admin/collectionsForm.php');
 		Nav::node('admin/media', T("Media Types"), '../admin/mediaForm.php');
-		Nav::node('admin/bulk_delete', T("Bulk Delete"), "../catalog/bulkDelForm.php");
+		Nav::node('admin/bulk_delete', T("Bulk Delete"), "../catalog/bulkDelForm.php"); // moved bulk delete to its new home --F.T.
 		Nav::node('admin/memberTypes', T("Member Types"), '../admin/memberTypeForm.php');
 		//Nav::node('admin/memberFields', T("Member Fields"), '../admin/memberFldsForm.php'); // disabled it messes up the 'add custom member fields', crash a member entry.
 		Nav::node('admin/onlineOpts', T("Online Options"), '../admin/onlineOptsForm.php');
