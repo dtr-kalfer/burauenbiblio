@@ -87,7 +87,7 @@ function staff_menu() {
 		Nav::node('admin/calendar', T("Calendar Manager"), '../admin/calendarForm.php');
 		Nav::node('admin/collections', T("Collections"), '../admin/collectionsForm.php');
 		Nav::node('admin/media', T("Media Types"), '../admin/mediaForm.php');
-		Nav::node('cataloging/bulk_delete', T("Bulk Delete"), "../catalog/bulkDelForm.php");
+		Nav::node('admin/bulk_delete', T("Bulk Delete"), "../catalog/bulkDelForm.php");
 		Nav::node('admin/memberTypes', T("Member Types"), '../admin/memberTypeForm.php');
 		//Nav::node('admin/memberFields', T("Member Fields"), '../admin/memberFldsForm.php'); // disabled it messes up the 'add custom member fields', crash a member entry.
 		Nav::node('admin/onlineOpts', T("Online Options"), '../admin/onlineOptsForm.php');

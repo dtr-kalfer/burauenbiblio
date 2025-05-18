@@ -4,8 +4,13 @@
  */
 
 	require_once("../shared/common.php");
-	$tab = "cataloging";
-	$nav = "bulk_delete";
+	//$tab = "cataloging"; 
+	//$nav = "bulk_delete";
+	
+	// move the bulk delete to a new home --F.Tumulak
+	$tab = "admin";
+	$nav = "onlineOpts";	
+	
 //	$restrictInDemo = true;
 	require_once(REL(__FILE__, "../shared/logincheck.php"));
 	require_once(REL(__FILE__, "../functions/inputFuncs.php"));
