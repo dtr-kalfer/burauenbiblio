@@ -18,36 +18,24 @@
 	<h3><?php echo T("Bulk Delete"); ?></h3>
 	<?php //print_r($_SESSION); // for debugging ?>
 
-	<div id="crntMbrDiv">to be filled by server</div>
+	<div id="crntMbrDiv_new">To be filled by server --F.T.</div>
 	<p id="errSpace" class="error">to be filled by server</p>
 
 	<!-- ------------------------------------------------------------------------ -->
 	<div id="bulkDel_formDiv">
       <fieldset>
-          <p class="note">NOTE: Enter as 1,2,3,4,5,... OR 1-5</p>
+          <p class="note">This will delete Biblio ID and all its copies! Be careful</p>
           <br />
           <form role="form" id="bulkDel_form" name="bulkDel_form" >
-        	     <label for="byBarcd">
-        	     <!--?php //echo inputfield('checkbox','byBarcd','1','',($vars['byBarcd']?'1':'')); ?-->
-               <input type="radio" id=byBarcd" name="bulkBarcd" value="1" checked />
-        		   <?php echo T("Delete by Barcode") ?>
-               </label>
-               <!--?php //echo inputfield('hidden','posted','1'); ?-->
-               <?php echo inputfield('textarea','barcodes','',array('rows'=>'3'),H($vars['barcodes'])); ?>
-        	     <br />
-        	     <label for="del_items">
-        			 <?php echo inputfield('checkbox','del_items','1','',($vars['del_items']?'1':'')); ?>
-        			 <?php echo T("DeleteItemsIfAllCopiesDeleted") ?>
+        	    <label for="del_items">
         	     </label>
-        	     <br /><br />
-
         	     <label for="byBibid">
         	     <!--?php echo inputfield('checkbox','byBibidd','1','',($vars['byBibidd']?'1':'')); ?-->
-               <input type="radio" id=byBibid" name="bulkBarcd" value="1" />
+               <input type="radio" id=byBibid" name="bulkBarcd" value="1" checked />
         		   <?php echo T("Delete by Biblio Id") ?>
                </label>
         	     <!--?php //echo inputfield('hidden','posted','1'); ?-->
-        	     <?php echo inputfield('textarea','bibids','',array('rows'=>'3'),H($vars['bibids'])); ?>
+        	     <?php echo inputfield('textarea','bibids','',array('rows'=>'3'),H(isset($vars['bibids']) && $vars['bibids'])); ?>
         	     <br /><br />
 		      </form>
 

@@ -217,7 +217,10 @@
 	case 'deleteMultiBiblios':
 		$bibs = new Biblios;
 		foreach ($_POST['bibList'] as $bibid) {
-			$bibs->deleteOne($bibid);
+			echo "POST bibList: ";
+			print_r($_POST['bibList']);
+			echo "Calling deleteOne for bibid: $bibid<br>";
+			$bibs->deleteOne_new($bibid);
 		}
 		echo T("Delete completed");
 		break;

@@ -236,16 +236,38 @@ abstract class DBTable extends Queryi {
         	return T("Success");
 		}
 	}
-	public function deleteOne() {
-		//echo "in DBTable::deleteOne()";
-		$this->lock();
-		$sql = $this->mkSQL('DELETE FROM %I WHERE ', $this->name)
-			. $this->_keyTerms(func_get_args());
-		//echo "sql=$sql<br />\n";
-		$result = $this->act($sql);
-		$this->unlock();
-		return $result->rowCount();
-	}
+public function deleteOne() {
+    $this->lock();
+		$args = func_get_args();
+		echo "deleteOne args: ";
+		print_r($args);
+
+    $sql = $this->mkSQL('DELETE FROM %I WHERE ', $this->name)
+         . $this->_keyTerms($args);
+    
+    echo "Attempting SQL: $sql<br>";
+
+    $result = $this->act($sql);
+    $this->unlock();
+
+    echo "Rows affected: " . $result->rowCount() . "<br>";
+    return $result->rowCount();
+}
+
+public function deleteOne_new($bibid) {
+    $this->lock();
+    echo "deleteOne received bibid: $bibid<br>";
+		$sql = $this->mkSQL('DELETE FROM %I WHERE %I = %N', $this->name, 'bibid', $bibid);
+    //$sql = $this->mkSQL('DELETE FROM %I WHERE %I = %N', $this->name, $this->_key, $bibid);
+    echo "Attempting SQL: $sql<br>";
+
+    $result = $this->act($sql);
+    $this->unlock();
+
+    echo "Rows affected: " . $result->rowCount() . "<br>";
+    return $result->rowCount();
+}
+
 	public function deleteMatches($fields) {
 		$this->lock();
 		$sql = $this->mkSQL('DELETE FROM %I WHERE ', $this->name)
