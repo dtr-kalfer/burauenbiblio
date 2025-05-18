@@ -239,8 +239,8 @@ abstract class DBTable extends Queryi {
 public function deleteOne() {
     $this->lock();
 		$args = func_get_args();
-		echo "deleteOne args: ";
-		print_r($args);
+		//echo "deleteOne args: ";
+		//print_r($args);
 
     $sql = $this->mkSQL('DELETE FROM %I WHERE ', $this->name)
          . $this->_keyTerms($args);
@@ -250,11 +250,11 @@ public function deleteOne() {
     $result = $this->act($sql);
     $this->unlock();
 
-    echo "Rows affected: " . $result->rowCount() . "<br>";
+    //echo "Rows affected: " . $result->rowCount() . "<br>";
     return $result->rowCount();
 }
 
-public function deleteOne_new($bibid) { //Added new function for exclusive for bulk delete --F.Tumulak
+public function deleteOne_new($bibid = null) { //Added new function for exclusive for bulk delete --F.Tumulak
     $this->lock();
     //echo "deleteOne received bibid: $bibid<br>";
 		$sql = $this->mkSQL('DELETE FROM %I WHERE %I = %N', $this->name, 'bibid', $bibid); // set correct input 'bibid' --F.Tumulak
