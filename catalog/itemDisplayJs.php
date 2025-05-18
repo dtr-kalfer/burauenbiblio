@@ -224,7 +224,7 @@ var idis = {
     						html += '		<input type="hidden" value="'+copy.copyid+'" />\n';
     						html += '	</td>\n';
     				<?php } ?>
-						
+					// Added: Null check if idis.sites exists before using it, tested to work-- F.Tumulak
 					if ((copy.siteid) && (multiSite === true) && idis && idis.sites && idis.sites[copy.siteid]) {
 							html += "	<td>" + idis.sites[copy.siteid] + "</td>\n";
 					} else {
