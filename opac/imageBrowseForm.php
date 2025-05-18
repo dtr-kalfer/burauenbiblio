@@ -9,7 +9,7 @@
 
 //	$tab = "working";
 //	if (isset($_REQUEST["tab"])) {
-  		$tab = strToLower($_REQUEST[tab]);
+  		$tab = strToLower($_REQUEST['tab']); // using 'tab' instead of tab -->F.Tumulak
 //	}
 //	$_REQUEST['tab'] = $tab;
 
