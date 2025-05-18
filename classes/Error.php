@@ -259,7 +259,7 @@ class FatalHandler {
 						foreach ($frame['args'] as $a) {
 							array_push($args, var_export($a, true));
 						}
-						echo H(implode($args, ', '));
+						echo H(implode(', ', $args)); // Fix deprecated error --F.Tumulak
 					} else {
 						echo '???';
 					}
