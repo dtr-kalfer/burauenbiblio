@@ -253,3 +253,12 @@ tbody.striped tr:nth-child(even) { background-color:#CDC; }
 	text-shadow: 3px 3px 3px black;
 	z-index: 1;
 }
+
+#id_repo {
+	background-color: brown;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	margin: 5px;
+	padding: 10px;
+}

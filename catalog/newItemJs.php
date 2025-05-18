@@ -610,7 +610,7 @@ var ni = {
 				else if (rslts.ttlHits == 1){
 					var data;
 					ni.singleHit = true;
-					console.log('This is empty no results found! : ', rslts.ttlHits);
+					//console.log('This is empty no results found! : ', rslts.ttlHits);
 					ni.hostData = rslts.data;
 					$.each(rslts.data, function(hostIndex,hostData) {
 						$.each(hostData, function(hitIndex,hitData) {
@@ -623,11 +623,11 @@ var ni = {
 					// Also added a translation data --F.T.
 					var data_result = '';
 					if (typeof data !== 'undefined' && data) {
-							data_result = T("Data is not empty!");
+							data_result = "Data is not empty!";
 					} else {
-							data_result = T("No record found!");
+							data_result = ni.hostJSON[0].name + " SERVER: Sorry, No record found!";
 					}
-					console.log('data: ', data_result);
+					//console.log('data: ', data_result);
 
 					// comment these below..
 					//	ni.crntData = data;
@@ -641,7 +641,7 @@ var ni = {
 	doShowEmpty: function (data_result) {
 			$('#searchDiv').hide();
 			$('#choiceDiv').show();
-			$('#ttlHits').text(data_result);  // this updates the text inside the <span id="ttlHits">
+			$('#ttlHits').text(data_result);  // updates the text inside span --F.T.
 	},
 
 	doSelectOne: function (e) {

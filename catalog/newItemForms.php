@@ -141,7 +141,7 @@ th.colHead { white-space: nowrap; }
 			// request: "GET /home/.me./openbiblio/public_html/images/please_wait.gif HTTP/1.1",
 			// referrer: "http://openbhg.local/catalog/newItemForms.php"
 			-->
-			<td rowspan="3"><img src="<?php echo "/images/please_wait.gif"; ?>" /></td>
+			<td rowspan="3"><img src="<?php echo "../images/please_wait.gif"; ?>" /></td> // Fixed invalid image link --F.T.
 		</tr>
 		<tr>
 		  	<td colspan="1"><span id="waitText"></span></td>
