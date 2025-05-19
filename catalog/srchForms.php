@@ -163,7 +163,7 @@
 			<ul class="pagBtns">
 				<li>
 					<input type="button" class="listGobkBtn" value="<?php echo T("Go Back"); ?>" />
-					<!-- <input type="button" id="addList2CartBtn" value="<?php //echo T("Add List To Cart"); ?>" /> -->
+					<input type="button" id="addList2CartBtn" value="<?php echo T("Add List To Cart"); ?>" />
 				</li>
 				<li>
 					<input type="button" class="goPrevBtn PgBtn" value="<?php echo T("Previous Page"); ?>">

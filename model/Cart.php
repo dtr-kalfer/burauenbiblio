@@ -44,6 +44,7 @@ class Cart extends DBTable {
 	function add($id) {
 		$sql = $this->mkSQL("insert into cart values (%Q, %Q, %N) ",
 			session_id(), $this->name, $id);
+		print_r($sql);	
 		$this->act($sql);
 	}
 
@@ -58,7 +59,8 @@ class Cart extends DBTable {
 		$sql = $this->mkSQL("select * from cart where sess_id=%Q "
 			. "and name=%Q and id=%N ",
 			session_id(), $this->name, $id);
-		return $this->select01($sql) !== NULL;
+			print_r($sql); //check contents for debugging purpose
+		return $this->select01_new($sql) !== false;
 	}
 
 	function clear() {
@@ -68,6 +70,6 @@ class Cart extends DBTable {
 		$this->act($sql);
 	}
 }
-function &getCart($type) {
+function getCart($type) {
 	return new Cart($type);
 }

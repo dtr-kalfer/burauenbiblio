@@ -634,6 +634,8 @@ var bs = {
 	doAddItemToCart:function () {
     var params = "mode=addToCart&name=bibid&tab=catalog";
 	  params += "&id[]="+bs.biblio.bibid;
+		console.log('Add item to card params: ' + params);
+		console.log('URL: ' + bs.url);
 	  $.post(bs.url,params, function(response){
 	    $('#results_found').html(response);
 	  }, 'json');

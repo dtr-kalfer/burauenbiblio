@@ -148,7 +148,8 @@
 		$cart = getCart($name);
 		if (isset($_POST['id'])) {
 			foreach ($_POST['id'] as $id) {
-				$rslt = $cart->contains($id);
+				$rslt = $cart->contains($id); //traced to Cart.php
+				echo '$rslt: ' . $rslt;
 				if (!$rslt) $cart->add($id);
 			}
 		}

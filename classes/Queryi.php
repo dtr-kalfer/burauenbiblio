@@ -60,6 +60,18 @@ class Queryi {
             return $recs[0];
 		}
 	}
+	// public function select01($sql) {
+		// $r = $this::act($sql);
+            // return $r->fetch();
+	// }
+	
+public function select01_new($sql) {
+	$core = DbCore::getInstance();
+	$r = $core->dbh->query($sql);
+	if ($r === false) return false;
+	return $r->fetch(); // returns array or false
+}
+
 	public function select01($sql) {
 		$r = $this::act($sql);
             return $r->fetch();
