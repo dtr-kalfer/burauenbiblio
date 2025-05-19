@@ -102,6 +102,7 @@ var bs = {
 		$('.bibGobkBtn').on('click',null,function () {
 		  if (bs.multiMode) {
 				bs.rtnToList();
+				$('#cart_result').html("");
 			} else {
 			  bs.rtnToSrch();
 			}

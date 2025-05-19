@@ -56,10 +56,8 @@ class Cart extends DBTable {
 	}
 
 	function contains($id) {
-		$sql = $this->mkSQL("select * from cart where sess_id=%Q "
-			. "and name=%Q and id=%N ",
-			session_id(), $this->name, $id);
-			print_r($sql); //check contents for debugging purpose
+		$sql = $this->mkSQL("select * from cart where id=%N ", $id);
+			//print_r($sql); //check contents for debugging purpose
 		return $this->select01_new($sql) !== false;
 	}
 

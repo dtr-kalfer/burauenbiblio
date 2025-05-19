@@ -37,8 +37,9 @@ function staff_menu() {
 		//	Nav::node('cataloging/search', T("old search results"), '../shared/biblio_search.php?searchType=previous&tab='.U($tab));
 		//}
 
-		Nav::node('cataloging/cart', T("Request Cart"), '../shared/req_cart.php?tab='.U($tab));
-
+		//Nav::node('cataloging/cart', T("Request Cart"), '../shared/req_cart.php?tab='.U($tab));
+		Nav::node('cataloging/cart', T("Request Cart"), '../shared/req_cart2.php?type=request_cart');
+		
 			$params = 'bibid='.U($_REQUEST['bibid']);
 			if (isset($_REQUEST['rpt']) and isset($_REQUEST['seqno'])) {
 				$params .= '&rpt='.U($_REQUEST['rpt']);
