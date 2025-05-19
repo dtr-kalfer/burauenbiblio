@@ -1,12 +1,10 @@
-.title "Request Biblio Update"
-.category "Staff Request"
+.title "Request Cart List"
+.category "Request Cart"
 .layout member_list title="Member List"
 .column bibid title="bibid"
-.column field_entry1 title="field_entry1"
-.column field_entry2 title="field_entry2"
-.parameters
-.	string content title="Result"
-.end parameters
+.column field_entry1 title="Title"
+.column field_entry2 title="Author"
+
 
 .sql
 SELECT bc.bibid,

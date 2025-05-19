@@ -859,6 +859,7 @@ $trans["Reqd"] = "Reqd";
 $trans["requestAltTitles"] = "Select alternate titles if items I've requested are not available.";
 $trans["requestCallMe"] = "Call me if an item is not available on the date requested.";
 $trans["Request Cart"] = "Request Cart";
+$trans["Request Cart List"] = "Request Cart List";
 $trans["Request From"] = "Request From";
 $trans["Request Subject"] = "Request Subject";
 $trans["Request To"] = "Request To";
