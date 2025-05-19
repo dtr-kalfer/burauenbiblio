@@ -68,14 +68,14 @@ function staff_menu() {
 	Nav::node('user/localSearch', T("Local Search"), '../catalog/srchForms.php?tab=user');
 	Nav::node('user/doiSearch', T("doiSearch"), '../opac/doiSearchForms.php');
 	Nav::node('user/images', T("CoverPhotos"), '../opac/imageBrowseForm.php?tab=user');
-	Nav::node('user/biblio', T("Record Info"));
-	Nav::node('user/cart', T("Cart"), '../shared/req_cart.php?tab=user');
-	Nav::node('user/request', T("Booking"));
+		//Nav::node('user/biblio', T("Record Info"));
+		// Nav::node('user/cart', T("Cart"), '../shared/req_cart.php?tab=user');
+		//Nav::node('user/request', T("Booking"));
 	if (isset($_SESSION['authMbrid'])) {
 		Nav::node('user/account', T("My Account"), '../opac/my_account.php');
 		Nav::node('user/account/edit', T("Edit Info"), '../opac/edit_account.php');
 		Nav::node('user/account/bookings', T("Bookings"), '../opac/bookings.php');
-		Nav::node('user/account/bookings/view', T("View"));
+		// Nav::node('user/account/bookings/view', T("View"));
 	}
 
 	##-------------------------------------------------------------------------------------##
@@ -91,7 +91,7 @@ function staff_menu() {
 		Nav::node('admin/media', T("Media Types"), '../admin/mediaForm.php');
 		Nav::node('admin/bulk_delete', T("Bulk Delete"), "../catalog/bulkDelForm.php"); // moved bulk delete to its new home --F.T.
 		Nav::node('admin/memberTypes', T("Member Types"), '../admin/memberTypeForm.php');
-		Nav::node('admin/memberFields', T("Member Fields"), '../admin/memberFldsForm.php'); // disabled it messes up the 'add custom member fields', crash a member entry.
+		// Nav::node('admin/memberFields', T("Member Fields"), '../admin/memberFldsForm.php'); // disabled it messes up the 'add custom member fields', crash a member entry.
 		Nav::node('admin/onlineOpts', T("Online Options"), '../admin/onlineOptsForm.php');
 		Nav::node('admin/onlineHosts', T("Online Hosts"), '../admin/onlineHostsForm.php');
 		Nav::node('admin/openHours', T("Hours open"), '../admin/hoursForm.php');
