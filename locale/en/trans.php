@@ -326,6 +326,7 @@ $trans["Default Dewey"] = "Default Dewey";
 $trans["Default (Y/N)"] = "Default (Y/N)";
 $trans["del"] = "del";
 $trans["Delete"] = "Delete";
+$trans["Delete From Cart"] = "Delete From Cart";
 $trans["Delete by Barcode"] = "Delete by Barcode";
 $trans["Delete by Biblio Id"] = "Delete by Biblio Id";
 $trans["Delete completed"] = "Delete completed";

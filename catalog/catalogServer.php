@@ -154,6 +154,21 @@
 			}
 		}
 	  break;
+		
+	case 'delToCart':
+		require_once(REL(__FILE__, "../model/Cart.php"));
+		$name = $_POST['name'];
+		$cart = getCart($name);
+		if (isset($_POST['id'])) {
+			foreach ($_POST['id'] as $id) {
+				$rslt = $cart->contains($id); //traced to Cart.php
+				echo '$rslt: ' . $rslt;
+				if ($rslt) $cart->del($id);
+			}
+		}
+	  break;
+		
+		
 
 	case 'getNewBarcd':
 		$copies = new Copies;

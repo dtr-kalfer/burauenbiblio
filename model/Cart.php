@@ -44,9 +44,15 @@ class Cart extends DBTable {
 	function add($id) {
 		$sql = $this->mkSQL("insert into cart values (%Q, %Q, %N) ",
 			session_id(), $this->name, $id);
-		print_r($sql);	
+		//print_r($sql);	
 		$this->act($sql);
 	}
+	
+	function del($id) {
+		$sql = $this->mkSQL("delete from cart where id = %Q ", $id);
+		//print_r($sql);	
+		$this->act($sql);
+	}	
 
 	function remove($id) {
 		$sql = $this->mkSQL("delete from cart where sess_id=%Q "

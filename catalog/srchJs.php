@@ -68,6 +68,7 @@ var bs = {
 		$('#addNewBtn').on('click',null,bs.doNewCopy);
 		$('#addList2CartBtn').on('click',null,bs.doAddListToCart);
 		$('#addItem2CartBtn').on('click',null,bs.doAddItemToCart);
+		$('#delItem2CartBtn').on('click',null,bs.doDelItemToCart);
 		$('.listGobkBtn').on('click',null,bs.rtnToSrch);
 		$('#biblioListDiv .goPrevBtn').on('click',null,function () {bs.goPrevPage(bs.previousPageItem);});
 		$('#biblioListDiv .goNextBtn').on('click',null,function () {bs.goNextPage(bs.nextPageItem);});
@@ -632,13 +633,13 @@ var bs = {
 		idis.showOneBiblio(bs.biblio[bibid]);
 		//idis.fetchCopyInfo(bs.biblio[bibid]);
 	},
-	
-	doAddItemToCart: function () {
-		var params = "mode=addToCart&name=bibid&tab=catalog";
-		params += "&id[]=" + bs.biblio.bibid;
+	doDelItemToCart: function () {
+		var params = "mode=delToCart&name=bibid&tab=catalog";
+		const bibid = document.getElementById("theBibId").textContent.trim();
+		params += "&id[]=" + bibid;
 
-		console.log('Add item to cart params: ' + params);
-		console.log('URL: ' + bs.url);
+		//console.log('Del item to cart params: ' + params);
+		//console.log('URL: ' + bs.url);
 
 		$.post(bs.url, params, function(response) {
 			console.log("Server response: ", response);
@@ -649,9 +650,35 @@ var bs = {
 
 			// Decide message
 			if (rslt === "1") {
-				$('#cart_result').html("<h4>⚠️ Item already in cart.</h4>");
+				$('#cart_result').html("<h4>✅ Item removed in Request Cart List ✅</h4>");
 			} else {
-				$('#cart_result').html("<h4>✅ Item added to cart!</h4>");
+				$('#cart_result').html("<h4>⚠️ Not Removed, Something went wrong! ⚠️</i></h4>");
+			}
+
+		}, 'text');
+	},
+	
+	doAddItemToCart: function () {
+		var params = "mode=addToCart&name=bibid&tab=catalog";
+		const bibid = document.getElementById("theBibId").textContent.trim();
+		params += "&id[]=" + bibid;
+
+
+		//console.log('Add item to cart params: ' + params);
+		//console.log('URL: ' + bs.url);
+
+		$.post(bs.url, params, function(response) {
+			console.log("Server response: ", response);
+
+			// Extract $rslt: value using regex
+			var match = response.match(/\$rslt:\s*(.*)/i);
+			var rslt = match ? match[1].trim() : null;
+
+			// Decide message
+			if (rslt === "1") {
+				$('#cart_result').html("<h4>⚠️ Already in cart! ⚠️</h4>");
+			} else {
+				$('#cart_result').html("<h4>✅ Item added to cart! <i>(See Request Cart)✅</i></h4>");
 			}
 
 		}, 'text');
