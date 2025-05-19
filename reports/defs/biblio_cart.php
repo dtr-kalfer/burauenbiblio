@@ -30,10 +30,12 @@ class biblio_cart_rpt extends BiblioRows {
 		$sortq = $this->getOrderSql('cart.id', $raw);
 		$sql = "select cart.id as bibid "
 			. "from cart ".$sortq['from']
-			. $this->q->mkSQL("where sess_id=%Q and name='bibid' ",
+			. $this->q->mkSQL("where sess_id=%Q and name='cart' ",
 				session_id())
 			. $sortq['order by'];
 
 		return new BiblioRowsIter($this->q->select($sql));
 	}
+	
+	
 }

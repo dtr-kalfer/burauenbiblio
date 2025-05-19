@@ -51,12 +51,29 @@ class Report {
 		}
 		return $rpt;
 	}
+
+	static function create01($type, $name=NULL) {
+		list($rpt, $err) = Report::create_e01($type, $name);
+		if($err) {
+			Fatal::internalError(T('ReportCreatingReport', array('error'=>$err->toStr())));
+		}
+		return $rpt;
+	}
+	
 	static function create_e($type, $name=NULL) {
 		$cache = array('type'=>$type);
 		$rpt = new Report;
 		$err = $rpt->_load_e($name, $cache);
 		return array($rpt, $err);
 	}
+	
+	static function create_e01($type, $name=NULL) {
+		$cache = array('type'=>$type);
+		$rpt = new Report;
+		$err = $rpt->_load_e01($name, $cache);
+		return array($rpt, $err);
+	}	
+	
 	static function load($name) {
 		if (!isset($_SESSION['rpt_'.$name])) {
 			return NULL;
@@ -69,6 +86,7 @@ class Report {
 		}
 		return $rpt;
 	}
+	
 	function _load_e($name, $cache) {
 		$this->name = $name;
 		assert(preg_match("{^[-_/A-Za-z0-9]+\$}", $cache["type"]));
@@ -88,6 +106,36 @@ class Report {
 		}
 		return NULL;
 	}
+
+	function _load_e01($name, $cache) {
+		$this->name = $name;
+		assert(preg_match("{^[-_/A-Za-z0-9]+\$}", $cache["type"]));
+		$fname = '../reports/defs/'.$cache['type'];
+
+		echo "DEBUG: Trying to load report file: $fname\n";
+
+		if (is_readable($fname.'.php')) {
+			echo "DEBUG: Found PHP report: $fname.php\n";
+			$err = $this->_load_php_e($cache['type'], $fname.'.php');
+		} elseif (is_readable($fname.'.rpt')) {
+			echo "DEBUG: Found RPT report: $fname.rpt\n";
+			$err = $this->_load_rpt_e($cache['type'], $fname.'.rpt');
+		} else {
+			echo "ERROR: Report definition not found.\n";
+			$err = new Error("Missing report definition");
+		}
+
+		if ($err) {
+			return $err;
+		}
+		$this->cache = $cache;
+		if (array_key_exists('params', $cache) and is_array($cache['params'])) {
+			$this->params = new Params;
+			$this->params->loadDict($cache['params']);
+		}
+		return NULL;
+	}
+	
 	function _load_php_e($type, $fname) {
 		$classname = $type.'_rpt';
 		include_once($fname);
@@ -104,6 +152,7 @@ class Report {
 			$this->rpt = $rpt;
 		}
 	}
+	
 	function type() {
 		return $this->cache['type'];
 	}

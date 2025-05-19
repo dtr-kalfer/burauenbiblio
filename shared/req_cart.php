@@ -21,12 +21,28 @@
 	require_once(REL(__FILE__, "../classes/Links.php"));
 	require_once(REL(__FILE__, "../functions/info_boxes.php"));
 
-	$rpt = Report::create('biblio_cart', 'BiblioCart');
+	$rpt = Report::create01('biblio_cart', 'BiblioCart');
+
+	// Set parameters manually (like sorting by title)
+	$params = new Params;
+	//$params->set('order_by', array('', '', 'title'));
+	$params->set('order_by', 'order_by', array('', '', 'title'));
+
+	$iter = $rpt->rpt->select($params);
+
+	// If you want to see what's returned:
+	echo "<pre>";
+	foreach ($iter as $row) {
+			print_r($row);
+	}
+	echo "</pre>";	
+
 	if (!$rpt) {
 		Fatal::internalError(T("Unexpected error creating report"));
 	}
 	$rpt->initCgi();
-
+	
+	
 	if (isset($_REQUEST["page"]) && is_numeric($_REQUEST["page"])) {
 		$currentPageNmbr = $_REQUEST["page"];
 	} else {
@@ -51,7 +67,7 @@
 	}
 	# Display no results message if no results returned from search.
 	if ($total_items == 0) {
-		echo "<p class=\"error\">".T("Cart is empty")."</p>";
+		echo "<p class=\"error\">".T("testing if ok")."</p>";
 		 ;
 		exit();
 	}
