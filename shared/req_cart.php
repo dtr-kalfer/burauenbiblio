@@ -23,9 +23,14 @@
 
 	$rpt = Report::create01('biblio_cart', 'BiblioCart');
 
+	//------------ debug ------------
 	// Set parameters manually (like sorting by title)
+	
+	echo "<pre>";
+	print_r($rpt);
+	echo "</pre>";	
+
 	$params = new Params;
-	//$params->set('order_by', array('', '', 'title'));
 	$params->set('order_by', 'order_by', array('', '', 'title'));
 
 	$iter = $rpt->rpt->select($params);
@@ -36,6 +41,7 @@
 			print_r($row);
 	}
 	echo "</pre>";	
+	//------------ debug ------------
 
 	if (!$rpt) {
 		Fatal::internalError(T("Unexpected error creating report"));
