@@ -10,6 +10,8 @@ ini_set('display_errors', 1);
 
 class Integrity extends Queryi{
 	private $checks= array();
+	public $tblErrs = array();
+
 	public function __construct() {
 		parent::__construct();
 
@@ -294,12 +296,12 @@ class Integrity extends Queryi{
 				. 'on biblio.bibid=booking.bibid '
 				. 'where biblio.bibid is null ',
 			// NO AUTOMATIC FIX
-			/*
+
 			'fixSql' => 'delete from booking '
 				. 'using booking left join biblio '
 				. 'on booking.bibid=biblio.bibid '
 				. 'where biblio.bibid is null ',
-			*/
+
 		);
 		$this->checks[] = array(
 			'error' => T("IntegrityQueryBrokenBooking"),
@@ -308,11 +310,11 @@ class Integrity extends Queryi{
 				. 'where booking.due_dt is not null '
 				. 'and booking.out_dt is null ',
 			// NO AUTOMATIC FIX
-			/*
+
 			'fixSql' => 'DELETE FROM `booking` '
 				. 'where booking.due_dt is not null '
 				. 'and booking.out_dt is null ',
-			*/
+
 		);
 		$this->checks[] = array(
 			'error' => T("IntegrityQueryBrokenOutRef"),
@@ -322,7 +324,7 @@ class Integrity extends Queryi{
 				. 'where booking.out_histid is not null '
 				. 'and biblio_status_hist.histid is null ',
 			// NO AUTOMATIC FIX
-			/*
+
 			'fixSql' => 'DELETE b FROM `booking` as b '
 				. 'WHERE b.`out_histid` IN (Select out_histid FROM('
 				. 'select DISTINCT bk.`out_histid` from booking as bk '
@@ -330,7 +332,7 @@ class Integrity extends Queryi{
 				. 'on biblio_status_hist.histid=bk.out_histid '
 				. 'where bk.out_histid is not null '
 				. 'and biblio_status_hist.histid is null) X)',
-			*/
+
 		);
 		$this->checks[] = array(
 			'error' => T("IntegrityQueryBrokenReturnRef"),
@@ -348,12 +350,12 @@ class Integrity extends Queryi{
 				. 'on booking.bookingid=booking_member.bookingid '
 				. 'where booking.bookingid is null ',
 			// NO AUTOMATIC FIX
-			/*
+			
 			'fixSql' => 'delete from booking_member '
 				. 'using booking_member left join booking '
 				. 'on booking.bookingid=booking_member.bookingid '
 				. 'where booking.bookingid is null ',
-			*/
+			
 		);
 		$this->checks[] = array(
 			'error' => T("IntegrityQueryNoAssMember"),
@@ -361,13 +363,13 @@ class Integrity extends Queryi{
 				. 'from booking_member left join member '
 				. 'on member.mbrid=booking_member.mbrid '
 				. 'where member.mbrid is null ',
-			// NO AUTOMATIC FIX
-			/*
+			// NO AUTOMATIC FIX, this i have uncommented below and fixed the 46 booking member references with no associated member 
+
 			'fixSql' => 'delete from booking_member '
 				. 'using booking_member left join member '
 				. 'on member.mbrid=booking_member.mbrid '
 				. 'where member.mbrid is null ',
-			*/
+
 		);
 		$this->checks[] = array(
 			//'error' => T("%count% copies without site"),
@@ -415,14 +417,14 @@ class Integrity extends Queryi{
 				. 'where biblio_status_hist.status_cd=\'out\' '
 				. 'and booking.bookingid is null ',
 			// NO AUTOMATIC FIX
-			/*
+
 			'fixSql' => 'delete bsh from biblio_status_hist as bsh where bsh.histid in '
 				. '(select histid from (select distinct bs.histid '
 				. 'from biblio_status_hist as bs left join booking as b '
 				. 'on b.out_histid=bs.histid '
 				. 'where bs.status_cd=\'out\' '
 				. 'and b.bookingid is null) X) ',
-			*/
+
 		);
 		$this->checks[] = array(
 			'error' => T("Material_type has empty image file name"),
@@ -469,7 +471,7 @@ class Integrity extends Queryi{
 				//$what = $chk["error"];
 				//echo "got chk-countSQL while processing item: $what"."<br />\n";
 				$rslt = $this->select1($chk['countSql']);
-                $count = $rslt["count"];
+                $count = isset($rslt["count"]) ? $rslt["count"] : '';
 				//echo $chk["error"]."<br />\n";
 				//if (stripos($chk["error"], 'selector') >= -1) {
 				//	echo "in Integrity::check_el(), countSQL => ".$chk['countSql']." <br />\n";

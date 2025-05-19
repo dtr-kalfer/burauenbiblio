@@ -91,7 +91,7 @@ function staff_menu() {
 		Nav::node('admin/media', T("Media Types"), '../admin/mediaForm.php');
 		Nav::node('admin/bulk_delete', T("Bulk Delete"), "../catalog/bulkDelForm.php"); // moved bulk delete to its new home --F.T.
 		Nav::node('admin/memberTypes', T("Member Types"), '../admin/memberTypeForm.php');
-		//Nav::node('admin/memberFields', T("Member Fields"), '../admin/memberFldsForm.php'); // disabled it messes up the 'add custom member fields', crash a member entry.
+		Nav::node('admin/memberFields', T("Member Fields"), '../admin/memberFldsForm.php'); // disabled it messes up the 'add custom member fields', crash a member entry.
 		Nav::node('admin/onlineOpts', T("Online Options"), '../admin/onlineOptsForm.php');
 		Nav::node('admin/onlineHosts', T("Online Hosts"), '../admin/onlineHostsForm.php');
 		Nav::node('admin/openHours', T("Hours open"), '../admin/hoursForm.php');
