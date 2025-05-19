@@ -50,6 +50,7 @@ class Queryi {
 		}
 		return $results;
 	}
+	
 	public function select1($sql) {
 		$rslt = $this->select($sql);
         $recs = $rslt->fetchAll();
@@ -60,17 +61,13 @@ class Queryi {
             return $recs[0];
 		}
 	}
-	// public function select01($sql) {
-		// $r = $this::act($sql);
-            // return $r->fetch();
-	// }
 	
-public function select01_new($sql) {
-	$core = DbCore::getInstance();
-	$r = $core->dbh->query($sql);
-	if ($r === false) return false;
-	return $r->fetch(); // returns array or false
-}
+	public function select01_new($sql) { // Added a new function for 'Add item to cart' --F.Tumulak
+		$core = DbCore::getInstance();
+		$r = $core->dbh->query($sql);
+		if ($r === false) return false;
+		return $r->fetch(); // returns array or false
+	}
 
 	public function select01($sql) {
 		$r = $this::act($sql);

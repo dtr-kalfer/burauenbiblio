@@ -631,14 +631,29 @@ var bs = {
 		idis.showOneBiblio(bs.biblio[bibid]);
 		//idis.fetchCopyInfo(bs.biblio[bibid]);
 	},
-	doAddItemToCart:function () {
-    var params = "mode=addToCart&name=bibid&tab=catalog";
-	  params += "&id[]="+bs.biblio.bibid;
-		console.log('Add item to card params: ' + params);
+	
+	doAddItemToCart: function () {
+		var params = "mode=addToCart&name=bibid&tab=catalog";
+		params += "&id[]=" + bs.biblio.bibid;
+
+		console.log('Add item to cart params: ' + params);
 		console.log('URL: ' + bs.url);
-	  $.post(bs.url,params, function(response){
-	    $('#results_found').html(response);
-	  }, 'json');
+
+		$.post(bs.url, params, function(response) {
+			console.log("Server response: ", response);
+
+			// Extract $rslt: value using regex
+			var match = response.match(/\$rslt:\s*(.*)/i);
+			var rslt = match ? match[1].trim() : null;
+
+			// Decide message
+			if (rslt === "1") {
+				$('#cart_result').html("<h4>⚠️ Item already in cart.</h4>");
+			} else {
+				$('#cart_result').html("<h4>✅ Item added to cart!</h4>");
+			}
+
+		}, 'text');
 	},
 	
 	/* ====================================== */

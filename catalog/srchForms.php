@@ -154,9 +154,9 @@
 <!-- ------------------------------------------------------------------------ -->
 <div id="biblioListDiv">
 	<h5><?php echo T("SearchResults"); ?> &quot;<span id="srchRsltTitl"></span>&quot;</h5>
-	<!--div id="results_found">
-		<?php //echo T("biblioSearchMsg", array('nrecs'=>$rpt->count(), 'start'=>1, 'end'=>25)); ?>
-	</div-->
+	<!-- <div id="results_found">
+		<?php //echo T("biblioSearchMsg"); ?>
+	</div> -->
 	<table>
 	<tr>
 		<td colspan="3">
@@ -228,9 +228,9 @@
 			<li><input type="button" id="biblioDeleteBtn" value="<?php echo T("Delete This Item"); ?>"></li>
 		<?php }?>
 	</ul>
-		
+	<div id="cart_result">Result from server..</div>
 	<?php include(REL(__FILE__,"../catalog/itemDisplayForm.php")); ?>
-
+	
 	<ul class="btnRow">
 		<?php if (!($tab == 'rpt')) { ?>
 			<li><input type="button" class="bibGobkBtn" value="<?php echo T("Go Back"); ?>"></li>
