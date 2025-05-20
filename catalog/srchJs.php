@@ -320,15 +320,9 @@ var bs = {
 				$.post(bs.url, params, function(jsonInpt)
 								{
 									if (typeof jsonInpt !== 'object') { //This is supposedly object --F.T.
-											console.log('part 1', jsonInpt); // show logs, named it part1
 											obib.showMsg(jsonInpt);
 									} else {
-											console.log('part 2'); //show logs, part 2
 											bs.biblio = jsonInpt;
-											console.log('bs.biblio:', bs.biblio);
-											console.log('Title:', bs.biblio.hdr.title);
-											console.log('Author:', bs.biblio.hdr.author);
-											
 											if (!bs.biblio.hdr) {
 													obib.showMsg('<?php echo T("NothingFoundByBarcdSearch") ?>');
 											} else {
