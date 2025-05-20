@@ -9,7 +9,7 @@
 	
 	// move the bulk delete to a new home --F.Tumulak
 	$tab = "admin";
-	$nav = "onlineOpts";	
+	$nav = "bulk_delete";	
 	
 //	$restrictInDemo = true;
 	require_once(REL(__FILE__, "../shared/logincheck.php"));
