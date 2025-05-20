@@ -316,22 +316,30 @@ var bs = {
         bs.srchType = 'bibid';
         $('p.error').html('').hide();
         var params = '&mode=doBibidSearch&bibid='+bibid;
-        $.post(bs.url,params, function(jsonInpt){
-			if ($.trim(jsonInpt).substr(0,1) != '{') {
-				obib.showMsg(jsonInpt);
-			} else {
-				bs.biblio = JSON.parse(jsonInpt);
-				if (!bs.biblio.data) {
-	  				obib.showMsg('<?php echo T("NothingFoundByBarcdSearch") ?>');
-				}
-				else {
-					idis.showOneBiblio(bs.biblio)
-					//idis.fetchCopyInfo();
-				}
-	        }
-		    $('#searchDiv').hide();
-	        $('#biblioDiv').show();
-		}, 'json');
+
+				$.post(bs.url, params, function(jsonInpt)
+								{
+									if (typeof jsonInpt !== 'object') { //This is supposedly object --F.T.
+											console.log('part 1', jsonInpt); // show logs, named it part1
+											obib.showMsg(jsonInpt);
+									} else {
+											console.log('part 2'); //show logs, part 2
+											bs.biblio = jsonInpt;
+											console.log('bs.biblio:', bs.biblio);
+											console.log('Title:', bs.biblio.hdr.title);
+											console.log('Author:', bs.biblio.hdr.author);
+											
+											if (!bs.biblio.hdr) {
+													obib.showMsg('<?php echo T("NothingFoundByBarcdSearch") ?>');
+											} else {
+													idis.showOneBiblio(bs.biblio);
+											}
+									}
+									$('#searchDiv').hide();
+									$('#biblioDiv').show();
+								},
+								'json'
+							);
 		return false;
 	},
 

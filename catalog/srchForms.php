@@ -66,7 +66,7 @@
 				<option value="series"><?php echo T("Series"); ?></option>	
 				<option value="publisher"><?php echo T("Publisher"); ?></option>
 				<option value="callno"><?php echo T("Call Number"); ?></option>
-				<option value="id"><?php echo T("Id"); ?></option>
+				<option value="id"><?php echo T("bibid"); ?></option>
 			</select>
 			<input type="text" id="ph_searchText" name="searchText" size="20" maxlength="256" />
 			<input type="submit" id="phraseSrchBtn" name="phraseSrchBtn" value="<?php echo T("Search"); ?>" class="phraseSrchBtnBtn" />
