@@ -8,7 +8,7 @@
 	require_once(REL(__FILE__, "../functions/inputFuncs.php"));
 
 	$tab = "admin";
-	$nav = "calendarForm";
+	$nav = "calendar";
 	$focus_form_name = "";
 	$focus_form_field = "";
 
