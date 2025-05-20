@@ -162,7 +162,6 @@ $trans["Booking Info"] = "Booking Info";
 $trans["Booking Information"] = "Booking Information";
 $trans["Booking %item% out of %items% in sequence"] = "Booking %item% out of %items% in sequence";
 $trans["Booking Search"] = "Booking Search";
-$trans["Bookings"] = "Bookings";
 $trans["Bookings by Site"] = "Bookings by Site";
 $trans["Bookings by Title"] = "Bookings by Title";
 $trans["Broken RPT code structure"] = "Broken RPT code structure";
