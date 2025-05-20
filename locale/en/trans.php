@@ -1001,6 +1001,7 @@ $trans["TestingDatabaseConnection"] = "Testing Database connection";
 $trans["Test"] = "Test";
 $trans["Test Load"] = "Test Load";
 $trans["Theme Dir URL"] = "Theme Dir URL";
+$trans["The Request Cart"] = "The Request Cart";
 $trans["Theme Name"] = "Theme Name";
 $trans["Theme"] = "Theme";
 $trans["Themes"] = "Themes";
