@@ -47,36 +47,31 @@ function staff_menu() {
 			}
 
 			
-			Nav::node('cataloging/biblio/editmarc', T("Edit MARC"), "../catalog/biblio_marc_edit_form.php?".$params);
-			Nav::node('cataloging/biblio/editstock', T("Edit Stock Info"));
-			Nav::node('cataloging/biblio/newlike', T("New Like"), "../catalog/biblio_new_like.php?".$menu_params);
+		//	Nav::node('cataloging/biblio/editmarc', T("Edit MARC"), "../catalog/biblio_marc_edit_form.php?".$params);
+		//	Nav::node('cataloging/biblio/editstock', T("Edit Stock Info"));
+		//	Nav::node('cataloging/biblio/newlike', T("New Like"), "../catalog/biblio_new_like.php?".$menu_params);
 			
-			Nav::node('cataloging/biblio/bookings', T("Item Bookings"), "../reports/run_report.php?type=bookings"
-				. "&rpt_order_by=outd!r"
-				. "&tab=cataloging&nav=biblio/bookings"
-				. "&rpt_bibid=".U($_REQUEST['bibid'])
-				. "&".$params);
-			Nav::node('cataloging/biblio/holds', T("Hold Requests"), "../catalog/biblio_hold_list.php?".$params);
-
+		Nav::node('cataloging/biblio/bookings', T("Item Bookings"), "../reports/run_report.php?type=bookings");
+		Nav::node('cataloging/biblio/holds', T("Hold Requests"), "../catalog/biblio_hold_list.php?".$params);
 		Nav::node('cataloging/upload_usmarc', T("MARC Import"), "../catalog/importMarcForms.php");
 		Nav::node('cataloging/upload_csv', T("CSVImport"), "../catalog/importCsvForms.php");
-		
+		Nav::node('cataloging/doiSearch', T("doiSearch"), '../opac/doiSearchForms.php');
 	}
 	
 	##-------------------------------------------------------------------------------------##
-	Nav::node('user', T("Research"), '../catalog/srchForms.php?tab=user');
-	// Nav::node('user/localSearch', T("Local Search"), '../catalog/srchForms.php?tab=user');
-	Nav::node('user/doiSearch', T("doiSearch"), '../opac/doiSearchForms.php');
-	Nav::node('user/images', T("CoverPhotos"), '../opac/imageBrowseForm.php?tab=user');
-		//Nav::node('user/biblio', T("Record Info"));
-		// Nav::node('user/cart', T("Cart"), '../shared/req_cart.php?tab=user');
-		//Nav::node('user/request', T("Booking"));
-	if (isset($_SESSION['authMbrid'])) {
-		Nav::node('user/account', T("My Account"), '../opac/my_account.php');
-		Nav::node('user/account/edit', T("Edit Info"), '../opac/edit_account.php');
-		Nav::node('user/account/bookings', T("Bookings"), '../opac/bookings.php');
-		// Nav::node('user/account/bookings/view', T("View"));
-	}
+	//	Nav::node('user', T("Research"), '../catalog/srchForms.php?tab=user');
+	//	Nav::node('user/localSearch', T("Local Search"), '../catalog/srchForms.php?tab=user');
+	
+	//		Nav::node('user/images', T("CoverPhotos"), '../opac/imageBrowseForm.php?tab=user');
+	//		Nav::node('user/biblio', T("Record Info"));
+	//		Nav::node('user/cart', T("Cart"), '../shared/req_cart.php?tab=user');
+	//		Nav::node('user/request', T("Booking"));
+	//	if (isset($_SESSION['authMbrid'])) {
+	//		Nav::node('user/account', T("My Account"), '../opac/my_account.php');
+	//		Nav::node('user/account/edit', T("Edit Info"), '../opac/edit_account.php');
+	//		Nav::node('user/account/bookings', T("Bookings"), '../opac/bookings.php');
+	//		Nav::node('user/account/bookings/view', T("View"));
+	//	}
 
 	##-------------------------------------------------------------------------------------##
 	if($_SESSION["hasAdminAuth"]){

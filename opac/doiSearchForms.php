@@ -6,9 +6,9 @@
   	$cache = NULL;
   	require_once("../shared/common.php");
 
-//  $tab = "user";
-	$tab = strToLower($_REQUEST['tab']);
-  	$nav = "doiSearch";
+  $tab = "cataloging";
+	$nav = "doiSearch";
+	//$tab = strToLower($_REQUEST['tab']);
   	$focus_form_name = "doiForm";
   	$focus_form_field = "doiCd";
 	Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
