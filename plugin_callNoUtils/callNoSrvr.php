@@ -8,9 +8,15 @@
 
 
 	function getBibsMissingCalls() {
-		$sql = 'SELECT bibid FROM biblio_field ' .
-			   'GROUP BY bibid ' .
-			   "HAVING COUNT(CASE WHEN tag='099' THEN 1 END) = 0";
+		$sql = "SELECT bs.bibid
+						FROM (
+								SELECT bibid, MIN(fieldid) AS min_fieldid
+								FROM biblio_subfield
+								GROUP BY bibid
+						) mf
+						LEFT JOIN biblio_subfield bs 
+								ON bs.bibid = mf.bibid AND bs.fieldid = mf.min_fieldid + 0
+						WHERE bs.subfield_data IS NULL OR TRIM(bs.subfield_data) = '';";
 
 		$call = new Biblios;
         $rslt = $call->select($sql);
@@ -59,11 +65,15 @@
 
 
 	switch ($_POST['mode']){
-	  	case 'search':
+	 	case 'search':
 			echo '<h4>' . T('missing call numbers') . '</h4>';
 			$missing = getBibsMissingCalls();
-			foreach ($missing as $bibid) {
-				echo $bibid . '<br />';
+			if (is_array($missing)) {
+					foreach ($missing as $bibid) {
+							echo 'Bibid: ' . $bibid . ' <-- Missing Call Number<br />';
+					}
+			} else {
+					echo '<p>No missing call numbers found or an error occurred.</p>';
 			}
 			break;
 
@@ -105,6 +115,6 @@
 			break;
 			
 		default:
-			echo "<h4>".T("invalid mode").": &gt;$_POST['mode']&lt;</h4><br />";
+			echo "<h4>" . T("invalid mode") . ": &gt;" . $_POST['mode'] . "&lt;</h4><br />";
 			break;
 	}

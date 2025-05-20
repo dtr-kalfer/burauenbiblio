@@ -20,13 +20,13 @@
 		<fieldset id="orfnArea">
 		<legend><?php echo T("Make call numbers searchable"); ?></legend>
 			<p class="note">
-				This module checks for records that are missing field 099, which is
-				what OpenBiblio uses to search for call numbers.
+				This module checks for empty MARC field $099 (Call <br>
+				Number) in the database. Results are biblio ID (bibid).
 			</p>
 		<select name="mode" id="callNoMode">
 			<option value="search" selected>Find records without call numbers</option>
-			<option value="dry-run">Dry run of call number add</option>
-			<option value="add">Add call numbers to records</option>
+			<!-- <option value="dry-run">Dry run of call number add</option> -->
+			<!-- <option value="add">Add call numbers to records</option> -->
 		</select><br />
 		<span id="call_number_schemata">
 		<input type="checkbox" name="050">Library of Congress call number (050)</input><br />
