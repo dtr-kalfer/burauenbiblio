@@ -6,7 +6,7 @@
 	require_once("../shared/common.php");
 
 	$tab = "admin";
-	$nav = "hours";
+	$nav = "openHours";
 	require_once(REL(__FILE__, "../shared/logincheck.php"));
 
 	Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
