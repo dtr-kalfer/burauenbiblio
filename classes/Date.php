@@ -62,10 +62,17 @@ class Date {
 		$d = getdate(strtotime($date));
 		return date('Y-m-d', mktime(0, 0, 0, $d['mon'], $d['mday']+$days, $d['year']));
 	}
-	function addMonths($date, $months) {
+	// function addMonths($date, $months) {
+		// $d = getdate(strtotime($date));
+		// return date('Y-m-d', mktime(0, 0, 0, $d['mon']+$months, $d['mday'], $d['year']));
+	// }
+	
+	public static function addMonths($date, $months) {
 		$d = getdate(strtotime($date));
 		return date('Y-m-d', mktime(0, 0, 0, $d['mon']+$months, $d['mday'], $d['year']));
-	}
+	}	
+	
+	
 	static function daysLater($d1, $d2) {
 		$diff = (strtotime($d1)-strtotime($d2))/86400;
 		if ($diff > 0) {

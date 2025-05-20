@@ -51,7 +51,7 @@
 		echo "Successfully updated Calendar '".$_POST['name']."'";
 		break;
 
-	case 'getCalendar':
+	case 'getCalendar': //  Fixed: Deprecated: Non-static method Date::addMonths() should not be called statically in C:\wamp64\www\burauenbiblio\admin\calendarSrvr.php on line 71 --F.T.
 		$template = $_REQUEST['calendar'];
 
 		$d = getdate(time());
@@ -66,8 +66,10 @@
 		if ($_REQUEST['year'] != "") {
 			$d['year'] = $_REQUEST['year'];
 		}
+		
 		list($start, $err) = Date::read_e($d['year'].'-'.$d['mon'].'-01');
 		assert(!$err);
+
 		$end = Date::addMonths($start, 12);
 		$cal = new EditingCalendar($template, $start, $end);
 		echo '<div style="padding: 4px;" >';
