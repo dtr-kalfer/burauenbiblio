@@ -16,7 +16,7 @@
   $focus_form_name = "specForm";
   $focus_form_field = "imptSrce";
 	$tab = "cataloging";
-	$nav = "marcImport";
+	$nav = "upload_usmarc";
 	Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 
 ?>

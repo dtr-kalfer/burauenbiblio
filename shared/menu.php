@@ -51,8 +51,9 @@ function staff_menu() {
 		//	Nav::node('cataloging/biblio/editstock', T("Edit Stock Info"));
 		//	Nav::node('cataloging/biblio/newlike', T("New Like"), "../catalog/biblio_new_like.php?".$menu_params);
 			
-		Nav::node('cataloging/biblio/bookings', T("Item Bookings"), "../reports/run_report.php?type=bookings");
-		Nav::node('cataloging/biblio/holds', T("Hold Requests"), "../catalog/biblio_hold_list.php?".$params);
+		//	Nav::node('cataloging/biblio/bookings', T("Item Bookings"), "../reports/run_report.php?type=bookings");
+		//	Nav::node('cataloging/biblio/holds', T("Hold Requests"), "../catalog/biblio_hold_list.php?".$params);
+
 		Nav::node('cataloging/upload_usmarc', T("MARC Import"), "../catalog/importMarcForms.php");
 		Nav::node('cataloging/upload_csv', T("CSVImport"), "../catalog/importCsvForms.php");
 		Nav::node('cataloging/doiSearch', T("doiSearch"), '../opac/doiSearchForms.php');
