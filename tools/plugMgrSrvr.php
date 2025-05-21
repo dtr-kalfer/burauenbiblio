@@ -63,7 +63,7 @@
 				$aray[] = $_POST['id'];
 			}
 			else {
-				echo "invalid choice: $_POST['allow_plugin']";
+				echo "invalid choice: " . $_POST['allow_plugin'];
 			}
 			$list = implode($aray, ',');
 
