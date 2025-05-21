@@ -69,7 +69,7 @@
 
 	Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 ?>
-<h3><?php echo T("The Request Cart"); ?></h3>
+<h3>📚<?php echo T("The Request Cart"); ?>📚</h3>
 <p>
 📚 The Request Cart is a *temporary holding space* for <br>
 catalog items (like books or materials) that staff or <br>
@@ -82,7 +82,7 @@ librarians intend to: </p>
 </ul>
 <p>📚 Use-case: a junior staff member might add entries to <br>
 the cart, and a senior librarian reviews and finalizes them.</p>
-<h3><?php echo T("List of request for review"); ?></h3>
+<h3 style="background-color: orange;">📚<?php echo T("List of request for review"); ?>📚</h3>
 <?php
 	if (isset($_REQUEST["msg"]) && !empty($_REQUEST["msg"])) {
 		echo '<p class="error">'.H($_REQUEST["msg"]).'</p><br /><br />';

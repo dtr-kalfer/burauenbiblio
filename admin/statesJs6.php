@@ -10,9 +10,9 @@ class St extends Admin {
     	var url = '../admin/adminSrvr.php',
     		form = $('#editForm'),
     		dbAlias = 'states';
-    	var hdrs = {'listHdr':<?php echo '"'.T("List of States & Abreviations").'"'; ?>,
-    				'editHdr':<?php echo '"'.T("Edit State & Abreviation").'"'; ?>,
-    				'newHdr':<?php echo '"'.T("Add New State & Abreviation").'"'; ?>,
+    	var hdrs = {'listHdr':<?php echo '"'.T("List of provinces and its UAC Code").'"'; ?>,
+    				'editHdr':<?php echo '"'.T("Edit province & UAC Code").'"'; ?>,
+    				'newHdr':<?php echo '"'.T("Add province & UAC Code").'"'; ?>,
     						 };
     	var listFlds = {'code':'text',
     					'description':'text',

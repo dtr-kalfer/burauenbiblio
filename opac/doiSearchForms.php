@@ -21,8 +21,9 @@
 		<fieldset id="srchArea">
 		<legend><?php echo T("Search4DocumentInfo"); ?></legend>
 			<p class="note">
-			This modeule is intended to search the servers<br >
-			of the GLOBAL HANDLE REGISTRY for documents.
+			A DOI, or Digital Object Identifier, is a string of numbers, <br>
+			letters and symbols used to uniquely identify an article or  <br>
+			document, and to provide it with a permanent web address <br> (URL)
 			</p>
 			<form role="form" id="doiForm">
 			<label for="doiCd"><?php echo T("EnterDOI2Resolve"); ?></label><br />
