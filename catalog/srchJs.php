@@ -499,6 +499,7 @@ var bs = {
 		for (var nSeqno in biblioNdx) {
 			var ndx = biblioNdx[nSeqno]['index']
 			var biblio = JSON.parse(biblioList[ndx]);
+			//console('biblio: ' +biblio);
 			if (!biblio.hdr) {
 				console.log('biblio hdr missing for record #'+nBiblio+' of the current setDate.');
 				continue;
@@ -511,6 +512,7 @@ var bs = {
 			var html = '';
 			var hdr = biblio.hdr;
 			var cpys = biblio.cpys;
+			console.log("copies: ", cpys);
 			idis.crntBibid = hdr.bibid;
 			bs.biblio[hdr.bibid] = biblio;
 			var imageFile = bs.mediaIconUrls[hdr.material_cd];

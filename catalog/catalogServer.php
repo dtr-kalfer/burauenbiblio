@@ -224,11 +224,25 @@
 	    echo $msg;
 	    break;
 
-	case 'deleteBiblio':
-        $bibs = new Biblio($_POST['bibid']);
-        $bibs->deleteBiblio();
-        echo T("Delete completed");
-        break;
+	// case 'deleteBiblio':
+        // $bibs = new Biblio($_POST['bibid']);
+        // $bibs->deleteBiblio();
+        // echo T("Delete completed");
+        // break;
+
+	case 'deleteBiblio_ok': // made another function for srchForms.php 'Delete this item' --F.Tumulak
+		$bibs = new Biblios;
+		// echo 'Type of bibid: ' . gettype($_POST['bibid']) . '<br>';
+		// echo 'Value of bibid: ' . $_POST['bibid'];
+		// this is patterned similar with deleteMultiBiblios, bypass the original deleteBiblio --F.Tumulak
+		foreach (array($_POST['bibid']) as $bibid) {
+			//echo "POST bibList: ";
+			//print_r($_POST['bibList']);
+			//echo "Calling deleteOne for bibid: $bibid<br>";
+			$bibs->deleteOne_new($bibid);
+		}
+		echo T("Delete completed");
+		break;
 
 	case 'deleteMultiBiblios':
 		$bibs = new Biblios;

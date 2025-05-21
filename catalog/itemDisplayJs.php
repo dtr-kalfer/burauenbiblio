@@ -165,7 +165,7 @@ var idis = {
 		}
 		else {
     	  	if (confirm('<?php echo T("Are you sure you want to delete this item?"); ?>: #'+idis.bibid)) {
-    	    	var params = "&mode=deleteBiblio&bibid="+idis.bibid;
+    	    	var params = "&mode=deleteBiblio_ok&bibid="+idis.bibid;
     	  		$.post(idis.url,params, function(response){
     	  		    $('#rsltMsg').html(response);
     				if (bs.srchType == 'barCd')
