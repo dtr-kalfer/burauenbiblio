@@ -18,9 +18,9 @@ $trans["headerDateFormat"]	 = "m.d.Y";
 #****************************************************************************
 #* Common translation text, arranged alphabetically
 #****************************************************************************
-$trans["List of provinces and its UAC Code"] = "List of provinces and its UAC Code";
-$trans["Edit province & UAC Code"] = "Edit province & UAC Code";
-$trans["Add province & UAC Code"] = "Add province & UAC Code";
+$trans["List of provinces and its UAC Code"] = "List of provinces/states and its UAC Code";
+$trans["Edit province & UAC Code"] = "Edit province/state & UAC Code";
+$trans["Add province & UAC Code"] = "Add province/state & UAC Code";
 $trans["(enter 0 for unlimited)"] = "(enter 0 for unlimited)";
 $trans["(when available)"] = "(when available)";
 $trans["%count% bookings in cart."] = "%count% bookings in cart.";
