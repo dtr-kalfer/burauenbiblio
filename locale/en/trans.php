@@ -997,6 +997,7 @@ $trans["Table update complete"] = "Table update complete";
 $trans["Tabs"] = "Tabs";
 $trans["Tag"] = "Tag";
 $trans["Tag item"] = "Tag item";
+$trans["Tagged Items"] = "Tagged Items";
 $trans["Un-tag item"] = "Un-tag item";
 $trans["Take Photograph"] = "Take Photograph";
 $trans["TestingConnectionToDBServer"] = "Testing Connection to DB server";
