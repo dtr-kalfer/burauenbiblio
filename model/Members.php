@@ -201,7 +201,7 @@ class Members extends CoreTable {
 		$this->custom->deleteMatches(array('mbrid'=>$mbrid));
 		$acct = new MemberAccounts;
 		$acct->deleteByMbrid($mbrid);
-		return parent::deleteOne($mbrid);
+		return parent::deleteOne_member($mbrid);
 	}
 	function deleteMatches($fields) {
 		$this->lock();

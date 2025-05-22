@@ -236,6 +236,7 @@ abstract class DBTable extends Queryi {
         	return T("Success");
 		}
 	}
+	
 public function deleteOne() {
     $this->lock();
 		$args = func_get_args();
@@ -253,6 +254,17 @@ public function deleteOne() {
     //echo "Rows affected: " . $result->rowCount() . "<br>";
     return $result->rowCount();
 }
+
+	public function deleteOne_member() {
+		//echo "in DBTable::deleteOne()";
+		$this->lock();
+		$sql = $this->mkSQL('DELETE FROM %I WHERE ', $this->name)
+			. $this->_keyTerms(func_get_args());
+		//echo "sql=$sql<br />\n";
+		$result = $this->act($sql);
+		$this->unlock();
+		return $result->rowCount();
+	}
 
 public function deleteOne_new($bibid = null) { //Added new function for exclusive for bulk delete --F.Tumulak
     $this->lock();

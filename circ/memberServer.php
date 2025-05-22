@@ -406,7 +406,7 @@
 		break;
 	case 'd-3-L-3-tMember':
         $members->deleteCustomFields($_POST['mbrid']);
-	    echo $members->deleteOne($_POST['mbrid']);
+	    echo 'memberServer.php:409 -->' . $members->deleteOne($_POST['mbrid']);
 		break;
 		
 	//// ====================================////

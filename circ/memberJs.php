@@ -790,7 +790,8 @@ var mf = {
 
   	var parms = {	'mode':'d-3-L-3-tMember', 'mbrid':mf.mbrid };
   	$.post(mf.url, parms, function(response){
-			if (response != 0) {
+			console.log('response is: ' + response);
+			if (!response) {
 				// console.log('rcvd error msg from server :<br />'+response);
 				// response is one, failed to delete
 				mf.showMsg(response);

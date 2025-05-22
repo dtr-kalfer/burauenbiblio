@@ -136,7 +136,7 @@
 	</fieldset>
 <!-- -->
 	<fieldset id="onHold">
-		<legend><?php echo T("Items Currently On Hold");?></legend>
+		<legend><?php echo T("Booking/s requested by this member");?></legend>
 		<table id="holdList">
 		<thead>
 			<tr>
