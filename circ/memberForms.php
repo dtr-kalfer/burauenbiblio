@@ -45,7 +45,7 @@
 	</table>
 	</fieldset>
 	</form>
-	
+	<hr>
 	<form role="form" id="nameSrchForm" name="nameSrchForm" action="">
 	<fieldset>
 	<legend><?php echo T("Find Member by Surname"); ?></legend>
@@ -60,7 +60,8 @@
 	</table>
 	</fieldset>
 	</form>
-	
+	<hr>
+	<h3><?php echo T("Add a new member"); ?></h3>
 	<fieldset>
 		<input type="button" id="addNewMbrBtn" value="<?php echo T("Add New Member"); ?>" />
 	</fieldset>

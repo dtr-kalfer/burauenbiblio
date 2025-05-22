@@ -63,6 +63,7 @@ $trans["Add New Host"] = "Add New Host";
 $trans["Add New Item"] = "Add New Item";
 $trans["Add New Media"] = "Add New Media";
 $trans["Add New Member"] = "Add New Member";
+$trans["Add a new member"] = "Add a New Member";
 $trans["Add New Member Type"] = "Add New Member Type";
 $trans["Add New Pattern"] = "Add New Pattern";
 $trans["Add New Photo"] = "Add New Photo";
