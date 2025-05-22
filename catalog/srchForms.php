@@ -246,8 +246,8 @@
 		<div class="btnRow flexBoxed">
 			<input type="button" class="itemGobkBtn leftBtn" value="<?php echo T("Go Back"); ?>" />
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="button" id="onlnUpdtBtn" class="button midBtn" value="<?php echo T("Fetch On-line Data"); ?>" />
-			<!-- <input type="button" id="onlnDoneBtn" class="button rightBtn" value="<?php //echo T("Search Complete"); ?>" /> -->
+			<!-- <input type="button" id="onlnUpdtBtn" class="button midBtn" value="<?php //echo T("Fetch On-line Data"); ?>" /> -->
+			<input type="button" id="onlnDoneBtn" class="button rightBtn" value="<?php echo T("Search Complete"); ?>" />
 		</div>
 
 		<?php require(REL(__FILE__,"../catalog/itemEditorForm.php")); ?>
