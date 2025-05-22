@@ -998,6 +998,7 @@ $trans["Tabs"] = "Tabs";
 $trans["Tag"] = "Tag";
 $trans["Tag item"] = "Tag item";
 $trans["Tagged Items"] = "Tagged Items";
+$trans["The Tagged Items Cart"] = "The Tagged Items Cart";
 $trans["Un-tag item"] = "Un-tag item";
 $trans["Take Photograph"] = "Take Photograph";
 $trans["TestingConnectionToDBServer"] = "Testing Connection to DB server";

@@ -655,9 +655,9 @@ var bs = {
 
 			// Decide message
 			if (rslt === "1") {
-				$('#cart_result').html("<h4>✅ Item removed in Request Cart List ✅</h4>");
+				$('#cart_result').html("<h4>✅ Item untagged! ✅</h4>");
 			} else {
-				$('#cart_result').html("<h4>⚠️ Not Removed, Something went wrong! ⚠️</i></h4>");
+				$('#cart_result').html("<h4>⚠️ Nothing to untag! (Not present on Tagged Items) ⚠️</i></h4>");
 			}
 
 		}, 'text');
@@ -681,9 +681,9 @@ var bs = {
 
 			// Decide message
 			if (rslt === "1") {
-				$('#cart_result').html("<h4>⚠️ Already in cart! ⚠️</h4>");
+				$('#cart_result').html("<h4>⚠️ Already tagged! ⚠️</h4>");
 			} else {
-				$('#cart_result').html("<h4>✅ Item added to cart! <i>(See Request Cart)✅</i></h4>");
+				$('#cart_result').html("<h4>✅ Item tagged! <i>(See Tagged Items)✅</i></h4>");
 			}
 
 		}, 'text');
