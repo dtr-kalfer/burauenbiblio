@@ -30,7 +30,7 @@
 						<!-- <label for="useCapture"><?php //echo T("Camera"); ?></label> -->
 						<!-- <input checked type="radio" id="useCapture" name="imgSrce" value="cam" class="fotoSrceBtns" \> -->
 						<label for="useBrowse">  <?php echo T("Browse"); ?></label>
-						  <input checked type="checkbox" id="useBrowse" name="imgSrce" value="brw" class="fotoSrceBtns" \>
+						  <input checked="checked" type="checkbox" id="useBrowse" name="imgSrce" value="brw" class="fotoSrceBtns" \>
 					</fieldset>
 
                     <br />

@@ -300,8 +300,10 @@
 	    ### left as an exercise for the motivated - FL (I'm burned out on this project)
 		break;
 	case 'addNewPhoto':
-		define('UPLOAD_DIR', '../photos/');
-		$file = UPLOAD_DIR . $_POST['url'];
+		define('UPLOAD_DIR', '../photos/'); // modified this upload logic to correct its path --F.Tumulak
+		$filename = basename(str_replace(array('../', './'), '', $_POST['url']));
+		$file = UPLOAD_DIR . $filename;
+
 		$img = $_POST['img'];
 		if (substr($file, -3,3) == 'png')
 			$imgFmt = 'png';
@@ -328,28 +330,39 @@
 			print_r($_POST);
 		}
 		break;
+		
 	case 'addNewRemotePhoto':
-        $ptr = new BiblioImages;
+    $ptr = new BiblioImages;
 		$caption = $_POST['caption'] ? $_POST['caption'] : 'Cover';
-        $err = $ptr->insert_el(array('bibid' => $_POST['bibid'], 'caption' => $caption, 'url' => $_POST['url'], 'imgurl' => $_POST['url']));
-        if(isset($err)) {
-                print_r($err);
-                break;
-        }
-        $set = $ptr->getByBibid($_POST['bibid']);
-        foreach ($set as $row) {
-                $imgs[] = $row;
-        }
-        echo json_encode($imgs);
+    $err = $ptr->insert_el(array('bibid' => $_POST['bibid'], 'caption' => $caption, 'url' => $_POST['url'], 'imgurl' => $_POST['url']));
+			if(isset($err)) {
+				print_r($err);
+				break;
+      }
+      $set = $ptr->getByBibid($_POST['bibid']);
+      foreach ($set as $row) {
+				$imgs[] = $row;
+      }
+      echo json_encode($imgs);
 		break;
+		
 	case 'deletePhoto':
-	    $ptr = new BiblioImages;
-		$rslt = $ptr->deleteByBibid($_POST['bibid']);
-        echo json_encode($rslt);
-		define('UPLOAD_DIR', '../photos/');
-		$file = UPLOAD_DIR . $_POST['url'];
-        unlink($file);
-		break;
+			$ptr = new BiblioImages;
+			$rslt = $ptr->deleteByBibid($_POST['bibid']);
+			echo json_encode($rslt);
+
+			define('UPLOAD_DIR', '../photos/');
+			$filename = basename(str_replace(array('../', './'), '', $_POST['url']));
+			$file = UPLOAD_DIR . $filename;
+
+			// 🔐 Check if file exists before attempting to delete
+			if (file_exists($file)) {
+					unlink($file);
+			} else {
+					// Optional: Log or silently ignore
+					// error_log("File not found: $file"); 
+			}
+			break;
 
 	//// ====================================////
 	default:

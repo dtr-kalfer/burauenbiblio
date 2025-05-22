@@ -242,12 +242,14 @@ console.log("in wc::initWidgets(), constraints set.");
 		if (e) e.stopPropagation();
 //		obib.hideMsg(); // clear any user msgs
 		var current_add_mode = '',
+		
+		
 			url = $('#fotoName').val(),
 			bibid = $('#fotoBibid').val();
 		var imgMode = (url.substr(-3) == 'png')? 'image/png' : 'image/jpeg';
-
-		current_add_mode = $('.fotoSrceBtns:checked').val();
-		if ((current_add_mode == 'brw') || (current_add_mode == 'cam')) {
+		
+		//current_add_mode = $('.fotoSrceBtns:checked').val();
+		if (true) {
 			$.post(wc.url,
 				{'mode':'addNewPhoto',
 			 	 'type':'base64',
@@ -307,6 +309,10 @@ console.log("in wc::initWidgets(), constraints set.");
     },
 
 	doDeletePhoto: function (e) {
+		//let url_1 = $('#fotoName').val(); // Example: "../photos/4555.jpg"
+		//let filename = url_1.split('/').pop(); // Result: "4555.jpg"
+
+		$('#fotoName').val();
 		if (confirm("<?php echo T("Are you sure you want to delete this cover photo"); ?>")) {wc.deleteActual(e); }
     },
     deleteActual: function (e, forUpdate=false) {
@@ -337,5 +343,5 @@ console.log("in wc::initWidgets(), constraints set.");
 	},
 
 }
-
+document.getElementById('useBrowse').checked = true;
 </script>
