@@ -37,7 +37,7 @@
 <div id="crntMbrDiv">to be filled by server</div>
 
 <p id="whereAmI" class="note"></p>
-<p id="msgDiv"></p>
+<p id="msgDiv" style="text-align: center; font-weight: bold;"></p>
 <!-- ------------------------------------------------------------------------ -->
 <div id="searchDiv">
 <form role="form" id="barcodeSearch" name="barcodeSearch" method="post">
