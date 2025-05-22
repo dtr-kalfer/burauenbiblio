@@ -44,7 +44,7 @@
 <fieldset>
 	<legend><?php echo T("Find Item by Barcode"); ?></legend>
 	<label for="bc_searchBarcd" style="margin-left: 15px;"><?php echo T("Barcode");?>:</label>
-	<input type="text" id="bc_searchBarcd" name="searchBarcd" size="20" />
+	<input type="text" id="bc_searchBarcd" name="searchBarcd" size="20" value="" />
 	<input type="submit" id="barcdSrchBtn" name="barcdSrchBtn" value="<?php echo T("Search"); ?>" class="srchByBarcdBtn" />
 	<input type="hidden" id="bc_searchType" name="searchType" value="barcodeNmbr" />
 	<input type="hidden" id="bc_sortBy" name="sortBy" value="default" />
@@ -68,7 +68,7 @@
 				<option value="callno"><?php echo T("Call Number"); ?></option>
 				<option value="id"><?php echo T("bibid"); ?></option>
 			</select>
-			<input type="text" id="ph_searchText" name="searchText" size="20" maxlength="256" />
+			<input type="text" value="" id="ph_searchText" name="searchText" size="20" maxlength="256" />
 			<input type="submit" id="phraseSrchBtn" name="phraseSrchBtn" value="<?php echo T("Search"); ?>" class="phraseSrchBtnBtn" />
 		</td>
 	</tr>
