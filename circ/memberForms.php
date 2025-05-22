@@ -84,6 +84,7 @@
 		<input type="number" readonly id="mbrCardNo" />
 	</fieldset>
 <!-- -->
+`	<hr>
 	<fieldset id="newLoans">
 		<legend for="ckoutBarcd"><?php echo T("Check Out");?></legend>
 		<label><?php echo T("Barcode Number");?>:</label>
@@ -92,6 +93,7 @@
 		<p class="error" id="chkOutMsg"></p>
 	</fieldset>
 <!-- -->
+	
 	<fieldset id="onLoan">
 		<legend><?php echo T("Items Currently Checked Out");?></legend>
 		<table id="chkOutList">
@@ -119,31 +121,17 @@
 		</table>
 	</fieldset>
 <!-- -->
-	<fieldset id="newBooking">
-		<legend><?php echo T("Make Booking");?></legend>
-			<select name="searchType">
-				<option value="keyword"><?php echo T("Keyword");?></option>
-				<option value="title"><?php echo T("Title");?></option>
-				<option value="subject"><?php echo T("Subject");?></option>
-				<option value="series"><?php echo T("Series");?></option>
-				<option value="publisher"><?php echo T("Publisher");?></option>
-				<option value="callno" selected><?php echo T("Item Number");?></option>
-			</select>
-			<input type="text" name="bkSrchTxt" size="30" maxlength="256" />
-			<input type="hidden" name="sortBy" value="default" />
-			<!--input type="hidden" name="tab" value="circ" />
-			<input type="hidden" name="lookup" value="Y" /-->
-			<input type="button" value="<?php echo T("Search");?>" id="bkgBtn" />
-	</fieldset>
-<!-- -->
+
+	<!-- -->
+	`<hr>
 	<fieldset id="newHolds">
-		<legend><?php echo T("Place on Hold");?></legend>
+		<legend><?php echo T("Place a booking");?></legend>
 			<label for="holdBarcd"><?php echo T("Barcode Number");?></label>
 			<input type="number" id="holdBarcd" size="20" />
 			<!--a href="javascript:popSecondaryLarge('../opac/index.php?lookup=Y')"Search</a-->
 			<input type="hidden" name="mbrid" value="" />
 			<input type="hidden" name="classification" value="" />
-			<input type="button" value="<?php echo T("Hold");?>" id="holdBtn" />
+			<input type="button" value="<?php echo T("Make booking");?>" id="holdBtn" />
 	</fieldset>
 <!-- -->
 	<fieldset id="onHold">
