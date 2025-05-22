@@ -789,12 +789,14 @@ var bs = {
 			console.log('params: ' +params);
 	    $.post(ie.url, params, function(response){
 	        if (response == '!!success!!'){
-    		    $('#itemEditorDiv').hide();
+    		    $('#msgDiv').html('<?php echo T("Update Biblio Success!"); ?>');
+						$('#itemEditorDiv').hide();
 						// repeat search with existing criteria, to assurre a current display
-						$('#msgDiv').html('<?php echo T("Update Biblio Success!"); ?>');
 						// set a timeout for response --F.Tumulak
-				setTimeout(function()
-					{$('#msgDiv').show().hide(2000);}, 3000);
+						setTimeout(function()
+						{$('#msgDiv').show().hide(3000);}, 3000);
+						// show #msgDiv again for smoother transition on successive update
+						$('#msgDiv').show();
 				if (bs.srchType == 'barCd')
 					bs.doBarcdSearch();
 				else if (bs.srchType = 'phrase')
