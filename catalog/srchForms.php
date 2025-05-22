@@ -215,8 +215,8 @@
 			<li><input type="button" class="bibGobkBtn" value="<?php echo T("Go Back"); ?>" /></li>
 		<?php } ?>
 		<li><input type="button" id="marcBtn" value=""></li>
-		<li><input type="button" id="addItem2CartBtn" value="<?php echo T("Add To Cart"); ?>" /></li>
-		<li><input type="button" id="delItem2CartBtn" value="<?php echo T("Delete From Cart"); ?>" /></li>
+		<li><input type="button" id="addItem2CartBtn" value="<?php echo T("Tag item"); ?>" /></li>
+		<li><input type="button" id="delItem2CartBtn" value="<?php echo T("Un-tag item"); ?>" /></li>
 			<?php if (($_SESSION["hasCatalogAuth"]) && ($tab == 'cataloging')) {?>
 			<li><input type="button" id="biblioEditBtn" value="<?php echo T("Edit This Item"); ?>"></li>
 			<?php if ($_SESSION['show_item_photos'] == 'Y') { ?>
