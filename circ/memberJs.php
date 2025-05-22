@@ -791,15 +791,15 @@ var mf = {
   	var parms = {	'mode':'d-3-L-3-tMember', 'mbrid':mf.mbrid };
   	$.post(mf.url, parms, function(response){
 			console.log('response is: ' + response);
-			if (!response) {
+			if (!response) { // if zero, successfully deleted --> F.Tumulak
 				// console.log('rcvd error msg from server :<br />'+response);
 				// response is one, failed to delete
 				mf.showMsg(response);
 			}
-			else {
+			else { //response is zero, so it is successful!
 								// response is zero, success ->corrected by Ferdinand Tumulak
                 mf.rtnToSrch();
-				mf.showMsg('<?php echo T('Member deleted!'); ?>');
+				mf.showMsg('<?php echo T('Member deleted'); ?>');
                 setTimeout( function(){
                     $('#msgDiv').show().hide(2000);
                   }  , 3000 );
