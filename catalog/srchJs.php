@@ -511,8 +511,8 @@ var bs = {
 					callNo='', edition ='', pubDate='', nrCopies=0;
 			var html = '';
 			var hdr = biblio.hdr;
-			var cpys = biblio.cpys;
-			console.log("copies: ", cpys);
+			var cpys = biblio.cpys.length; // get the number of elements inside the array --> F.Tu7mulak
+			// console.log("copies: ", cpys);
 			idis.crntBibid = hdr.bibid;
 			bs.biblio[hdr.bibid] = biblio;
 			var imageFile = bs.mediaIconUrls[hdr.material_cd];
@@ -534,7 +534,7 @@ var bs = {
 			/*  some administrative info and a 'more detail' button */
 			html += '	<div class="dashBds">\n';
 			html += ' 	<div class="dashBdsA">';
-			html += '			<p>copies:'+hdr.ncpys+'</p>';
+			html += '			<p>copies:'+cpys+'</p>'; // changed this into cpys for correct output--> F.Tumulak
 			html += '		</div>\n';
 			html += ' 	<div class="dashBdsB">';
 			html += '			<img src="../images/'+hdr.avIcon+'" class="flgDot" title="Grn: available<br />Blu: on hold<br />Red: not available" />\n';
