@@ -271,7 +271,7 @@
 	<ul class="btnRow">
 		<li><input type="button" class="gobkFotoBtn" value="<?php echo T("Go Back"); ?>" /></li>
 		<li><input type="submit" id="addFotoBtn" value="<?php echo T("Add New"); ?>" /></li>
-		<li><input type="button" id="updtFotoBtn" value="<?php echo T("Update"); ?>" /></li>
+		<!-- <li><input type="button" id="updtFotoBtn" value="<?php echo T("Update"); ?>" /></li> -->
 		<li><input type="button" id="deltFotoBtn" value="<?php echo T("Delete"); ?>" /></li>
 	</ul>
 </div>

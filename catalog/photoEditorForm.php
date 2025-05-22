@@ -10,27 +10,27 @@
 		<legend id="fotoEdLegend"></legend>
 
 		<!-- to reduce annoyance, only load video components if wanted-->
-		<?php if ($_SESSION['show_item_photos'] == 'Y') { ?>
-		<div id="fotoDiv" >
+		
+		<div id="fotoDiv" hidden>
 			<!-- video element will be inserted here when JS is activated -->
 	  	    <video id="video" preload="auto" />
-		 	<canvas id="canvasIn" />
+		 	<canvas id="canvasIn" /></canvas>
 		</div>
-		<?php } ?>
+		
 
 		<div id="fotoCntlDiv">
 			<form role="form" id="fotoForm">
 				<fieldset class="inline">
-			 		<canvas id="canvasOut"  />
+			 		<canvas id="canvasOut"  /></canvas>
 				</fieldset>
 				<fieldset class="inline">
                     <!-- source choices -->
 					<fieldset id="fotoSources">
-						<legend><?php echo T("Select an image Source (approx. 100x120px webp)"); ?></legend>
+						<legend><?php echo T("Select an image Source"); ?></legend>
 						<!-- <label for="useCapture"><?php //echo T("Camera"); ?></label> -->
 						<!-- <input checked type="radio" id="useCapture" name="imgSrce" value="cam" class="fotoSrceBtns" \> -->
-						<label for="useBrowse">  <?php echo T("Browse"); ?></label>
-						  <input checked="checked" type="checkbox" id="useBrowse" name="imgSrce" value="brw" class="fotoSrceBtns" \>
+						<!-- <label for="useBrowse">  <?php echo T("Browse"); ?></label> -->
+						  <input checked="checked" type="hidden" id="useBrowse" name="imgSrce" value="brw" class="fotoSrceBtns" \>
 					</fieldset>
 
                     <br />

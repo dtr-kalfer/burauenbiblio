@@ -295,11 +295,77 @@
 		}
 		echo json_encode($imgs);
 	    break;
-	case 'updatePhoto':
-	    $ptr = new BiblioImages;
-	    ### left as an exercise for the motivated - FL (I'm burned out on this project)
-		break;
+			
+case 'updatePhoto': // this is currently not working but manually deleting, and adding works --F.Tumulak
+    $ptr = new BiblioImages;
+    $rslt = $ptr->deleteByBibid($_POST['bibid']);
+    echo json_encode($rslt);
+
+    define('UPLOAD_DIR', '../photos/');
+    $filename = basename(str_replace(['../', './'], '', $_POST['url']));
+    $file = UPLOAD_DIR . $filename;
+
+    // Step 2: Sanitize and decode the base64 image string
+    $img = $_POST['img'] ?? '';
+    if (empty($img)) {
+        echo json_encode(['error' => 'Image data is empty']);
+        break;
+    }
+
+    $imgFmt = (strtolower(substr($file, -3)) === 'png') ? 'png' : 'jpeg';
+
+    // Remove the data URI prefix and decode base64
+    $img = str_replace('data:image/'.$imgFmt.';base64,', '', $img);
+    $img = str_replace(' ', '+', $img);
+    $data = base64_decode($img);
+
+    // Step 3: Save the new image
+    $success = file_put_contents($file, $data);
+    if ($success === false) {
+        echo json_encode([
+            'error' => "Unable to save file to $file",
+            'postData' => $_POST
+        ]);
+        break;
+    }
+
+    // Step 4: Add image record to the database
+    $err = $ptr->appendLink_e($_POST['bibid'], $_POST['caption'], $data, $file);
+    if ($err) {
+        echo json_encode(['error' => $err]);
+        break;
+    }
+
+    // Step 5: Return all image records for that bibid
+    $set = $ptr->getByBibid($_POST['bibid']);
+    $imgs = [];
+    foreach ($set as $row) {
+        $imgs[] = $row;
+    }
+    echo json_encode($imgs);
+    break;
+
+
+
 	case 'addNewPhoto':
+
+		$ptr = new BiblioImages;
+		$rslt = $ptr->deleteByBibid($_POST['bibid']);
+		echo json_encode($rslt);
+
+		define('UPLOAD_DIR', '../photos/');
+		$filename = basename(str_replace(array('../', './'), '', $_POST['url']));
+		$file = UPLOAD_DIR . $filename;
+
+		// 🔐 Check if file exists before attempting to delete
+		if (file_exists($file)) {
+				unlink($file);
+		} else {
+				// Optional: Log or silently ignore
+				// error_log("File not found: $file"); 
+		}
+
+	
 		define('UPLOAD_DIR', '../photos/'); // modified this upload logic to correct its path --F.Tumulak
 		$filename = basename(str_replace(array('../', './'), '', $_POST['url']));
 		$file = UPLOAD_DIR . $filename;
