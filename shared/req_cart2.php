@@ -82,7 +82,7 @@ librarians intend to: </p>
 </ul>
 <p>📚 Use-case: a junior staff member might add entries to <br>
 the cart, and a senior librarian reviews and finalizes them.</p>
-<h3 style="background-color: orange;">📚<?php echo T("List of tagged items for review"); ?>📚</h3>
+<h3 style="background-color: red;">📚<?php echo T("List of tagged items for review"); ?>📚</h3>
 <?php
 	if (isset($_REQUEST["msg"]) && !empty($_REQUEST["msg"])) {
 		echo '<p class="error">'.H($_REQUEST["msg"]).'</p><br /><br />';

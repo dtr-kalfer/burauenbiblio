@@ -584,6 +584,7 @@ $trans["List of request for review"] = "List of request for review";
 $trans["List of Staff Members"] = "List of Staff Members";
 $trans["List of States & Abreviations"] = "List of States & Abreviations";
 $trans["List of Input Validation Patterns"] = "List of Input Validation Patterns";
+$trans["List of tagged items for review"] = "List of tagged items for review";
 $trans["Locale"] = "Locale";
 $trans["Local Data"] = "Local Data";
 $trans["Local Search"] = "Local Search";

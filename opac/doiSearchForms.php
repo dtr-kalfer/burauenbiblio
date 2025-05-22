@@ -15,11 +15,10 @@
 
 ?>
 
-	<h1 id="pageHdr" class="title"><?php echo T("doiSearch"); ?></h1>
-
+	<h4  class="title"><?php echo T("doiSearch"); ?></h4>
 	<section id="entry">
 		<fieldset id="srchArea">
-		<legend><?php echo T("Search4DocumentInfo"); ?></legend>
+		<legend style="border: 1px solid black;"><?php echo T("Search4DocumentInfo"); ?></legend>
 			<p class="note">
 			A DOI, or Digital Object Identifier, is a string of numbers, <br>
 			letters and symbols used to uniquely identify an article or  <br>
