@@ -786,10 +786,15 @@ var bs = {
 		e.preventDefault();
 		e.stopPropagation();
 		var params = "&mode=updateBiblio&" + $('#biblioEditForm').not('.online').serialize();
-	    $.post(ie.url,params, function(response){
+			console.log('params: ' +params);
+	    $.post(ie.url, params, function(response){
 	        if (response == '!!success!!'){
     		    $('#itemEditorDiv').hide();
-				// repeat search with existing criteria, to assurre a current display
+						// repeat search with existing criteria, to assurre a current display
+						$('#msgDiv').html('<?php echo T("Update Biblio Success!"); ?>');
+						// set a timeout for response --F.Tumulak
+				setTimeout(function()
+					{$('#msgDiv').show().hide(2000);}, 3000);
 				if (bs.srchType == 'barCd')
 					bs.doBarcdSearch();
 				else if (bs.srchType = 'phrase')

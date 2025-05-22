@@ -1072,6 +1072,7 @@ $trans["Update failed"] = "Update Failed";
 $trans["Update Member"] = "Update Member";
 $trans["Update successful"] = "Update successful";
 $trans["Update"] = "Update";
+$trans["Update Biblio Success!"] = "Update Biblio Success!";
 $trans["Update not supported for this table"] = "Update not supported for this table";
 $trans["Update Now"] = "Update Now";
 $trans["Updating Database Tables"] = "Updating Database Tables";
