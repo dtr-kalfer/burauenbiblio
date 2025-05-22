@@ -178,8 +178,8 @@
 			<fieldset>
 				<span id="resultsArea"></span>
 				<fieldset>
-					<table id="listTbl">
-						<tbody id="srchRslts" class="striped">
+					<table id="listTbl" >
+						<tbody id="srchRslts" class="striped" >
 						</tbody>
 					</table>
 				</fieldset>
@@ -187,11 +187,8 @@
 					if($_SESSION['show_detail_opac'] == "Y"){
 				?>
 				<ul id="flagInfo">
-					<li><img src="../images/circle_green.png" class="flgDot"/> <?php echo T("Available"); ?></li>
-					<li><img src="../images/circle_orange.png" class="flgDot"/> <?php echo T("Available elsewhere"); ?></li>
-					<li><img src="../images/circle_blue.png" class="flgDot"/> <?php echo T("Not on loan/on hold"); ?></li>
-					<li><img src="../images/circle_red.png" class="flgDot"/> <?php echo T("On loan/not available"); ?></li>
-					<li><img src="../images/circle_purple.png" class="flgDot"/> <?php echo T("Available online"); ?></li>
+					<li>✅ <?php echo T("Available"); ?></li>
+					<li>❌ <?php echo T("On loan/not available"); ?></li>
 				</ul>
 				<?php } ?>
 			</fieldset>

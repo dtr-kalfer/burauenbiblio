@@ -478,7 +478,7 @@ var bs = {
 				//console.log("testing lbl '"+key+"'' for a match for biblio #"+String(nEntry));
 				if (keys.includes(key)) {
 					//console.log("found a match to "+key);
-					console.log("placing '"+marc[nEntry].value+"'' into '"+key+"'' column for biblio #"+String(nBiblio));
+					//console.log("placing '"+marc[nEntry].value+"'' into '"+key+"'' column for biblio #"+String(nBiblio));
 					biblioNdx[nBiblio][key] = marc[nEntry].value;
 				}
 			}
@@ -499,7 +499,6 @@ var bs = {
 		for (var nSeqno in biblioNdx) {
 			var ndx = biblioNdx[nSeqno]['index']
 			var biblio = JSON.parse(biblioList[ndx]);
-			//console('biblio: ' +biblio);
 			if (!biblio.hdr) {
 				console.log('biblio hdr missing for record #'+nBiblio+' of the current setDate.');
 				continue;
@@ -508,19 +507,19 @@ var bs = {
 			var title = '', booktitle='', booksubtitle='', reporttitle='', reportsubtitle='',
 					author='', coauthor='', editors='', corporate='',
 					year='', journal='', jrnlDate='',
-					callNo='', edition ='', pubDate='', nrCopies=0;
+					callNo='', edition ='', pubDate='', nrCopies=0, avail='❌';
 			var html = '';
 			var hdr = biblio.hdr;
 			var cpys = biblio.cpys.length; // get the number of elements inside the array --> F.Tu7mulak
-			// console.log("copies: ", cpys);
+			
 			idis.crntBibid = hdr.bibid;
 			bs.biblio[hdr.bibid] = biblio;
 			var imageFile = bs.mediaIconUrls[hdr.material_cd];
-			html += '<tr class="listItem">\n';
+			html += '<tr class="listItem" >\n';
 
 			//--// the leftside pretty stuff
-			html += '	<td>\n';
-			html += '		<div class="itemVisual"> \n';
+			html += '	<td style="width: 230px;">\n';
+			html += '		<div class="itemVisual" > \n';
 			/* if wanted, we create space for a possible photo, and fill it if one is found */
 			var showFoto = '<?php echo Settings::get('show_item_photos'); ?>';
 			if ((showFoto == 'Y') && (hdr.bibid !== undefined)){
@@ -530,19 +529,18 @@ var bs = {
 				html += '		</div>'+"\n";
 				bs.getPhoto(hdr.bibid, '#photo_'+hdr.bibid );
 			}
-
+			if (cpys > 0) {avail='✅'} else {avail='❌'}
 			/*  some administrative info and a 'more detail' button */
-			html += '	<div class="dashBds">\n';
-			html += ' 	<div class="dashBdsA">';
-			html += '			<p>copies:'+cpys+'</p>'; // changed this into cpys for correct output--> F.Tumulak
+			html += '	<div class="dashBds" >\n';
+			html += ' 	<div class="dashBdsA" >';
+			html += '			<p><b>🔖Bibid: <mark>' + hdr.bibid + '</mark> <br>' +avail+ 'Copies: '+cpys+'<b></p>';
 			html += '		</div>\n';
-			html += ' 	<div class="dashBdsB">';
-			html += '			<img src="../images/'+hdr.avIcon+'" class="flgDot" title="Grn: available<br />Blu: on hold<br />Red: not available" />\n';
-			html += '			<img src="../images/'+imageFile+'" width="32" height="32" />'+'\n';
+			html += ' 	<div class="dashBdsB" >\n';
+			//html += '			<hr />'+'\n';
 			html += '		</div>\n';
 			html += ' 	<div class="dashBdsC">';
 			html += '			<input type="hidden" value="'+hdr.bibid+'" />'+'\n';
-			html += '			<input type="button" class="moreBtn" value="<?php echo T("More info"); ?>" />'+'\n';
+			html += '			<input type="button" style="margin-top: 20px;" class="moreBtn" value="<?php echo '🔍 View Info'; ?>" />'+'\n';
 			html += ' 	</div>';
 			html += '	</div>\n';
 			html += '</div></td>';  // end of itemVisual div
@@ -569,10 +567,13 @@ var bs = {
 			//--// Display first 'N' lines of biblio information
 			// number of rows to display is based on Media type
 			var N = bs.mediaLineCnt[hdr.material_cd];
+			var emojis = ['🔖<b> Call Number: </b>', '👨‍💼<b> Author: </b>', '📙<b> Title: </b>']; // Array containing emojis
+			
 			html += '<td id="itemInfo">\n';
 			for (var i=0; i<N; i++) {
 				if (!lines[i]) continue; // skip null, undefined or non-existent elements
-				if (lines[i] != '') html += '<p class="searchListItem">'+lines[i]+'</p>\n';
+				var emoji = emojis[i] ? emojis[i] : ''; // Get the emoji corresponding to index i, if it exists
+				if (lines[i] != '') html += '<p class="searchListItem">'+emoji+lines[i]+'</p>\n';
 			}
 			html += '</tr>\n';
 			$('#srchRslts').append(html);
