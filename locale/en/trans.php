@@ -646,7 +646,6 @@ $trans["MediaTypeListLabel"] = 'Media Type:';
 $trans["Media Type"] = "Media Type";
 $trans["Media Types"] = "Media Types";
 $trans["Member"] = "Member";
-$trans["Member deleted"] = "Member deleted";
 $trans["Member creation was not successful"] = "Member creation was not successful";
 $trans["Member Fields"] = "Member Fields";
 $trans["Member Fields DM Table should allow null values for default_flg field"] = "Member Fields DM Table should allow null values for default_flg field";

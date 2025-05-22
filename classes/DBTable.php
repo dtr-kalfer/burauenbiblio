@@ -255,7 +255,7 @@ public function deleteOne() {
     return $result->rowCount();
 }
 
-	public function deleteOne_member() {
+	public function deleteOne_member() { // new function retrieved from orig. --F.T.
 		//echo "in DBTable::deleteOne()";
 		$this->lock();
 		$sql = $this->mkSQL('DELETE FROM %I WHERE ', $this->name)

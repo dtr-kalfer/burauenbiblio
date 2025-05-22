@@ -799,7 +799,7 @@ var mf = {
 			else { //response is zero, so it is successful!
 								// response is zero, success ->corrected by Ferdinand Tumulak
                 mf.rtnToSrch();
-				mf.showMsg('<?php echo T('Member deleted'); ?>');
+				mf.showMsg('Member deleted: ' + mf.mbrid);
                 setTimeout( function(){
                     $('#msgDiv').show().hide(2000);
                   }  , 3000 );
