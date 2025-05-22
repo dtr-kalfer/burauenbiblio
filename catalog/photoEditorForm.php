@@ -26,21 +26,21 @@
 				<fieldset class="inline">
                     <!-- source choices -->
 					<fieldset id="fotoSources">
-						<legend><?php echo T("Select an image Source"); ?></legend>
-						<label for="useCapture"><?php echo T("Camera"); ?></label>
-						  <input type="radio" id="useCapture" name="imgSrce" value="cam" checked class="fotoSrceBtns" \>
+						<legend><?php echo T("Select an image Source (approx. 100x120px webp)"); ?></legend>
+						<!-- <label for="useCapture"><?php //echo T("Camera"); ?></label> -->
+						<!-- <input checked type="radio" id="useCapture" name="imgSrce" value="cam" class="fotoSrceBtns" \> -->
 						<label for="useBrowse">  <?php echo T("Browse"); ?></label>
-						  <input type="radio" id="useBrowse" name="imgSrce" value="brw" class="fotoSrceBtns" \>
+						  <input checked type="checkbox" id="useBrowse" name="imgSrce" value="brw" class="fotoSrceBtns" \>
 					</fieldset>
+
                     <br />
 
                     <!-- action controls -->
                     <span id="fotoControls">
-					   <input type="button" id="capture" name="capture" value="<?php echo T("Take Photograph"); ?>" />
-					   <input type="file" id="browse" name="browse" accept="image/png image/jpg" />
+										
+										<input type="file" id="browse" name="browse" accept="image/png image/jpg" />
                     </span>
                     <br />
-
                     <!-- user information -->
                     <span id="fotoInfo">
 					   <label for="fotoFolder" class="note italic" ><?php echo T("StoreAt"); ?>:</label>

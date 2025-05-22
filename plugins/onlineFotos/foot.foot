@@ -15,19 +15,19 @@
 class FotoFt {
     constructor () {
         // add OpenLibrary to list of choices
-        var srcInsert = ""
+        // var srcInsert = ""
 						+'<label for="useOpenLib">  <?php echo T("openLibrary"); ?></label>'
 						+'<input type="radio" id="useOpenLib" name="imgSrce" value="olib" class="fotoSrceBtns" \>'
         ;
-        $('#fotoSources').append(srcInsert);
+        // $('#fotoSources').append(srcInsert);
 
         // add alternate action button
-        var actionInsert = ""
+        // var actionInsert = ""
 					 +'<input type="button" id="fetch" name="fetch" value="<?php echo T("fetchPhoto"); ?>" />';
-        $('#fotoControls').append(actionInsert);
+        // $('#fotoControls').append(actionInsert);
 
-		    $('input.fotoSrceBtns').on('click', null, this.changeImgSource);
-        $('#fetch').on('click', null, this.getOpnLibFile);
+		    // $('input.fotoSrceBtns').on('click', null, this.changeImgSource);
+        // $('#fetch').on('click', null, this.getOpnLibFile);
 
         this.resetForm();
     }
