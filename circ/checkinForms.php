@@ -23,6 +23,7 @@
 	<form role="form" id="chekinForm" name="chekinForm" >
 	<fieldset>
 		<legend><?php echo T("Check In"); ?></legend>
+		<p>Reminder: After books are checked-in, always check the <b>Bookings</b> tab in order to verify if the received books are reserved by patrons</p>
 		<label for="barcodeNmbr"><?php echo T("Barcode Number").":"; ?></label>
 			<input type="text" id="barcodeNmbr" name="barcodeNmbr" size="18" />
 		<input type="hidden" id="ckinMode" name="mode" value="doItemCheckin" />
