@@ -82,7 +82,7 @@ function staff_menu() {
 		Nav::node('admin/biblioFields', T("Biblio Fields"),'../admin/biblioFldsForm.php');
 		Nav::node('admin/biblioCopyFields', T("Biblio Copy Fields"),'../admin/biblioCopyFldsForm.php');
 		Nav::node('admin/calendar', T("Calendar Manager"), '../admin/calendarForm.php');
-		Nav::node('admin/collections', T("Collections"), '../admin/collectionsForm.php');
+		Nav::node('admin/collections', T("Collections"), '../admin/collectionsForm.php?type=change_borrow_expiry');
 		Nav::node('admin/media', T("Media Types"), '../admin/mediaForm.php');
 		Nav::node('admin/bulk_delete', T("Bulk Delete"), "../catalog/bulkDelForm.php"); // moved bulk delete to its new home --F.T.
 		Nav::node('admin/memberTypes', T("Member Types"), '../admin/memberTypeForm.php');
