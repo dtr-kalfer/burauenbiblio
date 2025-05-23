@@ -168,6 +168,7 @@ $trans["Booking Search"] = "Booking Search";
 $trans["Bookings by Site"] = "Bookings by Site";
 $trans["Bookings by Title"] = "Bookings by Title";
 $trans["Booking/s requested by this member"] = "Booking/s requested by this member";
+$trans["Borrow Time Limit Policy Updated!"] = "Borrow Time Limit Policy Updated!";
 $trans["Broken RPT code structure"] = "Broken RPT code structure";
 $trans["Browse"] = "Browse";
 $trans["Browse Images"] = "Browse Images";

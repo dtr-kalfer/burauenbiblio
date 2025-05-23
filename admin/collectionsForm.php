@@ -29,7 +29,7 @@
 		exit(0);
 	}
 
-	Nav::node('reports/reportcriteria',T("Report Criteria"));
+	Nav::node('admin/collections',T("Report Criteria"));
 	Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 
 	#****************************************************************************
@@ -44,7 +44,7 @@
 	}	
 	
 ?>
-<form name="reportcriteriaform" method="get" action="../reports/run_report.php">
+<form name="reportcriteriaform" method="get" action="../admin/update_due_date.php">
 <fieldset>
 <input type="hidden" name="type" value="<?php echo H($rpt->type()) ?>" />
 
@@ -55,7 +55,7 @@
 <input type="submit" value="<?php echo T("Submit"); ?>" class="button" />
 </fieldset>
 </form>
-
+<!-- -------------------------------------------------->
 
     <h3><?php echo T("Collections"); ?></h3>
     <div id="listDiv" style="display: none;">
