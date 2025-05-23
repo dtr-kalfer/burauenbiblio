@@ -189,6 +189,7 @@
 				<ul id="flagInfo">
 					<li>✅ <?php echo T("Available"); ?></li>
 					<li>❌ <?php echo T("On loan/not available"); ?></li>
+					<li><p>📌 Press CTRL+F5 to refresh image (During image thumbnail add/remove)</p></li>
 				</ul>
 				<?php } ?>
 			</fieldset>

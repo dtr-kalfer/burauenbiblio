@@ -27,6 +27,7 @@
                     <!-- source choices -->
 					<fieldset id="fotoSources">
 						<legend><?php echo T("Select an image Source"); ?></legend>
+						<p>Note: Press CTRL+F5 to refresh image into latest update</p>
 							<!-- <label for="useCapture"><?php //echo T("Camera"); ?></label> -->
 							<!-- <input checked type="radio" id="useCapture" name="imgSrce" value="cam" class="fotoSrceBtns" \> -->
 							<!-- <label for="useBrowse">  <?php //echo T("Browse"); ?></label> -->
