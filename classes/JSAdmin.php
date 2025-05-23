@@ -297,7 +297,8 @@ class Admin {
 		var parms = this.doGatherParams();
     	if ($('#newImageFile').val() != '') {
     		parms.push($('#newImageFile').serializeArray());
-		}
+		}	
+			console.log('this.url: ' + this.url);
     	$.post(this.url, this.doAssembleParams(parms), $.proxy(this.updateHandler, this), 'json');
     	e.preventDefault();
     	e.stopPropagation();
