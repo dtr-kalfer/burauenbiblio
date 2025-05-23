@@ -135,7 +135,7 @@ class Admin {
     };
     addFuncBtns (ident) {
     	var html = '';
-    	html  = '		<input hidden type="button" id="row'+ident+'" class="editBtn" value="'+<?php echo "'".T("edit")."'"; ?>+'" />\n';
+    	html  = '		<input type="button" id="row'+ident+'" class="editBtn" value="'+<?php echo "'".T("edit")."'"; ?>+'" />\n';
     	html += '		<input type="hidden" value="'+ident+'"  />\n';
     	return html;
     };
