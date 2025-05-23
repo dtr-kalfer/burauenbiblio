@@ -1100,6 +1100,7 @@ $trans["Value by Media Type"] = "Value by Media Type";
 $trans["Verbose"] = "Verbose";
 $trans["version hash row is missing from Settings"] = "OB version hash row is missing from Settings";
 $trans["View Opac"] = "View OPAC";
+$trans["View Collection"] = "View Collection";
 $trans["View"] = "View";
 $trans["View only!"] = "View only!";
 ####### W #######

@@ -11,7 +11,7 @@ class Col extends Admin {
 	       form = $('#editForm'),
 	       dbAlias = 'collect',
     	   hdrs = {'listHdr':<?php echo '"'.T("List of Collections").'"'; ?>,
-			       'editHdr':<?php echo '"'.T("Edit Collection").'"'; ?>,
+			       'editHdr':<?php echo '"'.T("View Collection").'"'; ?>,
 			       'newHdr':<?php echo '"'.T("Add New Collection").'"'; ?>,
 		          },
 	       listFlds = {'code': 'number',
@@ -56,8 +56,8 @@ class Col extends Admin {
     };
 
     getRelevantCalculatorFields () {
-		$("li[class^='calculator-']").hide();
-		$(".calculator-"+$("#due_date_calculator").val()).show();
+		$("li[class^='calculator-']").show();
+		//$(".calculator-"+$("#due_date_calculator").val()).show();
     };
 
     fetchTypes () {
@@ -70,6 +70,7 @@ class Col extends Admin {
     	   html += '<option value="'+item+'"';
    		   html += '">'+item+'</option>\n';
 		}
+
 		$('#type').html(html);
     	this.fetchCircList();
     };
