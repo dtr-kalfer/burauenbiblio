@@ -209,6 +209,7 @@ $trans["Character Set"] = "Character Set";
 $trans["Check Database"] = "Check Database";
 $trans["Check Database Integrity"] = "Check Database Integrity";
 $trans["Check In"] = "Check In";
+$trans["Check"] = "Check";
 $trans["Check Now"] = "Check Now";
 $trans["Check Out"] = "Check Out";
 $trans["Checkout"] = "Checkout";
@@ -1100,6 +1101,7 @@ $trans["Verbose"] = "Verbose";
 $trans["version hash row is missing from Settings"] = "OB version hash row is missing from Settings";
 $trans["View Opac"] = "View OPAC";
 $trans["View"] = "View";
+$trans["View only!"] = "View only!";
 ####### W #######
 $trans["waitForServer"] = "Wait For Server";
 $trans["WebServerInformation"] = "Web Server Information";

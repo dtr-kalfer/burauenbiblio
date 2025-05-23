@@ -83,7 +83,7 @@
 <!-- ------------------------>
     <div id="editDiv" style="display: none;">
         <form role="form" id="editForm" name="editForm">
-        <h5 id="reqdNote">*<?php echo T("Required note"); ?></h5>
+        <h5 id="reqdNote">*<?php echo T("View only!"); ?></h5>
         <fieldset>
         	<legend id="editHdr"></legend>
         	<ul id="editTbl">
