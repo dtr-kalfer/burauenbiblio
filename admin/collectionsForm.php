@@ -15,7 +15,7 @@
 
     <div id="listDiv" style="display: none;">
         <form role="form" id="showForm" name="showForm">
-        <input type="button" class="newBtn" value="<?php echo T("Add New"); ?>" />
+        <!-- <input type="button" class="newBtn" value="<?php // echo T("Add New"); ?>" /> -->
         <fieldset>
         <table id="showList">
         <thead>
@@ -33,7 +33,7 @@
         </tbody>
         </table>
         </fieldset>
-        <input type="submit" class="newBtn" value="<?php echo T("Add New"); ?>" />
+        <!-- <input type="submit" class="newBtn" value="<?php // echo T("Add New"); ?>" /> -->
         </form>
     </div>
 
