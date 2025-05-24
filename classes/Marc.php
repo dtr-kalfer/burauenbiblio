@@ -490,7 +490,7 @@ class MarcParser extends MarcBaseParser {
 		$r = new MarcRecord();
 		$this->recnum += 1;
 		$ldr = substr($rec, 0, 24);
-		$err = $r->setLeader(ldr, $this->lenient);
+		$err = $r->setLeader('ldr', $this->lenient);
 
 //echo "ldr err: ";print_r($err);echo "<br />";
 //return;
