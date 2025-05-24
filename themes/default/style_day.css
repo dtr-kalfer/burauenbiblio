@@ -60,11 +60,13 @@ aside { color:black; background: bisque; }
 h1.theHead { color:white; }
 #library_name { color:black; }
 
-ul.nav_main > li.nav_selected { border: 4px dashed white; border-radius: 5px;}
+ul.nav_main > li.nav_selected { border: 5px dashed bisque; border-radius: 5px; background-color: beige;}
 nav a { color:darkblue; }
 nav a:visited { color:darkblue; }
 nav a.button { font:0.75em serif; /* 12/16 */ color:black; background:#b2dae4; }
 nav a.button:visited { color:black; }
+li.nav_selected::first-line { background-color: #ddd; font-weight: bold; }
+
 
 /*************************************************/
 #content { background:white; }
@@ -269,4 +271,17 @@ tbody.striped tr:nth-child(even) { background-color:#CDC; }
 	padding: 10px;
 	width: 100%;
 }
+.copyright {
+	position: relative;
+	color: white;
+	font-weight: bold;
+	text-decoration: none;
+	
+}
+
+.copyright:hover {
+	color: bisque;
+}
+
+
 

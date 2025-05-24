@@ -109,7 +109,7 @@ if ($tab != 'help') {
 			</div>
 
 			<!-- OpenBiblio Version: --> <?php //echo H(OBIB_CODE_VERSION);?>
-			<a href="../COPYRIGHT.html">Copyright Info.</a>.
+			<h3><a class="copyright" href="../COPYRIGHT.html">COPYRIGHT</a></h3>
 		</footer>
 	<?php } ?>
 </aside>

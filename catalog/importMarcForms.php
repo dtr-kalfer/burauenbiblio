@@ -118,7 +118,7 @@
 			  
 			  <tfoot>
 			  <tr>
-			  	<td colspan="3"><input type="button" id="helpBtn" value="<?php echo T("Help"); ?>" class="button" /></td>
+			  	<!-- <td colspan="3"><input type="button" id="helpBtn" value="<?php //echo T("Help"); ?>" class="button" /></td> -->
 	  			<td colspan="1"><input type="submit" id="imptBtn" value="<?php echo T("Upload File"); ?>" class="button" /></td>
 	  			<td colspan="1">&nbsp;</td>
 			  </tr>
