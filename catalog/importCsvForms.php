@@ -1,7 +1,25 @@
 <?php
 /* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
  * See the file COPYRIGHT.html for more details.
- */
+*/
+
+/*
+Import CSV contains limited heading definitions (callNO, author, statement-responsibility.. )
+reasonable effort have been made making it work but it fails on backend update, have to find
+another way to make this useful, but not for now.. sorry i have to trim it out in the menu, it was 
+really close to making this work.. -F.Tumulak
+*/
+
+/* 
+these are some results when importing a csv.
+Import File Records 
+Line #1 Collection 'compsci' invalid using default: 'undefined'
+Line #1 Media 'book' invalid, using default: 'undefined'
+Line #2 Collection 'compsci' invalid using default: 'undefined'
+Line #2 Media 'book' invalid, using default: 'undefined'
+Line #3 Collection 'compsci' invalid using default: 'undefined'
+Line #3 Media 'book' invalid, using default: 'undefined'
+*/
 
   $cache = NULL;
   require_once("../shared/common.php");
@@ -222,16 +240,10 @@
 </section>	
 
 <?php
-    require_once(REL(__FILE__,'../shared/footer.php'));
-    /**
-     * Cataloging -> CVS Import
-     * Warning: include_once(catalog/../shared/txtFileUpload/ajaxfileupload.js): failed to open stream: No such file or directory in catalog/importCsvForms.php on line 226
-	include_once(REL(__FILE__,'../shared/txtFileUpload/ajaxfileupload.js'));
-     */
-   echo '<script language="JavaScript">' . "\n";
+	require_once(REL(__FILE__,'../shared/footer.php'));
+	echo '<script language="JavaScript">' . "\n";
 	include_once(REL(__FILE__,'../shared/simpleUpload.min.js'));
-   echo "</script>\n";
-
+	echo "</script>\n";
 	require_once(REL(__FILE__, "../catalog/importCsvJs.php"));
 ?>	
 <script src="../shared/txtfileupload/ajaxfileupload.js"></script>

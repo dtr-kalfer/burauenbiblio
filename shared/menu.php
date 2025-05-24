@@ -53,25 +53,12 @@ function staff_menu() {
 		//	Nav::node('cataloging/biblio/bookings', T("Item Bookings"), "../reports/run_report.php?type=bookings");
 		//	Nav::node('cataloging/biblio/holds', T("Hold Requests"), "../catalog/biblio_hold_list.php?".$params);
 
-		Nav::node('cataloging/upload_usmarc', T("MARC Import"), "../catalog/importMarcForms.php");
-		Nav::node('cataloging/upload_csv', T("CSVImport"), "../catalog/importCsvForms.php");
+		Nav::node('cataloging/upload_usmarc', T("MARC Import"), "../catalog/importMarcForms.php"); // This one is now working good --F.Tumulak
+		// Nav::node('cataloging/upload_csv', T("CSVImport"), "../catalog/importCsvForms.php"); // Sorry, the backend part is not working or still work in progress by orig. author -F.Tumulak
 		Nav::node('cataloging/doiSearch', T("doiSearch"), '../opac/doiSearchForms.php');
 	}
 	
 	##-------------------------------------------------------------------------------------##
-	//	Nav::node('user', T("Research"), '../catalog/srchForms.php?tab=user');
-	//	Nav::node('user/localSearch', T("Local Search"), '../catalog/srchForms.php?tab=user');
-	
-	//		Nav::node('user/images', T("CoverPhotos"), '../opac/imageBrowseForm.php?tab=user');
-	//		Nav::node('user/biblio', T("Record Info"));
-	//		Nav::node('user/cart', T("Cart"), '../shared/req_cart.php?tab=user');
-	//		Nav::node('user/request', T("Booking"));
-	//	if (isset($_SESSION['authMbrid'])) {
-	//		Nav::node('user/account', T("My Account"), '../opac/my_account.php');
-	//		Nav::node('user/account/edit', T("Edit Info"), '../opac/edit_account.php');
-	//		Nav::node('user/account/bookings', T("Bookings"), '../opac/bookings.php');
-	//		Nav::node('user/account/bookings/view', T("View"));
-	//	}
 
 	##-------------------------------------------------------------------------------------##
 	if($_SESSION["hasAdminAuth"]){

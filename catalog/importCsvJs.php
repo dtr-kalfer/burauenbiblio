@@ -204,7 +204,7 @@ TODO				// Check for uniqueness with existing barcodes and new entries read.
 	//----//
 	fetchTagDescription: function (tag) {
 	  $.get(csvi.url,{'mode':'getMarcDesc', 'code':tag}, function(response){
-	  	//console.log(tag+" desc = '"+response+"'");
+	  	console.log(tag+" desc = '"+response+"'");
 			var parts = tag.split('$');
 			$('#tag'+parts[0]+parts[1]).html(response);
 		});
