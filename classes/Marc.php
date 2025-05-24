@@ -271,7 +271,8 @@ class MarcRecord {
 				if (!$lenient && !ctype_digit($v)) {
 					return 'MARC21 requires ' . $f[3] . ' to be numeric';
 				}
-				$v += 0;
+				$v = (int) $v; //explicit type cast fix --F.Tumulak
+
 			}
 			if (!$lenient and $f[4] !== NULL and $v != $f[4]) {
 				return 'MARC21 requires ' . $f[3] . ' of ' . $f[4];
