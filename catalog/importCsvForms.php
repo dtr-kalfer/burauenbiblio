@@ -234,5 +234,6 @@
 
 	require_once(REL(__FILE__, "../catalog/importCsvJs.php"));
 ?>	
+<script src="../shared/txtfileupload/ajaxfileupload.js"></script>
 </body>
 </html>

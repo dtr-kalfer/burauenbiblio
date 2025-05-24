@@ -2,6 +2,7 @@
 /* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
  * See the file COPYRIGHT.html for more details.
  */
+header('Content-Type: application/json');
 
   require_once("../shared/common.php");
 
@@ -19,7 +20,15 @@
 //	set_time_limit(120);
 
 //	$recordTerminator="\n";
+ $recordTerminator = "\r\n";
 
+// $fileContent = file_get_contents($fn);
+// if (strpos($fileContent, "\r\n") !== false) {
+    // $recordTerminator = "\r\n";
+// } else {
+    // $recordTerminator = "\n";
+// }
+ 
 	## ---------------------------------------------------------------------- ##
 
 function doPostNewBiblio($rcrd) {
@@ -188,5 +197,3 @@ echo "bibid ".print_r($bibid);echo " added to Biblios<br />";
 	    echo T("invalid mode") . " : " . $_POST['mode'] . "<br />";
 		break;
 }
-
-

@@ -300,7 +300,7 @@ TODO				// Check for uniqueness with existing barcodes and new entries read.
 			    	var thisOne = csvi.mediaTypes.indexOf(entry);
 			      if (thisOne < 0) {
 			        thisOne = csvi.getDfltMedia();
-							csvErrs.append(' <tr><td colspan="3">'+<?php echo "'".T("LineNmbr")."'"; ?>+i+" "+<?php echo "'".T("Media")."'"; ?>
+							csvErrs.append(' <tr><td colspan="3">'+<?php echo "'".T("LineNmbr")."'"; ?>+line+" "+<?php echo "'".T("Media")."'"; ?>
 															+" '"+entry+"' <?php echo T("invalid, using default"); ?>: '"+csvi.mediaTypes[thisOne]+"'</td></tr>\n");
 			      }
 			      rec['material_cd'] = thisOne;
@@ -375,4 +375,16 @@ TODO				// Check for uniqueness with existing barcodes and new entries read.
 
 $(document).ready(csvi.init);
 
+</script>
+<script>
+  // your other jQuery code here
+
+  jQuery.handleError = function(s, xhr, status, e) {
+    console.error("AJAX File Upload Error:", status, e);
+    if (s.error) {
+      s.error(xhr, status, e);
+    }
+  };
+
+  // continue with importFile() or other functions
 </script>
