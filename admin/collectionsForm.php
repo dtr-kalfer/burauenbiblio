@@ -119,10 +119,6 @@
         			<span class="reqd circOnly">*</span>
             </li>
 
-            <li class="calculator-simple">
-              <label for="pre_closing_padding" class="circOnly"><?php echo T("Pre-closing padding"); ?>:</label>
-              <input readonly id="pre_closing_padding" name="pre_closing_padding" class="" type="number" size="4" min="0" max="60" />
-            </li>
             <li>
               <label for="important_date" class="circOnly"><?php echo T("Important date"); ?>:</label>
               <input readonly id="important_date" name="important_date" class="circOnly" type="datetime"  />
