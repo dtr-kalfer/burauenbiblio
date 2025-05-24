@@ -79,7 +79,7 @@ function staff_menu() {
 		Nav::node('admin/openHours', T("Hours open"), '../admin/hoursForm.php');
 		Nav::node('admin/sites', T("Sites"), '../admin/sitesForm.php');
 		Nav::node('admin/states', T("States"), '../admin/statesForm.php');
-		Nav::node('admin/themes', T("Themes"), '../admin/themeForm.php');
+		// Nav::node('admin/themes', T("Themes"), '../admin/themeForm.php'); // this was explicitly stated by orig. authors as 'not working' ---F.Tumulak
 		// establish directly the OPAC link to avoid extra navigation --F.T.
 		Nav::node('admin/opac', T("View Opac"), '../catalog/srchForms.php?tab=OPAC');
 		Nav::node('admin/dbChkr', T("Database checker"), '../admin/dbChkrForms.php');
