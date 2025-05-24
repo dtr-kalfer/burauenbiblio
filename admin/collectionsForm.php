@@ -125,12 +125,6 @@
         			<span class="reqd circOnly">*</span>
         		</li>
             <li>
-
-              <label for="restock_threshold" class="distOnly"><?php echo T("Restock amount"); ?>:</label>
-              <input readonly id="restock_threshold" name="restock_threshold" class="distOnly" type="number" size="2" min="1" max="99" required aria-required="true" />
-        			<span class="reqd distOnly">*</span>
-        		</li>
-            <li>
         			<input type="hidden" id="mode" name="mode" value="">
         			<input type="hidden" id="cat" name="cat" value="collect">
         			
