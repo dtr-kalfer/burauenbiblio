@@ -120,10 +120,6 @@
             </li>
 
             <li>
-              <label for="important_date" class="circOnly"><?php echo T("Important date"); ?>:</label>
-              <input readonly id="important_date" name="important_date" class="circOnly" type="datetime"  />
-            </li>
-            <li>
               <label for="important_date_purpose" class="circOnly"><?php echo T("Important date purpose"); ?>:</label>
               <select id="important_date_purpose" name="important_date_purpose" class="circOnly" ></select>
             </li>
