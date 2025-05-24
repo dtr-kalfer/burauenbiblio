@@ -126,10 +126,6 @@
         		</li>
             <li>
 
-            <li>
-              <label for="number_of_minutes_in_grace_period" class="circOnly"><?php echo T("Minutes in grace period"); ?>:</label>
-              <input readonly id="number_of_minutes_in_grace_period" name="number_of_minutes_in_grace_period" class="circOnly" type="number" size="4" min="0" max="60" />
-            </li>
               <label for="restock_threshold" class="distOnly"><?php echo T("Restock amount"); ?>:</label>
               <input readonly id="restock_threshold" name="restock_threshold" class="distOnly" type="number" size="2" min="1" max="99" required aria-required="true" />
         			<span class="reqd distOnly">*</span>
