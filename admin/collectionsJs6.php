@@ -130,7 +130,28 @@ $(document).ready(function () {
     var xxxx = new Col;
 });
 
+//---------- added dynnamic regex filter for input borrow duration policy -----
+function allowOnlyDigits(id, maxLength) {
+    const input = document.getElementById(id);
+    input.addEventListener("input", function () {
+        // Remove all non-digit characters
+        this.value = this.value.replace(/\D/g, '').slice(0, maxLength);
+    });
+}
 
-// -------------- added validation functions for borrow policy ------F.Tumulak
+function allowLateFeeFormat(id) {
+    const input = document.getElementById(id);
+    input.addEventListener("input", function () {
+        // Allow only numbers with 1 or 2 digits before decimal and exactly 2 after
+        const match = this.value.match(/^(\d{0,2})(\.?\d{0,2})/);
+        this.value = match ? match[1] + match[2] : '';
+    });
+}
 
+// Allow only digits, limit to exact length
+allowOnlyDigits("rpt_c_code", 2);              // e.g. 10–99
+allowOnlyDigits("rpt_c_days_due_back", 3);     // e.g. 100–999
+
+// Allow only late fee values like 0.01 to 9.99 format
+allowLateFeeFormat("rpt_c_regular_late_fee");
 </script>
