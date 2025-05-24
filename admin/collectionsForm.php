@@ -56,10 +56,9 @@
 </fieldset>
 </form>
 		<p>In order to promote fair and efficient access to library resources, <br>
-		a borrowing time limit policy is implemented. This policy defines the maximum <br>
-		number of days that library items may be borrowed, as well as the types <br>
-		of collections included. It also includes a penalty rate, which can be <br> 
-		adjusted for that specific collection</p>
+		a borrowing time limit policy is implemented. This policy defines the <br>
+		number of days a library item may be borrowed without penalty incurred. <br>
+		It also includes a penalty rate, which can be adjusted for that collection</p>
 <hr>
 <!-- -------------------------------------------------->
 
@@ -119,11 +118,7 @@
               <input readonly id="days_due_back" name="days_due_back" class="" type="number" size="3" min="0" max="365" required aria-required="true" />
         			<span class="reqd circOnly">*</span>
             </li>
-            <li class="calculator-simple">
-              <label for="minutes_due_back" class="circOnly"><?php echo T("Minutes due back"); ?>:</label>
-              <input readonly id="minutes_due_back" name="minutes_due_back" class="" type="number" size="4" min="0" max="1439" required aria-required="true" />
-        			<span class="reqd circOnly">*</span>
-            </li>
+
             <li class="calculator-simple">
               <label for="pre_closing_padding" class="circOnly"><?php echo T("Pre-closing padding"); ?>:</label>
               <input readonly id="pre_closing_padding" name="pre_closing_padding" class="" type="number" size="4" min="0" max="60" />
