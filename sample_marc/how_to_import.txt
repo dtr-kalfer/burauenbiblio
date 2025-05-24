@@ -1,0 +1,5 @@
+Dear tester,
+import this using 'marc import', it will add records, i tried it but didn't not include auto-barcode.
+very nice feature added by the original author. 
+i have to remind myself to improve this readme in the future and add more details.
+F.Tumulak
