@@ -130,4 +130,7 @@ $(document).ready(function () {
     var xxxx = new Col;
 });
 
+
+// -------------- added validation functions for borrow policy ------F.Tumulak
+
 </script>

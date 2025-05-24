@@ -164,16 +164,7 @@
         	</ul>
         </fieldset>
         </form>
-<!--
-    <p class="note">
-    	<?php echo T("Note");?>:<br /><?php echo T("collectionsListNoteMsg"); ?>
-    </p>
-    <br />
-    <p class="note circOnly">
-    	<?php echo T("Note"); ?>:<br /><?php echo T("Setting zero days no checkout"); ?>
-    </p>
-	<hr />
--->
+
 
 
 <!-- --------------------------->	
@@ -183,5 +174,6 @@
 	require_once(REL(__FILE__, "../classes/JSAdmin.php"));
 	require_once(REL(__FILE__, "../admin/collectionsJs6.php"));
 ?>
+
 </body>
 </html>

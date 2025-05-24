@@ -781,6 +781,7 @@ $trans["OPAC URL"] = "OPAC URL";
 $trans["Opening"] = "Opening";
 $trans["Opening Balance"] = "Opening Balance";
 $trans["Options"] = "Options";
+$trans["Options below for viewing only!"] = "Options below for viewing only!";
 $trans["Other notes"] = "Other notes";
 $trans["Out"] = "Out";
 $trans["Out Date"] = "Out Date";
@@ -1104,7 +1105,6 @@ $trans["version hash row is missing from Settings"] = "OB version hash row is mi
 $trans["View Opac"] = "View OPAC";
 $trans["View Collection"] = "View Collection";
 $trans["View"] = "View";
-$trans["View only!"] = "View only!";
 ####### W #######
 $trans["waitForServer"] = "Wait For Server";
 $trans["WebServerInformation"] = "Web Server Information";
