@@ -55,9 +55,16 @@
 <input type="submit" value="<?php echo T("Submit"); ?>" class="button" />
 </fieldset>
 </form>
+		<p>In order to promote fair and efficient access to library resources, <br>
+		a borrowing time limit policy is implemented. This policy defines the maximum <br>
+		number of days that library items may be borrowed, as well as the types <br>
+		of collections included. It also includes a penalty rate, which can be <br> 
+		adjusted for that specific collection</p>
+<hr>
 <!-- -------------------------------------------------->
 
     <h3><?php echo T("Collections"); ?></h3>
+
     <div id="listDiv" style="display: none;">
         <form role="form" id="showForm" name="showForm">
         <fieldset>
