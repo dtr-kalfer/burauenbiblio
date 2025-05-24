@@ -125,11 +125,7 @@
         			<span class="reqd circOnly">*</span>
         		</li>
             <li>
-            <li>
-              <label for="number_of_minutes_between_fee_applications" class="circOnly"><?php echo T("Minutes between fee applications"); ?>:</label>
-              <input readonly id="number_of_minutes_between_fee_applications" name="number_of_minutes_between_fee_applications" class="circOnly" type="number" size="4" min="0" max="1439" required aria-required="true" />
-        			<span class="reqd circOnly">*</span>
-            </li>
+
             <li>
               <label for="number_of_minutes_in_grace_period" class="circOnly"><?php echo T("Minutes in grace period"); ?>:</label>
               <input readonly id="number_of_minutes_in_grace_period" name="number_of_minutes_in_grace_period" class="circOnly" type="number" size="4" min="0" max="60" />
