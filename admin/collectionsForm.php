@@ -120,10 +120,6 @@
             </li>
 
             <li>
-              <label for="important_date_purpose" class="circOnly"><?php echo T("Important date purpose"); ?>:</label>
-              <select id="important_date_purpose" name="important_date_purpose" class="circOnly" ></select>
-            </li>
-            <li>
               <label for="regular_late_fee" class="circOnly"><?php echo T("Regular late fee"); ?>:</label>
               <input readonly id="regular_late_fee" name="regular_late_fee" class="circOnly" type="number" size="5" min="0" max="99.99" required aria-required="true" />
         			<span class="reqd circOnly">*</span>
