@@ -12,7 +12,7 @@
 var mrci = {
 	init: function () {
 		$('section').hide();
-		$('.help').hide();
+		$('.help').show();
 		mrci.initWidgets();
 		mrci.autoBarcodeFlg = (<?php echo "'".$_SESSION['item_autoBarcode_flg']."'"; ?> == 'Y'?true:false);
 
@@ -47,7 +47,7 @@ var mrci = {
 	//----//
 	resetForm: function () {
 		//console.log('resetting Search Form');
-		$('.help').hide();
+		$('.help').show();
 		mrci.setCopyDefault()
 		$('#review').hide();
 		$('#rslts').hide();

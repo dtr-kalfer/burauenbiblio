@@ -70,7 +70,7 @@ switch ($_POST['mode']){
 		$fn = $_FILES['imptSrce']['tmp_name'];
 		if (is_uploaded_file($fn)) {
 			//$f = @fopen($fn, rb);
-			$f = fopen($fn, rb);
+			$f = fopen($fn, 'rb');
 			assert($f);
 
 			$biblios = new Biblios();
