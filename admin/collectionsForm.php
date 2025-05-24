@@ -83,7 +83,7 @@
 <!-- ------------------------>
     <div id="editDiv" style="display: none;">
         <form role="form" id="editForm" name="editForm">
-        <h5 id="reqdNote">*<?php echo T("View only!"); ?></h5>
+        <h5 id="reqdNote">*<?php echo T("Options below for viewing only!"); ?></h5>
         <fieldset>
         	<legend id="editHdr"></legend>
         	<ul id="editTbl">
@@ -97,10 +97,7 @@
               <input readonly id="code" name="code" type="text" size="3" />
         		</li>
 
-            <li>
-              <label for="type"><?php echo T("Collection Type"); ?>:</label>
-              <select id="type" name="type" > </select>
-            </li>
+
             <li>
               <label><?php echo T("Default"); ?>:</label>
               <label for="default_Y">Y:<label>
@@ -111,7 +108,7 @@
             </li>
 
             <li class="calculator-simple">
-              <label for="days_due_back" class="circOnly"><?php echo T("Days Due Back"); ?>:</label>
+              <label for="days_due_back" class="circOnly"><?php echo T("Allowed number of days"); ?>:</label>
               <input readonly id="days_due_back" name="days_due_back" class="" type="number" size="3" min="0" max="365" required aria-required="true" />
         			<span class="reqd circOnly">*</span>
             </li>
