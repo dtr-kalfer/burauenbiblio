@@ -73,7 +73,7 @@
 
 	if ($rpt->count() == 0) {
 		echo T("Borrow Time Limit Policy Updated!");
-		// add a redirect here for convenience --F.Tumulak
+		// add a redirect here for convenience, add button styling later --F.Tumulak
 		echo '<br><a href="../admin/collectionsForm.php?type=change_borrow_expiry">Back to collections tab</a>';
 		exit();
 	}
