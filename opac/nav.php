@@ -7,24 +7,9 @@
  */
 ?>
     <nav id="accordion" role="navigation" aria-label="site" tabindex="-1">
-      	<section class="menuSect">
-        	<h3 class="navHeading">Library Holdings</h3>
-				<div class="navContent">
-				  <a href="../catalog/srchForms.php?tab=OPAC" title="search">Library Search</a><br />
-				  <a href="../opac/doiSearchForms.php?tab=OPAC" title="doi">use DOI</a><br />
-				  <a href="../opac/imageBrowseForm.php?tab=OPAC" title="Photos">CoverPhotos</a><br />
-				  <a href="../shared/req_cart.php?tab=opac#main" title="cart">Cart</a><br />
-				</div>
-      	</section>
+
 			  
-		<section class="menuSect">
-			<h3 class="navHeading">My Account</h3>
-			<div class="navContent">
-                <a href="../opac/my_account.php?tab=OPAC" title="Info">Account Information</a><br />
-                <a href="../opac/edit_account.php?tab=OPAC" title="Edit">Edit Account</a><br />
-                <a href="../opac/bookings.php?tab=OPAC" title="Bookings">Bookings</a><br />
-	        </div>
-	    </section>
+
 
 		<section class="menuSect">
 			<h3 class="navHeading" id="defaultOpen">About Library</h3>
@@ -46,7 +31,7 @@
 				<hr class="hdrSpacer" />
 				<footer>
 				  <div id="obLogo" style="width: 100%; padding: 0;" >
-						<a href="#">
+						<a href="https://github.com/dtr-kalfer/burauenbiblio">
 							<img src="../images/burauen_biblio_sm.webp" border="0" alt="BurauenBiblio" />
 						</a>
 						<br />
@@ -54,7 +39,7 @@
 
 					<?php // echo H(OBIB_CODE_VERSION);?>
 					<br />
-					<a href="../COPYRIGHT.html">Copyright Info.</a>.
+					<h3><a class="copyright" href="../COPYRIGHT.html">COPYRIGHT</a></h3>
 				</footer>
 	        </div>
 	    </section>

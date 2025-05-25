@@ -101,8 +101,7 @@ if ($tab != 'help') {
 		<hr class="notForInstall hdrSpacer" />
 		<footer>
 		  <div id="obLogo" style="width: 100%; padding: 0;" >
-				<!--a href="http://obiblio.sourceforge.net/"-->
-				<a href="#">
+				<a href="https://github.com/dtr-kalfer/burauenbiblio">
 					<img src="../images/burauen_biblio_sm.webp" border="0" alt="BurauenBiblio" />
 				</a>
 				<br />
