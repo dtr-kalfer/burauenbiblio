@@ -10,7 +10,8 @@ It is named in honor of my hometown in Leyte, Burauen.
   David Stevens, Joe Hagerty, Micah Stetson, Fred LaPlante  
   (See LICENSE and copyright.html for full attribution)
 
-Maintainer: Ferdinand Tumulak · github.com/dtr-kalfer
+Maintainer: Ferdinand Tumulak
+https://github.com/dtr-kalfer
 Location: Burauen, Leyte, Philippines
 
 ![Homepage](./readme_assets/opac_system2.webp "OpenBiblio Homepage")
@@ -26,6 +27,6 @@ The member records are entirely fictitious and do not represent real individuals
 
 This sample data is not intended for production use and should be modified or removed accordingly before deployment.
 
-This project aims to preserve the spirit of OpenBiblio while modernizing its codebase, interface, and usability for current and future librarians and developers.
+This project aims to preserve the spirit of OpenBiblio while modernizing its codebase for fast response (PHP8.0 supported), improved user-interface, new custom features and usability for current and future librarians and developers.
 
 ## 📦 Installation (see --> how_to_install.html)
