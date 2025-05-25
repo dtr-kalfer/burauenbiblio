@@ -76,7 +76,7 @@
 	<meta name="tester" content="Neil Redgate, Charlie Tudor">
 	<meta name="burauenbiblio-maintainer" content="Ferdinand Tumulak">
 	<meta name="burauenbiblio-fork-date" content="2025-05-07">
-	<meta name="project-url" content="https://github.com/dtr-kalfer/burauenbiblio">
+	<meta name="project-url" content="https://github.com/dtr-kalfer">
 	
 	<script src="../shared/modernizr-2.6.2.min.js"></script>
   <script src="../shared/jquery/jquery-3.2.1.min.js"></script>

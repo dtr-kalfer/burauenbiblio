@@ -90,7 +90,7 @@ class Members extends CoreTable {
 													 ."ORDER BY last_name", $frag);
 		return $this->select($sql);
 	}
-
+	
 	function getMbrByLegalName($nameFrag) {
 		$frag = '%'.$nameFrag.'%';
 		$sql = $this->mkSQL("SELECT mbrid, barcode_nmbr, first_name, last_name, first_legal_name, last_legal_name, city, home_phone, work_phone, classification, siteid FROM member "
