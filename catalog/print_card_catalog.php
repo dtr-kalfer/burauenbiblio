@@ -18,9 +18,16 @@
       <fieldset>
           <p class="note">Place a notice here!</p>
           <br />
-          <form role="form" id="generic_form" name="generic_form" >
-		      </form>
-    		  <input type="button" id="generic_btn" value="<?php echo T("Submit");?>" />
+          <!-- -------------------------->
+						<form name="print_bibid" method="post" action="print_bibid.php">
+						<p>Each author catalog results to 1/2 Letter page (Portrait), to complete entire page, use TWO bibid entries<br />
+						Font type: Courier, size: 10pt bold <br />
+						Enter Bibid ID# below:</p>
+						<input type="text"  oninput="this.value = this.value.replace(/\D/g, '').slice(0, 5)" pattern="\d*" name="bibid_fpdf" value="" id="" maxlength="5" required />
+						<input type="text"  oninput="this.value = this.value.replace(/\D/g, '').slice(0, 5)" pattern="\d*" name="bibid_fpdf2" value="" id="" maxlength="5" required />
+						<input type="submit" value=" Print Bibid ID " name="print_bibid" onclick="return confirm('Print Bibid ID?');"/>
+						</form>
+					<!-- -------------------------->
       </fieldset>
 	</div>
 	<!-- ------------------------------------------------------------------------ -->
