@@ -13,10 +13,12 @@ It is named in honor of my hometown in Leyte, Burauen.
 Maintainer: Ferdinand Tumulak · github.com/dtr-kalfer
 Location: Burauen, Leyte, Philippines
 
-![OpenBiblio Screenshot](./opac_system2.webp "OpenBiblio Homepage")
+![Homepage](./readme_assets/opac_system2.webp "OpenBiblio Homepage")
 
 This repository includes a small set of sample bibliographic records (books) and fictional member accounts as part of the included SQL data.
 These are provided solely for the purpose of demonstrating and testing the functionality of the OpenBiblio system.
+
+![Homepage](./readme_assets/sample_search_result01.webp "OpenBiblio Homepage")
 
 The book entries are either fictional or based on public domain sources, and any associated thumbnail images are used under public domain or fair use for educational/demo purposes.
 
@@ -25,7 +27,5 @@ The member records are entirely fictitious and do not represent real individuals
 This sample data is not intended for production use and should be modified or removed accordingly before deployment.
 
 This project aims to preserve the spirit of OpenBiblio while modernizing its codebase, interface, and usability for current and future librarians and developers.
-
-> ⚠️ **Note:** Some warnings, deprecation notices, or non-functional buttons may still be present. Development has primarily focused on ensuring core functionality and basic operations. Future updates may improve compatibility and user interface responsiveness.
 
 ## 📦 Installation (see --> how_to_install.html)
