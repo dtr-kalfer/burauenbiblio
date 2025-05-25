@@ -1,0 +1,24 @@
+.title "Card Catalog Print"
+.category "Circulation"
+.layout authority_list title="Print card catalog"
+.column subfield_data title="subfield_data"
+.parameters
+.	string c_bibid title="bibid (half of page)"
+.end parameters
+
+.sql
+	SELECT subfield_data
+	FROM (
+		SELECT fieldid AS sort_order, subfield_data
+		FROM biblio_subfield
+		WHERE bibid = 4557
+
+		UNION ALL
+
+		SELECT 999999999 AS sort_order,
+					 GROUP_CONCAT(LPAD(SUBSTRING(barcode_nmbr, 9), 5, '0') ORDER BY barcode_nmbr SEPARATOR ',')
+		FROM biblio_copy
+		WHERE bibid = 4557
+	) AS combined
+	ORDER BY sort_order;
+.end sql
