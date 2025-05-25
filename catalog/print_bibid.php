@@ -1,9 +1,9 @@
 <?php
 	/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
 	 * See the file COPYRIGHT.html for more details.
-	 * This is an add-on feature developed by F.Tumulak
+	 * This is an add-on feature for Openbiblio developed by Ferdinand Tumulak
 	 * for bibid card catalog printing.
-	 * it can still be further improved using PDO or use Openbiblios built-in class functions.
+	 * it can still be further improved using PDO or use Openbiblio built-in class functions if you are up to it.
 	 */
 	//---------------- dependencies here
 	require_once("../includes/fpdf/fpdf.php"); 
@@ -24,8 +24,6 @@
 			" (" . mysqli_connect_errno() . ")"
 		);
 	}
-	
-	//---------------- define functions here
 	
 	// A4 width: 219 mm
 	// margins: 10 mm (both sides)
@@ -71,8 +69,6 @@ mysql> select bibid, barcode_nmbr from biblio_copy where bibid = 1389;
 |  1389 | 0000000001957 |
 +-------+---------------+
 3 rows in set (0.00 sec)
-
-
 */
 	
 	if (isset($_POST['print_bibid'])) {
