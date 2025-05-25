@@ -258,7 +258,7 @@ var mf = {
 			},
 			data: params,
 			error: function(xhr, textStatus, errorThrown) {
-				$('#errSpace').html('Error ' + xhr.responseText).show();
+				$('#errSpace').html('Please Re-login: ' + xhr.responseText).show();
 			},
 			success: function (results) {
 				//console.log("Done with " + results);
