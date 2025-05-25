@@ -1,4 +1,10 @@
 <?php
+	/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
+	 * See the file COPYRIGHT.html for more details.
+	 * This is an add-on feature for Openbiblio developed by Ferdinand Tumulak
+	 * for bibid card catalog printing.
+	 * it can still be further improved using PDO or use Openbiblio built-in class functions if you are up to it.
+	 */
 	function confirm_query($result_set) {
 	if (!$result_set) {
 			die("Database query failed.");
