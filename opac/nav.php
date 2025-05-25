@@ -4,13 +4,12 @@
  *
  *
  * @author Fred LaPlante, June 2017
+ * modified by F.Tumulak, May 2025
  */
 ?>
+<style>
+</style>
     <nav id="accordion" role="navigation" aria-label="site" tabindex="-1">
-
-			  
-
-
 		<section class="menuSect">
 			<h3 class="navHeading" id="defaultOpen">About Library</h3>
 			<div class="navContent about">
@@ -39,7 +38,7 @@
 
 					<?php // echo H(OBIB_CODE_VERSION);?>
 					<br />
-					<h3><a class="copyright" href="../COPYRIGHT.html">COPYRIGHT</a></h3>
+					<h3><a style="color: white; background-color: transparent; font-weight: bold;" href="../COPYRIGHT.html">COPYRIGHT</a></h3>
 				</footer>
 	        </div>
 	    </section>
