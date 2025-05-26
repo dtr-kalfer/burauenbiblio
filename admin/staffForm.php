@@ -111,23 +111,18 @@
     	<li>
     		<fieldset>
     			<legend><?php echo T("Authorization");?>:</legend>
-    			<input id="circ_flg" name="circ_flg" type="checkbox" class="roles" value="Y" />
-    			<label for="circ_flg"><?php echo T("Circ");?></label>
-
-    			<input id="circ_mbr_flg" name="circ_mbr_flg" type="checkbox" class="roles" value="Y" />
-    			<label for="circ_mbr_flg"><?php echo T("Update Member");?></label>
-
-    			<input id="catalog_flg" name="catalog_flg" type="checkbox" class="roles" value="Y" />
-    	  		<label for="catalog_flg"><?php echo T("Catalog");?></label>
-
-    			<input id="admin_flg" name="admin_flg" type="checkbox" class="roles" value="Y" />
-    	  		<label for="admin_flg"><?php echo T("Admin");?></label>
-
-    			<input id="tools_flg" name="tools_flg" type="checkbox" class="roles" value="Y" />
-    	  		<label for="tools_flg"><?php echo T("Tools");?></label>
-
-    			<input id="reports_flg" name="reports_flg" type="checkbox" class="roles" value="Y" />
-    	  		<label for="reports_flg"><?php echo T("Reports");?></label>
+  <label for="circ_flg"><?php echo T("Circ"); ?></label>
+  <select name="circ_flg" id="circ_flg" class="roles">
+    <option value="Y" selected>Yes</option>
+    <option value="N">No</option>
+  </select>
+	
+  <label for="circ_mbr_flg"><?php echo T("Update Member"); ?></label>
+  <select name="circ_mbr_flg" id="circ_mbr_flg" class="roles">
+    <option value="Y" selected>Yes</option>
+    <option value="N">No</option>
+  </select>
+	
     		</fieldset>
     	</li>
         <li>
