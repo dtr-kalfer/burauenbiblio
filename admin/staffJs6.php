@@ -110,16 +110,26 @@ class Stf extends Admin {
         }
     };
 
-    chkRoles () {
-        var roles = $('.roles').is(':checked');
-        console.log('in staffJs6::chkRoles()');
-        if (!roles) {
-            var errMsg = '<?php echo T("Role MUST be selected"); ?>';
-            console.log(errMsg);
-			obib.showError(errMsg)
-    	}
-    	return roles;
-    }
+		chkRoles () {// this must be also corrected since checkbox is changed into select --F.TUmulak
+				var hasRole = false;
+
+				$('.roles').each(function () {
+						if ($(this).val() === 'Y') {
+								hasRole = true;
+								return false; // break the loop
+						}
+				});
+
+				console.log('in staffJs6::chkRoles()');
+				
+				if (!hasRole) {
+						var errMsg = '<?php echo T("Role MUST be selected"); ?>';
+						console.log(errMsg);
+						obib.showError(errMsg);
+				}
+
+				return hasRole;
+		}
 
     chkPwds (pw1, pw2) {
 		var errMsg = '';
