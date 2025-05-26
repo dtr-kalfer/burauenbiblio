@@ -133,7 +133,14 @@
   <select name="admin_flg" id="admin_flg" class="roles">
     <option value="Y" selected>Yes</option>
     <option value="N">No</option>
-  </select>	
+  </select>
+
+  <label for="tools_flg"><?php echo T("Tools"); ?></label>
+  <select name="tools_flg" id="tools_flg" class="roles">
+    <option value="Y" selected>Yes</option>
+    <option value="N">No</option>
+  </select>
+	
     		</fieldset>
     	</li>
         <li>
