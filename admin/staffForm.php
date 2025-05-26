@@ -128,7 +128,12 @@
     <option value="Y" selected>Yes</option>
     <option value="N">No</option>
   </select>
-	
+
+  <label for="admin_flg"><?php echo T("Admin"); ?></label>
+  <select name="admin_flg" id="admin_flg" class="roles">
+    <option value="Y" selected>Yes</option>
+    <option value="N">No</option>
+  </select>	
     		</fieldset>
     	</li>
         <li>
