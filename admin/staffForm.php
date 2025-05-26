@@ -93,8 +93,12 @@
     		</fieldset>
     	</li>
       	<li>
-	        <label for="suspended_flg"><?php echo T("Suspended"); ?>:</label>
-	    	<input id="suspended_flg" name="suspended_flg" type="checkbox" value="Y" />
+					<!-- Altered checkbox into select box for compatible and consistent post results F.Tumulak -->
+				  <label for="suspended_flg"><?php echo T("Suspended"); ?></label>
+					<select name="suspended_flg" id="suspended_flg" >
+						<option value="Y" >Yes</option>
+						<option value="N" selected>No</option>
+					</select>
     	</li>
       	<li>
 			<label for="start_page"><?php echo T("Start Page"); ?>:</label>
