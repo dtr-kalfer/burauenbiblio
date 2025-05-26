@@ -100,11 +100,8 @@
 						<option value="N" selected>No</option>
 					</select>
     	</li>
-      	<li>
-			<label for="start_page"><?php echo T("Start Page"); ?>:</label>
-			<select id="start_page" name="start_page" >
-				<option value="">-</option>
-			</select>
+      <li>
+				<input type="hidden" name="start_page" id="start_page" value="" />
     	</li>
     	<br />
 
