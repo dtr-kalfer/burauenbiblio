@@ -140,6 +140,12 @@
     <option value="Y" selected>Yes</option>
     <option value="N">No</option>
   </select>
+
+  <label for="reports_flg"><?php echo T("Reports"); ?></label>
+  <select name="reports_flg" id="reports_flg" class="roles">
+    <option value="Y" selected>Yes</option>
+    <option value="N">No</option>
+  </select>
 	
     		</fieldset>
     	</li>
