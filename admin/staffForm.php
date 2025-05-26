@@ -101,13 +101,12 @@
 					</select>
     	</li>
       	<li>
-			<label for="start_page"><?php echo T("Start Page"); ?>:</label>
-			<select id="start_page" name="start_page" >
-				<option value="">-</option>
+			<label hidden for="start_page"><?php echo T("Start Page"); ?>:</label>
+			<select id="start_page" name="start_page" hidden>
+				<option value="">default</option>
 			</select>
     	</li>
     	<br />
-
     	<li>
     		<fieldset>
     			<legend><?php echo T("Authorization");?>:</legend>
