@@ -571,6 +571,10 @@ class Integrity extends Queryi{
             include_once($file);
             $className = pathInfo($file, PATHINFO_FILENAME);
 			//echo "Model: $className <br />\n";
+						if (!class_exists($className)) {
+								continue; // Skip files that don't match the expected class name ----F.Tumulak
+						}
+			
             $obj = new $className;
             $tblName = $obj->getName();
             $fldNames = array_keys($obj->getFields());
