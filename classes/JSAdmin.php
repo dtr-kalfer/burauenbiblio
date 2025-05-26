@@ -335,43 +335,47 @@ class Admin {
     	this.showResponse(svrResponse);
     };
 
-    showResponse (response) {
-console.log('in JSAdmin::showResponse(): response='+response);
-		var userMsg = '';
-		var	seqNum = 0;
-		//console.log('initial userMsg= '+userMsg);
+	showResponse(response) { // a much better showresponse with verbose clues --F.Tumulak
+			console.log('in JSAdmin::showResponse(): response =', response);
 
-		if (response.indexOf(',') >= 0) {
-console.log('got a CSV thing');
-			//let parts = response.split(',');
-			//userMsg = parts[1];
-			userMsg = response;
-		} else if ( $.isArray(response) ) {
-console.log('got an array')
-			seqNum = response[0];
-			userMsg = response[1];
-		} else if (typeof response === 'object') {
-console.log('got an object')
-			userMsg = JSON.stringify(response);
-		} else {
-console.log("don't know what I got")
-			userMsg = response;
-		}
-		//console.log('in JSAdmin::showResponse(): userMsg='+userMsg);
+			let userMsg = '';
+			let seqNum = 0;
 
-		if (userMsg.indexOf('uccess') >= -1 ) {
-			//console.log('found success; userMsg= ' + userMsg);
-    		obib.showMsg(userMsg);
-			//this.doBackToList();  // this will cause user message to be removed before it can be read
-		} else if (userMsg.indexOf('rror') >= -1 ) {
-			//console.log('found error; userMsg= ' + userMsg);
-    	    obib.showError(userMsg);
-    	} else {
-			//console.log('using default; userMsg= '+userMsg);
-    	    obib.showError(userMsg);
-        }
-        return
-    };
+			// Detect response format
+			if (typeof response === 'string') {
+					if (response.includes(',')) {
+							console.log('got a CSV string');
+							userMsg = response; // You can still split if needed
+					} else {
+							console.log('got a plain string');
+							userMsg = response;
+					}
+			} else if (Array.isArray(response)) {
+					console.log('got an array');
+					seqNum = response[0];
+					userMsg = response[1];
+			} else if (typeof response === 'object' && response !== null) {
+					console.log('got an object');
+					userMsg = JSON.stringify(response, null, 2); // Pretty print JSON
+			} else {
+					console.log("received unexpected response type:", response);
+					userMsg = String(response);
+			}
+
+			// Show the appropriate message
+			const msgLower = userMsg.toLowerCase();
+
+			if (msgLower.includes('success')) {
+					obib.showMsg(userMsg);
+					// Optionally redirect: this.doBackToList();
+			} else if (msgLower.includes('error')) {
+					obib.showError(userMsg);
+			} else {
+					obib.showMsg('Response: ✅' + userMsg);
+			}
+
+			return;
+	};
 }
 
 </script>
