@@ -219,7 +219,11 @@
 					<input type="submit" id="updtMbrBtn" value="<?php echo T("Update"); ?>" />
 					<input type="button" class="gobkUpdtBtn" value="<?php echo T("Go Back"); ?>" />
 					<input type="button" class="gobkNewBtn" value="<?php echo T("Go Back"); ?>" />
-					<input type="button" id="deltMbrBtn" value="<?php echo T("Delete"); ?>" />
+					
+					<?php if (isset($_SESSION["hasReportsAuth"]) && $_SESSION["hasReportsAuth"]): ?>
+						<input type="button" id="deltMbrBtn" value="<?php echo T("Delete"); ?>" />
+					<?php endif; ?>
+					
 				</td>
 			</tr>
 		</tfoot>
