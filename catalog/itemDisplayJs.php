@@ -220,7 +220,11 @@ var idis = {
     				<?php if (!($tab == 'opac' || $tab == 'working' || $tab == 'user' || $tab == 'rpt' || $tab == 'circulation' )){ ?>
     						html += '	<td>\n';
     						html += '		<input type="button" id="edit-'+copy.copyid+'" class="button editBtn" value="<?php echo T("edit"); ?>" />\n';
-    						html += '		<input type="button" id="delt-'+copy.copyid+'" class="button deltBtn" value="<?php echo T("del"); ?>" />\n';
+  						//html += '	 <input type="button" id="delt-'+copy.copyid+'" class="button deltBtn" value="<?php echo T("del"); ?>" />\n';
+							// added for conditional delete button, triggered by hasReportAuth -- F.Tumulak
+								html += '       <input type="button" id="delt-'+copy.copyid+'" class="button deltBtn" value="<?php echo T("del"); ?>"  <?php echo $authClass; ?>  />\n';
+							
+
     						html += '		<input type="hidden" value="'+copy.copyid+'" />\n';
     						html += '	</td>\n';
     				<?php } ?>
