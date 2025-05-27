@@ -32,6 +32,11 @@
 	Nav::node($menu, T("Print Catalog"), '../shared/layout.php?name=catalog&rpt=BiblioSearch&tab=cataloging');
 	Nav::node($menu, T("MARC Output"), '../shared/layout.php?name=marc&rpt=Report&tab=cataloging');
 	Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>$title));
+	
+	// This will enable / disable the delete copies button --F.Tumulak
+	// This will get triggered by itemDisplayJs.php, keyword: deltBtn
+	$authClass = (isset($_SESSION["hasReportsAuth"]) && $_SESSION["hasReportsAuth"]) ? '' : ' hidden';
+	
 ?>
 
 <div id="crntMbrDiv">to be filled by server</div>
@@ -223,7 +228,11 @@
 				<li><input type="button" id="photoEditBtn" value="<?php echo T("Edit This Photo"); ?>"></li>
 				<li><input type="button" id="photoAddBtn" value="<?php echo T("Add New Photo"); ?>"></li>
 			<?php } ?>
+			
+			<!-- // if user hasReportAuth, allow catalog delete button to exist -- F.Tumulak -->
+			<?php if (isset($_SESSION["hasReportsAuth"]) && $_SESSION["hasReportsAuth"]): ?>
 			<li><input type="button" id="biblioDeleteBtn" value="<?php echo T("Delete This Item"); ?>"></li>
+			<?php endif; ?>					
 		<?php }?>
 	</ul>
 	<div id="cart_result"></div>
