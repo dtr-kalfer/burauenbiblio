@@ -92,30 +92,57 @@
     			</ul>
     		</fieldset>
     	</li>
-      	<li>
-					<!-- Altered checkbox into select box for compatible and consistent post results F.Tumulak -->
-				  <label for="suspended_flg"><?php echo T("Suspended"); ?></label>
-					<select name="suspended_flg" id="suspended_flg" >
-						<option value="Y" >Yes</option>
-						<option value="N" selected>No</option>
-					</select>
-    	</li>
-      	<li>
+			
+     	<li>
+				<!-- Altered checkbox into select box for compatible and consistent post results F.Tumulak -->
+				<label for="suspended_flg"><?php echo T("Suspended"); ?></label>
+				<select name="suspended_flg" id="suspended_flg" >
+					<option value="Y" >Yes</option>
+					<option value="N" selected>No</option>
+				</select>
+    	</li>			
+      <li>
 			<label hidden for="start_page"><?php echo T("Start Page"); ?>:</label>
 			<select id="start_page" name="start_page" hidden>
-				<option value="">default</option>
+				<option value="">-</option>
 			</select>
     	</li>
     	<br />
+
     	<li>
-    		<fieldset>
-    			<legend><?php echo T("Authorization");?>:</legend>
+    			
+<fieldset>
+  <legend><?php echo T("Authorization"); ?>:</legend>
+	
+<p><b>Select which accessible features are allowed for this library staff.</b></p>
+		<p>Here are some examples: <br>
+		<table align="left" border="0" cellspacing="0" cellpadding="0" width="">
+			<tr align="left" valign="top">
+				<th>Function</th>
+				<th>Sample choice</th>
+			</tr>
+			<tr align="left" valign="top">
+				<td>IT Admin</td>
+				<td>yes, yes, yes, yes, yes, yes</td>
+			</tr>
+			<tr align="left" valign="top">
+				<td>Head Librarian</td>
+				<td>yes, yes, yes, yes, no, yes</td>
+			</tr>	
+			<tr align="left" valign="top">
+				<td>Assistant Librarian</td>
+				<td>yes, yes, yes, no, no, no</td>
+			</tr>		
+		</table>
+		</p>	
+	
+
   <label for="circ_flg"><?php echo T("Circ"); ?></label>
   <select name="circ_flg" id="circ_flg" class="roles">
     <option value="Y" selected>Yes</option>
     <option value="N">No</option>
   </select>
-	
+
   <label for="circ_mbr_flg"><?php echo T("Update Member"); ?></label>
   <select name="circ_mbr_flg" id="circ_mbr_flg" class="roles">
     <option value="Y" selected>Yes</option>
@@ -140,13 +167,17 @@
     <option value="N">No</option>
   </select>
 
-  <label for="reports_flg"><?php echo T("Reports"); ?></label>
+  <label for="reports_flg"><?php echo T("Allow delete button / Reports"); ?></label>
   <select name="reports_flg" id="reports_flg" class="roles">
     <option value="Y" selected>Yes</option>
     <option value="N">No</option>
   </select>
-	
-    		</fieldset>
+</fieldset>
+
+<p><b>Note: Staff with "Allow Delete Button/reports" set to "NO" means<br>
+the staff cannot delete records, specifically patrons and catalog records. <br>
+They can only add and modify records but not delete.
+</b></p>	    		
     	</li>
         <li>
     		<input type="hidden" id="cat" name="cat" value="staff">
