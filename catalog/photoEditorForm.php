@@ -48,14 +48,13 @@
 					   <label for="fotoFolder" class="note italic" ><?php echo T("StoreAt"); ?>:</label>
 					   <input id="fotoFolder" class="note italic" READONLY value="<?php echo '../photos/'.T("filename").'.jpg'; ?>" />
 					   <br />
-					   <label for="fotoName"><?php echo T("FileName"); ?>:</label>
-					   <input type="text" id="fotoName" name="url" size="32"
+					   
+					   <input type="hidden" id="fotoName" name="url" size="32"
 							 pattern="(.*?)(\.)(jpg|jpeg|png)$" required aria-required="true"
 							 title="<?php echo T("OnlyJpgOrPngFiles"); ?>" />
 							 <span class="reqd">*</span>
                     </span>
 				</fieldset>
-
 				<input type="hidden" id="fotoBibid" name="bibid" value="" />
 			</form>
 		</div>
