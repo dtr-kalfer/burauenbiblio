@@ -226,7 +226,7 @@
 			<li><input type="button" id="biblioDeleteBtn" value="<?php echo T("Delete This Item"); ?>"></li>
 		<?php }?>
 	</ul>
-	<div id="cart_result">Result from server..</div>
+	<div id="cart_result"></div>
 	<?php include(REL(__FILE__,"../catalog/itemDisplayForm.php")); ?>
 	
 	<ul class="btnRow">
