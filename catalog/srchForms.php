@@ -81,7 +81,7 @@
 		<td colspan="3">
 			<!--input id="sortBy" name="sortBy" type="hidden" value="title" /-->
 			<input id="tab" name="tab" type="hidden" value="<?php echo $tab; ?>" />
-			<input id="lookup" name="lookup" type="hidden" value="<?php echo $lookup; ?>" />
+			<input id="lookup" name="lookup" type="hidden" value="<?php echo isset($lookup) ? $lookup : ''; ?>" />
 		</td>
 	</tr>
 	<tr>
