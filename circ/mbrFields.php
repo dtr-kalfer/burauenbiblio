@@ -63,19 +63,19 @@
 	<tr>
 		<td><label for="address2"><?php echo T("AddressLine2");?></label></td>
 		<td valign="top">
-			<?php echo inputfield("text","address2",$mbr['address1'],$attr=array("size"=>40,"max"=>128),$pageErrors);?>
+			<?php echo inputfield("text","address2",isset($mbr['address2']),$attr=array("size"=>40,"max"=>128),$pageErrors);?>
 		</td>
 	</tr>
 	<tr>
 		<td><label for="city"><?php echo T("City");?></label></td>
 		<td valign="top">
-			<?php echo inputfield("text","city",$mbr['city'],$attr=array("size"=>30,"max"=>50),$pageErrors);?>
+			<?php echo inputfield("text","city",isset($mbr['city']),$attr=array("size"=>30,"max"=>50),$pageErrors);?>
 		</td>
 	</tr>
 	<tr>
 		<td><label for="state"><?php echo T("State");?></label></td>
 		<td valign="top">
-			<?php echo inputfield("select","state",$mbr['state']);?>
+			<?php echo inputfield("select","state",isset($mbr['state']));?>
 		</td>
 	</tr>
 	<tr>
