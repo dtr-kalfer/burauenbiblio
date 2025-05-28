@@ -105,7 +105,7 @@
 	<tr>
 		<td><label for="email"><?php echo T("EmailAddress");?></label></td>
 		<td valign="top">
-			<?php echo inputfield("email","email",$mbr['email'],$attr=array("size"=>40,"max"=>128),$pageErrors);?>
+			<?php echo inputfield("email","email",isset($mbr['email']),$attr=array("size"=>40,"max"=>128),$pageErrors);?>
 		</td>
 	</tr>
 	<tr>
