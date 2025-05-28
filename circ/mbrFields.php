@@ -87,7 +87,7 @@
 	<!--tr>
 		<td><label for="zip_ext"><?php echo T("ZipCodeExt");?></label></td>
 		<td valign="top">
-			<?php echo inputfield("text","zip_ext",$mbr['zip_ext'],$attr=array("size"=>10,"max"=>10),$pageErrors);?>
+			<?php echo inputfield("text","zip_ext",isset($mbr['zip_ext']),$attr=array("size"=>10,"max"=>10),$pageErrors);?>
 		</td>
 	</tr-->
 	<tr>
