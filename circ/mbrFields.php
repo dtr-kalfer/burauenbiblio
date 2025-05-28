@@ -39,7 +39,7 @@
 	<tr>
 		<td><label for="barcode_nmbr"><?php echo T("Card Number");?></label><span class="reqd">*</span></td>
 		<td valign="top">
-			<?php echo inputfield("text","barcode_nmbr",$mbr['barcode_nmbr'],$attr=array("required"=>"required","size"=>20,"max"=>20),$pageErrors); ?>
+			<?php echo inputfield("text","barcode_nmbr",isset($mbr['barcode_nmbr']),$attr=array("required"=>"required","size"=>20,"max"=>20),$pageErrors); ?>
 		</td>
 	</tr>
 	<tr>
