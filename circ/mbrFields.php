@@ -81,7 +81,7 @@
 	<tr>
 		<td><label for="zip"><?php echo T("PostalCode");?></label></td>
 		<td valign="top">
-			<?php echo inputfield("zip","zip",$mbr['zip'],$attr=array("size"=>10,"max"=>10),$pageErrors);?>
+			<?php echo inputfield("zip","zip",isset($mbr['zip']),$attr=array("size"=>10,"max"=>10),$pageErrors);?>
 		</td>
 	</tr>
 	<!--tr>
