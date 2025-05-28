@@ -10,6 +10,12 @@
  * @author Micah Stetson
  */
 
+	/* 
+	critical files used for custom bcc setup, please retain these --Future me F.Tumulak
+	model/Members.php
+	memberForms.php
+	*/
+
 #****************************************************************************
 #* Formats
 #****************************************************************************
@@ -18,10 +24,19 @@ $trans["headerDateFormat"]	 = "m.d.Y";
 #****************************************************************************
 #* Common translation text, arranged alphabetically
 #****************************************************************************
+
+// these are trans immediately inserted, it still needs to get sorted
+// these trans are compatible with bcc setup --F.Tumulak
 $trans["List of provinces and its UAC Code"] = "List of provinces/states and its UAC Code";
 $trans["Edit province & UAC Code"] = "Edit province/state & UAC Code";
 $trans["Add province & UAC Code"] = "Add province/state & UAC Code";
+$trans["Allow delete button / Reports"] = "Allow delete button / Reports";
+$trans["Find patron by surname or QR-code"] = "Find patron by surname or QR-code";
+$trans["Surname or QR-Code"] = "Surname or QR-Code";
 $trans["App. Info"] = "App. Info";
+$trans["QR code"] = "QR code";
+$trans["Full Name"] = "Full Name";
+
 $trans["(enter 0 for unlimited)"] = "(enter 0 for unlimited)";
 $trans["(when available)"] = "(when available)";
 $trans["%count% bookings in cart."] = "%count% bookings in cart.";
