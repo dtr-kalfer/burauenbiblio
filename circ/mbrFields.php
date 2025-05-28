@@ -57,7 +57,7 @@
 	<tr>
 		<td><label for="address1"><?php echo T("AddressLine1");?></label></td>
 		<td valign="top">
-			<?php echo inputfield("text","address1",$mbr['address1'],$attr=array("size"=>40,"max"=>128),$pageErrors);?>
+			<?php echo inputfield("text","address1",isset($mbr['address1']),$attr=array("size"=>40,"max"=>128),$pageErrors);?>
 		</td>
 	</tr>
 	<tr>
