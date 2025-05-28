@@ -97,7 +97,7 @@ inptFld: function (type, name, value, attrs, data) {
 		$.each(attrs, function (key, val) {
 			s += key+'="'+val+'" ';
 		});
-		s += ">\n";
+		s += " >\n";
 		if (data) {
 			$.each(data, function (val, desc) {
 				s += '<option value="'+val+'" ';
@@ -121,7 +121,7 @@ inptFld: function (type, name, value, attrs, data) {
 		$.each(attrs, function (key, val) {
 			s += key+'="'+val+'" ';
 		});
-		s += "/>";
+		s += " />";
 		break;
 	//case 'number': attrs['pattern'] = '/\d*/'; handleInput(); break;
 	//case 'date': attrs['pattern'] = flos.patterns.date; handleInput(); break;
@@ -131,7 +131,10 @@ inptFld: function (type, name, value, attrs, data) {
 	//case 'url': attrs['pattern'] = flos.patterns.url; handleInput(); break;
 	//case 'email': attrs['pattern'] = flos.patterns.email; handleInput(); break;
 	default:
+	// ensures undefined doesn't mess up with the browser rendering --F.Tumulak
+	if (attrs['validation_cd'] && flos.patterns[attrs['validation_cd']]) {
 		attrs['pattern'] = flos.patterns[attrs['validation_cd']];
+	}
         //console.log('inptFld(): attrs');
         //console.log(attrs);
 		handleInput();
@@ -151,7 +154,7 @@ inptFld: function (type, name, value, attrs, data) {
 				s += k+'="'+v+'" ';
 			}
 		});
-		s += "/>";
+		s += " />";
 //		if (attrs['required']) {
 //			s += '<span class="reqd">*</span>';
 //		}

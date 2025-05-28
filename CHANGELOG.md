@@ -5,16 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [2.3.0] - 2025-05-28
 ### Added
 - App. Info tab feature. Shows PHP version, database, web server and system resources.
-- 'Delete button' disable/enable feature using staff 'roles'.
+- 'Option to disable/enable 'Delete Button' according to assigned staff 'roles'.
 
 ### Changed
 - Improve staff form user interface.
 
 ### Fixed
-- Fixed 'existing items' return reponse in navigation menu.
+- 'Paste' or CTRL+V now works on cataloging. This has bothered me for ages!
+- 'Existing items' return reponse in navigation menu.
+
 
 ---
 
