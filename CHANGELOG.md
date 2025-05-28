@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [unreleased]
+### Added
+- 
+
+### Changed
+- 
+
+### Fixed
+- Print card catalog error. Occurs when call number is missed out or different standard.
+
+
+
 ## [2.3.0] - 2025-05-28
 ### Added
 - App. Info tab feature. Shows PHP version, database, web server and system resources.

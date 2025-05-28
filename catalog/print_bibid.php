@@ -136,6 +136,12 @@ mysql> select bibid, barcode_nmbr from biblio_copy where bibid = 1389;
 		// L = 201mm, H = 125mm
 		
 		$call_no = explode(" " , $arr_a[0]); // break down call no. accdg. to space between
+		// check if call number is properly set
+		$call_no[0] = isset($call_no[0]) ? $call_no[0] : ' ';
+		$call_no[1] = isset($call_no[1]) ? $call_no[1] : ' ';
+		$call_no[2] = isset($call_no[2]) ? $call_no[2] : ' ';
+		$call_no[3] = isset($call_no[3]) ? $call_no[2] : ' ';
+		
 		$pdf->Cell(55,5,'',0,1);
 		$pdf->Cell(55,5,$call_no[0],0,1);
 		$pdf->Cell(55,5,$call_no[1],0,1);
@@ -244,6 +250,12 @@ mysql> select bibid, barcode_nmbr from biblio_copy where bibid = 1389;
 		// --------------------------------------------------------
 		
 		$call_no = explode(" " , $arr_a[0]); // break down call no. accdg. to space between
+		// check if call number is properly set
+		$call_no[0] = isset($call_no[0]) ? $call_no[0] : ' ';
+		$call_no[1] = isset($call_no[1]) ? $call_no[1] : ' ';
+		$call_no[2] = isset($call_no[2]) ? $call_no[2] : ' ';
+		$call_no[3] = isset($call_no[3]) ? $call_no[2] : ' ';
+
 		$pdf->Cell(55,5,'',0,1);
 		$pdf->Cell(55,5,$call_no[0],0,1);
 		$pdf->Cell(55,5,$call_no[1],0,1);
