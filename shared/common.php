@@ -1,6 +1,6 @@
 <?php
 
-	define('DEV_MODE', true);
+	define('DEV_MODE', false);
 
 	if (DEV_MODE) {
 			ini_set('display_errors', 1);

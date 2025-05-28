@@ -2,7 +2,8 @@
 /* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
  * See the file COPYRIGHT.html for more details.
  */
-
+	$postVars = $postVars ?? "";
+	$pageErrors = $pageErrors ?? "";
 	require_once(REL(__FILE__, "../functions/inputFuncs.php"));
 
 	## set up default values for new member
