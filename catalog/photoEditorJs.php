@@ -64,8 +64,11 @@ console.log('wc.init() called');
 		};
 
 		/* support cut&paste of image */
+		/* safer alternative fix instead of just commenting it out --F.Tumulak */
 		document.onpaste = function (e) {
-			wc.getFotoPaste(e);
+			$('#photo-editor').on('paste', function (e) {
+					wc.getFotoPaste(e);
+			});
 		};
 
 		wc.resetForm();
