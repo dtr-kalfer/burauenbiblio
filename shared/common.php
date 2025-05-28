@@ -29,7 +29,7 @@
     ## Active assert and make it quiet
     assert_options(ASSERT_ACTIVE, 1);
     assert_options(ASSERT_WARNING, 0);
-    assert_options(ASSERT_QUIET_EVAL, 1);
+    //assert_options(ASSERT_QUIET_EVAL, 1);
     ## Create a handler function
     function obAssertHandler($file, $line, $code, $desc = null) {
       echo "Assertion failed at file:'{$file}', line:'{$line}', code:'{$code}";
@@ -203,7 +203,7 @@
             $dirSet = scandir($plugDir);
             foreach ($dirSet as $key => $plug) {
 				# look at all plugin dirs
-				if (in_array($file, array(".", ".."))) continue;
+				if (in_array($plug, array(".", ".."))) continue; // $file replaced by $plug --chatgtp
 				$plugPath = "../plugins/$plug";
 				if (is_dir($plugPath)) {
 					if (!in_array($plug, $aray)) continue; // not allowed
