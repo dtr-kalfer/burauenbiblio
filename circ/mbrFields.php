@@ -99,7 +99,7 @@
 	<tr>
 		<td><label for="work_phone"><?php echo T("WorkPhone");?></label></td>
 		<td valign="top">
-			<?php echo inputfield("tel","work_phone",$mbr['work_phone'],$attr=array("size"=>15,"max"=>15),$pageErrors);?>
+			<?php echo inputfield("tel","work_phone",isset($mbr['work_phone']),$attr=array("size"=>15,"max"=>15),$pageErrors);?>
 		</td>
 	</tr>
 	<tr>
