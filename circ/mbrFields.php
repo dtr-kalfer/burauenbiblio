@@ -111,7 +111,7 @@
 	<tr>
 		<td><label for="classification"><?php echo T("MemberType");?></label></td>
 		<td valign="top">
-			<?php echo inputfield("select", "classification",$mbr['classification']);?>
+			<?php echo inputfield("select", "classification",isset($mbr['classification']));?>
 		</td>
 	</tr>
 	<tr>
