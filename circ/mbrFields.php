@@ -63,7 +63,7 @@
 	<tr>
 		<td><label for="address2"><?php echo T("AddressLine2");?></label></td>
 		<td valign="top">
-			<?php echo inputfield("text","address2",isset($mbr['address2']),$attr=array("size"=>40,"max"=>128),$pageErrors);?>
+			<?php echo inputfield("text","address2",isset($mbr['address1']),$attr=array("size"=>40,"max"=>128),$pageErrors);?>
 		</td>
 	</tr>
 	<tr>
@@ -117,7 +117,7 @@
 	<tr>
 		<td><label for="last_legal_name"><?php echo T("Legal last name").' ('.T("if different from above").')';?></label></td>
 		<td valign="top">
-      <?php echo inputfield("text","last_legal_name",$mbr['last_legal_name'],$attr=array("size"=>20,"max"=>20),$pageErrors); ?>
+      <?php echo inputfield("text","last_legal_name",isset($mbr['last_legal_name']),$attr=array("size"=>20,"max"=>20),$pageErrors); ?>
 		</td>
 	</tr>
 	<tr>
