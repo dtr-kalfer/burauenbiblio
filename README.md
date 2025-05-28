@@ -10,9 +10,11 @@ It is named in honor of my hometown in Leyte, Burauen.
   David Stevens, Joe Hagerty, Micah Stetson, Fred LaPlante  
   (See LICENSE and copyright.html for full attribution)
 
-Maintainer: Ferdinand Tumulak
-https://github.com/dtr-kalfer
-Location: Burauen, Leyte, Philippines
+Maintainer: Ferdinand Tumulak 
+· https://github.com/dtr-kalfer
+· Location: Burauen, Leyte, Philippines
+
+📌 See [CHANGELOG.md](./CHANGELOG.md) for version history.
 
 ![Homepage](./readme_assets/opac_system2.webp "OpenBiblio Homepage")
 
