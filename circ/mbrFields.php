@@ -45,7 +45,7 @@
 	<tr>
 		<td><label for="last_name"><?php echo T("LastName");?></label><span class="reqd">*</span></td>
 		<td valign="top">
-      <?php echo inputfield("text","last_name",$mbr['last_name'],$attr=array("required"=>"required","size"=>20,"max"=>20),$pageErrors); ?>
+      <?php echo inputfield("text","last_name",isset($mbr['last_name']),$attr=array("required"=>"required","size"=>8,"maxlength"=>8,  "pattern"=>"[0-9]+"),$pageErrors); ?>
 		</td>
 	</tr>
 	<tr>
