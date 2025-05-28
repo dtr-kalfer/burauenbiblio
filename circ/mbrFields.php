@@ -93,7 +93,7 @@
 	<tr>
 		<td><label for="home_phone"><?php echo T("HomePhone");?></label><span class="reqd">*</span></td>
 		<td valign="top">
-			<?php echo inputfield("tel","home_phone",$mbr['home_phone'],$attr=array("required"=>"required","size"=>15,"max"=>15),$pageErrors);?>
+			<?php echo inputfield("tel","home_phone",isset($mbr['home_phone']),$attr=array("required"=>"required","size"=>15,"max"=>15),$pageErrors);?>
 		</td>
 	</tr>
 	<tr>
