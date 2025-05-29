@@ -474,7 +474,7 @@ class Bookings extends CoreTable {
 		return array();
 	}
 
-	function quickCheckout_e($barcode, $calCd=1, $mbrids=1) { //All required parameters must come before any optional ones. so $mbrids=1 -F.Tumulak
+	function quickCheckout_e($barcode, $calCd, $mbrids) {
  		$this->lock();
 		$copies = new Copies;
 		$copy = $copies->getByBarcode($barcode);
