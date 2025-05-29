@@ -20,8 +20,8 @@
 ?>
     <h3 id="listHdr"><?php echo T("Check Database Integrity"); ?></h3>
     <input id="tab" type="hidden" value="<?php echo "$tab"; ?>" />
-    <input id="rtnTo" type="hidden" value="<?php echo $_REQUEST['rtnTo']; ?>" />
-
+    <input id="rtnTo" type="hidden" value="<?php echo (isset($_REQUEST['rtnTo']) && $_REQUEST['rtnTo']); ?>" />
+		
     <div id="editDiv">
         <fieldset id="entry">
             <form>
