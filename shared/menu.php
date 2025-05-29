@@ -39,7 +39,7 @@ function staff_menu() {
 		//}
 
 		Nav::node('cataloging/cart', T("Tagged Items"), '../shared/req_cart2.php?type=request_cart');
-		
+		$_REQUEST['bibid'] = $_REQUEST['bibid'] ?? ''; // Added this for 8.0 support F.Tumulak
 			$params = 'bibid='.U($_REQUEST['bibid']);
 			if (isset($_REQUEST['rpt']) and isset($_REQUEST['seqno'])) {
 				$params .= '&rpt='.U($_REQUEST['rpt']);
