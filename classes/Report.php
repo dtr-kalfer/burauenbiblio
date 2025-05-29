@@ -255,7 +255,7 @@ class Report {
 		}
 	}
 	function count() {
-		if ($this->cache['count'] === NULL) {
+		if (!isset($this->cache['count']) || $this->cache['count'] === NULL) {
 			$this->_getIter();
 			$this->cache['count'] = $this->iter->count();
 			$this->_save();
