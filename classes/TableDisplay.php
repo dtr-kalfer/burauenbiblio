@@ -48,7 +48,7 @@ class TableDisplay {
 	function row() {
 		return $this->rowArray(func_get_args());
 	}
-	function rowArray($row) {
+	function rowArray($row) { //F.Tumulak
 		if (count($row) != count($this->columns)) {
 			Fatal::internalError(T("Column count mismatch in TableDisplay"));
 		}
@@ -57,7 +57,7 @@ class TableDisplay {
 		for ($i=0;$i<count($this->columns);$i++) {
 			$col = $this->columns[$i];
 			$s .= '<td ';
-			if ($col['align']) {
+			if (isset($col['align']) && $col['align']) {
 				$s .= 'align="'.H($col['align']).'"';
 			} else {
 				$s .= 'align="left"';
