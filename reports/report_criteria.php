@@ -40,7 +40,7 @@
 
 	echo '<h3>'.T($rpt->title()).'</h3>';
 
-	if ($_REQUEST['msg']) {
+	if (isset($_REQUEST['msg'])) {
 		echo '<p class="error">'.H($_REQUEST['msg']).'</p>';
 	}
 ?>
