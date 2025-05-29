@@ -36,6 +36,7 @@ class ObServer {
                 }
                 $requestor = new Staff;
                 $rows = $requestor->getMatches(array('username'=>$_POST['username']));
+								$expected_hash = null; // Prevent undefined variable warning
                 foreach ($rows as $row) {
                         $expected_hash = hash_hmac('md5', $_POST['mode'].'-'.$row['username'].'-'.$_POST['timestamp'], $row['secret_key']);
                 }
