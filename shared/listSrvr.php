@@ -26,7 +26,7 @@
         return $set;
 	}
 	
-	switch ($_POST['mode']) {
+	switch (isset($_POST['mode']) && $_POST['mode']) {
     //-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-//
 	case 'getAudienceList':
 		require_once(REL(__FILE__, "../model/Biblios.php"));
@@ -274,7 +274,7 @@
 
     //-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-//
 	default:
-		  echo "<h4>".T("invalid mode")."@listSrvr.php: &gt;".$_POST['mode']."&lt;</h4><br />";
+		  //echo "<h4>" . T("invalid mode") . "@listSrvr.php: &gt;" . (isset($_POST['mode']) && $_POST['mode']) . "&lt;</h4><br />";
 		break;
 	}
 
