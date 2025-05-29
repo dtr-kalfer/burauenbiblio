@@ -93,7 +93,7 @@ function staff_menu() {
 	}
 	
 	##-------------------------------------------------------------------------------------##
-	if($_SESSION["hasReportsAuth"]){
+	if ($_SESSION["hasReportsAuth"] ?? false) {
 		Nav::node('reports', T("Reports"), '../reports/index.php');
 		Nav::node('reports/reportlist', T("Report List"), '../reports/index.php');
 		if (isset($_SESSION['rpt_Report'])) {
