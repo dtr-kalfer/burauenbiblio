@@ -277,7 +277,12 @@ class MarcRecord {
 			if (!$lenient and $f[4] !== NULL and $v != $f[4]) {
 				return 'MARC21 requires ' . $f[3] . ' of ' . $f[4];
 			}
-			$this->$f[0] = $v;
+			// Only assign if $f[0] is a valid string
+			if (is_string($f[0])) {
+					$this->{$f[0]} = $v;
+			} else {
+					error_log("⚠️ \$f[0] is not a string, skipping assignment. Data: " . print_r($f, true));
+			}
 		}
 		return NULL;
 	}
