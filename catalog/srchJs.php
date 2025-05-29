@@ -215,22 +215,26 @@ var bs = {
 	},
 
 	doAltStart: function () {
-		// alternate startup in response to remote package
-		//console.log('checking for alternative starts using: '+<?php echo "'".$_REQUEST['barcd']."'"; ?>);
+
+
 		<?php
-		if ($_REQUEST['barcd']) {
-			echo "$('#bc_searchBarcd').val('".$_REQUEST['barcd']."');\n";
-			echo "bs.doBarcdSearch();\n";
-		}
-		else if ($_REQUEST['bibid']) {
-			echo "bs.doBibidSearch(".$_REQUEST['bibid'].");\n";
-		}
-		else if ($_REQUEST['searchText']) {
-			echo "$('#ph_searchText').val('".$_REQUEST['searchText']."');\n";
-			echo "$('#ph_searchType').val('".$_REQUEST['searchType']."');\n";
-			echo "bs.doPhraseSearch();\n";
+		if (isset($_REQUEST['barcd'])) {
+				$barcd = json_encode($_REQUEST['barcd']);
+				echo "$('#bc_searchBarcd').val($barcd);\n";
+				echo "bs.doBarcdSearch();\n";
+		} elseif (isset($_REQUEST['bibid'])) {
+				$bibid = (int) $_REQUEST['bibid']; // Safe cast to int
+				echo "bs.doBibidSearch($bibid);\n";
+		} elseif (isset($_REQUEST['searchText'])) {
+				$searchText = json_encode($_REQUEST['searchText']);
+				$searchType = json_encode($_REQUEST['searchType'] ?? '');
+				echo "$('#ph_searchText').val($searchText);\n";
+				echo "$('#ph_searchType').val($searchType);\n";
+				echo "bs.doPhraseSearch();\n";
 		}
 		?>
+
+
 	},
 
 	//------------------------------
