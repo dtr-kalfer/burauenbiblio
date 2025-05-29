@@ -41,7 +41,8 @@
 				<input type="hidden" id="calCd" name="calendar" value="" />
 
 				<label for="name"><?php echo T("Name"); ?>:</label>
-				<?php $calname = ''; echo inputfield('text', 'name', $calname, array('size'=>'32', 'required'=>'required')); ?> //Fixed Undefined variable $calname -- F.Tumulak
+				<!--  //Fixed Undefined variable $calname -- F.Tumulak -->
+				<?php $calname = ''; echo inputfield('text', 'name', $calname, array('size'=>'32', 'required'=>'required')); ?>
 				<input type="submit" class="calSaveBtn" value="<?php echo T("Save Changes"); ?>" />
 			</fieldset>
 
