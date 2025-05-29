@@ -10,9 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - 
 
 ### Changed
-- 
+- Changed deprecated syntax/logic PART 1 of 3
 
 ### Fixed
+- Preparation for PHP 8.0 support by fixing several deprecated/undefined errors.
 - Print card catalog error. Occurs when call number is missed out or different standard.
 
 

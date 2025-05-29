@@ -89,6 +89,7 @@
         }
     	foreach ($cdir as $key => $file) {
 			$info = pathInfo($file);
+			$info['extension'] = $info['extension'] ?? '';
       	    if (!in_array($file, array(".", ".."))) {
                 if ((!is_dir($dir . DIRECTORY_SEPARATOR . $file)) &&
 					 ## folowing sub-directories do not contain project code
