@@ -123,7 +123,7 @@
 	<tr>
 		<td><label for="first_legal_name"><?php echo T("Legal first name").' ('.T("if different from above").')';?></label></td>
 		<td valign="top">
-			<?php echo inputfield("text","first_legal_name",$mbr['first_legal_name'],$attr=array("size"=>20,"max"=>20),$pageErrors);?>
+			<?php echo inputfield("text","first_legal_name",isset($mbr['first_legal_name']),$attr=array("size"=>20,"max"=>20),$pageErrors);?>
 		</td>
 	</tr>
 

@@ -78,7 +78,7 @@ var mf = {
 		mf.fetchSiteList();
 		mf.fetchStateList();
 		<?php
-		if ($_GET['mbrid']) { 
+		if (isset($_GET['mbrid'])) { 
 			echo "mf.doMbridSearch (".$_GET['mbrid'].");";
 		}
 		?>
