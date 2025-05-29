@@ -297,8 +297,11 @@ class Report {
 		$this->iter = new SliceIter($skip, $len, $this->iter);
 		$this->cache['rows'] = array();
 		while (($row = $this->iter->next()) !== NULL) {
-			$this->cache['rows'][$row['.seqno']] = $row;
+			if (is_array($row) && isset($row['.seqno'])) {
+				$this->cache['rows'][$row['.seqno']] = $row;
+			}
 		}
+
 		$this->_save();
 	}
 	function _cachePage($page) {
