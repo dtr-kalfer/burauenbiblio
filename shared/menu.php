@@ -102,7 +102,7 @@ function staff_menu() {
 	}
 
 	##-------------------------------------------------------------------------------------##
-	if($_SESSION["hasToolsAuth"]){
+	if ($_SESSION["hasToolsAuth"] ?? false) {
 		Nav::node('tools', T("Tools"), '../tools/index.php');
 		Nav::node('tools/settings', T("System Settings"), '../tools/settings_edit_form.php?reset=Y');
 		Nav::node('tools/plugins', T("Plugin Manager"), '../tools/plugMgr_form.php');
