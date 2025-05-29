@@ -142,6 +142,7 @@
 			echo json_encode($type);
 			break;
 		case 'getCustomFlds':
+			$flds = array(); // properly define this v8.0 support -- F.Tumulak
 			$rslt = $customFlds->getAll();
 			foreach ($rslt as $row){
 				$flds[] = $row;
