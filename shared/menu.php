@@ -28,7 +28,7 @@ function staff_menu() {
 	}
 
 	##-------------------------------------------------------------------------------------##
-	if($_SESSION["hasCatalogAuth"]){
+	if ($_SESSION["hasCatalogAuth"] ?? false) {
 		Nav::node('cataloging', T("Cataloging"), '../catalog/srchForms.php');
 		Nav::node('cataloging/localSearch', T("Existing Items"), "../catalog/srchForms.php");
 		Nav::node('cataloging/newItem', T("New Item"), "../catalog/newItemForms.php");
@@ -62,7 +62,7 @@ function staff_menu() {
 	##-------------------------------------------------------------------------------------##
 
 	##-------------------------------------------------------------------------------------##
-	if($_SESSION["hasAdminAuth"]){
+	if ($_SESSION["hasAdminAuth"] ?? false) {
 		// use this format --> Nav::node('parent dir./child dir.', T("locale"), '../path_to/file.php');
 		Nav::node('admin', T("Admin"), '../admin/index.php');
 		Nav::node('admin/info', T("App. Info"), '../admin/app_stats.php'); // Added this app. information status -->F.Tumulak
