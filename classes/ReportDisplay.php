@@ -21,7 +21,7 @@ class ReportDisplay {
 				continue;
 			}
 			$c = array();
-			if ($url && $col['sort']) {
+			if ($url && isset($col['sort'])) {
 				if ($order == $col['sort']) {
 					$href = $url->get($col['sort'].'!r');
 					$img = " <img border='0' src='../images/down.png' alt='&darr;'>"."\n";
@@ -33,7 +33,8 @@ class ReportDisplay {
 					$img = "";
 				}
 				$c['title'] = '<a href="'.$href.'">'.H($col['title']).'</a>'.$img."\n";
-			} else {
+			}
+			else {
 				$c['title'] = H($col['title']);
 			}
 			if (isset($col['align'])) {
