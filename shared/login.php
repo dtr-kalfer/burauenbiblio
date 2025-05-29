@@ -6,6 +6,7 @@
 require_once("../shared/common.php");
 require_once(REL(__FILE__, "../model/Staff.php"));
 
+$dbConst = "";
 $pageErrors = "";
 if (count($_POST) == 0) {
 	header("Location: ../shared/loginform.php");
@@ -35,15 +36,17 @@ if (!$error_found) {
     //echo "username: '$username';  pwd: '".md5($pwd)."'<br />\n";
 	$rows = $staff->getMatches(array('username'=>$username, 'pwd'=>md5($pwd)));
 	$user = $rows->fetch(PDO::FETCH_ASSOC);
-    $nUsers = count($user);
+    //$nUsers = count($user);
     //echo "in login ln#38 [";print_r($user);echo "] <br />\n";
     //echo "in login # matches found: $nUsers <br />\n";
 
 	//if ($rows->count() == 1) {
 	//if ($rows->num_rows == 1) {
-    if ($nUsers  == 0) {
+    if ($user === false) {
 		# invalid username or password.  Add one to login attempts.
 		$error_found = true;
+		$pageErrors = array();  // or simply $pageErrors = [];
+
 		$pageErrors["pwd"] = T("Invalid signon.");
         //echo "invalid signin<br />\n";
 
