@@ -39,12 +39,13 @@ function staff_menu() {
 		//}
 
 		Nav::node('cataloging/cart', T("Tagged Items"), '../shared/req_cart2.php?type=request_cart');
-		$_REQUEST['bibid'] = $_REQUEST['bibid'] ?? ''; // Added this for 8.0 support F.Tumulak
-			$params = 'bibid='.U($_REQUEST['bibid']);
+			$params = 'bibid='.U(isset($_REQUEST["bibid"]));
 			if (isset($_REQUEST['rpt']) and isset($_REQUEST['seqno'])) {
 				$params .= '&rpt='.U($_REQUEST['rpt']);
 				$params .= '&seqno='.U($_REQUEST['seqno']);
 			}
+
+			$menu_params = $menu_params ?? [];
 
 			
 		//	Nav::node('cataloging/biblio/editmarc', T("Edit MARC"), "../catalog/biblio_marc_edit_form.php?".$params);
