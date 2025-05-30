@@ -145,17 +145,17 @@ class Biblio {
         foreach ($rslt as $row) {
 			$tag = $row['tag'].'$'.$row['subfield_cd'];
 			//			if ($this->marcFlds[$tag.'$1']['repeatable'] > 0) {  // remove unneded '$' FL May2017
-			if ($this->marcFlds[$tag.'1']['repeatable'] > 0) {
-				if($firstRep) {
-					$firstRep = false;
-					$rep = 1;
-				} else {
-					$rep++;
-				}
-				//				$tag .= '$'.$rep;  // remove unneded '$' FL May2017
-				$tag .= $rep;
-				//echo"Biblio: marcFlds {$tag} row===>";print_r($row);echo"<br/>\n";
+			$checkTag = $tag . '1';
+			if (isset($this->marcFlds[$checkTag]) && $this->marcFlds[$checkTag]['repeatable'] > 0) {
+					if($firstRep) {
+							$firstRep = false;
+							$rep = 1;
+					} else {
+							$rep++;
+					}
+					$tag .= $rep;
 			}
+
 			## merge data with structure and post to this object
 			if (empty($row['subfield_data'])) {
                 $this->marcFlds[$tag]['value'] = ' ';
@@ -167,20 +167,24 @@ class Biblio {
 			//echo"Biblio: marcFlds {$tag} row===>";print_r($row);echo"<br/>\n";
 		}
 	}
-	private function fetch_title () {
-		## select all 'title' field material previously collected
+	private function fetch_title () { // ------------ fixed this function for v8.0 -F. Tumulak
 		$bibMarc = $this->marcFlds;
-		$a = $bibMarc['240$a']['value'];
-		$b = $bibMarc['245$a']['value'];
-		$c = $bibMarc['245$b']['value'];
-		$d = $bibMarc['246$a']['value'];
-		$e = $bibMarc['246$b']['value'];
+
+		$a = isset($bibMarc['240$a']['value']) ? $bibMarc['240$a']['value'] : '';
+		$b = isset($bibMarc['245$a']['value']) ? $bibMarc['245$a']['value'] : '';
+		$c = isset($bibMarc['245$b']['value']) ? $bibMarc['245$b']['value'] : '';
+		$d = isset($bibMarc['246$a']['value']) ? $bibMarc['246$a']['value'] : '';
+		$e = isset($bibMarc['246$b']['value']) ? $bibMarc['246$b']['value'] : '';
+
 		$title = T("Nothing Found");
-		## build second-choice title string
-		if (!empty($d) || !empty($e)) $title = $d.' '.$e;
-		## build first-choice title string
-		if (!empty($a) || !empty($b) || !empty($c)) $title = $a.' '.$b.' '.$c;
-		## post title to this object
+
+		if (!empty($d) || !empty($e)) {
+			$title = trim($d . ' ' . $e);
+		}
+		if (!empty($a) || !empty($b) || !empty($c)) {
+			$title = trim($a . ' ' . $b . ' ' . $c);
+		}
+
 		$this->hdrFlds['title'] = $title;
 	}
 	private function fetch_photoData () {
