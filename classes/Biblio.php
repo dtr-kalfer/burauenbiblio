@@ -187,15 +187,18 @@ class Biblio {
 
 		$this->hdrFlds['title'] = $title;
 	}
-	private function fetch_photoData () {
-		## get photo link from db
-		$img = new BiblioImages;
-        $rslt = $img->getByBibid($this->bibid);
-		//$row = $rslt->fetch_assoc();
-        $row = $rslt->fetch();
-		## post photo link to this object
+private function fetch_photoData () {
+	$img = new BiblioImages;
+	$rslt = $img->getByBibid($this->bibid);
+
+	$row = $rslt ? $rslt->fetch() : false;
+
+	if ($row && is_array($row) && isset($row['url'])) {
 		$this->hdrFlds['img'] = $row['url'];
+	} else {
+		$this->hdrFlds['img'] = ''; // or set a default image placeholder
 	}
+}
 	public function fetch_copyList () {
 		## get copy ids from db
 		$cpys = new Copies;
