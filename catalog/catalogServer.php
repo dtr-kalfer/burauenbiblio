@@ -205,7 +205,7 @@
 		if (isset($cpys)) {
 				echo json_encode($cpys);
 		} else {
-				echo json_encode(['message' => 'No more copy']);
+				echo json_encode(['message' => 'no more copies']);
 		}
 		break;
 

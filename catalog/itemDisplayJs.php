@@ -195,8 +195,7 @@ var idis = {
 	fetchCopyInfo: function () {
 	  $('tbody#copies').html('<tr><td colspan="9">'+
                              '  <p class="error">'+
-                             '    <img src="../images/please_wait.gif" width="26" />'+
-                             '    <?php echo T("Searching"); ?>'+
+                             '    <?php echo T("No information available"); ?>'+
                              '  </p>'+
                              '</td></tr>'
                             );
