@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - 
 
 ### Changed
+- Changed deprecated syntax/logic PART 2 of 3
 - Changed deprecated syntax/logic PART 1 of 3
 
 ### Fixed
