@@ -241,7 +241,7 @@ class Params {
 					$parameters[$name] = '';
 				}
 			} else {
-				list($val, $el) = $this->_mkParam_el($params[$name], $type, $options, $list, $errnm);
+				list($val, $el) = $this->_mkParam_el(isset($params[$name]) ? $params[$name] : null, $type, $options, $list, $errnm);
 				$errs = array_merge($errs, $el);
 				if ($val) {
 					$parameters[$name] = $val;
