@@ -53,35 +53,33 @@ function fieldCmp($a, $b) {
 function postBiblioChange($nav) {
 	## --------------------------------------------- ##
 	## convert new format to old for MARC processing ##
-	function expand ($t, $f) {
-			/**
-			 * expected input data in new format
-			 * bibid=nnnn
-			 * collectionCd=aa
-			 * fields[245$a]['codes']='subfieldid=xx&fieldid=yy'
-			 * fields[245$a]['data']='another testing'
-			 */
-			 ##----##
-			/**
-			 * old format was:
-			 * bibid=nnnnn
-			 * collectionCd=aa
-			 * fields[$250$a]['tag']=250
-			 * fields[$250$a]['subfield_cd']=aa
-			 * fields[$250$a]['fieldidid']=nnnn
-			 * fields[$250$a]['subfieldid']=nnnnn
-			 * fields[$250$a]['data']='another testing'
-			 */
-		list($tag, $suf, $rep) = explode('$', $t);
-        $f['tag'] = $tag;
-        $f['subfield_cd'] = $suf;
-		$codes = explode('&', $f['codes']);
-		$tmp = explode('=',$codes[1]);
-		$f['fieldid'] = $tmp[1];
-		$tmp = explode('=',$codes[0]);
-		$f['subfieldid'] = $tmp[1];
-        ## fields[$250$a]['data'] same for both formats
-		return $f;
+	function expand($t, $f) {
+			$parts = explode('$', $t);
+
+			$tag = isset($parts[0]) ? $parts[0] : '';
+			$suf = isset($parts[1]) ? $parts[1] : '';
+			$rep = isset($parts[2]) ? $parts[2] : '';
+
+			$f['tag'] = $tag;
+			$f['subfield_cd'] = $suf;
+
+			if (isset($f['codes'])) {
+					$codes = explode('&', $f['codes']);
+					if (isset($codes[0])) {
+							$tmp = explode('=', $codes[0]);
+							if (isset($tmp[1])) {
+									$f['subfieldid'] = $tmp[1];
+							}
+					}
+					if (isset($codes[1])) {
+							$tmp = explode('=', $codes[1]);
+							if (isset($tmp[1])) {
+									$f['fieldid'] = $tmp[1];
+							}
+					}
+			}
+
+			return $f;
 	}
 	## --------------------------------------------- ##
 
