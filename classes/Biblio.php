@@ -60,7 +60,7 @@ class Biblio {
 		$this->hdrFlds['collection_cd'] = $data['collection_cd'];
 		$this->hdrFlds['material_cd'] = $data['material_cd'];
 		$this->hdrFlds['opac_flg'] = $data['opac_flg'];
-		if ($data['create_dt'])
+		if (isset($data['create_dt']))
 			$this->hdrFlds['createDt'] = $data['create_dt'];
 	}
 	/**

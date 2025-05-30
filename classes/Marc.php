@@ -287,24 +287,47 @@ class MarcRecord {
 		return NULL;
 	}
 
-	public function getLeader() {
-		$ldr = '';
-		foreach ($this->_leader_fields as $f) {
-			$s = '';
-			if ($f[1] == 'str') {
-				$s = $this->$f[0];
-			} else if ($f[1] == 'num') {
-				$s = sprintf('%0'.$f[2].'u', $this->$f[0]);
-			}
-			if (strlen($s) != $f[2]) {
-				$s = sprintf('%-'.$f[2].'s', $s);
-				$s = substr($s, 0, $f[2]);
-			}
-			$ldr .= $s;
-		}
-		assert(strlen($ldr) == 24); //Fixed: Deprecated: assert(): Calling assert() with a string argument is deprecated --F.Tumulak
-		return $ldr;
-	}
+public function getLeader() {
+    $ldr = '';
+    foreach ($this->_leader_fields as $f) {
+        $s = '';
+
+        // Safely get property name
+        $propName = $f[0];
+
+        // Check if the property exists and is not null
+        if (!property_exists($this, $propName) || $this->$propName === null) {
+            // Optional: Fill with spaces if missing, depending on $f[2] (field width)
+            $s = str_repeat(' ', $f[2]);
+        } else {
+            $value = $this->$propName;
+
+            if ($f[1] == 'str') {
+                if (is_array($value)) {
+                    $s = implode('', $value);
+                } else {
+                    $s = (string)$value;
+                }
+            } else if ($f[1] == 'num') {
+                if (is_array($value)) {
+                    $value = reset($value); // fallback: use first element
+                }
+                $s = sprintf('%0' . $f[2] . 'u', $value);
+            }
+
+            // Pad or trim to expected length
+            if (strlen($s) != $f[2]) {
+                $s = sprintf('%-' . $f[2] . 's', $s);
+                $s = substr($s, 0, $f[2]);
+            }
+        }
+
+        $ldr .= $s;
+    }
+
+    assert(strlen($ldr) == 24);
+    return $ldr;
+}
 
 	// Returns array(record_string, error)
 	// where record_string is only valid if error is NULL
