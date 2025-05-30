@@ -144,7 +144,7 @@ function postBiblioChange($nav) {
 	## copy above user changed material into it
 	foreach ($_POST['fields'] as $tf=>$f) {
 		$f = expand($tf,$f);
-		$fidx = $f['tag'] .'-'. $f['fieldid'];
+		$fidx = $f['tag'] .'-'. ($f['fieldid'] ?? ''); // This is FIXED -- F. Tumulak
 		if (is_a($f, 'MarcControlField') or !array_key_exists($fidx, $fields)) {
 			$mrc->addFields($f);  ## adds $f to the mrc array
 			continue;
