@@ -16,6 +16,8 @@
 	$lookupVal5 =	$_POST['lookupVal5'] ?? '';
 
 	$sruIndexTerm = 'dc'; // ContextSet = Dublin Core
+	$keepIsbnDashes = '';
+	
 //	$sruIndexTerm = 'bath'; // ContextSet = Bath
 
 		//echo 'original Query specification is: ' . htmlspecialchars("#$srchBy => $lookupVal") . '<br />';
@@ -32,7 +34,7 @@
 			$srchByName = 'ISBN';
 			$sruQry = "$sruIndexTerm.isbn%3d";
 			//echo "input ISBN=$lookupVal <br />";
-			$lookupVal = verifyISBN($lookupVal,$keepIsbnDashes);
+			$lookupVal = verifyISBN($lookupVal ?? '',$keepIsbnDashes);
 			//echo 'final isbn: ' . $lookupVal . '<br />';
 		   break;
 
