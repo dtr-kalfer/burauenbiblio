@@ -219,7 +219,7 @@ class RptParser {
 		}
 		return array('EOF');
 	}
-	private function getCmdTokens($str) {
+	private function getCmdTokens($str) { // recalibrate this function for v8.0 compatible --F.Tumulak
 		$cmds = array('title', 'category', 'layout', 'column', 'parameters', 'sql',
 			'order_by', 'session_id', 'string', 'date', 'group', 'select', 'item',
 			'if_set', 'if_equal', 'if_not_equal',
@@ -227,28 +227,39 @@ class RptParser {
 			'else', 'subselect', 'end', 'order_by_expr');
 		$list = array();
 		while (!empty($str)) {
-			if ($str[0] == ' ' or $str[0] == "\t") {
-				$str = substr($str, 1);
-				continue;
-			}
-			if (ctype_alnum($str[0])) {
-				$w = '';
-				while (ctype_alnum($str[0]) or $str[0] == '_') {
-					$w .= $str[0];
-					$str = substr($str, 1);
+				if ($str[0] == ' ' || $str[0] == "\t") {
+						$str = substr($str, 1);
+						continue;
 				}
-				array_push($list, array('WORD', $w));
-			} else if ($str[0] == '"' or $str[0] == '\'') {
-				list($w, $str) = $this->getQuoted($str);
-				array_push($list, array('WORD', $w));
-			} else {
-				array_push($list, array($str[0]));
-				$str = substr($str, 1);
-			}
+
+				if (ctype_alnum($str[0])) {
+						$w = '';
+						while (!empty($str) && (ctype_alnum($str[0]) || $str[0] == '_')) {
+								$w .= $str[0];
+								$str = substr($str, 1);
+						}
+						array_push($list, array('WORD', $w));
+
+				} else if ($str[0] == '"' || $str[0] == '\'') {
+						list($w, $str) = $this->getQuoted($str);
+						array_push($list, array('WORD', $w));
+
+				} else {
+						array_push($list, array($str[0]));
+						$str = substr($str, 1);
+				}
 		}
-		if ($list[0][0] == 'WORD' and in_array($list[0][1], $cmds)) {
-			$list[0] = array($list[0][1]);
+
+		if (
+				isset($list[0]) &&
+				is_array($list[0]) &&
+				isset($list[0][0], $list[0][1]) &&
+				$list[0][0] === 'WORD' &&
+				in_array($list[0][1], $cmds)
+		) {
+				$list[0] = array($list[0][1]);
 		}
+
 		return $list;
 	}
 	private function getQuoted($str) {
