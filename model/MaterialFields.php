@@ -72,7 +72,7 @@ class MaterialFields extends DBTable {
 			 							'lbl'=>$row['label'],
 										'required'=>$row['required'],
 										'repeatable'=>$row['repeatable'],
-										'seq'=>$row['seq'],
+										'seq' => isset($row['seq']) ? $row['seq'] : '',  // Avoid undefined index -- F .Tumulak
 										'form_type'=>$row['form_type'],
 										'validation_cd'=>$row['validation_cd']
 										);

@@ -165,7 +165,7 @@ class Biblios extends CoreTable {
 			$selectNr++;
 		}
 
-		$sql = $sqlSelect . $sqlWhere . $sqlOrder;
+		$sql = $sqlSelect . $sqlWhere; // fixed undefined var $sqlOrder -- F. Tumulak;
 //echo "in Biblios::getBiblioByPhrase(); sql = $sql<br>\n";
 		$rows = $this->select($sql);
         //if ($rows->num_rows < 1) return NULL;
