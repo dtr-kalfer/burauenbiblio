@@ -403,7 +403,7 @@ class Biblios extends CoreTable {
 			}
 		}
 
-		if($criteria['advanceQ']=='Y'){
+		if(isset($criteria['advanceQ']) && $criteria['advanceQ'] == 'Y'){ // fixed: Warning: Undefined array key 'advanceQ' in model\Biblios.php on line 406 --F.Tumulak
 			if(isset($criteria['srchSites']) && $criteria['srchSites'] != 'all'){
 				$searchTags .= ',{"siteTag":"xxx","siteValue":"'. $criteria['srchSites'] . '"}';
 			}
