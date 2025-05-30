@@ -241,7 +241,7 @@ class Report {
 		return array($rpt, array());
 	}
 	function curPage() {
-		if ($this->cache['page']) {
+		if (isset($this->cache['page'])) {
 			return $this->cache['page'];
 		} else {
 			return 1;
