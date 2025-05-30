@@ -63,7 +63,7 @@
 	case 'getCollectionList':
 		require_once(REL(__FILE__, "../model/Collections.php"));
 		$db = new Collections;
-        	if (false) {
+        	if ($_POST['select']=='true') {
             		//echo "select list wanted";
 		    	$list = getDmData($db, true);
         	} else {
@@ -120,7 +120,7 @@
 	case 'getMediaList':
 		require_once(REL(__FILE__, "../model/MediaTypes.php"));
 		$db = new MediaTypes;
-        if (false) {
+        if ($_POST['select']=='true') {
             //echo "select list wanted";
 		    $list = getDmData($db, true);
         } else {
