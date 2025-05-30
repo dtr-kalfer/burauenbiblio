@@ -231,15 +231,19 @@ function postBiblioChange($nav) {
 
   ## add to biblio the processed MARC material
 	$biblio['marc'] = $mrc;
-	if (empty($_POST['material_cd']))
-		$biblio['material_cd'] = $_POST["materialCd"];
-	else
+
+	if (isset($_POST['material_cd'])) {
 		$biblio['material_cd'] = $_POST['material_cd'];
-	if (empty($_POST['material_cd']))
-		$biblio['collection_cd'] = $_POST["collectionCd"];
-	else
+	} elseif (isset($_POST['materialCd'])) {
+		$biblio['material_cd'] = $_POST['materialCd'];
+	}
+	if (isset($_POST['collection_cd'])) {
 		$biblio['collection_cd'] = $_POST['collection_cd'];
-	$biblio['last_change_userid'] = $_POST["userid"];
+	} elseif (isset($_POST['collectionCd'])) {
+		$biblio['collection_cd'] = $_POST['collectionCd'];
+	}
+
+	$biblio['last_change_userid'] = isset($_POST["userid"]) ? $_POST["userid"] : '';
 	$biblio['opac_flg'] = isset($_POST["opac_flg"]) ? 'Y' : 'N';
 
 	##  Insert/Update bibliography ##
