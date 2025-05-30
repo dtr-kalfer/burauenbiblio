@@ -474,7 +474,7 @@ class Bookings extends CoreTable {
 		return array();
 	}
 
-	function quickCheckout_e($barcode, $calCd, $mbrids) {
+	function quickCheckout_e($barcode, $mbrids, $calCd = 1) { // switch place calCd vs mbrid, deprecation comply v8.0 --F.Tumulak
  		$this->lock();
 		$copies = new Copies;
 		$copy = $copies->getByBarcode($barcode);
