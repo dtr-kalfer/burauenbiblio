@@ -28,8 +28,9 @@ function printUsmarcText($tag,$subfieldCd,&$marcTags,&$marcSubflds,$showTagDesc)
  * accepts a NNN$A formatted MARC tag and returns its components as an object.
  * ex. '245$a' ==> '{"tag":"245","suf":"a"}'
  */
-function makeTagObj($grp) {
+function makeTagObj($grp) { // Fixed, Warning: Undefined variable $rslt v8.0 prep --F.Tumulak
 //echo"makeTagGrp: grp==>";print_r($grp);echo"<br />\n";
+	$rslt = ''; // Initialize the variable before use
 	foreach ($grp as $tag) {
 		$parts = explode('$',$tag);
 		$rslt .= '{"tag":"'.$parts[0].'","suf":"'.$parts[1].'"},';
