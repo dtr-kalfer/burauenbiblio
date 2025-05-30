@@ -257,13 +257,13 @@
 
 	//// ====================================////
 	case 'newCopy':
-        $copies = new Copies;
-        if ($copies->isDuplicateBarcd($_POST['barcode_nmbr'], $_POST['copyid'])) {
+        $copies = new Copies; $somevar = "";
+        if ($copies->isDuplicateBarcd($_POST['barcode_nmbr'], $somevar)) {
         	echo "Barcode ". $_POST['barcode_nmbr']. ": ". T("Barcode number already in use.");
         	return;
         }
         $theDb = new Copies;
-        echo $theDb->insertCopy($_POST['bibid'],$_POST['copyid']);
+        echo $theDb->insertCopy($_POST['bibid'],$somevar);
         break;
 	case 'updateCopy':
 	    $theDb = new Copies;
