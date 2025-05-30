@@ -17,7 +17,7 @@ if (!OBIB_DEMO_FLG) {
 		'tools'=>'../tools/index.php',
 		'reports'=>'../reports/index.php',
 	);
-	$returnPage = $pages[$tab];
+	$returnPage = isset($pages[$tab]);
 	$_SESSION["returnPage"] = $returnPage;
 
 	#****************************************************************************
