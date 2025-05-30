@@ -190,6 +190,7 @@
 		break;
 		
 	case 'getCopyInfo':
+		$cpys = array();
 	    $bib = new Biblio($_POST['bibid']);
 		$bibData = $bib->getData();
 		//$cpyList = $bibData['cpys'];
