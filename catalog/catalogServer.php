@@ -190,19 +190,24 @@
 		break;
 		
 	case 'getCopyInfo':
-		$cpys = array();
 	    $bib = new Biblio($_POST['bibid']);
 		$bibData = $bib->getData();
 		//$cpyList = $bibData['cpys'];
 		$cpyList = $bib->fetch_copyList();
         //echo "in catalogServer, getCopyInfo, cpyList = ";print_r($cpyList);echo "<br />\n";
+		
 		foreach ($cpyList as $cid) {
 			$cpy = new Copy($cid);
 			$cpys[] = $cpy->getData();
 			unset($cpy); # no longer needed
 		}
-		echo json_encode($cpys);
-	  break;
+		
+		if (isset($cpys)) {
+				echo json_encode($cpys);
+		} else {
+				echo json_encode(['message' => 'No more copy']);
+		}
+		break;
 
 	case 'updateBiblio':
 		## fetch biblio object with current DB data
