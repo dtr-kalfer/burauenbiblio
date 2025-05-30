@@ -9,7 +9,7 @@
 	require_once(REL(__FILE__, "../classes/ReportDisplaysUI.php"));
 	require_once(REL(__FILE__, "../functions/inputFuncs.php"));
 
-	$tab = strToLower($_REQUEST['tab']);
+	$tab = strtolower($_REQUEST['tab'] ?? "");
 	if(empty($tab)) {
 		$tab = "cataloging";
 		$title = T("Existing Items");
