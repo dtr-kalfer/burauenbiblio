@@ -145,7 +145,7 @@ class Settings extends DBTable {
 		return $_settings_cache;
 	}
 
-	function getFormData ($menu=NULL, $cols) {
+	function getFormData ($menu=NULL, $cols = '*') {
 		$r = $this->_getData($menu, $cols);
 		$fields = array();
 		//while ($s = $r->fetch_assoc()) {
