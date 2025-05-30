@@ -8,6 +8,7 @@
 #*  seems to be using mirrored servers that do not share session info.
 #****************************************************************************
 if (!OBIB_DEMO_FLG) {
+	$tab = $tab ?? "";
 	$pages = array(
 		'opac'=>'../opac/index.php',
 		'circulation'=>'../circ/memberForms.php',//'../circ/index.php',
