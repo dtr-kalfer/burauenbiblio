@@ -35,15 +35,20 @@ class MemberAccounts extends DBTable {
 		$row = $this->select1($sql);
 		return $row['balance'];
 	}
+	
 	function insert_el($rec, $confirmed=false) {
-		$date = date('Y-m-d H:i:s');
-		$rec['create_dt'] = $rec['last_change_dt'] = $date;
-		$rec['create_userid'] = $_SESSION['userid'];
-		if ($rec['transaction_type_cd'][0] == '-') { //fixed: Deprecated: Array and string offset access syntax with curly braces -F.T.
-			$rec['amount'] *= -1;
-		}
-		return parent::insert_el($rec, $confirmed);
+			$date = date('Y-m-d H:i:s');
+			$rec['create_dt'] = $rec['last_change_dt'] = $date;
+			$rec['create_userid'] = $_SESSION['userid'];
+
+			// Make sure 'amount' exists and is numeric before multiplying
+			if ($rec['transaction_type_cd'][0] == '-' && isset($rec['amount']) && is_numeric($rec['amount'])) {
+					$rec['amount'] *= -1;
+			}
+
+			return parent::insert_el($rec, $confirmed);
 	}
+
 	function update_el($rec, $confirmed=false) {
 		Fatal::internalError(T("Update not supported for this table"));
 	}
