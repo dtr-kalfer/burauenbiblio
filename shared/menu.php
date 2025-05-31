@@ -58,6 +58,7 @@ function staff_menu() {
 		
 		// Nav::node('cataloging/upload_csv', T("CSVImport"), "../catalog/importCsvForms.php"); // Sorry, the backend part is not working or still work in progress by orig. author -F.Tumulak
 		Nav::node('cataloging/doiSearch', T("doiSearch"), '../opac/doiSearchForms.php');
+		Nav::node('cataloging/print_card_catalog', T("Print Catalog"), "../catalog/print_card_catalog.php"); // new feature Card catalog print --F.Tumulak 
 	}
 	
 	##-------------------------------------------------------------------------------------##
@@ -81,7 +82,7 @@ function staff_menu() {
 			Nav::node('admin/bulk_delete', T("Bulk Delete"), "../catalog/bulkDelForm.php"); // moved bulk delete to its new home --F.Tumulak
 		endif;
 
-		Nav::node('admin/print_card_catalog', T("Print Catalog"), "../catalog/print_card_catalog.php"); // new feature Card catalog print --F.Tumulak 
+		
 		Nav::node('admin/memberTypes', T("Member Types"), '../admin/memberTypeForm.php');
 		// Nav::node('admin/memberFields', T("Member Fields"), '../admin/memberFldsForm.php'); // disabled it messes up the 'add custom member fields', crash a member entry.
 		Nav::node('admin/onlineOpts', T("Online Options"), '../admin/onlineOptsForm.php');
@@ -109,12 +110,12 @@ function staff_menu() {
 		Nav::node('tools', T("Tools"), '../tools/index.php');
 		Nav::node('tools/settings', T("System Settings"), '../tools/settings_edit_form.php?reset=Y');
 		Nav::node('tools/plugins', T("Plugin Manager"), '../tools/plugMgr_form.php');
-		Nav::node('tools/valid', T("Input Validations"), '../tools/validForm.php');
-		Nav::node('tools/system', T("WebServerInformation"), '../install/phpinfo.php');
-		Nav::node('tools/system', T("DbServerInformation"), '../tools/DBConfigForms.php');
-		Nav::node('tools/system', T("SystemDocumentation"), '../docs/index.php');
+		//Nav::node('tools/valid', T("Input Validations"), '../tools/validForm.php');
+		//Nav::node('tools/system', T("WebServerInformation"), '../install/phpinfo.php');
+		//Nav::node('tools/system', T("DbServerInformation"), '../tools/DBConfigForms.php');
+		//Nav::node('tools/system', T("SystemDocumentation"), '../docs/index.php');
 		//Nav::node('tools/system', T("Crude YAZ Test"), '../tools/yazTest.php');
-		Nav::node('install/system', T("Install"), '../install/index.php');
+		//Nav::node('install/system', T("Install"), '../install/index.php');
 
 	}
 	

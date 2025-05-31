@@ -6,7 +6,7 @@
 	 * it can still be further improved using PDO or use Openbiblio built-in class functions if you are up to it.
 	 */
 	require_once("../shared/common.php");
-	$tab = "admin";
+	$tab = "cataloging";
 	$nav = "print_card_catalog";	
 	require_once(REL(__FILE__, "../shared/logincheck.php"));
 	require_once(REL(__FILE__, "../functions/inputFuncs.php"));

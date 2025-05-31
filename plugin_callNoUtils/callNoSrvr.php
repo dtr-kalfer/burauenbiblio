@@ -8,6 +8,7 @@
 
 
 	function getBibsMissingCalls() {
+		$results = '';
 		$sql = "SELECT bs.bibid
 						FROM (
 								SELECT bibid, MIN(fieldid) AS min_fieldid

@@ -170,7 +170,7 @@ class Settings extends DBTable {
 		$sql = $db->mkSQL('UPDATE settings SET value=%Q WHERE name=%Q', $value, $name);
 		$db->act($sql);
 		$db->unlock();
-		return $errors;
+		return 'success';
 	}
 	function setAll_el($settings) {
 		$errors = array();
