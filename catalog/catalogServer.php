@@ -299,8 +299,13 @@
         foreach ($set as $row) {
 		    $imgs[] = $row;
 		}
-		echo json_encode($imgs);
-	    break;
+		if (isset($imgs)) {
+			echo json_encode($imgs);
+		} else {
+			echo json_encode('');
+		}
+		
+	  break;
 			
 case 'updatePhoto': // this is currently not working but manually deleting, and adding works --F.Tumulak
     $ptr = new BiblioImages;
