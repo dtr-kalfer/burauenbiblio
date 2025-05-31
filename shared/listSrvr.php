@@ -30,6 +30,7 @@
     //-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-//
 	case 'getAudienceList':
 		require_once(REL(__FILE__, "../model/Biblios.php"));
+		$list = array(); // fixed  Warning: Undefined variable $list --F. Tumulak
 		$db = new Biblios;
 		$sql = "SELECT subfield_data, COUNT(*) as count " .
  			"FROM biblio_subfield sf, biblio_field f " .
