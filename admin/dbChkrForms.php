@@ -5,7 +5,7 @@
 
 	require_once("../shared/common.php");
 
-	$tab = strToLower($_REQUEST['tab']);
+	$tab = strToLower($_REQUEST['tab'] ?? '');
 	if(empty($tab)) {
 		$tab = "admin";
 		$title = T("Check Database Integrity");
