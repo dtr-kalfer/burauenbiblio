@@ -256,8 +256,10 @@
 				//echo "barcode = ".$_POST["barcodeNmbr"]." <br />\n";
 				$_POST["barcodeNmbr"] = str_pad($_POST["barcodeNmbr"],$_SESSION['item_barcode_width'],'0',STR_PAD_LEFT);
 			}
-			$err = $bookings->quickCheckout_e($_POST["barcodeNmbr"], array($_POST["mbrid"]), $_POST['calCd']); // switch place calCd vs mbrid, deprecation comply v8.0 --F.Tumulak
-            if ($err) {
+
+		$err = $bookings->quickCheckout_e($_POST["barcodeNmbr"], $_POST['calCd'], array($_POST["mbrid"]));
+		$errors = ''; // <-- this line prevents the notice
+	            if ($err) {
 				if(is_array($err)){
 					$errors = ""; $nErr = 0;
 					foreach($err as $error)	{
