@@ -52,19 +52,23 @@
 		break;
 
 	case 'getCalendar': //  Fixed: Deprecated: Non-static method Date::addMonths() should not be called statically in C:\wamp64\www\burauenbiblio\admin\calendarSrvr.php on line 71 --F.T.
-		$template = $_REQUEST['calendar'];
+		$template = isset($_REQUEST['calendar']) ? $_REQUEST['calendar'] : '';
 
 		$d = getdate(time());
-		if ($_REQUEST['month'] != "") {
-			$d['mon'] = $_REQUEST['month'];
-		}
-		if ($d['mon'] >= 7) {
-			$d['mon'] = 7;
+		if (isset($_REQUEST['month']) && $_REQUEST['month'] !== "") {
+		    $d['mon'] = $_REQUEST['month'];
 		} else {
-			$d['mon'] = 1;
+		    $d['mon'] = 1; // default to January if not set
 		}
-		if ($_REQUEST['year'] != "") {
-			$d['year'] = $_REQUEST['year'];
+
+		if ($d['mon'] >= 7) {
+		    $d['mon'] = 7;
+		} else {
+		    $d['mon'] = 1;
+		}
+
+		if (isset($_REQUEST['year']) && $_REQUEST['year'] !== "") {
+		    $d['year'] = $_REQUEST['year'];
 		}
 		
 		list($start, $err) = Date::read_e($d['year'].'-'.$d['mon'].'-01');
