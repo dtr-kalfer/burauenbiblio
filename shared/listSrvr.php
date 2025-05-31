@@ -49,13 +49,13 @@
 	case 'getCalendarList':
 		require_once(REL(__FILE__, "../model/Calendars.php"));
 		$db = new Calendars;
-        if (!isset($_POST['select']) && $_POST['select']=='true') {
-            //echo "select list wanted";
-		    $list = getDmData($db, true);
-        } else {
-            //echo "simple list wanted";
-		    $list = getDmData($db, false);
-        }
+			if (isset($_POST['select']) && $_POST['select'] == 'true') {
+					// select list wanted
+					$list = getDmData($db, true);
+			} else {
+					// simple list wanted
+					$list = getDmData($db, false);
+			}
 		echo json_encode($list);
 	  break;
 
