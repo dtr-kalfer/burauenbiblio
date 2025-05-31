@@ -6,8 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 Guide:
-version 3.x.x --> PHP 8.0 supported
-version 2.x.x --> PHP 7.4.26 supported
+version 3.x.x above PHP 8.0 supported
+version 2.x.x below PHP 7.4.26 supported
 
 ## [unreleased]
 ### Added
