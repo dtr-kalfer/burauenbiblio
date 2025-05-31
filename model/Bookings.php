@@ -117,7 +117,7 @@ class Bookings extends CoreTable {
 		$booking = array_merge($old, $new);
 
 		// check for required fields done in DBTable
-		$errors = parent::validate_el($rec, $insert);
+		$errors = parent::validate_el($booking, $insert);
 
 		# Check that mbrids exist
 		if (isset($new['mbrids'])) {
