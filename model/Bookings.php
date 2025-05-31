@@ -117,6 +117,7 @@ class Bookings extends CoreTable {
 		$booking = array_merge($old, $new);
 
 		// check for required fields done in DBTable
+		
 		$errors = parent::validate_el($booking, $insert);
 
 		# Check that mbrids exist
@@ -182,7 +183,9 @@ class Bookings extends CoreTable {
 			$sql .= $this->mkSQL('group by b1.bookingid '
 				. 'having ncopies >= %N ', $ncopies);
 			$rows = $this->select($sql);
-			if ($rows->num_rows != 0) {
+
+			$data = $rows->fetchAll(PDO::FETCH_ASSOC);
+			if (count($data) != 0) {
 				$errors[] = new Error(T("modelBookingsNotEnoughCopies"));
 				return $errors;
 			}
@@ -208,10 +211,11 @@ class Bookings extends CoreTable {
 			}
 			$sql .= '('.implode(",", $mbrids).') ';
 			$rows = $this->select($sql);
-			if ($rows->num_rows != 0) {
-				//$errors[] = new IgnorableError(T("modelBookingsClosedOnBookDate").": ".$booking['book_dt']);
-				die (T("modelBookingsClosedToday"));
+			$results = $rows->fetchAll(PDO::FETCH_ASSOC);
+			if (count($results) != 0) {
+					die (T("modelBookingsClosedToday"));
 			}
+
 
 			## determine if library is open on due date ##
 			$sql = $this->mkSQL('select c.date, c.open '
@@ -223,9 +227,11 @@ class Bookings extends CoreTable {
 				$booking['due_dt']);
 			$sql .= '('.implode(",", $mbrids).') ';
 			$rows = $this->select($sql);
-			if ($rows->num_rows != 0) {
-				$errors[] = new IgnorableError(T("modelBookingsClosedOnDueDate").": ".$booking['due_dt']);
+			$results = $rows->fetchAll(PDO::FETCH_ASSOC);
+			if (count($results) != 0) {
+					$errors[] = new IgnorableError(T("modelBookingsClosedOnDueDate").": ".$booking['due_dt']);
 			}
+
 		}
 
 		return $errors;
