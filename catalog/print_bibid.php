@@ -140,7 +140,7 @@ mysql> select bibid, barcode_nmbr from biblio_copy where bibid = 1389;
 		$call_no[0] = isset($call_no[0]) ? $call_no[0] : ' ';
 		$call_no[1] = isset($call_no[1]) ? $call_no[1] : ' ';
 		$call_no[2] = isset($call_no[2]) ? $call_no[2] : ' ';
-		$call_no[3] = isset($call_no[3]) ? $call_no[2] : ' ';
+		$call_no[3] = isset($call_no[3]) ? $call_no[3] : ' ';
 		
 		$pdf->Cell(55,5,'',0,1);
 		$pdf->Cell(55,5,$call_no[0],0,1);
@@ -254,7 +254,7 @@ mysql> select bibid, barcode_nmbr from biblio_copy where bibid = 1389;
 		$call_no[0] = isset($call_no[0]) ? $call_no[0] : ' ';
 		$call_no[1] = isset($call_no[1]) ? $call_no[1] : ' ';
 		$call_no[2] = isset($call_no[2]) ? $call_no[2] : ' ';
-		$call_no[3] = isset($call_no[3]) ? $call_no[2] : ' ';
+		$call_no[3] = isset($call_no[3]) ? $call_no[3] : ' ';
 
 		$pdf->Cell(55,5,'',0,1);
 		$pdf->Cell(55,5,$call_no[0],0,1);
