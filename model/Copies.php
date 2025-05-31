@@ -453,23 +453,23 @@ class Copies extends CoreTable {
 		//$nCpy = $rslt->num_rows;
         $nCpy = 0;
 
-		//while ($row = $rslt->fetch_assoc()) {
-        foreach ($rslt as $row) {
-            $nCpy++;
-			if($row['status_cd'] == OBIB_STATUS_IN) {
-				// See on which site
-				if($_SESSION['current_site'] == $row['siteid'] || !($_SESSION['multi_site_func'] > 0)){
-					$avIcon = "circle_green.png"; // one or more available
-					break;
-				} else {
-					$avIcon = "circle_orange.png"; // one or more available on another site
-				}
-			}
-			// Removed && $this->avIcon != "circle_orange.png" as and extra clause, as it is better to show the book is there, even if not available
-			else if($copy['status_cd'] == OBIB_STATUS_ON_HOLD || $copy['status_cd'] == OBIB_STATUS_NOT_ON_LOAN) {
-				$avIcon = "circle_blue.png"; // only copy is on hold
-			}
-		}
+foreach ($rslt as $row) {
+    $nCpy++;
+    if ($row['status_cd'] == OBIB_STATUS_IN) {
+        // See on which site
+        if ($_SESSION['current_site'] == $row['siteid'] || !($_SESSION['multi_site_func'] > 0)) {
+            $avIcon = "circle_green.png"; // one or more available
+            break;
+        } else {
+            $avIcon = "circle_orange.png"; // one or more available on another site
+        }
+    } 
+    // Fixed this part
+    else if ($row['status_cd'] == OBIB_STATUS_ON_HOLD || $row['status_cd'] == OBIB_STATUS_NOT_ON_LOAN) {
+        $avIcon = "circle_blue.png"; // only copy is on hold
+    }
+}
+
 
 		$rcd['nCpy'] = $nCpy;
 		$rcd['avIcon'] = $avIcon;
