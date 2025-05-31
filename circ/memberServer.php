@@ -118,7 +118,7 @@
 			'address1'=>$_POST["address1"],
 			'address2'=>$_POST["address2"],
 			'city'=>$_POST["city"],
-			'state'=>$_POST["state"],
+			'state'=>($_POST["state"] ?? ''),
 			'zip'=>$_POST["zip"],
 			// 'zip_ext'=>$_POST["zip_ext"],
 			'home_phone'=>$_POST["home_phone"],
