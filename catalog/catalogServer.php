@@ -128,7 +128,7 @@
  	case 'getMediaDisplayInfo':
 		require_once(REL(__FILE__, "../model/MaterialFields.php"));
 		$theDb = new MaterialFields;
-		$media = $theDb->getDisplayInfo($_GET['howMany']);
+		$media = $theDb->getDisplayInfo($_GET['howMany'] ?? '');
 		echo json_encode($media);
 		break;
 	case 'getMediaLineCnt':
