@@ -20,10 +20,21 @@ if (count($_POST) == 0) {
 	exit();
 }
 
-list($settings, $errs) = Form::getCgi_el(Settings::getFormFields('tools'));
+$form = new Form();
+list($settings, $errs) = $form->getCgi_el(Settings::getFormFields('tools'));
+
+// list($settings, $errs) = Form::getCgi_el(Settings::getFormFields('tools'));
 if (empty($errs)) {
-	$errs = Settings::setAll_el($settings);
+	$settingsObj = new Settings();
+	$errs = $settingsObj->setAll_el($settings);
+	
+	
 	setSessionFmSettings();
+	
+	
+	
+
+	
 }
 else if (!empty($errs)) {
 	$_SESSION["postVars"] = $_POST;

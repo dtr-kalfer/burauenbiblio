@@ -225,7 +225,7 @@ class Settings extends DBTable {
 			//	$options = $sites->getSelect();
 			//}
 			if ($s['name'] == 'checkout_interval') {
-				$options = array('Hours','Days');
+				$options = array('Days');
 			}
 		}
 		

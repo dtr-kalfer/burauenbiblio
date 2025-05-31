@@ -35,7 +35,7 @@
 	}
 
 	if ($_REQUEST['type'] == 'previous') {
-		if ($_REQUEST['rpt_order_by']) {
+		if (isset($_REQUEST['rpt_order_by'])) {
 			$rpt = $rpt->variant(array('order_by'=>$_REQUEST['rpt_order_by']));
 		}
 	} else {
@@ -44,7 +44,7 @@
 			FieldError::backToForm('../reports/report_criteria.php', $errs);
 		}
 	}
-	if ($_REQUEST['page']) {
+	if (isset($_REQUEST['page'])) {
 		$page = $_REQUEST['page'];
 	} else {
 		$page = $rpt->curPage();
