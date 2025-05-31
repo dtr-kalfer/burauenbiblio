@@ -121,7 +121,7 @@
 	case 'getMediaList':
 		require_once(REL(__FILE__, "../model/MediaTypes.php"));
 		$db = new MediaTypes;
-        if ($_POST['select']=='true') {
+        if (($_POST['select'] ?? '')=='true') {
             //echo "select list wanted";
 		    $list = getDmData($db, true);
         } else {
