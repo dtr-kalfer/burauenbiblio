@@ -120,12 +120,12 @@
 			'city'=>$_POST["city"],
 			'state'=>$_POST["state"],
 			'zip'=>$_POST["zip"],
-			'zip_ext'=>$_POST["zip_ext"],
+			// 'zip_ext'=>$_POST["zip_ext"],
 			'home_phone'=>$_POST["home_phone"],
 			'work_phone'=>$_POST["work_phone"],
 			'email'=>$_POST["email"],
-			'password'=>$_POST["password"],
-			'confirm-pw'=>$_POST["confirm-pw"],
+			// 'password'=>$_POST["password"],
+			// 'confirm-pw'=>$_POST["confirm-pw"],
 			'classification'=>$_POST["classification"],
 	  );
 	  return $mbr;
