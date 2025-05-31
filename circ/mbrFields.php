@@ -45,13 +45,13 @@
 	<tr>
 		<td><label for="last_name"><?php echo T("LastName");?></label><span class="reqd">*</span></td>
 		<td valign="top">
-      <?php echo inputfield("text","last_name",isset($mbr['last_name']),$attr=array("required"=>"required","size"=>8,"maxlength"=>8,  "pattern"=>"[0-9]+"),$pageErrors); ?>
+      <?php echo inputfield("text","last_name",isset($mbr['last_name']),$attr=array("required"=>"required","size"=>20,"maxlength"=>50,  "pattern"=>"[0-9]+"),$pageErrors); ?>
 		</td>
 	</tr>
 	<tr>
 		<td><label for="first_name"><?php echo T("FirstName");?></label><span class="reqd">*</span></td>
 		<td valign="top">
-			<?php echo inputfield("text","first_name",isset($mbr['first_name']),$attr=array("required"=>"required","size"=>20,"max"=>20),$pageErrors);?>
+			<?php echo inputfield("text","first_name",isset($mbr['first_name']),$attr=array("required"=>"required","size"=>20,"maxlength"=>50),$pageErrors);?>
 		</td>
 	</tr>
 	<tr>
@@ -115,19 +115,19 @@
 		</td>
 	</tr>
 	<tr>
-		<td><label for="last_legal_name"><?php echo T("Legal last name").' ('.T("if different from above").')';?></label></td>
+		<td><label hidden for="last_legal_name"><?php echo T("Legal last name").' ('.T("if different from above").')';?></label></td>
 		<td valign="top">
-      <?php echo inputfield("text","last_legal_name",isset($mbr['last_legal_name']),$attr=array("size"=>20,"max"=>20),$pageErrors); ?>
+      <?php echo inputfield("hidden","last_legal_name",isset($mbr['last_legal_name']),$attr=array("size"=>20,"max"=>20),$pageErrors); ?>
 		</td>
 	</tr>
 	<tr>
-		<td><label for="first_legal_name"><?php echo T("Legal first name").' ('.T("if different from above").')';?></label></td>
+		<td><label hidden for="first_legal_name"><?php echo T("Legal first name").' ('.T("if different from above").')';?></label></td>
 		<td valign="top">
-			<?php echo inputfield("text","first_legal_name",isset($mbr['first_legal_name']),$attr=array("size"=>20,"max"=>20),$pageErrors);?>
+			<?php echo inputfield("hidden","first_legal_name",isset($mbr['first_legal_name']),$attr=array("size"=>20,"max"=>20),$pageErrors);?>
+			<br>
+			<br>
 		</td>
 	</tr>
-
-
 <?php
 	## add custom fields
 	require_once(REL(__FILE__, "../model/MemberCustomFields.php"));
