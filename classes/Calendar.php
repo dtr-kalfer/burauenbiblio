@@ -422,21 +422,25 @@ class Calendar {
 				. (($showYear > 0) ? " " . $year : "") . '</a>';
 		}
 		function getDateHTML($day, $month, $year) {
-			$dayTags = array("Su", "Mo", "Tu", "We", "Th", "Fr", "Sa");
-			$date = sprintf("%04d-%02d-%02d", $year, $month, $day);
-			if ($this->open[$date] == 'Yes') {
-				$class .= "calendarOpen ";
-			} elseif ($this->open[$date] == 'No') {
-				$class .= "calendarHoliday ";
-			} else {
-				$class .= "calendarUnknown ";
-			}
-			$dt = getdate(mktime(0, 0, 0, $month, $day, $year));
-			$id = $dt['wday'].'-'.$date;
-			$tag = $dayTags[$dt['wday']];
-			return '<input type="hidden" id="IN-'.H($id).'" '
-				. 'name="IN-'.H($id).'" value="'.H($this->open[$date]).'" />'
-				. '<a class="'.$tag.'" onclick="toggleDay(\''.$id.'\')" >'.$day.'</a>';
+		    $dayTags = array("Su", "Mo", "Tu", "We", "Th", "Fr", "Sa");
+		    $date = sprintf("%04d-%02d-%02d", $year, $month, $day);
+		    $class = ''; // initialize class
+
+		    if (isset($this->open[$date]) && $this->open[$date] == 'Yes') {
+		        $class .= "calendarOpen ";
+		    } elseif (isset($this->open[$date]) && $this->open[$date] == 'No') {
+		        $class .= "calendarHoliday ";
+		    } else {
+		        $class .= "calendarUnknown ";
+		    }
+
+		    $dt = getdate(mktime(0, 0, 0, $month, $day, $year));
+		    $id = $dt['wday'].'-'.$date;
+		    $tag = $dayTags[$dt['wday']];
+
+		    return '<input type="hidden" id="IN-'.H($id).'" '
+		        . 'name="IN-'.H($id).'" value="'.H($this->open[$date] ?? '').'" />'
+		        . '<a class="'.$tag.' '.$class.'" onclick="toggleDay(\''.$id.'\')">'.$day.'</a>';
 		}
 		function getDateId($day, $month, $year) {
 			$dt = getdate(mktime(0, 0, 0, $month, $day, $year));

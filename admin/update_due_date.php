@@ -46,7 +46,7 @@
 			FieldError::backToForm('../reports/report_criteria.php', $errs);
 		}
 	}
-	if ($_REQUEST['page']) {
+	if (isset($_REQUEST['page'])) {
 		$page = $_REQUEST['page'];
 	} else {
 		$page = $rpt->curPage();

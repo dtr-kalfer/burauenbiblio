@@ -14,8 +14,8 @@ version 2.x.x --> PHP 7.4.26 supported
 - 
 
 ### Changed
-- Changed deprecated syntax/logic PART 2 of 3
-- Changed deprecated syntax/logic PART 1 of 3
+- Refactor code / deprecated php syntax work-in-progress compatible with PHP 8.0
+- Changed UI setup for member fields input 
 
 ### Fixed
 - Preparation for PHP 8.0 support by fixing several deprecated/undefined errors.
