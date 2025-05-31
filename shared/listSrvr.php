@@ -64,7 +64,7 @@
 	case 'getCollectionList':
 		require_once(REL(__FILE__, "../model/Collections.php"));
 		$db = new Collections;
-        	if ($_POST['select']=='true') {
+        	if (($_POST['select'] ?? '')=='true') {
             		//echo "select list wanted";
 		    	$list = getDmData($db, true);
         	} else {
