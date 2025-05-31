@@ -55,7 +55,7 @@ function staff_menu() {
 		//	Nav::node('cataloging/biblio/bookings', T("Item Bookings"), "../reports/run_report.php?type=bookings");
 		//	Nav::node('cataloging/biblio/holds', T("Hold Requests"), "../catalog/biblio_hold_list.php?".$params);
 
-		Nav::node('cataloging/upload_usmarc', T("MARC Import"), "../catalog/importMarcForms.php"); // This one is now working good --F.Tumulak
+		
 		// Nav::node('cataloging/upload_csv', T("CSVImport"), "../catalog/importCsvForms.php"); // Sorry, the backend part is not working or still work in progress by orig. author -F.Tumulak
 		Nav::node('cataloging/doiSearch', T("doiSearch"), '../opac/doiSearchForms.php');
 	}
@@ -74,6 +74,8 @@ function staff_menu() {
 		Nav::node('admin/calendar', T("Calendar Manager"), '../admin/calendarForm.php');
 		Nav::node('admin/collections', T("Collections"), '../admin/collectionsForm.php?type=change_borrow_expiry');
 		Nav::node('admin/media', T("Media Types"), '../admin/mediaForm.php');
+
+		Nav::node('admin/upload_usmarc', T("MARC Import"), "../catalog/importMarcForms.php"); // This one is now working good --F.Tumulak
 
 		if (isset($_SESSION["hasReportsAuth"]) && $_SESSION["hasReportsAuth"]):
 			Nav::node('admin/bulk_delete', T("Bulk Delete"), "../catalog/bulkDelForm.php"); // moved bulk delete to its new home --F.Tumulak
