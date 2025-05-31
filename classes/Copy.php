@@ -127,8 +127,13 @@ class Copy {
 
 		$ptr = new MediaTypes;
 		$this->media = $ptr;
-		$rslt = $ptr->getOne($this->hdrFlds['material_cd']);
-		$this->hdrFlds['media'] = $rslt['description'];
+		
+$rslt = $ptr->getOne($this->hdrFlds['material_cd']);
+if (is_array($rslt)) {
+    $this->hdrFlds['media'] = $rslt['description'];
+} else {
+    $this->hdrFlds['media'] = '-'; // or null, or any fallback
+}
 
 		$ptr = new Holds;
 		$this->hold = $ptr;
@@ -148,7 +153,15 @@ class Copy {
 			$ptr = new CircCollections;
 			$this->cCol = $ptr;
 			$rslt = $ptr->getOne($this->hdrFlds['collection_cd']);
-            $rslt['daily_late_fee']==null?$this->hdrFlds['lateFee'] =0:$this->hdrFlds['lateFee'] = $rslt['daily_late_fee'];
+			if (is_array($rslt) && array_key_exists('daily_late_fee', $rslt)) {
+					$this->hdrFlds['lateFee'] = $rslt['daily_late_fee'] ?? 0;
+			} else {
+					$this->hdrFlds['lateFee'] = 0;
+			}
+
+
+
+
 
 			$ptr = new Bookings;
 			$this->book = $ptr;
