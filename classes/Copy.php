@@ -79,7 +79,7 @@ class Copy {
 			'bibid'=>$this->hdrFlds['bibid'],
 			'copyid'=>$this->copyid,
 			'status_cd'=>$this->hdrFlds['status'],
-			'bookingid'=>$this->hdrFlds['bookingid'],
+			'bookingid' => isset($this->hdrFlds['bookingid']) ? $this->hdrFlds['bookingid'] : null,
 		));
 		$this->hdrFlds['histid'] = $newHistid[0];
 //echo "newHistid=";print_r($newHistid);echo "<br>\n";
