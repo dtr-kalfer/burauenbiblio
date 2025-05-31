@@ -535,6 +535,7 @@ foreach ($rslt as $row) {
 		$this->unlock();
 	}
 	public function getCustomFields($copyid, $arrayWanted=false) {
+		$flds = array();
 		$rslt = $this->custom->getMatches(array('copyid'=>$copyid));
 		if ($arrayWanted) {
 			//while ($row = $rslt->fetch_assoc()) {

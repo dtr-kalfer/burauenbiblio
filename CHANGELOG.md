@@ -19,7 +19,7 @@ Guide:
 
 ### Fixed
 - Fixed several deprecated/undefined errors for the stricter PHP 8.0.
-- Print card catalog error. Occurs when call number is missed out or different standard.
+- Print card catalog error.
 
 
 
