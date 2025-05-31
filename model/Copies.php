@@ -335,9 +335,15 @@ class Copies extends CoreTable {
 				$errors[] = new FieldError($req, T("Required field missing"));
 			}
 		}
-		if($this->isDuplicateBarcd($copy['barcode_nmbr'], $copy['copyid'])){
-			$errors[] = new FieldError('barcode_nmbr', T("Barcode number already in use."));
+		if (isset($copy['barcode_nmbr'], $copy['copyid'])) {
+				if($this->isDuplicateBarcd($copy['barcode_nmbr'], $copy['copyid'])){
+						$errors[] = new FieldError('barcode_nmbr', T("Barcode number already in use."));
+				}
+		} else {
+				// Optional: log or handle the missing data for debugging
+				error_log("Missing barcode_nmbr or copyid in \$copy on line " . __LINE__);
 		}
+
 		return $errors;
 	}
 	public function isDuplicateBarcd($barcd,$cpyid) {
