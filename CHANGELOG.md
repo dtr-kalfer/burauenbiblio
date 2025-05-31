@@ -6,19 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 Guide:
-version 3.x.x above PHP 8.0 supported
-version 2.x.x below PHP 7.4.26 supported
+- version 3.x.x above PHP 8.0 supported
+- version 2.x.x below PHP 7.4.26 supported
 
-## [unreleased]
+## [3.0.0] - 2025-05-31
 ### Added
-- 
+- BurauenBiblio is now compatible with PHP 8.0.13
 
 ### Changed
 - Refactor code / deprecated php syntax work-in-progress compatible with PHP 8.0
-- Changed UI setup for member fields input 
+- Changed UI setup for some navigation and tabs.
 
 ### Fixed
-- Preparation for PHP 8.0 support by fixing several deprecated/undefined errors.
+- Fixed several deprecated/undefined errors for the stricter PHP 8.0.
 - Print card catalog error. Occurs when call number is missed out or different standard.
 
 
