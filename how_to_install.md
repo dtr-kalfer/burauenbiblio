@@ -2,11 +2,11 @@
 
 ## ✅ Prerequisites
 
-    Install WAMP
-    Download and install WAMP with PHP version 7.4.26 or 8.0.13.
+Install WAMP
+Download and install WAMP with PHP version 7.4.26 or 8.0.13.
 
-    Set MySQL Root Password
-    During installation or afterward via phpMyAdmin, configure the MySQL root password.
+Set MySQL Root Password
+During installation or afterward via phpMyAdmin, configure the MySQL root password.
 
 ## 📦 Extract Files
 
@@ -34,9 +34,9 @@ Log in to MySQL (enter using this command)
 
     cd C:\wamp64\bin\mysql\mysql5.7.36\bin\
 
-mysql -u root -p
+    mysql -u root -p
 
-(Enter your mysql root password)
+(Enter your mysql root password when prompted)
 
 Enter the following commands:
 
@@ -68,7 +68,7 @@ Make sure it contains the correct values:
     $this->dsn["mode"] = 'haveConst';
     ?>
 
-⚠️ Note: You may change the username and password for better security. Just make sure they match in both MySQL and dbParams.php.
+⚠️ Note: You may **change the username and password** for security. Just make sure they **match** in both MySQL prompt you have entered and dbParams.php.
 
 ## 🚀 Start WAMP & Access the Site
 
@@ -85,4 +85,4 @@ Make sure it contains the correct values:
     Username: admin
     Password: admin
 
-⚠️ Important: For security reasons, change the default login credentials immediately via the Admin menu.
+⚠️ Important: For security reasons, **change the default login credentials immediately** via the Admin menu.
