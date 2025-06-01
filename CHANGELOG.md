@@ -9,6 +9,15 @@ Guide:
 - version 3.x.x above PHP 8.0 supported
 - version 2.x.x below PHP 7.4.26 supported
 
+## [3.1.0] - 2025-06-1
+### Changed
+- Check and set active on PHP 8.0.30
+- Dropdown select menu on media type/collection.
+
+### Fixed
+- Deprecated issues and the card catalog print error on call number.
+
+
 ## [3.0.0] - 2025-05-31
 ### Added
 - BurauenBiblio is now compatible with PHP 8.0.13
