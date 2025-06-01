@@ -6,11 +6,11 @@ BurauenBiblio is a derivative work of the original OpenBiblio system, tailored f
 Maintained as a community-driven, open-source initiative to revitalize and extend OpenBiblio's functionality designed to aid small libraries and schools.
 It is named in honor of my hometown in Leyte, Burauen.
 
-- Original Authors:  
+- OpenBiblio Authors:  
   **David Stevens, Joe Hagerty, Micah Stetson, Fred LaPlante**  
   (See LICENSE and copyright.html for full attribution)
 
-Maintainer: Ferdinand Tumulak 
+- BurauenBiblio Maintainer: Ferdinand Tumulak 
 
 📌 See [CHANGELOG.md](./CHANGELOG.md) for version history.
 
