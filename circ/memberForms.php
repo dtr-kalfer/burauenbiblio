@@ -53,7 +53,7 @@
 		<tr>
 			<td nowrap="true">
 				<label for="nameFrag"><?php echo T("Last Name Contains");?>:</label>
-				<input type="text" id="nameFrag" name="nameFrag" size="20" />
+				<input type="text" id="nameFrag" name="nameFrag" size="20" maxlength="50" />
 				<input type="button" id="nameSrchBtn" value="<?php echo T("Search"); ?>" />
 			</td>
 		</tr>
