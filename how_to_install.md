@@ -26,11 +26,17 @@ Paste it into:
 
 ## 🛠️ Import the Sample Database
 
-    Open Command Prompt
+Open Command Prompt (click start menu, click run, enter on prompt: cmd)
 
-    Log in to MySQL:
+Log in to MySQL (enter using this command)
+
+*Please double check your mysql version on the same path, it may be different from mine, adjust the path accordingly.*
+
+    cd C:\wamp64\bin\mysql\mysql5.7.36\bin\
 
 mysql -u root -p
+
+(Enter your mysql root password)
 
 Enter the following commands:
 
