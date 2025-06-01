@@ -29,7 +29,7 @@ The member records are entirely fictitious and do not represent real individuals
 
 The system is currently in active use, handling bibliographic search requests from both students and faculty. It manages a collection of nearly 5,000 bibliographic records. Migrating the application from PHP 5.7 to PHP 8.0 has resulted in notable performance gains, particularly in search responsiveness and overall system speed—all while running on the same legacy hardware.
 
-> This upgrade is part of my ongoing personal initiative to modernize the OpenBiblio codebase while maintaining backward compatibility. The project is now in its final stages, focusing on critical bug fixes, user interface enhancements, and full support for PHP 8.0. Further improvements—especially in UI/UX—are being developed, with planned integrations using more modern programming approaches and frontend technologies.
+> **This upgrade is part of my ongoing personal initiative to modernize the OpenBiblio codebase while maintaining backward compatibility.** The project is now in its final stages, focusing on critical bug fixes, user interface enhancements, and full support for PHP 8.0. Further improvements—especially in UI/UX—are being developed, with planned integrations using more modern programming approaches and frontend technologies. --F. Tumulak
 
 ![Homepage](./readme_assets/actual_use_case.webp "OpenBiblio Homepage")
 
@@ -45,9 +45,9 @@ Special thanks to my co-workers @ BCC Learning Resource Center for their invalua
 
     🍎 Apple Grace P. Daitol (RL, BCC Assistant Librarian)
  
-    🍊 Ruth Endiape (LPT, BCC Library Staff)
+    🍊 Ruth A. Endiape (LPT, BCC Library Staff)
 
-    🍓 Crilyn Cabras (LPT, BCC Library Staff)
+    🍓 Crilyn A. Cabras (LPT, BCC Library Staff)
 
 Your effort made this project not only possible but meaningful for the academic community we serve.
 
