@@ -10,7 +10,7 @@ During installation or afterward via phpMyAdmin, configure the MySQL root passwo
 
 ## 📦 Extract Files
 
-Unzip the provided OpenBiblio package into the following directory:
+Unzip the downloaded burauenbiblio zip package directly into the following directory:
 
 C:\wamp64\www\
 
@@ -55,7 +55,7 @@ Still inside the MySQL prompt:
 
 Edit the file:
 
-    C:\wamp64\www\your_folder_name\shared\dbParams.php
+    C:\wamp64\www\dbParams.php
 
 Make sure it contains the correct values:
 
