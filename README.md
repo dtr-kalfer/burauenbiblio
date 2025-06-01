@@ -37,19 +37,7 @@ The system is currently in active use, handling bibliographic search requests fr
 
 This project is an ongoing modernization effort based on the original OpenBiblio system. It aims to improve performance, ensure compatibility with modern PHP versions, and enhance the overall user experience while maintaining support for legacy environments.
 
-Contributions, sponsorships, and testing feedback are genuinely welcome and appreciated—as they help sustain and grow this project further.
-
-Special thanks to my co-workers @ BCC Learning Resource Center for their invaluable support—whether through direct collaboration or consistent data encoding work:
-
-    🍟 Ramoncito R. Albay (RL, MLIS, BCC Head Librarian)
-
-    🍎 Apple Grace P. Daitol (RL, BCC Assistant Librarian)
- 
-    🍊 Ruth A. Endiape (LPT, BCC Library Staff)
-
-    🍓 Crilyn A. Cabras (LPT, BCC Library Staff)
-
-Your effort made this project not only possible but meaningful for the academic community we serve.
+Contributions and testing feedback are genuinely welcome and appreciated—as they help sustain and grow this project further.
 
 ## 📦 Installation
 
