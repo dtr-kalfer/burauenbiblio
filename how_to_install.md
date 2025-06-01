@@ -3,9 +3,11 @@
 ## ✅ Prerequisites
 
 Install WAMP
+
 Download and install WAMP with PHP version 7.4.26 or 8.0.13.
 
 Set MySQL Root Password
+
 During installation or afterward via phpMyAdmin, configure the MySQL root password.
 
 ## 📦 Extract Files
