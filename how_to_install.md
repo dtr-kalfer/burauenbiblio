@@ -1,4 +1,4 @@
-# 📚 BurauenBiblio Installation Guide (with Sample Data)
+# 📚 BurauenBiblio Installation Guide (with Sample Data) in Windows 10 Setup
 
 ## ✅ Prerequisites
 
