@@ -51,14 +51,21 @@
     		}
     	}
 
-    	if($_SESSION['multi_site_func'] > 0){
-    		$sit = new Sites;
-    		$lib = $sit->maybeGetOne($_SESSION['current_site']);
-		    if ($lib['siteid'] != $_SESSION['current_site']) {
-    			$lib = $sit->getOne(1);
-		    }
-    		$libName = $lib['name'];
-    	}
+			if ($_SESSION['multi_site_func'] > 0) {
+					$sit = new Sites;
+					$lib = $sit->maybeGetOne($_SESSION['current_site']);
+
+					if (!is_array($lib) || $lib['siteid'] != $_SESSION['current_site']) {
+							$lib = $sit->getOne(1);  // fallback
+					}
+
+					if (is_array($lib)) {
+							$libName = $lib['name'];
+					} else {
+							$libName = 'Unknown Site';
+					}
+			}
+
 
     	echo $libName;
 		//    	if($params['title']) {
