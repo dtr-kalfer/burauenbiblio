@@ -10,9 +10,11 @@ Guide:
 - version 2.x.x below PHP 7.4.26 supported
 
 ## [unreleased] - 2025-xx-xx
+### Added
 ### Changed
 ### Fixed
-### Added
+- OPAC load on startup warning.
+
 
 ## [3.1.0] - 2025-06-1
 ### Changed
