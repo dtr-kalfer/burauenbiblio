@@ -19,7 +19,7 @@
 			<tr>
 				<td><label for="copyBarcode_nmbr"><?php echo T("Barcode Number"); ?></label></td>
 				<td>
-					<input id="copyBarcode_nmbr" name="barcode_nmbr" type="number" size="20" title="zero-filled barcode" required aria-required="true" />
+					<input id="copyBarcode_nmbr" name="barcode_nmbr" type="number" size="20" title="zero-filled barcode" required aria-required="true" oninput="this.value = this.value.replace(/\D/g, '').slice(0, 13)" pattern="\d*" />
 					<span class="reqd">*</span>
 				</td>
 			</tr>
