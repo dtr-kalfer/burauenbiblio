@@ -39,9 +39,6 @@
     ## Set up the callback
     assert_options(ASSERT_CALLBACK, 'obAssertHandler');
 
-	#apd_set_pprof_trace();
-	//error_reporting(E_ALL & ~(E_DEPRECATED | E_STRICT | E_NOTICE));
-	error_reporting(E_ALL & ~(E_STRICT | E_NOTICE));
 	if (isset($cache)) {
 		session_cache_limiter($cache);
 	} else {

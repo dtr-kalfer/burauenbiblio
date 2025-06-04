@@ -33,7 +33,7 @@ The system is currently in active use, handling bibliographic search requests fr
 
 ![Homepage](./readme_assets/actual_use_case.webp "OpenBiblio Homepage")
 
-### 🙌 Acknowledgments & Project Direction
+### 🙌 Project Direction
 
 This project is an ongoing modernization effort based on the original OpenBiblio system. It aims to improve performance, ensure compatibility with modern PHP versions, and enhance the overall user experience while maintaining support for legacy environments.
 
