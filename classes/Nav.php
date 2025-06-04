@@ -64,18 +64,22 @@ class Nav {
 			return $a;
 		}
 	}
+
 	static function &_getParent_real($path, &$menu, $curpath="") {
-		if ($path == $curpath) {
-			return $menu;
-		}
-		# Not using foreach because it assigns copies, not references.
-		for ($i=0; $i < count($menu); $i++) {
-			if (Nav::_pathWithin($path, $menu[$i]['path'])) {
-				return Nav::_getParent_real($path, $menu[$i]['children'], $menu[$i]['path']);
+			if ($path == $curpath) {
+					return $menu;
 			}
-		}
-		return false;
+			// Not using foreach because it assigns copies, not references.
+			for ($i = 0; $i < count($menu); $i++) {
+					if (Nav::_pathWithin($path, $menu[$i]['path'])) {
+							$result = &Nav::_getParent_real($path, $menu[$i]['children'], $menu[$i]['path']);
+							return $result;
+					}
+			}
+			$null = null; // Return a reference to something in case nothing matches
+			return $null;
 	}
+
 	static function _reparent() {
 		global $_Nav_unparented;
 		$nodes = $_Nav_unparented;
