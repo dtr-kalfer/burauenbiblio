@@ -11,9 +11,13 @@ Guide:
 
 ## [unreleased] - 2025-xx-xx
 ### Added
+-
+
 ### Changed
+- Improved book barcode search entry, only 13 digits allowed, no text.
+
 ### Fixed
-- OPAC load on startup warning.
+- OPAC load on startup warning
 
 
 ## [3.1.0] - 2025-06-1
