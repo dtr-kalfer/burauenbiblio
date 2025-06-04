@@ -15,9 +15,11 @@ Guide:
 
 ### Changed
 - Improved book barcode search entry, only 13 digits allowed, no text.
+- Improved add new copy entry on barcode, only 13 digits allowed, no text.
 
 ### Fixed
-- OPAC load on startup warning
+- OPAC load on startup warning.
+- Fixed deprecated syntax.
 
 
 ## [3.1.0] - 2025-06-1
