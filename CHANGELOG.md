@@ -20,6 +20,7 @@ Guide:
 ### Fixed
 - OPAC load on startup warning.
 - Fixed deprecated syntax.
+- Tag/untagged items on OPAC.
 
 
 ## [3.1.0] - 2025-06-1
