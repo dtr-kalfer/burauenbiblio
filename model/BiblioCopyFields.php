@@ -6,6 +6,7 @@
 require_once(REL(__FILE__, "../classes/DmTable.php"));
 
 class BiblioCopyFields extends DmTable {
+	// 'code', 'dedescription', <-- fixed the typo on line 20 hehe -- F.Tumulak
 	public function __construct() {
 		parent::__construct();
 		$this->setName('biblio_copy_fields_dm');
