@@ -26,7 +26,7 @@
 				<li>Filled by server</li>
 			</ul>
 		</fieldset>
-		<input type="submit" id="calAddNewBtn" value="<?php echo T("Add New"); ?>" />
+		<input hidden type="submit" id="calAddNewBtn" value="<?php echo T("Add New"); ?>" />
 	</div>
 
 <!-- ------------------------------------------------------------------------ -->
@@ -51,7 +51,7 @@
 
 			<ul class="btnRow">
 				<li><input type="button" class="calGoBkBtn" value="<?php echo T("Go Back"); ?>" /></li>
-				<li><input type="button" class="calDeltBtn" value="<?php echo T("Delete"); ?>" /></li>
+				<li><input hidden type="button" class="calDeltBtn" value="<?php echo T("Delete"); ?>" /></li>
 			</ul>
 		</form>
 	</div>

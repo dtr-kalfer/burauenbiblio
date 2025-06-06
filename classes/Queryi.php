@@ -279,8 +279,13 @@ private function set_encoding() {
 		# escapes are interpreted in quoted identifiers, so I assume they are not. MS
 		return str_replace('`', '', $i);
 	}
+
 	private function _numstr($n) {
-		if (preg_match("/^([+-]?[0-9]+(\.[0-9]*)?([Ee][0-9]+)?)/", (string)$n, $subs)) {
+		if (is_array($n)) {
+			echo '<pre>Got array in _numstr: ' . print_r($n, true) . '</pre>';
+		}
+
+		if (!is_array($n) && preg_match("/^([+-]?[0-9]+(\.[0-9]*)?([Ee][0-9]+)?)/", (string)$n, $subs)) {
 			return $subs[1];
 		} else {
 			return "0";
