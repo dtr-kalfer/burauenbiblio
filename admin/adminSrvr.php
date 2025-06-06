@@ -193,7 +193,12 @@
 				'code'=>@$_POST['code'],
 				'description'=>@$_POST['description'],
 			));
-			if ($errs) {echo $errs;} else {echo T("Add New successful");}
+			
+			if ($errs) {
+					echo '<pre>' . print_r($errs, true) . '</pre>';
+			} else {
+					echo T("Add New successful");
+			}
 			break;
 		case 'update_copyFlds':
 			$errs = $ptr->update_el(array(
