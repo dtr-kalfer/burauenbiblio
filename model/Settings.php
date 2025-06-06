@@ -88,6 +88,7 @@ class Settings extends DBTable {
 	}
 	static public function get($name) {
 		global $_settings_cache;
+		$_settings_cache[$name] = $_settings_cache[$name] ?? '';
 		return $_settings_cache[$name];
 	}
 	static public function set($name, $value) {
