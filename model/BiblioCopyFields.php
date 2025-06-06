@@ -17,7 +17,7 @@ class BiblioCopyFields extends DmTable {
 		));
 		$this->setKey('code');
         $this->setReq(array(
-            'code', 'dedescription',
+            'code', 'description',
         ));
 	}
 	function validate_el($rec, $insert) {

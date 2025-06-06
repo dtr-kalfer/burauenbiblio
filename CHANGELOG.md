@@ -18,8 +18,9 @@ Guide:
 - Improved add new copy entry on barcode, only 13 digits allowed, no text.
 
 ### Fixed
+- Admin Biblio Copy Fields, 'Add new' button fixed.
 - OPAC load on startup warning.
-- Fixed deprecated syntax.
+- Fixed deprecated syntax / Undefined arrays.
 - Tag/untagged items on OPAC.
 
 

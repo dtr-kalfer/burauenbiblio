@@ -239,14 +239,14 @@ class Copies extends CoreTable {
 		$rslt = $this->select($sql);
 		//$rcd = $rslt->fetch_assoc();  // only first (most recent) response wanted
 		$rcd = $rslt->fetchAll();  // only first (most recent) response wanted
-		$histid = $rcd['histid'];
+		$histid = $rcd['histid'] ?? '';
 
         // Changed this to nothing, so any message/output is taken as an error message - LJ
         // Changed to specific success text to be looked for in JS - FL
         // Not the nicest, but agree, is needed for activsting the buttons etc. - LJ
         $message = "!!success!!";
 
-		if ($rcd['status_cd'] != $_POST['status_cd']) {
+		if ( ($rcd['status_cd'] ?? '') != $_POST['status_cd']) {
             if($_POST['status_cd'] == "out") {
                 //LJ: it does not seem possible to set to checkout without a user!
                 echo "Cannot change to status 'Checked out'. Changes NOT saved!";
