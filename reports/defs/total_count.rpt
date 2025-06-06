@@ -1,0 +1,10 @@
+.title "Barcode Count"
+.category "Circulation"
+.column barcode_count title=Count width=10
+.parameters
+.
+.end parameters
+
+.sql
+select count(barcode_nmbr) as barcode_count from biblio_copy;
+.end sql
