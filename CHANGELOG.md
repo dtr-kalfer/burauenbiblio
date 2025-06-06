@@ -11,7 +11,7 @@ Guide:
 
 ## [unreleased] - 2025-xx-xx
 ### Added
--
+- Total barcode count in reports menu.
 
 ### Changed
 - Improved book barcode search entry, only 13 digits allowed, no text.
