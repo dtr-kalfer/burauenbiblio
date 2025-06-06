@@ -37,7 +37,7 @@ $trans["App. Info"] = "App. Info";
 $trans["QR code"] = "QR code";
 $trans["Full Name"] = "Full Name";
 $trans["Late fee rate"] = "Late fee rate";
-
+$trans["Barcode Count"] = "Barcode Count";
 
 $trans["(enter 0 for unlimited)"] = "(enter 0 for unlimited)";
 $trans["(when available)"] = "(when available)";
