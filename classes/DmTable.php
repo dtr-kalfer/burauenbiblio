@@ -39,7 +39,7 @@ class DmTable extends DBTable {
         if ($nRecs < 1) return NULL;
         foreach ($recs as $rec) {
             $data['description'] =$rec['description'];
-            $data['default'] = $rec['default_flg'];
+            $data['default'] = $rec['default_flg'] ?? '';
 			$list[$rec['code']] = $data;
 		}
 		return $list;

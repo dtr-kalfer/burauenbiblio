@@ -21,7 +21,8 @@ Guide:
 - Admin Biblio Copy Fields, 'Add new' button fixed.
 - OPAC load on startup warning.
 - Fixed deprecated syntax / Undefined arrays.
-- Tag/untagged items on OPAC.
+- 'Update copy' error fixed, when changing field details.
+- Fixed Tag/untagged items on OPAC, must not show.
 
 
 ## [3.1.0] - 2025-06-1
