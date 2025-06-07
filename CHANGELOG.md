@@ -11,7 +11,8 @@ Guide:
 
 ## [unreleased] - 2025-xx-xx
 ### Added
-- Total barcode count in reports menu.
+- Total barcode count (Accession) in reports menu.
+- Included burauenbib_sample_clean.sql as data sample.
 
 ### Changed
 - Improved book barcode search entry, only 13 digits allowed, no text.
@@ -19,6 +20,7 @@ Guide:
 
 ### Fixed
 - Admin Biblio Copy Fields, 'Add new' button fixed.
+- Calendar UI fixed redundant calendars.
 - OPAC load on startup warning.
 - Fixed deprecated syntax / Undefined arrays.
 - 'Update copy' error fixed, when changing field details.

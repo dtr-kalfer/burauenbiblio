@@ -20,7 +20,7 @@ C:\wamp64\www\
 
 Copy the sample file from the sql folder:
 
-    burauenbib_sample_complete.sql
+    burauenbib_sample_clean.sql
 
 Paste it into:
 
@@ -44,7 +44,7 @@ Enter the following commands:
 
     CREATE DATABASE IF NOT EXISTS burauenbib;
     USE burauenbib;
-    SOURCE C:/wamp64/tmp/burauenbib_sample_complete.sql;
+    SOURCE C:/wamp64/tmp/burauenbib_sample_clean.sql
 
 ## 👤 Create a Database User
 
