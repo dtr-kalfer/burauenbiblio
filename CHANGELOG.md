@@ -9,7 +9,7 @@ Guide:
 - version 3.x.x above PHP 8.0 supported
 - version 2.x.x below PHP 7.4.26 supported
 
-## [unreleased] - 2025-xx-xx
+## [3.1.1] - 2025-06-07
 ### Added
 - Total barcode count (Accession) in reports menu.
 - Included burauenbib_sample_clean.sql as data sample.
@@ -27,7 +27,7 @@ Guide:
 - Fixed Tag/untagged items on OPAC, must not show.
 
 
-## [3.1.0] - 2025-06-1
+## [3.1.0] - 2025-06-01
 ### Changed
 - Check and set active on PHP 8.0.30
 - Dropdown select menu on media type/collection.
