@@ -383,8 +383,10 @@ var mf = {
 		$('#msgDiv').hide();
 		$('#userMsg').html('');
 		var ttlOwed = 0.00,
+			mbrType = mf.typeInfo.description,
 			maxFines = mf.typeInfo.max_fines,
 	  		params = 'mode=getChkOuts&mbrid='+mf.mbrid;
+				console.log('Member type: ', typeof(mbrType));
 	    $.post(mf.url,params, function(jsonInpt){
 			if (jsonInpt.substr(0,1) == '<') {
 				$('#userMsg').html(jsonInpt);
@@ -397,25 +399,35 @@ var mf = {
 			} else {
 				mf.cpys = JSON.parse(jsonInpt);
 				var html = '';
+				
+				// --------------- adjusted daysLate compute with Calendar logic applied -- F. Tumulak 
+				// --------------- adjusted daysLate compute with Calendar logic applied -- F. Tumulak 
+				// --------------- adjusted daysLate compute with Calendar logic applied -- F. Tumulak 
+				
 				for (var nCpy in mf.cpys) {
 					var cpy = mf.cpys[nCpy],
-						outDate = cpy.out_dt,
-						dueDate = cpy.due_dt,
-						daysLate = cpy.daysLate,
-						lateFee = ((cpy.lateFee === null) ? '0': (cpy.lateFee).toLocaleString()),
-						owed = (cpy.daysLate*cpy.lateFee).toFixed(2);
+						outDate = new Date(cpy.out_dt),
+						dueDate = new Date(cpy.due_dt),
+						loanPeriod = Math.round((dueDate - outDate) / (1000 * 60 * 60 * 24)),
+						daysLate = Math.max(0, cpy.daysLate - loanPeriod),
+						lateFee = ((cpy.lateFee === null) ? '0' : (cpy.lateFee).toLocaleString()),
+						owed = (daysLate * cpy.lateFee).toFixed(2);
+					
 					html += '<tr>';
-					html += '	<td>'+outDate+'</td>';
-					//html += '	<td><img src="'+cpy.material_img_url+'" />'+cpy.material_type+'	</td>\n';
-					html += '	<td>'+cpy.media+'	</td>\n';
-					html += '	<td>'+cpy.barcode+'</td>';
-					html += '	<td><a href="#" id="'+cpy.bibid+'">'+ shortenTitle(cpy.title, 75)+'</a></td>';
-					html += '	<td>'+dueDate+'</td>';
-					html += '	<td class="number">'+daysLate+'@'+lateFee+'</td>';
-					html += '	<td class="number">'+owed+'</td>';
+					html += '	<td style="text-align: center;" >' + cpy.out_dt + '</td>';
+					html += '	<td style="text-align: center;" >' + cpy.media + '	</td>\n';
+					html += '	<td style="text-align: center;" >' + cpy.barcode + '</td>';
+					html += '	<td style="text-align: center;" ><a href="#" id="' + cpy.bibid + '">' + shortenTitle(cpy.title, 75) + '</a></td>';
+					html += '	<td style="text-align: center;" >' + loanPeriod + '</td>';
+					html += '	<td style="text-align: center;" class="number"><b>' + daysLate + '@' + lateFee + '</b></td>';
+					html += '	<td style="text-align: center;" class="number">' + owed + '</td>';
 					html += '</tr>\n';
-					ttlOwed += eval(owed);
+
+					ttlOwed += parseFloat(owed);
 				}
+				
+				// ---------------  ---------------  ---------------  ---------------  ---------------
+
 				mf.nmbrOnloan = nCpy+1;
 				$('#chkOutList tBody').html(html);
 				$('table tbody.striped tr:odd td').addClass('altBG');
@@ -428,6 +440,7 @@ var mf = {
 				}
 				$('#maxFine').html((Number(maxFines).toFixed(2)).toLocaleString());
 				$('#ttlOwed').html((Number(ttlOwed).toFixed(2)).toLocaleString());
+				$('#newmemberType').val(mbrType);
 
 				$('#chkOutList a').on('click',null,function (e) {
 					e.preventDefault(); e.stopPropagation();
@@ -440,6 +453,7 @@ var mf = {
 		});
 		mf.doGetHolds();
 	},
+	
 	doGetHolds: function () {
     $('#holdList tBody').html('');
 	  var params = 'mode=getHolds&mbrid='+mf.mbrid;
