@@ -308,6 +308,7 @@
 			if ($errs) {echo json_encode($errs);} else {echo json_encode($updtSuccess);}
 			break;
 		case 'd-3-L-3-t_mbrTypes':
+			$errs = '';
 			$ptr->deleteOne($_POST['code']);
 			if ($errs) {echo $errs;} else {echo $deleteComplete;}
 			break;
