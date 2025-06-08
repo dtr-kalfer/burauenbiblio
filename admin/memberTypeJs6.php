@@ -17,6 +17,7 @@ class Mbc extends Admin {
 		var listFlds = {'description': 'text',
 						'max_fines': 'number',
 						'default_flg': 'center',
+						'loan_allotment': 'number',
 					   };
 		var opts = {};
 
