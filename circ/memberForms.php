@@ -133,7 +133,7 @@
 		Weekends and holidays (when the library is closed) <br> are excluded from the count.
 		Additionally, the <b>Loan Period</b> — the number of days between the checkout date and  
 		the due date — is also <br> excluded from the <b>Days Late</b> calculation.<br>
-		Please ensure that the <b>Library Calendar</b> is properly configured in advance.
+		Please ensure that the <b>Calendar Manager</b> is properly configured in advance.
 		</p>
 	<hr>
 
