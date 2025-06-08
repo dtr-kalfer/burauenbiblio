@@ -65,6 +65,12 @@
         		<input type="radio" name="default_flg" value="N" checked />No
         	</li>
             <li>
+                <label for="loan_allotment"><?php echo T("Loan Allotment"); ?>:</label>
+                <input id="loan_allotment" name="loan_allotment" type="number" size="32"
+        						 title="loan_allotment"	required aria-required="true" />
+        		<span class="reqd">*</span>
+        	</li>							
+            <li>
         		<input type="hidden" id="code" name="code" value="" />
         		<input type="hidden" id="mode" name="mode" value="" />
         		<input type="hidden" id="cat" name="cat" value="mbrTypes" />
