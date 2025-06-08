@@ -149,16 +149,15 @@ if (is_array($rslt)) {
 			$mbr = $this->cpy->getCheckoutMember($this->hdrFlds['histid']);
 			$this->hdrFlds['ckoutMbr'] = $mbr['mbrid'];
 			$this->hdrFlds['mbrName'] = $mbr['first_name'].' '.$mbr['last_name'];
-
+			// typo on the 'daily_rate_fee', it should be 'regular_late_fee' --FTumulak
 			$ptr = new CircCollections;
 			$this->cCol = $ptr;
 			$rslt = $ptr->getOne($this->hdrFlds['collection_cd']);
-			if (is_array($rslt) && array_key_exists('daily_late_fee', $rslt)) {
-					$this->hdrFlds['lateFee'] = $rslt['daily_late_fee'] ?? 0;
+			if (is_array($rslt) && array_key_exists('regular_late_fee', $rslt)) {
+					$this->hdrFlds['lateFee'] = $rslt['regular_late_fee'] ?? 0;
 			} else {
 					$this->hdrFlds['lateFee'] = 0;
 			}
-
 
 
 
