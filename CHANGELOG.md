@@ -9,6 +9,20 @@ Guide:
 - version 3.x.x above PHP 8.0 supported
 - version 2.x.x below PHP 7.4.26 supported
 
+## [unreleased] - xxxx-xx-xx
+### Added
+- Number of days overdue, using Calendar Manager logic include only library days which are open.
+- Added a overdue menu, to estimate overdue dates based on Calendar Manager.
+- Added a loan allotment, under member types for new feature.
+
+### Changed
+- .sql file is updated, mbr_classify_dm increase max_fines value to 9999.99.
+- .sql file is updated, mbr_classify_dm ADD loan_allotment, for a new feature.
+
+### Fixed
+- 'Late rate fee' for overdue books working.
+- 'Max fines' now work and halt borrow if fines are exceeded, depends on member type.
+
 ## [3.1.1] - 2025-06-07
 ### Added
 - Total barcode count (Accession) in reports menu.
