@@ -116,10 +116,10 @@
 			<tfoot class="topBorder">
 			<tr>
 				<th><?php echo T("Limit");?></th>
-				<td id="maxFine"></td>
+				<td style="text-align: center;" id="maxFine"></td>
 				<td colspan="3">&nbsp</td>
         <th><?php echo T("Total");?></th>
-				<td id="ttlOwed" class="number"></td>
+				<td style="text-align: center;" id="ttlOwed" class="number"></td>
 			</tr>
       </tfoot>
 		</table>
