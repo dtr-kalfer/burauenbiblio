@@ -49,13 +49,28 @@ class Bookings extends CoreTable {
 		return $this->select01($sql);
 	}
 
-	function getDaysLate($booking) {
+	function getDaysLate($booking) { 
+
 		list($now, $err) = Date::read_e('now');
-		if($err) {
-			Fatal::internalError(T("Unexpected date error: ").$err->toStr());
+		if ($err) {
+			Fatal::internalError(T("Unexpected date error: ") . $err->toStr());
 		}
-		return round(Date::daysLater($now, $booking['due_dt']));
+
+		$dueDate = $booking['due_dt'];
+		$calendarId = 1; // or pull this from $booking if variable
+
+		$sql = $this->mkSQL(
+			'SELECT COUNT(*) AS openDays FROM calendar 
+			 WHERE calendar = %N 
+				 AND date BETWEEN %Q AND %Q 
+				 AND open = "Yes"',
+			$calendarId, $dueDate, $now
+		);
+
+		$result = $this->select01($sql); // expects 1 row
+		return $result['openDays'];
 	}
+
 
 	/**
 	 * This function is intended for displaying the number of copies

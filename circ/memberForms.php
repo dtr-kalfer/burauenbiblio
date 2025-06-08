@@ -139,7 +139,7 @@
 
 	<!-- -->
 	<br>
-	<hr>
+	
 	<fieldset id="newHolds">
 		<legend><?php echo T("Place a booking");?></legend>
 			<label for="holdBarcd"><?php echo T("Barcode Number");?></label>
