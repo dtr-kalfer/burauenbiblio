@@ -1,0 +1,19 @@
+.title "Overdue Calc. (Library work days only)"
+.category "Circulation"
+.column c_date_checkout title=checkout_date
+.column curr_date title=current_date
+.column openDays title=Overdue_days
+.parameters
+.	string c_date_checkout title="Date checkout"
+.end parameters
+
+.sql
+		SELECT 
+    COUNT(*) AS openDays,
+    CURDATE() AS curr_date,
+    %c_date_checkout% AS c_date_checkout
+		FROM calendar 
+		WHERE calendar = 1 
+			AND date BETWEEN %c_date_checkout% AND CURDATE()
+			AND open = 'Yes';
+.end sql
