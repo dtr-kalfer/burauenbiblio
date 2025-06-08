@@ -303,6 +303,7 @@
 				'max_fines'=>@$_POST['max_fines'],
 				'default_flg'=>@$_POST['default_flg'],
 				'description'=>@$_POST["description"],
+				'loan_allotment'=>@$_POST["loan_allotment"],
 			));
 			if ($errs) {echo json_encode($errs);} else {echo json_encode($updtSuccess);}
 			break;
