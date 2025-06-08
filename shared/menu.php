@@ -25,6 +25,7 @@ function staff_menu() {
 
 		Nav::node('circulation/bookings/book', T("Create Booking"));
 		Nav::node('circulation/checkin', T("Check In"), '../circ/checkinForms.php');
+				Nav::node('circulation/overdue', T("Overdue"), '../circ/overdue.php?type=compute_penalty'); // new feature overdue calc -- F.Tumulak
 	}
 
 	##-------------------------------------------------------------------------------------##
