@@ -50,7 +50,14 @@ class Bookings extends CoreTable {
 	}
 
 	function getDaysLate($booking) { 
-
+	/* 
+	Refactored the original straightforward compute getting only
+	the number of days between checkout date and current date, 
+	This time, it is now both accurate and dynamic using the 
+	calendar logic. No more fake weekends or skipped holidays,
+	The circulation system is coming to a professional-grade 
+	precision.  ---> F. Tumulak
+	*/
 		list($now, $err) = Date::read_e('now');
 		if ($err) {
 			Fatal::internalError(T("Unexpected date error: ") . $err->toStr());
