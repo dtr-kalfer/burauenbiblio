@@ -83,6 +83,9 @@
 		<br />
 		<label for="MbrCardNo"><?php echo T("Card Number");?>:</label>
 		<input type="number" readonly id="mbrCardNo" />
+		<br />
+		<label for="newmemberType"><?php echo T("Member Type");?>:</label>
+		<input type="text" readonly id="newmemberType" />		
 	</fieldset>
 <!-- -->
 `	<hr>
@@ -104,7 +107,7 @@
 				<th class="center"><?php echo T("Media");?></th>
 				<th class="center"><?php echo T("Barcode");?></th>
 				<th class="center"><?php echo T("Title");?></th>
-				<th class="center"><?php echo T("Due Back");?></th>
+				<th class="center"><?php echo T("Loan Period");?></th>
 				<th class="center"><?php echo T("Days Late");?></th>
 				<th class="center"><?php echo T("AmountOwed");?></th>
 			</tr>
