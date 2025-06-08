@@ -41,6 +41,7 @@ $trans["Barcode Count"] = "Barcode Count";
 $trans["Loan Period"] = "Loan Period";
 $trans["Member Type"] = "Member Type";
 $trans["Allotment"] = "Allotment";
+$trans["Loan Allotment"] = "Loan Allotment";
 
 $trans["Overdue"] = "Overdue";
 $trans["Date checkout"] = "Date checkout";
