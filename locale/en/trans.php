@@ -38,6 +38,12 @@ $trans["QR code"] = "QR code";
 $trans["Full Name"] = "Full Name";
 $trans["Late fee rate"] = "Late fee rate";
 $trans["Barcode Count"] = "Barcode Count";
+$trans["Loan Period"] = "Loan Period";
+$trans["Member Type"] = "Member Type";
+
+$trans["Overdue"] = "Overdue";
+$trans["Date checkout"] = "Date checkout";
+$trans["Overdue Calc. (Library work days only)"] = "Overdue Calc. (Library work days only)";
 
 $trans["(enter 0 for unlimited)"] = "(enter 0 for unlimited)";
 $trans["(when available)"] = "(when available)";
