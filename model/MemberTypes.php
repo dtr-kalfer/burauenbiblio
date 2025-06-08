@@ -14,9 +14,10 @@ class MemberTypes extends DmTable {
 			'description'=>'string',
 			'default_flg'=>'string',
 			'max_fines'=>'number',
+			'loan_allotment'=>'number',
 		));
         $this->setReq(array(
-            'description', 'default_flg', 'max_fines',
+            'description', 'default_flg', 'max_fines', 'loan_allotment',
         ));
 		$this->setKey('code');
 	}
