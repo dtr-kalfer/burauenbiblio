@@ -24,6 +24,7 @@
             		<th><?php echo T("Description"); ?></th>
             		<th><?php echo T("Max Fine"); ?></th>
             		<th><?php echo T("Default"); ?></th>
+								<th><?php echo T("Allotment"); ?></th>								
             	</tr>
             	</thead>
 
