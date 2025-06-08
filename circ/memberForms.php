@@ -88,7 +88,8 @@
 		<input type="text" readonly id="newmemberType" />		
 	</fieldset>
 <!-- -->
-`	<hr>
+	<br>
+	<hr>
 	<fieldset id="newLoans">
 		<legend for="ckoutBarcd"><?php echo T("Check Out");?></legend>
 		<label><?php echo T("Barcode Number");?>:</label>
@@ -127,7 +128,8 @@
 <!-- -->
 
 	<!-- -->
-	`<hr>
+	<br>
+	<hr>
 	<fieldset id="newHolds">
 		<legend><?php echo T("Place a booking");?></legend>
 			<label for="holdBarcd"><?php echo T("Barcode Number");?></label>
