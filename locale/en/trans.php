@@ -40,6 +40,7 @@ $trans["Late fee rate"] = "Late fee rate";
 $trans["Barcode Count"] = "Barcode Count";
 $trans["Loan Period"] = "Loan Period";
 $trans["Member Type"] = "Member Type";
+$trans["Allotment"] = "Allotment";
 
 $trans["Overdue"] = "Overdue";
 $trans["Date checkout"] = "Date checkout";
