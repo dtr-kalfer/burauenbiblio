@@ -134,6 +134,7 @@ var mf = {
 	  $('#listDiv').show();
 		$('#msgDiv').hide();
 		$('#ttlOwed').html('0');
+		$('#helpDiv').hide();
 	},
 	rtnToMbr: function () {
 	  $('#rsltMsg').html('');
