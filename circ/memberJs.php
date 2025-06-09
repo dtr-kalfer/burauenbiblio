@@ -652,6 +652,12 @@ var mf = {
 	},
 	
 	//------------------------------
+	doShowMbrHelp: function () {
+			$('#helpDiv').toggle();  // This line handles both show and hide
+	},
+
+	//------------------------------	
+	
 	doShowMbrHist: function () {
 		$('#mbrDiv').hide();
 		$('#histDiv').show();
