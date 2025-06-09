@@ -69,6 +69,8 @@ var mf = {
 		$('#addTransBtn').on('click',null,mf.doTransAdd);
 
 		$('#mbrHistBtn').on('click',null,mf.doShowMbrHist);
+		
+		$('#mbrHelpBtn').on('click',null,mf.doShowMbrHelp);
 
 		$('#chkOutBtn').on('click',null,mf.doCheckout);
 		$('#holdBtn').on('click',null,mf.doHold);
