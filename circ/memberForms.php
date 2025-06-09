@@ -86,7 +86,9 @@
 		<input type="number" readonly id="mbrCardNo" />
 		<br />
 		<label for="newmemberType"><?php echo T("Member Type");?>:</label>
-		<input type="text" readonly id="newmemberType" />		
+		<input type="text" readonly id="newmemberType" />
+		<label for="loan_Allotment"><?php echo T("Loan Allotment");?>:</label>
+		<input type="text" readonly id="loan_Allotment" size="3"/>		
 	</fieldset>
 <!-- -->
 	<br>
