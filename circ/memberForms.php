@@ -77,6 +77,7 @@
 		<input type="button" value="<?php echo T("Details");?>" id="mbrDetlBtn" />
 		<input type="button" value="<?php echo T("Account");?>" id="mbrAcntBtn" />
 		<input type="button" value="<?php echo T("History");?>" id="mbrHistBtn" />
+		<input type="button" value="<?php echo T("Help!");?>" id="mbrHelpBtn" />
 		<br />
 		<label for="mbrSite"><?php echo T("Site");?>:</label>
 		<input type="text" readonly id="mbrSite" />

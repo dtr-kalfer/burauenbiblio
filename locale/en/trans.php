@@ -24,7 +24,6 @@ $trans["headerDateFormat"]	 = "m.d.Y";
 #****************************************************************************
 #* Common translation text, arranged alphabetically
 #****************************************************************************
-
 // these are trans immediately inserted, it still needs to get sorted
 // these trans are compatible with bcc setup --F.Tumulak
 $trans["List of provinces and its UAC Code"] = "List of provinces/states and its UAC Code";
@@ -38,14 +37,16 @@ $trans["QR code"] = "QR code";
 $trans["Full Name"] = "Full Name";
 $trans["Late fee rate"] = "Late fee rate";
 $trans["Barcode Count"] = "Barcode Count";
-$trans["Loan Period"] = "Loan Period";
 $trans["Member Type"] = "Member Type";
 $trans["Allotment"] = "Allotment";
-$trans["Loan Allotment"] = "Loan Allotment";
-
+$trans["Loan Allotment"] = "Loan Allotment (# of days)";
+$trans["Total Loan Period"] = "Total Loan Period";
 $trans["Overdue"] = "Overdue";
 $trans["Date checkout"] = "Date checkout";
 $trans["Overdue Calc. (Library work days only)"] = "Overdue Calc. (Library work days only)";
+$trans["Loan Period"] = "Loan Period";
+$trans["Help!"] = "Help!";
+$trans["Days Late"] = "Days_Late<br>@Rate";
 
 $trans["(enter 0 for unlimited)"] = "(enter 0 for unlimited)";
 $trans["(when available)"] = "(when available)";
@@ -350,7 +351,7 @@ $trans["Date Out"] = "Date Out";
 $trans["Date is in the past"] = "Date is in the past";
 $trans["Day"] = "Day";
 $trans["Days Due Back"] = "Days Due Back";
-$trans["Days Late"] = "Days<br />Late";
+
 $trans["DbServerInformation"] = "DB Server Information";
 $trans["DBTableBadForeignKey"] = "Bad foreign key reference '%key%' in field '%field%'";
 $trans["DBTableErrorInserting"] = "Unexpected error inserting into %name% table: %error%";
