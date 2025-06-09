@@ -77,7 +77,7 @@
 		<input type="button" value="<?php echo T("Details");?>" id="mbrDetlBtn" />
 		<input type="button" value="<?php echo T("Account");?>" id="mbrAcntBtn" />
 		<input type="button" value="<?php echo T("History");?>" id="mbrHistBtn" />
-		<input type="button" value="<?php echo T("Help!");?>" id="mbrHelpBtn" />
+		<input type="hidden" value="<?php echo T("Help!");?>" id="mbrHelpBtn" />
 		<br />
 		<label for="mbrSite"><?php echo T("Site");?>:</label>
 		<input type="text" readonly id="mbrSite" />
@@ -111,7 +111,7 @@
 				<th class="center"><?php echo T("Media");?></th>
 				<th class="center"><?php echo T("Barcode");?></th>
 				<th class="center"><?php echo T("Title");?></th>
-				<th class="center"><?php echo T("Total Loan Period");?></th>
+				<th class="center"><?php echo T("Due Date");?></th>
 				<th class="center"><?php echo T("Days Late");?></th>
 				<th class="center"><?php echo T("AmountOwed");?></th>
 			</tr>

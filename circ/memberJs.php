@@ -413,22 +413,34 @@ var mf = {
 				for (var nCpy in mf.cpys) {
 					var cpy = mf.cpys[nCpy],
 						outDate = new Date(cpy.out_dt),
-						dueDate = new Date(cpy.due_dt),
-						//loanAllotment = new Date(cpy.due_dt),
-						loanPeriod = Math.round((dueDate - outDate) / (1000 * 60 * 60 * 24)) + loanAllotment,
-						
-						//console.log('loan: ', loanPeriodRemain);
-						daysLate = Math.max(0, cpy.daysLate - loanPeriod),
-						//loadPeriodRemain = Math.abs(cpy.daysLate - loanPeriod),
+						dueDate = new Date(cpy.due_dt);
+
+					// Adjust dueDate if it falls on weekend
+					let day = dueDate.getDay(); // 0 = Sunday, 6 = Saturday
+					if (day === 6) {
+						dueDate.setDate(dueDate.getDate() + 2); // Saturday → Monday
+					} else if (day === 0) {
+						dueDate.setDate(dueDate.getDate() + 1); // Sunday → Monday
+					}
+
+					// Add loan allotment if needed (assume it's a number)
+					let loanPeriod = Math.round((dueDate - outDate) / (1000 * 60 * 60 * 24)) + loanAllotment;
+
+					let daysLate = Math.max(0, cpy.daysLate - loanPeriod),
 						lateFee = ((cpy.lateFee === null) ? '0' : (cpy.lateFee).toLocaleString()),
 						owed = (daysLate * cpy.lateFee).toFixed(2);
-					
+
+					// Format dueDate as 'Fri Jan 17 2025'
+					let dueDateFormatted = dueDate.toLocaleDateString('en-US', {
+						weekday: 'short', year: 'numeric', month: 'short', day: '2-digit'
+					});
+
 					html += '<tr>';
 					html += '	<td style="text-align: center;" >' + cpy.out_dt + '</td>';
 					html += '	<td style="text-align: center;" >' + cpy.media + '	</td>\n';
 					html += '	<td style="text-align: center;" >' + cpy.barcode + '</td>';
 					html += '	<td style="text-align: center;" ><a href="#" id="' + cpy.bibid + '">' + shortenTitle(cpy.title, 75) + '</a></td>';
-					html += '	<td style="text-align: center;" >' + loanPeriod + '</td>';
+					html += '	<td style="text-align: center;" >' + dueDateFormatted + '</td>';
 					html += '	<td style="text-align: center;" class="number"><b>' + daysLate + '@' + lateFee + '</b></td>';
 					html += '	<td style="text-align: center;" class="number">' + owed + '</td>';
 					html += '</tr>\n';
