@@ -381,14 +381,16 @@ var mf = {
 			$('#mbrSite').val(response.name);
 		}, 'json');
 	},
+	
 	doGetCheckOuts: function () {
 		$('#msgDiv').hide();
 		$('#userMsg').html('');
 		var ttlOwed = 0.00,
 			mbrType = mf.typeInfo.description,
+			loanAllotment = mf.typeInfo.loan_allotment,
 			maxFines = mf.typeInfo.max_fines,
 	  		params = 'mode=getChkOuts&mbrid='+mf.mbrid;
-				console.log('Member type: ', typeof(mbrType));
+				//console.log('Member type: ', typeof(mbrType));
 	    $.post(mf.url,params, function(jsonInpt){
 			if (jsonInpt.substr(0,1) == '<') {
 				$('#userMsg').html(jsonInpt);
@@ -410,8 +412,12 @@ var mf = {
 					var cpy = mf.cpys[nCpy],
 						outDate = new Date(cpy.out_dt),
 						dueDate = new Date(cpy.due_dt),
-						loanPeriod = Math.round((dueDate - outDate) / (1000 * 60 * 60 * 24)),
+						//loanAllotment = new Date(cpy.due_dt),
+						loanPeriod = Math.round((dueDate - outDate) / (1000 * 60 * 60 * 24)) + loanAllotment,
+						
+						//console.log('loan: ', loanPeriodRemain);
 						daysLate = Math.max(0, cpy.daysLate - loanPeriod),
+						//loadPeriodRemain = Math.abs(cpy.daysLate - loanPeriod),
 						lateFee = ((cpy.lateFee === null) ? '0' : (cpy.lateFee).toLocaleString()),
 						owed = (daysLate * cpy.lateFee).toFixed(2);
 					
@@ -443,6 +449,7 @@ var mf = {
 				$('#maxFine').html((Number(maxFines).toFixed(2)).toLocaleString());
 				$('#ttlOwed').html((Number(ttlOwed).toFixed(2)).toLocaleString());
 				$('#newmemberType').val(mbrType);
+				$('#loan_Allotment').val(loanAllotment);
 
 				$('#chkOutList a').on('click',null,function (e) {
 					e.preventDefault(); e.stopPropagation();

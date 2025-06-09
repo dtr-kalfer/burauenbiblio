@@ -111,7 +111,7 @@
 				<th class="center"><?php echo T("Media");?></th>
 				<th class="center"><?php echo T("Barcode");?></th>
 				<th class="center"><?php echo T("Title");?></th>
-				<th class="center"><?php echo T("Loan Period");?></th>
+				<th class="center"><?php echo T("Total Loan Period");?></th>
 				<th class="center"><?php echo T("Days Late");?></th>
 				<th class="center"><?php echo T("AmountOwed");?></th>
 			</tr>
