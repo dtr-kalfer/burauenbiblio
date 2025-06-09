@@ -128,13 +128,6 @@
 <!-- -->
 
 	<br>
-	<p>
-		<b>Note:</b> The <b>Days Late</b> value is calculated based on actual <b>Library Working Days</b> only.
-		Weekends and holidays (when the library is closed) <br> are excluded from the count.
-		Additionally, the <b>Loan Period</b> — the number of days between the checkout date and  
-		the due date — is also <br> excluded from the <b>Days Late</b> calculation.<br>
-		Please ensure that the <b>Calendar Manager</b> is properly configured in advance.
-		</p>
 	<hr>
 
 	<!-- -->
@@ -327,6 +320,17 @@
 </div>
 
 <!-- ------------------------------------------------------------------------ -->
+
+<div id="helpDiv">
+	<p>
+	<b>'Days Late'</b> is calculated based on actual <b>Library Working Days</b>. Please ensure that the <b>'Calendar Manager'</b> is properly set by crossing out weekends and holidays. (See <b>'Calendar Menu'</b>)<br/>
+	<b>'Total Loan Period'</b> = <b>'Default Collection Loan'</b> + <b>'Loan Allotment'</b>. This is number of days a borrower can keep an item without being fined.<br/>
+	<b>'Default Collection Loan'</b>: The standard loan period defined by material type or collection (See <b>'Collections'</b> Menu).<br/>
+	<b>'Loan Allotment'</b>: The number of extra loan days granted based on the member type. (See <b>'Member Types'</b> Menu).	<br/>
+	<b>'@Rate'</b>: ₱/$ per day penalty. (See <b>'Collections'</b> Menu)
+	</p>
+</div>
+
 <?php
   require_once(REL(__FILE__,'../shared/footer.php'));
 	
