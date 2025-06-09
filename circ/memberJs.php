@@ -133,6 +133,7 @@ var mf = {
 	  $('#mbrDiv').hide();
 	  $('#listDiv').show();
 		$('#msgDiv').hide();
+		$('#ttlOwed').html('0');
 	},
 	rtnToMbr: function () {
 	  $('#rsltMsg').html('');
