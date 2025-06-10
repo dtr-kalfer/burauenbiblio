@@ -373,7 +373,14 @@ var mf = {
 	},
 
 	//------------------------------
+	//----------- add var definition for the new fields memberType and loan_Allotment --F.Tumulak
 	showOneMbr: function (mbr) {
+			var 
+				mbrType = mf.typeInfo.description,
+				loanAllotment = mf.typeInfo.loan_allotment;
+				$('#newmemberType').val(mbrType);
+				$('#loan_Allotment').val(loanAllotment);
+		
 		$('#mbrName').val(mbr.last_name+', '+mbr.first_name);
 		$('#mbrSite').val("...");
 		$('#mbrCardNo').val(mbr.barcode_nmbr);
