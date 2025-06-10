@@ -629,13 +629,23 @@ var mf = {
 
 		var barcd = $.trim($('#ckoutBarcd').val());
 		if (barcd == '') {
-      		mf.showMsg('Please enter a number');
+			mf.showMsg('Please enter a number');
 			return false;
 		}
-		barcd = flos.pad(barcd,mf.opts.item_barcode_width,'0');
+		barcd = flos.pad(barcd, mf.opts.item_barcode_width, '0');
 		$('#ckoutBarcd').val(barcd); // redisplay expanded value
 
-		var parms = {'mode':'doCheckout', 'mbrid':mf.mbr.mbrid, 'barcodeNmbr':barcd, 'calCd':mf.calCd };
+		// ✅ GET the loan allotment value
+		var loanAllotment = parseInt($('#loan_Allotment').val()) || 0;
+
+		var parms = {
+			'mode': 'doCheckout',
+			'mbrid': mf.mbr.mbrid,
+			'barcodeNmbr': barcd,
+			'calCd': mf.calCd,
+			'loan_Allotment': loanAllotment // ✅ ADD it to the request
+		};
+
 		$.post(mf.url, parms, function(response) {
 			if (response == '') {
 				mf.showMsg('Checkout Completed!');
@@ -645,8 +655,10 @@ var mf = {
 				mf.showMsg(response);
 			}
 		});
+
 		return false;
 	},
+
 
 	//------------------------------
 	doHold: function () {
