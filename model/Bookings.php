@@ -494,7 +494,7 @@ class Bookings extends CoreTable {
 		return array();
 	}
 
-	function quickCheckout_e($barcode, $mbrids, $calCd = 1) { // switch place calCd vs mbrid, deprecation comply v8.0 --F.Tumulak
+	function quickCheckout_e($barcode, $mbrids, $calCd = 1, $loanAllotment = 0) { // switch place calCd vs mbrid, deprecation comply v8.0 --F.Tumulak, added loan_Allotment
  		$this->lock();
 		$copies = new Copies;
 		$copy = $copies->getByBarcode($barcode);
@@ -540,7 +540,11 @@ class Bookings extends CoreTable {
 
 		$collections = new Collections;
 		$coll = $collections->getByBibid($bibid);
-		$loanDuration = $coll['days_due_back'];
+		//$loanDuration = $coll['days_due_back'];
+		
+		//$loanDuration = $coll['days_due_back'] + $loanAllotment;
+		$loanDuration = max($coll['days_due_back'], $loanAllotment);
+		
 		if ($loanDuration <= 0) {
 			$this->unlock();
 			return new Error(T("modelBookingsNotAvailable", array("barcode"=>$barcode)));
@@ -615,6 +619,7 @@ class Bookings extends CoreTable {
 		$this->unlock();
 		return NULL;
 	}
+	
 	function removeMember($bookingid, $mbrid) {
 		$this->lock();
 		$b = $this->getOne($bookingid);
