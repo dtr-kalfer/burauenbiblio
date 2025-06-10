@@ -394,6 +394,7 @@ var mf = {
 	doGetCheckOuts: function () {
 		$('#msgDiv').hide();
 		$('#userMsg').html('');
+		
 		var ttlOwed = 0.00,
 			mbrType = mf.typeInfo.description,
 			loanAllotment = mf.typeInfo.loan_allotment,
@@ -422,7 +423,7 @@ var mf = {
 						outDate = new Date(cpy.out_dt),
 						dueDate = new Date(cpy.due_dt);
 
-					// Adjust dueDate if it falls on weekend
+					// Adjust dueDate if it falls on weekend, this still needs some improving but one step at a time --F.Tumulak 
 					let day = dueDate.getDay(); // 0 = Sunday, 6 = Saturday
 					if (day === 6) {
 						dueDate.setDate(dueDate.getDate() + 2); // Saturday → Monday
@@ -431,7 +432,7 @@ var mf = {
 					}
 
 					// Add loan allotment if needed (assume it's a number)
-					let loanPeriod = Math.round((dueDate - outDate) / (1000 * 60 * 60 * 24)) + loanAllotment;
+					let loanPeriod = Math.round((dueDate - outDate) / (1000 * 60 * 60 * 24));
 
 					let daysLate = Math.max(0, cpy.daysLate - loanPeriod),
 						lateFee = ((cpy.lateFee === null) ? '0' : (cpy.lateFee).toLocaleString()),
@@ -441,9 +442,13 @@ var mf = {
 					let dueDateFormatted = dueDate.toLocaleDateString('en-US', {
 						weekday: 'short', year: 'numeric', month: 'short', day: '2-digit'
 					});
+					
+					let dateOutFormatted = outDate.toLocaleDateString('en-US', {
+						weekday: 'short', year: 'numeric', month: 'short', day: '2-digit'
+					});
 
 					html += '<tr>';
-					html += '	<td style="text-align: center;" >' + cpy.out_dt + '</td>';
+					html += '	<td style="text-align: center;" >' + dateOutFormatted + '</td>';
 					html += '	<td style="text-align: center;" >' + cpy.media + '	</td>\n';
 					html += '	<td style="text-align: center;" >' + cpy.barcode + '</td>';
 					html += '	<td style="text-align: center;" ><a href="#" id="' + cpy.bibid + '">' + shortenTitle(cpy.title, 75) + '</a></td>';
