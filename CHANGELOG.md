@@ -11,7 +11,7 @@ Guide:
 
 ## [unreleased] - xxxx-xx-xx
 ### Added
-- Number of days overdue, using Calendar Manager logic include only library days which are open.
+- Number of days overdue, adjusted automatically to move forward in case it falls on weekends.
 - Added a overdue menu, to estimate overdue dates based on Calendar Manager.
 - Added a loan allotment, under member types for new feature.
 

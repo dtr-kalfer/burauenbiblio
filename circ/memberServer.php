@@ -251,33 +251,40 @@
 			}
 	  		echo json_encode($chkOutList);
 			break;
+		//// ====================================////
 		case 'doCheckout':
 			$errors = '';
+
+			// Pad barcode
 			if (strlen($_POST["barcodeNmbr"]) < $_SESSION['item_barcode_width']) {
-				//echo "barcode = ".$_POST["barcodeNmbr"]." <br />\n";
-				$_POST["barcodeNmbr"] = str_pad($_POST["barcodeNmbr"],$_SESSION['item_barcode_width'],'0',STR_PAD_LEFT);
+				$_POST["barcodeNmbr"] = str_pad($_POST["barcodeNmbr"], $_SESSION['item_barcode_width'], '0', STR_PAD_LEFT);
 			}
-			$err = $bookings->quickCheckout_e($_POST["barcodeNmbr"], array($_POST["mbrid"]), $_POST['calCd']); // switch place calCd vs mbrid, deprecation comply v8.0 --F.Tumulak
-            if ($err) {
-				if(is_array($err)){
-					$errors = ""; $nErr = 0;
-					foreach($err as $error)	{
+
+			// ✅ Add loan_Allotment fallback
+			$loanAllotment = isset($_POST['loan_Allotment']) ? intval($_POST['loan_Allotment']) : 0;
+
+			// ✅ Pass $loanAllotment to quickCheckout_e
+			$err = $bookings->quickCheckout_e($_POST["barcodeNmbr"], array($_POST["mbrid"]), $_POST['calCd'], $loanAllotment);
+
+			// handle errors
+			if ($err) {
+				if (is_array($err)) {
+					$errors = "";
+					$nErr = 0;
+					foreach ($err as $error) {
 						if ($nErr > 0) $errors .= '<br />';
 						$errors .= $error->toStr();
 						$nErr++;
 					}
 				} elseif (is_object($err)) {
-					if(method_exists ($err,"toStr")) {
-                        $errors = $err->toStr();
-                    } else {
-                        $errors = $err->getMessage();
-                    }
+					$errors = method_exists($err, "toStr") ? $err->toStr() : $err->getMessage();
 				} else {
 					$errors = $err;
 				}
 			}
 			echo $errors;
 			break;
+
 
 	//// ====================================////
 	case 'getHist':
