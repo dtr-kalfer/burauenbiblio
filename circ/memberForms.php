@@ -325,12 +325,13 @@
 <!-- ------------------------------------------------------------------------ -->
 
 <div id="helpDiv">
+	<br>
 	<p>
-	<b>'Days Late'</b> is calculated based on actual <b>Library Working Days</b>. Please ensure that the <b>'Calendar Manager'</b> is properly set by crossing out weekends and holidays. (See <b>'Calendar Menu'</b>)<br/>
-	<b>'Total Loan Period'</b> = <b>'Default Collection Loan'</b> + <b>'Loan Allotment'</b>. This is number of days a borrower can keep an item without being fined.<br/>
-	<b>'Default Collection Loan'</b>: The standard loan period defined by material type or collection (See <b>'Collections'</b> Menu).<br/>
-	<b>'Loan Allotment'</b>: The number of extra loan days granted based on the member type. (See <b>'Member Types'</b> Menu).	<br/>
-	<b>'@Rate'</b>: ₱/$ per day penalty. (See <b>'Collections'</b> Menu)
+		<b>Due Date</b> is calculated based on the <b>Default Collection Loan</b> OR <b>Loan Allotment</b>. System chose whichever is greater.<br>
+		Minimum due date is set to +1 day on checkout date.
+		<b>Default Collection Loan</b>: The loan period (in days) defined by material type or collection (See <b>Collections</b> Menu).<br>
+		<b>Loan Allotment</b>: The loan period granted (in days) based on the member type ex. Faculty or Student (See <b>Member Types</b> Menu). <br>
+		<b>Note</b>: If a due date falls into weekends such as <b>Saturday or Sunday</b>, it will be moved into <b>Monday</b>. <br>
 	</p>
 </div>
 
