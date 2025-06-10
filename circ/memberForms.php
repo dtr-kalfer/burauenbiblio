@@ -328,7 +328,7 @@
 	<br>
 	<p>
 		<b>Due Date</b> is calculated based on the <b>Default Collection Loan</b> OR <b>Loan Allotment</b>. System chose whichever is greater.<br>
-		Minimum due date is set to +1 day on checkout date.
+		Minimum due date is set to +1 day on checkout date (Borrowed item is supposedly returned next day).
 		<b>Default Collection Loan</b>: The loan period (in days) defined by material type or collection (See <b>Collections</b> Menu).<br>
 		<b>Loan Allotment</b>: The loan period granted (in days) based on the member type ex. Faculty or Student (See <b>Member Types</b> Menu). <br>
 		<b>Note</b>: If a due date falls into weekends such as <b>Saturday or Sunday</b>, it will be moved into <b>Monday</b>. <br>

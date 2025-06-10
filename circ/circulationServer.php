@@ -70,6 +70,7 @@
 		break;
 */
 	case "doItemCheckin":
+		$acct = $acct ?? '';
 		$cpy = new Copy($_POST['barcodeNmbr'], True);
 		$copy = $cpy->getData();
 		if (!$copy) { echo $badBarcodeText; exit; }
