@@ -14,12 +14,15 @@ Guide:
 - Number of days overdue, adjusted automatically to move forward in case it falls on weekends.
 - Added a overdue menu, to estimate overdue dates based on Calendar Manager.
 - Added a loan allotment, under member types for new feature.
+- Loan allotment can be changed dynamically. (Experimental).
 
 ### Changed
+- overdue menu changed function into overdue items instead.
 - .sql file is updated, mbr_classify_dm increase max_fines value to 9999.99.
 - .sql file is updated, mbr_classify_dm ADD loan_allotment, for a new feature.
 
 ### Fixed
+- overdue menu gives out correct list of overdue items/patrons, tested on actual overdue records.
 - 'Late rate fee' for overdue books working.
 - 'Max fines' now work and halt borrow if fines are exceeded, depends on member type.
 
