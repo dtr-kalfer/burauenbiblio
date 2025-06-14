@@ -41,7 +41,7 @@
 	} else {
 		$errs = $rpt->initCgi_el();
 		if (!empty($errs)) {
-			FieldError::backToForm('../circ/overdue.php', $errs);
+			FieldError::backToForm('../reports/report_criteria.php', $errs);
 		}
 	}
 	if (isset($_REQUEST['page'])) {
@@ -66,7 +66,7 @@
 
 	Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 ?>
-<h3><?php echo T("Overdue Calc. (Library work days only)"); ?></h3>
+<h3><?php echo T("Report Results"); ?></h3>
 <?php
 	if (isset($_REQUEST["msg"]) && !empty($_REQUEST["msg"])) {
 		echo '<p class="error">'.H($_REQUEST["msg"]).'</p><br /><br />';
@@ -78,9 +78,9 @@
 	}
 
 	$p = array('type'=>'previous', 'tab'=>$tab, 'nav'=>$nav);
-	$page_url = new LinkUrl("../circ/overdue.php",
+	$page_url = new LinkUrl("../reports/run_report.php",
 		'page', $p);
-	$sort_url = new LinkUrl("../circ/overdue.php",
+	$sort_url = new LinkUrl("../reports/run_report.php",
 		'rpt_order_by', $p);
 	$disp = new ReportDisplay($rpt);
 	echo '<div class="results_count">';
@@ -117,11 +117,3 @@
 	echo $disp->pages($page_url, $page);
 ?>
 </fieldset>
-<br/>
-<p>
-Note: Be sure to register all holidays, <br>
-school events and weekends on the <br>
-Calendar Menu correctly.<br>
-</p>
-<br/>
-<div style="text-align: center; display: block;"><a href="../circ/overdue.php?type=compute_penalty" >Back to Overdue check.</a></div>
