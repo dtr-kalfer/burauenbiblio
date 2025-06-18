@@ -26,7 +26,7 @@
         return $set;
 	}
 	
-	switch ($_POST['mode']) {
+	switch ($_POST['mode'] ?? '') {
     //-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-//
 	case 'getAudienceList':
 		require_once(REL(__FILE__, "../model/Biblios.php"));
