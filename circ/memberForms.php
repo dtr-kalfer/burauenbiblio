@@ -88,7 +88,7 @@
 		<label for="newmemberType"><?php echo T("Member Type");?>:</label>
 		<input type="text" readonly id="newmemberType" />
 		<label for="loan_Allotment"><?php echo T("Loan Allotment");?>:</label>
-		<input type="text" id="loan_Allotment" size="3"/>	
+		<input type="text" id="loan_Allotment" size="3" oninput="this.value = this.value.replace(/\D/g, '').slice(0, 3)" pattern="\d*" />
 	</fieldset>
 <!-- -->
 	<br>
