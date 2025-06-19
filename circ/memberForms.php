@@ -94,7 +94,9 @@
 	<br>
 	<hr>
 	<fieldset id="newLoans">
-		<legend for="ckoutBarcd"><?php echo T("Check Out");?></legend>
+		<legend for="ckoutBarcd"><?php echo T("Check Out"); ?></legend>
+		<p style="text-align: center; ">Date Today:  <?php echo date("M j, Y"); ?></p><br>
+		
 		<label><?php echo T("Barcode Number");?>:</label>
 		<input type="number" id="ckoutBarcd" size="20" min="1" />
 		<input type="button" value="<?php echo T("Check Out");?>" id="chkOutBtn" />
@@ -329,9 +331,9 @@
 	<p>
 		<b>Due Date</b> is calculated based on the <b>Default Collection Loan</b> OR <b>Loan Allotment</b>. System chose whichever is greater.<br>
 		Minimum due date is set to +1 day on checkout date (Borrowed item is supposedly returned next day).
-		<b>Default Collection Loan</b>: The loan period (in days) defined by material type or collection (See <b>Collections</b> Menu).<br>
+		<b>Default Collection Loan</b>: The loan period (in days) <br>defined by material type or collection (See <b>Collections</b> Menu).<br>
 		<b>Loan Allotment</b>: The loan period granted (in days) based on the member type ex. Faculty or Student (See <b>Member Types</b> Menu). <br>
-		<b>Note</b>: If a due date falls into weekends such as <b>Saturday or Sunday</b>, it will be moved into <b>Monday</b>. <br>
+		<b>Note</b>: Due date strictly follows the Calendar Menu, yellow means library is closed. If due date falls on closed date, it will move on the next closest 'open' date.<br>
 	</p>
 </div>
 
