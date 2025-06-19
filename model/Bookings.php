@@ -69,6 +69,53 @@ class Bookings extends CoreTable {
 		$result = $this->select01($sql); // expects 1 row
 		return $result['openDays'];
 	}
+	
+	//------------------- improved getDaysLate2 -------------------
+	function getDaysLate2($new_due_date) { 
+		list($now, $err) = Date::read_e('now');
+		if ($err) {
+			Fatal::internalError(T("Unexpected date error: ") . $err->toStr());
+		}
+
+		
+		$calendarId = 1; // or pull this from $booking if variable
+
+		$sql = $this->mkSQL(
+			'SELECT COUNT(*) AS openDays FROM calendar 
+			 WHERE calendar = %N 
+				 AND date BETWEEN %Q AND %Q 
+				 ',
+			$calendarId, $new_due_date, $now
+		);
+
+		$result = $this->select01($sql); // expects 1 row
+		return $result['openDays'];
+	}	
+
+
+//----------------------------- new function ---------------
+public function getNewDueDate($oldDueDate, $calendarId = 1) {
+	// Query next open date after old due date
+	$sql = $this->mkSQL(
+		'SELECT date
+		 FROM calendar
+		 WHERE calendar = %N
+		   AND date >= %Q
+		   AND open = "Yes"
+		 ORDER BY date ASC
+		 LIMIT 1',
+		$calendarId,
+		$oldDueDate
+	);
+
+	$result = $this->select01($sql); // select01 returns a single row
+	if ($result && !empty($result['date'])) {
+		return $result['date'];
+	}
+
+	// If no open date is found, return original date as fallback
+	return $oldDueDate;
+}
 
 
 	/**
@@ -494,7 +541,7 @@ class Bookings extends CoreTable {
 		return array();
 	}
 
-	function quickCheckout_e($barcode, $mbrids, $calCd = 1, $loanAllotment = 0) { // switch place calCd vs mbrid, deprecation comply v8.0 --F.Tumulak, added loan_Allotment
+	function quickCheckout_e($barcode, $mbrids, $calCd = 1, $loanAllotment = 0) { // switch place calCd vs mbrid, deprecation comply v8.0 --F.Tumulak
  		$this->lock();
 		$copies = new Copies;
 		$copy = $copies->getByBarcode($barcode);
@@ -619,7 +666,6 @@ class Bookings extends CoreTable {
 		$this->unlock();
 		return NULL;
 	}
-	
 	function removeMember($bookingid, $mbrid) {
 		$this->lock();
 		$b = $this->getOne($bookingid);
@@ -663,3 +709,4 @@ class BookingsIter extends Iter {
 		return $this->rows->count();
 	}
 }
+
