@@ -22,6 +22,7 @@
 	<div id="listDiv">
 		<fieldset>
 		<legend id=listLegend>Select a Calendar</legend>
+		<p style="text-align: center;" ><?php echo "Current Date: " . date("m-d-Y"); ?></p>
 			<ul id="calList">
 				<li>Filled by server</li>
 			</ul>
