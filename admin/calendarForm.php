@@ -22,7 +22,6 @@
 	<div id="listDiv">
 		<fieldset>
 		<legend id=listLegend>Select a Calendar</legend>
-		<p style="text-align: center;" ><?php echo "Current Date: " . date("m-d-Y"); ?></p>
 			<ul id="calList">
 				<li>Filled by server</li>
 			</ul>
@@ -33,7 +32,7 @@
 <!-- ------------------------------------------------------------------------ -->
 	<div id="editDiv">
 		<h3><?php echo T("Edit Calendar"); ?></h3>
-
+		<p style="text-align: center;" ><?php echo "Current Date: " . date("m-d-Y"); ?></p>
 		<p class="note"><?php echo T("calendarEditFormMsg");?></p>
 		<form role="form" id="editForm" name="editForm">
 			<fieldset>
