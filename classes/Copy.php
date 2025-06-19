@@ -161,14 +161,16 @@ if (is_array($rslt)) {
 
 
 
-
 			$ptr = new Bookings;
 			$this->book = $ptr;
 			$rslt = $ptr->getByHistid($this->hdrFlds['histid']);
             $this->hdrFlds['bookingid'] = $rslt['bookingid'];
             $this->hdrFlds['out_dt'] = explode(' ', $rslt['out_dt'])[0];
-            $this->hdrFlds['due_dt'] = $rslt['due_dt'];
-            $this->hdrFlds['daysLate'] = $ptr->getDaysLate($rslt);
+            
+						$new_date_01 = $ptr->getNewDueDate($rslt['due_dt']);
+						$this->hdrFlds['due_dt'] = $new_date_01;
+						//$this->hdrFlds['due_dt'] = $rslt['due_dt'];
+            $this->hdrFlds['daysLate'] = $ptr->getDaysLate2($new_date_01);
 		}
 	}
 }
