@@ -424,12 +424,12 @@ var mf = {
 						dueDate = new Date(cpy.due_dt);
 
 					// Adjust dueDate if it falls on weekend, this still needs some improving but one step at a time --F.Tumulak 
-					let day = dueDate.getDay(); // 0 = Sunday, 6 = Saturday
-					if (day === 6) {
-						dueDate.setDate(dueDate.getDate() + 2); // Saturday → Monday
-					} else if (day === 0) {
-						dueDate.setDate(dueDate.getDate() + 1); // Sunday → Monday
-					}
+					// let day = dueDate.getDay(); // 0 = Sunday, 6 = Saturday
+					// if (day === 6) {
+						// dueDate.setDate(dueDate.getDate() + 2); // Saturday → Monday
+					// } else if (day === 0) {
+						// dueDate.setDate(dueDate.getDate() + 1); // Sunday → Monday
+					// }
 
 					// Add loan allotment if needed (assume it's a number)
 					let loanPeriod = Math.round((dueDate - outDate) / (1000 * 60 * 60 * 24));
