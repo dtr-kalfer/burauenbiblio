@@ -95,7 +95,7 @@
 	<hr>
 	<fieldset id="newLoans">
 		<legend for="ckoutBarcd"><?php echo T("Check Out"); ?></legend>
-		<p style="text-align: center; ">Date Today:  <?php echo date("M j, Y"); ?></p><br>
+		<p style="text-align: center; ">Date Today:  <?php echo date("D, M j, Y"); ?></p><br>
 		
 		<label><?php echo T("Barcode Number");?>:</label>
 		<input type="number" id="ckoutBarcd" size="20" min="1" />

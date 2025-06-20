@@ -9,6 +9,14 @@ Guide:
 - version 3.x.x above PHP 8.0.xx supported
 - version 2.x.x below PHP 7.4.26 supported
 
+## [unreleased] - xxxx-mm-dd
+### Added 
+-  
+### Changed
+- Improved date on checkouts.
+### Fixed
+-
+
 ## [3.2.0] - 2025-06-20
 ### Added
 - Correct overdue date based on calendar menu, which accurately considers holidays and weekends (as set on the Calendar),
