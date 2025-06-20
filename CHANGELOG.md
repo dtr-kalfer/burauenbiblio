@@ -9,15 +9,16 @@ Guide:
 - version 3.x.x above PHP 8.0.xx supported
 - version 2.x.x below PHP 7.4.26 supported
 
-## [unreleased] - xxxx-xx-xx
+## [3.2.0] - 2025-06-20
 ### Added
-- Correct overdue date based on calendar menu, which accurately considers holidays and weekends,
-- Added a loan allotment, under member types for new feature.
+- Correct overdue date based on calendar menu, which accurately considers holidays and weekends (as set on the Calendar),
+- Added a loan allotment, under member types.
 - Loan allotment can be changed dynamically.
 - Added to show current date on checkout and welcome page after successful login.
 
 ### Changed
-- overdue menu changed function into overdue items instead.
+- Reduce clutter on bookings menu list.
+- overdue menu shows a list of overdue items.
 - .sql file is updated, mbr_classify_dm increase max_fines value to 9999.99.
 - .sql file is updated, mbr_classify_dm ADD loan_allotment, for a new feature.
 
