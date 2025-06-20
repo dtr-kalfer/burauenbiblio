@@ -71,7 +71,7 @@
 <div id="mbrDiv">
 	<input type="button" class="gobkMbrBtn" value="<?php echo T("Go Back"); ?>" />
 	<fieldset id="identity">
-		<legend><?php echo T("Member Information");?></legend>
+		<legend align="center" ><?php echo T("Member Information");?></legend>
 		<label for="mbrName"><?php echo T("Name");?>:</label>
 		<input type="text" readonly="readonly" id="mbrName" />
 		<input type="button" value="<?php echo T("Details");?>" id="mbrDetlBtn" />
@@ -93,8 +93,8 @@
 <!-- -->
 	<br>
 	<hr>
-	<fieldset id="newLoans">
-		<legend for="ckoutBarcd"><?php echo T("Check Out"); ?></legend>
+	<fieldset id="newLoans" >
+		<legend align="center" for="ckoutBarcd" ><?php echo T("Check Out"); ?></legend>
 		<p style="text-align: center; ">Date Today:  <?php echo date("D, M j, Y"); ?></p><br>
 		
 		<label><?php echo T("Barcode Number");?>:</label>
@@ -104,8 +104,8 @@
 	</fieldset>
 <!-- -->
 	
-	<fieldset id="onLoan">
-		<legend><?php echo T("Items Currently Checked Out");?></legend>
+	<fieldset id="onLoan" >
+		<legend align="center" ><?php echo T("Items Currently Checked Out");?></legend>
 		<table id="chkOutList">
 			<thead>
 			<tr>
@@ -139,7 +139,7 @@
 	<br>
 	
 	<fieldset id="newHolds">
-		<legend><?php echo T("Place a booking");?></legend>
+		<legend align="center" ><?php echo T("Place a booking");?></legend>
 			<label for="holdBarcd"><?php echo T("Barcode Number");?></label>
 			<input type="number" id="holdBarcd" size="20" />
 			<!--a href="javascript:popSecondaryLarge('../opac/index.php?lookup=Y')"Search</a-->
@@ -149,7 +149,7 @@
 	</fieldset>
 <!-- -->
 	<fieldset id="onHold">
-		<legend><?php echo T("Booking/s requested by this member");?></legend>
+		<legend align="center" ><?php echo T("Booking/s requested by this member");?></legend>
 		<table id="holdList">
 		<thead>
 			<tr>
