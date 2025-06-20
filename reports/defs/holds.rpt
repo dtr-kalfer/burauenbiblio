@@ -8,7 +8,7 @@
 .column title func=biblio_link title=Title sort=title
 .column member func=member_link title=Member sort=member
 .column hold_begin_dt hidden
-.column hold_begin title="Start Date" sort=hold_begin_dt
+
 .column status_cd hidden
 .column status title="Copy Status" sort=status_cd
 .column due_dt hidden
@@ -19,7 +19,7 @@
 .		item barcode_nmbr title="Barcode" expr='bc.barcode_nmbr'
 .		item title title="Title" expr='ts.subfield_data' type=MARC skip_indicator="tf.ind2_cd"
 .		item member title="Member" expr='concat(m.last_name, m.first_name)'
-.		item hold_begin_dt title="Start Date"
+
 .		item status_cd title="Copy Status"
 .	end order_by
 .end parameters
