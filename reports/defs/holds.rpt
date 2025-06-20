@@ -12,7 +12,6 @@
 .column status_cd hidden
 .column status title="Copy Status" sort=status_cd
 .column due_dt hidden
-.column due title="Due Date" sort=due_dt
 .parameters
 .	string bibid
 .	string mbrid
@@ -22,7 +21,6 @@
 .		item member title="Member" expr='concat(m.last_name, m.first_name)'
 .		item hold_begin_dt title="Start Date"
 .		item status_cd title="Copy Status"
-.		item due_dt  title="Due Date"
 .	end order_by
 .end parameters
 
