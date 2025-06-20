@@ -14,7 +14,7 @@ Guide:
 - Correct overdue date based on calendar menu, which accurately considers holidays and weekends (as set on the Calendar),
 - Added a loan allotment, under member types.
 - Loan allotment can be changed dynamically.
-- Added to show current date on checkout and welcome page after successful login.
+- Current dates show on member checkout and welcome after staff successful login.
 
 ### Changed
 - Reduce clutter on bookings menu list.
