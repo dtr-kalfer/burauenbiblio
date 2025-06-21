@@ -302,7 +302,7 @@ xul.pagBtns li:last-child { float:right; color:green; }   /* should this be remo
 ul#calList { float:left; margin:0; padding:0; width:100%; }
 ul#calList li { display:block; list-style:none; margin:0; padding:0; }
 .calendarClosed {
-	background:url('../../images/Ximage.jpg') center center no-repeat;
+	background:url('cross_out.webp') center center no-repeat;
 	background-size:auto;
 	}
 
