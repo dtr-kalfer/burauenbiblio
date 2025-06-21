@@ -13,9 +13,9 @@ Guide:
 ### Added 
 -  
 ### Changed
-- Improved date on checkouts.
+- Improved show date on checkouts menu.
 ### Fixed
--
+- Show 'cross_out.webp' on the closed calendar days in Calendar Menu.
 
 ## [3.2.0] - 2025-06-20
 ### Added

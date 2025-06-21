@@ -14,7 +14,7 @@ It is named in honor of my hometown in Leyte, **Burauen**.
 
 📌 See [CHANGELOG.md](./CHANGELOG.md) for version history.
 
-![Homepage](./readme_assets/opac_system2.webp "OpenBiblio Homepage")
+![Homepage](./readme_assets/opac_system2.webp "BurauenBiblio Homepage")
 
 This repository includes a small set of sample bibliographic records (books) and fictional member accounts as part of the included SQL data.
 These are provided solely for the purpose of demonstrating and testing the functionality of the OpenBiblio system.
@@ -25,13 +25,23 @@ The member records are entirely fictitious and do not represent real individuals
 
 ## ✅ PHP 8.0 Migration Notes
 
-![Homepage](./readme_assets/actual_use_case_2.webp "OpenBiblio Homepage")
+![Homepage](./readme_assets/actual_use_case_2.webp "BurauenBiblio Homepage")
 
 The **BurauenBiblio** system is currently in active use, handling bibliographic search requests from both students and faculty. It manages a collection of nearly **5,000 bibliographic records**. Migrating the application from PHP 5.7 to PHP 8.0 has resulted in notable performance gains, particularly in search responsiveness and overall system speed—all while running on the same **legacy hardware**.
 
+### 🙌 Calendar Manager.
+
+![Homepage](./readme_assets/sample_calendar_image.webp "BurauenBiblio Homepage")
+
+The system uses Calendar Logic to accurately calculate due dates based on your library’s open and closed days.
+
+### 🙌 Set limit on overdue charges.
+
+Member types can be configured with overdue charge settings. When a patron exceeds the overdue limit, they are restricted from making additional borrowings until the balance is settled.
+
 ***This upgrade is part of my ongoing personal initiative to modernize the OpenBiblio codebase while maintaining backward compatibility**. The project is now in its final stages, focusing on critical bug fixes, user interface enhancements, new and improved features, and full support for PHP 8.0. Further improvements—especially in UI/UX—are being developed, with planned integrations using more modern programming approaches and frontend technologies.*
 
-![Homepage](./readme_assets/actual_use_case.webp "OpenBiblio Homepage")
+![Homepage](./readme_assets/actual_use_case.webp "BurauenBiblio Homepage")
 
 ### 🙌 Project Direction
 
