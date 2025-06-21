@@ -27,7 +27,7 @@ The member records are entirely fictitious and do not represent real individuals
 
 ![Homepage](./readme_assets/actual_use_case_2.webp "BurauenBiblio Homepage")
 
-The **BurauenBiblio** system is currently in active use at Burauen Community College, handling bibliographic search requests from both students and faculty. It manages a collection of nearly **5,000 bibliographic records**. PHP 8.0 is significantly faster than PHP 5.7, with gains ranging from roughly 2x to 4x faster depending on the specific benchmark and workload, particularly in search responsiveness and overall system speed—all while running on the same **legacy hardware**.
+The **BurauenBiblio system** is actively used at **Burauen Community College**, serving bibliographic search requests from both students and faculty. It currently manages a collection of nearly **5,000 bibliographic records**. The system now runs on **PHP 8.0**, offering substantial performance improvements over PHP 5.7—with speeds up to **2x to 4x faster**, depending on the workload and benchmark—all while continuing to operate on the same **legacy hardware**.
 
 ### 🙌 Calendar Manager
 
