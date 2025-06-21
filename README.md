@@ -27,7 +27,7 @@ The member records are entirely fictitious and do not represent real individuals
 
 ![Homepage](./readme_assets/actual_use_case_2.webp "BurauenBiblio Homepage")
 
-The **BurauenBiblio** system is currently in active use, handling bibliographic search requests from both students and faculty. It manages a collection of nearly **5,000 bibliographic records**. Migrating the application from PHP 5.7 to PHP 8.0 has resulted in notable performance gains, particularly in search responsiveness and overall system speed—all while running on the same **legacy hardware**.
+The **BurauenBiblio** system is currently in active use at Burauen Community College, handling bibliographic search requests from both students and faculty. It manages a collection of nearly **5,000 bibliographic records**. PHP 8.0 is significantly faster than PHP 5.7, with gains ranging from roughly 2x to 4x faster depending on the specific benchmark and workload, particularly in search responsiveness and overall system speed—all while running on the same **legacy hardware**.
 
 ### 🙌 Calendar Manager
 
@@ -37,13 +37,13 @@ The system uses Calendar Logic to accurately calculate due dates based on your l
 
 ### 🙌 Set limit on overdue charges
 
-Member types can be configured with overdue charge settings. When a patron exceeds the overdue limit, they are restricted from making additional borrowings until the balance is settled.
+Member types can be configured with **overdue charge** settings. When a patron exceeds the overdue limit, they are **restricted** from making additional borrowings until the balance is settled.
 
 ### 🙌 Card Catalog
 
 ![Homepage](./images/card_catalog_demo_sample.webp "BurauenBiblio Homepage")
 
-The system includes support for legacy library requirements including 'Printed Card Catalog'.
+The system includes support for **legacy library requirements** such as **Printed Card Catalog**.
 
 ### 🙌 Project Direction
 
