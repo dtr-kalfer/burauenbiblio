@@ -29,21 +29,27 @@ The member records are entirely fictitious and do not represent real individuals
 
 The **BurauenBiblio system** is actively used at **Burauen Community College**, serving bibliographic search requests from both students and faculty. It currently manages a collection of nearly **5,000 bibliographic records**. The system now runs on **PHP 8.0**, offering substantial performance improvements over PHP 5.7—with speeds up to **2x to 4x faster**, depending on the workload and benchmark—all while continuing to operate on the same **legacy hardware**.
 
-### 🙌 Calendar Manager
+### 📌 Calendar Manager
 
 ![Homepage](./readme_assets/sample_calendar_image.webp "BurauenBiblio Homepage")
 
 The system uses Calendar Logic to accurately calculate due dates based on your library’s open and closed days.
 
-### 🙌 Set limit on overdue charges
+### 📌 Set limit on overdue charges
 
 Member types can be configured with **overdue charge** settings. When a patron exceeds the overdue limit, they are **restricted** from making additional borrowings until the balance is settled.
 
-### 🙌 Card Catalog
+### 📌 Card Catalog
 
 ![Homepage](./images/card_catalog_demo_sample.webp "BurauenBiblio Homepage")
 
 The system includes support for **legacy library requirements** such as **Printed Card Catalog**.
+
+### 📌 Z39.50 Online Metadata Retrieval
+
+![Homepage](./images/metadata_retrieval.webp "BurauenBiblio Homepage")
+
+PHP 8 compatible metadata retrieval process—particularly for cataloging by ISBN/LCCN using remote bibliographic sources.
 
 ### 🙌 Project Direction
 
