@@ -10,11 +10,12 @@ Guide:
 - version 2.x.x below PHP 7.4.26 supported
 
 ## [unreleased] - xxxx-mm-dd
-### Added 
+### Added
 - Pagination support (25 results per page) for 'Search Members' under 'Circulation'
 - Render correct output with matched URL link for the searched member.
 
 ### Changed
+- Updated due date logic, now included into booking table.
 - Improved show date on checkouts menu.
 - Improved show 'Searched' entry on member search.
 
