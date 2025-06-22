@@ -47,6 +47,8 @@ $trans["Overdue Calc. (Library work days only)"] = "Overdue Calc. (Library work 
 $trans["Loan Period"] = "Loan Period";
 $trans["Help!"] = "Help!";
 $trans["Days Late"] = "Days_Late<br>@Rate";
+$trans["SearchResults"] = "Search Results for: ";
+$trans["All Members"] = "All Members";
 
 $trans["(enter 0 for unlimited)"] = "(enter 0 for unlimited)";
 $trans["(when available)"] = "(when available)";
@@ -944,7 +946,6 @@ $trans["School Teacher"] = "School Teacher";
 $trans["Search"] = "Search";
 $trans["Search Catalog"] = "Search Catalog";
 $trans["Search Complete"] = "Search Complete";
-$trans["SearchResults"] = "Search Results for";
 $trans["Search Display Lines"] = "Search Display Lines";
 $trans["Search Site"] = "Search Site";
 $trans["Search Text"] = "Search Text";
