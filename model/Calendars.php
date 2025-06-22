@@ -114,4 +114,58 @@ class Calendars extends DmTable {
 		$this->act($sql);
 		$this->unlock();
 	}
+
+	public function getNewDueDateCal_debug($oldDueDate) {
+		if (!$oldDueDate) {
+			echo "DEBUG: oldDueDate is null or empty"; die();
+		}
+
+		echo "DEBUG: Querying with date $oldDueDate\n";
+
+		$sql = $this->mkSQL(
+			'SELECT date
+			 FROM calendar
+			 WHERE calendar = 1
+				 AND date >= %Q
+				 AND open = "Yes"
+			 ORDER BY date ASC
+			 LIMIT 1',
+			$calendarId,
+			$oldDueDate
+		);
+
+		echo "DEBUG: SQL = $sql\n"; // See actual query
+		$result = $this->select01($sql);
+
+		if ($result && !empty($result['date'])) {
+			echo "DEBUG: Found open date: " . $result['date']; die();
+			return $result['date'];
+		}
+
+		echo "DEBUG: No open date found, returning fallback."; die();
+		return $oldDueDate;
+	}
+	
+	public function getNewDueDateCal($oldDueDate) {
+		// Query next open date after old due date
+		$sql = $this->mkSQL(
+			'SELECT date
+			 FROM calendar
+			 WHERE calendar=1
+				 AND date >= %Q
+				 AND open = "Yes"
+			 ORDER BY date ASC
+			 LIMIT 1',
+			$oldDueDate
+		);
+
+		$result = $this->select01($sql); // select01 returns a single row
+		
+		if ($result && !empty($result['date'])) {
+			return $result['date'];	
+		}
+
+		// If no open date is found, return original date as fallback
+		return $oldDueDate;
+	}	
 }
