@@ -169,9 +169,8 @@
 
 <!-- ------------------------------------------------------------------------ -->
 <div id="listDiv">
-	<h5><?php echo T("SearchResults"); ?></h5>
+	<h4 id="searchResultsTitle" ><?php echo T("SearchResults"); ?></h4>
 	<div id="results_found">
-		<?php //echo T("biblioSearchMsg", array('nrecs'=>$rpt->count(), 'start'=>1, 'end'=>25)); ?>
 	</div>
 	<table>
 	<thead>
