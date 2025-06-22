@@ -47,9 +47,9 @@ The system includes support for **legacy library requirements** such as **Printe
 
 ### 📌 Z39.50 Online Metadata Retrieval
 
-![Homepage](./images/metadata_retrieval.webp "BurauenBiblio Homepage")
+![Homepage](./readme_assets/metadata_retrieval.webp "BurauenBiblio Homepage")
 
-PHP 8 compatible metadata retrieval process—particularly for cataloging by ISBN/LCCN using remote bibliographic sources.
+Support for metadata retrieval process—particularly for cataloging by ISBN/LCCN using remote bibliographic sources.
 
 ### 🙌 Project Direction
 
