@@ -245,59 +245,86 @@ var mf = {
 		$.post(mf.url, params, mf.handleMbrResponse_barcd);
 		return false;
 	},
+	
+// ----------------------------- improved for pagination function for namesearch result -- F.  Tumulak
 	doNameSearch: function () {
-		var params = {'mode':'doNameFragSearch',
-			'nameFrag':$('#nameFrag').val(),
+		var params = {
+			'mode': 'doNameFragSearch',
+			'nameFrag': $('#nameFrag').val(),
 			'timestamp': <?php echo $current_timestamp; ?>,
 			'username': '<?php echo $_SESSION['username'] ?>'
-			};
-    	$.ajax({
+		};
+
+		$.ajax({
 			url: mf.url,
 			type: 'POST',
 			dataType: 'json',
 			headers: {
-				'Authcheck':'Token token="<?php echo hash_hmac('md5',
-				'doNameFragSearch-'.$_SESSION['username'].'-'.$current_timestamp,
-				$_SESSION['secret_key']); ?>"'
+				'Authcheck': 'Token token="<?php echo hash_hmac('md5','doNameFragSearch-'.$_SESSION['username'].'-'.$current_timestamp,$_SESSION['secret_key']); ?>"'
 			},
 			data: params,
-			error: function(xhr, textStatus, errorThrown) {
+			error: function (xhr) {
 				$('#errSpace').html('Please Re-login: ' + xhr.responseText).show();
 			},
 			success: function (results) {
-				//console.log("Done with " + results);
-				var html = '';
-				if (results.length == 0) {
-					html = '<tr><td><?php echo T('no results') ?></td></tr>';
-				} else {
-					for (var i in results) {
-						var mbr = results[i];
-						html += '<tr>\n';
-						html += '	<td>' + mbr.barcode_nmbr + '</td>\n';
-						if (mbr.hasOwnProperty('first_legal_name') || mbr.hasOwnProperty('last_legal_name')) {
-							html += '	<td><i>' + mf.doConcatLegalName(mbr) + ', <?php echo T('see'); ?> </i><a href="#" id="' + mbr.mbrid + '">' + mbr.last_name + ', ' + mbr.first_name + '</a></td>\n';
-						} else {
-							html += '	<td><a href="#" id="' + mbr.mbrid + '">' + mbr.last_name + ', ' + mbr.first_name + '</a></td>\n';
-						}
-						html += '	<td>' + mbr.home_phone + '</td>\n';
-						html += '</tr>\n';
-					}
-				}
+				mf.allResults = results; // store results globally
+				mf.currentPage = 1;
+				mf.pageSize = 25;
+				mf.renderPage();
+				
+				let searchTerm = $('#nameFrag').val().trim();
+				$('#searchResultsTitle').text(`<?php echo T("SearchResults"); ?> ${searchTerm ? '"' + searchTerm + '"' : '<?php echo T("All Members"); ?>'}`);
 
-				$('#srchRslts').html(html);
-				$('#searchDiv').hide();
-				$('#listDiv').show();
-				$('#srchRslts tr:odd td').addClass('altBG');
-				$('#srchRslts tr:even td').addClass('altBG2');
-				$('#srchRslts a').on('click', null, function (e) {
-					e.preventDefault();
-					e.stopPropagation();
-					mf.mbrid = e.target.id;
-					mf.doFetchMember();
-					$('#listDiv').hide();
-				});
 			}
 		});
+	},
+
+	// ----------------------------- pagination function, renderPage for namesearch result -- F.  Tumulak
+	renderPage: function () {
+		let results = mf.allResults || [];
+		let page = mf.currentPage || 1;
+		let pageSize = mf.pageSize || 25;
+
+		let start = (page - 1) * pageSize;
+		let end = Math.min(start + pageSize, results.length);
+
+		let html = '';
+		if (results.length === 0) {
+			html = '<tr><td><?php echo T('no results') ?></td></tr>';
+		} else {
+			for (let i = start; i < end; i++) {
+				let mbr = results[i];
+				html += '<tr>\n';
+				html += '  <td>' + mbr.barcode_nmbr + '</td>\n';
+				if (mbr.hasOwnProperty('first_legal_name') || mbr.hasOwnProperty('last_legal_name')) {
+					html += '  <td><i>' + mf.doConcatLegalName(mbr) + ', <?php echo T('see'); ?> </i><a href="#" id="' + mbr.mbrid + '">' + mbr.last_name + ', ' + mbr.first_name + '</a></td>\n';
+				} else {
+					html += '  <td><a href="#" id="' + mbr.mbrid + '">' + mbr.last_name + ', ' + mbr.first_name + '</a></td>\n';
+				}
+				html += '  <td>' + mbr.home_phone + '</td>\n';
+				html += '</tr>\n';
+			}
+		}
+
+		$('#srchRslts').html(html);
+		$('#searchDiv').hide();
+		$('#listDiv').show();
+
+		$('#srchRslts tr:odd td').addClass('altBG');
+		$('#srchRslts tr:even td').addClass('altBG2');
+
+		$('.rsltQuan').html(`Showing ${start + 1} to ${end} of ${results.length}`);
+
+		$('#srchRslts a').off('click').on('click', function (e) {
+			e.preventDefault();
+			mf.mbrid = e.target.id;
+			mf.doFetchMember();
+			$('#listDiv').hide();
+		});
+
+		// Disable prev/next buttons accordingly
+		$('.goPrevBtn').prop('disabled', page <= 1);
+		$('.goNextBtn').prop('disabled', end >= results.length);
 	},
 
 	// --------------------- for doNameSearch use ----------------
