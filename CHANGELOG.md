@@ -11,11 +11,16 @@ Guide:
 
 ## [unreleased] - xxxx-mm-dd
 ### Added 
--  
+- Pagination support (25 results per page) for 'Search Members' under 'Circulation'
+- Render correct output with matched URL link for the searched member.
+
 ### Changed
 - Improved show date on checkouts menu.
+- Improved show 'Searched' entry on member search.
+
 ### Fixed
-- Show 'cross_out.webp' on the closed calendar days in Calendar Menu.
+- Show 'cross_out.webp' overlay image on the closed calendar days in Calendar Menu.
+- Compatible pagination of search members using original logic (doNameSearch) function.
 
 ## [3.2.0] - 2025-06-20
 ### Added
