@@ -622,7 +622,7 @@ public function getNewDueDate($oldDueDate, $calendarId = 1) {
 								"bibid" =>$bibid,
 								"out_dt" =>$this->outDate,
 								"out_histid" =>$histid,
-								"due_dt" =>$due_dt,
+								"due_dt" =>$due_dt_val,
 								"mbrids" =>$mbrids,
 		));
 		if ($err) {
