@@ -159,17 +159,19 @@ if (is_array($rslt)) {
 					$this->hdrFlds['lateFee'] = 0;
 			}
 
-
-
 			$ptr = new Bookings;
 			$this->book = $ptr;
 			$rslt = $ptr->getByHistid($this->hdrFlds['histid']);
             $this->hdrFlds['bookingid'] = $rslt['bookingid'];
             $this->hdrFlds['out_dt'] = explode(' ', $rslt['out_dt'])[0];
             
-						$new_date_01 = $ptr->getNewDueDate($rslt['due_dt']);
+						// this was commented, as the kitchen sink logic totalled the due date.
+						// $new_date_01 = $ptr->getNewDueDate($rslt['due_dt']);
+						// $this->hdrFlds['due_dt'] = $new_date_01;
+						// $this->hdrFlds['due_dt'] = $rslt['due_dt'];
+						
+						$new_date_01 = $rslt['due_dt'];
 						$this->hdrFlds['due_dt'] = $new_date_01;
-						//$this->hdrFlds['due_dt'] = $rslt['due_dt'];
             $this->hdrFlds['daysLate'] = $ptr->getDaysLate2($new_date_01);
 		}
 	}
