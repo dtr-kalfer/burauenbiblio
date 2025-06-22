@@ -605,18 +605,17 @@ public function getNewDueDate($oldDueDate, $calendarId = 1) {
 		$this->outDate = $today;
 
 		## assure potential due date is a 'library open' day
-		$due_dt = Date::addDays($this->outDate, $loanDuration);
+		
+		$prelim_due_dt = Date::addDays($this->outDate, $loanDuration);
+		// Get corrected due date based on calendar open days
 		$cal = new Calendars;
-		$isOpen = $cal->isOpen($calCd, $due_dt);
-  		if (!$isOpen) {
-			do {
-				$due_dt = Date::addDays($due_dt, 1); // advance to next day
-				$isOpen = $cal->isOpen($calCd, $due_dt);
-			} while (!$isOpen);
-		}
-//    	$this->due_dt = $due_dt;
+		$due_dt_val = $cal->getNewDueDateCal($prelim_due_dt);
+		
+		// Throw everything including the kitchen sink!!! --F.Tumulak
+		// die("Has a prelim value: $prelim_due_dt, Calling getNewDueDateCal with: $due_dt_val");
 
 		## all OK, begin DB update for checkout
+		
 //echo "mbrids===>";print_r($mbrids);echo"<br />\n";
 		list($this->bookingid, $err) = $this->insert_el(
 					array("book_dt" =>$today,
