@@ -19,11 +19,13 @@ Guide:
 - Improved show date on checkouts menu.
 - Improved show 'Searched' entry on member search.
 - Refactored barcode search using equality instead of wildcard.
+- Improved search speed i.e. LIKE '%digits' can't use indexes efficiently (from above).
 - Checkout and booking barcode accept numeric inputs only, 13 digit.
 
 ### Fixed
 - Show 'cross_out.webp' overlay image on the closed calendar days in Calendar Menu.
 - Compatible pagination of search members using original logic (doNameSearch) function.
+- auto-barcode tested, barcode search fixed, no need to type the entire 13 digits, i.e. 0000000000007 just 7 
 
 ## [3.2.0] - 2025-06-20
 ### Added
