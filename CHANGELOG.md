@@ -11,8 +11,8 @@ Guide:
 
 ## [unreleased] - xxxx-mm-dd
 ### Added
+- Standalone help guide for checkout policy and due dates, under circulation/members.
 - Pagination support (25 results per page) for 'Search Members' under 'Circulation'
-- Render correct output with matched URL link for the searched member.
 
 ### Changed
 - Updated due date logic, now included into booking table.
@@ -21,7 +21,6 @@ Guide:
 - Refactored barcode search using equality instead of wildcard.
 - Improved search speed i.e. LIKE '%digits' can't use indexes efficiently (from above).
 - Checkout and booking barcode accept numeric inputs only, 13 digit.
-- Help button on Members Form.
 
 ### Fixed
 - Show 'cross_out.webp' overlay image on the closed calendar days in Calendar Menu.
