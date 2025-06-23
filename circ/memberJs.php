@@ -690,9 +690,19 @@ var mf = {
 	//------------------------------
 	doHold: function () {
 		var barcd = $.trim($('#holdBarcd').val());
-		//barcd = flos.pad(barcd,mf.opts.item_barcode_width,'0');
-		console.log('value of barcd', barcd);
+		// barcd = flos.pad(barcd,mf.opts.item_barcode_width,'0');
+
+		// inform user about the blank entry. --F.Tumulak
+		if (barcd == '') {
+			mf.showMsg('Please enter a number');
+			return false;
+		}
+		// pad the barcode values with zeroes to match it with the encoded ones --F.Tumulak
+		// this would work in nicely similar to the doCheckout function. --F .Tumulak
+
+		barcd = flos.pad(barcd, mf.opts.item_barcode_width, '0');
 		$('#holdBarcd').val(barcd); // redisplay expanded value
+
 
 		var parms = {'mode':'doHold', 'mbrid':mf.mbrid, 'barcodeNmbr':barcd};
 		$.post(mf.url, parms, function(response) {
