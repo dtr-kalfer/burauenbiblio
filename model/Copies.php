@@ -68,25 +68,17 @@ class Copies extends CoreTable {
 		}
 		return $cpys;
 	}
+	
 	public function getByBarcode($barcode) {
-        /*
-		$rslt = $this->getMatches(array('barcode_nmbr'=>$barcode));
-        $rows = $rslt->fetchAll();
-        $numRows = count($rows);
-		if ($numRows == 0) {
-			//echo "in Copies::getByBarcode(); failed, trying again. <br />\n";
-			$barcode = $this->normalizeBarcode($barcode);
-			$rslt = $this->getMatches(array('barcode_nmbr'=>$barcode));
-        	$rows = $rslt->fetchAll();
-		}
-        */
-
-        // Have changed this to the following. In a particular library a new digit was added to the barcode, so now we use a like selector and strip the '0' at the beginning.
-        $trimmedCode = ltrim($barcode, '0');
-        $sql = "select * from biblio_copy WHERE barcode_nmbr LIKE '%" . $trimmedCode . "'";
+        
+		// this function was refactored since zeroes was already padded and wildcard search 
+		// using LIKE is taking place in the sql, causing multiple results. Equality is used instead
+		// to allow use of accession as barcodes starting from 1. F. --Tumulak
+				
+				$sql = "SELECT * FROM biblio_copy WHERE barcode_nmbr = '" . $barcode . "'";
         $rows = $this->select($sql)->fetchAll();
-
         $numRows = count($rows);
+				
 		if ($numRows == 0) {
 			return NULL;
 		} else if ($numRows == 1) {
