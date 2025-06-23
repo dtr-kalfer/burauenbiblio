@@ -18,6 +18,8 @@ Guide:
 - Updated due date logic, now included into booking table.
 - Improved show date on checkouts menu.
 - Improved show 'Searched' entry on member search.
+- Refactored barcode search using equality instead of wildcard.
+- Checkout and booking barcode accept numeric inputs only, 13 digit.
 
 ### Fixed
 - Show 'cross_out.webp' overlay image on the closed calendar days in Calendar Menu.
