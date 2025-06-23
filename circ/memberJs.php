@@ -142,6 +142,7 @@ var mf = {
 	  mf.resetForms();
 	  mf.doFetchMember();
 	  $('#biblioDiv').hide();
+		$('#helpDiv').hide();
 	},
 
 	showMsg: function (msg) {
@@ -611,7 +612,7 @@ var mf = {
 		});
 		$('#mbrDiv').hide();
 		$('#acntDiv').show();
-		$('#helpDiv').hide();
+		
 	},
 	doTransAdd: function (e) {
 		e.preventDefault;
@@ -738,14 +739,14 @@ var mf = {
 	
 	//------------------------------
 	doShowMbrHelp: function () {
-			$('#helpDiv').toggle();  // This line handles both show and hide
+		$('#mbrDiv').hide();
+		$('#helpDiv').show();  // This line handles both show and hide
 	},
 
 	//------------------------------	
 	
 	doShowMbrHist: function () {
 		$('#mbrDiv').hide();
-		$('#helpDiv').hide();
 		$('#histDiv').show();
 		var statMap = {'crt':'IN', 'in':'IN', 'out':'OUT'};
 	  $.post(mf.url,{mode:'getHist', 'mbrid':mf.mbrid}, function(jsonInpt){
@@ -782,7 +783,6 @@ var mf = {
 	doShowMbrDetails: function (e) {
 		var mbr = mf.mbr;
 		$('#addMbrBtn').hide();
-		$('#helpDiv').hide(); // hide the help! --F. -Tumulak
 		$('#updtMbrBtn').show().enable();
 		$('#deltMbrBtn').show().enable();
 		$('.gobkUpdtBtn').show();
