@@ -93,12 +93,11 @@
 <!-- -->
 	<br>
 	<hr>
-	<fieldset id="newLoans" >
-		<legend align="center" for="ckoutBarcd" ><?php echo T("Check Out"); ?></legend>
+	<fieldset id="newLoans">
+		<legend align="center" for="ckoutBarcd"><?php echo T("Check Out"); ?></legend>
 		<p style="text-align: center; ">Date Today:  <?php echo date("D, M j, Y"); ?></p><br>
-		
 		<label><?php echo T("Barcode Number");?>:</label>
-		<input type="number" id="ckoutBarcd" size="20" min="1" />
+		<input type="text" id="ckoutBarcd" size="20" oninput="this.value = this.value.replace(/\D/g, '').slice(0, 13)" pattern="\d*" />
 		<input type="button" value="<?php echo T("Check Out");?>" id="chkOutBtn" />
 		<p class="error" id="chkOutMsg"></p>
 	</fieldset>
@@ -141,7 +140,7 @@
 	<fieldset id="newHolds">
 		<legend align="center" ><?php echo T("Place a booking");?></legend>
 			<label for="holdBarcd"><?php echo T("Barcode Number");?></label>
-			<input type="number" id="holdBarcd" size="20" />
+			<input type="text" id="holdBarcd" size="20" oninput="this.value = this.value.replace(/\D/g, '').slice(0, 13)" pattern="\d*" />
 			<!--a href="javascript:popSecondaryLarge('../opac/index.php?lookup=Y')"Search</a-->
 			<input type="hidden" name="mbrid" value="" />
 			<input type="hidden" name="classification" value="" />
