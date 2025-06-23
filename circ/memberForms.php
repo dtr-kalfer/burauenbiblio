@@ -324,16 +324,30 @@
 
 <!-- ------------------------------------------------------------------------ -->
 
-<div id="helpDiv">
-	<br>
-	<p>
-		<b>Due Date</b> is calculated based on the <b>Default Collection Loan</b> OR <b>Loan Allotment</b>. System chose whichever is greater.<br>
-		Minimum due date is set to +1 day on checkout date (Borrowed item is supposedly returned next day).
-		<b>Default Collection Loan</b>: The loan period (in days) <br>defined by material type or collection. Default material is non-fiction book with 1 day loan (Default Collection Loan). (See <b>Collections</b> Menu).<br>
-		<b>Loan Allotment</b>: The loan period granted (in days) based on the member type ex. Faculty or Student (See <b>Member Types</b> Menu). <br>
-		<b>Note</b>: Due date strictly follows the Calendar Menu where crossed-out days means library is closed. If due date falls on closed date, it will move on the next closest 'open' date.<br>
-		<b>Barcode inputs</b> accept numberic inputs only. Letters/symbols are not accepted.
-	</p>
+<div id="helpDiv" style="width: 50vw;">
+	<input type="button" class="gobkHistBtn" value="<?php echo T("Go Back"); ?>" />
+  <h3>📚 Checkout Policy & Due Date Guide</h3>
+
+  <p><strong>How Due Dates Are Calculated:</strong><br>
+  The system determines the <em>due date</em> based on the <strong>greater</strong> value between:</p>
+  <ul>
+    <li><strong>Default Collection Loan</strong> – the standard loan duration (in days) based on the material's collection or type (e.g., Fiction, Reference).</li>
+    <li><strong>Loan Allotment</strong> – the maximum loan period (in days) granted to a borrower depending on their <strong>member type</strong> (e.g., Student, Faculty).</li>
+  </ul>
+
+  <p><em>Example:</em> A "Non-Fiction" book might have a 1-day default loan, but if a Faculty member is allowed 5 days, the due date will be based on the <strong>5-day Loan Allotment</strong>.</p>
+
+  <p><strong>Minimum Due Date:</strong><br>
+  Items checked out <em>today</em> will have a minimum due date of <strong>+1 day</strong> (i.e., return expected by tomorrow).</p>
+
+  <p><strong>Closed Days Handling:</strong><br>
+  Due dates strictly <em>follow the Calendar Menu</em>:<br>
+  If a calculated due date falls on a <strong>closed day</strong> (marked with a ❌ in the calendar), the system automatically moves it to the <strong>next open day</strong>.</p>
+
+  <p><strong>Barcode Input Requirements:</strong><br>
+  Barcodes must be <strong>numeric only</strong>.<br>
+  Letters and special characters (e.g., A, #, -) are <strong>not accepted</strong>.<br>
+  You may manually type the barcode if the printed one is damaged — the system will automatically handle padding if needed.</p>
 </div>
 
 <?php
