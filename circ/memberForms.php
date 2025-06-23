@@ -332,7 +332,7 @@
   The system determines the <em>due date</em> based on the <strong>greater</strong> value between:</p>
   <ul>
     <li><strong>Default Collection Loan</strong> – the standard loan duration (in days) based on the material's collection or type (e.g., Non-fiction, Reference).</li>
-		<a href="#"><img src="../images/view_collection_sample.webp" alt="" title="" /></a>
+		<a href="#"><img src="../images/view_collection_sample2.webp" alt="" title="" /></a>
     <li><strong>Loan Allotment</strong> – the maximum loan period (in days) granted to a borrower depending on their <strong>member type</strong> (e.g., Student, Faculty).</li>
 		<a href="#"><img src="../images/loan_allotment_sample.webp" alt="" title="" /></a>
   </ul>
@@ -349,7 +349,7 @@
   <p><strong>Barcode Input Requirements:</strong><br>
   Barcodes must be <strong>numeric only</strong>.<br>
   Letters and special characters (e.g., A, #, -) are <strong>not accepted</strong>.<br>
-  You may manually type the barcode if the printed one is damaged — the system will automatically handle padding if needed.</p>
+  You may manually type the barcode if the printed one is damaged — the system will automatically handle zero padding if needed, i.e. 1234 --> 0000000001234 </p>
 </div>
 
 <?php
