@@ -347,7 +347,7 @@
   If a calculated due date falls on a <strong>closed day</strong> (marked with a ❌ in the calendar), the system automatically moves it to the <strong>next open day</strong>.</p>
 
   <p><strong>Barcode Input Requirements:</strong><br>
-  Barcodes must be <strong>numeric only</strong>.<br>
+  Barcodes must be <strong>numeric only</strong> and its length is 13-digit.<br>
   Letters and special characters (e.g., A, #, -) are <strong>not accepted</strong>.<br>
   You may manually type the barcode if the printed one is damaged — the system will automatically handle zero padding if needed, i.e. 1234 --> 0000000001234 </p>
 </div>
