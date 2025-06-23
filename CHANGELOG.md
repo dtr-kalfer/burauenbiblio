@@ -21,6 +21,7 @@ Guide:
 - Refactored barcode search using equality instead of wildcard.
 - Improved search speed i.e. LIKE '%digits' can't use indexes efficiently (from above).
 - Checkout and booking barcode accept numeric inputs only, 13 digit.
+- Help button on Members Form.
 
 ### Fixed
 - Show 'cross_out.webp' overlay image on the closed calendar days in Calendar Menu.
