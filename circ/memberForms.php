@@ -331,14 +331,16 @@
   <p><strong>How Due Dates Are Calculated:</strong><br>
   The system determines the <em>due date</em> based on the <strong>greater</strong> value between:</p>
   <ul>
-    <li><strong>Default Collection Loan</strong> – the standard loan duration (in days) based on the material's collection or type (e.g., Fiction, Reference).</li>
+    <li><strong>Default Collection Loan</strong> – the standard loan duration (in days) based on the material's collection or type (e.g., Non-fiction, Reference).</li>
+		<a href="#"><img src="../images/view_collection_sample.webp" alt="" title="" /></a>
     <li><strong>Loan Allotment</strong> – the maximum loan period (in days) granted to a borrower depending on their <strong>member type</strong> (e.g., Student, Faculty).</li>
+		<a href="#"><img src="../images/loan_allotment_sample.webp" alt="" title="" /></a>
   </ul>
 
   <p><em>Example:</em> A "Non-Fiction" book might have a 1-day default loan, but if a Faculty member is allowed 5 days, the due date will be based on the <strong>5-day Loan Allotment</strong>.</p>
 
   <p><strong>Minimum Due Date:</strong><br>
-  Items checked out <em>today</em> will have a minimum due date of <strong>+1 day</strong> (i.e., return expected by tomorrow).</p>
+  A non-fiction checked out <em>today</em> will have a minimum due date of <strong>+1 day</strong> (i.e., return expected by tomorrow).</p>
 
   <p><strong>Closed Days Handling:</strong><br>
   Due dates strictly <em>follow the Calendar Menu</em>:<br>
