@@ -332,6 +332,7 @@
 		<b>Default Collection Loan</b>: The loan period (in days) <br>defined by material type or collection (See <b>Collections</b> Menu).<br>
 		<b>Loan Allotment</b>: The loan period granted (in days) based on the member type ex. Faculty or Student (See <b>Member Types</b> Menu). <br>
 		<b>Note</b>: Due date strictly follows the Calendar Menu, yellow means library is closed. If due date falls on closed date, it will move on the next closest 'open' date.<br>
+		<b>Barcode inputs</b> accept numberic inputs only. Letters/symbols are not accepted.
 	</p>
 </div>
 
