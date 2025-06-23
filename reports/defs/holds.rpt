@@ -12,6 +12,7 @@
 .column status_cd hidden
 .column status title="Copy Status" sort=status_cd
 .column due_dt hidden
+.column due title="Due Date" sort=due_dt
 .parameters
 .	string bibid
 .	string mbrid
@@ -19,8 +20,8 @@
 .		item barcode_nmbr title="Barcode" expr='bc.barcode_nmbr'
 .		item title title="Title" expr='ts.subfield_data' type=MARC skip_indicator="tf.ind2_cd"
 .		item member title="Member" expr='concat(m.last_name, m.first_name)'
-
 .		item status_cd title="Copy Status"
+.		item due_dt  title="Due Date"
 .	end order_by
 .end parameters
 
