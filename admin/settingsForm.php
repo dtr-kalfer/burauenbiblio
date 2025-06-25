@@ -19,7 +19,7 @@
 			<ul class="controls inline">
 				<!-- the displayed tab order will follow the order of the following links -->
 				<li class="active"><a href="#libraryPage"><?php echo T("Library"); ?></a></li>
-				<li><a href="#localePage"><?php echo T("Locale"); ?></a></li>
+				
 				
 				<li><a href="#photoPage"><?php echo T("CoverPhotos"); ?></a></li>
 				<li><a href="#opacPage"><?php echo T("OPAC"); ?></a></li>
@@ -55,16 +55,7 @@
 						<img id="libImg" width="150" height="150" />
 					</fieldset>
 				</div>
-				<div id="localePage" class="block">
-					<label for="locale"><?php echo T("Available languages"); ?></label>
-					<select id="locale" name="locale" ></select>
-					<br />
-					<label for="charset"><?php echo T("Character Set"); ?></label>
-					<input type="text" id="charset" name="charset" >
-					<br />
-		            <label for="first_day_of_week"><?php echo T("First day of week"); ?></label>
-		            <select id="first_day_of_week" name="first_day_of_week" ></select>
-				</div>
+
 
 				<div id="photoPage" class="block">
                     <label for="use_image_flg"><?php echo T("Use Image"); ?></label>
