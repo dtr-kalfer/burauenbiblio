@@ -112,21 +112,12 @@ var set = {
 	},
 
 	//------------------------------
-	fetchCameras: function () {
-		var html = '<option value="0">Please select a camera</option>';
+fetchCameras: function () {
+	console.log("Webcam support disabled – fetchCameras skipped.");
+	$('#camera').hide(); // optionally hide dropdown
+	set.fetchFormData(); // if this is still needed
+},
 
-		list.getMediaList()  // returns a Promise, obviously
-		.then(devices => {
-			devices.forEach(function(device) {
-				if (device.kind == "videoinput") {
-    				html+= '<option value="'+device.deviceId+'">'+device.label+'</option>';
-    			}
-			});
-    		$('#camera').html(html).show();
-			set.fetchFormData();
-		})
-        .catch(e => console.error(e));
-	},
 	/* not in use at this time - June2017
 	fetchThemeList: function () {
 	   $.post(set.listSrvr,{'mode':'getThemeList'}, function(data){
