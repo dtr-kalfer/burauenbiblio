@@ -15,6 +15,7 @@ Guide:
 - Pagination support (25 results per page) for 'Search Members' under 'Circulation'
 
 ### Changed
+- simplified library settings.
 - Updated due date logic, now included into booking table.
 - Improved show date on checkouts menu.
 - Improved show 'Searched' entry on member search.
