@@ -33,14 +33,10 @@ var list = {
 
     //-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-//
 	mediaListPromise: null,
-	getMediaList: function () {
-		//console.log('in list::getMediaList()');
-		if (!this.mediaListPromise) {
-			//console.log('no mediaDevices yet available');
-			this.mediaListPromise = navigator.mediaDevices.enumerateDevices();
-		}
-		return this.mediaListPromise;
-	},
+getMediaList: function () {
+	console.log("Webcam support disabled. Returning empty media list.");
+	return Promise.resolve([]); // Always returns an empty device list
+},
 
     //-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-//
     getCalendarList: function (where) {
