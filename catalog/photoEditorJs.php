@@ -75,37 +75,46 @@ console.log('wc.init() called');
 
 	},
 	//------------------------------
-	initWidgets: function () {
-console.log('in wc::initWidgets()');
+initWidgets: function () {
+	console.log('in wc::initWidgets()');
 
-		/* Video Initialization; needed forcamera input */
-		wc.fotoRotate = <?php echo Settings::get('thumbnail_rotation');?> || 0;
-		wc.cameraId = "<?php echo Settings::get('camera');?>";
+	// Commenting out camera logic
+	/*
+	wc.fotoRotate = <?php echo Settings::get('thumbnail_rotation');?> || 0;
+	wc.cameraId = "<?php echo Settings::get('camera');?>";
+	wc.video = document.querySelector('video');
+	console.log(wc.cameraId);
 
-	    wc.video = document.querySelector('video');
-console.log(wc.cameraId);
-		const constraints =  {
-			video:{width: { min: wc.fotoWidth },
-				   height: { min: wc.fotoHeight },
-//				   deviceId: { exact: wc.cameraId},
-				  },
-			audio: false,
+	const constraints = {
+		video: {
+			width: { min: wc.fotoWidth },
+			height: { min: wc.fotoHeight }
+			// deviceId: { exact: wc.cameraId }
+		},
+		audio: false
+	};
+
+	console.log("in wc::initWidgets(), constraints set.");
+
+	navigator.mediaDevices.getUserMedia(constraints)
+		.then(stream => {
+			wc.video.srcObject = stream;
+			wc.video.onloadedmetadata = function (e) {
+				wc.video.play();
 			};
-console.log("in wc::initWidgets(), constraints set.");
 
-	    navigator.mediaDevices.getUserMedia(constraints)// returns a Promise, obviously
-        .then(stream => {
-  			wc.video.srcObject = stream;
-  			wc.video.onloadedmetadata = function(e) {
-    			wc.video.play();
-  			};
-
-			$('#canvasIn').attr('width',wc.video.width).attr('height',wc.video.height);
-			wc.ctxIn.clearRect(0,0, canvasIn.width, canvasIn.height);
-			wc.ctxIn.drawImage(wc.video, 0,0);
+			$('#canvasIn')
+				.attr('width', wc.video.width)
+				.attr('height', wc.video.height);
+			wc.ctxIn.clearRect(0, 0, canvasIn.width, canvasIn.height);
+			wc.ctxIn.drawImage(wc.video, 0, 0);
 		})
-        .catch(function(err) { console.log(err.name + ": " + err.message); });
-	},
+		.catch(function (err) {
+			console.log(err.name + ": " + err.message);
+		});
+	*/
+	console.log("Webcam logic skipped.");
+},
 
     vidOff: function () {
         wc.video.pause();
