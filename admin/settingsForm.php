@@ -20,10 +20,10 @@
 				<!-- the displayed tab order will follow the order of the following links -->
 				<li class="active"><a href="#libraryPage"><?php echo T("Library"); ?></a></li>
 				<li><a href="#localePage"><?php echo T("Locale"); ?></a></li>
-				<li><a href="#requestPage"><?php echo T("Requests"); ?></a></li>
+				
 				<li><a href="#photoPage"><?php echo T("CoverPhotos"); ?></a></li>
 				<li><a href="#opacPage"><?php echo T("OPAC"); ?></a></li>
-				<li><a href="#miscPage"><?php echo T("Miscellaneous"); ?></a></li>
+				
 			</ul>
 
 			<!-- Note titles/Labels in this form are 'placeholders only', actual labels will be downloaded from the database -->
@@ -48,8 +48,8 @@
 						<label for="library_image_url"><?php echo T("Library Image"); ?></label>
 						<input type="text" id="library_image_url" name="library_image_url" maxlength="64" placeholder="photo of your choice" />
 						<br />
-						<label for="show_lib_info"><?php echo T("Show Lib Info on Staff pages"); ?></label>
-						<input type="checkbox" id="show_lib_info" name="show_lib_info" value="Y" />
+						
+						
 					</fieldset>
 					<fieldset class="inlineFldSet">
 						<img id="libImg" width="150" height="150" />
@@ -65,16 +65,7 @@
 		            <label for="first_day_of_week"><?php echo T("First day of week"); ?></label>
 		            <select id="first_day_of_week" name="first_day_of_week" ></select>
 				</div>
-				<div id="requestPage" class="block">
-					<label for="request_from"><?php echo T("Request From"); ?></label>
-					<input type="text" id="request_from" name="request_from" maxlength="18" />
-					<br />
-					<label for="request_to"><?php echo T("Request To"); ?></label>
-					<input type="text" id="request_to" name="request_to" maxlength="19" />
-					<br />
-					<label for="request_subject"><?php echo T("Request Subject"); ?></label>
-					<input type="text" id="request_subject" name="request_subject" maxlength="33" />
-				</div>
+
 				<div id="photoPage" class="block">
                     <label for="use_image_flg"><?php echo T("Use Image"); ?></label>
                     <input type="checkbox" id="use_image_flg" name="use_image_flg" value="Y" />
@@ -107,16 +98,7 @@
                     <label for="opac_site_mode"><?php echo T("OpacUserSelectsSite"); ?></label>
                     <input type="checkbox" id="opac_site_mode" name="opac_site_mode" value="Y" />
 				</div>
-				<div id="miscPage" class="block">
-					<label for="mbr_barcode_width"><?php echo T("Barcode width"); ?></label>
-					<input type="number" id="mbr_barcode_width" name="mbr_barcode_width" maxlength="17" />
-                    <br />
-					<label for="theme_dir_url"><?php echo T("Theme Dir URL"); ?></label>
-					<select id="theme_dir_url" name="theme_dir_url" ></select>
-					<!--label for="themeid"><?php echo T("Theme id"); ?></label>
-					<select id="themeid" name="themeid"></select>
-					<br /-->
-				</div>
+
 				<hr>
 				<input type="hidden" id="cat" name="cat" value="settings" />
 				<input type="hidden" id="mode" name="mode" />
