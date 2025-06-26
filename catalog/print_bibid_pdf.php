@@ -1,4 +1,9 @@
 <?php
+/* 
+A new stack is added using HTMX.
+This file is part of a copyrighted work; it is distributed with NO WARRANTY.
+See the file COPYRIGHT.html for more details. --F.Tumulak
+*/
 
 	require_once("../includes/fpdf/fpdf.php"); 
 	require_once("functions/card_catalog.php"); 
