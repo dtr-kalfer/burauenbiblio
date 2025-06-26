@@ -67,9 +67,6 @@ See the file COPYRIGHT.html for more details. --F.Tumulak
 				
 		// ------------------------------ BIBID SET A ---------------------------- 
 
-		// $bibid1 = mysql_prep($_GET["bibid_fpdf"]);
-		// $bibid2 = mysql_prep($_GET["bibid_fpdf2"]);
-
 		$bibid1 = mysql_prep($_GET["bibid_fpdf"]);
 		$bibid_set_a = get_subfield_all_from_bibid($bibid1);
 
