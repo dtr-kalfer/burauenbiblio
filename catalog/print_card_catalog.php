@@ -1,10 +1,5 @@
 <?php
-	/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
-	 * See the file COPYRIGHT.html for more details.
-	 * This is an add-on feature for Openbiblio developed by Ferdinand Tumulak
-	 * for bibid card catalog printing.
-	 * it can still be further improved using PDO or use Openbiblio built-in class functions if you are up to it.
-	 */
+
 	require_once("../shared/common.php");
 	$tab = "cataloging";
 	$nav = "print_card_catalog";	
@@ -17,7 +12,7 @@
 	<div id="crntMbrDiv_new">To be filled by server --F.T.</div>
 	<p id="errSpace" class="error">to be filled by server</p>
 	<!-- ------------------------------------------------------------------------ -->
-	<div id="bulkDel_formDiv">
+	<div id="bulkDel_formDiv" style="display: block;">
       <fieldset>
           <p>To get better result similar to example, use space between call number <br>
 					i.e. FIL 332.10959 C11 2020 and also fill up other details on biblio records.</p>
@@ -38,7 +33,6 @@
 	<!-- ------------------------------------------------------------------------ -->
 <?php
   require_once(REL(__FILE__,'../shared/footer.php'));
-	require_once(REL(__FILE__, "../catalog/bulkDelJs.php"));
 ?>	
 </body>
 </html>
