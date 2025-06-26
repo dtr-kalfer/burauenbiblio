@@ -9,8 +9,9 @@ Guide:
 - version 3.x.x above PHP 8.0.xx supported
 - version 2.x.x below PHP 7.4.26 supported
 
-## [unreleased] - xxxx-mm-dd
+## [unreleased] - 2025-06-25
 ### Added
+- New stack using HTMX into card catalog error handling.
 - Standalone help guide for checkout policy and due dates, under circulation/members.
 - Pagination support (25 results per page) for 'Search Members' under 'Circulation'
 
@@ -24,6 +25,7 @@ Guide:
 - Checkout and booking barcode accept numeric inputs only, 13 digit.
 
 ### Fixed
+- Error handling on bibID not found on card catalog print.
 - Show 'cross_out.webp' overlay image on the closed calendar days in Calendar Menu.
 - Compatible pagination of search members using original logic (doNameSearch) function.
 - auto-barcode tested, barcode search fixed, no need to type the entire 13 digits, i.e. 0000000000007 just 7 
