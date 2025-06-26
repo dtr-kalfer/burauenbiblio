@@ -9,7 +9,7 @@ Guide:
 - version 3.x.x above PHP 8.0.xx supported
 - version 2.x.x below PHP 7.4.26 supported
 
-## [unreleased] - 2025-06-25
+## [3.3.1] - 2025-06-25
 ### Added
 - New stack using HTMX into card catalog error handling.
 - Standalone help guide for checkout policy and due dates, under circulation/members.
