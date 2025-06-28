@@ -324,16 +324,16 @@
 
 <!-- ------------------------------------------------------------------------ -->
 
-<div id="helpDiv" style="width: 50vw;">
+<div id="helpDiv" style="width: 60vw;">
 	<input type="button" class="gobkHistBtn" value="<?php echo T("Go Back"); ?>" />
   <h3>📚 Checkout Policy & Due Date Guide</h3>
 
   <p><strong>How Due Dates Are Calculated:</strong><br>
   The system determines the <em>due date</em> based on the <strong>greater</strong> value between:</p>
   <ul>
-    <li><strong>Default Collection Loan</strong> – the standard loan duration (in days) based on the material's collection or type (e.g., Non-fiction, Reference).</li>
+    <li><strong>Default Collection Loan</strong> – the standard loan duration (in days) based on the material's collection or type (e.g., Non-fiction, Reference). <b>Late rate fee</b> is the penalty amount per day overdue.</li>
 		<a href="#"><img src="../images/view_collection_sample2.webp" alt="" title="" /></a>
-    <li><strong>Loan Allotment</strong> – the maximum loan period (in days) granted to a borrower depending on their <strong>member type</strong> (e.g., Student, Faculty).</li>
+    <li><strong>Loan Allotment</strong> – the maximum loan period (in days) granted to a borrower depending on their <strong>member type</strong> (e.g., Student, Faculty). <b>Limit (Max Fine)</b> -> If the overdue amount exceeds this limit, the patron's checkout feature gets disabled.</li>
 		<a href="#"><img src="../images/loan_allotment_sample.webp" alt="" title="" /></a>
   </ul>
 
