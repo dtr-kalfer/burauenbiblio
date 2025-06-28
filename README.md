@@ -37,7 +37,9 @@ The system uses Calendar Logic to accurately calculate due dates based on your l
 
 ### 📌 Set limit on overdue charges
 
-Member types can be configured with **overdue charge** settings. When a patron exceeds the overdue limit, they are **restricted** from making additional borrowings until the balance is settled.
+![Homepage](./readme_assets/overdue_notice.webp "BurauenBiblio Homepage")
+
+Member types can be configured with **overdue charge** settings. When a patron exceeds the overdue limit accumulated from the penalty/day, they are **restricted** from making additional borrowings until the balance is settled.
 
 ### 📌 Card Catalog
 
