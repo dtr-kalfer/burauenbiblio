@@ -58,7 +58,7 @@
 		<p>In order to promote fair and efficient access to library resources, <br>
 		a borrowing time limit policy is implemented. This policy defines the <br>
 		number of days a library item may be borrowed without penalty incurred. <br>
-		It also includes a penalty rate, which can be adjusted for that collection</p>
+		It includes a penalty rate (per day), which can be adjusted for that collection</p>
 <hr>
 <!-- -------------------------------------------------->
 
