@@ -55,9 +55,9 @@
         	    <span class="reqd">*</span>
         	</li>
             <li>
-                <label for="max_fines"><?php echo T("Max Fine"); ?>:</label>
+                <label for="max_fines"><?php echo T("Limit"); ?>:</label>
                 <input id="max_fines" name="max_fines" type="number" size="32" pattern="[0-9]{1,2}\.[0-9]{2}"
-        						 title="e.g. 99.99"	required aria-required="true" />
+        						 title="e.g. 100 to 500"	required aria-required="true" />
         		<span class="reqd">*</span>
         	</li>
             <li>
@@ -70,7 +70,7 @@
                 <input id="loan_allotment" name="loan_allotment" type="number" size="32"
         						 title="loan_allotment"	required aria-required="true" />
         		<span class="reqd">*</span>
-        	</li>							
+        	</li>					
             <li>
         		<input type="hidden" id="code" name="code" value="" />
         		<input type="hidden" id="mode" name="mode" value="" />

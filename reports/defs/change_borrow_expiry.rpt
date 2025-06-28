@@ -4,7 +4,7 @@
 .parameters
 .	string c_code title="Collection Code"
 .	string c_days_due_back title="Allowed number of days"
-.	string c_regular_late_fee title="Late fee rate (0.01->1.50)"
+.	string c_regular_late_fee title="Late fee rate (0.01->10)"
 .end parameters
 
 .sql
