@@ -576,7 +576,7 @@ $trans["Label"] = "Label";
 $trans["Last Name Contains"] = "Last Name Contains";
 $trans["LastName"] = "Last Name";
 $trans["Late fee"] = "Late fee";
-$trans["Late fee rate (0.01->1.50)"] = "Late fee rate (0.01->1.50)";
+$trans["Late fee rate (0.01->10)"] = "Late fee rate (0.01->10)";
 $trans["Late fee (barcode=%barcode%)"] = "Late fee (barcode=%barcode%)";
 $trans["Latest Checkout Date"] = "Latest Checkout Date";
 $trans["Latest Date Out"] = "Latest Date Out";
