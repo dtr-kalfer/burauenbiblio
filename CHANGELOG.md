@@ -9,6 +9,14 @@ Guide:
 - version 3.x.x above PHP 8.0.xx supported
 - version 2.x.x below PHP 7.4.26 supported
 
+## [unreleased] - xxxx-xx-xx
+### Added
+-
+### Changed
+- Improved help on members form, member types and collections menu.
+### Fixed
+-
+
 ## [3.3.1] - 2025-06-25
 ### Added
 - New stack using HTMX into card catalog error handling.
