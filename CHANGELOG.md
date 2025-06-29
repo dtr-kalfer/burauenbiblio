@@ -11,11 +11,13 @@ Guide:
 
 ## [unreleased] - xxxx-xx-xx
 ### Added
--
+- Added a 10 second wait cycle period for invalid user/pass entries.
+
 ### Changed
 - Improved help on members form, member types and collections menu.
+
 ### Fixed
--
+- Correct message response for invalid username and pass, instead of nothing happened.
 
 ## [3.3.1] - 2025-06-25
 ### Added
