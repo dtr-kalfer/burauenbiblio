@@ -36,12 +36,7 @@ if (!$error_found) {
     //echo "username: '$username';  pwd: '".md5($pwd)."'<br />\n";
 	$rows = $staff->getMatches(array('username'=>$username, 'pwd'=>md5($pwd)));
 	$user = $rows->fetch(PDO::FETCH_ASSOC);
-    //$nUsers = count($user);
-    //echo "in login ln#38 [";print_r($user);echo "] <br />\n";
-    //echo "in login # matches found: $nUsers <br />\n";
 
-	//if ($rows->count() == 1) {
-	//if ($rows->num_rows == 1) {
     if ($user === false) {
 		# invalid username or password.  Add one to login attempts.
 		$error_found = true;
@@ -50,12 +45,6 @@ if (!$error_found) {
 		$pageErrors["pwd"] = T("Invalid signon.");
         //echo "invalid signin<br />\n";
 
-		# FIXME - The old code would suspend a user's account after three
-		# failed login attempts.  That's a very easy denial of service,
-		# if you know the staff usernames.  I've removed that feature,
-		# but we are now open to an online dictionary attack.  A better
-		# method might be to disallow login from a particular IP for a
-		# time after several failed attempts.
 	}
 }
 //echo "in login ln#57<br />\n";
