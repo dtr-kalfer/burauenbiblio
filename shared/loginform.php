@@ -89,13 +89,46 @@
 </fieldset>
 </form>
 
+<p id="login-error" style="text-align: center;" class="error">
+	<?php 
+		echo $_SESSION["pageErrors"]["pwd"] ?? '';
+	?>
+</p>
+
 <script language="JavaScript" >
+
 	"use strict"
 	var password = document.getElementById('password');
 	var showPassword = document.getElementById('showPassword');
+	
 	showPassword.addEventListener('change', function () {
 		let type = this.checked ? 'text' : 'password';
 		password.setAttribute('type', type);
+	});
+
+	document.addEventListener("DOMContentLoaded", function () {
+			const errorMsg = document.getElementById("login-error");
+			const loginBtn = document.getElementById("login");
+
+			if (errorMsg && errorMsg.textContent.trim().includes("Invalid username or password")) {
+					if (loginBtn) {
+							let countdown = 10;
+							loginBtn.disabled = true;
+							loginBtn.value = `Please wait ${countdown} seconds...`;
+
+							const interval = setInterval(() => {
+									countdown--;
+									if (countdown > 0) {
+											loginBtn.value = `Please wait ${countdown} seconds...`;
+									} else {
+											clearInterval(interval);
+											loginBtn.disabled = false;
+											loginBtn.value = "Login";
+											errorMsg.textContent = "";
+									}
+							}, 1000); // update every second
+					}
+			}
 	});
 </script>
 
