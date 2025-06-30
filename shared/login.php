@@ -12,42 +12,31 @@ if (count($_POST) == 0) {
 	header("Location: ../shared/loginform.php");
 	exit();
 }
-//echo "in login.php ln#58<br />\n";
 
 $username = $_POST["username"];
 $error_found = false;
 if ($username == "") {
 	$error_found = true;
 	$pageErrors["username"] = T("Username is required.");
-    //echo "need user name<br />\n";
 }
 $pwd = $_POST["pwd"];
 if ($pwd == "") {
 	$error_found = true;
 	$pageErrors["pwd"] = T("Password is required.");
-    //echo "need pw<br />\n";
 }
-//echo "user: $username; pw: $pwd<br />\n";
 
 if (!$error_found) {
-    //echo "in login ln#32";echo "got id & pw<br />\n";echo "<br />\n";
 
 	$staff = new Staff($dbConst);
-    //echo "username: '$username';  pwd: '".md5($pwd)."'<br />\n";
 	$rows = $staff->getMatches(array('username'=>$username, 'pwd'=>md5($pwd)));
 	$user = $rows->fetch(PDO::FETCH_ASSOC);
 
     if ($user === false) {
-		# invalid username or password.  Add one to login attempts.
 		$error_found = true;
-		$pageErrors = array();  // or simply $pageErrors = [];
-
+		$pageErrors = array();
 		$pageErrors["pwd"] = T("Invalid signon.");
-        //echo "invalid signin<br />\n";
-
 	}
 }
-//echo "in login ln#57<br />\n";
 
 if ($error_found == true) {
     echo "login error found<br />\n";
@@ -67,7 +56,6 @@ unset($_SESSION["pageErrors"]);
 
 if(isset($_REQUEST['selectSite'])){
 	$_SESSION['current_site'] = $_REQUEST['selectSite'];
-	// Also set as cookie, this allows in libraries with multiple sites to automatic logon on the same library "(set for 1 year)
 	setcookie("OpenBiblioSiteID", $_SESSION['current_site'], time()+60*60*24*365);
 }
 
@@ -85,8 +73,6 @@ $_SESSION["hasToolsAuth"] = ($user['tools_flg'] == 'Y');
 // echo "in login ln#92<br />\n";
 
 setSessionFmSettings();
-//print_r($_SESSION);echo "<br />";exit();
-
-//header("Location: ".$_SESSION["returnPage"]);
-header("Location: "."../" .$_SESSION["start_page"]);
+//lets make this noauth.php as default load page for both admin and staff users. --F.Tumulak
+header("Location: ../admin/noauth.php");
 exit();
