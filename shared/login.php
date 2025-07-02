@@ -72,6 +72,10 @@ $_SESSION["hasReportsAuth"] = ($user['reports_flg'] == 'Y');
 $_SESSION["hasToolsAuth"] = ($user['tools_flg'] == 'Y');
 // echo "in login ln#92<br />\n";
 
+// generate guard token key
+$_SESSION["guard_token_key"] = bin2hex(random_bytes(16));
+
+
 setSessionFmSettings();
 //lets make this noauth.php as default load page for both admin and staff users. --F.Tumulak
 header("Location: ../admin/noauth.php");
