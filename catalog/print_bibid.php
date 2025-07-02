@@ -1,9 +1,7 @@
 <?php
-/* 
-A new stack is added using HTMX.
-This file is part of a copyrighted work; it is distributed with NO WARRANTY.
-See the file COPYRIGHT.html for more details. --F.Tumulak
-*/
+// guard token protects this php from being poked at. --F.Tumulak
+require_once("../shared/guard_token.php"); 
+verify_token_or_die('guard_token_key'); // your custom key
 
 require_once("functions/card_catalog.php"); 
 require_once("class/Qtest.php"); 

@@ -2,10 +2,15 @@
 require_once("../shared/common.php");
 $tab = "cataloging";
 $nav = "print_card_catalog";	
+
+// validate if logged in --F.Tumulak
 require_once(REL(__FILE__, "../shared/logincheck.php"));
 require_once(REL(__FILE__, "../functions/inputFuncs.php"));
+
 Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
+
 ?>
+
 <!-- HTMX script (local or CDN) -->
 <script src="../htmx_cdn/htmx.min.js"></script>
 
@@ -34,8 +39,10 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
       <input type="text" name="bibid_fpdf2"
              oninput="this.value = this.value.replace(/\D/g, '').slice(0, 5)"
              pattern="\d*" maxlength="5" required />
-
-      <input type="submit" value="Print Bibid ID" />
+						 
+			<input type="hidden" name="guard_token_key" value="<?php echo $_SESSION['guard_token_key']; ?>">
+      
+			<input type="submit" value="Print Bibid ID" />
     </form>
 		<h3>Sample Printout</i></h3>
     <img src="../images/card_catalog_demo_sample.webp" alt="sample card catalog" />

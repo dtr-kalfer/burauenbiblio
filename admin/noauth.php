@@ -10,6 +10,10 @@ require_once("../shared/common.php");
 	$tab = "circulation";
 	$nav = "";
 
+// validate if logged in --F.Tumulak
+require_once(REL(__FILE__, "../shared/logincheck.php"));
+
+
 Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 date_default_timezone_set('Asia/Manila'); // Philippine timezone
 
