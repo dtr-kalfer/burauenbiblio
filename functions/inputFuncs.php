@@ -105,25 +105,19 @@ function inputfield($type, $name, $value="", $attrs=NULL, $data=NULL) {
     //echo "in inputFuncs.php: inputfield(), final: ";echo  $s;echo "<br />\n";
 	return $s;
 }
-function inputHandler($type, $name, $value, $attrs) {
+
+function inputHandler($type, $name, $value, $attrs = array()) {
 	$s = '<input type="'.H($type).'" name="'.H($name).'" ';
-	if ($value != "") {
+
+	if ($value !== "") {
 		$s .= 'value="'.H($value).'" ';
 	}
-	$reqd = false;
-	foreach ($attrs as $k => $v) {
-		if ($k == 'required') {
-			$reqd = true;
-			$s .= 'required aria-required="true" ';
-		} else {
-			$s .= H($k).'="'.H($v).'" ';
-		}
-	}
-	$s .= "/>";
-	//if ($reqd) {
-	//	$s .= '<span class="reqd">*</span>';
-	//}
 
+	foreach ($attrs as $k => $v) {
+		$s .= H($k).'="'.H($v).'" ';
+	}
+
+	$s .= '/>';
 	return $s;
 }
 
