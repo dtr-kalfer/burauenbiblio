@@ -844,20 +844,29 @@ var mf = {
 	
 	doMbrAdd: function () {
 		$('#msgDiv').hide();
+
+		// Add a basic client-side validation --F.Tumulak 
+		let requiredFields = ['#last_name', '#first_name', '#home_phone'];
+		for (let i = 0; i < requiredFields.length; i++) {
+			let field = $(requiredFields[i]);
+			if ($.trim(field.val()) === '') {
+				let fieldName = requiredFields[i].replace('#', '').replace('_', ' ');
+				mf.showMsg('Please fill in the <b>' + fieldName + '</b> field.');
+				
+				field.focus();
+				return false;
+			}
+		}
+
 		var parms = $('#editForm').serialize();
 		$.post(mf.url, parms, function(response) {
-		    //console.log('Server response: ' + response);
 			if (response == 0) {
-								
-                //$('#updateMsg').html('<?php echo T("Added");?>');
-                //'$('#updateMsg').show();
-                mf.rtnToSrch();
+				mf.rtnToSrch();
 				mf.showMsg('<?php echo T("Added");?>');
-                setTimeout( function(){
-                    $('#msgDiv').show().hide(2000);
-                  }  , 3000 );
-            } else {
-				//console.log('rcvd error msg from server :<br />'+response);
+				setTimeout(function () {
+					$('#msgDiv').show().hide(2000);
+				}, 3000);
+			} else {
 				mf.showMsg(response);
 			}
 		});
