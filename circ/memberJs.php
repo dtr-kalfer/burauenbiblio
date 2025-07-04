@@ -875,15 +875,26 @@ var mf = {
 	doMbrUpdate: function () {
 		$('#updateMsg').hide();
 		$('#msgDiv').hide();
-		var parms = $('#editForm').serialize();
-		//console.log('updating: '+parms);
-		$.post(mf.url, parms, function(response) {
-			if (response.substr(0,1)=='<') {
-				//console.log('rcvd error msg from server :<br />'+response);
-				mf.showMsg(response);
+
+		// Basic client-side validation
+		let requiredFields = ['#last_name', '#first_name', '#home_phone'];
+		for (let i = 0; i < requiredFields.length; i++) {
+			let field = $(requiredFields[i]);
+			if ($.trim(field.val()) === '') {
+				let fieldName = requiredFields[i].replace('#', '').replace('_', ' ');
+				mf.showMsg('Please fill in the ' + fieldName + ' field.');
+				field.focus();
+				return false;
 			}
-			else {
-				if (response.substr(0,1)=='1'){
+		}
+
+		var parms = $('#editForm').serialize();
+		$.post(mf.url, parms, function(response) {
+			if (response.substr(0, 1) == '<') {
+				// likely an HTML error response
+				mf.showMsg(response);
+			} else {
+				if (response.substr(0, 1) == '1') {
 					$('#updateMsg').html('<?php echo T("Updated");?>');
 					$('#updateMsg').show();
 				}
@@ -892,10 +903,12 @@ var mf = {
 				$('#editDiv').hide();
 			}
 		});
+
 		$('#updtMbrBtn').disable();
 		$('#deltMbrBtn').disable();
 		return false;
 	},
+	
 	doDeleteMember: function () {
 		if (mf.nmbrOnloan > 0) {
 			alert('<?php echo T("You must settle all outstanding loans before deleting a member."); ?>');

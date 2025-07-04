@@ -15,6 +15,7 @@ Guide:
 - Set a 10 second wait cycle period for invalid user/pass entries.
 - Added a welcome landing page for both admin/staff upon success login.
 - Use of Third-party jsCalendar for a future feature use.
+- Front-end validation for required for add member fields, noted by *.
 
 ### Changed
 - Improved help on members form, member types and collections menu.
