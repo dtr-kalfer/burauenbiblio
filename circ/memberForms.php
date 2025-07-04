@@ -209,7 +209,7 @@
 <!-- ------------------------------------------------------------------------ -->
 <div id="editDiv">
 	<form role="form" id="editForm" name="editForm" >
-	<h5 class="note"> Fields marked with <span class="reqd">*</span> are required.</h5>
+	<p> Fields marked with * are required.</p>
 	<fieldset>
 		<legend id="editHdr"></legend>
 		<table>
