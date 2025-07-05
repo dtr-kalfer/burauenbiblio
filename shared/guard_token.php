@@ -7,7 +7,9 @@
 
 // This will exit the script with a 403 if the token doesn't match
 function verify_token_or_die(string $token_key = 'form_token') {
-    session_start();
+    if (session_status() === PHP_SESSION_NONE) {
+			session_start();
+		}
 
     // Optional: auto-initialize session token if not present
     if (!isset($_SESSION[$token_key])) {
