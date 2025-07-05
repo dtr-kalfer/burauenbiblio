@@ -11,15 +11,14 @@
 	<h3>To-Do List</h3>
 	<form hx-post="../todolist/todo_add.php" hx-target="#todo-list" hx-swap="outerHTML" style="display: flex; align-items: center; gap: 5px;">
 		<input type="text" name="todo" id="todo-input" size="48" placeholder="Enter a new todo" required>
-		
 		<!-- Emoji Dropdown -->
 		<select id="emoji-selector" title="Add emoji" style="padding: 4px;">
 			<option value="">😊</option>
-			<option value="😊">😊</option>
 			<option value="📚">📚</option>
 			<option value="✅">✅</option>
 			<option value="🎉">🎉</option>
 			<option value="📅">📅</option>
+			<option value="😊">😊</option>
 			<option value="⚠️">⚠️</option>
 			<option value="📝">📝</option>
 			<option value="📌">📌</option>
