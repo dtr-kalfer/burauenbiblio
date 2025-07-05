@@ -35,6 +35,12 @@ The **BurauenBiblio system** is actively used at **Burauen Community College**, 
 
 The system uses Calendar Logic to accurately calculate due dates based on your library’s open and closed days.
 
+📝 To-Do List Feature 
+
+![Homepage](./readme_assets/todo_list.webp "BurauenBiblio Homepage")
+
+The To-Do List is a simple yet powerful enhancement to the BurauenBiblio library system. It allows staff members to easily jot down, organize, and share important notes, reminders, and tasks directly within the library interface. Whether it’s for planning upcoming events, tracking routine duties, reminding colleagues about library schedules, or noting down quick ideas — the to-do list keeps everyone in sync and focused.
+
 ### 📌 Set limit on overdue charges
 
 ![Homepage](./readme_assets/overdue_notice.webp "BurauenBiblio Homepage")
