@@ -35,7 +35,7 @@ The **BurauenBiblio system** is actively used at **Burauen Community College**, 
 
 The system uses Calendar Logic to accurately calculate due dates based on your library’s open and closed days.
 
-📝 To-Do List Feature 
+### 📝 To-Do List Feature 
 
 ![Homepage](./readme_assets/todo_list.webp "BurauenBiblio Homepage")
 
