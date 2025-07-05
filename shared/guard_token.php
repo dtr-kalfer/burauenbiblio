@@ -1,6 +1,6 @@
 <?php
 /* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
- * See the file COPYRIGHT.html for more details.
+ * See the file COPYRIGHT.html for more details. --F.Tumulak
  */ 
 // Usage: verify_token_or_die('your_key_name');
 
@@ -17,7 +17,11 @@ function verify_token_or_die(string $token_key = 'form_token') {
     }
 
     $session_token = $_SESSION[$token_key];
-    $submitted_token = $_POST[$token_key] ?? $_SERVER['HTTP_X_TOKEN'] ?? null;
+		
+		$submitted_token = $_POST[$token_key] 
+										?? $_GET[$token_key] 
+										?? $_SERVER['HTTP_X_TOKEN'] 
+										?? null;
 
     if (!$submitted_token || $submitted_token !== $session_token) {
         http_response_code(403);
