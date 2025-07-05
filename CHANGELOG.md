@@ -9,6 +9,18 @@ Guide:
 - version 3.x.x above PHP 8.0.xx supported
 - version 2.x.x below PHP 7.4.26 supported
 
+## [3.4.0] - 2025-07-05
+### Added
+- Added new feature 'Todo List', task collab with other library staff.
+- Emoji list selection.
+- Use htmx for todo_list.
+
+### Changed
+- Improved 'guard token' with other factors, use for htmx plus.
+
+### Fixed
+- Calendar response for 'Add Task'.
+
 ## [3.3.8] - 2025-07-05
 ### Added
 - Added 'Guard token' for improved security, works best with htmx.
