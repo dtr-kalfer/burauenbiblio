@@ -9,7 +9,7 @@ Guide:
 - version 3.x.x above PHP 8.0.xx supported
 - version 2.x.x below PHP 7.4.26 supported
 
-## [unreleased] - xxxx-xx-xx
+## [3.3.8] - 2025-07-05
 ### Added
 - Added 'Guard token' for improved security, works best with htmx.
 - Set a 10 second wait cycle period for invalid user/pass entries.
