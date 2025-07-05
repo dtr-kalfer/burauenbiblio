@@ -7,6 +7,7 @@
 require '../todolist/db.php';
 $stmt = $db->query("SELECT * FROM todos ORDER BY id ASC");
 $todos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$token = $_SESSION['guard_token_key'] ?? $_GET['guard_token_key'] ?? '';
 
 ?>
 
