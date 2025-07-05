@@ -14,6 +14,19 @@
 		
 		<!-- Emoji Dropdown -->
 		<select id="emoji-selector" title="Add emoji" style="padding: 4px;">
+			<option value="">😊</option>
+			<option value="😊">😊</option>
+			<option value="📚">📚</option>
+			<option value="✅">✅</option>
+			<option value="🎉">🎉</option>
+			<option value="📅">📅</option>
+			<option value="⚠️">⚠️</option>
+			<option value="📝">📝</option>
+			<option value="📌">📌</option>
+			<option value="🛒">🛒</option>
+			<option value="🎂">🎂</option>
+			<option value="💡">💡</option>
+			<option value="💻">💻</option>
 		</select>
 
 		<input type="hidden" name="guard_token_key" value="<?php echo $_SESSION['guard_token_key']; ?>">
