@@ -9,8 +9,9 @@
 ?>
 <div style="width: 40vw;">
 	<h3>To-Do List</h3>
-	<form hx-post="../todolist/todo_add.php" hx-target="#todo-list" hx-swap="outerHTML" style="display: flex; align-items: center; gap: 5px;">
-		<input type="text" name="todo" id="todo-input" size="48" placeholder="Enter a new todo" required>
+	<form hx-disabled-elt="button" hx-post="../todolist/todo_add.php" hx-target="#todo-list" hx-swap="outerHTML" style="display: flex; align-items: center; gap: 5px;">
+		<input type="text" name="todo" id="todo-input" size="44" placeholder="Enter a new todo" required>
+		
 		<!-- Emoji Dropdown -->
 		<select id="emoji-selector" title="Add emoji" style="padding: 4px;">
 			<option value="">😊</option>
@@ -29,7 +30,11 @@
 		</select>
 
 		<input type="hidden" name="guard_token_key" value="<?php echo $_SESSION['guard_token_key']; ?>">
-		<button type="submit">Add Task</button>
+		<button hx-indicator="#myspinner" type="submit" style="padding-right: 30px;">
+			<img id="myspinner" class="htmx-indicator" width="15" src="../images/t_loading.webp" alt="" />
+			Add Task
+		</button>
+		
 	</form>
 
 	<ul id="todo-list-container">
