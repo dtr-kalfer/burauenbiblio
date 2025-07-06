@@ -9,6 +9,16 @@ Guide:
 - version 3.x.x above PHP 8.0.xx supported
 - version 2.x.x below PHP 7.4.26 supported
 
+## [3.4.1] - 2025-07-05
+### Added
+- toggle delay when click 'add task' and use a spinner using HTMX.
+
+### Changed
+- Improved UI/UX on todo list menu.
+
+### fixed
+- fix can't delete button on todo list.
+
 ## [3.4.0] - 2025-07-05
 ### Added
 - Added new feature 'Todo List', task collab with other library staff.
