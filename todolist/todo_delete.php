@@ -7,12 +7,11 @@ verify_token_or_die('guard_token_key'); // your custom key
 		 */
 require '../todolist/db.php';
 
-if (!empty($_POST['todo'])) {
-    $stmt = $db->prepare("INSERT INTO todos (task) VALUES (:task)");
-    $stmt->bindValue(':task', $_POST['todo'], PDO::PARAM_STR);
-    $stmt->execute();
+$id = $_POST['id'] ?? null;
+
+if ($id) {
+    $stmt = $db->prepare("DELETE FROM todos WHERE id = :id");
+    $stmt->execute([':id' => $id]);
 }
 
-echo '<div id="todo-list">';
 include '../todolist/todo_list.php';
-echo '</div>';
