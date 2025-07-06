@@ -7,6 +7,7 @@ verify_token_or_die('guard_token_key'); // your custom key
 		 */
 require '../todolist/db.php';
 
+sleep(1);
 if (!empty($_POST['todo'])) {
     $stmt = $db->prepare("INSERT INTO todos (task) VALUES (:task)");
     $stmt->bindValue(':task', $_POST['todo'], PDO::PARAM_STR);
