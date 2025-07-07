@@ -246,7 +246,39 @@ var mf = {
 		$.post(mf.url, params, mf.handleMbrResponse_barcd);
 		return false;
 	},
-	
+
+// --------- Map function for showing member types on immediate search results -- F.  Tumulak
+	buildClassificationMap: function () {
+		$.post(mf.listSrvr, { mode: 'getMbrTypList' }, function (data) {
+			var classificationMap = {};
+
+			// Predefined emojis for up to 10 member types
+			var emojiList = [
+				'👩‍🏫', // 1 - Faculty
+				'🧑‍', // 2 - Student
+				'👤', // 3 - Part-time
+				'🧳',   // 4 - Visitor
+				'🏫', // 5 - Teacher Aide
+				'📚',   // 6 - Librarian
+				'👨‍💻', // 7 - IT Staff
+				'🏫',   // 8 - Admin
+				'🔬', // 9 - Researcher
+				'👥'    // 10 - Guest/Other
+			];
+			
+			// create the map of membertypes
+			var index = 0;
+			for (var n in data) {
+				let emoji = emojiList[index] || '👤'; // fallback emoji if over 10
+				classificationMap[n] = emoji + ' ' + data[n].description;
+				index++;
+			}
+
+			window.classificationMap = classificationMap;
+			console.log('classificationMap:', classificationMap);
+		}, 'json');
+	},
+		
 // ----------------------------- improved for pagination function for namesearch result -- F.  Tumulak
 	doNameSearch: function () {
 		var params = {
