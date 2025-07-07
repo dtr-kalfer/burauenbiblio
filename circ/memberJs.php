@@ -322,6 +322,7 @@ var mf = {
 		let end = Math.min(start + pageSize, results.length);
 
 		let html = '';
+		
 		if (results.length === 0) {
 			html = '<tr><td><?php echo T('no results') ?></td></tr>';
 		} else {
@@ -335,6 +336,7 @@ var mf = {
 					html += '  <td><a href="#" id="' + mbr.mbrid + '">' + mbr.last_name + ', ' + mbr.first_name + '</a></td>\n';
 				}
 				html += '  <td>' + mbr.home_phone + '</td>\n';
+				html += '<td>' + (classificationMap[mbr.classification] || 'Unknown') + '</td>\n';
 				html += '</tr>\n';
 			}
 		}
@@ -359,7 +361,6 @@ var mf = {
 		$('.goPrevBtn').prop('disabled', page <= 1);
 		$('.goNextBtn').prop('disabled', end >= results.length);
 	},
-
 	// --------------------- for doNameSearch use ----------------
 
 	handleMbrResponse: function (jsonInpt) {
