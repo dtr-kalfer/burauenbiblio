@@ -20,7 +20,7 @@
 		Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 		date_default_timezone_set('Asia/Manila'); // Philippine timezone
 		echo '<h3 >Welcome to BurauenBiblio!</h3>';
-		echo '<p class="info" style="text-align: center;">' . $_SESSION["username"] . T(", you are now logged in.") . '</p>';
+		echo '<p class="info" style="text-align: center;">🧑 ' . $_SESSION["username"] . T(", you are now logged in.") . '</p>';
 	?>
 	
 	<div style="display: flex;">
@@ -28,7 +28,8 @@
 			data-month-format="month YYYY" style='padding: 10px; margin: auto;'>
 		</section>
 		
-		<section style='padding-top: 12px;  margin-right: 10px;'><?php require_once("../todolist/index.php"); ?>
+		<section style='padding-top: 12px;  margin-right: 10px;'>
+			<?php require_once("../todolist/index.php"); ?>
 		</section>
 	</div>
 	<?php echo '<p  style="text-align: center;" >' . T("showhowtouse") . '</p>'; ?>
