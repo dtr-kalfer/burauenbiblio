@@ -9,6 +9,18 @@ Guide:
 - version 3.x.x above PHP 8.0.xx supported
 - version 2.x.x below PHP 7.4.26 supported
 
+## [unreleased] - yyyy-mm-dd
+
+### Added
+- Added 'member type' column on member search result.
+
+### Changed
+- Added more emoji content on todo list UI.
+- Improved UI for member search result.
+
+### Fixed
+- 
+
 ## [3.4.1] - 2025-07-06
 ### Added
 - toggle delay when click 'add task' and use a spinner using HTMX.
