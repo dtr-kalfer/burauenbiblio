@@ -41,7 +41,7 @@ var mf = {
 		mf.fetchCustomFlds();
 		mf.fetchAcnttranTypes();
 		mf.prepareCopyBarcdValidation();
-				
+		mf.buildClassificationMap();						
 		
 		$('.gobkBtn').on('click',null,mf.rtnToSrch);
 		$('.gobkMbrBtn').on('click',null,mf.rtnToList);
