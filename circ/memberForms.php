@@ -168,7 +168,7 @@
 
 <!-- ------------------------------------------------------------------------ -->
 <div id="listDiv">
-	<h4 id="searchResultsTitle" ><?php echo T("SearchResults"); ?></h4>
+	<h4 id="searchResultsTitle" style="width: 700px;"><?php echo T("SearchResults"); ?></h4>
 	<div id="results_found">
 	</div>
 	<table>
