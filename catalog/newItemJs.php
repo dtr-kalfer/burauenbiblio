@@ -42,7 +42,9 @@ var ni = {
 			ni.doClearItemForm();
 			ni.doMakeItemForm(mediaType);
         });
-    
+    // add this to make the lookupVal reactive and not appear broken and non-responsive --F.Tumulak
+		$('#lookupVal').on('input change', ni.checklookupVal);
+		
 		$('#quitBtn').on('click',null,ni.doAbandon);
 		$('#retryBtn').on('click',null,ni.doBackToSrch);
 		$('#choiceBtn1').on('click',null,ni.doBackToSrch);
@@ -133,6 +135,15 @@ var ni = {
 		}
 		ni.resetForm();
 	},
+	// add this to make #lookupVal responsive when typing input --F.Tumulak
+	checklookupVal: function () {
+		if (($('#lookupVal').val()).length > 0) { // empty input
+			$('#srchBtn').enable();
+		} else {
+			$('#srchBtn').disable();
+		}
+	},
+
 	
 	doBackToChoice: function () {
 		var nmbr = $('span#ttlHits').html();
