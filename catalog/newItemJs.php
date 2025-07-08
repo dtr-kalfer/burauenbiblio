@@ -327,7 +327,6 @@ var ni = {
 		$('#deltFotoBtn').hide();
 		$('#addFotoBtn').show();
 		$('.gobkFotoBtn').on('click',null, function () {
-			wc.vidOff();    // disables camera
 			ni.doBackToShow();
 		});
 
