@@ -9,7 +9,7 @@ Guide:
 - version 3.x.x above PHP 8.0.xx supported
 - version 2.x.x below PHP 7.4.26 supported
 
-## [unreleased] - yyyy-mm-dd
+## [3.4.2] - 2025-07-08
 
 ### Added
 - Added 'member type' column on member search result.
