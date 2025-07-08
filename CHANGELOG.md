@@ -21,6 +21,7 @@ Guide:
 ### Fixed
 - Fixed UI responsive for 'cataloging new items', after dropdown select, submit button is disabled.
 - Fixed UI responsive for 'existing items', after dropdown select, submit button is disabled.
+- Fixed: Can't use 'go back' button during 'add photo' setup on 'new items', under cataloging.
 
 ## [3.4.1] - 2025-07-06
 ### Added
