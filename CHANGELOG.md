@@ -19,7 +19,8 @@ Guide:
 - Improved UI for member search result.
 
 ### Fixed
-- 
+- Fixed UI responsive for 'cataloging new items', after dropdown select, submit button is disabled.
+- Fixed UI responsive for 'existing items', after dropdown select, submit button is disabled.
 
 ## [3.4.1] - 2025-07-06
 ### Added
