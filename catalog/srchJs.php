@@ -63,6 +63,10 @@ var bs = {
 				$('#marcTagsRow').show();
 		});
 		*/
+		
+		// improve text-input box be more responsive, respond with drop down selection.--F.Tumulak
+		$('#ph_searchText').on('input change', bs.checkPhraseSrchBtn);
+		$('#bc_searchBarcd').on('input change', bs.checkBarcdSrchBtn);
 
 		// for the search results section
 		$('#addNewBtn').on('click',null,bs.doNewCopy);
