@@ -1,11 +1,7 @@
 <?php
-/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
- * See the file COPYRIGHT.html for more details. --F.Tumulak
- */ 
-// Usage: verify_token_or_die('your_key_name');
-
-
-// This will exit the script with a 403 if the token doesn't match
+		/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
+		 * See the file COPYRIGHT.html for more details. --F.Tumulak
+		 */
 function verify_token_or_die(string $token_key = 'form_token') {
     if (session_status() === PHP_SESSION_NONE) {
 			session_start();
