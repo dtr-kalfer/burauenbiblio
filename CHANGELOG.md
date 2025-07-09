@@ -9,6 +9,19 @@ Guide:
 - version 3.x.x above PHP 8.0.xx supported
 - version 2.x.x below PHP 7.4.26 supported
 
+## [3.5.0] - 2025-07-09
+
+### Added
+- Full integration todolist feature with mysql instead of using sqlite.
+- Scalable todolist, allow concurrent due to mysql nature.
+
+### Changed
+- Changed sql structure to align with todolist feature.
+
+### Fixed
+- Fixed error on barcode check-in, happens when call a method insert() on a variable that's not supposed to be a string.
+- Fixed no response bug on todolist on consecutive action.
+
 ## [3.4.2] - 2025-07-08
 
 ### Added
