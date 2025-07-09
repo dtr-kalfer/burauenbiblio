@@ -1,19 +1,16 @@
-<?php
-require_once("../shared/guard_token.php"); 
-verify_token_or_die('guard_token_key'); // your custom key
-
+<?php 
 		/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
 		 * See the file COPYRIGHT.html for more details. --F.Tumulak
 		 */
-require '../todolist/db.php';
+require_once("../shared/guard_token.php");
+verify_token_or_die('guard_token_key');
 
-sleep(1);
+require_once("../todolist/db_mysql.php");
+
 if (!empty($_POST['todo'])) {
-    $stmt = $db->prepare("INSERT INTO todos (task) VALUES (:task)");
-    $stmt->bindValue(':task', $_POST['todo'], PDO::PARAM_STR);
-    $stmt->execute();
+    $task = mysqli_real_escape_string($connection, $_POST['todo']);
+    $sql = "INSERT INTO todos (task) VALUES ('$task')";
+    mysqli_query($connection, $sql);
 }
 
-echo '<div id="todo-list">';
 include '../todolist/todo_list.php';
-echo '</div>';
