@@ -1,17 +1,17 @@
 <?php
-require_once("../shared/guard_token.php"); 
-verify_token_or_die('guard_token_key'); // your custom key
-
 		/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
 		 * See the file COPYRIGHT.html for more details. --F.Tumulak
 		 */
-require '../todolist/db.php';
+require_once("../shared/guard_token.php");
+verify_token_or_die('guard_token_key');
 
-$id = $_POST['id'] ?? null;
+require_once("../todolist/db_mysql.php");
 
-if ($id) {
-    $stmt = $db->prepare("DELETE FROM todos WHERE id = :id");
-    $stmt->execute([':id' => $id]);
+$id = (int)($_POST['id'] ?? 0);
+
+if ($id > 0) {
+    $sql = "DELETE FROM todos WHERE id = $id";
+    mysqli_query($connection, $sql);
 }
 
 include '../todolist/todo_list.php';
