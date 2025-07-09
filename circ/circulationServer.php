@@ -8,6 +8,8 @@
 	switch ($_POST['mode']) {
 	case 'doShelveItem':
 	case "doItemCheckin":
+		require_once(REL(__FILE__, "../model/MemberAccounts.php"));
+			$acct = new MemberAccounts;	
 	case 'doShelveAll':
 		require_once(REL(__FILE__, "../classes/Copy.php"));
 		require_once(REL(__FILE__, "../model/Copies.php"));
@@ -70,7 +72,6 @@
 		break;
 */
 	case "doItemCheckin":
-		$acct = $acct ?? '';
 		$cpy = new Copy($_POST['barcodeNmbr'], True);
 		$copy = $cpy->getData();
 		if (!$copy) { echo $badBarcodeText; exit; }
@@ -126,3 +127,4 @@
 	}
 
 ?>
+
