@@ -16,7 +16,7 @@ Guide:
 - Scalable todolist, allow concurrent due to mysql nature.
 
 ### Changed
-- Changed sql structure to align with todolist feature.
+- Changed sql structure to align with todolist feature. Use this to support todolist with mysql benefits.
 
 ### Fixed
 - Fixed error on barcode check-in, happens when call a method insert() on a variable that's not supposed to be a string.
