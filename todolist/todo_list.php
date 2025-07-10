@@ -22,6 +22,7 @@ while ($todo = mysqli_fetch_assoc($result)): ?>
       }'
       hx-target="#todo-list"
       hx-swap="innerHTML"
+			hx-disabled-elt="checkbox"
     >
     <?= htmlspecialchars($todo['task']) ?>
     <button
@@ -32,6 +33,7 @@ while ($todo = mysqli_fetch_assoc($result)): ?>
       }'
       hx-target="#todo-list"
       hx-swap="innerHTML"
+			hx-disabled-elt="button"
     >🗑</button>
   </li>
 <?php endwhile; ?>

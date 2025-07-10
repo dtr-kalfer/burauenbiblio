@@ -15,3 +15,4 @@ if ($id > 0) {
 }
 
 include '../todolist/todo_list.php';
+usleep(300000);

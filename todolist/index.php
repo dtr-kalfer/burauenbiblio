@@ -7,7 +7,7 @@
 		 * See the file COPYRIGHT.html for more details. --F.Tumulak
 		 */
 ?>
-<div style="width: 40vw;">
+<div style="width: 45vw;">
 	<h3>To-Do List</h3>
 	<form hx-disabled-elt="button" hx-post="../todolist/todo_add.php" hx-target="#todo-list" hx-swap="innerHTML" style="display: flex; align-items: center; gap: 5px;">
 		<input type="text" name="todo" id="todo-input" size="44" placeholder="Enter a new todo" required>
