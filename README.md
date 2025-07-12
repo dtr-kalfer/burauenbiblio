@@ -35,7 +35,7 @@ The **BurauenBiblio system** is actively used at **Burauen Community College**, 
 
 The system uses Calendar Logic to accurately calculate due dates based on your library’s open and closed days.
 
-### 📝 To-Do List Feature 
+### 📝 To-Do List 
 
 ![Homepage](./readme_assets/todo_list.webp "BurauenBiblio Homepage")
 
@@ -51,7 +51,7 @@ Member types can be configured with **overdue charge** settings. When a patron e
 
 ![Homepage](./images/card_catalog_demo_sample.webp "BurauenBiblio Homepage")
 
-The system includes support for **legacy library requirements** such as **Printed Card Catalog**.
+BurauenBiblio prints card catalogs in a **custom 8 × 5 inch layout PDF format**, applicable for longer titles, barcodes and subject terms. It uses long bond paper (8.5 × 13 inches) which allows for two card catalog prints for each page. This feature helps support local libraries in need of card catalog prints.
 
 ### 📌 Z39.50 Online Metadata Retrieval
 
