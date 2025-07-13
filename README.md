@@ -55,6 +55,14 @@ Member types can be configured with **overdue charge** settings. When a patron e
 
 BurauenBiblio prints card catalogs in a **custom 8 × 5 inch layout PDF format**, applicable for longer titles, barcodes and subject terms. It uses long bond paper (8.5 × 13 inches) which allows for two card catalog prints for each page. This feature helps support local libraries in need of card catalog prints.
 
+### 📌 MARC tags setup
+
+![Homepage](./images/MARC_tags_ph.webp "BurauenBiblio Homepage")
+
+The included SQL file provides MARC tag entries tailored for **Philippine-compatible** library records.
+
+You may also customize or extend the entries to align with your own country’s library cataloging standards or institutional requirements via **Biblio Fields** setup.
+
 ### 📌 Z39.50 Online Metadata Retrieval
 
 ![Homepage](./readme_assets/metadata_retrieval.webp "BurauenBiblio Homepage")
