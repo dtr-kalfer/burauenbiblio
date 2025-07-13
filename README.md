@@ -57,7 +57,7 @@ BurauenBiblio prints card catalogs in a **custom 8 × 5 inch layout PDF format**
 
 ### 📌 MARC tags setup
 
-![Homepage](./images/MARC_tags_ph.webp "BurauenBiblio Homepage")
+![Homepage](./readme_assets/MARC_tags_ph.webp "BurauenBiblio Homepage")
 
 The included SQL file provides MARC tag entries tailored for **Philippine-compatible** library records.
 
