@@ -53,6 +53,7 @@ $trans[", you are now logged in."] = ", you are now logged in. ✅";
 $trans["showstaffwelcome"] = "Use the left hand navigation area to manage library.";
 $trans["Today is: "] = "Today is: ";
 $trans["Welcome"] = "Welcome";
+$trans["Circ. Report"] = "Circ. Report";
 $trans["showhowtouse"] = "✅ To-do usage: 1️⃣ Click a calendar date, 2️⃣ add details, 3️⃣ click Add Task.";
 
 $trans["(enter 0 for unlimited)"] = "(enter 0 for unlimited)";
