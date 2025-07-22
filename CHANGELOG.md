@@ -11,7 +11,7 @@ Guide:
 
 ## [unreleased] - yyyy-mm-dd
 ### Added
--
+- Analytics: Monthly circulation report (under dev.)
 
 ### Changed
 -
