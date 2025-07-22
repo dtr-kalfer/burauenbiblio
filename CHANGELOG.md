@@ -11,10 +11,10 @@ Guide:
 
 ## [unreleased] - yyyy-mm-dd
 ### Added
-- Analytics: Monthly circulation report (under dev.)
+- Analytics: Monthly circulation report
 
 ### Changed
--
+- Updated navigation menu: Circ. Report
 
 ### Fixed
 - Fixed To-do list multiple clicks, added usleep and htmx hx-disabled-elt on todo actions.
