@@ -35,31 +35,31 @@ For details: https://librarytechnology.org/library/211849
 
 ![Homepage](./readme_assets/sample_calendar_image.webp "BurauenBiblio Homepage")
 
-The system uses Calendar Logic to accurately calculate due dates based on your library’s open and closed days.
+The system uses **Calendar Logic** to accurately calculate due dates based on your **library’s open and closed days**.
 
 ### 📝 To-Do List 
 
 ![Homepage](./readme_assets/todo_list.webp "BurauenBiblio Homepage")
 
-The To-Do List is a simple yet powerful enhancement to the BurauenBiblio library system. It allows staff members to easily jot down, organize, and share important notes, reminders, and tasks directly within the library interface. Whether it’s for planning upcoming events, tracking routine duties, reminding colleagues about library schedules, or noting down quick ideas — the to-do list keeps everyone in sync and focused.
+The **To-Do List** is a simple yet powerful enhancement to the BurauenBiblio library system. It allows staff members to easily **jot down, organize, and share important notes, reminders, and tasks** directly within the library interface. Whether it’s for planning upcoming events, tracking routine duties, reminding colleagues about library schedules, or noting down quick ideas — the to-do list keeps everyone in sync.
 
-### 📝 Analytics - Monthly Circulation
+### 📝 Analytics - Monthly Circulation Report
 
 ![Homepage](./readme_assets/monthly_circ.webp "BurauenBiblio Homepage")
 
-The Monthly Circulation Report is a dynamic analytics feature in BurauenBiblio that visualizes the total number of items borrowed per month, across a selected range of time. It helps library staff and administrators: 📅 Track Borrowing Trends 📚 Evaluate Usage Patterns 🎯 Support Decision-Making based on actual demand.
+The **Monthly Circulation Report** is a dynamic analytics feature in BurauenBiblio that visualizes the **total number of items borrowed per month**, across a selected range of time. It helps library staff and administrators: 📅 **Track Borrowing Trends** 📚 **Evaluate Usage Patterns** 🎯 **Support Decision-Making** based on actual demand.
 
 ### 📌 Set limit on overdue charges
 
 ![Homepage](./readme_assets/overdue_notice.webp "BurauenBiblio Homepage")
 
-Member types can be configured with **overdue charge** settings. When a patron exceeds the overdue limit accumulated from the penalty/day, they are **restricted** from making additional borrowings until the balance is settled.
+Member types can be configured with **overdue charge** settings. When a patron exceeds the overdue limit accumulated from the penalty/day, they are **restricted** from making additional borrowings.
 
 ### 📌 Card Catalog
 
 ![Homepage](./images/card_catalog_demo_sample.webp "BurauenBiblio Homepage")
 
-BurauenBiblio prints card catalogs in a **custom 8 × 5 inch layout PDF format**, applicable for longer titles, barcodes and subject terms. It uses long bond paper (8.5 × 13 inches) which allows for two card catalog prints for each page. This feature helps support local libraries in need of card catalog prints.
+**BurauenBiblio** prints card catalogs in a **custom 8 × 5 inch layout PDF format**, applicable for longer titles, barcodes and subject terms. It uses long bond paper (8.5 × 13 inches) which allows for two card catalog prints for each page. This feature helps support local libraries in need of card catalog prints.
 
 ### 📌 MARC tags setup
 
