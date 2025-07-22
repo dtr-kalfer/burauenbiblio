@@ -47,7 +47,7 @@ The To-Do List is a simple yet powerful enhancement to the BurauenBiblio library
 
 ![Homepage](./readme_assets/monthly_circ.webp "BurauenBiblio Homepage")
 
-Monthly circulation report for check-ins and check-outs (Under Development).
+The Monthly Circulation Report is a dynamic analytics feature in BurauenBiblio that visualizes the total number of items borrowed per month, across a selected range of time. It helps library staff and administrators: 📅 Track Borrowing Trends 📚 Evaluate Usage Patterns 🎯 Support Decision-Making based on actual demand.
 
 ### 📌 Set limit on overdue charges
 
