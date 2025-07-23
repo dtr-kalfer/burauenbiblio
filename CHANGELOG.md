@@ -11,12 +11,16 @@ Guide:
 
 ## [unreleased] - yyyy-mm-dd
 ### Added
+- chart.js - MIT license commercial/non-commercial use
 - Analytics: Monthly circulation report
+- Analytics: Top 30 active books
 
 ### Changed
+- Updated navigation menu: Top 30 active books
 - Updated navigation menu: Circ. Report
 
 ### Fixed
+- Fixed result generated from Top 30 books.
 - Fixed To-do list multiple clicks, added usleep and htmx hx-disabled-elt on todo actions.
 
 ## [3.5.0] - 2025-07-09
