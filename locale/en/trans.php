@@ -53,8 +53,11 @@ $trans[", you are now logged in."] = ", you are now logged in. ✅";
 $trans["showstaffwelcome"] = "Use the left hand navigation area to manage library.";
 $trans["Today is: "] = "Today is: ";
 $trans["Welcome"] = "Welcome";
-$trans["Circ. Report"] = "Circ. Report";
+$trans["top30"] = "Top 30";
+$trans["analytics"] = "Analytics";
 $trans["showhowtouse"] = "✅ To-do usage: 1️⃣ Click a calendar date, 2️⃣ add details, 3️⃣ click Add Task.";
+$trans["Circ. Report"] = "Circ. Report";
+$trans["top30active"] = "🔥 Top 30 Active Book Titles within 6 months";
 
 $trans["(enter 0 for unlimited)"] = "(enter 0 for unlimited)";
 $trans["(when available)"] = "(when available)";
