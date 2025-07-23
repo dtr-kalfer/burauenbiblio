@@ -4,8 +4,8 @@
  */
 
 require_once("../shared/common.php");
-$tab = "circulation";
-$nav = "monthly";	
+$tab = "circulation/analytics";
+$nav = "monthly";		
 
 
 require_once(REL(__FILE__, "../shared/logincheck.php"));
