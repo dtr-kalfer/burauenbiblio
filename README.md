@@ -43,11 +43,17 @@ The system uses **Calendar Logic** to accurately calculate due dates based on yo
 
 The **To-Do List** is a simple yet powerful enhancement to the BurauenBiblio library system. It allows staff members to easily **jot down, organize, and share important notes, reminders, and tasks** directly within the library interface. Whether it’s for planning upcoming events, tracking routine duties, reminding colleagues about library schedules, or noting down quick ideas — the to-do list keeps everyone in sync.
 
-### 📝 Analytics - Monthly Circulation Report
+### 📝 Analytics - Monthly Circulation Report 
 
 ![Homepage](./readme_assets/monthly_circ.webp "BurauenBiblio Homepage")
 
 The **Monthly Circulation Report** is a dynamic analytics feature in BurauenBiblio that visualizes the **total number of items borrowed per month**, across a selected range of time. It helps library staff and administrators: 📅 **Track Borrowing Trends** 📚 **Evaluate Usage Patterns** 🎯 **Support Decision-Making** based on actual demand.
+
+### 📝 Analytics - Top 30 Active Books
+
+![Homepage](./readme_assets/top30activebooks.webp "BurauenBiblio Homepage")
+
+The **Top 30 Active Books** feature highlights the most frequently borrowed titles over the past six months, offering valuable insights into **reading trends, student preferences, and subject demand**. Whether for academic planning or simply showcasing popular titles, this feature adds both **visibility and value** to the library's services.
 
 ### 📌 Set limit on overdue charges
 
