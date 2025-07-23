@@ -9,28 +9,16 @@
 		} 
 	  // Assuming $pdo is your PDO connection and this query was prepared
     $stmt = $pdo->query("
-      SELECT 
-        CONCAT(titles.subfield_data, ' ', IFNULL(sub.subfield_data, '')) AS title,
-        COUNT(*) AS checkout_count
-      FROM booking b
-      JOIN booking_member bkm ON bkm.bookingid = b.bookingid
-      JOIN member m ON m.mbrid = bkm.mbrid
-      JOIN biblio_copy bc ON bc.histid = b.out_histid
-      JOIN biblio_field titlef ON titlef.bibid = b.bibid
-      JOIN biblio_subfield titles ON titles.fieldid = titlef.fieldid
-      LEFT JOIN biblio_subfield sub ON sub.fieldid = titlef.fieldid AND sub.subfield_cd = 'b'
-      WHERE 
-        (
-          (titlef.tag='240' AND titles.subfield_cd='a') OR
-          (titlef.tag='245' AND titles.subfield_cd='a') OR
-          (titlef.tag='246' AND titles.subfield_cd='a') OR
-          (titlef.tag='773' AND titles.subfield_cd='a') OR
-          (titlef.tag='773' AND titles.subfield_cd='t')
-        )
-        AND b.out_dt BETWEEN CURDATE() - INTERVAL 6 MONTH AND CURDATE()
-      GROUP BY title
-      ORDER BY checkout_count DESC
-      LIMIT 30
+			SELECT 
+				titles.subfield_data AS title,
+				COUNT(*) AS checkout_count
+			FROM booking b
+			JOIN biblio_field bf ON bf.bibid = b.bibid AND bf.tag = '245'
+			JOIN biblio_subfield titles ON titles.fieldid = bf.fieldid AND titles.subfield_cd = 'a'
+			WHERE b.out_dt BETWEEN DATE_SUB(CURDATE(), INTERVAL 6 MONTH) AND CURDATE()
+			GROUP BY titles.subfield_data
+			ORDER BY checkout_count DESC
+			LIMIT 30;
     ");
 
     $rank = 1;
