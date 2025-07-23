@@ -28,9 +28,10 @@ function staff_menu() {
 		Nav::node('circulation/bookings/book', T("Create Booking"));
 		Nav::node('circulation/checkin', T("Check In"), '../circ/checkinForms.php');
 		Nav::node('circulation/overdue', T("Overdue"), '../circ/overdue_items.php?type=overdue'); // new feature overdue calc -- F.Tumulak
-		Nav::node('circulation/monthly', T("Circ. Report"), '../circ/circ_report2.php');
-	//Nav::node('circulation/overdue', T("Overdue"), '../circ/overdue.php?type=compute_penalty'); // new feature overdue calc -- F.Tumulak
-	// http://localhost/openbiblio/reports/report_criteria.php?type=overdue
+		Nav::node('circulation/analytics', T("analytics"),'../circ/circ_report2.php');
+			Nav::node('circulation/analytics/monthly', T("Circ. Report"),'../circ/circ_report2.php');
+			Nav::node('circulation/analytics/top30', T("top30"),'../circ/top30.php');
+
 	}
 
 	##-------------------------------------------------------------------------------------##
