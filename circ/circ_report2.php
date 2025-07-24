@@ -5,7 +5,7 @@
 
 require_once("../shared/common.php");
 $tab = "circulation/analytics";
-$nav = "monthly";		
+$nav = "monthly";	
 
 
 require_once(REL(__FILE__, "../shared/logincheck.php"));
@@ -31,10 +31,27 @@ try {
 <script src="./js/chart.js"></script>
 <section style="width: 600px;" id="circ_section">
 <?php 
-	$chartDataJSON = getChartDataJSON($pdo);
+
+
+$startMonth = $_GET['start'] ?? '2025-01';
+$endMonth = $_GET['end'] ?? '2025-06';
+
+$chartDataJSON = getChartDataJSON($pdo, $startMonth, $endMonth);
+
+	//$chartDataJSON = getChartDataJSON($pdo);
 	echo "<script>const chartData = $chartDataJSON;</script>";
 ?>
 </section>
+<form method="get" style="margin-bottom: 20px;">
+  <label for="start">Start Month:</label>
+  <input type="month" id="start" name="start" value="<?php echo $_GET['start'] ?? ''; ?>" required>
+
+  <label for="end">End Month:</label>
+  <input type="month" id="end" name="end" value="<?php echo $_GET['end'] ?? ''; ?>" required>
+
+  <button type="submit">Generate Report</button>
+</form>
+
 <canvas id="myChart"></canvas>
 
 <?php 
