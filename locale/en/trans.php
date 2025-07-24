@@ -58,6 +58,8 @@ $trans["analytics"] = "Analytics";
 $trans["showhowtouse"] = "✅ To-do usage: 1️⃣ Click a calendar date, 2️⃣ add details, 3️⃣ click Add Task.";
 $trans["Circ. Report"] = "Circ. Report";
 $trans["top30active"] = "🔥 Top 30 Active Book Titles within 6 months";
+$trans["attendance"] = "Att. Form";
+$trans["attendance_chart"] = "Att. Chart";
 
 $trans["(enter 0 for unlimited)"] = "(enter 0 for unlimited)";
 $trans["(when available)"] = "(when available)";
