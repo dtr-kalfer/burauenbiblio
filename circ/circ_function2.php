@@ -2,17 +2,28 @@
 /* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
  * See the file COPYRIGHT.html for more details.
  */
-function getChartDataJSON(PDO $pdo): string {
-    // You can replace this $monthQuery with your own dynamic SQL generator
-    $monthQuery = "
-        SELECT DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL n MONTH), '%Y-%m') AS month
-        FROM (
-            SELECT 0 AS n UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 
-            UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9 UNION SELECT 10 UNION SELECT 11
-        ) AS months
-    ";
+ 
+function getChartDataJSON(PDO $pdo, string $startMonth, string $endMonth): string {
+    $start = new DateTime($startMonth);
+    $end = new DateTime($endMonth);
 
-    // Complete SQL query with $monthQuery injected
+    // Normalize start to first day of month and end to last day of month
+    $start->modify('first day of this month');
+    $end->modify('first day of next month'); // so loop stops at proper last month
+
+    $monthList = [];
+    $period = new DatePeriod($start, new DateInterval('P1M'), $end);
+    foreach ($period as $dt) {
+        $monthList[] = $dt->format('Y-m');
+    }
+
+    // Build inline UNION SELECT
+    $monthQueryParts = array_map(function($m) {
+        return "SELECT '{$m}' AS month";
+    }, $monthList);
+    $monthQuery = implode(" UNION ALL ", $monthQueryParts);
+
+    // SQL with dynamic list of months
     $sql = "
         SELECT
             ym.month,
@@ -46,8 +57,7 @@ function getChartDataJSON(PDO $pdo): string {
         $checkins[] = (int)$row['total_checkins'];
     }
 
-    // Output JSON structure compatible with Chart.js
-    $chartData = [
+    return json_encode([
         'labels' => $labels,
         'datasets' => [
             [
@@ -61,7 +71,5 @@ function getChartDataJSON(PDO $pdo): string {
                 'backgroundColor' => '#28a745'
             ]
         ]
-    ];
-
-    return json_encode($chartData);
+    ]);
 }
