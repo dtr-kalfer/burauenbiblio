@@ -75,6 +75,11 @@ function staff_menu() {
 		// use this format --> Nav::node('parent dir./child dir.', T("locale"), '../path_to/file.php');
 		Nav::node('admin', T("Admin"), '../admin/index.php');
 		Nav::node('admin/info', T("App. Info"), '../admin/app_stats.php'); // Added this app. information status -->F.Tumulak
+		
+		Nav::node('admin/analytics', T("analytics"),'../circ/attendance_form.php');
+			Nav::node('admin/analytics/attendance', T("attendance"),'../circ/attendance_form.php');
+			Nav::node('admin/analytics/attendance_chart', T("attendance_chart"),'../circ/attendance_chart2.php');	
+
 		Nav::node('admin/settings', T("Library Settings"), '../admin/settingsForm.php');
 		Nav::node('admin/staff', T("Staff Admin"), '../admin/staffForm.php');
 		Nav::node('admin/biblioFields', T("Biblio Fields"),'../admin/biblioFldsForm.php');
