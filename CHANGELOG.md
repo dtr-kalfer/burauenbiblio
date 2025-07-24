@@ -11,13 +11,16 @@ Guide:
 
 ## [unreleased] - yyyy-mm-dd
 ### Added
-- chart.js - MIT license commercial/non-commercial use
-- Analytics: Monthly circulation report
+- chart.js - MIT license free for commercial/non-commercial use
+- Analytics: Monthly circulation report with input range feature
 - Analytics: Top 30 active books
+- Analytics: Library attendance tracking with input range feature
 
 ### Changed
 - Updated navigation menu: Top 30 active books
 - Updated navigation menu: Circ. Report
+- Change input Library Attendance and Monthly circ. report into dynamic setup.
+- Change navigation sidebar added new link for new features.
 
 ### Fixed
 - Fixed result generated from Top 30 books.
