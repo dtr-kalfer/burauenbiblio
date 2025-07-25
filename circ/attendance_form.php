@@ -88,11 +88,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					<label for="course">Course</label>
 					<select name="course" id="course">
 							<option value="">-- Select Course --</option>
-							<option value="BSCrim">BSCrim</option>
-							<option value="BSMA">BSMA</option>
-							<option value="BSA">BSA</option>
-							<option value="BPA">BPA</option>
-							<option value="BSISM">BSISM</option>
+							<?php
+							$courses = file('courses.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+							foreach ($courses as $course) {
+									echo "<option value=\"" . htmlspecialchars($course) . "\">" . htmlspecialchars($course) . "</option>";
+							}
+							?>
 					</select>
 			</span>
 
@@ -141,10 +142,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endwhile; ?>
     </tbody>
 </table>
-	
-	
-	
-	
 </section>
 <script>
 		function toggleCourse(userType) {
