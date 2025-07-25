@@ -2,7 +2,11 @@
 /* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
  * See the file COPYRIGHT.html for more details.
  */
- 
+
+function isValidMonthFormat($month) {
+    return preg_match('/^\d{4}-(0[1-9]|1[0-2])$/', $month);
+}
+
 function getChartDataJSON(PDO $pdo, string $startMonth, string $endMonth): string {
     $start = new DateTime($startMonth);
     $end = new DateTime($endMonth);
