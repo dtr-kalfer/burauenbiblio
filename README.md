@@ -59,7 +59,7 @@ The **Top 30 Active Books** feature highlights the most frequently borrowed titl
 
 ### 📝 Analytics - Library Attendance Tracking
 
-A simple yet powerful attendance logging system designed for statistical reporting and community interaction insights. The feature allows encoding of daily visits categorized by user type (Student, Faculty, Visitor) and, when applicable, by academic program. Using dynamic visualizations powered by Chart.js, library staff can instantly view attendance trends across custom date ranges
+A simple yet powerful attendance logging system designed for statistical reporting and community interaction insights. The feature allows encoding of monthly visits categorized by user type (Student, Faculty, Visitor) and, when applicable, by academic program. Using dynamic visualizations powered by Chart.js, library staff can instantly view attendance trends across custom date ranges.
 
 ### 📌 Set limit on overdue charges
 
