@@ -9,22 +9,25 @@ Guide:
 - version 3.x.x above PHP 8.0.xx supported
 - version 2.x.x below PHP 7.4.26 supported
 
-## [unreleased] - yyyy-mm-dd
+## [3.6.2] - 2025-07-25
 ### Added
 - chart.js - MIT license free for commercial/non-commercial use
 - Analytics: Monthly circulation report with input range feature
 - Analytics: Top 30 active books
 - Analytics: Library attendance tracking with input range feature
+- Added 'easy' feature change label / select list by editing courses.txt for attendance graphs
 
 ### Changed
 - Updated navigation menu: Top 30 active books
 - Updated navigation menu: Circ. Report
-- Change input Library Attendance and Monthly circ. report into dynamic setup.
-- Change navigation sidebar added new link for new features.
+- Changed input Library Attendance and Monthly circ. report into dynamic setup.
+- Changed navigation sidebar added new link for new features.
+- updated sql database with graph/course fictional attendance data.
 
 ### Fixed
 - Fixed result generated from Top 30 books.
 - Fixed To-do list multiple clicks, added usleep and htmx hx-disabled-elt on todo actions.
+- Fixed validation features for month span input on circ. report and attendance.
 
 ## [3.5.0] - 2025-07-09
 
