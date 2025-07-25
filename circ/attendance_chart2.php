@@ -24,9 +24,19 @@
 			die("Connection failed: " . mysqli_connect_error());
 	}
 
+	function isValidMonthFormat($month) {
+			return preg_match('/^\d{4}-(0[1-9]|1[0-2])$/', $month);
+	}
+
 	// Get month range from form
 	$start = $_GET['start_month'] ?? '2025-01';
 	$end = $_GET['end_month'] ?? '2025-06';
+
+	if (!isValidMonthFormat($start) || !isValidMonthFormat($end)) {
+			echo "<h3 style='background-color: red; padding: 10px;'>" . T('invalid_month_format') . "</h3>";
+			echo "<section style='text-align: center;'><a href='./attendance_chart2.php' >Try Again</a></section>";
+			die;
+	}
 
 	// Turn into proper date range
 	$start_date = $start . '-01';
@@ -59,7 +69,8 @@ while ($current <= $end_ts) {
 }
 
 // Create dataset structure
-$labels = ['BSCrim', 'BSMA', 'BSA', 'BPA', 'BSISM', 'Faculty', 'Visitor'];
+$courses = file('courses.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+$labels = array_merge($courses, ['Faculty', 'Visitor']);
 $data_map = [];
 foreach ($labels as $label) {
     $data_map[$label] = array_fill(0, count($months), 0);
@@ -103,7 +114,7 @@ $connection->close();
         <input type="month" name="start_month" value="<?= htmlspecialchars($start) ?>" required>
         <label>End Month:</label>
         <input type="month" name="end_month" value="<?= htmlspecialchars($end) ?>" required>
-        <button type="submit">Update</button>
+        <button type="submit">Update Chart</button>
     </form>
 
 		<section class="chart-container-attendance">
