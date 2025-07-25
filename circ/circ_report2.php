@@ -32,9 +32,15 @@ try {
 <section style="width: 600px;" id="circ_section">
 <?php 
 
-
 $startMonth = $_GET['start'] ?? '2025-01';
 $endMonth = $_GET['end'] ?? '2025-06';
+
+// check if date is valid --> F.Tumulak
+if (!isValidMonthFormat($startMonth) || !isValidMonthFormat($endMonth)) {
+		echo "<h3 style='background-color: red; padding: 10px;'>" . T('invalid_month_format') . "</h3>";
+		echo "<div style='text-align: center;'><a href='./circ_report2.php' >Try Again</a></div>";
+		die;
+}
 
 $chartDataJSON = getChartDataJSON($pdo, $startMonth, $endMonth);
 
@@ -44,10 +50,10 @@ $chartDataJSON = getChartDataJSON($pdo, $startMonth, $endMonth);
 </section>
 <form method="get" style="margin-bottom: 20px;">
   <label for="start">Start Month:</label>
-  <input type="month" id="start" name="start" value="<?php echo $_GET['start'] ?? ''; ?>" required>
+  <input type="month" id="start" placeholder="2025-01" name="start" value="<?php echo $startMonth; ?>" required>
 
   <label for="end">End Month:</label>
-  <input type="month" id="end" name="end" value="<?php echo $_GET['end'] ?? ''; ?>" required>
+  <input type="month" id="end" placeholder="2025-06" name="end" value="<?php echo $endMonth; ?>" required>
 
   <button type="submit">Generate Report</button>
 </form>
