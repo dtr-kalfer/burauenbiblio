@@ -9,6 +9,28 @@
 
 	require_once(REL(__FILE__, "../shared/logincheck.php"));
 
+	$action = $_GET['action'] ?? 'chart';
+
+	if ($action === 'json') {
+			// get post inputs
+			$start = $_GET['start_month'] ?? date('Y-m');
+			$end = $_GET['end_month'] ?? date('Y-m');
+			$students_only = $_GET['students_only'] ?? '';
+			// Redirect to exporter with query parameters
+			$query = http_build_query([
+					'start_month' => $start,
+					'end_month' => $end,
+					'students_only' => $students_only
+			]);
+			header("Location: export_attendance_json.php?$query");
+			exit;
+	} else {
+		// Get month range from form
+		$start = $_GET['start_month'] ?? '2025-01';
+		$end = $_GET['end_month'] ?? '2025-06';
+		$students_only = $_GET['students_only'] ?? '';
+	}
+
 	Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 
 	require_once("../catalog/class/Qtest.php");
@@ -28,10 +50,6 @@
 			return preg_match('/^\d{4}-(0[1-9]|1[0-2])$/', $month);
 	}
 
-	// Get month range from form
-	$start = $_GET['start_month'] ?? '2025-01';
-	$end = $_GET['end_month'] ?? '2025-06';
-
 	if (!isValidMonthFormat($start) || !isValidMonthFormat($end)) {
 			echo "<h3 style='background-color: red; padding: 10px;'>" . T('invalid_month_format') . "</h3>";
 			echo "<section style='text-align: center;'><a href='./attendance_chart2.php' >Try Again</a></section>";
@@ -42,8 +60,11 @@
 	$start_date = $start . '-01';
 	$end_date = date('Y-m-t', strtotime($end . '-01')); // Last day of the end month
 
-	// Prepare data
-	$query = "
+	$isStudentsOnly = isset($_GET['students_only']) && $_GET['students_only'] == '1';
+
+	// Prepare data. --F.Tumulak
+
+	$sql = "
 			SELECT 
 					user_type,
 					course,
@@ -51,43 +72,60 @@
 					SUM(count) AS total
 			FROM library_attendance
 			WHERE date BETWEEN ? AND ?
-			GROUP BY user_type, course, month
-			ORDER BY month ASC;
 	";
-	$stmt = $connection->prepare($query);
+
+	// Filter only students if needed
+	if ($isStudentsOnly) {
+			$sql .= " AND user_type = 'Student'";
+	}
+
+	$sql .= "
+			GROUP BY user_type, course, month
+			ORDER BY month ASC
+	";
+	
+	$stmt = $connection->prepare($sql);
 	$stmt->bind_param("ss", $start_date, $end_date);
 	$stmt->execute();
 	$result = $stmt->get_result();
 
-// Generate month list
-$months = [];
-$current = strtotime($start_date);
-$end_ts = strtotime($end_date);
-while ($current <= $end_ts) {
-    $months[] = date('Y-m', $current);
-    $current = strtotime('+1 month', $current);
-}
+	// Generate month list
+	$months = [];
+	$current = strtotime($start_date);
+	$end_ts = strtotime($end_date);
+	while ($current <= $end_ts) {
+			$months[] = date('Y-m', $current);
+			$current = strtotime('+1 month', $current);
+	}
 
-// Create dataset structure
-$courses = file('courses.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-$labels = array_merge($courses, ['Faculty', 'Visitor']);
-$data_map = [];
-foreach ($labels as $label) {
-    $data_map[$label] = array_fill(0, count($months), 0);
-}
+	// Create dataset structure
+	$courses = file('courses.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
-while ($row = $result->fetch_assoc()) {
-    $month = $row['month'];
-    $index = array_search($month, $months);
-    if ($index !== false) {
-        $key = ($row['user_type'] === 'Student') ? $row['course'] : $row['user_type'];
-        if (isset($data_map[$key])) {
-            $data_map[$key][$index] += (int)$row['total'];
-        }
-    }
-}
-$stmt->close();
-$connection->close();
+	// Assume $courses is already defined earlier
+	if ($isStudentsOnly) {
+			$labels = $courses;  // Students only --F.Tumulak
+	} else {
+			$labels = array_merge($courses, ['Faculty', 'Visitor']);  // All attendees merge with students --F.TUMULAK
+	}
+
+	$data_map = [];
+	foreach ($labels as $label) {
+			$data_map[$label] = array_fill(0, count($months), 0);
+	}
+
+	while ($row = $result->fetch_assoc()) {
+			$month = $row['month'];
+			$index = array_search($month, $months);
+			if ($index !== false) {
+					$key = ($row['user_type'] === 'Student') ? $row['course'] : $row['user_type'];
+					if (isset($data_map[$key])) {
+							$data_map[$key][$index] += (int)$row['total'];
+					}
+			}
+	}
+	$stmt->close();
+	$connection->close();
+	
 ?>
   <script src="./js/chart.js"></script>
     <style>
@@ -108,14 +146,18 @@ $connection->close();
         }
     </style>
 
-
-    <form method="GET">
-        <label>Start Month:</label>
-        <input type="month" name="start_month" value="<?= htmlspecialchars($start) ?>" required>
-        <label>End Month:</label>
-        <input type="month" name="end_month" value="<?= htmlspecialchars($end) ?>" required>
-        <button type="submit">Update Chart</button>
-    </form>
+<form method="GET" action="">
+    <label>Start Month:</label>
+    <input type="month" name="start_month" value="<?= htmlspecialchars($start) ?>" required>
+    <label>End Month:</label>
+    <input type="month" name="end_month" value="<?= htmlspecialchars($end) ?>" required>
+    <label>
+        <input type="checkbox" name="students_only" value="1" <?= isset($_GET['students_only']) ? 'checked' : '' ?>>
+        Show Students Only
+    </label>
+    <button type="submit" name="action" value="chart">Update Chart</button>
+    <button type="submit" name="action" value="json">Export to JSON</button>
+</form>
 
 		<section class="chart-container-attendance">
 			<canvas id="attendanceChart"></canvas>
