@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<h2><?= T("Library Attendance") ?></h2>
 
 	<?php if ($success): ?>
-			<p class="success">Attendance successfully recorded!</p>
+			<p class="success"><?= T("Attendance successfully recorded!") ?></p>
 	<?php elseif ($error): ?>
 			<p class="error"><?= htmlspecialchars($error) ?></p>
 	<?php endif; ?>
