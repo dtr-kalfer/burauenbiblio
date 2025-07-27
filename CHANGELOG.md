@@ -9,6 +9,18 @@ Guide:
 - version 3.x.x above PHP 8.0.xx supported
 - version 2.x.x below PHP 7.4.26 supported
 
+## [unreleased] - yyyy-mm-dd
+### Added
+- JSON export feature for Library Attenance record  
+- Exclude on bar graph both faculty and visitor, show only student attendees.
+
+### Changed
+- Changed attendance form and attendance chart.
+
+### Fixed
+- Fixed locale definitions for other foreign language in future BurauenBiblio support.
+
+
 ## [3.6.2] - 2025-07-25
 ### Added
 - chart.js - MIT license free for commercial/non-commercial use
