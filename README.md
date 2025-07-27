@@ -61,6 +61,10 @@ The **Top 30 Active Books** feature highlights the most frequently borrowed titl
 
 A simple yet powerful attendance logging system designed for statistical reporting and community interaction insights. The feature allows encoding of monthly visits categorized by user type (Student, Faculty, Visitor) and, when applicable, by academic program. Using dynamic visualizations powered by Chart.js, library staff can instantly view attendance trends across custom date ranges.
 
+![Homepage](./readme_assets/export_json.webp "BurauenBiblio Homepage")
+
+Added 'Export attendance to JSON' format with 'student' only filter. You can use the info for other analytic/statistical purpose.
+
 ### 📌 Set limit on overdue charges
 
 ![Homepage](./readme_assets/overdue_notice.webp "BurauenBiblio Homepage")
