@@ -65,6 +65,7 @@ $trans["invalid_month_format"] = "Invalid month format. Please use YYYY-MM (e.g.
 $trans["Date of Visit"] = "Date of Visit";
 $trans["User Type"] = "User Type";
 $trans["Number of Attendees"] = "Number of Attendees";
+$trans["Library Attendance"] = "Library Attendance";
 
 
 $trans["(enter 0 for unlimited)"] = "(enter 0 for unlimited)";
