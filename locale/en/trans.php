@@ -62,6 +62,11 @@ $trans["attendance"] = "Att. Form";
 $trans["attendance_chart"] = "Att. Chart";
 $trans["invalid_month_format"] = "Invalid month format. Please use YYYY-MM (e.g. 2025-01).";
 
+$trans["Date of Visit"] = "Date of Visit";
+$trans["User Type"] = "User Type";
+$trans["Number of Attendees"] = "Number of Attendees";
+
+
 $trans["(enter 0 for unlimited)"] = "(enter 0 for unlimited)";
 $trans["(when available)"] = "(when available)";
 $trans["%count% bookings in cart."] = "%count% bookings in cart.";
