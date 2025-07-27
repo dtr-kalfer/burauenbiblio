@@ -66,7 +66,7 @@ $trans["Date of Visit"] = "Date of Visit";
 $trans["User Type"] = "User Type";
 $trans["Number of Attendees"] = "Number of Attendees";
 $trans["Library Attendance"] = "Library Attendance";
-
+$trans["Attendance successfully recorded!"] = "Attendance successfully recorded!";
 
 $trans["(enter 0 for unlimited)"] = "(enter 0 for unlimited)";
 $trans["(when available)"] = "(when available)";
