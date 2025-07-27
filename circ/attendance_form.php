@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		}
 </style>
 <section class="form-container-attendance">
-	<h2>Library Attendance</h2>
+	<h2><?= T("Library Attendance") ?></h2>
 
 	<?php if ($success): ?>
 			<p class="success">Attendance successfully recorded!</p>
@@ -73,10 +73,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<?php endif; ?>
 
 	<form method="POST" action="">
-			<label for="date">Date of Visit</label>
+			<label for="date"><?= T("Date of Visit") ?></label>
 			<input type="date" name="date" id="date" required>
 
-			<label for="user_type">User Type</label>
+			<label for="user_type"><?= T("User Type") ?></label>
 			<select name="user_type" id="user_type" required onchange="toggleCourse(this.value)">
 					<option value="">-- Select --</option>
 					<option value="Student">Student</option>
@@ -97,10 +97,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					</select>
 			</span>
 
-			<label for="count">Number of Attendees</label>
+			<label for="count"><?= T("Number of Attendees") ?></label>
 			<input type="number" name="count" id="count" min="1" value="1" size="4" required>
 
-			<button type="submit" >Submit</button>
+			<button type="submit" ><?= T("Submit") ?></button>
 	</form>
 	
 	
@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <thead>
         <tr>
             <th>ID</th>
-            <th>Date</th>
+            <th>Date (YYYY-MM-DD)</th>
             <th>User Type</th>
             <th>Course</th>
             <th>Count</th>
