@@ -11,8 +11,8 @@ Guide:
 
 ## [unreleased] - yyyy-mm-dd
 ### Added
-- JSON export feature for Library Attenance record  
-- Exclude on bar graph both faculty and visitor, show only student attendees.
+- JSON export feature for Library Attenance record with student only selection.
+- Exclude on bar graph both faculty and visitor on Update chart button, show only student attendees.
 
 ### Changed
 - Changed attendance form and attendance chart.
