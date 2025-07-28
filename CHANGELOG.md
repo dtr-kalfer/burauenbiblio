@@ -11,6 +11,7 @@ Guide:
 
 ## [unreleased] - yyyy-mm-dd
 ### Added
+- Added 'Thumbnail check' in cataloging navigation, check missing thumbnail in biblio records.
 - JSON export feature for Library Attenance record with student only selection.
 - Exclude on bar graph both faculty and visitor on Update chart button, show only student attendees.
 
