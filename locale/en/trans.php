@@ -73,6 +73,8 @@ $trans["End Month:"] = "End Month:";
 $trans["Month"] = "Month";
 $trans["Total Checkouts"] = "Total Checkouts";
 $trans["Total Check-ins"] = "Total Check-ins";
+$trans["Update Chart"] = "Update Chart";
+$trans["Export to JSON"] = "Export to JSON";
 
 $trans["(enter 0 for unlimited)"] = "(enter 0 for unlimited)";
 $trans["(when available)"] = "(when available)";

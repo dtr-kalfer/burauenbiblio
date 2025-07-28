@@ -155,8 +155,8 @@
         <input type="checkbox" name="students_only" value="1" <?= isset($_GET['students_only']) ? 'checked' : '' ?>>
         Show Students Only
     </label>
-    <button type="submit" name="action" value="chart">Update Chart</button>
-    <button type="submit" name="action" value="json">Export to JSON</button>
+    <button type="submit" name="action" value="chart"><?= T("Update Chart") ?></button>
+    <button type="submit" name="action" value="json"><?= T("Export to JSON") ?></button>
 </form>
 
 		<section class="chart-container-attendance">
