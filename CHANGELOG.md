@@ -15,10 +15,10 @@ Guide:
 - Exclude on bar graph both faculty and visitor on Update chart button, show only student attendees.
 
 ### Changed
-- Changed attendance form and attendance chart.
+- Changed attendance form UI and attendance chart UI with.
 
 ### Fixed
-- Fixed locale definitions for other foreign language in future BurauenBiblio support.
+- Update: more locale definitions for other foreign language in future BurauenBiblio support.
 
 
 ## [3.6.2] - 2025-07-25
