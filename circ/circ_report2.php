@@ -49,13 +49,13 @@ $chartDataJSON = getChartDataJSON($pdo, $startMonth, $endMonth);
 ?>
 </section>
 <form method="get" style="margin-bottom: 20px;">
-  <label for="start">Start Month:</label>
+  <label for="start"><?= T("Start Month:") ?></label>
   <input type="month" id="start" placeholder="2025-01" name="start" value="<?php echo $startMonth; ?>" required>
 
-  <label for="end">End Month:</label>
+  <label for="end"><?= T("End Month:") ?></label>
   <input type="month" id="end" placeholder="2025-06" name="end" value="<?php echo $endMonth; ?>" required>
 
-  <button type="submit">Generate Report</button>
+  <button type="submit"><?= T("Generate Report") ?></button>
 </form>
 
 <canvas id="myChart"></canvas>
@@ -63,7 +63,7 @@ $chartDataJSON = getChartDataJSON($pdo, $startMonth, $endMonth);
 <?php 
 	$data = json_decode($chartDataJSON, true); // Convert JSON string into PHP array -- F.Tumulak
 	echo "<table border='1' cellpadding='6' style='margin-top: 20px; border-collapse: collapse;'>";
-	echo "<thead><tr><th>Month</th><th>Total Checkouts</th><th>Total Check-ins</th></tr></thead>";
+	echo "<thead><tr><th>" . T("Month") . "</th><th>" . T("Total Checkouts") . "</th><th>" . T("Total Check-ins") . "</th></tr></thead>";
 	echo "<tbody>";
 	foreach ($data['labels'] as $i => $month) {
 			$checkouts = $data['datasets'][0]['data'][$i];
