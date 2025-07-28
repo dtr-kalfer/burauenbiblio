@@ -67,6 +67,12 @@ $trans["User Type"] = "User Type";
 $trans["Number of Attendees"] = "Number of Attendees";
 $trans["Library Attendance"] = "Library Attendance";
 $trans["Attendance successfully recorded!"] = "Attendance successfully recorded!";
+$trans["Generate Report"] = "Generate Report";
+$trans["Start Month:"] = "Start Month:";
+$trans["End Month:"] = "End Month:";
+$trans["Month"] = "Month";
+$trans["Total Checkouts"] = "Total Checkouts";
+$trans["Total Check-ins"] = "Total Check-ins";
 
 $trans["(enter 0 for unlimited)"] = "(enter 0 for unlimited)";
 $trans["(when available)"] = "(when available)";
