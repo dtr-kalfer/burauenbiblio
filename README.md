@@ -59,8 +59,7 @@ The **Top 30 Active Books** feature highlights the most frequently borrowed titl
 
 ![Homepage](./readme_assets/missing_thumbnails.webp "BurauenBiblio Homepage")
 
-Thumbnail check is a utility feature that finds missing thumbnail and broken URL link in the biblio records.
-
+Thumbnail check is a utility feature that finds missing thumbnail and broken image URL that is linked into the biblio records.
 
 ![Homepage](./readme_assets/attendance_tracking.webp "BurauenBiblio Homepage")
 
