@@ -55,6 +55,13 @@ The **Monthly Circulation Report** is a dynamic analytics feature in BurauenBibl
 
 The **Top 30 Active Books** feature highlights the most frequently borrowed titles over the past six months, offering valuable insights into **reading trends, student preferences, and subject demand**. Whether for academic planning or simply showcasing popular titles, this feature adds both **visibility and value** to the library's services.
 
+### 📝 Utility - Thumbnail Check
+
+![Homepage](./readme_assets/missing_thumbnails.webp "BurauenBiblio Homepage")
+
+Thumbnail check is a utility feature that finds missing thumbnail and broken URL link in the biblio records.
+
+
 ![Homepage](./readme_assets/attendance_tracking.webp "BurauenBiblio Homepage")
 
 ### 📝 Analytics - Library Attendance Tracking
