@@ -75,6 +75,11 @@ $_SESSION["hasToolsAuth"] = ($user['tools_flg'] == 'Y');
 // generate guard token key
 $_SESSION["guard_token_key"] = bin2hex(random_bytes(16));
 
+// Step 2: Use that key name to store some secret value
+$_SESSION[ $_SESSION["guard_token_key"] ] = "secretvalue";
+
+// Step 3: Validate in another PHP file (copy below) to load guard_doggy 🐶🐕 --F.Tumulak
+// require_once("../shared/guard_doggy.php");
 
 setSessionFmSettings();
 //lets make this noauth.php as default load page for both admin and staff users. --F.Tumulak
