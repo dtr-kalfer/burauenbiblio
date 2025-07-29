@@ -11,9 +11,11 @@ Guide:
 
 ## [unreleased] - yyyy-mm-dd
 ### Added
+- Added JSON export feature for Circulation record check-in and check-outs.
 - Added 'Thumbnail check' in cataloging navigation, check missing thumbnail in biblio records.
-- JSON export feature for Library Attenance record with student only selection.
+- Added JSON export feature for Library Attenance record with student only selection.
 - Exclude on bar graph both faculty and visitor on Update chart button, show only student attendees.
+- Added 🐶🐕 'Guard doggy' security logic. 
 
 ### Changed
 - Changed attendance form UI and attendance chart UI with.
