@@ -7,12 +7,31 @@ require_once("../shared/common.php");
 $tab = "circulation/analytics";
 $nav = "monthly";	
 
+require_once("circ_function2.php"); 
+// Handle export early — before Page::header() is called
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['start'], $_GET['end'], $_GET['action']) && $_GET['action'] === 'export') {
+    $startMonth = $_GET['start'];
+    $endMonth = $_GET['end'];
 
-require_once(REL(__FILE__, "../shared/logincheck.php"));
+		// check if date is valid --> F.Tumulak
+		if (!isValidMonthFormat($startMonth) || !isValidMonthFormat($endMonth)) {
+				echo "<h3 style='background-color: red; padding: 10px;'>" . T('invalid_month_format') . "</h3>";
+				echo "<div style='text-align: center;'><a href='./circ_report2.php' >Try Again</a></div>";
+				die;
+		}
+
+    // Redirect to separate export script before headers are sent
+    $params = http_build_query([
+        'start' => $startMonth,
+        'end' => $endMonth
+    ]);
+    header("Location: exportcirctojson.php?$params");
+    exit;
+}
 
 Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
+require_once(REL(__FILE__, "../shared/logincheck.php"));
 
-require_once("circ_function2.php"); 
 require_once("../catalog/class/Qtest.php");
 
 $mypass = new Qtest;
@@ -32,30 +51,48 @@ try {
 <section style="width: 600px;" id="circ_section">
 <?php 
 
-$startMonth = $_GET['start'] ?? '2025-01';
-$endMonth = $_GET['end'] ?? '2025-06';
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['start'], $_GET['end'], $_GET['action'])) {
+    $startMonth = $_GET['start'];
+    $endMonth = $_GET['end'];
+    $action = $_GET['action'];
 
-// check if date is valid --> F.Tumulak
-if (!isValidMonthFormat($startMonth) || !isValidMonthFormat($endMonth)) {
-		echo "<h3 style='background-color: red; padding: 10px;'>" . T('invalid_month_format') . "</h3>";
-		echo "<div style='text-align: center;'><a href='./circ_report2.php' >Try Again</a></div>";
-		die;
-}
+    if ($action === 'generate') {
+        // Show report logic here
+				
+				// check if date is valid --> F.Tumulak
+				if (!isValidMonthFormat($startMonth) || !isValidMonthFormat($endMonth)) {
+						echo "<h3 style='background-color: red; padding: 10px;'>" . T('invalid_month_format') . "</h3>";
+						echo "<div style='text-align: center;'><a href='./circ_report2.php' >Try Again</a></div>";
+						die;
+				}
+				$chartDataJSON = getChartDataJSON($pdo, $startMonth, $endMonth);
 
-$chartDataJSON = getChartDataJSON($pdo, $startMonth, $endMonth);
+				//$chartDataJSON = getChartDataJSON($pdo);
+				echo "<script>const chartData = $chartDataJSON;</script>";
+								
+    } elseif ($action === 'export') {
+				// Redirect to external exporter script with query parameters
 
-	//$chartDataJSON = getChartDataJSON($pdo);
+		}
+} else {
+	// do the default --> F.Tumulak
+	
+	$startMonth = $_GET['start'] ?? '2025-01';
+	$endMonth = $_GET['end'] ?? '2025-06';
+	$chartDataJSON = getChartDataJSON($pdo, $startMonth, $endMonth);
 	echo "<script>const chartData = $chartDataJSON;</script>";
+}
 ?>
 </section>
 <form method="get" style="margin-bottom: 20px;">
   <label for="start"><?= T("Start Month:") ?></label>
-  <input type="month" id="start" placeholder="2025-01" name="start" value="<?php echo $startMonth; ?>" required>
+  <input type="month" id="start" name="start" value="<?php echo $startMonth; ?>" required>
 
   <label for="end"><?= T("End Month:") ?></label>
-  <input type="month" id="end" placeholder="2025-06" name="end" value="<?php echo $endMonth; ?>" required>
+  <input type="month" id="end" name="end" value="<?php echo $endMonth; ?>" required>
 
-  <button type="submit"><?= T("Generate Report") ?></button>
+  <button type="submit" name="action" value="generate"><?= T("Generate Report") ?></button>
+  <button type="submit" name="action" value="export"><?= T("Export to JSON") ?></button>
 </form>
 
 <canvas id="myChart"></canvas>
