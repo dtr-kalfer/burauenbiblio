@@ -49,17 +49,13 @@ The **To-Do List** is a simple yet powerful enhancement to the BurauenBiblio lib
 
 The **Monthly Circulation Report** is a dynamic analytics feature in BurauenBiblio that visualizes the **total number of items borrowed per month**, across a selected range of time. It helps library staff and administrators: 📅 **Track Borrowing Trends** 📚 **Evaluate Usage Patterns** 🎯 **Support Decision-Making** based on actual demand.
 
+Added 'Export to JSON' feature for extending circulation data into JSON format for other value adding services i.e. e-bulletin.
+
 ### 📝 Analytics - Top 30 Active Books
 
 ![Homepage](./readme_assets/top30activebooks.webp "BurauenBiblio Homepage")
 
 The **Top 30 Active Books** feature highlights the most frequently borrowed titles over the past six months, offering valuable insights into **reading trends, student preferences, and subject demand**. Whether for academic planning or simply showcasing popular titles, this feature adds both **visibility and value** to the library's services.
-
-### 📝 Utility - Thumbnail Check
-
-![Homepage](./readme_assets/missing_thumbnails.webp "BurauenBiblio Homepage")
-
-Thumbnail check is a utility feature that finds missing thumbnail and broken image URL that is linked into the biblio records.
 
 ![Homepage](./readme_assets/attendance_tracking.webp "BurauenBiblio Homepage")
 
@@ -69,7 +65,13 @@ A simple yet powerful attendance logging system designed for statistical reporti
 
 ![Homepage](./readme_assets/export_json.webp "BurauenBiblio Homepage")
 
-Added 'Export attendance to JSON' format with 'student' only filter. You can use the info for other analytic/statistical purpose.
+Added 'Export attendance to JSON' format with 'student' only filter. You can use the info for other JSON supported services i.e. e-bulletin.
+
+### 📝 Utility - Thumbnail Check
+
+![Homepage](./readme_assets/missing_thumbnails.webp "BurauenBiblio Homepage")
+
+Thumbnail check is a utility feature that finds missing thumbnail and broken image URL that is linked into the biblio records.
 
 ### 📌 Set limit on overdue charges
 
