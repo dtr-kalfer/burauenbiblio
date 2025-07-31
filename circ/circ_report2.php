@@ -77,8 +77,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['start'], $_GET['end'], 
 } else {
 	// do the default --> F.Tumulak
 	
-	$startMonth = $_GET['start'] ?? '2025-01';
-	$endMonth = $_GET['end'] ?? '2025-06';
+		// Set timezone (optional but good for consistency)
+		date_default_timezone_set('Asia/Manila');
+
+		// Get current month in YYYY-MM format
+		$endMonth = $_GET['end'] ?? date('Y-m');
+
+		// Get month 12 months ago in YYYY-MM format
+		$startMonth = $_GET['start'] ?? date('Y-m', strtotime('-11 months', strtotime($endMonth . '-01')));
+
 	$chartDataJSON = getChartDataJSON($pdo, $startMonth, $endMonth);
 	echo "<script>const chartData = $chartDataJSON;</script>";
 }
