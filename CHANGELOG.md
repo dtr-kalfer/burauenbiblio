@@ -25,6 +25,8 @@ Guide:
 ### Fixed
 - Update: more locale definitions for other foreign language in future BurauenBiblio support.
 
+### In development:
+- Graph layout for In-House Book Activity Tracker
 
 ## [3.6.2] - 2025-07-25
 ### Added
