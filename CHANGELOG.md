@@ -11,6 +11,7 @@ Guide:
 
 ## [unreleased] - yyyy-mm-dd
 ### Added
+- Added In-House Book Activity Tracker to Identify high-interest books for future collection development.
 - Added JSON export feature for Circulation record check-in and check-outs.
 - Added 'Thumbnail check' in cataloging navigation, check missing thumbnail in biblio records.
 - Added JSON export feature for Library Attenance record with student only selection.
