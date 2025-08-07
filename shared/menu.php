@@ -27,6 +27,9 @@ function staff_menu() {
 
 		Nav::node('circulation/bookings/book', T("Create Booking"));
 		Nav::node('circulation/checkin', T("Check In"), '../circ/checkinForms.php');
+
+		Nav::node('circulation/tally', T("daily book tally"), '../circ/dailytally.php');
+		
 		Nav::node('circulation/overdue', T("Overdue"), '../circ/overdue_items.php?type=overdue'); // new feature overdue calc -- F.Tumulak
 		Nav::node('circulation/analytics', T("analytics"),'../circ/circ_report2.php');
 			Nav::node('circulation/analytics/monthly', T("Circ. Report"),'../circ/circ_report2.php');
