@@ -51,6 +51,12 @@ The **Monthly Circulation Report** is a dynamic analytics feature in BurauenBibl
 
 Added 'Export to JSON' feature for extending circulation data into JSON format for other value adding services i.e. e-bulletin.
 
+### 📝 Analytics - In-House Book Activity Tracker (Daily Book Tally)
+
+![Homepage](./readme_assets/dailybook.webp "BurauenBiblio Homepage")
+
+This data gathering feature allows library staff to log and monitor book usage inside the library — even without official check-outs. It identifies high-interest materials for future collection development. Data layout and graphs under development.
+
 ### 📝 Analytics - Top 30 Active Books
 
 ![Homepage](./readme_assets/top30activebooks.webp "BurauenBiblio Homepage")
