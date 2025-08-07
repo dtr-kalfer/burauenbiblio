@@ -77,6 +77,7 @@ $trans["Update Chart"] = "Update Chart";
 $trans["Export to JSON"] = "Export to JSON";
 $trans["Thumbnail check"] = "Thumbnail check";
 $trans["bad url or missing files"] = "Records with missing thumbnails or bad URL paths:";
+$trans["daily book tally"] = "Daily Book Tally";
 
 $trans["(enter 0 for unlimited)"] = "(enter 0 for unlimited)";
 $trans["(when available)"] = "(when available)";
