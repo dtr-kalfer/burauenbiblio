@@ -22,6 +22,7 @@ Guide:
 ### Changed
 - Changed attendance form UI and attendance chart UI with.
 - Set default 'circ. export to JSON' value 'current month' and '12 months ago'.
+- Improved both top 30 results to include Author and ISBN.
 
 ### Fixed
 - Update: more locale definitions for other foreign language in future BurauenBiblio support.
