@@ -46,6 +46,8 @@ $title_top30 = "<h2>" . T("top30active_inhouse") . " (" . $startFormatted . " - 
 			<tr>
 				<th>Rank</th>
 				<th>Title</th>
+				<th>Author</th>
+				<th>ISBN</th>
 				<th>Count</th>
 			</tr>
 		</thead>
