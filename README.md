@@ -55,7 +55,7 @@ Added 'Export to JSON' feature for extending circulation data into JSON format f
 
 ![Homepage](./readme_assets/dailytally.webp "BurauenBiblio Homepage")
 
-This data gathering feature allows library staff to log and monitor book usage inside the library — even without official check-outs. It identifies high-interest materials for future collection development. Data layout and graphs under development.
+This data gathering feature allows library staff to log and monitor book usage inside the library — even without official check-outs. It identifies high-interest materials for future collection development.
 
 ### 📝 Analytics - Top 30 Active Books
 
