@@ -55,13 +55,13 @@ Added 'Export to JSON' feature for extending circulation data into JSON format f
 
 ![Homepage](./readme_assets/dailytally.webp "BurauenBiblio Homepage")
 
-This data gathering feature allows library staff to log and monitor book usage inside the library — even without official check-outs. It identifies high-interest materials for future collection development.
+This data gathering feature allows library staff to log and monitor book usage inside the library — even without official check-outs. It identifies high-interest materials for future collection development. The collected data is processes as **Top 30 Most Viewed Books within Library**.
 
-### 📝 Analytics - Top 30 Active Books
+### 📝 Analytics - Top 30 Borrowed Books
 
 ![Homepage](./readme_assets/top30activebooks.webp "BurauenBiblio Homepage")
 
-The **Top 30 Active Books** feature highlights the most frequently borrowed titles over the past six months, offering valuable insights into **reading trends, student preferences, and subject demand**. Whether for academic planning or simply showcasing popular titles, this feature adds both **visibility and value** to the library's services.
+The **Top 30 Borrowed Books** feature highlights the most frequently borrowed titles over the past six months, offering valuable insights into **reading trends, student preferences, and subject demand**. Whether for academic planning or simply showcasing popular titles, this feature adds both **visibility and value** to the library's services.
 
 ![Homepage](./readme_assets/attendance_tracking.webp "BurauenBiblio Homepage")
 
