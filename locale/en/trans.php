@@ -57,7 +57,7 @@ $trans["top30"] = "Top 30";
 $trans["analytics"] = "Analytics";
 $trans["showhowtouse"] = "✅ To-do usage: 1️⃣ Click a calendar date, 2️⃣ add details, 3️⃣ click Add Task.";
 $trans["Circ. Report"] = "Circ. Report";
-$trans["top30active"] = "🔥 Top 30 Active Book Titles within 6 months";
+$trans["top30active"] = "🔥 Top 30 Borrowed Book Titles within 6 months";
 $trans["attendance"] = "Att. Form";
 $trans["attendance_chart"] = "Att. Chart";
 $trans["invalid_month_format"] = "Invalid month format. Please use YYYY-MM (e.g. 2025-01).";
@@ -78,6 +78,8 @@ $trans["Export to JSON"] = "Export to JSON";
 $trans["Thumbnail check"] = "Thumbnail check";
 $trans["bad url or missing files"] = "Records with missing thumbnails or bad URL paths:";
 $trans["daily book tally"] = "Daily Book Tally";
+$trans["top30_in-house"] = "Top30 in-house";
+$trans["top30active_inhouse"] = "🔥 Top 30 Most-viewed Books within Library";
 
 $trans["(enter 0 for unlimited)"] = "(enter 0 for unlimited)";
 $trans["(when available)"] = "(when available)";
