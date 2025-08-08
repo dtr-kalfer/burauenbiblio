@@ -28,6 +28,7 @@ try {
 }
 
 // Get current date
+date_default_timezone_set('Asia/Manila');
 $endDate = new DateTime(); // today
 $startDate = (clone $endDate)->modify('-6 months');
 
