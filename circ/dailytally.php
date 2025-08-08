@@ -14,13 +14,17 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 		.form-container-attendance {
 				width: 500px;
 		}
+
+		form {
+			text-align: center;
+		}
 </style>
 <section class="form-container-attendance">
-		<h2>In-House Book Activity Tracker (Daily Book Tally)</h2>
-		<p>This section allows library staff to log and monitor book usage inside the library — even without official check-outs. It identifies high-interest materials for future collection development</p>
-		<p>It supports use of barcode scanner and manual entry (Just type in the relevant numbers and the zeroes are auto-prefixed to make it 13-digit)</p>
+		<h2>📚 In-House Book Activity Tracker (Daily Book Tally)</h2>
+		<p>This section allows library staff to 📙 log and 📘 monitor actively viewed books within library premises — even without official check-outs. It identifies ✅ high-interest materials for future collection development.</p>
+		<p>Use of barcode scanner OR just type in the relevant barcode numbers and the zeroes are auto-prefixed to make it 13-digit.</p>
 		<br>
-    <h2>Scan Book Barcode</h2>
+    <h2> ✅ Scan OR enter book barcode:</h2>
 
     <form id="barcode-form" 
           hx-target="#result"
