@@ -61,15 +61,19 @@ Added 'Export to JSON' feature for extending circulation data into JSON format f
 
 ![Homepage](./readme_assets/sample_viewed.webp "BurauenBiblio Homepage")
 
-The **Top 30 Borrowed Books** feature highlights the most frequently borrowed titles over the past six months, while the **Top 30 Most-viewed books** are books that are constantly read by patrons but not officially borrowed. The analytics shows a span of one month activity. 
+Analytics - Top 30 Borrowed Books and Top 30 Most-viewed books
 
-Before reshelving the used books back to its original place, a staff may use the form:
+The **Top 30 Borrowed Books list** showcases the titles most frequently borrowed over the past six months.
+
+The **Top 30 Most-Viewed Books** tracks books that are regularly read or referenced by patrons within the library but not officially borrowed. This in-house usage is measured over a one-month activity span.
+
+Before reshelving, staff can use the dedicated **In-House Book Activity Tracker** form:
 
 ![Homepage](./readme_assets/dailytally.webp "BurauenBiblio Homepage")
 
-and scan the books using a barcode scanner.
+By scanning each book’s barcode—either with a scanner or manual entry—the system **automatically logs usage data** without the need for paper-based tallies.
 
-Both feature offers valuable insights into **reading trends, student preferences, and subject demand**. It identifies high-interest books required for future collection development.
+These analytics provide valuable insights into **reading trends**, **student preferences**, and **subject demand**. They support **data-driven collection development** while helping libraries move toward a **paperless, more efficient workflow**.
 
 ### 📝 Analytics - Library Attendance Tracking
 
