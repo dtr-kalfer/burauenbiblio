@@ -119,13 +119,23 @@ Support for metadata retrieval process—particularly for cataloging by ISBN/LCC
 
 ![Homepage](./readme_assets/actual_use_case.webp "BurauenBiblio Homepage")
 
-This upgrade is part of my ongoing personal initiative to modernize the **OpenBiblio** codebase. The development focuses on addressing critical bugs, enhancing the user interface, and introducing new features aimed at improving usability and performance. The project now includes full support for **PHP 8.0**, with preparations underway for compatibility with **PHP 8.1** and beyond.
+This project is part of my ongoing personal initiative to modernize the OpenBiblio codebase.
 
-In addition, newer improvements are being built using **HTMX** and other modern frontend technologies, allowing for a more dynamic and responsive user experience without the complexity of a full JavaScript framework. This effort reflects a commitment to bringing OpenBiblio closer to current web standards while preserving its simplicity and accessibility for small libraries and schools.
+The development focuses on:
 
-This project is an ongoing modernization effort based on the original **OpenBiblio** system. It aims to improve performance, ensure compatibility with modern PHP versions, and enhance the overall user experience.
+- Fixing critical bugs
 
-Contributions and testing feedback are genuinely welcome and appreciated—as they help sustain and grow this project further.
+- Enhancing the user interface
+
+- Introducing new features to improve usability and performance
+
+The system now offers full support for **PHP 8.0**, with work in progress toward compatibility with **PHP 8.1** and beyond.
+
+Recent updates also incorporate **HTMX** and other modern frontend tools, delivering a more dynamic and responsive user experience—without the overhead of a full JavaScript framework. This approach keeps the system lightweight, accessible, and well-suited for **small libraries and schools** while aligning with current **web standards**.
+
+This modernization effort is built on the original **OpenBiblio** system, tailored to the needs of **libraries in the Philippines**, with a focus on performance, compatibility, and ease of use.
+
+If you find this project valuable, you can support its development so it can continue to grow and serve libraries effectively.
 
 ## 📦 Installation
 
