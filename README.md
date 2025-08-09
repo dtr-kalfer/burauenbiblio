@@ -65,7 +65,7 @@ Before reshelving the used books back to its original place, a staff may use the
 
 and scan the books using a barcode scanner.
 
-Both feature offers valuable insights into **reading trends, student preferences, and subject demand**. Both feature identifies high-interest books required for future collection development.
+Both feature offers valuable insights into **reading trends, student preferences, and subject demand**. It identifies high-interest books required for future collection development.
 
 ### 📝 Analytics - Library Attendance Tracking
 
