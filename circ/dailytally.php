@@ -18,14 +18,27 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 		form {
 			text-align: center;
 		}
+		
+		p,input,button {
+			margin: 10px;
+		}
 </style>
 <section class="form-container-attendance">
-		<h2>📚 In-House Book Activity Tracker (Daily Book Tally)</h2>
-		<p>This form allows library staff to encode books that are constantly used or viewed by patrons — before reshelving the books back to its original place. This help identify high-demand books for future collection development.</p>
-		<p>The entries made on this form will be part of <b>Top 30 Most-viewed Books</b>.</p>
-		<p>Use of barcode scanner OR just type in the relevant barcode numbers and the zeroes are auto-prefixed to make it 13-digit.</p>
-		<br>
-    <h2> ✅ Scan OR enter book barcode:</h2>
+		<section class="book-activity">
+			<h2>📚 In-House Book Activity Tracker <small>(Daily Book Tally)</small></h2>
+			<p>
+				This tool allows library staff to record books frequently used or viewed by patrons before reshelving them.
+				Tracking these activities helps identify high-demand titles for future collection development.
+			</p>
+			<p>
+				All entries will contribute to the <strong>Top 30 Most-Viewed Books</strong> report.
+			</p>
+			<p>
+				You may use a barcode scanner or manually type the relevant barcode numbers. Leading zeroes will be automatically prefixed to ensure a 13-digit format.
+			</p>
+
+			<h2>✅ Scan or Enter Book Barcode:</h2>
+		</section>
 
     <form id="barcode-form" 
           hx-target="#result"
