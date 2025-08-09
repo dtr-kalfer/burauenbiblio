@@ -27,7 +27,11 @@ The member records are entirely fictitious and do not represent real individuals
 
 ![Homepage](./readme_assets/actual_use_case_2.webp "BurauenBiblio Homepage")
 
-The **BurauenBiblio system** is actively used at **Burauen Community College**, serving bibliographic search requests from both students and faculty. It currently manages a collection of nearly **5,000 bibliographic records**. The system now runs on **PHP 8.0**, offering substantial performance improvements over PHP 5.7—with speeds up to **2x to 4x faster**, depending on the workload, while continuing to operate on the same **legacy hardware**. 
+The **BurauenBiblio System** is in active use at **Burauen Community College**, supporting bibliographic search requests from both students and faculty. It currently manages nearly **5,000 bibliographic records**, with continuous growth in its collection.
+
+Designed to streamline library operations, BurauenBiblio provides tools for **cataloging**, **circulation management**, and other **staff-operated features** that enhance **workplace automation**.
+
+Upgraded to run on **PHP 8.0**, the system delivers substantial performance gains—up to **2× to 4× faster than PHP 5.7**—while maintaining **full compatibility** with the college’s existing **legacy hardware**.
 
 For details: https://librarytechnology.org/library/211849
 
