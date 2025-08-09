@@ -57,15 +57,17 @@ Added 'Export to JSON' feature for extending circulation data into JSON format f
 
 This data gathering feature allows library staff to log and monitor book usage inside the library — even without official check-outs. It identifies high-interest materials for future collection development. The collected data is processed into **Top 30 Most Viewed Books within Library**.
 
-### 📝 Analytics - Top 30 Borrowed Books
+### 📝 Analytics - Top 30 Borrowed Books and Top 30 Most-viewed books
 
-![Homepage](./readme_assets/top30activebooks.webp "BurauenBiblio Homepage")
+![Homepage](./readme_assets/sample_borrowed.webp "BurauenBiblio Homepage")
 
-The **Top 30 Borrowed Books** feature highlights the most frequently borrowed titles over the past six months, offering valuable insights into **reading trends, student preferences, and subject demand**. Whether for academic planning or simply showcasing popular titles, this feature adds both **visibility and value** to the library's services.
+![Homepage](./readme_assets/sample_viewed.webp "BurauenBiblio Homepage")
 
-![Homepage](./readme_assets/attendance_tracking.webp "BurauenBiblio Homepage")
+The **Top 30 Borrowed Books** feature highlights the most frequently borrowed titles over the past six months, while the **Top 30 Borrowed Books** are books that are constantly viewed by patrons but not officially borrowed in a span of one month.  Both feature offers valuable insights into **reading trends, student preferences, and subject demand**. Both feature identifies high-interest books required for future collection development.
 
 ### 📝 Analytics - Library Attendance Tracking
+
+![Homepage](./readme_assets/attendance_tracking.webp "BurauenBiblio Homepage")
 
 A simple yet powerful attendance logging system designed for statistical reporting and community interaction insights. The feature allows encoding of monthly visits categorized by user type (Student, Faculty, Visitor) and, when applicable, by academic program. Using dynamic visualizations powered by Chart.js, library staff can instantly view attendance trends across custom date ranges.
 
