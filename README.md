@@ -63,7 +63,15 @@ This data gathering feature allows library staff to log and monitor book usage i
 
 ![Homepage](./readme_assets/sample_viewed.webp "BurauenBiblio Homepage")
 
-The **Top 30 Borrowed Books** feature highlights the most frequently borrowed titles over the past six months, while the **Top 30 Most-viewed books** are books that are constantly viewed by patrons but not officially borrowed in a span of one month.  Both feature offers valuable insights into **reading trends, student preferences, and subject demand**. Both feature identifies high-interest books required for future collection development.
+The **Top 30 Borrowed Books** feature highlights the most frequently borrowed titles over the past six months, while the **Top 30 Most-viewed books** are books that are constantly viewed by patrons but not officially borrowed in a span of one month. 
+
+Before reshelving the used books back to its original place, a staff may use the form:
+
+![Homepage](./readme_assets/dailytally.webp "BurauenBiblio Homepage")
+
+and scan the books using a barcode scanner.
+
+Both feature offers valuable insights into **reading trends, student preferences, and subject demand**. Both feature identifies high-interest books required for future collection development.
 
 ### 📝 Analytics - Library Attendance Tracking
 
