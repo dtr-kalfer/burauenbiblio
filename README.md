@@ -57,7 +57,7 @@ Added 'Export to JSON' feature for extending circulation data into JSON format f
 
 ![Homepage](./readme_assets/sample_viewed.webp "BurauenBiblio Homepage")
 
-The **Top 30 Borrowed Books** feature highlights the most frequently borrowed titles over the past six months, while the **Top 30 Most-viewed books** are books that are constantly viewed by patrons but not officially borrowed in a span of one month. 
+The **Top 30 Borrowed Books** feature highlights the most frequently borrowed titles over the past six months, while the **Top 30 Most-viewed books** are books that are constantly read by patrons but not officially borrowed. The analytics shows a span of one month activity. 
 
 Before reshelving the used books back to its original place, a staff may use the form:
 
