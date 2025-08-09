@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $bibrow = $result->fetch_assoc();
 
     if (!$bibrow) {
-        echo "<span style='color:red;'>Barcode not found.</span>";
+        echo "<div style='color:red; text-align: center;'>Barcode not found.</div>";
         exit;
     }
 
@@ -67,9 +67,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt2->bind_param("iss", $bibid, $barcode, $session_user);
 
     if ($stmt2->execute()) {
-        echo "<span id='msgDiv' style='color:blue;'>Barcode <b>" . $barcode . "</b> daily tally updated. ";
+        echo "<div style='color:blue; text-align: center;'>Barcode <b>" . $barcode . "</b> daily tally updated. </div>";
     } else {
-        echo "<span id='msgDiv' style='color:red;'>Failed to save activity.</span>";
+        echo "<div style='color:red; text-align: center;'>Failed to save activity.</div>";
     }
 
     $stmt->close();
