@@ -21,7 +21,8 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 </style>
 <section class="form-container-attendance">
 		<h2>📚 In-House Book Activity Tracker (Daily Book Tally)</h2>
-		<p>This section allows library staff to 📙 log and 📘 monitor actively viewed books within library premises — even without official check-outs. It identifies ✅ high-interest materials for future collection development.</p>
+		<p>This form allows library staff to encode books that are constantly used or viewed by patrons — before reshelving the books back to its original place. This help identify high-demand books for future collection development.</p>
+		<p>The entries made on this form will be part of <b>Top 30 Most-viewed Books</b>.</p>
 		<p>Use of barcode scanner OR just type in the relevant barcode numbers and the zeroes are auto-prefixed to make it 13-digit.</p>
 		<br>
     <h2> ✅ Scan OR enter book barcode:</h2>
