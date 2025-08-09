@@ -61,8 +61,6 @@ Added 'Export to JSON' feature for extending circulation data into JSON format f
 
 ![Homepage](./readme_assets/sample_viewed.webp "BurauenBiblio Homepage")
 
-### Analytics - Top 30 Borrowed Books and Top 30 Most-viewed books
-
 The **Top 30 Borrowed Books list** showcases the titles most frequently borrowed over the past six months.
 
 The **Top 30 Most-Viewed Books** tracks books that are regularly read or referenced by patrons within the library but not officially borrowed. This in-house usage is measured over a one-month activity span.
