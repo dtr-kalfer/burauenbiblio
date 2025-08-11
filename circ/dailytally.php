@@ -31,7 +31,7 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 				Tracking these activities helps identify high-demand titles for future collection development.
 			</p>
 			<p>
-				All entries will contribute to the <strong>Top 30 Most-Viewed Books</strong> report.
+				All entries will contribute to the <strong>Top 30 Most-Viewed Books</strong> report and also to <strong>Daily T. (Chart)</strong>.
 			</p>
 			<p>
 				You may use a barcode scanner or manually type the relevant barcode numbers. Leading zeroes will be automatically prefixed to ensure a 13-digit format.
