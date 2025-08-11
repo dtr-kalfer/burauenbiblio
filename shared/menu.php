@@ -35,6 +35,7 @@ function staff_menu() {
 			Nav::node('circulation/analytics/monthly', T("Circ. Report"),'../circ/circ_report2.php');
 			Nav::node('circulation/analytics/top30', T("top30"),'../circ/top30.php');
 			Nav::node('circulation/analytics/top30_inhouse', T("top30_in-house"),'../circ/top30_inhouse.php');
+			Nav::node('circulation/analytics/dailytally', T("Daily T. (Chart)"),'../circ/dailytallychart.php');			
 	}
 
 	##-------------------------------------------------------------------------------------##
