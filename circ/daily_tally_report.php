@@ -57,8 +57,9 @@ $stmt->execute([$start_date, $end_date]);
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Output JSON
+$filename = "daily_tally_{$start_date}_to_{$end_date}.json";
 header('Content-Type: application/json');
-header('Content-Disposition: attachment; filename="daily_tally.json"');
+header("Content-Disposition: attachment; filename=\"$filename\"");
 echo json_encode($rows, JSON_PRETTY_PRINT);
 exit;
 
