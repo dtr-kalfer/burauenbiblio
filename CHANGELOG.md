@@ -22,6 +22,7 @@ Guide:
 - Added 🐶🐕 'Guard doggy' security logic. 
 
 ### Changed
+- Refactor: Print card catalog to use MARC tags instead of sequential subfield data.
 - Changed attendance form UI and attendance chart UI with.
 - Set default 'circ. export to JSON' value 'current month' and '12 months ago'.
 - Improved both top 30 results to include Author and ISBN.
