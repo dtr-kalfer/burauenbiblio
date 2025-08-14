@@ -9,7 +9,7 @@ Guide:
 - version 3.x.x above PHP 8.0.xx supported
 - version 2.x.x below PHP 7.4.26 supported
 
-## [unreleased] - yyyy-mm-dd
+## [3.7.14] - 2025-08-14
 ### Added
 - Added graph display for In-house Book Activity, span of one week.
 - Added Export to JSON, In-house Book Activity data.
