@@ -17,6 +17,53 @@
 		return $escaped_string;
 	}	
 	
+	function get_marc_subfields($bibid, $tag, $subfield_cd) {
+			global $connection;
+			
+			$sql = "SELECT s.subfield_data
+							FROM biblio_field AS f
+							JOIN biblio_subfield AS s 
+								ON f.fieldid = s.fieldid
+							WHERE f.bibid = ?
+								AND f.tag = ?
+								AND s.subfield_cd = ?
+							ORDER BY f.fieldid, s.subfieldid
+							LIMIT 1";
+
+			$stmt = mysqli_prepare($connection, $sql);
+			if ($stmt === false) {
+					die("MySQL prepare failed: " . mysqli_error($connection) . "\nSQL: " . $sql);
+			}
+
+			mysqli_stmt_bind_param($stmt, "iss", $bibid, $tag, $subfield_cd);
+			mysqli_stmt_execute($stmt);
+			$result = mysqli_stmt_get_result($stmt);
+			$row = mysqli_fetch_assoc($result);
+			return $row ? $row['subfield_data'] : '';
+	}
+
+	function safe_barcode($barcodes, $index) {
+			return isset($barcodes[$index]) ? $barcodes[$index] : '';
+	}
+
+
+	function get_trimmed_barcodes($bibid) {
+			global $connection;
+			$sql = "SELECT RIGHT(barcode_nmbr, 6) AS barcode_short
+							FROM biblio_copy
+							WHERE bibid = ?
+							ORDER BY barcode_nmbr ASC";
+			$stmt = mysqli_prepare($connection, $sql);
+			mysqli_stmt_bind_param($stmt, "i", $bibid);
+			mysqli_stmt_execute($stmt);
+			$result = mysqli_stmt_get_result($stmt);
+			$barcodes = [];
+			while ($row = mysqli_fetch_assoc($result)) {
+					$barcodes[] = $row['barcode_short'];
+			}
+			return $barcodes;
+	}
+
 	function get_subfield_all_from_bibid($bibid=0) {
 		global $connection;
 		$safe_bibid = mysqli_real_escape_string($connection, $bibid);
