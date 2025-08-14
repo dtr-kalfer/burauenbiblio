@@ -35,6 +35,6 @@ if (!empty($errors)) {
 } else {
     // ✅ Both valid → redirect to PDF
     $query = http_build_query(['bibid_fpdf' => $bibid1, 'bibid_fpdf2' => $bibid2]);
-    echo "<script>window.location.href = 'print_bibid_pdf.php?$query';</script>";
+    echo "<script>window.location.href = 'print_bibid_pdf2.php?$query';</script>";
 }
 exit;
