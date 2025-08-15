@@ -14,6 +14,7 @@ Guide:
 
 ### Changed
 - Card catalog print extended to support 35 barcode copies (5 columns)
+- Improved Print Card Catalog UI display with help info for MARC details.
 
 ### Fixed
 - Error on Card catalog print negative number on too lengthy inputs.

@@ -22,7 +22,7 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 <div id="bulkDel_formDiv" style="display: block;">
   <fieldset>
     <p>To get better result similar to example, use space between call number <br>
-    i.e. FIL 332.10959 C11 2020 and also fill up other details on biblio records.</p><br>
+    i.e. FIL 332.10959 C11 2020 and also fill up <input type="button" name="other details" id="toggle_display" value="other details" /> for every biblio records.</p><br>
 
     <form name="print_bibid" method="post" 
           hx-post="print_bibid.php"
@@ -44,8 +44,44 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
       
 			<input type="submit" value="Print Bibid ID" />
     </form>
-		<h3>Sample Printout</i></h3>
-    <img src="../images/card_catalog_demo_sample.webp" alt="sample card catalog" />
+		
+		<div id="sample_card_catalog">
+		<h3>Sample Printout</h3>
+    <img id="" src="../images/card_catalog_demo_sample.webp" alt="sample card catalog" />
+		</div>
+		
+		<div id="other_details" style="display: none;">
+			<h3>These are some info that may help fill out details the Printed Card Catalog.</h3>
+			<table border="1" cellpadding="5" cellspacing="0">
+			<thead>
+				<tr>
+					<th>MARC Tag</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr><td>099$a</td><td>Call Number</td></tr>
+				<tr><td>100$a</td><td>Author</td></tr>
+				<tr><td>245$a</td><td>Title</td></tr>
+				<tr><td>245$b</td><td>Subtitle</td></tr>
+				<tr><td>700$a</td><td>Additional contributors</td></tr>
+				<tr><td>245$c</td><td>Statement of Responsibility</td></tr>
+				<tr><td>260$a</td><td>Place of Publication</td></tr>
+				<tr><td>260$b</td><td>Publisher</td></tr>
+				<tr><td>260$c</td><td>Date of Publication</td></tr>
+				<tr><td>300$a</td><td>Extent</td></tr>
+				<tr><td>300$b</td><td>Other physical details</td></tr>
+				<tr><td>300$c</td><td>Dimensions</td></tr>
+				<tr><td>504$a</td><td>Bibliography, etc. note</td></tr>
+				<tr><td>020$a</td><td>ISBN</td></tr>
+				<tr><td>650$a</td><td>Subject: Topical</td></tr>
+				<tr><td>650$b</td><td>Subject: Personal</td></tr>
+				<tr><td>650$c</td><td>Subject: Corporate</td></tr>
+				<tr><td>650$d</td><td>Subject: Geographic</td></tr>
+			</tbody>
+		</table>
+		</div>
+
   </fieldset>
 </div>
 
@@ -53,4 +89,18 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 require_once(REL(__FILE__, '../shared/footer.php'));
 ?>
 </body>
+<script>
+document.getElementById('toggle_display').addEventListener('click', function() {
+    const sample = document.getElementById('sample_card_catalog');
+    const details = document.getElementById('other_details');
+
+    if (sample.style.display !== 'none') {
+        sample.style.display = 'none';
+        details.style.display = 'block';
+    } else {
+        sample.style.display = 'block';
+        details.style.display = 'none';
+    }
+});
+</script>
 </html>
