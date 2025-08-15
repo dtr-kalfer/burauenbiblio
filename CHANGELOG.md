@@ -9,6 +9,15 @@ Guide:
 - version 3.x.x above PHP 8.0.xx supported
 - version 2.x.x below PHP 7.4.26 supported
 
+## [unreleased] - xxxx-yy-zz
+### Added
+
+### Changed
+- Card catalog print extended to support 35 barcode copies (5 columns)
+
+### Fixed
+- Error on Card catalog print negative number on too lengthy inputs.
+
 ## [3.7.14] - 2025-08-14
 ### Added
 - Added graph display for In-house Book Activity, span of one week.
