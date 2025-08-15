@@ -97,7 +97,8 @@
 
 		$merge_text01 =  $title . $book['sub_title'] . "/ " . $book['author'] . ".-- " . $book['place'] . ": " . $book['publisher'] . ", " . $book['year'] . ".\n" 
 														. "        " . $book['extent'] . "; " .  $book['other_det'] . ": " . $book['dimension'];
-		$length_append = 291 - strlen($merge_text01);
+		// prevent negative padding
+		$length_append = max(0, 291 - strlen($merge_text01));
 		
 		$merge_text01 .= str_repeat(" ", $length_append); // appends length to maintain consistent amount of characters for 4 lines
 		
@@ -127,13 +128,13 @@
 		
 		// barcode starts here
 		
-		$pdf->Cell(18,5,safe_barcode($barcodes, 0),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 7),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 14),0,1);
-		$pdf->Cell(18,5,safe_barcode($barcodes, 1),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 8),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 15),0,1);
-		$pdf->Cell(18,5,safe_barcode($barcodes, 2),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 9),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 16),0,1);
-		$pdf->Cell(18,5,safe_barcode($barcodes, 3),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 10),0,0);$pdf->Cell(18,5,safe_barcode($barcodes, 17),0,1);
-		$pdf->Cell(18,5,safe_barcode($barcodes, 4),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 11),0,0);$pdf->Cell(18,5,safe_barcode($barcodes, 18),0,1);
-		$pdf->Cell(18,5,safe_barcode($barcodes, 5),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 12),0,0);$pdf->Cell(18,5,safe_barcode($barcodes, 19),0,1);
-		$pdf->Cell(18,5,safe_barcode($barcodes, 6),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 13),0,0);$pdf->Cell(18,5,safe_barcode($barcodes, 20),0,1);		
+		$pdf->Cell(18,5,safe_barcode($barcodes, 0),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 7),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 14),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 21),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 28),0,1);
+		$pdf->Cell(18,5,safe_barcode($barcodes, 1),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 8),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 15),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 22),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 29),0,1);
+		$pdf->Cell(18,5,safe_barcode($barcodes, 2),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 9),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 16),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 23),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 30),0,1);
+		$pdf->Cell(18,5,safe_barcode($barcodes, 3),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 10),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 17),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 24),0,0);$pdf->Cell(18,5,safe_barcode($barcodes, 31),0,1);
+		$pdf->Cell(18,5,safe_barcode($barcodes, 4),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 11),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 18),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 25),0,0);$pdf->Cell(18,5,safe_barcode($barcodes, 32),0,1);
+		$pdf->Cell(18,5,safe_barcode($barcodes, 5),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 12),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 19),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 26),0,0);$pdf->Cell(18,5,safe_barcode($barcodes, 33),0,1);
+		$pdf->Cell(18,5,safe_barcode($barcodes, 6),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 13),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 20),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 27),0,0);$pdf->Cell(18,5,safe_barcode($barcodes, 34),0,1);		
 		
 		$pdf->Cell(55,5,'',0,1); //spacers before another bibid
 		$pdf->Cell(55,5,'',0,1); //spacers before another bibid
@@ -201,7 +202,8 @@
 
 		$merge_text01 =  $title . $book['sub_title'] . "/ " . $book['author'] . ".-- " . $book['place'] . ": " . $book['publisher'] . ", " . $book['year'] . ".\n" 
 														. "        " . $book['extent'] . "; " .  $book['other_det'] . ": " . $book['dimension'];
-		$length_append = 291 - strlen($merge_text01);
+		// prevent negative padding
+		$length_append = max(0, 291 - strlen($merge_text01));
 		
 		$merge_text01 .= str_repeat(" ", $length_append); // appends length to maintain consistent amount of characters for 4 lines
 		
@@ -231,13 +233,13 @@
 		
 		// barcode starts here
 		
-		$pdf->Cell(18,5,safe_barcode($barcodes, 0),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 7),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 14),0,1);
-		$pdf->Cell(18,5,safe_barcode($barcodes, 1),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 8),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 15),0,1);
-		$pdf->Cell(18,5,safe_barcode($barcodes, 2),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 9),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 16),0,1);
-		$pdf->Cell(18,5,safe_barcode($barcodes, 3),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 10),0,0);$pdf->Cell(18,5,safe_barcode($barcodes, 17),0,1);
-		$pdf->Cell(18,5,safe_barcode($barcodes, 4),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 11),0,0);$pdf->Cell(18,5,safe_barcode($barcodes, 18),0,1);
-		$pdf->Cell(18,5,safe_barcode($barcodes, 5),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 12),0,0);$pdf->Cell(18,5,safe_barcode($barcodes, 19),0,1);
-		$pdf->Cell(18,5,safe_barcode($barcodes, 6),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 13),0,0);$pdf->Cell(18,5,safe_barcode($barcodes, 20),0,1);		
+		$pdf->Cell(18,5,safe_barcode($barcodes, 0),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 7),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 14),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 21),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 28),0,1);
+		$pdf->Cell(18,5,safe_barcode($barcodes, 1),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 8),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 15),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 22),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 29),0,1);
+		$pdf->Cell(18,5,safe_barcode($barcodes, 2),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 9),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 16),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 23),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 30),0,1);
+		$pdf->Cell(18,5,safe_barcode($barcodes, 3),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 10),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 17),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 24),0,0);$pdf->Cell(18,5,safe_barcode($barcodes, 31),0,1);
+		$pdf->Cell(18,5,safe_barcode($barcodes, 4),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 11),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 18),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 25),0,0);$pdf->Cell(18,5,safe_barcode($barcodes, 32),0,1);
+		$pdf->Cell(18,5,safe_barcode($barcodes, 5),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 12),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 19),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 26),0,0);$pdf->Cell(18,5,safe_barcode($barcodes, 33),0,1);
+		$pdf->Cell(18,5,safe_barcode($barcodes, 6),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 13),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 20),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 27),0,0);$pdf->Cell(18,5,safe_barcode($barcodes, 34),0,1);		
 				
 		//$pdf->Image('./images/5x8outline.png',10,10,196,127);
 		
