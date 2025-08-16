@@ -11,6 +11,7 @@ Guide:
 
 ## [unreleased] - xxxx-yy-zz
 ### Added
+- For new biblio records, book title is auto-copied into the copy description, no need to retype entire title.
 
 ### Changed
 - Card catalog print extended to support 35 barcode copies (5 columns)
@@ -18,6 +19,7 @@ Guide:
 
 ### Fixed
 - Error on Card catalog print negative number on too lengthy inputs.
+- Fixed: Library Staff no longer need to retype the title into copy description field.
 
 ## [3.7.14] - 2025-08-14
 ### Added
