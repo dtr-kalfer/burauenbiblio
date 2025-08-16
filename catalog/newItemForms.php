@@ -182,7 +182,7 @@ th.colHead { white-space: nowrap; }
 	<!-- =================================================== -->
 	<div id="selectionDiv">
    		<form role="form" id="newBiblioForm" name="newbiblioform" >
-			<p class="note"><?php echo T("Fields marked are required"); ?></p>
+			<p class="note"><?php echo T("Fields marked are required v2"); ?></p>
 			<div class="btnRow gridded">
 				<input type="button" class="col4 itemGobkBtn" value="<?php echo T("Go Back"); ?>" />
 			</div>
