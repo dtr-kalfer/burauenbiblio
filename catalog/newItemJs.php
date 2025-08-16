@@ -263,6 +263,11 @@ var ni = {
 	// manual 'new biblio' related stuff
 	doInsertNew: function () {
 	 	var parms=$('#newBiblioForm').serialize();
+		// auto copy the title into copy desc. and trimmed to 150 char. length --F.Tumulak
+		// This would put the title into copy description without retyping the entire title --F.Tumulak
+		if ($('#copyDesc').val().trim() === '') {
+				$('#copyDesc').val($('#245a').val().trim().substring(0,150));
+		}		
 		parms += '&mode=doInsertBiblio';
 	    $.post(ni.url,parms, function(response){
     	  	if (typeof response == 'object') {
