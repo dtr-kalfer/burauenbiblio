@@ -480,6 +480,7 @@ $trans["Field cannot be less than zero"] = "Field cannot be less than zero";
 $trans["Field must be greater than zero"] = "Field must be greater than zero";
 $trans["Field must be numeric"] = "Field must be numeric";
 $trans["Fields marked are required"] = "Fields marked with <span class='reqd'>*</span> are required.";
+$trans["Fields marked are required v2"] = "Fields marked with <span class='reqd'>*</span> are required. Title is automatically copied into Copy Description. ";
 $trans["File name end not jpg or png"] = "File name does not end in '.jpg' or '.png'.";
 $trans["filename"] = "filename";
 $trans["FileName"] = "Item Name or Id";
