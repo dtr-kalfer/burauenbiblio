@@ -9,7 +9,7 @@ Guide:
 - version 3.x.x above PHP 8.0.xx supported
 - version 2.x.x below PHP 7.4.26 supported
 
-## [unreleased] - xxxx-yy-zz
+## [3.8.15] - 2025-08-16
 ### Added
 - For new biblio records, book title is auto-copied into the copy description, no need to retype entire title.
 
