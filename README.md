@@ -29,7 +29,7 @@ The member records are entirely fictitious and do not represent real individuals
 
 The **BurauenBiblio System** is in active use at **Burauen Community College**, supporting bibliographic search requests from both students and faculty. It currently manages nearly **5,000 bibliographic records**, with continuous growth in its collection.
 
-Designed to streamline library operations, BurauenBiblio provides tools for **cataloging**, **circulation management**, and other **staff-operated features** that enhance **workplace automation**.
+Designed to streamline library operations, BurauenBiblio provides tools for **cataloging**, **circulation management**, **OPAC (Online Public Access Catalog)**,  and other **staff-operated features** that enhance **workplace automation**.
 
 Upgraded to run on **PHP 8.0**, the system delivers substantial performance gains—up to **2× to 4× faster than PHP 5.7**—while maintaining **full compatibility** with the college’s existing **legacy hardware**.
 
@@ -40,6 +40,12 @@ For details: https://librarytechnology.org/library/211849
 ![Homepage](./readme_assets/sample_calendar_image.webp "BurauenBiblio Homepage")
 
 The system uses **Calendar Logic** to accurately calculate due dates based on your **library’s open and closed days**.
+
+### 📝 OPAC DOI Search
+
+![Homepage](./readme_assets/doi_sample_image.webp "BurauenBiblio Homepage")
+
+DOI search allows DOI to URL resolve, and patrons get redirected to the official, authoritative source of the article (publisher, repository, or open-access platform) on the internet.
 
 ### 📝 To-Do List 
 
