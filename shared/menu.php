@@ -68,7 +68,7 @@ function staff_menu() {
 
 		
 		// Nav::node('cataloging/upload_csv', T("CSVImport"), "../catalog/importCsvForms.php"); // Sorry, the backend part is not working or still work in progress by orig. author -F.Tumulak
-		Nav::node('cataloging/doiSearch', T("doiSearch"), '../opac/doiSearchForms.php');
+		// Nav::node('cataloging/doiSearch', T("doiSearch"), '../opac/doiSearchForms.php');
 		Nav::node('cataloging/print_card_catalog', T("Print Catalog"), "../catalog/print_card_catalog.php"); // new feature Card catalog print --F.Tumulak 
 		Nav::node('cataloging/missing_thumbnails', T("Thumbnail check"), "../catalog/thumbnail_check.php"); // new feature Card catalog print --F.Tumulak 
 	}
