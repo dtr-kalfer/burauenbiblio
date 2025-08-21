@@ -47,6 +47,13 @@ The system uses **Calendar Logic** to accurately calculate due dates based on yo
 
 DOI search allows DOI to URL resolve, and patrons get redirected to the official, authoritative source of the article (publisher, repository, or open-access platform) on the internet.
 
+| **Benefit**             | **Without DOI Search**           | **With DOI Search** ✅            |
+| ---------------------- | -------------------------------- | -------------------------------- |
+| **Find articles quickly** | Searching long titles on Google | Paste DOI → Direct link          |
+| **Credible sources**     | Mixed results, blogs, PDFs      | Always official publisher       |
+| **Saves time**          | Many clicks, trial and error    | One search → one result        |
+| **Better research**     | Risk of outdated/unverified info | Direct access to scholarly sources |
+
 ### 📝 To-Do List 
 
 ![Homepage](./readme_assets/todo_list.webp "BurauenBiblio Homepage")
