@@ -11,10 +11,10 @@
 </style>
     <nav id="accordion" role="navigation" aria-label="site" tabindex="-1">
   	<section class="menuSect">
-       	<h3 class="navHeading">Search Menu</h3>
+       	<h3 class="navHeading">OPAC Search Mode</h3>
 				<div class="navContent">
-			  <a href="../catalog/srchForms.php?tab=OPAC" title="search">Library Search</a><br />
-			  <a href="../opac/doiSearchForms.php?tab=OPAC" title="doi">use DOI (Internet)</a><br />
+			  <a href="../catalog/srchForms.php?tab=OPAC" title="search">OPAC Library Search</a><br />
+			  <a href="../opac/doiSearchForms.php?tab=OPAC" title="doi">DOI Search</a><br />
 				</div>
    	</section>
 

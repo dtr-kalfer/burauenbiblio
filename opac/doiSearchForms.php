@@ -13,22 +13,23 @@
 	Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 ?>
 
-	<h4  class="title"><?php echo T("doiSearch"); ?></h4>
+	<h4 class="title"><?php echo T("doiSearch"); ?></h4>
 	<section id="entry">
 		<fieldset id="srchArea">
-		<legend style="border: 1px solid black;"><?php echo T("Search4DocumentInfo"); ?></legend>
-			<p class="note">
-			A DOI, or Digital Object Identifier, is a string of numbers, <br>
-			letters and symbols used to uniquely identify an article or  <br>
-			document, and to provide it with a permanent web address <br> (URL)
+		
+			<p>	A <b>DOI (Digital Object Identifier)</b> is like a permanent ID for <br>
+			academic papers, journal articles, e-books, and other documents <br>
+			published on the internet. </p><br>
+			The DOI Search opens a new tab which redirects to the URL <br> 
+			equivalent of the DOI.<br>
 			</p>
 			<form role="form" id="doiForm">
-			<label for="doiCd"><?php echo T("EnterDOI2Resolve"); ?></label><br />
+			<label for="doiCd">Paste any DOI here to locate the official article.</label><br />
 			<input size="50" type="text" id="doiCd" name="doiCd" required \><br />
 		  <input type="submit" id="srchBtn" value="<?php echo T("Search"); ?>" />
 			</form>
 			<br>
-			<p>Here are some more DOI examples:</p><br>
+			<h3>Here are some DOI examples found on academic references:</h3><br>
 			<p>Benson, O. (2023). Design, Fabrication, and Performance <br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Evaluation of a Petrol-Driven Refrigerating System <br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for Effective Vaccine Storage in Remote Areas. <br>
