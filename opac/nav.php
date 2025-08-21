@@ -10,6 +10,14 @@
 <style>
 </style>
     <nav id="accordion" role="navigation" aria-label="site" tabindex="-1">
+  	<section class="menuSect">
+       	<h3 class="navHeading">Search Menu</h3>
+				<div class="navContent">
+			  <a href="../catalog/srchForms.php?tab=OPAC" title="search">Library Search</a><br />
+			  <a href="../opac/doiSearchForms.php?tab=OPAC" title="doi">use DOI (Internet)</a><br />
+				</div>
+   	</section>
+
 		<section class="menuSect">
 			<h3 class="navHeading" id="defaultOpen">About Library</h3>
 			<div class="navContent about">
