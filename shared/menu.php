@@ -5,7 +5,7 @@
 
 function staff_menu() {
 	if ($_SESSION["hasCircAuth"] ?? false) {
-		Nav::node('welcome', T("Welcome"), '../admin/noauth.php');
+		Nav::node('welcome', T("todolist"), '../admin/noauth.php');
 		
 		Nav::node('circulation', T("Circulation"), '../circ/memberForms.php');
 		Nav::node('circulation/searchform', T("Members"), '../circ/memberForms.php');
