@@ -16,6 +16,8 @@ Guide:
 ### Changed
 - Restored DOI search into the OPAC setup
 - DOI search removed from Cataloging menu
+- Updated To-do List
+- Updated sql data
 
 ### Fixed
 - n.a.
