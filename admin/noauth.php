@@ -12,15 +12,15 @@
 		 */
 		require_once("../shared/common.php");
 
-		$tab = "circulation";
+		$tab = "welcome";
 		$nav = "";
 		
 		// validate if logged in --F.Tumulak
 		require_once(REL(__FILE__, "../shared/logincheck.php"));
 		Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 		date_default_timezone_set('Asia/Manila'); // Philippine timezone
-		echo '<h3 >Welcome to BurauenBiblio!</h3>';
-		echo '<p class="info" style="text-align: center;">🧑 ' . $_SESSION["username"] . T(", you are now logged in.") . '</p>';
+		echo '<h3 >To-do List Section</h3>';
+		echo '<p class="info" style="text-align: center;">🧑 Welcome ' . $_SESSION["username"] . T(", you are now logged in.") . '</p>';
 	?>
 	
 	<div style="display: flex;">
