@@ -11,23 +11,25 @@ Guide:
 
 ## [unreleased] - yyyy-mm-dd
 ### Added 
-- DOI example and improved UI
+- New feature: DDC Create Table using basic ten main classes.
+- New feature: DDC Chart from table with JSON export.
+- DOI example and improved UI.
 
 ### Changed
-- Restored DOI search into the OPAC setup
-- DOI search removed from Cataloging menu
-- Updated To-do List
-- Updated sql data
+- Restored DOI search into the OPAC setup.
+- DOI search removed from Cataloging menu.
+- Updated To-do List.
+- Updated sql data .
 
 ### Fixed
-- n.a.
+- Set z39.50 default online setup to Dewey (DDC).
 
 ## [3.8.15] - 2025-08-16
 ### Added
 - For new biblio records, book title is auto-copied into the copy description, no need to retype entire title.
 
 ### Changed
-- Card catalog print extended to support 35 barcode copies (5 columns)
+- Card catalog print extended to support 35 barcode copies (5 columns).
 - Improved Print Card Catalog UI display with help info for MARC details.
 
 ### Fixed
