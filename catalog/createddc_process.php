@@ -61,21 +61,21 @@ try {
 
     // 4. Update classification based on DDC ranges
     $updateSQL = "
-        UPDATE extract_ddc
-        SET classification = CASE
-            WHEN CAST(CONCAT(SUBSTRING_INDEX(ddc, '.', 1), '.', LEFT(SUBSTRING_INDEX(ddc, '.', -1), 3)) AS DECIMAL(6,3)) BETWEEN 000.000 AND 099.999 THEN 'General Works'
-            WHEN CAST(CONCAT(SUBSTRING_INDEX(ddc, '.', 1), '.', LEFT(SUBSTRING_INDEX(ddc, '.', -1), 3)) AS DECIMAL(6,3)) BETWEEN 100.000 AND 199.999 THEN 'Philosophy and Psychology'
-            WHEN CAST(CONCAT(SUBSTRING_INDEX(ddc, '.', 1), '.', LEFT(SUBSTRING_INDEX(ddc, '.', -1), 3)) AS DECIMAL(6,3)) BETWEEN 200.000 AND 299.999 THEN 'Religion'
-            WHEN CAST(CONCAT(SUBSTRING_INDEX(ddc, '.', 1), '.', LEFT(SUBSTRING_INDEX(ddc, '.', -1), 3)) AS DECIMAL(6,3)) BETWEEN 300.000 AND 399.999 THEN 'Social Sciences'
-            WHEN CAST(CONCAT(SUBSTRING_INDEX(ddc, '.', 1), '.', LEFT(SUBSTRING_INDEX(ddc, '.', -1), 3)) AS DECIMAL(6,3)) BETWEEN 400.000 AND 499.999 THEN 'Language'
-            WHEN CAST(CONCAT(SUBSTRING_INDEX(ddc, '.', 1), '.', LEFT(SUBSTRING_INDEX(ddc, '.', -1), 3)) AS DECIMAL(6,3)) BETWEEN 500.000 AND 599.999 THEN 'Science'
-            WHEN CAST(CONCAT(SUBSTRING_INDEX(ddc, '.', 1), '.', LEFT(SUBSTRING_INDEX(ddc, '.', -1), 3)) AS DECIMAL(6,3)) BETWEEN 600.000 AND 699.999 THEN 'Technology'
-            WHEN CAST(CONCAT(SUBSTRING_INDEX(ddc, '.', 1), '.', LEFT(SUBSTRING_INDEX(ddc, '.', -1), 3)) AS DECIMAL(6,3)) BETWEEN 700.000 AND 799.999 THEN 'Arts and Recreation'
-            WHEN CAST(CONCAT(SUBSTRING_INDEX(ddc, '.', 1), '.', LEFT(SUBSTRING_INDEX(ddc, '.', -1), 3)) AS DECIMAL(6,3)) BETWEEN 800.000 AND 899.999 THEN 'Literature'
-            WHEN CAST(CONCAT(SUBSTRING_INDEX(ddc, '.', 1), '.', LEFT(SUBSTRING_INDEX(ddc, '.', -1), 3)) AS DECIMAL(6,3)) BETWEEN 900.000 AND 999.999 THEN 'History and Geography'
-            ELSE 'Unclassified'
-        END
-        WHERE ddc REGEXP '^[0-9]{1,3}(\\.[0-9]+)?$';
+			UPDATE extract_ddc
+			SET classification = CASE
+					WHEN LEFT(ddc, 3) BETWEEN '000' AND '099' THEN 'General Works'
+					WHEN LEFT(ddc, 3) BETWEEN '100' AND '199' THEN 'Philosophy and Psychology'
+					WHEN LEFT(ddc, 3) BETWEEN '200' AND '299' THEN 'Religion'
+					WHEN LEFT(ddc, 3) BETWEEN '300' AND '399' THEN 'Social Sciences'
+					WHEN LEFT(ddc, 3) BETWEEN '400' AND '499' THEN 'Language'
+					WHEN LEFT(ddc, 3) BETWEEN '500' AND '599' THEN 'Science'
+					WHEN LEFT(ddc, 3) BETWEEN '600' AND '699' THEN 'Technology'
+					WHEN LEFT(ddc, 3) BETWEEN '700' AND '799' THEN 'Arts and Recreation'
+					WHEN LEFT(ddc, 3) BETWEEN '800' AND '899' THEN 'Literature'
+					WHEN LEFT(ddc, 3) BETWEEN '900' AND '999' THEN 'History and Geography'
+					ELSE 'Unclassified'
+			END
+			WHERE ddc REGEXP '^[0-9]{1,3}(\\.[0-9]+)?$';
     ";
     $db->query($updateSQL);
 
