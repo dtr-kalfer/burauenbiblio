@@ -81,6 +81,8 @@ $trans["daily book tally"] = "Daily Book Tally";
 $trans["top30_in-house"] = "Top30 in-house";
 $trans["top30active_inhouse"] = "🔥 Top 30 Most-viewed Books within Library";
 $trans["Daily T. (Chart)"] = "Daily T. (Chart)";
+$trans["ddc_chart"] = "DDC# Chart";
+$trans["create_ddc"] = "Make DDC Table";
 
 $trans["(enter 0 for unlimited)"] = "(enter 0 for unlimited)";
 $trans["(when available)"] = "(when available)";
