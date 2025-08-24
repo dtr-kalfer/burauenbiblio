@@ -19,10 +19,11 @@ Guide:
 - Restored DOI search into the OPAC setup.
 - DOI search removed from Cataloging menu.
 - Updated To-do List.
-- Updated sql data .
+- Updated sql data.
+- Set z39.50 default online setup to Dewey (DDC).
 
 ### Fixed
-- Set z39.50 default online setup to Dewey (DDC).
+- n.a.
 
 ## [3.8.15] - 2025-08-16
 ### Added
