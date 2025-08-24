@@ -56,6 +56,7 @@
     '700' => '#FFC107',  // Arts & Recreation
     '800' => '#3F51B5',  // Literature
     '900' => '#F44336',  // History & Geography
+		'???' => '#9E9E9E',  // unclassified
 ];
 
 ?>
@@ -151,6 +152,7 @@
 														case '700': echo "Arts & Recreation"; break;
 														case '800': echo "Literature"; break;
 														case '900': echo "History & Geography"; break;
+														default : echo "Unknown or Invalid"; break;
 												}
 										?>
 								</span>
