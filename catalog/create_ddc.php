@@ -28,8 +28,8 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 			<h2>📚 Create DDC Table</h2>
 			<div style="text-align: center;"><img src="../images/sample_portion_ddc_chart.webp" /></div>
 			<p>
-				This tool allows creation of ddc table needed to make a graph tally (Number of Copies VS. ddc code). 
-				It requires a certain amount of catalogued books to get a meaningful chart.
+				This tool allows creation of DDC table needed to make a graph tally (Number of Copies VS. DDC code). 
+				It requires a certain amount of catalogued books using DDC to get a meaningful chart.
 				The graph tally helps:
 			</p>
 			
