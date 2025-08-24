@@ -56,7 +56,7 @@
     '700' => '#FFC107',  // Arts & Recreation
     '800' => '#3F51B5',  // Literature
     '900' => '#F44336',  // History & Geography
-		'???' => '#9E9E9E',  // unclassified
+		'???' => '#9E9E9E'  // unclassified
 ];
 
 ?>
@@ -165,10 +165,10 @@
 		<button id="downloadJson">⬇ Download JSON</button>		
 		<!-- Wikipedia Link -->
 		<a href="https://en.wikipedia.org/wiki/List_of_Dewey_Decimal_classes" class="btn" target="_blank">
-				📖 Detailed Dewey Decimal Classes (wikipedia)
+				📖 Detailed Dewey Decimal Classes (Wikipedia)
 		</a>
 </section>
- 		
+<p style="text-align: center;">DDC category descriptions are adapted from <a href="https://en.wikipedia.org/wiki/List_of_Dewey_Decimal_classes">Wikipedia</a> under the <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0 License</a></p>
 <script>
 	// PHP data → JavaScript
 	const labels = <?php echo json_encode($labels); ?>;
