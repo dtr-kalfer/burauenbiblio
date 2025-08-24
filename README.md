@@ -68,7 +68,7 @@ The **Monthly Circulation Report** is a dynamic analytics feature in BurauenBibl
 
 ### 📝 Analytics - Top 30 Dewey Decimal Stats
 
-![Homepage](./readme_assets/deweydecimal.webp "BurauenBiblio Homepage")
+![Homepage](./readme_assets/deweydecimalchart.webp "BurauenBiblio Homepage")
 
 The **Top 30 DDC Stats** feature provides an at-a-glance analysis of the library’s collection by visualizing the number of copies per Dewey Decimal Classification (DDC) category. A utility is included which allows creation of DDC table needed to make a graph tally (Number of Copies VS. DDC code).  The DDC utility requires a certain amount of catalogued books using DDC to get a meaningful chart.
 
