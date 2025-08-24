@@ -66,7 +66,20 @@ The **To-Do List** is a simple yet powerful enhancement to the BurauenBiblio lib
 
 The **Monthly Circulation Report** is a dynamic analytics feature in BurauenBiblio that visualizes the **total number of items borrowed per month**, across a selected range of time. It helps library staff and administrators: 📅 **Track Borrowing Trends** 📚 **Evaluate Usage Patterns** 🎯 **Support Decision-Making** based on actual demand.
 
-Added 'Export to JSON' feature for extending circulation data into JSON format for other value adding services i.e. e-bulletin.
+### 📝 Analytics - Top 30 Dewey Decimal Stats
+
+![Homepage](./readme_assets/deweydecimal.webp "BurauenBiblio Homepage")
+
+The **Top 30 DDC Stats** feature provides an at-a-glance analysis of the library’s collection by visualizing the number of copies per Dewey Decimal Classification (DDC) category. A utility is included which allows creation of DDC table needed to make a graph tally (Number of Copies VS. DDC code).  The DDC utility requires a certain amount of catalogued books using DDC to get a meaningful chart.
+
+The graph tally helps:
+- Identify which classes/discipline dominate the collection.
+- Spot underrepresented categories where more resources may be needed.
+- Make data-informed decision for future acquisitions, inventory reviews and budget planning.
+- Demonstrate the diversity of holdings to stakeholders, management, or partner institutions.
+- Saves time compared to manual catalog analysis.
+
+Added 'Export to JSON' feature viewing data into JSON format for other value adding services i.e. e-bulletin.
 
 ### 📝 Analytics - Top 30 Borrowed Books and Top 30 Most-viewed books
 
