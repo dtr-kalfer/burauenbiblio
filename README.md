@@ -70,7 +70,7 @@ The **Monthly Circulation Report** is a dynamic analytics feature in BurauenBibl
 
 ![Homepage](./readme_assets/deweydecimalchart.webp "BurauenBiblio Homepage")
 
-The **Top 30 DDC Stats** feature provides an at-a-glance analysis of the library’s collection by visualizing the number of copies per Dewey Decimal Classification (DDC) category. A utility is included which allows creation of DDC table needed to make a graph tally (Number of Copies VS. DDC code).  The DDC utility requires a certain amount of catalogued books using DDC to get a meaningful chart.
+The **Top 30 DDC Stats** feature provides an analysis of the library’s collection by visualizing the **number of copies per Dewey Decimal Classification (DDC) category**. A utility is included which allows creation of DDC table needed to make a graph (Number of Copies VS. DDC code).  The DDC utility requires a certain amount of catalogued books using DDC to get a meaningful chart.
 
 The graph tally helps:
 - Identify which classes/discipline dominate the collection.
@@ -80,6 +80,8 @@ The graph tally helps:
 - Saves time compared to manual catalog analysis.
 
 Added 'Export to JSON' feature viewing data into JSON format for other value adding services i.e. e-bulletin.
+
+> DDC category descriptions are adapted from [Wikipedia](https://en.wikipedia.org/wiki/List_of_Dewey_Decimal_classes) under the [CC BY-SA 4.0 License](https://creativecommons.org/licenses/by-sa/4.0/)
 
 ### 📝 Analytics - Top 30 Borrowed Books and Top 30 Most-viewed books
 
@@ -155,7 +157,7 @@ The development focuses on:
 
 - Introducing new features to improve usability and performance
 
-The system now offers full support for **PHP 8.0**, with work in progress toward compatibility with **PHP 8.1** and beyond.
+The system now offers full support for **PHP 8.0**, with work in progress toward compatibility with **PHP 8.1**.
 
 Recent updates also incorporate **HTMX** and other modern frontend tools, delivering a more dynamic and responsive user experience—without the overhead of a full JavaScript framework. This approach keeps the system lightweight, accessible, and well-suited for **small libraries and schools** while aligning with current **web standards**.
 
