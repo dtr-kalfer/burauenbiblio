@@ -84,6 +84,8 @@ function staff_menu() {
 		Nav::node('admin/analytics', T("analytics"),'../circ/attendance_form.php');
 			Nav::node('admin/analytics/attendance', T("attendance"),'../circ/attendance_form.php');
 			Nav::node('admin/analytics/attendance_chart', T("attendance_chart"),'../circ/attendance_chart2.php');	
+			Nav::node('admin/analytics/create_ddc', T("create_ddc"),'../catalog/create_ddc.php');
+			Nav::node('admin/analytics/ddc_chart', T("ddc_chart"),'../catalog/ddc_chart.php');	
 
 		Nav::node('admin/settings', T("Library Settings"), '../admin/settingsForm.php');
 		Nav::node('admin/staff', T("Staff Admin"), '../admin/staffForm.php');
