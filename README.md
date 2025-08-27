@@ -84,11 +84,11 @@ Added 'Export to JSON' feature viewing data into JSON format for other value add
 
 ![Homepage](./readme_assets/ddcmappingtable.webp "BurauenBiblio Homepage")
 
-This process enriches bibliographic records by interpreting **Dewey Decimal Classification (DDC)** numbers into **human-readable subject categories**.
+This process enriches bibliographic records by interpreting **Dewey Decimal Classification (DDC) numbers** into **human-readable subject categories**.
 
-Using a reference dataset, we translate raw numerical codes into three levels of categorization: Main Class, Division Class and Topic Class.
+Using a **reference dataset**, we translate **raw numerical codes** into three levels of categorization: **Main Class, Division Class and Topic Class**.
 
-Both DDC Stats and DDC table listing helps:
+Both **DDC Stats** and **DDC table listing** helps:
 - Identify which classes/discipline dominate the collection.
 - Spot underrepresented categories where more resources may be needed.
 - Make data-informed decision for future acquisitions, inventory reviews and budget planning.
