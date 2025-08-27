@@ -72,7 +72,9 @@ The **Monthly Circulation Report** is a dynamic analytics feature in BurauenBibl
 
 The **Top 30 DDC Stats** feature provides an analysis of the library’s collection by visualizing the **number of copies per Dewey Decimal Classification (DDC) category**. A utility is included which allows creation of DDC table needed to make a graph (Number of Copies VS. DDC code).  The DDC utility requires a certain amount of catalogued books using DDC to get a meaningful chart.
 
-### 📝 Analytics - Advanced Dewey Decimal Classification Mapping
+Added 'Export to JSON' feature viewing data into JSON format for other value adding services i.e. e-bulletin.
+
+### 📝 Advanced Dewey Decimal Classification Mapping
 
 ![Homepage](./readme_assets/ddcmappingtable.webp "BurauenBiblio Homepage")
 
@@ -80,14 +82,12 @@ This process enriches bibliographic records by interpreting **Dewey Decimal Clas
 
 Using a reference dataset, we translate raw numerical codes into three levels of categorization: Main Class, Division Class and Topic Class.
 
-The graph and table listing helps:
+Both DDC Stats and DDC table listing helps:
 - Identify which classes/discipline dominate the collection.
 - Spot underrepresented categories where more resources may be needed.
 - Make data-informed decision for future acquisitions, inventory reviews and budget planning.
 - Demonstrate the diversity of holdings to stakeholders, management, or partner institutions.
 - Saves time compared to manual catalog analysis.
-
-Added 'Export to JSON' feature viewing data into JSON format for other value adding services i.e. e-bulletin.
 
 > DDC category descriptions are adapted from [Wikipedia](https://en.wikipedia.org/wiki/List_of_Dewey_Decimal_classes) under the [CC BY-SA 4.0 License](https://creativecommons.org/licenses/by-sa/4.0/)
 
