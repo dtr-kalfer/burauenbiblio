@@ -11,6 +11,8 @@ Guide:
 
 ## [unreleased] - yyyy-mm-dd
 ### Added 
+- New feature: Advanced Dewey Decimal Classification Mapping (Class, Division and Topic Mapping).
+- Top 30 DDC Chart and Top 30 DDC table listing.
 - New feature: DDC Create Table using basic ten main classes.
 - New feature: DDC Chart from table with JSON export.
 - DOI example and improved UI.
