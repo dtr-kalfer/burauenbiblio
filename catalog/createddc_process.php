@@ -1,6 +1,17 @@
 <?php
-/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
- * See the file COPYRIGHT.html for more details. --F.Tumulak
+/* 
+ * This file is part of a copyrighted work; it is distributed with NO WARRANTY.
+ * See the file COPYRIGHT.html for more details.
+ * 
+ * DDC Classification Mapping (Level 1)
+ * Source: Wikipedia - Dewey Decimal Classification
+ * https://en.wikipedia.org/wiki/List_of_Dewey_Decimal_classes
+ *
+ * This file references materials licensed under the
+ * Creative Commons Attribution-ShareAlike 4.0 International License.
+ * License details: https://creativecommons.org/licenses/by-sa/4.0/legalcode
+ *
+ * -- F. Tumulak
  */
 // Guard Doggy
 		require_once("../shared/guard_doggy.php");
@@ -28,7 +39,9 @@ try {
             bibid INT NOT NULL,
             barcode_nmbr VARCHAR(20),
             ddc VARCHAR(20),
-            classification VARCHAR(100)
+            classification VARCHAR(100),
+						classification_div VARCHAR(150),
+						classification_adv VARCHAR(150)
         )
     ";
     $db->query($createTableSQL);
@@ -59,7 +72,7 @@ try {
     ";
     $db->query($insertSQL);
 
-    // 4. Update classification based on DDC ranges
+    // 4. Update classification based on DDC ranges (https://en.wikipedia.org/wiki/List_of_Dewey_Decimal_classes)
     $updateSQL = "
 			UPDATE extract_ddc
 			SET classification = CASE
@@ -87,7 +100,7 @@ try {
     $row = $result->fetch_assoc();
     $count = $row['total'];
 
-    echo "<p>✅ Successfully created and populated <strong>DDC</strong> table.</p>";
+    echo "<p>✅ Successfully created and populated <strong>DDC Table + Process Level I Main Class Mapping</strong> table.</p>";
     echo "<p>Total records inserted: <strong>{$count}</strong></p>";
     echo "<p>🎉 You can now view the DDC stats graph!</p>";
 
