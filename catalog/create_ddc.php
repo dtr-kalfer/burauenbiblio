@@ -50,7 +50,21 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
           hx-target="#result"
           hx-swap="innerHTML"
           autocomplete="off">
-        <button type="submit">Create DDC Table</button>
+        <button type="submit">Create DDC Table + Process Level I (Main Class) Mapping</button>
+    </form>
+		
+    <form id="createddc-form2" 
+          hx-target="#result"
+          hx-swap="innerHTML"
+          autocomplete="off">
+        <button type="submit">Process Level II (Division Class) Mapping</button>
+    </form>
+
+    <form id="createddc-form3" 
+          hx-target="#result"
+          hx-swap="innerHTML"
+          autocomplete="off">
+        <button type="submit">Process Level III (Topic Class) Mapping</button>
     </form>
 
     <div id="result"></div>
@@ -61,15 +75,57 @@ document.getElementById('createddc-form').addEventListener('submit', function(e)
     e.preventDefault(); // stop default HTMX behavior
 
     const form = e.target;
-    const input = document.getElementById("barcode");
+    
 
     // Optional: show processing message immediately
-    document.getElementById("result").innerHTML = "⏳ Processing...";
+    document.getElementById("result").innerHTML = "⏳ Processing create table + Level I Main Class Mapping...";
 
     // Wait 500ms before submitting
 		form.querySelector("button").disabled = true;
     setTimeout(() => {
         htmx.ajax('POST', 'createddc_process.php', {
+            target: '#result',
+            swap: 'innerHTML',
+
+        });
+				form.querySelector("button").disabled = false;
+    }, 3000);
+});
+
+document.getElementById('createddc-form2').addEventListener('submit', function(e) {
+    e.preventDefault(); // stop default HTMX behavior
+
+    const form = e.target;
+    
+
+    // Optional: show processing message immediately
+    document.getElementById("result").innerHTML = "⏳ Processing DDC Level II Division Class Mapping...";
+
+    // Wait 500ms before submitting
+		form.querySelector("button").disabled = true;
+    setTimeout(() => {
+        htmx.ajax('POST', 'createddc_process_div.php', {
+            target: '#result',
+            swap: 'innerHTML',
+
+        });
+				form.querySelector("button").disabled = false;
+    }, 3000);
+});
+
+document.getElementById('createddc-form3').addEventListener('submit', function(e) {
+    e.preventDefault(); // stop default HTMX behavior
+
+    const form = e.target;
+    
+
+    // Optional: show processing message immediately
+    document.getElementById("result").innerHTML = "⏳ Processing DDC Level III Topic Class Mapping...";
+
+    // Wait 500ms before submitting
+		form.querySelector("button").disabled = true;
+    setTimeout(() => {
+        htmx.ajax('POST', 'createddc_process_adv.php', {
             target: '#result',
             swap: 'innerHTML',
 

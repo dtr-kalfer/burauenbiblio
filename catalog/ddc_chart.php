@@ -1,17 +1,6 @@
 <?php
-/* 
- * This file is part of a copyrighted work; it is distributed with NO WARRANTY.
- * See the file COPYRIGHT.html for more details.
- * 
- * DDC Classification Main Class Mapping (Level 1)
- * Source: Wikipedia - Dewey Decimal Classification
- * https://en.wikipedia.org/wiki/List_of_Dewey_Decimal_classes
- *
- * This file references materials licensed under the
- * Creative Commons Attribution-ShareAlike 4.0 International License.
- * License details: https://creativecommons.org/licenses/by-sa/4.0/legalcode
- *
- * -- F. Tumulak
+/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
+ * See the file COPYRIGHT.html for more details. --F.Tumulak
  */
     require_once("../shared/common.php");
     $tab = "admin/analytics";
@@ -74,6 +63,7 @@
 <style>
 .chart-container {
     width: 1000px;
+	
     
 }
 .legend-section {
@@ -137,8 +127,8 @@
     <h2 style="text-align:center;">📊 Top 30 Dewey Decimal Stats</h2>
 </section>
 
-<section class="chart-container">
-    <canvas id="ddcChart"></canvas>
+<section class="chart-container" >
+    <canvas id="ddcChart" ></canvas>
 </section>
 
 <!-- Color legend container -->
@@ -146,7 +136,7 @@
 
 <!-- Load Chart.js (Use CDN for reliability) -->
 <script src="../circ/js/chart.js"></script>
-<section class="legend-section">
+<section class="legend-section" >
 				<?php foreach ($categoryColors as $range => $color): ?>
 						<div class="legend-item">
 								<span class="legend-color-box" style="background-color: <?= $color; ?>"></span>
