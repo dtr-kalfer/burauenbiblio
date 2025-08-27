@@ -41,6 +41,12 @@ For details: https://librarytechnology.org/library/211849
 
 The system uses **Calendar Logic** to accurately calculate due dates based on your **library’s open and closed days**.
 
+### 📌 Set limit on overdue charges
+
+![Homepage](./readme_assets/overdue_notice.webp "BurauenBiblio Homepage")
+
+Member types can be configured with **overdue charge** settings. When a patron exceeds the overdue limit accumulated from the penalty/day, they are **restricted** from making additional borrowings.
+
 ### 📝 OPAC DOI Search
 
 ![Homepage](./readme_assets/doi_sample_image.webp "BurauenBiblio Homepage")
@@ -124,12 +130,6 @@ Added 'Export attendance to JSON' format with 'student' only filter. You can use
 ![Homepage](./readme_assets/missing_thumbnails.webp "BurauenBiblio Homepage")
 
 Thumbnail check is a utility feature that finds missing thumbnail and broken image URL that is linked into the biblio records.
-
-### 📌 Set limit on overdue charges
-
-![Homepage](./readme_assets/overdue_notice.webp "BurauenBiblio Homepage")
-
-Member types can be configured with **overdue charge** settings. When a patron exceeds the overdue limit accumulated from the penalty/day, they are **restricted** from making additional borrowings.
 
 ### 📌 Card Catalog
 
