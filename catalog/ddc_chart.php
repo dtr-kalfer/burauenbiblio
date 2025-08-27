@@ -1,6 +1,17 @@
 <?php
-/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
- * See the file COPYRIGHT.html for more details. --F.Tumulak
+/* 
+ * This file is part of a copyrighted work; it is distributed with NO WARRANTY.
+ * See the file COPYRIGHT.html for more details.
+ * 
+ * DDC Classification Main Class Mapping (Level 1)
+ * Source: Wikipedia - Dewey Decimal Classification
+ * https://en.wikipedia.org/wiki/List_of_Dewey_Decimal_classes
+ *
+ * This file references materials licensed under the
+ * Creative Commons Attribution-ShareAlike 4.0 International License.
+ * License details: https://creativecommons.org/licenses/by-sa/4.0/legalcode
+ *
+ * -- F. Tumulak
  */
     require_once("../shared/common.php");
     $tab = "admin/analytics";
