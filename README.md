@@ -125,12 +125,6 @@ A simple yet powerful attendance logging system designed for statistical reporti
 
 Added 'Export attendance to JSON' format with 'student' only filter. You can use the info for other JSON supported services i.e. e-bulletin.
 
-### 📝 Utility - Thumbnail Check
-
-![Homepage](./readme_assets/missing_thumbnails.webp "BurauenBiblio Homepage")
-
-Thumbnail check is a utility feature that finds missing thumbnail and broken image URL that is linked into the biblio records.
-
 ### 📌 Card Catalog
 
 ![Homepage](./images/card_catalog_demo_sample.webp "BurauenBiblio Homepage")
@@ -150,6 +144,20 @@ You may also customize or extend the entries to align with your own country’s 
 ![Homepage](./readme_assets/metadata_retrieval.webp "BurauenBiblio Homepage")
 
 Support for metadata retrieval process—particularly for cataloging by ISBN/LCCN using remote bibliographic sources.
+
+### 📝 Utility - Thumbnail Check
+
+![Homepage](./readme_assets/missing_thumbnails.webp "BurauenBiblio Homepage")
+
+Thumbnail check is a utility feature that finds missing thumbnail and broken image URL that is linked into the biblio records.
+
+### 📝 Utility - Orphaned BibID Cleanup Tool
+
+![Homepage](./readme_assets/checkorpanedbibids.webp "BurauenBiblio Homepage")
+
+This tool helps maintain a **clean and optimized** OpenBiblio database by identifying and removing **orphaned biblios** — records that have no associated barcode copies.
+
+⚠️ **Warning:** Deletion is **permanent**. Always double-check before proceeding.
 
 ### 🙌 Project Direction
 
