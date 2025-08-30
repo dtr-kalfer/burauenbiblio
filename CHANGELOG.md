@@ -9,8 +9,9 @@ Guide:
 - version 3.x.x above PHP 8.0.xx supported
 - version 2.x.x below PHP 7.4.26 supported
 
-## [unreleased] - yyyy-mm-dd
+## [3.9.5] - 2025-08-30
 ### Added 
+- New feature: Check and remove orphaned bibIds utility.
 - New feature: Advanced Dewey Decimal Classification Mapping (Class, Division and Topic Mapping).
 - Top 30 DDC Chart and Top 30 DDC table listing.
 - New feature: DDC Create Table using basic ten main classes.
