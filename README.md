@@ -35,6 +35,8 @@ Upgraded to run on **PHP 8.0**, the system delivers substantial performance gain
 
 For details: https://librarytechnology.org/library/211849
 
+## 📌 New Features
+
 ### 📌 Calendar Manager
 
 ![Homepage](./readme_assets/sample_calendar_image.webp "BurauenBiblio Homepage")
@@ -47,7 +49,7 @@ The system uses **Calendar Logic** to accurately calculate due dates based on yo
 
 Member types can be configured with **overdue charge** settings. When a patron exceeds the overdue limit accumulated from the penalty/day, they are **restricted** from making additional borrowings.
 
-### 📝 OPAC DOI Search
+### 📌 OPAC DOI Search
 
 ![Homepage](./readme_assets/doi_sample_image.webp "BurauenBiblio Homepage")
 
@@ -60,11 +62,33 @@ Member types can be configured with **overdue charge** settings. When a patron e
 | **Saves time**          | Many clicks, trial and error    | One search → one result        |
 | **Better research**     | Risk of outdated/unverified info | Direct access to scholarly sources |
 
-### 📝 To-Do List 
+### 📌 To-Do List 
 
 ![Homepage](./readme_assets/todo_list.webp "BurauenBiblio Homepage")
 
 The **To-Do List** is a simple yet powerful enhancement to the BurauenBiblio library system. It allows staff members to easily **jot down, organize, and share important notes, reminders, and tasks** directly within the library interface. Whether it’s for planning upcoming events, tracking routine duties, reminding colleagues about library schedules, or noting down quick ideas — the to-do list keeps everyone in sync.
+
+### 📌 Card Catalog
+
+![Homepage](./images/card_catalog_demo_sample.webp "BurauenBiblio Homepage")
+
+**BurauenBiblio** prints card catalogs in a **custom 8 × 5 inch layout PDF format**, applicable for longer titles, barcodes and subject terms. It uses long bond paper (8.5 × 13 inches) which allows for two card catalog prints for each page and supports up to 35 barcode (copies). This feature helps support local libraries in need of card catalog prints.
+
+### 📌 MARC tags setup
+
+![Homepage](./readme_assets/MARC_tags_ph.webp "BurauenBiblio Homepage")
+
+The included SQL file provides MARC tag entries tailored for **Philippine-compatible** library records.
+
+You may also customize or extend the entries to align with your own country’s library cataloging standards or institutional requirements via **Biblio Fields** setup.
+
+### 📌 Z39.50 Online Metadata Retrieval
+
+![Homepage](./readme_assets/metadata_retrieval.webp "BurauenBiblio Homepage")
+
+Support for metadata retrieval process—particularly for cataloging by ISBN/LCCN using remote bibliographic sources.
+
+## 📝 Analytics
 
 ### 📝 Analytics - Monthly Circulation Report 
 
@@ -125,39 +149,21 @@ A simple yet powerful attendance logging system designed for statistical reporti
 
 Added 'Export attendance to JSON' format with 'student' only filter. You can use the info for other JSON supported services i.e. e-bulletin.
 
-### 📌 Card Catalog
+## 🧹 Utility
 
-![Homepage](./images/card_catalog_demo_sample.webp "BurauenBiblio Homepage")
-
-**BurauenBiblio** prints card catalogs in a **custom 8 × 5 inch layout PDF format**, applicable for longer titles, barcodes and subject terms. It uses long bond paper (8.5 × 13 inches) which allows for two card catalog prints for each page and supports up to 35 barcode (copies). This feature helps support local libraries in need of card catalog prints.
-
-### 📌 MARC tags setup
-
-![Homepage](./readme_assets/MARC_tags_ph.webp "BurauenBiblio Homepage")
-
-The included SQL file provides MARC tag entries tailored for **Philippine-compatible** library records.
-
-You may also customize or extend the entries to align with your own country’s library cataloging standards or institutional requirements via **Biblio Fields** setup.
-
-### 📌 Z39.50 Online Metadata Retrieval
-
-![Homepage](./readme_assets/metadata_retrieval.webp "BurauenBiblio Homepage")
-
-Support for metadata retrieval process—particularly for cataloging by ISBN/LCCN using remote bibliographic sources.
-
-### 📝 Utility - Thumbnail Check
+### 🧹 Utility - Thumbnail Check
 
 ![Homepage](./readme_assets/missing_thumbnails.webp "BurauenBiblio Homepage")
 
 Thumbnail check is a utility feature that finds missing thumbnail and broken image URL that is linked into the biblio records.
 
-### 📝 Utility - Orphaned BibID Cleanup Tool
+### 🧹 Utility - Orphaned BibID Cleanup Tool
 
 ![Homepage](./readme_assets/checkorpanedbibids.webp "BurauenBiblio Homepage")
 
 This tool helps maintain a **clean and optimized** OpenBiblio database by identifying and removing **orphaned biblios** — records that have no associated barcode copies.
 
-### 🙌 Project Direction
+## 🙌 Project Direction
 
 ![Homepage](./readme_assets/actual_use_case.webp "BurauenBiblio Homepage")
 
