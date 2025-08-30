@@ -114,6 +114,7 @@ function staff_menu() {
 		// establish directly the OPAC link to avoid extra navigation --F.T.
 		Nav::node('admin/opac', T("View Opac"), '../catalog/srchForms.php?tab=OPAC');
 		Nav::node('admin/dbChkr', T("Database checker"), '../admin/dbChkrForms.php');
+		Nav::node('admin/bibidchecker', T("bibid checker"), '../admin/bibidChkrForms.php');		
 	}
 	
 	##-------------------------------------------------------------------------------------##
