@@ -157,8 +157,6 @@ Thumbnail check is a utility feature that finds missing thumbnail and broken ima
 
 This tool helps maintain a **clean and optimized** OpenBiblio database by identifying and removing **orphaned biblios** — records that have no associated barcode copies.
 
-⚠️ **Warning:** Deletion is **permanent**. Always double-check before proceeding.
-
 ### 🙌 Project Direction
 
 ![Homepage](./readme_assets/actual_use_case.webp "BurauenBiblio Homepage")
