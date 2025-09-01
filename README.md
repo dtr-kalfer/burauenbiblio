@@ -163,6 +163,20 @@ Thumbnail check is a utility feature that finds missing thumbnail and broken ima
 
 This tool helps maintain a **clean and optimized** OpenBiblio database by identifying and removing **orphaned biblios** — records that have no associated barcode copies.
 
+### 🧹 Utility - Database Migration Manager
+
+![Homepage](./readme_assets/migrate_tool.webp "BurauenBiblio Homepage")
+
+If you wish to try out Burauenbiblio to your existing Openbiblio database, you may use this tool to make your db compatible. This utility allows the database structure to evolve safely as new features are introduced — without breaking the existing database. 
+
+This tool: 
+- Safely applies new schema updates
+- Skips previously executed migrations
+- Enables smooth upgrades as BurauenBiblio evolves
+- Tested on old Openbiblio 1.0 db
+
+> Note: Please understand that there are several OpenBiblio-based databases out there, each with slightly different schemas. While I've designed this utility in the hopes of supporting old Openbiblio schema making it compatible, there may be some things that I have missed out. Please test the migrated database carefully on test setup before applying them to production.
+
 ## 🙌 Project Direction
 
 ![Homepage](./readme_assets/actual_use_case.webp "BurauenBiblio Homepage")
