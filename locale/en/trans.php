@@ -85,6 +85,7 @@ $trans["ddc_chart"] = "DDC# Chart";
 $trans["create_ddc"] = "Make DDC Table";
 $trans["ddc_top30list"] = "DDC Top30 List";
 $trans["bibid checker"] = "bibid checker";
+$trans["migrate db"] = "⚠️ Migrate db";
 
 $trans["(enter 0 for unlimited)"] = "(enter 0 for unlimited)";
 $trans["(when available)"] = "(when available)";
