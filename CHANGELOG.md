@@ -9,6 +9,11 @@ Guide:
 - version 3.x.x above PHP 8.0.xx supported
 - version 2.x.x below PHP 7.4.26 supported
 
+## [unreleased] - xxxx-yy-zz
+### Added 
+- New feature: Database Migration Manager, utility to safely migrate old Openbiblio 1.0 database. (Please make a backup before attempt)
+
+
 ## [3.9.5] - 2025-08-30
 ### Added 
 - New feature: Check and remove orphaned bibIds utility.
