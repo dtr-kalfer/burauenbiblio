@@ -133,7 +133,7 @@ The **Top 30 Most-Viewed Books** tracks books that are regularly read or referen
 
 Before reshelving, staff can use the dedicated **In-House Book Activity Tracker** form:
 
-![Homepage](./readme_assets/dailytally.webp "BurauenBiblio Homepage")
+![Homepage](./readme_assets/dailytally2.webp "BurauenBiblio Homepage")
 
 By scanning each book’s barcode—either using a barcode scanner or manual input—the system **automatically records book activity** and provides an option to **view the most recently scanned items**. This feature helps reduce reliance on paper-based tallies and ensures more accurate records. In addition, daily book tallies are **visualized through an interactive graph** with an integrated **JSON export** option for reporting and data analysis.
 
