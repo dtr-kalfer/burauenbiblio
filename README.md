@@ -135,7 +135,7 @@ Before reshelving, staff can use the dedicated **In-House Book Activity Tracker*
 
 ![Homepage](./readme_assets/dailytally.webp "BurauenBiblio Homepage")
 
-By scanning each book’s barcode—either with a scanner or manual entry—the system **automatically logs usage data** without the need for paper-based tallies. The tallied books per day also has its own graph with JSON export feature.
+By scanning each book’s barcode—either using a barcode scanner or manual input—the system **automatically records book activity** and provides an option to **view the most recently scanned items**. This feature helps reduce reliance on paper-based tallies and ensures more accurate records. In addition, daily book tallies are **visualized through an interactive graph** with an integrated **JSON export** option for reporting and data analysis.
 
 These analytics provide valuable insights into **reading trends**, **student preferences**, and **subject demand**. They support **data-driven collection development** while helping libraries move toward a **paperless, more efficient workflow**.
 
