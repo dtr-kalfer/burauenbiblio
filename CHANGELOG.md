@@ -13,6 +13,8 @@ Guide:
 ### Added 
 - New feature: Database Migration Manager, utility to safely migrate old Openbiblio 1.0 database. (Please make a backup before attempt)
 
+### Changed
+- Update Daily Tally to include 'Show most recently added books' on reshelving process.
 
 ## [3.9.5] - 2025-08-30
 ### Added 
