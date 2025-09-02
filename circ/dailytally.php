@@ -48,7 +48,16 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
         <button type="submit">Submit</button>
     </form>
 
-    <div id="result"></div>
+		<div id="result"></div>
+		<h2>✅ Check most recent listing</h2>
+    <form id="listbooks-form" 
+          hx-target="#result2"
+          hx-swap="innerHTML"
+          autocomplete="off">
+        <button type="submit">Check most recent listing</button>
+    </form>
+
+    <div id="result2"></div>
 		
 </section>
 <script>
@@ -74,4 +83,25 @@ document.getElementById('barcode-form').addEventListener('submit', function(e) {
 				form.querySelector("button").disabled = false;
     }, 500);
 });
+
+document.getElementById('listbooks-form').addEventListener('submit', function(e) {
+    e.preventDefault(); // stop default HTMX behavior
+
+    const form = e.target;
+    
+
+    // Optional: show processing message immediately
+    document.getElementById("result2").innerHTML = "⏳ Processing...";
+
+    // Wait 500ms before submitting
+		form.querySelector("button").disabled = true;
+    setTimeout(() => {
+        htmx.ajax('POST', 'listtally_process.php', {
+            target: '#result2',
+            swap: 'innerHTML'
+        });
+				form.querySelector("button").disabled = false;
+    }, 500);
+});
+
 </script>
