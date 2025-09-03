@@ -43,7 +43,7 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 				<li>✅ Tested on old Openbiblio 1.0 db</li>
 			</ul>
 			<p>
-			Note: Please understand that there are several OpenBiblio-based databases out there, each with slightly different schemas. While I've designed this utility in the hopes of supporting old Openbiblio schema making it compatible, there may be some things that I have missed out. Please test the migrated database carefully on test setup before applying them to production.
+			Note: Please understand that there are several OpenBiblio-based databases out there, each with slightly different schemas. Please test the migrated database carefully on test setup before applying them to production.
 			</p>
 		</section>
 
