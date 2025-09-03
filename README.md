@@ -133,7 +133,7 @@ The **Top 30 Most-Viewed Books** tracks books that are regularly read or referen
 
 Before reshelving, staff can use the dedicated **In-House Book Activity Tracker** form:
 
-![Homepage](./readme_assets/dailytally2.webp "BurauenBiblio Homepage")
+![Homepage](./readme_assets/dailytally3.webp "BurauenBiblio Homepage")
 
 By scanning each book’s barcode—either using a barcode scanner or manual input—the system **automatically records book activity** and provides an option to **view the most recently scanned items**. This feature helps reduce reliance on paper-based tallies and ensures more accurate records. In addition, daily book tallies are **visualized through an interactive graph** with an integrated **JSON export** option for reporting and data analysis.
 
@@ -143,7 +143,7 @@ These analytics provide valuable insights into **reading trends**, **student pre
 
 ![Homepage](./readme_assets/attendance_tracking.webp "BurauenBiblio Homepage")
 
-A simple yet powerful attendance logging system designed for statistical reporting and community interaction insights. The feature allows encoding of monthly visits categorized by user type (Student, Faculty, Visitor) and, when applicable, by academic program. Using dynamic visualizations powered by Chart.js, library staff can instantly view attendance trends across custom date ranges.
+A logging system designed for statistical reporting and community interaction insights. The feature allows encoding of monthly visits categorized by user type (Student, Faculty, Visitor) and, when applicable, by academic program. Using dynamic visualizations powered by Chart.js, library staff can instantly view attendance trends across custom date ranges.
 
 ![Homepage](./readme_assets/export_json.webp "BurauenBiblio Homepage")
 
@@ -175,7 +175,7 @@ This tool:
 - Enables smooth upgrades as BurauenBiblio evolves
 - Tested on old Openbiblio 1.0 db
 
-> Note: Please understand that there are several OpenBiblio-based databases out there, each with slightly different schemas. While I've designed this utility in the hopes of supporting old Openbiblio schema making it compatible, there may be some things that I have missed out. Please test the migrated database carefully on test setup before applying them to production.
+> Note: Please understand that there are several OpenBiblio-based databases out there, each with slightly different schemas. Please test the migrated database carefully on test setup before applying them to production.
 
 ## 🙌 Project Direction
 
