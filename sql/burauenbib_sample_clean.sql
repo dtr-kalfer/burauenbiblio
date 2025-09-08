@@ -1103,7 +1103,7 @@ CREATE TABLE `settings` (
 
 LOCK TABLES `settings` WRITE;
 /*!40000 ALTER TABLE `settings` DISABLE KEYS */;
-INSERT INTO `settings` VALUES ('plugin_list',NULL,NULL,'text',NULL,NULL,NULL,',lookup2,biblioFlds,orphanFiles,transUtils,listMgr,cssUtils,mediaFlds,callNoUtils,onlineFotos,orphanImages',''),('library_name',1,'Library Title','select',NULL,'sites',NULL,'1','admin'),('library_hours',2,'Library Hours','textarea',2,NULL,NULL,'','admin'),('library_phone',3,'Library Phone No.','tel',NULL,NULL,NULL,'123-456-789','admin'),('library_home',4,'Library Address','text',NULL,NULL,NULL,'San Diego St., Burauen, Leyte','admin'),('block_checkouts_when_fines_due',7,'Block Checkouts When Fines Due','bool',1,NULL,NULL,'N','admin'),('locale',8,'Locale','select',NULL,'locales',NULL,'en','admin'),('charset',9,'Character Set','text',NULL,NULL,NULL,'UTF-8','admin'),('items_per_page',25,'Photos per Page','number',NULL,NULL,NULL,'25','admin'),('item_columns',26,'Photo Columns(0 for auto)','number',NULL,NULL,NULL,'5','admin'),('request_from',10,'Request From','text',NULL,NULL,NULL,'','admin'),('request_to',11,'Request To','text',NULL,NULL,NULL,'','admin'),('request_subject',12,'Request Subject','text',NULL,NULL,NULL,'','admin'),('mbr_barcode_width',13,'Member Card No Width','number',NULL,NULL,NULL,'','admin'),('library_url',5,'Library URL','url',32,NULL,NULL,'http://testing.html','admin'),('opac_url',16,'OPAC URL','url',32,NULL,NULL,'','admin'),('library_image_url',6,'Library Image','text',32,NULL,NULL,'../images/burauenbiblio2.webp','admin'),('themeid',18,'Theme','int',10,NULL,NULL,'1','admin'),('theme_dir_url',19,'Theme Dir URL','select',NULL,'themes',NULL,'../themes/default','admin'),('use_image_flg',20,'Use Image','checkbox',NULL,NULL,NULL,'N','admin'),('show_lib_info',21,'Show Lib Info on Staff pages','bool',NULL,NULL,NULL,'N','admin'),('thumbnail_width',31,'Photo Max Width','number',NULL,NULL,NULL,'100','admin'),('thumbnail_height',32,'Photo Max Height','number',NULL,NULL,NULL,'120','admin'),('thumbnail_rotation',33,'Photo Rotation','number',NULL,NULL,NULL,'0','admin'),('allow_plugins_flg',0,'Allow Plugins','bool',NULL,NULL,NULL,'N','tools'),('item_barcode_flg',1,'Use item barcodes','bool',NULL,NULL,NULL,'Y','tools'),('item_autoBarcode_flg',2,'Item Auto Barcodes','bool',NULL,NULL,NULL,'Y','tools'),('mbr_barcode_flg',10,'Use Member barcodes','bool',NULL,NULL,NULL,'Y','tools'),('mbr_autoBarcode_flg',11,'Member Auto Barcodes','bool',NULL,NULL,NULL,'Y','tools'),('show_checkout_mbr',20,'Show member who has an item checked out','bool',NULL,NULL,NULL,'Y','tools'),('show_item_photos',21,'Show Item Photos','bool',NULL,NULL,NULL,'Y','tools'),('show_detail_opac',22,'Show copy details in OPAC','bool',NULL,NULL,NULL,'Y','tools'),('multi_site_func',23,'Default site for multiple site functionality (0 = disabled)','int',NULL,NULL,NULL,'2','tools'),('site_login',25,'Select a Site at Logon','bool',NULL,NULL,NULL,'N','tools'),('checkout_interval',26,'Checkout_Interval','select',NULL,NULL,NULL,'0','tools'),('item_barcode_width',27,'Item Barcode Width','int',NULL,NULL,NULL,'13','tools'),('version',33,NULL,'text',NULL,'\0',NULL,'1.0b','none'),('OBsize',NULL,'Current Size','number',16,NULL,NULL,'3264991','admin'),('version_hash',NULL,'Current version hash','text',32,NULL,NULL,'00e6d4cf24882f533599596bdd668389','admin'),('first_day_of_week',0,'first day of week','number',2,NULL,NULL,'0','admin'),('allow_auto_db_check',28,'Allow Database Auto-Integrity Check','bool',NULL,NULL,NULL,'N','tools'),('hmac_timeout',NULL,'Number of minutes before a request for sensitive data expires','int',NULL,NULL,NULL,'30','admin'),('help_link',NULL,'URL for your system documentation','text',NULL,NULL,NULL,'https://openbiblio.github.io/openbiblio_docs','admin'),('opac_site_mode',NULL,'Allow user Site Selection','bool',NULL,NULL,NULL,'N','admin'),('camera',NULL,'Camera_in_use','select',32,NULL,NULL,'','admin');
+INSERT INTO `settings` VALUES ('plugin_list',NULL,NULL,'text',NULL,NULL,NULL,',lookup2,biblioFlds,orphanFiles,transUtils,listMgr,cssUtils,mediaFlds,callNoUtils,onlineFotos,orphanImages',''),('library_name',1,'Library Title','select',NULL,'sites',NULL,'1','admin'),('library_hours',2,'Library Hours','textarea',2,NULL,NULL,'','admin'),('library_phone',3,'Library Phone No.','tel',NULL,NULL,NULL,'123-456-789','admin'),('library_home',4,'Library Address','text',NULL,NULL,NULL,'San Diego St., Burauen, Leyte','admin'),('block_checkouts_when_fines_due',7,'Block Checkouts When Fines Due','bool',1,NULL,NULL,'N','admin'),('locale',8,'Locale','select',NULL,'locales',NULL,'en','admin'),('charset',9,'Character Set','text',NULL,NULL,NULL,'UTF-8','admin'),('items_per_page',25,'Photos per Page','number',NULL,NULL,NULL,'25','admin'),('item_columns',26,'Photo Columns(0 for auto)','number',NULL,NULL,NULL,'5','admin'),('request_from',10,'Request From','text',NULL,NULL,NULL,'','admin'),('request_to',11,'Request To','text',NULL,NULL,NULL,'','admin'),('request_subject',12,'Request Subject','text',NULL,NULL,NULL,'','admin'),('mbr_barcode_width',13,'Member Card No Width','number',NULL,NULL,NULL,'','admin'),('library_url',5,'Library URL','url',32,NULL,NULL,'http://testing.html','admin'),('opac_url',16,'OPAC URL','url',32,NULL,NULL,'','admin'),('library_image_url',6,'Library Image','text',32,NULL,NULL,'../images/burauenbiblio2.webp','admin'),('themeid',18,'Theme','int',10,NULL,NULL,'1','admin'),('theme_dir_url',19,'Theme Dir URL','select',NULL,'themes',NULL,'../themes/default','admin'),('use_image_flg',20,'Use Image','checkbox',NULL,NULL,NULL,'N','admin'),('show_lib_info',21,'Show Lib Info on Staff pages','bool',NULL,NULL,NULL,'N','admin'),('thumbnail_width',31,'Photo Max Width','number',NULL,NULL,NULL,'100','admin'),('thumbnail_height',32,'Photo Max Height','number',NULL,NULL,NULL,'120','admin'),('thumbnail_rotation',33,'Photo Rotation','number',NULL,NULL,NULL,'0','admin'),('allow_plugins_flg',0,'Allow Plugins','bool',NULL,NULL,NULL,'N','tools'),('item_barcode_flg',1,'Use item barcodes','bool',NULL,NULL,NULL,'Y','tools'),('item_autoBarcode_flg',2,'Item Auto Barcodes','bool',NULL,NULL,NULL,'Y','tools'),('mbr_barcode_flg',10,'Use Member barcodes','bool',NULL,NULL,NULL,'Y','tools'),('mbr_autoBarcode_flg',11,'Member Auto Barcodes','bool',NULL,NULL,NULL,'Y','tools'),('show_checkout_mbr',20,'Show member who has an item checked out','bool',NULL,NULL,NULL,'Y','tools'),('show_item_photos',21,'Show Item Photos','bool',NULL,NULL,NULL,'Y','tools'),('show_detail_opac',22,'Show copy details in OPAC','bool',NULL,NULL,NULL,'Y','tools'),('multi_site_func',23,'Default site for multiple site functionality (0 = disabled)','int',NULL,NULL,NULL,'2','tools'),('site_login',25,'Select a Site at Logon','bool',NULL,NULL,NULL,'N','tools'),('checkout_interval',26,'Checkout_Interval','select',NULL,NULL,NULL,'0','tools'),('item_barcode_width',27,'Item Barcode Width','int',NULL,NULL,NULL,'13','tools'),('version',33,NULL,'text',NULL,'\0',NULL,'1.0b','none'),('OBsize',NULL,'Current Size','number',16,NULL,NULL,'3326004','admin'),('version_hash',NULL,'Current version hash','text',32,NULL,NULL,'abace2664353e7c731b82bcd8c82b598','admin'),('first_day_of_week',0,'first day of week','number',2,NULL,NULL,'0','admin'),('allow_auto_db_check',28,'Allow Database Auto-Integrity Check','bool',NULL,NULL,NULL,'N','tools'),('hmac_timeout',NULL,'Number of minutes before a request for sensitive data expires','int',NULL,NULL,NULL,'30','admin'),('help_link',NULL,'URL for your system documentation','text',NULL,NULL,NULL,'https://openbiblio.github.io/openbiblio_docs','admin'),('opac_site_mode',NULL,'Allow user Site Selection','bool',NULL,NULL,NULL,'N','admin'),('camera',NULL,'Camera_in_use','select',32,NULL,NULL,'','admin');
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1204,6 +1204,31 @@ LOCK TABLES `state_dm` WRITE;
 /*!40000 ALTER TABLE `state_dm` DISABLE KEYS */;
 INSERT INTO `state_dm` VALUES ('0722','Cebu','N'),('0878','Biliran','N'),('0712','Bohol','N'),('0826','Eastern Samar','N'),('0837','Leyte','Y'),('0848','Northern Samar','N'),('0860','Samar','N'),('0864','Southern Leyte','N');
 /*!40000 ALTER TABLE `state_dm` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tbl_courses`
+--
+
+DROP TABLE IF EXISTS `tbl_courses`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tbl_courses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `course_name` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `course_name` (`course_name`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_courses`
+--
+
+LOCK TABLES `tbl_courses` WRITE;
+/*!40000 ALTER TABLE `tbl_courses` DISABLE KEYS */;
+INSERT INTO `tbl_courses` VALUES (1,'BSABM'),(2,'BSAE'),(3,'BPA'),(4,'BSE'),(5,'BMLS');
+/*!40000 ALTER TABLE `tbl_courses` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1603,4 +1628,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-09-01 16:13:46
+-- Dump completed on 2025-09-08 15:00:23
