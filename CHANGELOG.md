@@ -15,6 +15,7 @@ Guide:
 
 ### Changed
 - Update Daily Tally to include 'Show most recently added books' on reshelving process.
+- Refactor: Attendance chart improved instead of using a separate file courses.txt
 
 ## [3.9.5] - 2025-08-30
 ### Added 
