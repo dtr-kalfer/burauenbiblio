@@ -98,34 +98,51 @@
 			$current = strtotime('+1 month', $current);
 	}
 
-	// Create dataset structure
-	$courses = file('courses.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+	//refactor to use only the existing table data (library_attendance). No need to use courses.txt 9-8-25 --F.Tumulak	
+	
+	// --- STEP 1: Get distinct student courses directly from DB ---
 
-	// Assume $courses is already defined earlier
-	if ($isStudentsOnly) {
-			$labels = $courses;  // Students only --F.Tumulak
-	} else {
-			$labels = array_merge($courses, ['Faculty', 'Visitor']);  // All attendees merge with students --F.TUMULAK
+	$distinctSql = "
+			SELECT DISTINCT course
+			FROM library_attendance
+			WHERE user_type = 'Student'
+				AND course IS NOT NULL
+				AND course <> ''
+			ORDER BY course ASC
+	";
+	$courseResult = $connection->query($distinctSql);
+
+	$courses = [];
+	while ($row = $courseResult->fetch_assoc()) {
+			$courses[] = $row['course'];
 	}
 
+	// --- STEP 2: Build labels for Chart.js ---
+	$facultyVisitor = ['Faculty', 'Visitor'];
+	$labels = $isStudentsOnly ? $courses : array_merge($courses, $facultyVisitor);
+
+	// --- STEP 3: Initialize the data map ---
 	$data_map = [];
 	foreach ($labels as $label) {
 			$data_map[$label] = array_fill(0, count($months), 0);
 	}
 
+	// --- STEP 4: Populate dataset counts ---
 	while ($row = $result->fetch_assoc()) {
 			$month = $row['month'];
 			$index = array_search($month, $months);
+
 			if ($index !== false) {
 					$key = ($row['user_type'] === 'Student') ? $row['course'] : $row['user_type'];
+
 					if (isset($data_map[$key])) {
 							$data_map[$key][$index] += (int)$row['total'];
 					}
 			}
 	}
+	
 	$stmt->close();
 	$connection->close();
-	
 ?>
   <script src="./js/chart.js"></script>
     <style>
