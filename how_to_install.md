@@ -90,5 +90,5 @@ Make sure it contains the correct values:
 ⚠️ Important: For security reasons, **change the default login credentials immediately** via the Admin menu.
 
 
-### 🔐 Updating from earlier Burauenbiblio
-Note: If you are updating from earlier Burauenbiblio, please make a backup copy of your original dbParams.php. Extract the Burauenbiblio.zip, overwrite the dbParams.php using your backup copy.
+## 🔐 Updating from earlier Openbiblio/Burauenbiblio
+Note: If you are updating from earlier Openbiblio/Burauenbiblio, please make a backup copy of your original dbParams.php. Extract the Burauenbiblio.zip, overwrite the dbParams.php using your backup copy.
