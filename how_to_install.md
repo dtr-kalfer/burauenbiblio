@@ -88,3 +88,7 @@ Make sure it contains the correct values:
     Password: admin
 
 ⚠️ Important: For security reasons, **change the default login credentials immediately** via the Admin menu.
+
+
+### 🔐 Migration from Openbiblio
+Note: If you are migrating from Openbiblio to Burauenbiblio, please make a backup copy of your original dbParams.php. Extract the Burauenbiblio.zip, overwrite the dbParams.php using your backup copy.
