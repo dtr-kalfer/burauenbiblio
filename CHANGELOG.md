@@ -18,6 +18,7 @@ Guide:
 - Refactor: Attendance chart improved instead of using a separate file courses.txt
 - Refactor: Attendance form improved to use table inside database instead of courses.txt
 - Update: Attendance form can edit/change courses.
+- Update: Migration process for old db to new db include add table courses.
 
 ## [3.9.5] - 2025-08-30
 ### Added 
