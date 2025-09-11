@@ -39,23 +39,28 @@ $db->query("
     )
 ");
 
-// Define migrations
+// Define migrations 
+//"sql"  => "ALTER TABLE mbr_classify_dm ADD loan_allotment SMALLINT(3) NOT NULL DEFAULT 0"
+//"sql"  => "ALTER TABLE mbr_classify_dm MODIFY max_fines DECIMAL(6,2) NOT NULL"
+//"sql"  => "ALTER TABLE member_account MODIFY create_dt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP"
+//"sql"  => "ALTER TABLE member_account DROP PRIMARY KEY, ADD PRIMARY KEY (transid), MODIFY transid INT(11) NOT NULL AUTO_INCREMENT"
+
 $migrations = [
     [
         "name" => "Add_loan_allotment_feature",
-        "sql"  => "ALTER TABLE mbr_classify_dm ADD loan_allotment SMALLINT(3) NOT NULL DEFAULT 0"
+				"sql"  => "ALTER TABLE mbr_classify_dm ADD loan_allotment SMALLINT(3) NOT NULL DEFAULT 0"
     ],
     [
         "name" => "Fix_fines_greater_than_99.99",
-        "sql"  => "ALTER TABLE mbr_classify_dm MODIFY max_fines DECIMAL(6,2) NOT NULL"
+				"sql"  => "ALTER TABLE mbr_classify_dm MODIFY max_fines DECIMAL(6,2) NOT NULL"
     ],
     [
         "name" => "Enable_payments_penalty_history_mode_on_members_step1",
-        "sql"  => "ALTER TABLE member_account MODIFY create_dt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP"
+				"sql"  => "ALTER TABLE member_account MODIFY create_dt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP"
     ],
     [
         "name" => "Enable_payments_penalty_history_mode_on_members_step2",
-        "sql"  => "ALTER TABLE member_account DROP PRIMARY KEY, ADD PRIMARY KEY (transid), MODIFY transid INT(11) NOT NULL AUTO_INCREMENT"
+				"sql"  => "ALTER TABLE member_account DROP PRIMARY KEY, ADD PRIMARY KEY (transid), MODIFY transid INT(11) NOT NULL AUTO_INCREMENT"
     ],
     [
         "name" => "Create_library_attendance_table",
@@ -89,6 +94,23 @@ $migrations = [
             INDEX (bibid)
         )"
     ],
+    [
+        "name" => "Create_table_courses",
+        "sql"  => "CREATE TABLE tbl_courses (
+						id INT AUTO_INCREMENT PRIMARY KEY,
+						course_name VARCHAR(100) NOT NULL UNIQUE
+        )"
+    ],		
+    [
+        "name" => "Populate_table_courses",
+        "sql"  => "INSERT INTO tbl_courses (course_name) VALUES
+					('BSABM'),
+					('BSAE'),
+					('BPA'),
+					('BSE'),
+					('BMLS')
+        )"
+    ],				
     // Add more future migrations here...
 ];
 
