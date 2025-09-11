@@ -109,7 +109,7 @@ $migrations = [
 					('BPA'),
 					('BSE'),
 					('BMLS')
-        )"
+        "
     ],				
     // Add more future migrations here...
 ];
