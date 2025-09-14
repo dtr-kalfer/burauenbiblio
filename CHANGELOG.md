@@ -20,6 +20,7 @@ Guide:
 - Update: Attendance form can edit/change courses.
 - Update: Migration process for old db to new db include add table courses.
 - Refactor: Attendance form and Attendance Chart to use classes and class autoloader.
+- Refactor: ConnectDB creates a compatible dbParams2.php for DSN for classes.
 - Update: .gitignore
 
 ## [3.9.5] - 2025-08-30
