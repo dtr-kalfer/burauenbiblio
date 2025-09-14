@@ -15,62 +15,24 @@ class ConnectDB {
 		 * if dbParams2.php not exist, create a new copy from dbParams.php (original)
 		 * and use the new format dbParams2.php -- F.Tumulak
      */
+		 
 		private function loadDSN() {
-				$newConfig = __DIR__ . '/../dbParams2.php';
 				$oldConfig = __DIR__ . '/../dbParams.php';
 
-				// ✅ If dbParams2.php already exists, just load it
-				if (file_exists($newConfig)) {
-						include($newConfig);
-						if (isset($dsn) && is_array($dsn)) {
-								$this->dsn = $dsn;
-								return;
-						} else {
-								die("Invalid database configuration in dbParams2.php");
-						}
-				}
-
-				// ⚠ If dbParams2.php does NOT exist, try to convert dbParams.php
 				if (file_exists($oldConfig)) {
-						// Temporarily create a separate scope to avoid `$this` issues
-						$legacyDSN = [];
+						// Include the file in *this object’s scope* so `$this->dsn[...]` lines execute correctly
 						include($oldConfig);
 
-						// Check if $this->dsn exists in the old file
+						// ✅ At this point, dbParams.php has already populated $this->dsn
 						if (isset($this->dsn) && is_array($this->dsn)) {
-								$legacyDSN = $this->dsn;
-						} elseif (isset($dsn) && is_array($dsn)) {
-								// In case someone already updated the old file to use $dsn
-								$legacyDSN = $dsn;
+								return; // done
 						} else {
-								die("Invalid database configuration in dbParams.php");
-						}
-
-						// Generate the content for dbParams2.php
-						$content = "<?php\n\$dsn = [\n";
-						foreach ($legacyDSN as $key => $value) {
-								$content .= "    \"$key\" => \"" . addslashes($value) . "\",\n";
-						}
-						$content .= "];\n";
-
-						// Save dbParams2.php automatically
-						if (file_put_contents($newConfig, $content) === false) {
-								die("Failed to generate dbParams2.php. Please check folder permissions.");
-						}
-
-						// Load the newly created dbParams2.php
-						include($newConfig);
-						if (isset($dsn) && is_array($dsn)) {
-								$this->dsn = $dsn;
-						} else {
-								die("Failed to load the newly created dbParams2.php");
+								die("Invalid database configuration in dbParams.php (dsn not set).");
 						}
 				} else {
-						// ❌ No config file found at all
-						die("Missing database configuration: Neither dbParams2.php nor dbParams.php found.");
+						die("Missing database configuration: dbParams.php not found.");
 				}
 		}
-
 
     /**
      * Establish database connection
@@ -119,7 +81,7 @@ class ConnectDB {
     }
 
     /**
-     * Execute a prepared INSERT/UPDATE/DELETE query
+     * Execute a prepared CREATE/INSERT/UPDATE/DELETE query
      */
     protected function execute($query, $types = "", $params = []) {
         $conn = $this->connect(); // inherit new functions i.e. prepare, bind_param, execute.. etc
@@ -144,10 +106,27 @@ class ConnectDB {
     /**
      * Close database connection
      */
+ 
     public function close() {
         if ($this->connection) {
             mysqli_close($this->connection);
             $this->connection = null;
         }
+    }
+	
+		/**
+     * Helper function
+     */
+
+		public function beginTransaction() {
+        $this->connect()->begin_transaction();
+    }
+
+    public function commit() {
+        $this->connect()->commit();
+    }
+
+    public function rollback() {
+        $this->connect()->rollback();
     }
 }
