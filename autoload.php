@@ -22,7 +22,7 @@
 
 spl_autoload_register(function ($class) {
     // Define base directory for class files
-    $baseDir = __DIR__ . '/Classes/';
+    $baseDir = __DIR__ . '/classes/';
 
     // Normalize class name → file path
     // Example: "LibraryAttendance" → "Attendance.php"

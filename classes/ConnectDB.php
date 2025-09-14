@@ -11,9 +11,7 @@ class ConnectDB {
     private $dsn = [];
 
     /**
-     * Load database credentials from dbParams2.php
-		 * if dbParams2.php not exist, create a new copy from dbParams.php (original)
-		 * and use the new format dbParams2.php -- F.Tumulak
+     * Load database credentials from dbParams.php -- F.Tumulak
      */
 		 
 		private function loadDSN() {
