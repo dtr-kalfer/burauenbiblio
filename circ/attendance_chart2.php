@@ -1,8 +1,7 @@
 <?php
 	/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
-	 * See the file COPYRIGHT.html for more details.
+	 * See the file COPYRIGHT.html for more details. --F.Tumulak
 	 */
-
 	require_once("../shared/common.php");
 	$tab = "admin/analytics";
 	$nav = "attendance_chart";	
@@ -33,18 +32,8 @@
 
 	Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 
-	require_once("../catalog/class/Qtest.php");
-
-	$mypass = new Qtest;
-	$connection = mysqli_connect(
-			$mypass->getDSN2("host"),
-			$mypass->getDSN2("username"),
-			$mypass->getDSN2("pwd"),
-			$mypass->getDSN2("database")
-	);
-	if (mysqli_connect_errno()) {
-			die("Connection failed: " . mysqli_connect_error());
-	}
+	require_once __DIR__ . '/../autoload.php';
+	use LibraryAttendance\Attendance;
 
 	function isValidMonthFormat($month) {
 			return preg_match('/^\d{4}-(0[1-9]|1[0-2])$/', $month);
@@ -63,31 +52,8 @@
 	$isStudentsOnly = isset($_GET['students_only']) && $_GET['students_only'] == '1';
 
 	// Prepare data. --F.Tumulak
-
-	$sql = "
-			SELECT 
-					user_type,
-					course,
-					DATE_FORMAT(date, '%Y-%m') AS month,
-					SUM(count) AS total
-			FROM library_attendance
-			WHERE date BETWEEN ? AND ?
-	";
-
-	// Filter only students if needed
-	if ($isStudentsOnly) {
-			$sql .= " AND user_type = 'Student'";
-	}
-
-	$sql .= "
-			GROUP BY user_type, course, month
-			ORDER BY month ASC
-	";
-	
-	$stmt = $connection->prepare($sql);
-	$stmt->bind_param("ss", $start_date, $end_date);
-	$stmt->execute();
-	$result = $stmt->get_result();
+	$db = new Attendance;
+	$result = $db->getRangeAttendance($start_date, $end_date, $isStudentsOnly);
 
 	// Generate month list
 	$months = [];
@@ -97,25 +63,10 @@
 			$months[] = date('Y-m', $current);
 			$current = strtotime('+1 month', $current);
 	}
-
-	//refactor to use only the existing table data (library_attendance). No need to use courses.txt 9-8-25 --F.Tumulak	
 	
 	// --- STEP 1: Get distinct student courses directly from DB ---
-
-	$distinctSql = "
-			SELECT DISTINCT course
-			FROM library_attendance
-			WHERE user_type = 'Student'
-				AND course IS NOT NULL
-				AND course <> ''
-			ORDER BY course ASC
-	";
-	$courseResult = $connection->query($distinctSql);
-
 	$courses = [];
-	while ($row = $courseResult->fetch_assoc()) {
-			$courses[] = $row['course'];
-	}
+	$courses = $db->getListCourses();
 
 	// --- STEP 2: Build labels for Chart.js ---
 	$facultyVisitor = ['Faculty', 'Visitor'];
@@ -128,7 +79,7 @@
 	}
 
 	// --- STEP 4: Populate dataset counts ---
-	while ($row = $result->fetch_assoc()) {
+	foreach ($result as $row) {
 			$month = $row['month'];
 			$index = array_search($month, $months);
 
@@ -140,9 +91,6 @@
 					}
 			}
 	}
-	
-	$stmt->close();
-	$connection->close();
 ?>
   <script src="./js/chart.js"></script>
     <style>
