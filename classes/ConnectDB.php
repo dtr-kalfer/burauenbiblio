@@ -78,6 +78,21 @@ class ConnectDB {
         return $data;
     }
 
+		// ✅ Get the first row (assoc array or null)
+		protected function selectOne($query, $types = "", $params = []) {
+				$rows = $this->select($query, $types, $params);
+				return $rows[0] ?? null;
+		}
+
+		// ✅ Get a single value (first column of first row, or null)
+		protected function selectValue($query, $types = "", $params = []) {
+				$row = $this->selectOne($query, $types, $params);
+				if ($row) {
+						return array_values($row)[0]; // first column value
+				}
+				return null;
+		}
+
     /**
      * Execute a prepared CREATE/INSERT/UPDATE/DELETE query
      */
