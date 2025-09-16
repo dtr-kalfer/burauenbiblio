@@ -22,7 +22,7 @@ Guide:
 - Refactor: Attendance form and Attendance Chart to use classes and class autoloader.
 - Refactor: ConnectDB use only dbParams.php instead
 - Refactor: Make DDC table, all DDC instruction use class and autoloader setup.
-- Update: .gitignore
+- Refactor: DDC# Chart, all DDC instruction use class and autoloader setup.
 
 ## [3.9.5] - 2025-08-30
 ### Added 
