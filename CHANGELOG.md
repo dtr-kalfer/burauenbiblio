@@ -21,6 +21,7 @@ Guide:
 - Update: Migration process for old db to new db include add table courses.
 - Refactor: Attendance form and Attendance Chart to use classes and class autoloader.
 - Refactor: ConnectDB use only dbParams.php instead
+- Refactor: Make DDC table, all DDC instruction use class and autoloader setup.
 - Update: .gitignore
 
 ## [3.9.5] - 2025-08-30
