@@ -45,15 +45,18 @@ class DDC_Chart extends \ConnectDB
             }
 
             return [
+								"success" => true,
                 "labels"          => $labels,
                 "totals"          => $totals,
                 "classifications" => $classifications
             ];
 
         } catch (\Exception $e) {
-            // $this->rollback();
-            // You might log $e->getMessage() here
-            return false;
+								$this->rollback();
+								return [
+										'success' => false,
+										'message' => "❌ Error: " . $e->getMessage()
+								];
         }
     }
 }
