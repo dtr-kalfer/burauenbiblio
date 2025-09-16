@@ -21,10 +21,14 @@
 
 		$result = $ddc->make_chart();
 		
-    $labels = $result['labels'];
-    $totals = $result['totals'];
-    $classifications = $result['classifications'];
-
+		if ($result['success']) {
+			$labels = $result['labels'];
+			$totals = $result['totals'];
+			$classifications = $result['classifications'];
+		} else {
+				die($result['message']);
+		}
+		
 		$categoryColors = [
     '000' => '#4CAF50',  // General Works
     '100' => '#2196F3',   // Philosophy & Psychology
