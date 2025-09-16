@@ -10,41 +10,21 @@
 
     Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 
-    require_once("../catalog/class/Qtest.php");
+		require_once __DIR__ . '/../autoload.php'; // adjust the ../ if necessary depending on your source path.
+		use DDC\DDC_Chart;
 
-    $mypass = new Qtest;
-    $connection = mysqli_connect(
-        $mypass->getDSN2("host"),
-        $mypass->getDSN2("username"),
-        $mypass->getDSN2("pwd"),
-        $mypass->getDSN2("database")
-    );
-    if (mysqli_connect_errno()) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
-
-    // Fetch top 30 DDCs
-    $sql = "
-        SELECT ddc, classification, COUNT(*) AS total
-        FROM extract_ddc
-        GROUP BY ddc, classification
-        ORDER BY total DESC
-        LIMIT 30
-    ";
-    $result = $connection->query($sql);
+		$ddc = new DDC_Chart();
 
     $labels = [];
     $totals = [];
     $classifications = [];
 
-    while ($row = $result->fetch_assoc()) {
-        $labels[] = $row['ddc'];
-        $totals[] = (int)$row['total'];
-        $classifications[] = $row['classification'];
-    }
-
-    $connection->close();
+		$result = $ddc->make_chart();
 		
+    $labels = $result['labels'];
+    $totals = $result['totals'];
+    $classifications = $result['classifications'];
+
 		$categoryColors = [
     '000' => '#4CAF50',  // General Works
     '100' => '#2196F3',   // Philosophy & Psychology
