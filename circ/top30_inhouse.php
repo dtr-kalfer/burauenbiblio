@@ -14,18 +14,12 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 //require_once("top30_function.php"); 
 require_once("../catalog/class/Qtest.php");
 
-$mypass = new Qtest;
+		require_once __DIR__ . '/../autoload.php'; // adjust the ../ if necessary depending on your source path.
+		use BookUtilization\Top30inhouse;
+		
+		$result = new Top30inhouse();
+		$stmt = $result->make_top30inhouselist();
 
-try {
-    $dsn = 'mysql:host=' . $mypass->getDSN2("host") . ';dbname=' . $mypass->getDSN2("database") . ';charset=utf8mb4';
-    $pdo = new PDO($dsn, $mypass->getDSN2("username"), $mypass->getDSN2("pwd"));
-
-    // Enable exception mode
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-} catch (PDOException $e) {
-    die("PDO Connection failed: " . $e->getMessage());
-}
 
 // Get current date
 date_default_timezone_set('Asia/Manila');
