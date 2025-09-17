@@ -1,6 +1,5 @@
 <?php
 		require_once("../shared/guard_doggy.php");
-
 		$categoryColors = [
 				'000' => '#A5D6A7',  // Light green - General Works
 				'100' => '#90CAF9',  // Light blue - Philosophy & Psychology
@@ -14,65 +13,29 @@
 				'900' => '#EF9A9A',  // Light red - History & Geography
 				'???' => '#E0E0E0'   // Light grey - Unclassified
 		];
-		
-	  // Assuming $pdo is your PDO connection and this query was prepared
-		// sorted by total
-		/*
-		    SELECT ddc, classification AS main, classification_div AS division, classification_adv AS topic, COUNT(*) AS total
-        FROM extract_ddc
-        GROUP BY ddc
-        ORDER BY total DESC
-        LIMIT 30
-		*/
-		
-		// sorted by ddc
-		/*
-		    SELECT *
-				FROM (
-					SELECT ddc, classification AS main, classification_div AS division, classification_adv AS topic, COUNT(*) AS total
-					FROM extract_ddc
-					GROUP BY ddc
-					ORDER BY total DESC
-					LIMIT 30
-					) AS top_ddc
-				ORDER BY ddc ASC
-		*/
-		
-    $stmt = $pdo->query("
-		    SELECT *
-				FROM (
-					SELECT ddc, classification AS main, classification_div AS division, classification_adv AS topic, COUNT(*) AS total
-					FROM extract_ddc
-					GROUP BY ddc
-					ORDER BY total DESC
-					LIMIT 30
-					) AS top_ddc
-				ORDER BY ddc ASC
-    ");
 
+		$rank = 1;
+		foreach ($stmt as $row):
+				// Extract the first three digits, handle possible non-numeric DDCs safely
+				$ddcPrefix = substr($row['ddc'], 0, 3);
 
-$rank = 1;
-foreach ($stmt as $row):
-    // Extract the first three digits, handle possible non-numeric DDCs safely
-    $ddcPrefix = substr($row['ddc'], 0, 3);
-
-    // Check if prefix is numeric; otherwise, use fallback color
-    if (is_numeric($ddcPrefix)) {
-        $ddcGroup = str_pad(floor((int)$ddcPrefix / 100) * 100, 3, '0', STR_PAD_LEFT);
-        $bgColor = isset($categoryColors[$ddcGroup]) ? $categoryColors[$ddcGroup] : $categoryColors['???'];
-    } else {
-        $bgColor = $categoryColors['???'];
-    }
-?>
-    <tr style="background-color: <?= $bgColor ?>; color: #000;">
-        <td><?= $rank++ ?></td>
-        <td><?= htmlspecialchars($row['ddc']) ?></td>
-        <td><?= htmlspecialchars($row['main']) ?></td>
-        <td><?= htmlspecialchars($row['division']) ?></td>
-        <td><?= htmlspecialchars($row['topic']) ?></td>
-        <td><?= $row['total'] ?></td>
-    </tr>
-<?php endforeach; ?>
+				// Check if prefix is numeric; otherwise, use fallback color
+				if (is_numeric($ddcPrefix)) {
+						$ddcGroup = str_pad(floor((int)$ddcPrefix / 100) * 100, 3, '0', STR_PAD_LEFT);
+						$bgColor = isset($categoryColors[$ddcGroup]) ? $categoryColors[$ddcGroup] : $categoryColors['???'];
+				} else {
+						$bgColor = $categoryColors['???'];
+				}
+		?>
+				<tr style="background-color: <?= $bgColor ?>; color: #000;">
+						<td><?= $rank++ ?></td>
+						<td><?= htmlspecialchars($row['ddc']) ?></td>
+						<td><?= htmlspecialchars($row['main']) ?></td>
+						<td><?= htmlspecialchars($row['division']) ?></td>
+						<td><?= htmlspecialchars($row['topic']) ?></td>
+						<td><?= $row['total'] ?></td>
+				</tr>
+		<?php endforeach; ?>
 
   </tbody>
 </table>
