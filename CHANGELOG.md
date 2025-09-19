@@ -23,6 +23,7 @@ Guide:
 - Refactor: ConnectDB use only dbParams.php instead
 - Refactor: Make DDC table, all DDC instruction use class and autoloader setup.
 - Refactor: DDC# Chart, all DDC instruction use class and autoloader setup.
+- Update: Database engine set to InnoDB.
 
 ## [3.9.5] - 2025-08-30
 ### Added 
