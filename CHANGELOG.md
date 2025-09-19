@@ -25,6 +25,10 @@ Guide:
 - Refactor: DDC# Chart, all DDC instruction use class and autoloader setup.
 - Update: sql engine set to InnoDB. ACID-compliant, crash recovery and row-level locking.
 
+### Fixed
+- Fixed: Undefined variable $errs when deleting 'custom copy fields'.
+- Fixed: sql set CURRENT_TIMESTAMP instead of special zero-date value for biblio/biblio_copy.
+
 ## [3.9.5] - 2025-08-30
 ### Added 
 - New feature: Check and remove orphaned bibIds utility.
