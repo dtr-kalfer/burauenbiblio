@@ -7,7 +7,7 @@ namespace BookUtilization;
 class Top30inhouse extends \ConnectDB
 {
     
-    public function make_top30inhouselist()
+    public function make_top30inhouselist(): array
     {
         try {
             // Query: Top 30 borrowed books
@@ -33,12 +33,18 @@ class Top30inhouse extends \ConnectDB
 							LIMIT 30;
             ";
 
-            return $this->select($sql);
+						return 
+						[
+						'success' => true,
+						'content' => $this->select($sql),
+						'message' => '✅ Retrieved from: Daily Book Tally (In-house Book Activity Tracker)'
+						];
 
         } catch (\Exception $e) {
 								$this->rollback();
 								return [
 										'success' => false,
+										'content' => [],
 										'message' => "❌ Error: " . $e->getMessage()
 								];
         }
