@@ -24,14 +24,14 @@ DROP TABLE IF EXISTS `biblio`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `biblio` (
   `bibid` int(11) NOT NULL AUTO_INCREMENT,
-  `create_dt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `last_change_dt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `create_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_change_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `last_change_userid` int(11) NOT NULL DEFAULT '0',
   `material_cd` smallint(6) NOT NULL DEFAULT '0',
   `collection_cd` smallint(6) NOT NULL DEFAULT '0',
   `opac_flg` char(1) NOT NULL DEFAULT '',
   PRIMARY KEY (`bibid`)
-) ENGINE=MyISAM AUTO_INCREMENT=1385 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1385 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `biblio` (
 
 LOCK TABLES `biblio` WRITE;
 /*!40000 ALTER TABLE `biblio` DISABLE KEYS */;
-INSERT INTO `biblio` VALUES (1380,'2025-06-06 09:57:20','2025-08-24 04:38:22',1,2,2,'N'),(1378,'2025-06-06 09:51:41','2025-08-24 04:40:47',1,2,2,'N'),(1379,'2025-06-06 09:55:02','2025-08-24 04:42:51',1,2,2,'N'),(1381,'2025-06-06 10:03:57','2025-08-24 04:39:46',1,2,2,'N'),(1384,'2025-08-24 04:32:21','2025-08-24 04:34:39',1,2,2,'N');
+INSERT INTO `biblio` VALUES (1378,'2025-06-06 09:51:41','2025-08-24 04:40:47',1,2,2,'N'),(1379,'2025-06-06 09:55:02','2025-08-24 04:42:51',1,2,2,'N'),(1380,'2025-06-06 09:57:20','2025-08-24 04:38:22',1,2,2,'N'),(1381,'2025-06-06 10:03:57','2025-08-24 04:39:46',1,2,2,'N'),(1384,'2025-08-24 04:32:21','2025-08-24 04:34:39',1,2,2,'N');
 /*!40000 ALTER TABLE `biblio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -54,8 +54,8 @@ DROP TABLE IF EXISTS `biblio_copy`;
 CREATE TABLE `biblio_copy` (
   `bibid` int(11) NOT NULL DEFAULT '0',
   `copyid` int(11) NOT NULL AUTO_INCREMENT,
-  `create_dt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `last_change_dt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `create_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_change_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `last_change_userid` int(11) NOT NULL DEFAULT '0',
   `barcode_nmbr` varchar(20) NOT NULL DEFAULT '',
   `copy_desc` varchar(160) DEFAULT NULL,
@@ -69,7 +69,7 @@ CREATE TABLE `biblio_copy` (
   UNIQUE KEY `histid_idx` (`histid`),
   KEY `bibid_idx` (`bibid`),
   KEY `barcode_index` (`barcode_nmbr`)
-) ENGINE=MyISAM AUTO_INCREMENT=86 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -78,7 +78,7 @@ CREATE TABLE `biblio_copy` (
 
 LOCK TABLES `biblio_copy` WRITE;
 /*!40000 ALTER TABLE `biblio_copy` DISABLE KEYS */;
-INSERT INTO `biblio_copy` VALUES (1380,79,'2025-06-06 17:58:03','2025-06-23 08:10:49',1,'0000000000003','Africatown: America’s Last Slave Ship and the Community It Created.',NULL,NULL,NULL,NULL,328,1),(1379,78,'2025-06-06 17:55:38','2025-06-06 14:26:43',1,'0000000000002','Pathogenesis: A History of the World in Eight Plagues.',NULL,NULL,NULL,NULL,330,1),(1378,77,'2025-06-06 17:52:28','2025-06-25 14:16:30',1,'0000000000001','The Diary Keepers:',NULL,NULL,NULL,NULL,344,1),(1381,80,'2025-06-06 18:04:28','2025-06-06 18:04:28',1,'0000000000004','The Pirate’s Wife: The Remarkable True Story of Sarah Kidd.',NULL,NULL,NULL,NULL,329,1),(1378,81,'2025-06-23 16:22:32','2025-07-23 06:36:27',1,'0000000000005','The Diary Keepers:',NULL,NULL,NULL,NULL,357,1),(1378,82,'2025-06-23 16:22:47','2025-06-23 16:22:47',1,'0000000000006','The Diary Keepers:',NULL,NULL,NULL,NULL,332,1),(1380,83,'2025-06-23 16:23:02','2025-07-23 06:18:40',1,'0000000000007','Africatown: America’s Last Slave Ship and the Community It Created.',NULL,NULL,NULL,NULL,349,1),(1384,85,'2025-08-24 12:32:36','2025-08-24 12:32:36',1,'0000000000008','The escape artist :',NULL,NULL,NULL,NULL,358,1);
+INSERT INTO `biblio_copy` VALUES (1378,77,'2025-06-06 17:52:28','2025-06-25 14:16:30',1,'0000000000001','The Diary Keepers:',NULL,NULL,NULL,NULL,344,1),(1379,78,'2025-06-06 17:55:38','2025-06-06 14:26:43',1,'0000000000002','Pathogenesis: A History of the World in Eight Plagues.',NULL,NULL,NULL,NULL,330,1),(1380,79,'2025-06-06 17:58:03','2025-06-23 08:10:49',1,'0000000000003','Africatown: America’s Last Slave Ship and the Community It Created.',NULL,NULL,NULL,NULL,328,1),(1381,80,'2025-06-06 18:04:28','2025-06-06 18:04:28',1,'0000000000004','The Pirate’s Wife: The Remarkable True Story of Sarah Kidd.',NULL,NULL,NULL,NULL,329,1),(1378,81,'2025-06-23 16:22:32','2025-07-23 06:36:27',1,'0000000000005','The Diary Keepers:',NULL,NULL,NULL,NULL,357,1),(1378,82,'2025-06-23 16:22:47','2025-06-23 16:22:47',1,'0000000000006','The Diary Keepers:',NULL,NULL,NULL,NULL,332,1),(1380,83,'2025-06-23 16:23:02','2025-07-23 06:18:40',1,'0000000000007','Africatown: America’s Last Slave Ship and the Community It Created.',NULL,NULL,NULL,NULL,349,1),(1384,85,'2025-08-24 12:32:36','2025-08-24 12:32:36',1,'0000000000008','The escape artist :',NULL,NULL,NULL,NULL,358,1);
 /*!40000 ALTER TABLE `biblio_copy` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1103,7 +1103,7 @@ CREATE TABLE `settings` (
 
 LOCK TABLES `settings` WRITE;
 /*!40000 ALTER TABLE `settings` DISABLE KEYS */;
-INSERT INTO `settings` VALUES ('allow_auto_db_check',28,'Allow Database Auto-Integrity Check','bool',NULL,NULL,NULL,'N','tools'),('allow_plugins_flg',0,'Allow Plugins','bool',NULL,NULL,NULL,'N','tools'),('block_checkouts_when_fines_due',7,'Block Checkouts When Fines Due','bool',1,NULL,NULL,'N','admin'),('camera',NULL,'Camera_in_use','select',32,NULL,NULL,'','admin'),('charset',9,'Character Set','text',NULL,NULL,NULL,'UTF-8','admin'),('checkout_interval',26,'Checkout_Interval','select',NULL,NULL,NULL,'0','tools'),('first_day_of_week',0,'first day of week','number',2,NULL,NULL,'0','admin'),('help_link',NULL,'URL for your system documentation','text',NULL,NULL,NULL,'https://openbiblio.github.io/openbiblio_docs','admin'),('hmac_timeout',NULL,'Number of minutes before a request for sensitive data expires','int',NULL,NULL,NULL,'30','admin'),('items_per_page',25,'Photos per Page','number',NULL,NULL,NULL,'25','admin'),('item_autoBarcode_flg',2,'Item Auto Barcodes','bool',NULL,NULL,NULL,'Y','tools'),('item_barcode_flg',1,'Use item barcodes','bool',NULL,NULL,NULL,'Y','tools'),('item_barcode_width',27,'Item Barcode Width','int',NULL,NULL,NULL,'13','tools'),('item_columns',26,'Photo Columns(0 for auto)','number',NULL,NULL,NULL,'5','admin'),('library_home',4,'Library Address','text',NULL,NULL,NULL,'San Diego St., Burauen, Leyte','admin'),('library_hours',2,'Library Hours','textarea',2,NULL,NULL,'','admin'),('library_image_url',6,'Library Image','text',32,NULL,NULL,'../images/burauenbiblio2.webp','admin'),('library_name',1,'Library Title','select',NULL,'sites',NULL,'1','admin'),('library_phone',3,'Library Phone No.','tel',NULL,NULL,NULL,'123-456-789','admin'),('library_url',5,'Library URL','url',32,NULL,NULL,'http://testing.html','admin'),('locale',8,'Locale','select',NULL,'locales',NULL,'en','admin'),('mbr_autoBarcode_flg',11,'Member Auto Barcodes','bool',NULL,NULL,NULL,'Y','tools'),('mbr_barcode_flg',10,'Use Member barcodes','bool',NULL,NULL,NULL,'Y','tools'),('mbr_barcode_width',13,'Member Card No Width','number',NULL,NULL,NULL,'','admin'),('multi_site_func',23,'Default site for multiple site functionality (0 = disabled)','int',NULL,NULL,NULL,'2','tools'),('OBsize',NULL,'Current Size','number',16,NULL,NULL,'3332274','admin'),('opac_site_mode',NULL,'Allow user Site Selection','bool',NULL,NULL,NULL,'N','admin'),('opac_url',16,'OPAC URL','url',32,NULL,NULL,'','admin'),('plugin_list',NULL,NULL,'text',NULL,NULL,NULL,',lookup2,biblioFlds,orphanFiles,transUtils,listMgr,cssUtils,mediaFlds,callNoUtils,onlineFotos,orphanImages',''),('request_from',10,'Request From','text',NULL,NULL,NULL,'','admin'),('request_subject',12,'Request Subject','text',NULL,NULL,NULL,'','admin'),('request_to',11,'Request To','text',NULL,NULL,NULL,'','admin'),('show_checkout_mbr',20,'Show member who has an item checked out','bool',NULL,NULL,NULL,'Y','tools'),('show_detail_opac',22,'Show copy details in OPAC','bool',NULL,NULL,NULL,'Y','tools'),('show_item_photos',21,'Show Item Photos','bool',NULL,NULL,NULL,'Y','tools'),('show_lib_info',21,'Show Lib Info on Staff pages','bool',NULL,NULL,NULL,'N','admin'),('site_login',25,'Select a Site at Logon','bool',NULL,NULL,NULL,'N','tools'),('themeid',18,'Theme','int',10,NULL,NULL,'1','admin'),('theme_dir_url',19,'Theme Dir URL','select',NULL,'themes',NULL,'../themes/default','admin'),('thumbnail_height',32,'Photo Max Height','number',NULL,NULL,NULL,'120','admin'),('thumbnail_rotation',33,'Photo Rotation','number',NULL,NULL,NULL,'0','admin'),('thumbnail_width',31,'Photo Max Width','number',NULL,NULL,NULL,'100','admin'),('use_image_flg',20,'Use Image','checkbox',NULL,NULL,NULL,'N','admin'),('version',33,NULL,'text',NULL,'\0',NULL,'1.0b','none'),('version_hash',NULL,'Current version hash','text',32,NULL,NULL,'846721108487d6c74ad6d0a0e94bb7c1','admin');
+INSERT INTO `settings` VALUES ('allow_auto_db_check',28,'Allow Database Auto-Integrity Check','bool',NULL,NULL,NULL,'N','tools'),('allow_plugins_flg',0,'Allow Plugins','bool',NULL,NULL,NULL,'N','tools'),('block_checkouts_when_fines_due',7,'Block Checkouts When Fines Due','bool',1,NULL,NULL,'N','admin'),('camera',NULL,'Camera_in_use','select',32,NULL,NULL,'','admin'),('charset',9,'Character Set','text',NULL,NULL,NULL,'UTF-8','admin'),('checkout_interval',26,'Checkout_Interval','select',NULL,NULL,NULL,'0','tools'),('first_day_of_week',0,'first day of week','number',2,NULL,NULL,'0','admin'),('help_link',NULL,'URL for your system documentation','text',NULL,NULL,NULL,'https://openbiblio.github.io/openbiblio_docs','admin'),('hmac_timeout',NULL,'Number of minutes before a request for sensitive data expires','int',NULL,NULL,NULL,'30','admin'),('items_per_page',25,'Photos per Page','number',NULL,NULL,NULL,'25','admin'),('item_autoBarcode_flg',2,'Item Auto Barcodes','bool',NULL,NULL,NULL,'Y','tools'),('item_barcode_flg',1,'Use item barcodes','bool',NULL,NULL,NULL,'Y','tools'),('item_barcode_width',27,'Item Barcode Width','int',NULL,NULL,NULL,'13','tools'),('item_columns',26,'Photo Columns(0 for auto)','number',NULL,NULL,NULL,'5','admin'),('library_home',4,'Library Address','text',NULL,NULL,NULL,'San Diego St., Burauen, Leyte','admin'),('library_hours',2,'Library Hours','textarea',2,NULL,NULL,'','admin'),('library_image_url',6,'Library Image','text',32,NULL,NULL,'../images/burauenbiblio2.webp','admin'),('library_name',1,'Library Title','select',NULL,'sites',NULL,'1','admin'),('library_phone',3,'Library Phone No.','tel',NULL,NULL,NULL,'123-456-789','admin'),('library_url',5,'Library URL','url',32,NULL,NULL,'http://testing.html','admin'),('locale',8,'Locale','select',NULL,'locales',NULL,'en','admin'),('mbr_autoBarcode_flg',11,'Member Auto Barcodes','bool',NULL,NULL,NULL,'Y','tools'),('mbr_barcode_flg',10,'Use Member barcodes','bool',NULL,NULL,NULL,'Y','tools'),('mbr_barcode_width',13,'Member Card No Width','number',NULL,NULL,NULL,'','admin'),('multi_site_func',23,'Default site for multiple site functionality (0 = disabled)','int',NULL,NULL,NULL,'2','tools'),('OBsize',NULL,'Current Size','number',16,NULL,NULL,'3332484','admin'),('opac_site_mode',NULL,'Allow user Site Selection','bool',NULL,NULL,NULL,'N','admin'),('opac_url',16,'OPAC URL','url',32,NULL,NULL,'','admin'),('plugin_list',NULL,NULL,'text',NULL,NULL,NULL,',lookup2,biblioFlds,orphanFiles,transUtils,listMgr,cssUtils,mediaFlds,callNoUtils,onlineFotos,orphanImages',''),('request_from',10,'Request From','text',NULL,NULL,NULL,'','admin'),('request_subject',12,'Request Subject','text',NULL,NULL,NULL,'','admin'),('request_to',11,'Request To','text',NULL,NULL,NULL,'','admin'),('show_checkout_mbr',20,'Show member who has an item checked out','bool',NULL,NULL,NULL,'Y','tools'),('show_detail_opac',22,'Show copy details in OPAC','bool',NULL,NULL,NULL,'Y','tools'),('show_item_photos',21,'Show Item Photos','bool',NULL,NULL,NULL,'Y','tools'),('show_lib_info',21,'Show Lib Info on Staff pages','bool',NULL,NULL,NULL,'N','admin'),('site_login',25,'Select a Site at Logon','bool',NULL,NULL,NULL,'N','tools'),('themeid',18,'Theme','int',10,NULL,NULL,'1','admin'),('theme_dir_url',19,'Theme Dir URL','select',NULL,'themes',NULL,'../themes/default','admin'),('thumbnail_height',32,'Photo Max Height','number',NULL,NULL,NULL,'120','admin'),('thumbnail_rotation',33,'Photo Rotation','number',NULL,NULL,NULL,'0','admin'),('thumbnail_width',31,'Photo Max Width','number',NULL,NULL,NULL,'100','admin'),('use_image_flg',20,'Use Image','checkbox',NULL,NULL,NULL,'N','admin'),('version',33,NULL,'text',NULL,'\0',NULL,'1.0b','none'),('version_hash',NULL,'Current version hash','text',32,NULL,NULL,'f482ccbd6f8c730925b91c3e30e82bd8','admin');
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1628,4 +1628,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-09-19  8:31:42
+-- Dump completed on 2025-09-19 21:07:22
