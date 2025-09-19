@@ -27,7 +27,7 @@ Guide:
 
 ### Fixed
 - Fixed: Undefined variable $errs when deleting 'custom copy fields'.
-- Fixed: sql set CURRENT_TIMESTAMP instead of special zero-date value for biblio/biblio_copy.
+- Fixed: sql set CURRENT_TIMESTAMP instead of special zero-date value.
 
 ## [3.9.5] - 2025-08-30
 ### Added 
