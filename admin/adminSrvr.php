@@ -209,6 +209,7 @@
 			break;
 		case 'd-3-L-3-t_copyFlds':
 			$ptr->deleteOne($_POST['code']);
+			$errs = $errs ?? false;
 			if ($errs) {echo $errs;} else {echo $deleteComplete;}
 			break;
 
