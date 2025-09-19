@@ -11,9 +11,6 @@ require_once(REL(__FILE__, "../shared/logincheck.php"));
 
 Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 
-//require_once("top30_function.php"); 
-require_once("../catalog/class/Qtest.php");
-
 		require_once __DIR__ . '/../autoload.php'; // adjust the ../ if necessary depending on your source path.
 		use BookUtilization\Top30inhouse;
 		
