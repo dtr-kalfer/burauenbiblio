@@ -96,25 +96,26 @@ class ConnectDB {
     /**
      * Execute a prepared CREATE/INSERT/UPDATE/DELETE query
      */
-    protected function execute($query, $types = "", $params = []) {
-        $conn = $this->connect(); // inherit new functions i.e. prepare, bind_param, execute.. etc
-        $stmt = $conn->prepare($query);
-        if (!$stmt) {
-            die("Query preparation failed: " . $conn->error);
-        }
+		protected function execute($query, $types = "", $params = []) {
+				$conn = $this->connect(); // inherit new functions i.e. prepare, bind_param, execute.. etc
+				$stmt = $conn->prepare($query);
+				if (!$stmt) {
+						throw new \Exception("Query preparation failed: " . $conn->error);
+				}
 
-        if (!empty($types) && !empty($params)) {
-            $stmt->bind_param($types, ...$params);
-        }
+				if (!empty($types) && !empty($params)) {
+						$stmt->bind_param($types, ...$params);
+				}
 
-        $success = $stmt->execute();
-        if (!$success) {
-            die("Query execution failed: " . $stmt->error);
-        }
+				$success = $stmt->execute();
+				if (!$success) {
+						throw new \Exception("Query execution failed: " . $stmt->error);
+				}
 
-        $stmt->close();
-        return $success;
-    }
+				$stmt->close();
+				return $success;
+		}
+
 
     /**
      * Close database connection
