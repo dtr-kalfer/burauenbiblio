@@ -44,7 +44,7 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 				<li>✅ Updates all Openbiblio table engine to InnoDB</li>
 			</ul>
 			<p>
-			Note: Please understand that there are several OpenBiblio-based databases out there, each with slightly different schemas. Test migrated database carefully on development setup before applying them to production.
+			Note: Please make a backup of your existing database and also have a copy of your dbParams.php (Use your original dbParams.php and overwrite the existing file)
 			</p>
 		</section>
 

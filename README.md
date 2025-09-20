@@ -29,6 +29,8 @@ The member records are entirely fictitious and do not represent real individuals
 
 The **BurauenBiblio System** is in active use at **Burauen Community College**, supporting bibliographic search requests from both students and faculty. It currently manages nearly **5,000 bibliographic records**, with continuous growth in its collection.
 
+For details: https://librarytechnology.org/library/211849
+
 Designed to streamline library operations, BurauenBiblio provides tools for **cataloging**, **circulation management**, **Online Public Access Catalog (OPAC)**,  and other **staff-operated features** that enhance **workplace automation**.
 
 Upgraded to run on **PHP 8.0**, the system delivers substantial performance gains—up to **2× to 4× faster than PHP 5.7**—while maintaining **full compatibility** with the college’s existing **legacy hardware**.
@@ -36,8 +38,6 @@ Upgraded to run on **PHP 8.0**, the system delivers substantial performance gain
 If you wish to try BurauenBiblio on your existing Openbiblio database:
 
 ([shortcut 🧹 Utility - Database Migration Manager](#-utility---database-migration-manager))
-
-For details: https://librarytechnology.org/library/211849
 
 ## 📌 New Features
 
@@ -180,6 +180,7 @@ This tool:
 - Skips previously executed migrations
 - Enables smooth upgrades as BurauenBiblio evolves
 - Tested on old Openbiblio 1.0 db
+- Updates all Openbiblio table engine to InnoDB
 
 > Note: Please understand that there are several OpenBiblio-based databases out there, each with slightly different schemas. Please test the migrated database carefully on test setup before applying them to production.
 
