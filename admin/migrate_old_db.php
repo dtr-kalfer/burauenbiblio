@@ -41,10 +41,10 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 				<li>✅ Skips previously executed migrations</li>
 				<li>✅ Enables smooth upgrades as BurauenBiblio evolves</li>
 				<li>✅ Tested on old Openbiblio 1.0 db</li>
-				<li>✅ Updates all table engine to InnoDB</li>
+				<li>✅ Updates all Openbiblio table engine to InnoDB</li>
 			</ul>
 			<p>
-			Note: Please understand that there are several OpenBiblio-based databases out there, each with slightly different schemas. Please test the migrated database carefully on test setup before applying them to production.
+			Note: Please understand that there are several OpenBiblio-based databases out there, each with slightly different schemas. Test migrated database carefully on development setup before applying them to production.
 			</p>
 		</section>
 
