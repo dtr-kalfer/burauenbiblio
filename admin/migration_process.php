@@ -10,6 +10,9 @@
  * ALWAYS BACK UP YOUR DATABASE BEFORE RUNNING THIS SCRIPT.
  *
  * -- Improved by ChatGPT & F. Tumulak
+ *
+ * This file is part of a copyrighted work; it is distributed with NO WARRANTY.
+ * See the file COPYRIGHT.html for more details. --F.Tumulak
  */
 
 // Guard Doggy - Ensure authentication & permissions
@@ -355,7 +358,8 @@ foreach ($migrations as $migration) {
             echo "<p style='color:green;'>✅ Migration '{$migration['name']}' applied successfully.</p>";
         } else {
             echo "<p style='color:red;'>❌ Failed migration '{$migration['name']}': {$db->error}</p>";
-            break; // Stop if something fails
+            // Do no break, just continue --F.Tumulak
+						//break; // Stop if something fails
         }
     } else {
         echo "<p style='color:blue;'>⏩ Skipping already applied migration: {$migration['name']}</p>";

@@ -28,6 +28,7 @@ Guide:
 ### Fixed
 - Fixed: Undefined variable $errs when deleting 'custom copy fields'.
 - Fixed: sql set CURRENT_TIMESTAMP instead of special zero-date value.
+- Fixed: removed break when applying migration changes in Database migration manager.
 
 ## [3.9.5] - 2025-08-30
 ### Added 
