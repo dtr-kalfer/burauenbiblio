@@ -173,13 +173,14 @@ This tool helps maintain a **clean and optimized** OpenBiblio database by identi
 
 If you wish to try out Burauenbiblio to your existing Openbiblio database, you may use this tool to make your db compatible. This utility allows the database structure to evolve safely as new features are introduced — without breaking the existing database. 
 
+> Note: Please make a backup of your existing database and also have a copy of your dbParams.php (Use your original dbParams.php and overwrite the existing file)
+
 This tool: 
 - Safely applies new schema updates
 - Skips previously executed migrations
 - Enables smooth upgrades as BurauenBiblio evolves
 - Tested on old Openbiblio 1.0 db
 
-> Note: Please make a backup of your existing database and also have a copy of your dbParams.php (Use your original dbParams.php and overwrite the existing file)
 > Note: Please understand that there are several OpenBiblio-based databases out there, each with slightly different schemas. Please test the migrated database carefully on test setup before applying them to production.
 
 ## 🙌 Project Direction
