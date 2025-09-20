@@ -21,14 +21,15 @@ Guide:
 - Update: Migration process for old db to new db include add table courses.
 - Refactor: Attendance form and Attendance Chart to use classes and class autoloader.
 - Refactor: ConnectDB use only dbParams.php instead
-- Refactor: Make DDC table, all DDC instruction use class and autoloader setup.
+- Refactor: Create DDC table and all DDC instruction level I,II,III use class and autoloader setup.
 - Refactor: DDC# Chart, all DDC instruction use class and autoloader setup.
 - Update: sql engine set to InnoDB. ACID-compliant, crash recovery and row-level locking.
+- Refactor: Database Migration Manager use class and autoloader setup.
 
 ### Fixed
 - Fixed: Undefined variable $errs when deleting 'custom copy fields'.
 - Fixed: sql set CURRENT_TIMESTAMP instead of special zero-date value.
-- Fixed: removed break when applying migration changes in Database migration manager.
+- Fixed: Database Migration Manager with 'skip error' feature.
 
 ## [3.9.5] - 2025-08-30
 ### Added 
