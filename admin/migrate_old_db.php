@@ -28,10 +28,10 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 			 <h2>Database Migration Manager</h2>
 			<div style="text-align: center;"><img src="../images/new_schema.webp" /></div>
 			<p><b>
-				Warning: Please ensure you have a backup of your original DB.
+				⚠️ Warning: Please ensure you have a backup of your original Openbiblio database.
 			</b></p>
 			<p>
-				If you wish to try out Burauenbiblio to your existing Openbiblio database, you may use this tool to make your db compatible.
+				If you wish to try out Burauenbiblio to your existing Openbiblio database, you may use this tool to make your database compatible.
 				This utility allows the database structure to evolve safely as new features are introduced — without breaking the existing database.
 			</p>
 			
@@ -44,7 +44,10 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 				<li>✅ Updates all Openbiblio table engine to InnoDB</li>
 			</ul>
 			<p>
-			Note: Please make a backup of your existing database and also have a copy of your dbParams.php (Use your original dbParams.php and overwrite the existing file)
+			Note: Please make a backup of your existing database and also have a copy of your <b>dbParams.php</b> (Use your original dbParams.php and overwrite the existing file)
+			</p>
+			<p>
+			Note: dbParams.php is found on the root directory of your Openbiblio folder.
 			</p>
 		</section>
 
@@ -63,8 +66,6 @@ document.getElementById('migrate-form').addEventListener('submit', function(e) {
     e.preventDefault(); // stop default HTMX behavior
 
     const form = e.target;
-    
-
     // Optional: show processing message immediately
     document.getElementById("result").innerHTML = "⏳ Preparing...";
 
