@@ -169,7 +169,7 @@ This tool helps maintain a **clean and optimized** OpenBiblio database by identi
 
 ### 🧹 Utility - Database Migration Manager
 
-![Homepage](./readme_assets/migrate_tool.webp "BurauenBiblio Homepage")
+![Homepage](./readme_assets/migrate_tool1.webp "BurauenBiblio Homepage")
 
 If you wish to try out Burauenbiblio to your existing Openbiblio database, you may use this tool to make your db compatible. This utility allows the database structure to evolve safely as new features are introduced — without breaking the existing database. 
 
