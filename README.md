@@ -33,6 +33,10 @@ Designed to streamline library operations, BurauenBiblio provides tools for **ca
 
 Upgraded to run on **PHP 8.0**, the system delivers substantial performance gains—up to **2× to 4× faster than PHP 5.7**—while maintaining **full compatibility** with the college’s existing **legacy hardware**.
 
+If you wish to try BurauenBiblio on your existing Openbiblio database:
+
+([shortcut 🧹 Utility - Database Migration Manager](#-utility---database-migration-manager))
+
 For details: https://librarytechnology.org/library/211849
 
 ## 📌 New Features
@@ -175,6 +179,7 @@ This tool:
 - Enables smooth upgrades as BurauenBiblio evolves
 - Tested on old Openbiblio 1.0 db
 
+> Note: Please make a backup of your existing database and also have a copy of your dbParams.php (Use your original dbParams.php and overwrite the existing file)
 > Note: Please understand that there are several OpenBiblio-based databases out there, each with slightly different schemas. Please test the migrated database carefully on test setup before applying them to production.
 
 ## 🙌 Project Direction
