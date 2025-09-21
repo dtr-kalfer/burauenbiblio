@@ -57,7 +57,9 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
           autocomplete="off">
         <button type="submit" onclick="return confirm('Are you sure you want to delete all orphaned BibIDs? This action cannot be undone.');">Remove all orphaned biblios</button>
     </form>
-
+			<p>
+			Note: After removing orphaned biblios, you may run <b>Database Checker</b> to check for unattached MARC fields.
+			</p>
     <div id="result"></div>
 		
 </section>
