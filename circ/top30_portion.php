@@ -1,11 +1,15 @@
 <?php
-/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
- * See the file COPYRIGHT.html for more details.
+/*
+ * BurauenBiblio Top 30 portion
+ * -----------------------------
+ *
+ * This file is part of a copyrighted work; it is distributed with NO WARRANTY.
+ * See the file COPYRIGHT.html for more details. --F.Tumulak
  */
 		require_once("../shared/guard_doggy.php");
 
     $rank = 1;
-    foreach ($stmt as $row): ?>
+    foreach ($stmt['content'] as $row): ?>
       <tr>
         <td><?= $rank++ ?></td>
         <td><?= htmlspecialchars($row['title']) ?></td>
