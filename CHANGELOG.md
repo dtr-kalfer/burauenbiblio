@@ -25,6 +25,7 @@ Guide:
 - Refactor: DDC# Chart, all DDC instruction use class and autoloader setup.
 - Update: sql engine set to InnoDB. ACID-compliant, crash recovery and row-level locking.
 - Refactor: Database Migration Manager use class and autoloader setup.
+- Refactor: Find/Remove Orphaned bibIDs updated to use class and autoloader setup.
 
 ### Fixed
 - Fixed: Undefined variable $errs when deleting 'custom copy fields'.
