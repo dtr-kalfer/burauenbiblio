@@ -96,8 +96,8 @@ class ConnectDB {
     /**
      * Execute a prepared CREATE/INSERT/UPDATE/DELETE query
      */
-		protected function execute($query, $types = "", $params = []) {
-				$conn = $this->connect(); // inherit new functions i.e. prepare, bind_param, execute.. etc
+		protected function execute($query, $types = "", $params = [], $withCount = false) {
+				$conn = $this->connect(); 
 				$stmt = $conn->prepare($query);
 				if (!$stmt) {
 						throw new \Exception("Query preparation failed: " . $conn->error);
@@ -112,10 +112,18 @@ class ConnectDB {
 						throw new \Exception("Query execution failed: " . $stmt->error);
 				}
 
-				$stmt->close();
-				return $success;
-		}
+				// ✅ Get affected rows
+				$affectedRows = $stmt->affected_rows;
 
+				$stmt->close();
+
+				// ✅ Decide what to return
+				if ($withCount) {
+						return $affectedRows; // returns an int (0,1,2…)
+				} else {
+						return $success; // returns true/false
+				}
+		}
 
     /**
      * Close database connection
