@@ -11,11 +11,11 @@ require_once(REL(__FILE__, "../shared/logincheck.php"));
 
 Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 
-		require_once __DIR__ . '/../autoload.php'; // adjust the ../ if necessary depending on your source path.
-		use BookUtilization\Top30borrow;
-		
-		$result = new Top30borrow();
-		$stmt = $result->make_top30borrowlist();
+require_once __DIR__ . '/../autoload.php'; // adjust the ../ if necessary depending on your source path.
+use BookUtilization\Top30borrow;
+
+$result = new Top30borrow();
+$stmt = $result->make_top30borrowlist();
 
 // Get current date
 date_default_timezone_set('Asia/Manila');
@@ -27,12 +27,17 @@ $startFormatted = $startDate->format('F j, Y'); // e.g., January 22, 2025
 $endFormatted = $endDate->format('F j, Y');     // e.g., July 22, 2025
 
 // Output the dynamic heading
-$title_top30 = "<h2>" . T("top30active") . " (" . $startFormatted . " - " . $endFormatted . ") </h2>";
+
+if ($stmt['success'] === true) {
 ?>
+
 <section style="width: 700px;" id="top30_section">
 	<table border="1" cellpadding="8" cellspacing="0">
 		<thead>
-			<?= $title_top30; ?>
+			<?php 
+				echo "<h2>" . T("top30active") . " (" . $startFormatted . " - " . $endFormatted . ") </h2>";
+				echo '<p style="text-align: center;">' . $stmt['message'] . '</p>';
+			?>
 			<tr>
 				<th>Rank</th>
 				<th>Title</th>
@@ -45,6 +50,10 @@ $title_top30 = "<h2>" . T("top30active") . " (" . $startFormatted . " - " . $end
 		
 		<?php 
 			require_once("top30_portion.php");
+			} else {
+				// there is an error --F.Tumulak
+				echo '<p style="text-align: center;">' . $stmt['message'] . '</p>';
+			}
 		?>
 
   </tbody>
