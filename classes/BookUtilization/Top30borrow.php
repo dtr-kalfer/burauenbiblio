@@ -34,13 +34,18 @@ class Top30borrow extends \ConnectDB
 							LIMIT 30;
             ";
 
-            return $this->select($sql);
+            return 
+						[
+						'success' => true,
+						'content' => $this->select($sql),
+						'message' => '✅ Retrieved from: Circulation activity'
+						];
 
         } catch (\Exception $e) {
 								$this->rollback();
 								return [
 										'success' => false,
-										'message' => "❌ Error: " . $e->getMessage()
+										'message' => '❌ Error: ' . $e->getMessage()
 								];
         }
     }
