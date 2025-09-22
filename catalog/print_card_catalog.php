@@ -1,11 +1,15 @@
 <?php
+	/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
+	 * See the file COPYRIGHT.html for more details.
+	 * This is an add-on feature for Burauenbiblio developed by Ferdinand Tumulak
+	 * For bibid card catalog printing use.
+	 */
 require_once("../shared/common.php");
 $tab = "cataloging";
 $nav = "print_card_catalog";	
 
 // validate if logged in --F.Tumulak
 require_once(REL(__FILE__, "../shared/logincheck.php"));
-require_once(REL(__FILE__, "../functions/inputFuncs.php"));
 
 Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 
@@ -39,9 +43,7 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
       <input type="text" name="bibid_fpdf2"
              oninput="this.value = this.value.replace(/\D/g, '').slice(0, 5)"
              pattern="\d*" maxlength="5" required />
-						 
-			<input type="hidden" name="guard_token_key" value="<?php echo $_SESSION['guard_token_key']; ?>">
-      
+			
 			<input type="submit" value="Print Bibid ID" />
     </form>
 		
