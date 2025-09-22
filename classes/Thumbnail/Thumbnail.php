@@ -71,4 +71,25 @@ class Thumbnail extends \ConnectDB
 								];
         }
     }
+		
+		public function thumbnail_FailtoAdd()
+		{
+				try {
+						$sql = "
+								SELECT b.bibid
+								FROM biblio b
+								LEFT JOIN images i ON b.bibid = i.bibid
+								WHERE i.bibid IS NULL
+						";
+
+						// Use select() instead of selectOne()
+						$results = $this->select($sql);
+
+						return $results;
+
+				} catch (\Exception $e) {
+						return [];
+				}
+		}
+		
 }

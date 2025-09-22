@@ -46,4 +46,18 @@ if ($missingThumbs['success'] === true) {
 	} else {
 		echo '<p>' . $missingThumbs['message'] . '</p>';
 	}
+
+	$missing_thumbnails = $results->thumbnail_FailtoAdd();
+
+	echo "<h3>Records that don't have image thumbnails:</h3>";
+	if (!empty($missing_thumbnails)) {
+			echo "<ul>";
+			foreach ($missing_thumbnails as $row) {
+					echo "<li>" . htmlspecialchars($row['bibid']) . "</li>";
+			}
+			echo "</ul>";
+	} else {
+			echo "✅ All records have thumbnails!";
+	}
+	
 ?>
