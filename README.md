@@ -198,11 +198,11 @@ The development focuses on:
 
 - Introducing new features to improve usability and performance
 
-The system now offers full support for **PHP 8.0**, with work in progress toward compatibility with **PHP 8.1**.
-
 Recent updates also incorporate **HTMX** and other modern frontend tools, delivering a more dynamic and responsive user experience—without the overhead of a full JavaScript framework. This approach keeps the system lightweight, accessible, and well-suited for **small libraries and schools** while aligning with current **web standards**.
 
-This modernization effort is built on the original **OpenBiblio** system, tailored to the needs of **libraries in the Philippines**, with a focus on performance, compatibility, and ease of use.
+On the backend, parts of the **legacy procedural PHP code** have been refactored into a more **object-oriented (class-based)** structure, improving maintainability, reusability, and overall code clarity.
+
+This modernization effort builds on the original **OpenBiblio system**, tailored to the needs of libraries in the **Philippines**, with a strong focus on **performance, compatibility, and ease of use**.
 
 If you find this project valuable, you can support its development so it can continue to grow and serve libraries effectively.
 
