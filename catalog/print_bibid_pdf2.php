@@ -1,48 +1,39 @@
 <?php
-/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
- * See the file COPYRIGHT.html for more details.
- */ 
+	/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
+	 * See the file COPYRIGHT.html for more details.
+	 * This is an add-on feature for Burauenbiblio developed by Ferdinand Tumulak
+	 * For bibid card catalog printing use.
+	 * it now uses prepared statements and built-in class functions.
+	 */
+	require_once("../shared/guard_doggy.php");
 	require_once("../includes/fpdf/fpdf.php"); 
-	require_once("functions/card_catalog.php"); 
-	require_once("class/Qtest.php"); 
-
-	$mypass = new Qtest;
-	$a_host = $mypass->getDSN2("host");
-	$a_user = $mypass->getDSN2("username");
-	$a_pwd = $mypass->getDSN2("pwd");
-	$a_db = $mypass->getDSN2("database");
+	require_once __DIR__ . '/../autoload.php'; // adjust the ../ if necessary depending on your source path.
+	use Card_catalog\CardCatalog;
 	
-	$connection = mysqli_connect($a_host, $a_user, $a_pwd, $a_db);
-	// ----- test if connection occurred. -----
-	if (mysqli_connect_errno()) {
-		die("Database connection failed: " . 
-			mysqli_connect_error() . 
-			" (" . mysqli_connect_errno() . ")"
-		);
-	}
+	$catalog = new CardCatalog();
 			
 		// ------------------------------ BIBID SET A ---------------------------- 
 
-		$bibid1 = mysql_prep($_GET["bibid_fpdf"]);
+		$bibid1 = (int)$_GET["bibid_fpdf"];
 		$book = [
-    'call_no'   => get_marc_subfields($bibid1, '099', 'a'),
-    'author'    => get_marc_subfields($bibid1, '100', 'a'),
-    'title'     => get_marc_subfields($bibid1, '245', 'a'),
-    'sub_title' => get_marc_subfields($bibid1, '245', 'b'),
-    'stmt_resp' => get_marc_subfields($bibid1, '245', 'c'),
-    'place'     => get_marc_subfields($bibid1, '260', 'a'),
-    'publisher' => get_marc_subfields($bibid1, '260', 'b'),
-    'year'      => get_marc_subfields($bibid1, '260', 'c'),
-    'extent'    => get_marc_subfields($bibid1, '300', 'a'),
-    'other_det' => get_marc_subfields($bibid1, '300', 'b'),
-    'dimension' => get_marc_subfields($bibid1, '300', 'c'),
-    'note'      => get_marc_subfields($bibid1, '504', 'a'),
-    'isbn'      => get_marc_subfields($bibid1, '020', 'a'),
+    'call_no'   => $catalog->getMarcSubfield($bibid1, '099', 'a'),
+    'author'    => $catalog->getMarcSubfield($bibid1, '100', 'a'),
+    'title'     => $catalog->getMarcSubfield($bibid1, '245', 'a'),
+    'sub_title' => $catalog->getMarcSubfield($bibid1, '245', 'b'),
+    'stmt_resp' => $catalog->getMarcSubfield($bibid1, '245', 'c'),
+    'place'     => $catalog->getMarcSubfield($bibid1, '260', 'a'),
+    'publisher' => $catalog->getMarcSubfield($bibid1, '260', 'b'),
+    'year'      => $catalog->getMarcSubfield($bibid1, '260', 'c'),
+    'extent'    => $catalog->getMarcSubfield($bibid1, '300', 'a'),
+    'other_det' => $catalog->getMarcSubfield($bibid1, '300', 'b'),
+    'dimension' => $catalog->getMarcSubfield($bibid1, '300', 'c'),
+    'note'      => $catalog->getMarcSubfield($bibid1, '504', 'a'),
+    'isbn'      => $catalog->getMarcSubfield($bibid1, '020', 'a'),
     'subjects'  => implode(" ", [
-        get_marc_subfields($bibid1, '650', 'a'),
-        get_marc_subfields($bibid1, '650', 'b'),
-        get_marc_subfields($bibid1, '650', 'c'),
-        get_marc_subfields($bibid1, '650', 'd')
+        $catalog->getMarcSubfield($bibid1, '650', 'a'),
+        $catalog->getMarcSubfield($bibid1, '650', 'b'),
+        $catalog->getMarcSubfield($bibid1, '650', 'c'),
+        $catalog->getMarcSubfield($bibid1, '650', 'd')
 				])
 		];
 
@@ -50,7 +41,7 @@
 
 		// get book barcode info
 
-		$barcodes =  get_trimmed_barcodes($bibid1);
+		$barcodes =  $catalog->get_trimmed_barcodes($bibid1);
 
 		// -----------------------------------------------------
 		
@@ -128,13 +119,13 @@
 		
 		// barcode starts here
 		
-		$pdf->Cell(18,5,safe_barcode($barcodes, 0),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 7),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 14),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 21),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 28),0,1);
-		$pdf->Cell(18,5,safe_barcode($barcodes, 1),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 8),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 15),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 22),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 29),0,1);
-		$pdf->Cell(18,5,safe_barcode($barcodes, 2),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 9),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 16),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 23),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 30),0,1);
-		$pdf->Cell(18,5,safe_barcode($barcodes, 3),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 10),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 17),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 24),0,0);$pdf->Cell(18,5,safe_barcode($barcodes, 31),0,1);
-		$pdf->Cell(18,5,safe_barcode($barcodes, 4),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 11),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 18),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 25),0,0);$pdf->Cell(18,5,safe_barcode($barcodes, 32),0,1);
-		$pdf->Cell(18,5,safe_barcode($barcodes, 5),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 12),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 19),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 26),0,0);$pdf->Cell(18,5,safe_barcode($barcodes, 33),0,1);
-		$pdf->Cell(18,5,safe_barcode($barcodes, 6),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 13),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 20),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 27),0,0);$pdf->Cell(18,5,safe_barcode($barcodes, 34),0,1);		
+		$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 0),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 7),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 14),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 21),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 28),0,1);
+		$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 1),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 8),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 15),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 22),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 29),0,1);
+		$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 2),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 9),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 16),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 23),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 30),0,1);
+		$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 3),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 10),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 17),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 24),0,0);$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 31),0,1);
+		$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 4),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 11),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 18),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 25),0,0);$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 32),0,1);
+		$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 5),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 12),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 19),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 26),0,0);$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 33),0,1);
+		$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 6),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 13),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 20),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 27),0,0);$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 34),0,1);		
 		
 		$pdf->Cell(55,5,'',0,1); //spacers before another bibid
 		$pdf->Cell(55,5,'',0,1); //spacers before another bibid
@@ -149,33 +140,33 @@
 
 		// ------------------------------ BIBID SET B ---------------------------- 
 
-		$bibid2 = mysql_prep($_GET["bibid_fpdf2"]);
+		$bibid2 = (int)$_GET["bibid_fpdf2"];
 
 		$book = [
-    'call_no'   => get_marc_subfields($bibid2, '099', 'a'),
-    'author'    => get_marc_subfields($bibid2, '100', 'a'),
-    'title'     => get_marc_subfields($bibid2, '245', 'a'),
-    'sub_title' => get_marc_subfields($bibid2, '245', 'b'),
-    'stmt_resp' => get_marc_subfields($bibid2, '245', 'c'),
-    'place'     => get_marc_subfields($bibid2, '260', 'a'),
-    'publisher' => get_marc_subfields($bibid2, '260', 'b'),
-    'year'      => get_marc_subfields($bibid2, '260', 'c'),
-    'extent'    => get_marc_subfields($bibid2, '300', 'a'),
-    'other_det' => get_marc_subfields($bibid2, '300', 'b'),
-    'dimension' => get_marc_subfields($bibid2, '300', 'c'),
-    'note'      => get_marc_subfields($bibid2, '504', 'a'),
-    'isbn'      => get_marc_subfields($bibid2, '020', 'a'),
+    'call_no'   => $catalog->getMarcSubfield($bibid2, '099', 'a'),
+    'author'    => $catalog->getMarcSubfield($bibid2, '100', 'a'),
+    'title'     => $catalog->getMarcSubfield($bibid2, '245', 'a'),
+    'sub_title' => $catalog->getMarcSubfield($bibid2, '245', 'b'),
+    'stmt_resp' => $catalog->getMarcSubfield($bibid2, '245', 'c'),
+    'place'     => $catalog->getMarcSubfield($bibid2, '260', 'a'),
+    'publisher' => $catalog->getMarcSubfield($bibid2, '260', 'b'),
+    'year'      => $catalog->getMarcSubfield($bibid2, '260', 'c'),
+    'extent'    => $catalog->getMarcSubfield($bibid2, '300', 'a'),
+    'other_det' => $catalog->getMarcSubfield($bibid2, '300', 'b'),
+    'dimension' => $catalog->getMarcSubfield($bibid2, '300', 'c'),
+    'note'      => $catalog->getMarcSubfield($bibid2, '504', 'a'),
+    'isbn'      => $catalog->getMarcSubfield($bibid2, '020', 'a'),
     'subjects'  => implode(" ", [
-        get_marc_subfields($bibid2, '650', 'a'),
-        get_marc_subfields($bibid2, '650', 'b'),
-        get_marc_subfields($bibid2, '650', 'c'),
-        get_marc_subfields($bibid2, '650', 'd')
+        $catalog->getMarcSubfield($bibid2, '650', 'a'),
+        $catalog->getMarcSubfield($bibid2, '650', 'b'),
+        $catalog->getMarcSubfield($bibid2, '650', 'c'),
+        $catalog->getMarcSubfield($bibid2, '650', 'd')
 				])
 		];		
 
 		// get book barcode info
 
-		$barcodes =  get_trimmed_barcodes($bibid2);
+		$barcodes =  $catalog->get_trimmed_barcodes($bibid2);
 		
 		// --------------------------------------------------------
 		
@@ -233,13 +224,13 @@
 		
 		// barcode starts here
 		
-		$pdf->Cell(18,5,safe_barcode($barcodes, 0),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 7),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 14),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 21),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 28),0,1);
-		$pdf->Cell(18,5,safe_barcode($barcodes, 1),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 8),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 15),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 22),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 29),0,1);
-		$pdf->Cell(18,5,safe_barcode($barcodes, 2),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 9),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 16),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 23),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 30),0,1);
-		$pdf->Cell(18,5,safe_barcode($barcodes, 3),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 10),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 17),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 24),0,0);$pdf->Cell(18,5,safe_barcode($barcodes, 31),0,1);
-		$pdf->Cell(18,5,safe_barcode($barcodes, 4),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 11),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 18),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 25),0,0);$pdf->Cell(18,5,safe_barcode($barcodes, 32),0,1);
-		$pdf->Cell(18,5,safe_barcode($barcodes, 5),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 12),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 19),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 26),0,0);$pdf->Cell(18,5,safe_barcode($barcodes, 33),0,1);
-		$pdf->Cell(18,5,safe_barcode($barcodes, 6),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 13),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 20),0,0); $pdf->Cell(18,5,safe_barcode($barcodes, 27),0,0);$pdf->Cell(18,5,safe_barcode($barcodes, 34),0,1);		
+		$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 0),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 7),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 14),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 21),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 28),0,1);
+		$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 1),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 8),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 15),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 22),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 29),0,1);
+		$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 2),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 9),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 16),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 23),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 30),0,1);
+		$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 3),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 10),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 17),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 24),0,0);$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 31),0,1);
+		$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 4),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 11),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 18),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 25),0,0);$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 32),0,1);
+		$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 5),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 12),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 19),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 26),0,0);$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 33),0,1);
+		$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 6),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 13),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 20),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 27),0,0);$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 34),0,1);		
 				
 		//$pdf->Image('./images/5x8outline.png',10,10,196,127);
 		
