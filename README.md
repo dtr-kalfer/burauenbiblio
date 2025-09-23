@@ -161,6 +161,10 @@ Added 'Export attendance to JSON' format with 'student' only filter. You can use
 
 Thumbnail check is a utility feature that finds missing thumbnail and broken image URL that is linked into the biblio records.
 
+![Homepage](./readme_assets/no_thumbnails_included.webp "BurauenBiblio Homepage")
+
+It also includes biblio records without thumbnails included, it happens when add thumbnail form is cancelled.
+
 ### 🧹 Utility - Orphaned BibID Cleanup Tool
 
 ![Homepage](./readme_assets/checkorpanedbibids.webp "BurauenBiblio Homepage")
