@@ -48,16 +48,19 @@ if ($missingThumbs['success'] === true) {
 	}
 
 	$missing_thumbnails = $results->thumbnail_FailtoAdd();
-
-	echo "<h3>Records that don't have image thumbnails:</h3>";
+	$count = 0;
+	echo "<h3>BibID Records that don't have image thumbnails:</h3>";
 	if (!empty($missing_thumbnails)) {
-			echo "<ul>";
+			
 			foreach ($missing_thumbnails as $row) {
-					echo "<li>" . htmlspecialchars($row['bibid']) . "</li>";
+					$append = "<br>";
+					$count++;
+					echo htmlspecialchars($row['bibid']);
+					if ($count > 15) {echo "<br>"; $count = 0;} else {echo ", ";}
 			}
-			echo "</ul>";
+			
 	} else {
-			echo "✅ All records have thumbnails!";
+			echo "✅ None found!";
 	}
 	
 ?>
