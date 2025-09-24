@@ -1,17 +1,22 @@
 <?php
 	/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
+	 * For status display of the BurauenBiblio App.
+	 * it now uses prepared statements and built-in class functions.
 	 * See the file COPYRIGHT.html for more details. --> F.Tumulak
 	 */
 	require_once("../shared/common.php");
-	require_once("../catalog/class/Qtest.php"); 
+	
 	$tab = "admin";
 	$nav = "info";
 	require_once(REL(__FILE__, "../shared/logincheck.php"));
 	Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
+
+	require_once __DIR__ . '/../autoload.php'; // adjust the ../ if necessary depending on your source path.
+	// This case only uses the ConnectDB class --F.Tumulak
 ?>
 
 	<!------------- ------------->
-	<div id="showThis">	
+	<section id="showThis">	
 		<div class="section">
 			<h2>PHP Version</h2>
 			<?php 
@@ -35,19 +40,12 @@
 		<div class="section">
 			<h2>Database Version</h2>
 			<?php 
-			$mypass = new Qtest;
-			$a_host = $mypass->getDSN2("host");
-			$a_user = $mypass->getDSN2("username");
-			$a_pwd = $mypass->getDSN2("pwd");
-			$a_db = $mypass->getDSN2("database");
-		
-			$mysqli = @new mysqli($a_host, $a_user, $a_pwd);
-			if ($mysqli->connect_errno) {
-					echo "MySQL/MariaDB Connection Failed: " . $mysqli->connect_error;
-			} else {
-					echo "Database Server Version: <b>" . $mysqli->server_info . "</b>";
-					$mysqli->close();
-			}
+			
+				$stats = new ConnectDB();
+				$server_stats = $stats->get_server_info();
+				echo "Database Server Version: <b>" . $server_stats . "</b>";
+				$stats->close();
+			
 			?>
 		</div>
 		
@@ -68,7 +66,7 @@
 			echo "Peak Memory Usage: <b>" . round(memory_get_peak_usage() / 1024, 2) . " KB</b>";
 			?>
 		</div>
-	</div>	
+	</section>	
 	
 	<?php
 		 require_once(REL(__FILE__,'../shared/footer.php'));
