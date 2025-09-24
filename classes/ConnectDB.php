@@ -1,5 +1,6 @@
 <?php
 	/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
+	 * This will be the parent of newly built class.
 	 * See the file COPYRIGHT.html for more details. --F.Tumulak
 	 */
 	 
@@ -151,4 +152,10 @@ class ConnectDB {
     public function rollback() {
         $this->connect()->rollback();
     }
+
+    public function get_server_info() {
+				//The server_info property of the mysqli object is a property, not a method
+        return $this->connect()->server_info; //no parenthesis! --F.Tumulak
+    }
+		
 }
