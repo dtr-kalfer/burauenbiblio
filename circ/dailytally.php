@@ -12,7 +12,7 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 <script src="../htmx_cdn/htmx.min.js"></script>
 <style>
 		.form-container-attendance {
-				width: 500px;
+				width: 550px;
 		}
 
 		form {
@@ -25,7 +25,7 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 </style>
 <section class="form-container-attendance">
 		<section class="book-activity">
-			<h2>📚 In-House Book Activity Tracker <small>(Daily Book Tally)</small></h2>
+			<h2>📚 In-House Book Activity Tracker (Daily Book Tally)</h2>
 			<p>
 				This tool allows library staff to record books frequently used or viewed by patrons before reshelving them.
 				Tracking these activities helps identify high-demand titles for future collection development.
