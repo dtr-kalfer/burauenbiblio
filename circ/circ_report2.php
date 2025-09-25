@@ -35,6 +35,7 @@ require_once(REL(__FILE__, "../shared/logincheck.php"));
 
 ?>
 <script src="./js/chart.js"></script>
+<h2>Circulation Report</h2>
 <section style="width: 600px;" id="circ_section">
 <?php 
 
@@ -91,7 +92,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['start'], $_GET['end'], 
   <button type="submit" name="action" value="generate"><?= T("Generate Report") ?></button>
   <button type="submit" name="action" value="export"><?= T("Export to JSON") ?></button>
 </form>
-
 <canvas id="myChart"></canvas>
 
 <?php 
