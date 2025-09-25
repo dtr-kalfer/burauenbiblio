@@ -1,17 +1,18 @@
-<?php 
+<?php
 		/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
 		 * See the file COPYRIGHT.html for more details. --F.Tumulak
 		 */
-usleep(500000);
-require_once("../shared/guard_token.php");
-verify_token_or_die('guard_token_key');
+require_once("../shared/guard_doggy.php");
 
-require_once("../todolist/db_mysql.php");
+usleep(500000);
+require_once __DIR__ . '/../autoload.php'; // adjust the ../ if necessary depending on your source path.
+
+use  Todo_List\Todo_List;
+
+$todo = new Todo_List();
 
 if (!empty($_POST['todo'])) {
-    $task = mysqli_real_escape_string($connection, $_POST['todo']);
-    $sql = "INSERT INTO todos (task) VALUES ('$task')";
-    mysqli_query($connection, $sql);
+    $todo->addTask($_POST['todo']);
 }
 
-include '../todolist/todo_list.php';
+include 'todo_list.php';
