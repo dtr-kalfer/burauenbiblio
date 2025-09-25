@@ -1,20 +1,21 @@
 <?php
-/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
- * See the file COPYRIGHT.html for more details.
- */
 
 require_once("../shared/common.php");
 $tab = "circulation/analytics";
 $nav = "monthly";	
 
-require_once("circ_function2.php"); 
+require_once __DIR__ . '/../autoload.php'; // adjust the ../ if necessary depending on your source path.
+use Circ_Analytics\Circ_Analytics;
+
 // Handle export early — before Page::header() is called
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['start'], $_GET['end'], $_GET['action']) && $_GET['action'] === 'export') {
     $startMonth = $_GET['start'];
     $endMonth = $_GET['end'];
-
+		
+		$analytics = new Circ_Analytics();
+		
 		// check if date is valid --> F.Tumulak
-		if (!isValidMonthFormat($startMonth) || !isValidMonthFormat($endMonth)) {
+		if (!$analytics->isValidMonthFormat($startMonth) || !$analytics->isValidMonthFormat($endMonth)) {
 				echo "<h3 style='background-color: red; padding: 10px;'>" . T('invalid_month_format') . "</h3>";
 				echo "<div style='text-align: center;'><a href='./circ_report2.php' >Try Again</a></div>";
 				die;
@@ -32,20 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['start'], $_GET['end'], 
 Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 require_once(REL(__FILE__, "../shared/logincheck.php"));
 
-require_once("../catalog/class/Qtest.php");
-
-$mypass = new Qtest;
-
-try {
-    $dsn = 'mysql:host=' . $mypass->getDSN2("host") . ';dbname=' . $mypass->getDSN2("database") . ';charset=utf8mb4';
-    $pdo = new PDO($dsn, $mypass->getDSN2("username"), $mypass->getDSN2("pwd"));
-
-    // Enable exception mode
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-} catch (PDOException $e) {
-    die("PDO Connection failed: " . $e->getMessage());
-}
 ?>
 <script src="./js/chart.js"></script>
 <section style="width: 600px;" id="circ_section">
@@ -58,14 +45,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['start'], $_GET['end'], 
 
     if ($action === 'generate') {
         // Show report logic here
+				$analytics = new Circ_Analytics();
 				
 				// check if date is valid --> F.Tumulak
-				if (!isValidMonthFormat($startMonth) || !isValidMonthFormat($endMonth)) {
+				if (!$analytics->isValidMonthFormat($startMonth) || !$analytics->isValidMonthFormat($endMonth)) {
 						echo "<h3 style='background-color: red; padding: 10px;'>" . T('invalid_month_format') . "</h3>";
 						echo "<div style='text-align: center;'><a href='./circ_report2.php' >Try Again</a></div>";
 						die;
 				}
-				$chartDataJSON = getChartDataJSON($pdo, $startMonth, $endMonth);
+				$chartDataJSON = $analytics->getChartDataJSON($startMonth, $endMonth);
 
 				//$chartDataJSON = getChartDataJSON($pdo);
 				echo "<script>const chartData = $chartDataJSON;</script>";
@@ -86,7 +74,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['start'], $_GET['end'], 
 		// Get month 12 months ago in YYYY-MM format
 		$startMonth = $_GET['start'] ?? date('Y-m', strtotime('-11 months', strtotime($endMonth . '-01')));
 
-	$chartDataJSON = getChartDataJSON($pdo, $startMonth, $endMonth);
+	$analytics = new Circ_Analytics();
+
+	$chartDataJSON = $analytics->getChartDataJSON($startMonth, $endMonth);
 	echo "<script>const chartData = $chartDataJSON;</script>";
 }
 ?>
