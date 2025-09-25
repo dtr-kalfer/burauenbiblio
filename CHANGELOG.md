@@ -28,6 +28,8 @@ Guide:
 - Refactor: Find/Remove Orphaned bibIDs updated to use class and autoloader setup.
 - Refactor: Card Catalog Print, updated to use class and autoloader setup.
 - Refactor: Thumbnail Check, updated to use class and autoloader setup.
+- Refactor: Daily Tally, updated to use class and autoloader setup.
+- Refactor: Circulation Analytics, updated to use class and autoloader setup. 
 
 ### Fixed
 - Fixed: Undefined variable $errs when deleting 'custom copy fields'.
