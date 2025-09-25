@@ -7,15 +7,13 @@
 </style>
 <div id='welcomediv' >
 	<?php
-		/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
-		 * See the file COPYRIGHT.html for more details. --F.Tumulak
-		 */
+
 		require_once("../shared/common.php");
 
 		$tab = "welcome";
 		$nav = "";
 		
-		// validate if logged in --F.Tumulak
+
 		require_once(REL(__FILE__, "../shared/logincheck.php"));
 		Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 		date_default_timezone_set('Asia/Manila'); // Philippine timezone
@@ -24,7 +22,7 @@
 	?>
 	
 	<div style="display: flex;">
-		<section id="calendar" class="classic-theme red"
+		<section id="calendar" class="classic-theme orange"
 			data-month-format="month YYYY" style='padding: 10px; margin: auto;'>
 		</section>
 		
@@ -53,7 +51,3 @@
     }
   });
 </script>
-
-
-
-
