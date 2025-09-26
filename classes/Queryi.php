@@ -255,11 +255,19 @@ private function set_encoding() {
 		return str_replace('`', '', $i);
 	}
 	private function _numstr($n) {
-		if (preg_match("/^([+-]?[0-9]+(\.[0-9]*)?([Ee][0-9]+)?)/", (string)$n, $subs)) {
-			return $subs[1];
-		} else {
-			return "0";
-		}
+			// If input is an array, try to extract its first scalar value
+			if (is_array($n)) {
+					$n = reset($n); // get first element
+			}
+
+			// Cast to string for regex check
+			$n = (string)$n;
+
+			if (preg_match("/^([+-]?[0-9]+(\.[0-9]*)?([Ee][0-9]+)?)/", $n, $subs)) {
+					return $subs[1];
+			} else {
+					return "0";
+			}
 	}
 }
 
