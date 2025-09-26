@@ -17,7 +17,10 @@ Guide:
 - tbd
 
 ### Fixed
-- Fixed: Removed reads/writes in a pseudo 'lock/unlock' system. Use InnoDB to handle locking internally via row locking vs MyISAM. All existing tables are now InnodDB which render the old system obsolete.
+- Fixed: Removed classes/Queryi.php reads/writes in a pseudo 'lock/unlock' system. Use InnoDB to handle locking internally via row locking vs MyISAM. All existing tables are now InnodDB which render the old system obsolete.
+- Fixed: Warning: Array to string conversion in /var/www/html/classes/Queryi.php on line 258
+- Fixed: model/Calendars.php Uncaught ArgumentCountError: func_get_args() expects exactly 0 arguments, 1 given
+
 
 ## [3.22.3] - 2025-09-26
 ### Added 
