@@ -9,6 +9,16 @@ Guide:
 - version 3.x.x above PHP 8.0.xx supported
 - version 2.x.x below PHP 7.4.26 supported
 
+## [unreleased]  yyyy-mm-dd
+### Added
+- tbd
+
+### Changed
+- tbd
+
+### Fixed
+- Fixed: Removed reads/writes in a pseudo 'lock/unlock' system. Use InnoDB to handle locking internally via row locking vs MyISAM. All existing tables are now InnodDB which render the old system obsolete.
+
 ## [3.22.3] - 2025-09-26
 ### Added 
 - New feature: Database Migration Manager, utility to safely migrate old Openbiblio 1.0 database. (Please make a backup before attempt)
