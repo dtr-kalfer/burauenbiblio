@@ -128,39 +128,14 @@ private function set_encoding() {
 	 */
 
 	public function clearLocks () {
-		$this->_act('set global read_only = off');
-		$this->_act('unlock tables');
+		// No-op: InnoDB handles row-level locking. --F.Tumulak
 	}
 
 	public function lock() {
-		if ($this->lockDepth < 0) {
-			Fatal::internalError(T("Negative lock depth"));
-		}
-/*
-		if ($this->lockDepth == 0) {
-			$row = $this->select1($this->mkSQL('select get_lock(%Q, %N) as locked',
-				OBIB_LOCK_NAME, OBIB_LOCK_TIMEOUT));
-			if (!isset($row['locked']) or $row['locked'] != 1) {
-				Fatal::cantLock($row['locked']);
-			}
-		}
-*/
-		$this->lockDepth++;
+		// No-op: InnoDB handles row-level locking. --F.Tumulak
 	}
 	public function unlock() {
-		if ($this->lockDepth <= 0) {
-			Fatal::internalError(T("Tried to unlock an unlocked database."));
-		}
-		$this->lockDepth--;
-/*
-		if ($this->lockDepth == 0) {
-			$row = $this->select1($this->mkSQL('select release_lock(%Q) as unlocked',
-				OBIB_LOCK_NAME));
-			if (!isset($row['unlocked']) or $row['unlocked'] != 1) {
-				Fatal::internalError(T("Cannot release lock"));
-			}
-		}
-*/
+		// No-op: InnoDB handles row-level locking. --F.Tumulak
 	}
 
 	/****************************************************************************
@@ -279,13 +254,8 @@ private function set_encoding() {
 		# escapes are interpreted in quoted identifiers, so I assume they are not. MS
 		return str_replace('`', '', $i);
 	}
-
 	private function _numstr($n) {
-		if (is_array($n)) {
-			echo '<pre>Got array in _numstr: ' . print_r($n, true) . '</pre>';
-		}
-
-		if (!is_array($n) && preg_match("/^([+-]?[0-9]+(\.[0-9]*)?([Ee][0-9]+)?)/", (string)$n, $subs)) {
+		if (preg_match("/^([+-]?[0-9]+(\.[0-9]*)?([Ee][0-9]+)?)/", (string)$n, $subs)) {
 			return $subs[1];
 		} else {
 			return "0";
