@@ -9,7 +9,7 @@ Guide:
 - version 3.x.x above PHP 8.0.xx supported
 - version 2.x.x below PHP 7.4.26 supported
 
-## [unreleased] - xxxx-yy-zz
+## [3.22.3] - 2025-09-26
 ### Added 
 - New feature: Database Migration Manager, utility to safely migrate old Openbiblio 1.0 database. (Please make a backup before attempt)
 
@@ -30,6 +30,7 @@ Guide:
 - Refactor: Thumbnail Check, updated to use class and autoloader setup.
 - Refactor: Daily Tally, updated to use class and autoloader setup.
 - Refactor: Circulation Analytics, updated to use class and autoloader setup. 
+- Refactor: Todo-list, updated to use class and autoloader setup. 
 
 ### Fixed
 - Fixed: Undefined variable $errs when deleting 'custom copy fields'.
