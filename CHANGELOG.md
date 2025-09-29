@@ -9,13 +9,7 @@ Guide:
 - version 3.x.x above PHP 8.0.xx supported
 - version 2.x.x below PHP 7.4.26 supported
 
-## [unreleased]  yyyy-mm-dd
-### Added
-- tbd
-
-### Changed
-- tbd
-
+## [3.22.6]  2025-09-29
 ### Fixed
 - Fixed: Removed classes/Queryi.php reads/writes in a pseudo 'lock/unlock' system. Use InnoDB to handle locking internally via row locking vs MyISAM. All existing tables are now InnodDB which render the old system obsolete.
 - Fixed: Warning: Array to string conversion in /var/www/html/classes/Queryi.php on line 258
