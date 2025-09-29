@@ -25,7 +25,7 @@ class Copy {
 			$ptr = new Copies;
 			$cpy = $ptr->getByBarcode($identifier);
 			if(!$cpy) {
-				die(T("No copy with barcode")." ".$barcode);
+				die(T("No copy with barcode")." ".$identifier);
 			}
 			$copyid = $cpy['copyid'];
 		} else {
