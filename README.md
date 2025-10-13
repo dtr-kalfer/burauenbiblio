@@ -59,14 +59,6 @@ BurauenBiblio now includes a lightweight eBook search module powered by the
 This feature accesses metadata and eBook files hosted by **Project Gutenberg**.
 All eBooks are in the public domain within the United States and most other parts of the world at no cost and no restrictions whatsoever.
 
-You **may not redistribute** large portions of the Project Gutenberg catalog or
-use their data commercially without permission.
-
-Please include the following attribution when deploying this feature:
-
-> eBook metadata and downloads provided by Project Gutenberg via the open Gutendex API  
-> (https://www.gutenberg.org/ — https://gutendex.com/)
-
 BurauenBiblio does **not store or mirror** any eBooks; all search results point to the
 official Project Gutenberg servers.
 
