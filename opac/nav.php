@@ -5,6 +5,7 @@
  *
  * @author Fred LaPlante, June 2017
  * modified by F.Tumulak, May 2025
+ * Added Gutentex API search , Oct. 2025 -- F. Tumulak
  */
 ?>
 <style>
@@ -13,8 +14,9 @@
   	<section class="menuSect">
        	<h3 class="navHeading">OPAC Search Mode</h3>
 				<div class="navContent">
-			  <a href="../catalog/srchForms.php?tab=OPAC" title="search">OPAC Library Search</a><br />
-			  <a href="../opac/doiSearchForms.php?tab=OPAC" title="doi">DOI Search</a><br />
+			  <a href="../catalog/srchForms.php?tab=OPAC" title="search">📚 OPAC Library Search</a><br />
+			  <a href="../opac/doiSearchForms.php?tab=OPAC" title="doi">📚 DOI Search</a><br />
+				<a href="../opac/free-ebook-gutenberg.php?tab=OPAC" title="gutentex">📚 Gutentex E-book Search</a><br />
 				</div>
    	</section>
 
