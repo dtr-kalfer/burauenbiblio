@@ -9,6 +9,10 @@ Guide:
 - version 3.x.x above PHP 8.0.xx supported
 - version 2.x.x below PHP 7.4.26 supported
 
+## [unreleased]  2025-xx-yy
+### Added 
+- New feature: Added Gutendex search API into OPAC Search mode to allow e-book search and download on free/public domain Project Gutenberg server.
+
 ## [3.22.6]  2025-09-29
 ### Fixed
 - Fixed: Removed classes/Queryi.php reads/writes in a pseudo 'lock/unlock' system. Use InnoDB to handle locking internally via row locking vs MyISAM. All existing tables are now InnodDB which render the old system obsolete.
