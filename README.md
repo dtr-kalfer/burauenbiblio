@@ -51,6 +51,9 @@ BurauenBiblio now includes a lightweight eBook search module powered by the
 - Search over 75,000 public domain ebook titles directly within BurauenBiblio
 - View book details and available formats (EPUB, TXT, MOBI).
 - 100% free and open-source, ideal for educational and library use.
+- eBook search appended on OPAC module.
+
+![Homepage](./readme_assets/opac_ebook_download.webp "BurauenBiblio Homepage")
 
 ### ⚖️ License & Attribution
 This feature accesses metadata and eBook files hosted by **Project Gutenberg**.
