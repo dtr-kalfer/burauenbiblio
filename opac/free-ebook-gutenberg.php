@@ -99,7 +99,7 @@ h4 {
 }
 </style>
 	<h4><?php echo "📚 Gutendex eBook Search"; ?></h4>
-	<h3>Project Gutenberg is a library of over 75,000 free eBooks 📖📚🕮📕.</h3>
+	<h3>Project Gutenberg is a library of over 75,000 Free Public Domain Ebooks 📖📚🕮📕.</h3>
 <section class="container">
     
     <form method="get">
@@ -149,11 +149,13 @@ h4 {
                 ?>
             </div>
         </div>
+				
     <?php endforeach; ?>
 </section>
 <p style="font-size:0.8rem; color:#555; text-align: center;">
 eBook metadata provided by <a href="https://www.gutenberg.org/" target="_blank">Project Gutenberg</a> via the <a href="https://gutendex.com/" target="_blank">Gutendex API</a>.
 </p>
+<p style="font-size:0.8rem; color:#555; text-align: center;">Public Domain — Free to read and share.</p>
 
 
 

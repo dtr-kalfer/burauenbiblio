@@ -39,7 +39,35 @@ If you wish to try BurauenBiblio on your existing Openbiblio database:
 
 ([shortcut 🧹 Utility - Database Migration Manager](#-utility---database-migration-manager))
 
-## 📌 New Features
+## 📚 OPAC eBook Search and Download (Gutendex Integration)
+
+
+
+BurauenBiblio now includes a lightweight eBook search module powered by the
+[Gutendex API](https://gutendex.com/) — an open, modern interface to the
+[Project Gutenberg](https://www.gutenberg.org/) public domain catalog.
+
+### ✨ Features
+- Search over 75,000 public domain ebook titles directly within BurauenBiblio
+- View book details and available formats (EPUB, TXT, MOBI).
+- 100% free and open-source, ideal for educational and library use.
+
+### ⚖️ License & Attribution
+This feature accesses metadata and eBook files hosted by **Project Gutenberg**.
+All eBooks are in the public domain within the United States.
+
+You **may not redistribute** large portions of the Project Gutenberg catalog or
+use their data commercially without permission.
+
+Please include the following attribution when deploying this feature:
+
+> eBook metadata and downloads provided by Project Gutenberg via the open Gutendex API  
+> (https://www.gutenberg.org/ — https://gutendex.com/)
+
+BurauenBiblio does **not store or mirror** any eBooks; all search results point to the
+official Project Gutenberg servers.
+
+## 📌 Other Features
 
 ### 📌 Calendar Manager
 
