@@ -41,7 +41,7 @@ If you wish to try BurauenBiblio on your existing Openbiblio database:
 
 ## 📚 OPAC eBook Search and Download (Gutendex Integration)
 
-
+![Homepage](./readme_assets/gutentex_sample_result.webp "BurauenBiblio Homepage")
 
 BurauenBiblio now includes a lightweight eBook search module powered by the
 [Gutendex API](https://gutendex.com/) — an open, modern interface to the
@@ -54,7 +54,7 @@ BurauenBiblio now includes a lightweight eBook search module powered by the
 
 ### ⚖️ License & Attribution
 This feature accesses metadata and eBook files hosted by **Project Gutenberg**.
-All eBooks are in the public domain within the United States.
+All eBooks are in the public domain within the United States and most other parts of the world at no cost and no restrictions whatsoever.
 
 You **may not redistribute** large portions of the Project Gutenberg catalog or
 use their data commercially without permission.
