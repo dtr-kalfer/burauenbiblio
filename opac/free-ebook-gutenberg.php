@@ -26,7 +26,7 @@
 ?>
 <style>
 .container {
-    width: 600px;
+    minwidth: 600px;
     margin: auto;
 		background: bisque;
 }
