@@ -44,8 +44,11 @@ If you wish to try BurauenBiblio on your existing Openbiblio database:
 ![Homepage](./readme_assets/gutentex_sample_result.webp "BurauenBiblio Homepage")
 
 BurauenBiblio now includes a lightweight eBook search module powered by the
-[Gutendex API](https://gutendex.com/) — an open, modern interface to the
-[Project Gutenberg](https://www.gutenberg.org/) public domain catalog.
+[Gutendex API](https://gutendex.com/)
+
+Gutendex is a simple, self-hosted web API for serving book catalog information from [Project Gutenberg](https://www.gutenberg.org/), an online library of free ebooks.
+MIT License Copyright (c) 2017 by Gareth Johnson
+https://github.com/garethbjohnson/gutendex
 
 ### ✨ Features
 - Search over 75,000 public domain ebook titles directly within BurauenBiblio
