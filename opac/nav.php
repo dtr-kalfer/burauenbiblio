@@ -16,7 +16,7 @@
 				<div class="navContent">
 			  <a href="../catalog/srchForms.php?tab=OPAC" title="search">📚 OPAC Library Search</a><br />
 			  <a href="../opac/doiSearchForms.php?tab=OPAC" title="doi">📚 DOI Search</a><br />
-				<a href="../opac/free-ebook-gutenberg.php?tab=OPAC" title="gutentex">📚 Gutentex E-book Search</a><br />
+				<a href="../opac/free-ebook-gutenberg-oop.php?tab=OPAC" title="gutentex">📚 Gutentex E-book Search</a><br />
 				</div>
    	</section>
 
