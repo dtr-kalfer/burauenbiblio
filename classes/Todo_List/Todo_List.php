@@ -1,4 +1,7 @@
 <?php
+		/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
+		 * See the file COPYRIGHT.html for more details. --F.Tumulak
+		 */
 namespace Todo_List;
 
 class Todo_List extends \ConnectDB {
