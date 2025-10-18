@@ -154,7 +154,7 @@ Both **DDC Stats** and **DDC table listing** helps:
 
 ![Homepage](./readme_assets/sample_viewed.webp "BurauenBiblio Homepage")
 
-The **Top 30 Borrowed Books list** showcases the titles most frequently borrowed over the past six months.
+The **Top 30 Borrowed Books list** showcases the titles most frequently borrowed over the past six months. The data is taken from the circulation report.
 
 The **Top 30 Most-Viewed Books** tracks books that are regularly read or referenced by patrons within the library but not officially borrowed. This in-house usage is measured over a one-month activity span.
 
@@ -163,6 +163,8 @@ Before reshelving, staff can use the dedicated **In-House Book Activity Tracker*
 ![Homepage](./readme_assets/dailytally3.webp "BurauenBiblio Homepage")
 
 By scanning each book’s barcode—either using a barcode scanner or manual input—the system **automatically records book activity** and provides an option to **view the most recently scanned items**. This feature helps reduce reliance on paper-based tallies and ensures more accurate records. In addition, daily book tallies are **visualized through an interactive graph** with an integrated **JSON export** option for reporting and data analysis.
+
+![Homepage](./readme_assets/books_read_per_day.webp "BurauenBiblio Homepage")
 
 These analytics provide valuable insights into **reading trends**, **student preferences**, and **subject demand**. They support **data-driven collection development** while helping libraries move toward a **paperless, more efficient workflow**.
 
