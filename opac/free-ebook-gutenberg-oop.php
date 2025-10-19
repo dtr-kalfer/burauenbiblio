@@ -82,8 +82,8 @@ h4 { font-size:1.3rem; }
 
 <p style="font-size:0.8rem; color:#555; text-align:center;">
 eBook metadata provided by <a href="https://www.gutenberg.org/" target="_blank">Project Gutenberg</a>
-via the <a href="https://gutendex.com/" target="_blank">Gutendex API</a>.
+via the <a href="https://gutendex.com/" target="_blank">Gutendex API</a> © Gareth Johnson (MIT License).
 </p>
-<p style="font-size:0.8rem; color:#555; text-align:center;">Public Domain — Free to read and share.</p>
+<p style="font-size:0.8rem; color:#555; text-align:center;">Public Domain — Free to read and share. 📖</p>
 
 <?php require_once(REL(__FILE__, '../shared/footer.php')); ?>
