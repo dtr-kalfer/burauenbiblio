@@ -1,3 +1,16 @@
+<?php
+		/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
+		 * See the file COPYRIGHT.html for more details. --F.Tumulak
+		 */
+		require_once("../shared/common.php");
+
+		$tab = "welcome";
+		$nav = "";
+		
+		require_once(REL(__FILE__, "../shared/logincheck.php"));
+		Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
+		date_default_timezone_set('Asia/Manila'); // Philippine timezone
+?>
 <link rel="stylesheet" type="text/css" href="../jscalendar/jsCalendar.min.css">
 <script type="text/javascript" src="../jscalendar/jsCalendar.min.js"></script>
 <style>
@@ -5,24 +18,14 @@
 		background-color: #eee !important;
 	}
 </style>
-<div id='welcomediv' >
-	<?php
-
-		require_once("../shared/common.php");
-
-		$tab = "welcome";
-		$nav = "";
-		
-
-		require_once(REL(__FILE__, "../shared/logincheck.php"));
-		Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
-		date_default_timezone_set('Asia/Manila'); // Philippine timezone
+<section id='welcomediv' >
+<?php
 		echo '<h3 >To-do List Section</h3>';
 		echo '<p class="info" style="text-align: center;">🧑 Welcome ' . $_SESSION["username"] . T(", you are now logged in.") . '</p>';
 	?>
 	
 	<div style="display: flex;">
-		<section id="calendar" class="classic-theme orange"
+		<section id="calendar" class="classic-theme red"
 			data-month-format="month YYYY" style='padding: 10px; margin: auto;'>
 		</section>
 		
@@ -33,7 +36,7 @@
 	<?php echo '<p  style="text-align: center;" >' . T("showhowtouse") . '</p>'; ?>
 	<h3><?php echo T("Today is: ") . date("m-d-Y"); ?></h3>
 
-</div>
+</section>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const calendarElement = document.getElementById("calendar");
