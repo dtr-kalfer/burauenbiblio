@@ -13,8 +13,11 @@ Guide:
 ### Added 
 - New feature: Added Gutendex search API into OPAC Search mode to allow e-book search and download on free/public domain Project Gutenberg server.
 
+### Fixed
+- "Warning: session_cache_limiter(): Session cache limiter cannot be changed after headers have already been sent in /var/www/html/shared/common.php on line 46 Warning: ini_set(): Session ini settings cannot be changed after headers have already been sent in /var/www/html/shared/common.php on line 150 Warning: session_start(): Session cannot be started after headers have already been sent in /var/www/html/shared/common.php on line 152 Warning: Cannot modify header information - headers already sent by (output started at /var/www/html/admin/noauth.php:1) in /var/www/html/shared/logincheck.php on line 32"
+
 ### Changed
-- Refactor: Gutendex search API refactored into object-class setup.
+- Refactor: "Fixed Warning: session_cache_limiter(): Session cache limiter cannot be changed after headers have already been sent in /var/www/html/shared/common.php on line 46 Warning: ini_set(): Session ini settings cannot be changed after headers have already been sent in /var/www/html/shared/common.php on line 150 Warning: session_start(): Session cannot be started after headers have already been sent in /var/www/html/shared/common.php on line 152 Warning: Cannot modify header information - headers already sent by (output started at /var/www/html/admin/noauth.php:1) in /var/www/html/shared/logincheck.php on line 32"
 
 ## [3.22.6]  2025-09-29
 ### Fixed
