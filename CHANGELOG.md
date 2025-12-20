@@ -8,8 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 Guide:
 - version 3.x.x above PHP 8.0.xx supported
 - version 2.x.x below PHP 7.4.26 supported
+- Date format: YYYY-MM-DD
 
-## [unreleased]  2025-xx-yy
+## [3.23.8]  2025-12-20
 ### Added 
 - New feature: Added Gutendex search API into OPAC Search mode to allow e-book search and download on free/public domain Project Gutenberg server.
 
