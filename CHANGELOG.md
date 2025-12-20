@@ -15,6 +15,7 @@ Guide:
 
 ### Fixed
 - "Warning: session_cache_limiter(): Session cache limiter cannot be changed after headers have already been sent in /var/www/html/shared/common.php on line 46 Warning: ini_set(): Session ini settings cannot be changed after headers have already been sent in /var/www/html/shared/common.php on line 150 Warning: session_start(): Session cannot be started after headers have already been sent in /var/www/html/shared/common.php on line 152 Warning: Cannot modify header information - headers already sent by (output started at /var/www/html/admin/noauth.php:1) in /var/www/html/shared/logincheck.php on line 32"
+- "Typo: catalog/srchForms.php line 214, missing closing bracket on tag."
 
 ### Changed
 - Refactor: "Fixed Warning: session_cache_limiter(): Session cache limiter cannot be changed after headers have already been sent in /var/www/html/shared/common.php on line 46 Warning: ini_set(): Session ini settings cannot be changed after headers have already been sent in /var/www/html/shared/common.php on line 150 Warning: session_start(): Session cannot be started after headers have already been sent in /var/www/html/shared/common.php on line 152 Warning: Cannot modify header information - headers already sent by (output started at /var/www/html/admin/noauth.php:1) in /var/www/html/shared/logincheck.php on line 32"
