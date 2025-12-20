@@ -1,298 +1,112 @@
-<?php
-/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
- * See the file COPYRIGHT.html for more details.
- */
-
-    //echo "in srchForms.php";
-	$cache = NULL;
-	require_once("../shared/common.php");
-	require_once(REL(__FILE__, "../classes/ReportDisplaysUI.php"));
-	require_once(REL(__FILE__, "../functions/inputFuncs.php"));
-
-	$tab = strtolower($_REQUEST['tab'] ?? "");
-	if(empty($tab)) {
-		$tab = "cataloging";
-		$title = T("Existing Items");
-	} else if ($tab == 'user'){
-		$title = T("Library Catalog");
-	} else if ($tab == 'opac'){
-		$title = T("Library Catalog");
-	} else if ($tab == 'rpt'){
-		$title = T("ReportSelection");
-	}
-
-	$nav = "localSearch";
-	$menu = $tab . '/search/catalog';
-	$focus_form_name = "phraseSearch";
-	$focus_form_field = "ph_searchText";
-	if ($tab != "opac") {
-		require_once(REL(__FILE__, "../shared/logincheck.php"));
-	}
-
-	Nav::node($menu, T("Print Catalog"), '../shared/layout.php?name=catalog&rpt=BiblioSearch&tab=cataloging');
-	Nav::node($menu, T("MARC Output"), '../shared/layout.php?name=marc&rpt=Report&tab=cataloging');
-	Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>$title));
 	
-	// This will enable / disable the delete copies button --F.Tumulak
-	// This will get triggered by itemDisplayJs.php, keyword: deltBtn
-	$authClass = (isset($_SESSION["hasReportsAuth"]) && $_SESSION["hasReportsAuth"]) ? '' : ' hidden';
+<!DOCTYPE html >
+<!-- there are many lines here with obscure comments. For more info see http://html5boilerplate.com/ -->
+
+<!-- language is set by user (default is 'en') -->
+<html lang="en" class="no-js no-obInstall" >
+
+<head>
+  <!-- charset MUST be specified within first 1024 char of file start to be effective -->
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- select browser-top icon -->
+  <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+  <!--link rel="apple-touch-icon" href="../apple-touch-icon.png"-->
+  <style>
+    html, body {
+      background-color: #111;
+    }
+  </style>
+  <!-- build title using library's name (or current-site name) from database -->
+  <title>
+    BCC LEARNING RESOURCE CENTER  </title>
+
+	<!-- Project Metadata for OpenBiblio -->
+	<meta name="description" content="OpenBiblio Library System - Originally developed as version 1.0a">
+	<meta name="author" content="Luuk Jansen, Fred LaPlante, Jane Sandberg, Micah Stetson">
+	<meta name="generator" content="OpenBiblio 1.0a - https://obiblio.sourceforge.net/">
+	<meta name="tester" content="Neil Redgate, Charlie Tudor">
+	<meta name="burauenbiblio-maintainer" content="Ferdinand Tumulak">
+	<meta name="burauenbiblio-fork-date" content="2025-05-07">
+	<meta name="project-url" content="https://github.com/dtr-kalfer">
 	
-?>
+	<script src="../shared/modernizr-2.6.2.min.js"></script>
+  <script src="../shared/jquery/jquery-3.2.1.min.js"></script>
+  <link rel="stylesheet" href="../shared/style6.css" />
 
-<div id="crntMbrDiv">to be filled by server</div>
+  <link rel="stylesheet" href="../shared/jquery/jquery-ui.min.css" />
+  <link rel="stylesheet" href="../themes/default/style_day.css" />
 
-<p id="whereAmI" class="note"></p>
-<p id="msgDiv" style="text-align: center; font-weight: bold;"></p>
-<!-- ------------------------------------------------------------------------ -->
-<div id="searchDiv">
-<form role="form" id="barcodeSearch" name="barcodeSearch" method="post">
-<fieldset>
-	<legend><?php echo T("Find Item by Barcode"); ?></legend>
-	<label for="bc_searchBarcd" style="margin-left: 15px;"><?php echo T("Barcode");?>:</label>
-	<input type="text" id="bc_searchBarcd" name="searchBarcd" size="20" value="" oninput="this.value = this.value.replace(/\D/g, '').slice(0, 13)" pattern="\d*" />
-	<input type="submit" id="barcdSrchBtn" name="barcdSrchBtn" value="<?php echo T("Search"); ?>" class="srchByBarcdBtn" />
-	<input type="hidden" id="bc_searchType" name="searchType" value="barcodeNmbr" />
-	<input type="hidden" id="bc_sortBy" name="sortBy" value="default" />
-</fieldset>
-</form>
+  		<link rel="stylesheet" href="../opac/opac_new.css" />
+		</head>
+	<body>
 
-<form role="form" id="phraseSearch" name="phraseSearch" method="post" >
-<fieldset>
-<legend><?php echo T("Search Catalog"); ?></legend>
-<table>
-	<tbody id="mainTxtSrch">
-	<tr>
-		<td colspan="3">
-			<select id="ph_searchType" name="searchType" >
-				<option value="title"><?php echo T("Title"); ?></option>	
-				<option value="author"><?php echo T("Author"); ?></option>
-				<option value="subject"><?php echo T("Subject"); ?></option>	
-				<option value="keyword" selected><?php echo T("Keyword"); ?></option>
-				<option value="series"><?php echo T("Series"); ?></option>	
-				<option value="publisher"><?php echo T("Publisher"); ?></option>
-				<option value="callno"><?php echo T("Call Number"); ?></option>
-				<option value="id"><?php echo T("bibid"); ?></option>
-			</select>
-			<input type="text" value="" id="ph_searchText" name="searchText" size="20" maxlength="256" />
-			<input type="submit" id="phraseSrchBtn" name="phraseSrchBtn" value="<?php echo T("Search"); ?>" class="phraseSrchBtnBtn" />
-		</td>
-	</tr>
-	<tr>
-		<td colspan="3">
-			<!--input id="sortBy" name="sortBy" type="hidden" value="title" /-->
-			<input id="tab" name="tab" type="hidden" value="<?php echo $tab; ?>" />
-			<input id="lookup" name="lookup" type="hidden" value="<?php echo isset($lookup) ? $lookup : ''; ?>" />
-		</td>
-	</tr>
-	<tr>
-	  <td colspan="3">
-	    <label for="advanceQ"><?php echo T("Advanced Search?"); ?></label>
-			<input id="advanceQ" name="advanceQ" type="checkbox" value="Y" />
-		</td>
-	</tr>
-	</tbody>
-	<!-- visiblity below here depends on above checkbox -->
-	<tbody id="advancedSrch">
-	<tr>
-		<td nowrap="true" colspan="3">
-			<label for="sortBy"><?php echo T("Sort by"); ?>: </label>
-			<select id="sortBy" name="sortBy">
-				<option value="Author"><?php echo T("Author"); ?></option>
-				<option value="Call Number" selected><?php echo T("Call Number"); ?></option>
-				<option value="Title"><?php echo T("Title"); ?></option>
-			</select>
-		</td>
-	</tr>
-	<tr>
-	  <td colspan="3">
-	  <fieldset>
-	  <legend><?php echo T("Limit Search Results"); ?></legend>
-	  <table border="0">
-		<tr class="searchRow">
-			<td><label for="srchMediaTypes"><?php echo T("Media Type"); ?>: </label></td>
-			<td><select id="srchMediaTypes" name="materialCd"></select></td>
-		</tr>
-		<!--tr id="marcTagsRow" class="searchRow">
-			<td><label for="srchMarcTags"><?php echo T("MARCTags"); ?>: </label></td>
-			<td><select id="srchMarcTags" name="marcTag"></select></td>
-		</tr-->
-		<tr class="searchRow">
-			<td><label for="srchCollections"><?php echo T("Collection"); ?>: </label></td>
-			<td><select id="srchCollections" name="collectionCd"></select></td>
-		</tr>
-		<tr class="searchRow">
-			<td><label for="audienceLevel"><?php echo T("Audience Level"); ?>: </label></td>
-			<td>
-				<select id="audienceLevel" name="audienceLevel">
-					<option value="all" selected><?php echo T("All"); ?></option>
-				</select>
-			</td>
-		</tr>
-		<tr class="searchRow">
-			<td><label for="srchSites"><?php echo T("Search Site"); ?>:</label></td>
-			<td>
-				<select name="srchSites" id="srchSites">
-				  <option id= value="all" selected="selected">All<option>
-					<option>to be filled by server</option>
-				</select>
-			</td>
-		</tr>
-		<tr class="searchRow">
-			<td><label><?php echo T("Production Date"); ?>:</label><br /></td>
-			<td><label for="from"><?php echo T("From Year");?>:</label>
-						<input id="from" name="from" type="number" size="4" min="1850" max="2099" />
-					<br />
-					<label for="to"><?php echo T("To Year"); ?>:</label>
-						<input id="to" name="to" type="number" size="4" min="1850" max="2099" />
-			</td>
-		</tr>
-		</tbody>
-		</table>
-		</fieldset>
-		</td>
-	</tr>
-</table>
-</fieldset>
-</form>
-</div>
+    <!--[if lt IE 10]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
 
-<!-- ------------------------------------------------------------------------ -->
-<div id="biblioListDiv">
-	<h5><?php echo T("SearchResults"); ?> &quot;<span id="srchRsltTitl"></span>&quot;</h5>
-	<!-- <div id="results_found">
-		<?php //echo T("biblioSearchMsg"); ?>
-	</div> -->
-	<table>
-	<tr>
-		<td colspan="3">
-			<ul class="pagBtns">
-				<li>
-					<input type="button" class="listGobkBtn" value="<?php echo T("Go Back"); ?>" />
-				</li>
-				<li>
-					<input type="button" class="goPrevBtn PgBtn" value="<?php echo T("Previous Page"); ?>">
-					<span class="rsltQuan"></span>
-					<input type="button" class="goNextBtn PgBtn" value="<?php echo T("Next Page"); ?>">
-				</li>
-			</ul>
-		</td>
-	</tr>
-	<tr>
-	  <td colspan="3">
-			<fieldset>
-				<span id="resultsArea"></span>
-				<fieldset>
-					<table id="listTbl" >
-						<tbody id="srchRslts" class="striped" >
-						</tbody>
-					</table>
-				</fieldset>
-				<?php
-					if($_SESSION['show_detail_opac'] == "Y"){
-				?>
-				<ul id="flagInfo">
-					<li>✅ <?php echo T("Available"); ?></li>
-					<li>❌ <?php echo T("On loan/not available"); ?></li>
-					<li><p>📌 Press CTRL+F5 on your browser to refresh image (In case no response from thumbnail add or remove )</p></li>
-				</ul>
-				<?php } ?>
-			</fieldset>
-		</td>
-	<tr>
-		<td colspan="3">
-			<ul class="pagBtns">
-				<li><input type="button" class="listGobkBtn" value="<?php echo T("Go Back"); ?>" /></li>
-				<li>
-					<input type="button" class="goPrevBtn PgBtn" value="<?php echo T("Previous Page"); ?>">
-					<span class="rsltQuan"></span>
-					<input type="button" class="goNextBtn PgBtn" value="<?php echo T("Next Page"); ?>">
-				</li>
-			</ul>
-		</td>
-	</tr>
-	</table>
-</div
+	<!-- defines a SVG sprite for later use in menu -->
+	<svg style="display:none">
+		<symbol id="navicon" viewbox="0 0 20 20">
+			<path d="m0-0v4h20v-4h-20zm0 8v4h20v-4h-20zm0 8v4h20v-4h-20z" fill="currentColor" />
+		</symbol>
+	</svg>
 
-<!-- ------------------------------------------------------------------------ -->
-<div id="biblioDiv">
-	<ul class="btnRow">
-		<?php if (!($tab == 'rpt')) { ?>
-			<li><input type="button" class="bibGobkBtn" value="<?php echo T("Go Back"); ?>" /></li>
-		<?php } ?>
-		<li><input type="button" id="marcBtn" value=""></li>
-			<!-- fixed bug showing tag untag items -- F. Tumulak -->
-			<?php if (($_SESSION["hasCatalogAuth"] ?? '') && ($tab == 'cataloging')) { ?>
-				<li><input type="button" id="addItem2CartBtn" value="<?php echo T("Tag item"); ?>" /></li>
-				<li><input type="button" id="delItem2CartBtn" value="<?php echo T("Un-tag item"); ?>" /></li>
-				<li><input type="button" id="biblioEditBtn" value="<?php echo T("Edit This Item"); ?>"></li>
-			<?php if ($_SESSION['show_item_photos'] == 'Y') { ?>
-				<li><input type="button" id="photoEditBtn" value="<?php echo T("Edit This Photo"); ?>"></li>
-				<li><input type="button" id="photoAddBtn" value="<?php echo T("Add New Photo"); ?>"></li>
-			<?php } ?>
-			
-			<!-- // if user hasReportAuth, allow catalog delete button to exist -- F.Tumulak -->
-			<?php if (isset($_SESSION["hasReportsAuth"]) && $_SESSION["hasReportsAuth"]): ?>
-			<li><input type="button" id="biblioDeleteBtn" value="<?php echo T("Delete This Item"); ?>"></li>
-			<?php endif; ?>					
-		<?php }?>
-	</ul>
-	<div id="cart_result"></div>
-	<?php include(REL(__FILE__,"../catalog/itemDisplayForm.php")); ?>
-	
-	<ul class="btnRow">
-		<?php if (!($tab == 'rpt')) { ?>
-			<li><input type="button" class="bibGobkBtn" value="<?php echo T("Go Back"); ?>"></li>
-		<?php } ?>
-		<?php if (!($tab != 'cataloging' || ($_SESSION["hasCircAuth"] && !$_SESSION["hasCatalogAuth"]))) { ?>
-			<li><input type="button" id="addNewBtn" class="button" value="<?php echo T("Add New Copy"); ?>"></li>
-		<?php } ?>
-	</ul>
-</div>
 
-<!-- ------------------------------------------------------------------------ -->
-<div id="itemEditorDiv">
-  <form role="form" id="biblioEditForm" name="biblioEditForm" >
-		<h5 id="reqdNote">*<?php echo T("Required note"); ?></h5>
-		<div class="btnRow flexBoxed">
-			<input type="button" class="itemGobkBtn leftBtn" value="<?php echo T("Go Back"); ?>" />
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<!-- <input type="button" id="onlnUpdtBtn" class="button midBtn" value="<?php //echo T("Fetch On-line Data"); ?>" /> -->
-			<input type="button" id="onlnDoneBtn" class="button rightBtn" value="<?php echo T("Search Complete"); ?>" />
-		</div>
+<aside id="sidebar">
+    <div id="skiptocontent"><a href="#content" class="warning">Skip to main content</a></div>
 
-		<?php require(REL(__FILE__,"../catalog/itemEditorForm.php")); ?>
-	
-		<input type="button" id="itemSubmitBtn" value="<?php echo T("Submit"); ?>" />
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="button" value="<?php echo T("Go Back"); ?>" class="itemGobkBtn" />
-	</form>
-</div>
+	<header class="notForInstall">
 
-<!-- ------------------------------------------------------------------------ -->
-<div id="copyEditorDiv">
-	<?php require_once(REL(__FILE__,"../catalog/copyEditorForm.php"));?>
-</div>
+		<h3 class="theHead">
+		
+					<!-- this button allows user to expand menu. Intended for phone & tablet users -->
+			<span>
+				<button id="menuBtn" aria-expanded="false">
+					<svg><use xlink:href=#navicon></use></svg>
+				</button>
+			</span>
+		
+		<!-- Libname is defined in header_top.php -->
+		<span id=\"library_name\" >BCC LEARNING RESOURCE CENTER</span>
 
-<!-- ------------------------------------------------------------------------ -->
-<?php if ($tab == 'cataloging') { ?>
-<div id="photoEditorDiv">
-	<?php require_once(REL(__FILE__,"../catalog/photoEditorForm.php"));?>
+				</h3>
+		
+			</header>
 
-	<ul class="btnRow">
-		<li><input type="button" class="gobkFotoBtn" value="<?php echo T("Go Back"); ?>" /></li>
-		<li><input type="submit" id="addFotoBtn" value="<?php echo T("Add New"); ?>" /></li>
-		<!-- <li><input type="button" id="updtFotoBtn" value="<?php echo T("Update"); ?>" /></li> -->
-		<li><input type="button" id="deltFotoBtn" value="<?php echo T("Delete"); ?>" /></li>
-	</ul>
-</div>
-<?php } ?>
+	<style>
+</style>
+    <nav id="accordion" role="navigation" aria-label="site" tabindex="-1">
+  	<section class="menuSect">
+       	<h3 class="navHeading">OPAC Search Mode</h3>
+				<div class="navContent">
+			  <a href="../catalog/srchForms.php?tab=OPAC" title="search">📚 OPAC Library Search</a><br />
+			  <a href="../opac/doiSearchForms.php?tab=OPAC" title="doi">📚 DOI Search</a><br />
+				<a href="../opac/free-ebook-gutenberg-oop.php?tab=OPAC" title="gutentex">📚 Gutentex E-book Search</a><br />
+				</div>
+   	</section>
 
-<!-- ------------------------------------------------------------------------ -->
-<?php
-    require_once(REL(__FILE__,'../shared/footer.php'));
-	
-	include_once(REL(__FILE__,'../catalog/srchJs.php'));
-?>
+		<section class="menuSect">
+			<h3 class="navHeading" id="defaultOpen">About Library</h3>
+			<div class="navContent about">
+                <a href="../opac/aboutForm.php?tab=OPAC" title="Info">About Library</a><br />
+				<img id="logo" src="../images/bcc-library-png-200x200.webp" />
+				<!-- Libname is defined in header_top.php -->
+				<span id="library_name" >BCC LEARNING RESOURCE CENTER</span>
 
-</body>
-</html>
+				<hr class="hdrSpacer">
+				<br />
+<b>Fatal error</b>:  Uncaught Error: Call to undefined function jddayofweek() in /var/www/burauenbiblio/classes/Week.php:11
+Stack trace:
+#0 /var/www/burauenbiblio/model/OpenHours.php(72): Week-&gt;__construct()
+#1 /var/www/burauenbiblio/opac/nav.php(35): OpenHours-&gt;displayOpenHours()
+#2 /var/www/burauenbiblio/themes/default/header.php(97): include('/var/www/buraue...')
+#3 /var/www/burauenbiblio/classes/Page.php(20): require_once('/var/www/buraue...')
+#4 /var/www/burauenbiblio/catalog/srchForms.php(33): Page::header(Array)
+#5 {main}
+  thrown in <b>/var/www/burauenbiblio/classes/Week.php</b> on line <b>11</b><br />
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"49491bcbd94440368ba2721fe950e483","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
