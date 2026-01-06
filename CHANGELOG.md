@@ -12,7 +12,7 @@ Guide:
 
 ## [3.24.0] 2026-01-06
 ### Changed
-- Refactor code in OPAC mode: Hide borrower's name in public, just display 'Out' instead in OPAC mode.
+- Critical Bugfix: Refactor code in OPAC mode: Hide borrower's name in public, just display 'Out' instead when in OPAC mode. 
 
 ## [3.23.8]  2025-12-20
 ### Added 
