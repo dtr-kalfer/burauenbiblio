@@ -10,7 +10,7 @@ Guide:
 - version 2.x.x below PHP 7.4.26 supported
 - Date format: YYYY-MM-DD
 
-## [unreleased] 2026-01-06
+## [3.24.0] 2026-01-06
 ### Changed
 - Refactor code in OPAC mode: Hide borrower's name in public, just display 'Out' instead in OPAC mode.
 
