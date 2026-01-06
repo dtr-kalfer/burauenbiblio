@@ -202,6 +202,7 @@ var idis = {
 	  $.post(idis.url,
             {'mode':'getCopyInfo',
              'bibid':idis.bibid,
+						 'tab': '<?php echo $tab; ?>'
             },
             function(jsonInpt){
 				idis.copys = jsonInpt;
