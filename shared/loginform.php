@@ -64,12 +64,12 @@
 		<td><label for="password"><?php echo T("Password"); ?>:</label></td>
 		<td valign="top" class="noborder">
 			<input id="password" name="pwd" type="password" size="15" required aria-required="true" />
-			<label><input type="checkbox" id="showPassword" /> show password</label>
+			<label id="showpass_label"><input type="checkbox" id="showPassword" /> show password</label>
 		</td>
 	</tr>
 	<?php if(($_SESSION['multi_site_func'] > 0) || ($_SESSION['site_login'] == 'Y')){ ?>
 	<tr>
-		<td><label for="selectSite"><?php echo T("Library Site"); ?>:</label></td>
+		<td><label id="librarysite" for="selectSite"><?php echo T("Library Site"); ?>:</label></td>
 		<td>
 			<?php echo inputfield('select', 'selectSite', $siteId, NULL, $sites) ?>	
 		</td>
