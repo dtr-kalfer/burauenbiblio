@@ -13,7 +13,7 @@
     <nav id="accordion" role="navigation" aria-label="site" tabindex="-1">
   	<section class="menuSect">
        	<h3 class="navHeading">OPAC Search Mode</h3>
-				<div class="navContent">
+				<div class="navContent" id="navSearchMenu">
 			  <a href="../catalog/srchForms.php?tab=OPAC" title="search">📚 OPAC Library Search</a><br />
 			  <a href="../opac/doiSearchForms.php?tab=OPAC" title="doi">📚 DOI Search</a><br />
 				<a href="../opac/free-ebook-gutenberg-oop.php?tab=OPAC" title="gutentex">📚 Gutentex E-book Search</a><br />
@@ -22,8 +22,7 @@
 
 		<section class="menuSect">
 			<h3 class="navHeading" id="defaultOpen">About Library</h3>
-			<div class="navContent about">
-                <a href="../opac/aboutForm.php?tab=OPAC" title="Info">About Library</a><br />
+			<div class="navContent about" id="aboutlib">About Library<br />
 				<?php if (Settings::get('library_image_url') != "") {
 					echo '<img id="logo"'.' src="'.Settings::get("library_image_url").'" />';
 				} ?>
@@ -33,9 +32,6 @@
 
 				<hr class="hdrSpacer">
 				<?php echo $open_hours->displayOpenHours(); ?>
-
-				<hr class="hdrSpacer">
-				<div id="library_phone"><?php echo Settings::get('library_phone'); ?></div>
 
 				<hr class="hdrSpacer" />
 				<footer>

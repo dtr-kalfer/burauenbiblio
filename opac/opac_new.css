@@ -65,3 +65,27 @@ hr.navSpacer { margin:0.5em; margin-left:2em; color:gray; width:75%; padding-lef
 	#menuBtn { display:none; }
 	.menuSect {display:block; }
 }
+
+/* Responsive adjustment for small screens */
+@media screen and (max-width: 420px) {
+	html { font-size: calc(1.0 * (0.8em + 0.5vw)); }
+	#library_name, #aboutlib {
+		font-size: 1rem; 
+	}
+  #selectSite {
+    width: 98%;      /* Shrinks to occupy 90% of its container */
+    max-width: 420px; /* Ensures it never grows larger than intended */
+    height: auto;     /* Maintains aspect ratio if it's an image or box */
+  }
+	div {
+		font-size: 12px;
+	}
+
+	/* Hide specific elements on mobile */
+	#navSearchMenu
+	{
+			display: none !important;
+	}	
+	
+
+}

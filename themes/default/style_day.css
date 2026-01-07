@@ -298,19 +298,23 @@ html { font-size: 16px; }
     html { font-size: calc(0.5 * (1em + 1vw)); }
 }
 
-@media screen and (max-width: 420px) {
-    /* Hide specific elements on mobile */
-    #showpass_label 
-    {
-        display: none !important;
-    }
-}
-
 /* Responsive adjustment for small screens */
 @media screen and (max-width: 420px) {
+	html { font-size: calc(1.0 * (0.8em + 0.5vw)); }
+	#library_name, #aboutlib {
+		font-size: 1rem; 
+	}
   #selectSite {
     width: 98%;      /* Shrinks to occupy 90% of its container */
     max-width: 420px; /* Ensures it never grows larger than intended */
     height: auto;     /* Maintains aspect ratio if it's an image or box */
   }
+
+	/* Hide specific elements on mobile */
+	#showpass_label, #navSearchMenu
+	{
+			display: none !important;
+	}	
+	
+
 }
