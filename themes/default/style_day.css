@@ -284,5 +284,33 @@ tbody.striped tr:nth-child(even) { background-color:#CDC; }
 	color: bisque;
 }
 
+/* ------------------------------- */
+/* Base for Phones */
+html { font-size: 16px; } 
 
+/* Tablet scaling */
+@media screen and (min-width: 600px) {
+    html { font-size: calc(1.0 * (0.8em + 0.5vw)); }
+}
 
+/* Desktop scaling (Your existing logic) */
+@media screen and (min-width: 800px) {
+    html { font-size: calc(0.5 * (1em + 1vw)); }
+}
+
+@media screen and (max-width: 420px) {
+    /* Hide specific elements on mobile */
+    #showpass_label 
+    {
+        display: none !important;
+    }
+}
+
+/* Responsive adjustment for small screens */
+@media screen and (max-width: 420px) {
+  #selectSite {
+    width: 98%;      /* Shrinks to occupy 90% of its container */
+    max-width: 420px; /* Ensures it never grows larger than intended */
+    height: auto;     /* Maintains aspect ratio if it's an image or box */
+  }
+}
