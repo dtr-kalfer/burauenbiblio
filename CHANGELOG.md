@@ -13,6 +13,7 @@ Guide:
 ## [unreleased] yyyy-mm-dd
 ### Changed
 - Improved UI for mobile devices (OPAC an staff login)
+- Updated loginform.php element id for css updates
 
 ## [3.24.0] 2026-01-06
 ### Changed
