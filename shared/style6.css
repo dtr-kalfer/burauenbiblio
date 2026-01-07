@@ -257,35 +257,7 @@ ul.btnRow li { display:inline; margin-right:1rem;
 	}
 .btnRow.flexBoxed > input[type=button] { flex:auto; max-width:15em;
 	}
-/*
-.btnRow.gridded { display:grid; grid-template-columns: repeat(5, 1fr);
-	}
-.btnRow.gridded > [type=button].col1 {   grid-column: 1 / 5;
-	}
-.btnRow.gridded > [type=button].col2 {   grid-column: 2 / 5;
-	}
-.btnRow.gridded > [type=button].col3 {   grid-column: 3 / 5;
-	}
-.btnRow.gridded > [type=button].col4 {   grid-column: 4 / 5;
-	}
-.btnRow.gridded > [type=button].col5 {   grid-column: 5 / 5;
-	}
-*/
-/*
-.gridded { display:grid;
-	grid-template-columns: 20% 20% 20% 20% 20%; grid-auto-columns: 20%;
-	}
-.gridded > .col1 {   grid-column: 1;
-	}
-.gridded > .col2 {   grid-column: 2;
-	}
-.gridded > .col3 {   grid-column: 3;
-	}
-.gridded > .col4 {   grid-column: 4;
-	}
-.gridded > .col5 {   grid-column: 5;
-	}
-*/
+
 #vertSep { width:0; height:3rem; margin-right:0.5rem; padding:0; border:1px solid gray
 	}
 
@@ -549,9 +521,6 @@ div#configDiv{
 /* For Tablets and Desktops */
 /* ####################################################### */
 
-
-/* ####################################################### */
-
 @media screen and (max-width: 800px) {
 	.title, #mainlogin {display: none;}
 }
@@ -580,18 +549,6 @@ div#configDiv{
 	#content {
 		border-radius:0.3rem;
 		}
-	/*
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6,
-	aside,
-	#content {
-		box-shadow:3px 6px 8px -4px #000;
-		}
-	*/
 	/*************************************************/
 	aside { 
 		position:fixed; top:1%; left:1%; float:left; width:15%;
@@ -600,6 +557,16 @@ div#configDiv{
 		box-shadow:0.2rem 0.4rem 0.6rem -0.2rem #000;
 		}
 	#obLogo { display:block; }
+	
+	#obLogo, #imglogo { 
+        display: block;
+        margin: 5px auto; 
+        width: 95%; 
+        max-width: 150px; /* REPLACE 250 with the actual pixel width of your image */
+        height: auto;     /* Maintains aspect ratio */
+    }
+	
+	
 	#logo { 
 		margin-left:10px; margin-bottom:5px; 
 		width:90%; 
@@ -621,7 +588,7 @@ div#configDiv{
 	.about,
 	#library_name, 
 	#library_hours, 
-	#library_phone { margin:2px 5px 2px 5px; font:0.82em sans-serif; }
+	#library_phone { margin:2px 5px 2px 5px; font:0.82em sans-serif;}
 	
 	/*************************************************/
 	ul.nav_main { padding-left:0.5rem; text-align:left; width: 70%;}
