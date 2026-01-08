@@ -29,7 +29,10 @@ The member records are entirely fictitious and do not represent real individuals
 
 The **BurauenBiblio System** is in active use at **Burauen Community College**, supporting bibliographic search requests from both students and faculty. It currently manages nearly **5,000 bibliographic records**, with continuous growth in its collection.
 
-For details: https://librarytechnology.org/library/211849
+For details: 
+
+- https://librarytechnology.org/library/211849
+- https://librarytechnology.org/libraries/search.pl?Country=Philippines&Type=Academic
 
 Designed to streamline library operations, BurauenBiblio provides tools for **cataloging**, **circulation management**, **Online Public Access Catalog (OPAC)**,  and other **staff-operated features** that enhance **workplace automation**.
 
