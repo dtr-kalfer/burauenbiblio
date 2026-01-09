@@ -12,7 +12,65 @@
   	$focus_form_field = "doiCd";
 	Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 ?>
+<style>
+/* -------------------------------
+   Mobile-first DOI Search
+-------------------------------- */
 
+#entry {
+    width: 95%;
+    max-width: 900px;
+    margin: auto;
+}
+
+#srchArea {
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+/* Text content */
+#srchArea p {
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+}
+
+/* Form layout */
+#doiForm {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    align-items: center;
+}
+
+/* Input */
+#doiCd {
+    width: 95%;
+    max-width: 100%;
+    padding: 0.55rem;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 6px;
+}
+
+/* Button */
+#srchBtn {
+    width: 95%;
+    padding: 0.6rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    background: #0078d7;
+    color: white;
+    cursor: pointer;
+}
+
+/* DOI highlight readability */
+#srchArea span {
+    padding: 0.1rem 0.3rem;
+    border-radius: 4px;
+}
+</style>
 	<h4 class="title"><?php echo T("doiSearch"); ?></h4>
 	<section id="entry">
 		<fieldset id="srchArea">
@@ -34,12 +92,6 @@
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Evaluation of a Petrol-Driven Refrigerating System <br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for Effective Vaccine Storage in Remote Areas. <br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;doi:<span style="background: yellow;">10.13140/RG.2.2.34185.83040</span></p>
-			<br>
-			<p>He, M.-G., Song, X.-Z., Liu, H., & Zhang, Y. (2014). <br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Application of natural refrigerant propane and <br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;propane/isobutane in large capacity chest freezer. <br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Applied Thermal Engineering, 70(1), 732–736. <br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;doi:<span style="background: yellow;">10.1016/j.applthermaleng.2014.05.097</span></p>
 			<br>
 			<p>Salamanca, C. L. M. A., & Pabilona, L. L. (2024). <br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Quantitative analysis of coefficient of performance <br>
