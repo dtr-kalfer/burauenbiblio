@@ -75,12 +75,8 @@
 	<section id="entry">
 		<fieldset id="srchArea">
 		
-			<p>	A <b>DOI (Digital Object Identifier)</b> is like a permanent ID for <br>
-			academic papers, journal articles, e-books, and other documents <br>
-			published on the internet. </p><br>
-			The DOI Search opens a new tab which redirects to the URL <br> 
-			equivalent of the DOI.<br>
-			</p>
+			<p>	A <b>DOI (Digital Object Identifier)</b> is like a permanent ID for academic papers, journal articles, e-books, and other documents	published on the internet. </p><br>
+			<p>The DOI Search opens a new tab which redirects to the URL equivalent of the DOI.</p>
 			<form role="form" id="doiForm">
 			<label for="doiCd">Paste any DOI here to locate the official article.</label><br />
 			<input size="50" type="text" id="doiCd" name="doiCd" required \><br />

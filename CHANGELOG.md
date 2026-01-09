@@ -16,7 +16,7 @@ Guide:
 
 ## [3.24.1] 2026-01-08
 ### Changed
-- Improved UI for mobile devices (OPAC an staff login)
+- Improved UI for mobile devices (OPAC and staff login)
 - Updated loginform.php element id for css updates especially mobile devices
 - modified COPYRIGHT.md css mobile/tablet responsive
 - typo: burauenbib_sample_clean.sql is the correct but used .php
