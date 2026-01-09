@@ -10,6 +10,9 @@ Guide:
 - version 2.x.x below PHP 7.4.26 supported
 - Date format: YYYY-MM-DD
 
+## [unreleased] yyyy-mm-dd
+- Improved UI for mobile devices (gutendex ebook search)
+
 ## [3.24.1] 2026-01-08
 ### Changed
 - Improved UI for mobile devices (OPAC an staff login)
