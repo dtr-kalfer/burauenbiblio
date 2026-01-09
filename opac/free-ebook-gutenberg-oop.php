@@ -14,14 +14,43 @@ $client = new GutendexClient();
 $query = $_GET['q'] ?? '';
 $books = $query ? $client->search($query) : [];
 ?>
-
 <style>
 /* (same CSS as before) */
-.container { min-width:600px; margin:auto; background:bisque; }
+.container {
+    max-width: 900px;        /* desktop cap */
+    width: 98%;
+    margin: auto;
+    background: bisque;
+}
+
 #content { background:bisque; }
-form { margin-bottom:2rem; }
-input[type=text] { width:80%; padding:0.5rem; font-size:1rem; text-align:center; }
-button { padding:0.5rem 2rem; font-size:1rem; border:none; border-radius:6px; background:#0078d7; color:white; cursor:pointer; }
+form {
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+input[type=text] {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.5rem;
+    font-size: 1rem;
+    text-align: center;
+		border-radius: 8px;
+}
+
+button {
+    padding: 0.5rem 2rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    background: #0078d7;
+    color: white;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
 .card { background:bisque; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1); padding:0.5rem; margin-bottom:0.5rem; }
 .title { font-size:1rem; font-weight:bold; background:#eee; color:black; padding:5px; }
 .author { color:#222; font-weight:bold; margin-bottom:0.5rem; padding:5px; }
@@ -30,6 +59,38 @@ button { padding:0.5rem 2rem; font-size:1rem; border:none; border-radius:6px; ba
 .format-btn:hover { background:#0078d7; color:white; }
 .note { font-size:0.85rem; color:#999; margin-top:0.5rem; }
 h4 { font-size:1.3rem; }
+
+/* ------------------------------- */
+/* Tablet scaling */
+@media screen and (max-width: 600px) {
+
+    form {
+        flex-direction: column;
+        align-items: center;
+				gap: 0.75rem;
+    }
+
+    input[type=text],
+    button {
+        width: 95%;
+    }
+
+    button {
+        padding: 0.6rem;
+    }
+}
+
+
+/* Desktop scaling (Your existing logic) */
+@media screen and (min-width: 800px) {
+    html { font-size: calc(0.5 * (1em + 1vw)); }
+}
+
+/* Responsive adjustment for small screens */
+@media screen and (max-width: 500px) {
+	html { font-size: calc(1.0 * (0.8em + 0.5vw)); }
+
+}
 </style>
 
 <h4>📚 Gutendex eBook Search</h4>
@@ -37,7 +98,7 @@ h4 { font-size:1.3rem; }
 
 <section class="container">
 <form method="get">
-    <input type="text" name="q" value="<?= htmlspecialchars($query) ?>" placeholder="Search books or authors...">
+    <input id="inputgutendex" type="text" name="q" value="<?= htmlspecialchars($query) ?>" placeholder="Search books or authors...">
     <button type="submit">Search</button>
 </form>
 

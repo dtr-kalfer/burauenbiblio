@@ -10,10 +10,12 @@ Guide:
 - version 2.x.x below PHP 7.4.26 supported
 - Date format: YYYY-MM-DD
 
-## [unreleased] yyyy-mm-dd
+## [3.24.1] 2026-01-08
 ### Changed
 - Improved UI for mobile devices (OPAC an staff login)
 - Updated loginform.php element id for css updates
+- modified COPYRIGHT.md css mobile/tablet responsive
+- typo: burauenbib_sample_clean.sql is the correct but used .php
 
 ## [3.24.0] 2026-01-06
 ### Changed
