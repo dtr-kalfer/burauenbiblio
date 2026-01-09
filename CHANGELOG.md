@@ -12,11 +12,12 @@ Guide:
 
 ## [unreleased] yyyy-mm-dd
 - Improved UI for mobile devices (gutendex ebook search)
+- Improved UI for mobile devices (DOI search)
 
 ## [3.24.1] 2026-01-08
 ### Changed
 - Improved UI for mobile devices (OPAC an staff login)
-- Updated loginform.php element id for css updates
+- Updated loginform.php element id for css updates especially mobile devices
 - modified COPYRIGHT.md css mobile/tablet responsive
 - typo: burauenbib_sample_clean.sql is the correct but used .php
 
