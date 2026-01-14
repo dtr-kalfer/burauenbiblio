@@ -109,7 +109,7 @@ The **To-Do List** is a simple yet powerful enhancement to the BurauenBiblio lib
 
 ### 📌 MARC tags setup
 
-![Homepage](./readme_assets/MARC_tags_ph.webp "BurauenBiblio Homepage")
+![Homepage](./readme_assets/marc_tags_ph2.webp "BurauenBiblio Homepage")
 
 The included SQL file provides MARC tag entries tailored for **Philippine-compatible** library records.
 
