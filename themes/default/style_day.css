@@ -284,6 +284,16 @@ tbody.striped tr:nth-child(even) { background-color:#CDC; }
 	color: bisque;
 }
 
+.inlineFldSet2 {
+	margin-top: 20px;
+	text-align: center;
+}
+
+.inlineFldSet2 img {
+	border: 3px solid #C11;
+	background-color: #ccc;
+}
+
 /* ------------------------------- */
 /* Base for Phones */
 html { font-size: 16px; } 
@@ -315,4 +325,6 @@ html { font-size: 16px; }
 	{
 			display: none !important;
 	}	
+	
+
 }
