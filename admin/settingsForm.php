@@ -21,8 +21,8 @@
 				<li class="active"><a href="#libraryPage"><?php echo T("Library"); ?></a></li>
 				
 				
-				<li><a href="#photoPage"><?php echo T("CoverPhotos"); ?></a></li>
-				<li><a href="#opacPage"><?php echo T("OPAC"); ?></a></li>
+				
+				
 				
 			</ul>
 
@@ -49,48 +49,12 @@
 						<input type="text" id="library_image_url" name="library_image_url" maxlength="64" placeholder="photo of your choice" />
 						<br />
 						
-						
 					</fieldset>
-					<fieldset class="inlineFldSet">
+					<fieldset class="inlineFldSet2">
 						<img id="libImg" width="150" height="150" />
 					</fieldset>
+					<p>*note: Set logo background to transparent for best results.</p>
 				</div>
-
-
-				<div id="photoPage" class="block">
-                    <label for="use_image_flg"><?php echo T("Use Image"); ?></label>
-                    <input type="checkbox" id="use_image_flg" name="use_image_flg" value="Y" />
-					<br />
-					<label for="camera"><?php echo T("Select a camera"); ?></label>
-					<select id="camera" name="camera" ><option >Not available</option></select>
-					<br />
-					<label for="items_per_page"><?php echo T("Photos per Page"); ?></label>
-					<input type="number" id="items_per_page" name="items_per_page" maxlength="18" value="25" required aria-required />
-					<br />
-					<!-- no longer required, using html5/CSS3 flex-box, see .../opac/imageBrowseForm.php for example -->
-					<!--label for="item_columns"><?php echo T("Photo Columns"); ?></label>
-					<input type="number" id="item_columns" name="item_columns" maxlength="17" value="5" required aria-required  />
-					<br /-->
-					<label for="thumbnail_width"><?php echo T("Photo Width"); ?></label>
-					<input type="number" id="thumbnail_width" name="thumbnail_width" maxlength="19" value="100" required aria-required />(mm)
-					<br />
-					<label for="thumbnail_height"><?php echo T("Photo Height"); ?></label>
-					<input type="number" id="thumbnail_height" name="thumbnail_height" maxlength="19" value="120" required aria-required />(mm)
-					<br />
-					<label for="thumbnail_rotation"><?php echo T("Photo Rotation"); ?></label>
-					<input type="number" id="thumbnail_rotation" name="thumbnail_rotation" maxlength="19" value="0" required aria-required />(deg)
-					<br />
-					<input type="button" id="fotoTestBtn" value="Test" />
-				</div>
-				<div id="opacPage" class="block">
-					<label for="opac_url"><?php echo T("OPAC URL"); ?></label>
-					<input type="text" id="opac_url" name="opac_url" size="17" maxlength="33" />
-                    <br />
-                    <label for="opac_site_mode"><?php echo T("OpacUserSelectsSite"); ?></label>
-                    <input type="checkbox" id="opac_site_mode" name="opac_site_mode" value="Y" />
-				</div>
-
-				<hr>
 				<input type="hidden" id="cat" name="cat" value="settings" />
 				<input type="hidden" id="mode" name="mode" />
 				<input type="submit" id="updtBtn" value="Update" />
@@ -105,8 +69,7 @@
 </div>
 
 <?php
-  	require_once(REL(__FILE__,'../shared/footer.php'));
-
+ 	require_once(REL(__FILE__,'../shared/footer.php'));
 	require_once(REL(__FILE__, "../admin/settingsJs.php"));
 ?>
 </body>
