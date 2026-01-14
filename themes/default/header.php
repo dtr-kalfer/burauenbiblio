@@ -98,11 +98,11 @@ if ($tab != 'help') {
 	?>
 
 	<?php if ($tab != 'opac') { ?>
-		<hr class="notForInstall hdrSpacer" />
+		
 		<footer>
-		  <div id="obLogo" style="width: 100%; padding: 0;" >
+		  <div id="obLogo" style="width: auto; padding: 0;" >
 				<a href="https://github.com/dtr-kalfer">
-					<img src="../images/burauen_biblio_sm.webp" border="0" alt="BurauenBiblio" />
+					<img id="imglogo" src="../images/burauen_biblio_sm.webp" border="0" alt="BurauenBiblio" />
 				</a>
 				<br />
 			</div>
@@ -117,6 +117,7 @@ if ($tab != 'help') {
 <!-- **************************************************************************************
 	 * beginning of main body
 	 **************************************************************************************-->
+
 <main id="content" role="main" aria-role="main">
     <!--[if lt IE 10]>
       <p class="chromeframe">You are using an <strong>outdated</strong> browser.<br /> 
