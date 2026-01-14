@@ -25,7 +25,7 @@ The member records are entirely fictitious and do not represent real individuals
 
 ## ✅ PHP 8.0 Migration Notes
 
-![Homepage](./readme_assets/actual_use_case_2.webp "BurauenBiblio Homepage")
+![Homepage](./readme_assets/actual_use_case_3.webp "BurauenBiblio Homepage")
 
 The **BurauenBiblio System** is in active use at **Burauen Community College**, supporting bibliographic search requests from both students and faculty. It currently manages nearly **5,000 bibliographic records**, with continuous growth in its collection.
 
