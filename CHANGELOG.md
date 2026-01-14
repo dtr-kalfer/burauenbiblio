@@ -13,6 +13,7 @@ Guide:
 ## [unreleased] yyyy-mm-dd
 - Improved UI for mobile devices (gutendex ebook search)
 - Improved UI for mobile devices (DOI search)
+- Improved UI Admin -> Library Settings (Simplified setup)
 
 ## [3.24.1] 2026-01-08
 ### Changed
