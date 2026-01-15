@@ -95,6 +95,7 @@ $trans["Allowed number of days"] = "Allowed number of days";
 $trans["Update Policy"] = "Update Policy";
 $trans["Current Borrow Policies"] = "Current Borrow Policies";
 $trans["No collections found."] = "No collections found.";
+$trans["Biblio Count"] = "Biblio Count";
 
 
 $trans["(enter 0 for unlimited)"] = "(enter 0 for unlimited)";
