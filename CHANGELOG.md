@@ -12,7 +12,7 @@ Guide:
 
 ## [unreleased] yyyy-mm-dd
 - New UI for Admin -> Collections (Removed complexity from reports, Used Class-Object Autoloader setup)
-- New UI for Admin -> Collections (Removed unneeded info i.e. distributed, item count, default)
+- New UI for Admin -> Collections (Removed unneeded info i.e. distributed, default)
 - Used tiny amount of JS for UI experience (Getting previous result from collections instead of re-typing.)
 - Improved UI for mobile devices (gutendex ebook search)
 - Improved UI for mobile devices (DOI search)
