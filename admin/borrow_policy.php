@@ -53,7 +53,7 @@ $policies = $collection->getBorrowPolicyList();
         <tr>
             <th><?php echo T("Code"); ?></th>
             <th><?php echo T("Description"); ?></th>
-            
+            <th><?php echo T("Biblio Count"); ?></th>
             <th><?php echo T("Days Due Back"); ?></th>
             <th><?php echo T("Late fee rate"); ?></th>
         </tr>
@@ -68,6 +68,9 @@ $policies = $collection->getBorrowPolicyList();
             <tr>
                 <td><?php echo H($row['code']); ?></td>
                 <td><?php echo H($row['description']); ?></td>
+
+								<td style="text-align:center"><?php echo (int)$row['item_count']; ?></td>
+
 
                 <td style="text-align:center">
                     <?php echo H($row['days_due_back']); ?>
