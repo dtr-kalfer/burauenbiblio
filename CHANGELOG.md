@@ -11,6 +11,9 @@ Guide:
 - Date format: YYYY-MM-DD
 
 ## [unreleased] yyyy-mm-dd
+- New UI for Admin -> Collections (Removed complexity from reports, Used Class-Object Autoloader setup)
+- New UI for Admin -> Collections (Removed unneeded info i.e. distributed, item count, default)
+- Used tiny amount of JS for UI experience (Getting previous result from collections instead of re-typing.)
 - Improved UI for mobile devices (gutendex ebook search)
 - Improved UI for mobile devices (DOI search)
 - Improved UI Admin -> Library Settings (Simplified setup)
