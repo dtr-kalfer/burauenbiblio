@@ -48,26 +48,29 @@ class MyCollection extends \ConnectDB
 		/**
      * Get collections with circulation policy summary
      */
-    public function getBorrowPolicyList(): array
-    {
-        $sql = "
-            SELECT
-                dm.code,
-                dm.description,
-                circ.days_due_back,
-                circ.regular_late_fee
-            FROM collection_dm dm
-            LEFT JOIN collection_circ circ
-                ON circ.code = dm.code
-            GROUP BY
-                dm.code,
-                dm.description,
-                circ.days_due_back,
-                circ.regular_late_fee
-            ORDER BY dm.description
+		public function getBorrowPolicyList(): array
+		{
+				$sql = "
+						SELECT
+								dm.code,
+								dm.description,
+								COUNT(DISTINCT b.bibid) AS item_count,
+								circ.days_due_back,
+								circ.regular_late_fee
+						FROM collection_dm dm
+						LEFT JOIN biblio b
+								ON b.collection_cd = dm.code
+						LEFT JOIN collection_circ circ
+								ON circ.code = dm.code
+						GROUP BY
+								dm.code,
+								dm.description,
+								circ.days_due_back,
+								circ.regular_late_fee
+						ORDER BY dm.description
+				";
 
-        ";
-
-        return $this->select($sql);
-    }		
+				return $this->select($sql);
+		}
+	
 }
