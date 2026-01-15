@@ -24,6 +24,7 @@ $trans["headerDateFormat"]	 = "m.d.Y";
 #****************************************************************************
 #* Common translation text, arranged alphabetically
 #****************************************************************************
+
 // these are trans immediately inserted, it still needs to get sorted
 // these trans are compatible with bcc setup --F.Tumulak
 $trans["List of provinces and its UAC Code"] = "List of provinces/states and its UAC Code";
@@ -88,6 +89,13 @@ $trans["bibid checker"] = "bibid checker";
 $trans["migrate db"] = "⚠️ Migrate db";
 $trans["Manage Courses"] = "Manage Courses";
 $trans["Add New Course"] = "Add New Course";
+$trans["Collection Setup: Borrow Time Limit Policy"] = "Collection Setup: Borrow Time Limit Policy";
+$trans["-- Select Collection --"] = "-- Select Collection --";
+$trans["Allowed number of days"] = "Allowed number of days";
+$trans["Update Policy"] = "Update Policy";
+$trans["Current Borrow Policies"] = "Current Borrow Policies";
+$trans["No collections found."] = "No collections found.";
+
 
 $trans["(enter 0 for unlimited)"] = "(enter 0 for unlimited)";
 $trans["(when available)"] = "(when available)";
@@ -151,7 +159,7 @@ $trans["AddressLine1"] = "Address Line 1";
 $trans["AddressLine2"] = "Address Line 2";
 $trans["Admin"] = "Admin";
 $trans["adminIndexDesc"] = "Use the functions located in the left hand navigation area to manage your library's staff and administrative records.";
-$trans["adminNoauth"] = "Welcome, library staff/user. You are now Logged In.";
+$trans["adminNoauth"] = "Welcome, You are now Logged In.";
 $trans["Adult"] = "Adult";
 $trans["Advanced Search?"] = "Advanced Search?";
 $trans["Align"] = "Align";
@@ -486,7 +494,7 @@ $trans["Fiction Name"] = "Fiction Name";
 $trans["Field cannot be less than zero"] = "Field cannot be less than zero";
 $trans["Field must be greater than zero"] = "Field must be greater than zero";
 $trans["Field must be numeric"] = "Field must be numeric";
-$trans["Fields marked are required"] = "Fields marked with <span class='reqd'>*</span> are required.";
+$trans["Fields marked are required"] = "Fields marked with <span class='reqd'>*</span> are required. ";
 $trans["Fields marked are required v2"] = "Fields marked with <span class='reqd'>*</span> are required. Title is automatically copied into Copy Description. ";
 $trans["File name end not jpg or png"] = "File name does not end in '.jpg' or '.png'.";
 $trans["filename"] = "filename";
@@ -810,7 +818,7 @@ $trans["Non-circulating Titles"] = "Non-circulating Titles";
 $trans["Non-delivery List"] = "Non-delivery List";
 $trans["Non-delivery Notices"] = "Non-delivery Notices";
 $trans["noTbl"] = "Table not found";
-$trans["NotAllowed"] = "Not permitted, total owed exceeds allowance.";
+$trans["NotAllowed"] = "Not permitted, total owed exceeds limit.";
 $trans["Not authorized for cataloging"] = "You are not authorized to use the Cataloging tab.";
 $trans["Not Available yet, Under Construction"] = "Not Available yet, Under Construction";
 $trans["Not enough arguments given to mkSQL()."] = "Not enough arguments given to mkSQL().";
@@ -986,6 +994,7 @@ $trans["School Teacher"] = "School Teacher";
 $trans["Search"] = "Search";
 $trans["Search Catalog"] = "Search Catalog";
 $trans["Search Complete"] = "Search Complete";
+
 $trans["Search Display Lines"] = "Search Display Lines";
 $trans["Search Site"] = "Search Site";
 $trans["Search Text"] = "Search Text";
@@ -1209,3 +1218,4 @@ require_once(REL(__FILE__, './customTrans.php'));
 			include($list[$x]);
 		}
  ## ##################################
+
