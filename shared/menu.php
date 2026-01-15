@@ -26,16 +26,18 @@ function staff_menu() {
 		}
 
 		Nav::node('circulation/bookings/book', T("Create Booking"));
+		
 		Nav::node('circulation/checkin', T("Check In"), '../circ/checkinForms.php');
-
+		
 		Nav::node('circulation/tally', T("daily book tally"), '../circ/dailytally.php');
 		
 		Nav::node('circulation/overdue', T("Overdue"), '../circ/overdue_items.php?type=overdue'); // new feature overdue calc -- F.Tumulak
+		
 		Nav::node('circulation/analytics', T("analytics"),'../circ/circ_report2.php');
 			Nav::node('circulation/analytics/monthly', T("Circ. Report"),'../circ/circ_report2.php');
 			Nav::node('circulation/analytics/top30', T("top30"),'../circ/top30.php');
 			Nav::node('circulation/analytics/top30_inhouse', T("top30_in-house"),'../circ/top30_inhouse.php');
-			Nav::node('circulation/analytics/dailytally', T("Daily T. (Chart)"),'../circ/dailytallychart.php');			
+			Nav::node('circulation/analytics/dailytally', T("Daily T. (Chart)"),'../circ/dailytallychart.php');
 	}
 
 	##-------------------------------------------------------------------------------------##
@@ -79,6 +81,7 @@ function staff_menu() {
 	if ($_SESSION["hasAdminAuth"] ?? false) {
 		// use this format --> Nav::node('parent dir./child dir.', T("locale"), '../path_to/file.php');
 		Nav::node('admin', T("Admin"), '../admin/index.php');
+		
 		Nav::node('admin/info', T("App. Info"), '../admin/app_stats.php'); // Added this app. information status -->F.Tumulak
 		
 		Nav::node('admin/analytics', T("analytics"),'../circ/attendance_form.php');
@@ -87,13 +90,14 @@ function staff_menu() {
 			Nav::node('admin/analytics/create_ddc', T("create_ddc"),'../catalog/create_ddc.php');
 			Nav::node('admin/analytics/ddc_chart', T("ddc_chart"),'../catalog/ddc_chart.php');	
 			Nav::node('admin/analytics/ddc_top30list', T("ddc_top30list"),'../catalog/ddc_top30list.php');	
-			
+				
 		Nav::node('admin/settings', T("Library Settings"), '../admin/settingsForm.php');
 		Nav::node('admin/staff', T("Staff Admin"), '../admin/staffForm.php');
 		Nav::node('admin/biblioFields', T("Biblio Fields"),'../admin/biblioFldsForm.php');
 		Nav::node('admin/biblioCopyFields', T("Biblio Copy Fields"),'../admin/biblioCopyFldsForm.php');
 		Nav::node('admin/calendar', T("Calendar Manager"), '../admin/calendarForm.php');
-		Nav::node('admin/collections', T("Collections"), '../admin/collectionsForm.php?type=change_borrow_expiry');
+		
+		Nav::node('admin/borrow_policy', T("Collections"), '../admin/borrow_policy.php');
 		Nav::node('admin/media', T("Media Types"), '../admin/mediaForm.php');
 
 		Nav::node('admin/upload_usmarc', T("MARC Import"), "../catalog/importMarcForms.php"); // This one is now working good --F.Tumulak
@@ -101,7 +105,6 @@ function staff_menu() {
 		if (isset($_SESSION["hasReportsAuth"]) && $_SESSION["hasReportsAuth"]):
 			Nav::node('admin/bulk_delete', T("Bulk Delete"), "../catalog/bulkDelForm.php"); // moved bulk delete to its new home --F.Tumulak
 		endif;
-
 		
 		Nav::node('admin/memberTypes', T("Member Types"), '../admin/memberTypeForm.php');
 		// Nav::node('admin/memberFields', T("Member Fields"), '../admin/memberFldsForm.php'); // disabled it messes up the 'add custom member fields', crash a member entry.
@@ -115,7 +118,7 @@ function staff_menu() {
 		Nav::node('admin/opac', T("View Opac"), '../catalog/srchForms.php?tab=OPAC');
 		Nav::node('admin/dbChkr', T("Database checker"), '../admin/dbChkrForms.php');
 		Nav::node('admin/bibidchecker', T("bibid checker"), '../admin/bibidChkrForms.php');
-		Nav::node('admin/migratedb', T("migrate db"), '../admin/migrate_old_db.php');		
+		Nav::node('admin/migratedb', T("migrate db"), '../admin/migrate_old_db.php');
 	}
 	
 	##-------------------------------------------------------------------------------------##
