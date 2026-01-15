@@ -82,6 +82,14 @@ The system uses **Calendar Logic** to accurately calculate due dates based on yo
 
 Member types can be configured with **overdue charge** settings. When a patron exceeds the overdue limit accumulated from the penalty/day, they are **restricted** from making additional borrowings.
 
+### 📌 Collection Setup (borrowing policy)
+
+![Homepage](./readme_assets/collection_setup.webp "BurauenBiblio Homepage")
+
+The Collection Setup page manages penalty rates and borrowing duration per collection.
+
+This update refactors the previous policy system into a simpler, per-day overdue model, improving clarity, maintainability, and consistency when adjusting borrowing rules.
+
 ### 📌 OPAC DOI Search
 
 ![Homepage](./readme_assets/doi_sample_image.webp "BurauenBiblio Homepage")
