@@ -1,5 +1,6 @@
 <?php
 require_once("../shared/common.php");
+require_once("../shared/logincheck.php");
 Page::header(['nav' => 'admin/borrow_policy', 'title' => T("Collection Setup: Borrow Time Limit Policy")]);
 
 require_once __DIR__ . '/../autoload.php';
