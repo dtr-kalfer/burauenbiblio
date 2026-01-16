@@ -86,7 +86,7 @@ Member types can be configured with **overdue charge** settings. When a patron e
 
 ![Homepage](./readme_assets/collection_setup.webp "BurauenBiblio Homepage")
 
-The Collection Setup page manages penalty rates and borrowing duration per collection.
+The **Collection Setup** page manages **penalty rates** and **borrowing duration** per collection.
 
 This update refactors the previous policy system into a simpler, per-day overdue model, improving clarity, maintainability, and consistency when adjusting borrowing rules.
 
@@ -202,7 +202,7 @@ Thumbnail check is a utility feature that finds missing thumbnail and broken ima
 
 ![Homepage](./readme_assets/no_thumbnails_included.webp "BurauenBiblio Homepage")
 
-It also includes biblio records without thumbnails included, it happens when add thumbnail form is cancelled.
+It includes biblio records without thumbnails, which happens when add thumbnail form is cancelled.
 
 ### 🧹 Utility - Orphaned BibID Cleanup Tool
 
