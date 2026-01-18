@@ -101,14 +101,14 @@ if ($tab != 'help') {
 		
 		<footer>
 		  <div id="obLogo" style="width: auto; padding: 0;" >
-				<a href="https://github.com/dtr-kalfer">
+				<a href="https://github.com/dtr-kalfer" target="_blank">
 					<img id="imglogo" src="../images/burauen_biblio_sm.webp" border="0" alt="BurauenBiblio" />
 				</a>
 				<br />
 			</div>
 
 			<!-- OpenBiblio Version: --> <?php //echo H(OBIB_CODE_VERSION);?>
-			<h3><a class="copyright" href="../COPYRIGHT.html">COPYRIGHT</a></h3>
+			<h3><a class="copyright" href="../COPYRIGHT.html" target="_blank">COPYRIGHT</a></h3>
 		</footer>
 	<?php } ?>
 </aside>
