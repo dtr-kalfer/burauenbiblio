@@ -9,7 +9,7 @@ require_once(REL(__FILE__, "../model/Staff.php"));
 $dbConst = "";
 $pageErrors = "";
 if (count($_POST) == 0) {
-	header("Location: ../shared/loginform.php");
+	header("Location: ../shared/myloginform.php");
 	exit();
 }
 
@@ -42,7 +42,7 @@ if ($error_found == true) {
     echo "login error found<br />\n";
 	$_SESSION["postVars"] = $_POST;
 	$_SESSION["pageErrors"] = $pageErrors;
-    header("Location: ../shared/loginform.php");
+    header("Location: ../shared/myloginform.php");
 	exit();
 }
 
