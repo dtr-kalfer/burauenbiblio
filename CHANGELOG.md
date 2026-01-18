@@ -10,7 +10,7 @@ Guide:
 - version 2.x.x below PHP 7.4.26 supported
 - Date format: YYYY-MM-DD
 
-## [unreleased] yyyy-mm-dd
+## [3.25.0] 2026-01-18
 - New UI for Admin -> Collections (Removed complexity from reports, Used Class-Object Autoloader setup)
 - New UI for Admin -> Collections (Removed unneeded info i.e. distributed, default)
 - New UI added logincheck redirect.
