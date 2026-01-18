@@ -27,9 +27,9 @@ if (!OBIB_DEMO_FLG) {
 		// If siteId is given, pass it on. This allows for an easy link to be setup
 		// on the desktop of a certain site
 		if(isset($_REQUEST['selectSite'])){
-			header("Location: ../shared/loginform.php?selectSite=" . $_REQUEST['selectSite']);
+			header("Location: ../shared/myloginform.php?selectSite=" . $_REQUEST['selectSite']);
 		} else {
-			header("Location: ../shared/loginform.php");
+			header("Location: ../shared/myloginform.php");
 		}	
 		exit();
 	}
