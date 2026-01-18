@@ -42,6 +42,14 @@ If you wish to try BurauenBiblio on your existing Openbiblio database:
 
 ([shortcut 🧹 Utility - Database Migration Manager](#-utility---database-migration-manager))
 
+## 📚 Updated Login & Welcome Interface
+
+![Homepage](./readme_assets/new_login_form.webp "BurauenBiblio Homepage")
+
+The login and welcome page UI has been refreshed with a cleaner, modern layout inspired by contemporary web interfaces.
+
+This update improves visual clarity, accessibility, and mobile responsiveness while maintaining full compatibility with the existing BurauenBiblio authentication and legacy theme structure. No changes were made to core login logic.
+
 ## 📚 OPAC eBook Search and Download (Gutendex Integration)
 
 ![Homepage](./readme_assets/gutentex_sample_result.webp "BurauenBiblio Homepage")
