@@ -2,6 +2,8 @@
 /* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
  * See the file COPYRIGHT.html for more details.
  */
+header("Location: myloginform.php"); // redirect to new, just in case using old links - F.Tumulak
+exit();
 
 	require_once("../shared/common.php");
 	require_once(REL(__FILE__,"../functions/inputFuncs.php"));
