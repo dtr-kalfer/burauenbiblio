@@ -36,7 +36,7 @@
 				<hr class="hdrSpacer" />
 				<footer>
 				  <div id="obLogo" style="width: 100%; padding: 0;" >
-						<a href="https://github.com/dtr-kalfer">
+						<a href="https://github.com/dtr-kalfer" target="_blank">
 							<img src="../images/burauen_biblio_sm.webp" border="0" alt="BurauenBiblio" />
 						</a>
 						<br />
@@ -44,7 +44,8 @@
 
 					<?php // echo H(OBIB_CODE_VERSION);?>
 					<br />
-					<h3><a style="color: white; background-color: transparent; font-weight: bold;" href="../COPYRIGHT.html">COPYRIGHT</a></h3>
+					<h3>
+						<a style="color: white; background-color: transparent; font-weight: bold;" href="../COPYRIGHT.html" target="_blank">COPYRIGHT</a></h3>
 				</footer>
 	        </div>
 	    </section>
