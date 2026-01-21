@@ -174,7 +174,7 @@ var idis = {
     	  		    $('#rsltMsg').html(response);
     				if (bs.srchType == 'barCd')
     					bs.doBarCdSearch();
-    				else if (bs.srchType = 'phrase')
+    				else if (bs.srchType == 'phrase')
     					bs.doPhraseSearch();
     	  			$('#biblioDiv').hide();
     	  		});
