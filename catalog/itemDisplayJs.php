@@ -158,11 +158,15 @@ var idis = {
 
 	doItemDelete: function (biblio) {
         //console.log(biblio);
-        idis.bibid = biblio.hdr.bibid;
-		console.log(idis.copys);
-        if (idis.copys) {
-			alert('You must delete all copies before you can delete an item!');
+    idis.bibid = biblio.hdr.bibid;
+		// console.log(idis.copys);
+		
+		// This line is always evaluating as “true”: if (idis.copys)  --> F.Tumulak
+		// below is the fixed logic 
+		if (idis.copys && idis.copys.length > 0) {
+    alert('You must delete all copies before you can delete an item!');
 		}
+
 		else {
     	  	if (confirm('<?php echo T("Are you sure you want to delete this item?"); ?>: #'+idis.bibid)) {
     	    	var params = "&mode=deleteBiblio_ok&bibid="+idis.bibid;
