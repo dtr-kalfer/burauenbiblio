@@ -10,7 +10,8 @@ Guide:
 - version 2.x.x below PHP 7.4.26 supported
 - Date format: YYYY-MM-DD
 
-## [unreleased] YYYY-MM-DD
+## [3.25.4] 2026-01-22
+- Critical Fixed: Delete photo thumbnail confirmation keeps reappearing even after 'cancel' or 'ok'.
 - bugfix: catalog/itemDisplayJs.php, bs.srchType = 'phrase' typo.
 
 ## [3.25.2] 2026-01-21
