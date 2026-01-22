@@ -9,6 +9,10 @@
     in Mozilla Firefox 46+, you can eleminate the prompt to allow video capture
     at "about:config | media.navigator.permission.disabled"
     BUT BE WARY, once on, the camera is accesable by any page in the browser until OB is turned off
+		
+		note*: camera capture is disabled, deltFotoBtn function refactored --F.Tumulak
+		note*: confirm still reappeared because the handler was being bound multiple times --F.Tumulak
+		note*: doDeletePhoto is separated into two function --F.Tumulak
  */
 ?>
 // JavaScript Document
@@ -51,7 +55,8 @@ console.log('wc.init() called');
 		$('#browse').on('change',null,wc.getFotoFile);
 		$('#addFotoBtn').on('click',null,wc.sendFoto);
 		$('#updtFotoBtn').on('click',null,wc.doUpdatePhoto);
-		$('#deltFotoBtn').on('click',null,wc.doDeletePhoto);
+		// $('#deltFotoBtn').on('click',null,wc.doDeletePhoto);
+		$('#deltFotoBtn').off('click').on('click',null,wc.doDeletePhoto);
 
 		/* support drag and drop of image */
 		wc.canvasOut.ondragover = function (e){
@@ -115,6 +120,7 @@ initWidgets: function () {
 	*/
 	console.log("Webcam logic skipped.");
 },
+
 
     vidOff: function () {
         wc.video.pause();
@@ -319,40 +325,55 @@ initWidgets: function () {
 		//console.log('attempting update');
         wc.sendFoto(e);
     },
-
+	
+	// Refactored 1/22/2026 --F.Tumulak
 	doDeletePhoto: function (e) {
-		//let url_1 = $('#fotoName').val(); // Example: "../photos/4555.jpg"
-		//let filename = url_1.split('/').pop(); // Result: "4555.jpg"
+			e.preventDefault();
+			e.stopPropagation();
 
-		$('#fotoName').val();
-		if (confirm("<?php echo T("Are you sure you want to delete this cover photo"); ?>")) {wc.deleteActual(e); }
-    },
-    deleteActual: function (e, forUpdate=false) {
-  	    $.post(wc.url,{'mode':'deletePhoto',
-				       'bibid':$('#fotoBibid').val(),
-					   'url':$('#fotoName').val(),
-	              },
-				  function(response){
-						//console.log('back from deleting');
-						wc.eraseImage();
-						$('#bibBlkB').html('<img src="../images/shim.gif" id="biblioFoto" class="noHover" '
-  											+ 'height="'+wc.fotoHeight+'" width="'+wc.fotoWidth+'" >');
-                        idis.crntFoto = null;
-						$('#photoAddBtn').show();
-						$('#photoEditBtn').hide();
+			if (!confirm("<?php echo T("Are you sure you want to delete this cover photo"); ?>")) {
+					return false;
+			}
 
-                        if(forUpdate) {
-                            wc.finishUpdate();
-                        } else {
-					       $('#fotoName').val('');
-						   obib.showMsg('<?php echo T("cover photo deleted");?>');
-                       }
-				 }
-                 , 'json'
-		);
-		e.stopPropagation();
-		return false;
+			wc.deleteActual(e);
+			return false;
 	},
+
+	// Refactored 1/22/2026 --F.Tumulak
+	deleteActual: function (e, forUpdate=false) {
+			$.post(
+					wc.url,
+					{
+							mode: 'deletePhoto',
+							bibid: $('#fotoBibid').val(),
+							url: $('#fotoName').val(),
+					},
+					function (response) {
+							wc.eraseImage();
+							$('#bibBlkB').html(
+									'<img src="../images/shim.gif" id="biblioFoto" class="noHover" ' +
+									'height="' + wc.fotoHeight + '" width="' + wc.fotoWidth + '">'
+							);
+
+							idis.crntFoto = null;
+							$('#photoAddBtn').show();
+							$('#photoEditBtn').hide();
+
+							if (forUpdate) {
+									wc.finishUpdate();
+							} else {
+									$('#fotoName').val('');
+									obib.showMsg('<?php echo T("cover photo deleted"); ?>');
+							}
+					},
+					'json'
+			);
+
+			return false;
+	}
+
+
+
 
 }
 document.getElementById('useBrowse').checked = true;

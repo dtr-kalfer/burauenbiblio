@@ -10,6 +10,9 @@ Guide:
 - version 2.x.x below PHP 7.4.26 supported
 - Date format: YYYY-MM-DD
 
+## [unreleased] YYYY-MM-DD
+- bugfix: catalog/itemDisplayJs.php, bs.srchType = 'phrase' typo.
+
 ## [3.25.2] 2026-01-21
 - Critical bugfix: This line is always evaluating as “true”: if (idis.copys), can't delete biblio records.
 - New UI for user/staff login.
