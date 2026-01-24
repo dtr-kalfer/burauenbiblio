@@ -12,6 +12,7 @@ Guide:
 
 ## [unreleased] YYYY-MM-DD
 - Updated CSS styling for OPAC and Staff Navigation Menu. Improved display and readability.
+- Updated responsiveness for mobile and tablet viewing.
 
 ## [3.25.4] 2026-01-22
 - Critical Fixed: Delete photo thumbnail confirmation keeps reappearing even after 'cancel' or 'ok'.
