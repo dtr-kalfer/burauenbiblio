@@ -34,18 +34,21 @@
 				<?php echo $open_hours->displayOpenHours(); ?>
 
 				<hr class="hdrSpacer" />
+				
+
 				<footer>
-				  <div id="obLogo" style="width: 100%; padding: 0;" >
+					<div id="obLogo" >
 						<a href="https://github.com/dtr-kalfer" target="_blank">
 							<img src="../images/burauen_biblio_sm.webp" border="0" alt="BurauenBiblio" />
 						</a>
 						<br />
 					</div>
-
-					<?php // echo H(OBIB_CODE_VERSION);?>
+					<p class="version_bib"><?php echo H(OBIB_VARIANT) . " " . H(OBIB_CODE_VERSION);?></p>
+					
 					<br />
-					<h3>
-						<a style="color: white; background-color: transparent; font-weight: bold;" href="../COPYRIGHT.html" target="_blank">COPYRIGHT</a></h3>
+					<h3 class="endfooter">
+						<a  href="../COPYRIGHT.html" target="_blank">COPYRIGHT</a>
+					</h3>
 				</footer>
 	        </div>
 	    </section>
