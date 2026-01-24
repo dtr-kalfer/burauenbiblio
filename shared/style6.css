@@ -24,6 +24,9 @@ body {
 	}
 #userMsgDiv userMsg:empty { display:none;
 	}
+a {
+	text-decoration: none;
+}
 
 h1,
 h2,
@@ -32,8 +35,8 @@ h4,
 h5,
 h6 {
 	font:1rem sans-serif; text-align:center;
-	border:solid black 1px;
-	margin:2px;
+	/* border:solid black 1px; */
+	margin: 0 0 5px 0;
 	}
 
 img { margin:3px 3px 0 3px;
@@ -120,7 +123,7 @@ input[readonly] { /*border:none;*/ }
 input[type=checkbox] { padding-left:5px; }
 input[type=text],
 textarea,
-select { font-size:1.0rem; box-sizing:border-box; width:auto; }
+select { font-size:1.0rem; box-sizing:border-box; width:auto;}
 /*
 input[type=text] { width:100%; }
 span.WIDE { display: block; overflow: hidden; }
@@ -158,7 +161,7 @@ h1.theHead {
 	}
 #library_name, 
 #library_hours, 
-#library_phone { margin:0; font:1.0rem sans-serif;
+#library_phone { margin:0; font:1.0rem sans-serif; text-align: center;
 	}
 #library_name { font-size:2.0rem; }
 
@@ -237,7 +240,8 @@ table#biblioTbl th  {
 
 input[type=button],
 input[type=submit],
-button { font-size:0.9rem;
+button { 
+		font-size:0.9rem;
 	}
 
 /* add changes to separate buttons from accidentally getting pressed -- ftumulak */
@@ -284,7 +288,7 @@ ul#calList li { display:block; list-style:none; margin:0; padding:0; }
 #tabs ul { margin:0; padding:0; margin-bottom:2em; }
 #tabs .controls li {
   	list-style:none; float:left; margin:0; margin-bottom:1em;
-	white-space:nowrap; border-radius:5px 5px 0 0;
+	white-space:nowrap; 
 	}
 #tabs li {
 	display:block; float:left; padding:0.5em;
@@ -533,22 +537,10 @@ div#configDiv{
 	
 	
 @media screen and (min-width:800px) {
+	
 	/* For Desktops */
 	body { font-size:90%; }
-	/* rounded corners and shadows for major layout elements */
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6,
-	fieldset,
-	img,
-	aside,
-	header,
-	#content {
-		border-radius:0.3rem;
-		}
+
 	/*************************************************/
 	aside { 
 		position:fixed; top:1%; left:1%; float:left; width:15%;
@@ -556,7 +548,8 @@ div#configDiv{
 		font-size:0.87rem; /* 14/16 */
 		box-shadow:0.2rem 0.4rem 0.6rem -0.2rem #000;
 		}
-	#obLogo { display:block; }
+		
+	#obLogo { display:block; width: auto; padding: 0;}
 	
 	#obLogo, #imglogo { 
         display: block;
@@ -568,27 +561,26 @@ div#configDiv{
 	
 	
 	#logo { 
-		margin-left:10px; margin-bottom:5px; 
-		width:90%; 
+		/*margin-left:10px; 
+		margin-bottom:5px; */
+		margin: 5px auto;
+		width:80%; 
 		display:block; 
-		border: 2px solid white;
-		/* box-shadow:0.2rem 0.4rem 0.6rem -0.2rem #555; */
-		
 		}
 
 	/*************************************************/
 	h3.theHead {
 		display:block;
 		text-align:center;
-/*		font:bold 1.0em serif;*/ /* 16/16 */
-/*		color:white;*/
-		margin:0;
+		/*		font:bold 1.0em serif;*/ /* 16/16 */
+		/*		color:white;*/
+		
 		}
 	.hdrSpacer { display:block; width:25%; }
 	.about,
 	#library_name, 
 	#library_hours, 
-	#library_phone { margin:2px 5px 2px 5px; font:0.82em sans-serif;}
+	#library_phone { margin:2px 5px 2px 5px; font:0.82em sans-serif; text-align: center;}
 	
 	/*************************************************/
 	ul.nav_main { padding-left:0.5rem; text-align:left; width: 70%;}
@@ -637,10 +629,22 @@ div#configDiv{
 			background-color: #ffa500; /* Change background color on hover */
 			color: #fff; /* Change text color on hover */
 			border-color: #AAA; /* Change border color on hover */
-	}
+		}
 	.report_category, .report_name {margin-bottom: 5px;}
 	/* for added indicator in calendar setup - chatgpt */
 	.calendarClosed {
     background-color: yellow; /* Change as desired */
     color: black; /* Change text color as needed */
+		}
+
+	p.version_bib {
+		font-family: Arial;
+		font-size: 1rem; 
+		color: #555;
+		font-weight: bold;
+		
+		margin: 0;
+		}
+		
+
 	}
