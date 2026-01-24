@@ -58,7 +58,8 @@ if ($tab != 'help') {
 			<!-- this button allows user to expand menu. Intended for phone & tablet users -->
 			<span>
 				<button id="menuBtn" aria-expanded="false">
-					<svg><use xlink:href=#navicon></use></svg>
+					<!-- <svg><use xlink:href=#navicon></use></svg> -->
+					<?php echo '<img id="logo_mini"'.' src="'.Settings::get("library_image_url").'" />'; ?>
 				</button>
 			</span>
 		<?php } ?>
@@ -100,14 +101,14 @@ if ($tab != 'help') {
 	<?php if ($tab != 'opac') { ?>
 		
 		<footer>
-		  <div id="obLogo" style="width: auto; padding: 0;" >
+		  <div id="obLogo">
 				<a href="https://github.com/dtr-kalfer" target="_blank">
 					<img id="imglogo" src="../images/burauen_biblio_sm.webp" border="0" alt="BurauenBiblio" />
 				</a>
 				<br />
 			</div>
 
-			<!-- OpenBiblio Version: --> <?php //echo H(OBIB_CODE_VERSION);?>
+			<p class="version_bib"><?php echo H(OBIB_VARIANT) . " " . H(OBIB_CODE_VERSION);?></p>
 			<h3><a class="copyright" href="../COPYRIGHT.html" target="_blank">COPYRIGHT</a></h3>
 		</footer>
 	<?php } ?>
