@@ -51,20 +51,21 @@
     		}
     	}
 
-			if ($_SESSION['multi_site_func'] > 0) {
-					$sit = new Sites;
-					$lib = $sit->maybeGetOne($_SESSION['current_site']);
 
-					if (!is_array($lib) || $lib['siteid'] != $_SESSION['current_site']) {
-							$lib = $sit->getOne(1);  // fallback
-					}
+	if ($_SESSION['multi_site_func'] > 0) {
+		$sit = new Sites;
+		$lib = $sit->maybeGetOne($_SESSION['current_site']);
 
-					if (is_array($lib)) {
-							$libName = $lib['name'];
-					} else {
-							$libName = 'Unknown Site';
-					}
-			}
+		if (!is_array($lib) || $lib['siteid'] != $_SESSION['current_site']) {
+			$lib = $sit->getOne(1);  // fallback
+		}
+
+		if (is_array($lib)) {
+			$libName = $lib['name'];
+		} else {
+			$libName = 'Unknown Site';
+		}
+	}
 
 
     	echo $libName;
@@ -83,7 +84,7 @@
 	<meta name="tester" content="Neil Redgate, Charlie Tudor">
 	<meta name="burauenbiblio-maintainer" content="Ferdinand Tumulak">
 	<meta name="burauenbiblio-fork-date" content="2025-05-07">
-	<meta name="project-url" content="https://github.com/dtr-kalfer">
+	<meta name="project-url" content="https://github.com/dtr-kalfer/burauenbiblio" >
 	
 	<script src="../shared/modernizr-2.6.2.min.js"></script>
   <script src="../shared/jquery/jquery-3.2.1.min.js"></script>
