@@ -1,63 +1,56 @@
-/* CSS Document */
-body {
-    color:#000000;
-    background-color: #111;
+a {
+	text-decoration: none;
 }
 
+h3:hover {
+	cursor: pointer;
+}
+
+#content {
+	max-width: 800px;
+}
+
+#obLogo {
+	text-align: center;
+}
+
+#obLogo img {
+	width: 90%;
+}
+
+#ph_searchType:hover {
+	cursor: pointer;
+}
+
+.endfooter a, .endfooter a:visited {
+	color: white;
+	background-color:	transparent; 
+	font-weight: bold;
+	margin: 0;
+	
+}
+
+h3.endfooter {
+	text-align: center;
+}
+
+#logo_mini {
+	width: 30%;
+}
+
+p.version_bib {
+	font-family: Arial;
+	font-size: 1rem; 
+	color: #555;
+	font-weight: bold;
+	
+	margin: 0;
+	}
+
 /* ---------------------------- */
-#menuBtn {display:block; }
+#menuBtn {display:block; width: 100%;}
 .menuSect { display:none; }
 
-/* ------- */
-nav { min-width:100%; margin:0.2em 0 0.2em; }
-nav .notPDA { display:none; }
-hr.navSpacer { margin:0.5em; margin-left:2em; color:gray; width:75%; padding-left:2em; }
-
-#accordion { margin-left:auto; margin-right:auto; }
-.navHeading {
-	position:relative;
-	padding-left:1.5em; margin:0.2em 0.1em 0 0.1em;
-	width: 85%;
-	font: normal Veranda; text-align:left; text-decoration:none;
-	}
-.navHeading, .navHeading a, .navHeading a:hover, .navHeading a:active {
-	color:white; background:#70b4cc; text-decoration:none;
-	cursor:pointer;
-	}
-.touch .navHeading { font-size:1.5em; height:1.5em; }
-.navUnselected:before {
-	content:"\00A0";
-	display:block; position:absolute; top:0.4em; left:4px;
-	width:0; height:0;
-	border-width:3px 0px 3px 7px;
-	border-style:solid;
-	border-color:transparent transparent transparent #ffcc66;
-	}
-.navSelected:before {
-	content:"\00A0";
-	display:block; position:absolute; top:0.4em; left:5px;
-	width:0; height:0;
-	border-width:7px 3px 0px 3px;
-	border-style:solid;
-	border-color:#ffcc66 transparent transparent transparent;
-	}
-.navContent {
-	margin:0 0.2em 0.1em 1em; padding-left:0.2em;
-	/*font:normal 120% Veranda; text-decoration:none;*/
-	font:normal Veranda; text-decoration:none;
-	width:88%; color:black; background:white; border:1px solid gray;
-	display:none;
-	}
-.touch .navContent { font-size:1.5em; }
-.navContent a, .navContent a:hover, .navContent a:active {
-	color:black; background:white; text-decoration:none;
-	cursor:pointer;
-	}
-.navSpacer { padding-left:20px; }
-.notOffline { display:none; }
-
-/* ------- */
-.about { background-color:#ffffdd; }
 
 /* ---------------------------- */
 @media screen and (min-width:800px) {
@@ -80,7 +73,5 @@ hr.navSpacer { margin:0.5em; margin-left:2em; color:gray; width:75%; padding-lef
 	div {
 		font-size: 12px;
 	}
-
-	/* Hide specific elements on mobile */
 
 }
