@@ -447,7 +447,7 @@ var bs = {
 
 	/* ====================================== */
 	getPhoto: function (bibid, dest) {
-		if (bibid === undefined) console.log('Missing bibid in getPhoto()');
+		//if (bibid === undefined) console.log('Missing bibid in getPhoto()');
 		$.post(bs.url,{ 'mode':'getPhoto', 'bibid':bibid  }, function(data){
 			if (data != null) {
                 var foto = data[0];
@@ -526,7 +526,7 @@ var bs = {
 			html += '<tr class="listItem" >\n';
 
 			//--// the leftside pretty stuff
-			html += '	<td style="width: 230px;">\n';
+			html += '	<td style="width: 200px;">\n';
 			html += '		<div class="itemVisual" > \n';
 			/* if wanted, we create space for a possible photo, and fill it if one is found */
 			var showFoto = '<?php echo Settings::get('show_item_photos'); ?>';
