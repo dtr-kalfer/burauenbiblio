@@ -11,6 +11,7 @@ Guide:
 - Date format: YYYY-MM-DD
 
 ## [unreleased] YYYY-MM-DD
+- Updated CSS styling for OPAC, biblio photo displayed at center. Leftmost list item column set @ 200px.
 - Updated CSS styling for OPAC and Staff Navigation Menu. Improved display and readability.
 - Updated responsiveness for mobile and tablet viewing.
 
