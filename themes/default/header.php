@@ -65,7 +65,7 @@ if ($tab != 'help') {
 		<?php } ?>
 
 		<!-- Libname is defined in header_top.php -->
-		<span id=\"library_name\" ><?php echo $libName; ?></span>
+		<div id=\"library_name\" class="mylibname" ><?php echo $libName; ?></div>
 
 		<?php
 			if ($tab != "opac") {
@@ -129,7 +129,7 @@ if ($tab != 'help') {
 <?php
 if (isset($params['title']) && $params['title'] != '') {
 	# $params['title'] should be coming from the translation system, allow HTML
-	echo '<h3>'.$params['title'].'</h3>';
+	echo '<h3 id="libcatalog">'.$params['title'].'</h3>';
 }
 if (isset($_REQUEST['msg'])) {
 	echo '<p class="error">'.H($_REQUEST['msg']).'</p>';
