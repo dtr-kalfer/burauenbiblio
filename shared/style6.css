@@ -36,7 +36,7 @@ h5,
 h6 {
 	font:1rem sans-serif; text-align:center;
 	/* border:solid black 1px; */
-	margin: 0 0 5px 0;
+	margin: 0 0 3px 0;
 	}
 
 img { margin:3px 3px 0 3px;
@@ -138,8 +138,12 @@ aside {
 	}
 .obInstall { display:none;
 	}
-#obLogo { display:none;
+#obLogo { 
+	display: block;
+	width: 150px;
+	margin: 0 auto;
 	}
+
 aside input[type=submit] {padding: 0px 20px; }
 
 .notForInstall {
