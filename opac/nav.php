@@ -14,9 +14,9 @@
   	<section class="menuSect">
        	<h3 class="navHeading">OPAC Search Mode</h3>
 				<div class="navContent" id="navSearchMenu">
-			  <a href="../catalog/srchForms.php?tab=OPAC" title="search">📚 OPAC Library Search</a><br />
-			  <a href="../opac/doiSearchForms.php?tab=OPAC" title="doi">📚 DOI Search</a><br />
-				<a href="../opac/free-ebook-gutenberg-oop.php?tab=OPAC" title="gutentex">📚 Gutentex E-book Search</a><br />
+			  <a href="../catalog/srchForms.php?tab=OPAC" title="search">📚 OPAC Library Search</a>
+			  <a href="../opac/doiSearchForms.php?tab=OPAC" title="doi">📚 DOI Search</a>
+				<a href="../opac/free-ebook-gutenberg-oop.php?tab=OPAC" title="gutentex">📚 Gutentex E-book Search</a>
 				</div>
    	</section>
 
