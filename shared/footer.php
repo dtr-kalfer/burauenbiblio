@@ -61,7 +61,7 @@ var obib = {
 		}
 
 		if (obib.opacMode) {
-			console.log('in OPAC mode');
+			// console.log('in OPAC mode');
             obib.setup_SvcWorker();
 			obib.makeNav();
 
@@ -72,7 +72,7 @@ var obib = {
 
 			$('#menuBtn').on('click', function() {
 				// toggle menu visibility
-console.log('menu btn clicked');
+				// console.log('menu btn clicked');
 				$('.menuSect').toggle(); // show/hide
 				if ($(this).attr('aria-expanded') === 'true') {
 					$(this).attr('aria-expanded', 'false');
@@ -126,7 +126,7 @@ console.log('menu btn clicked');
 	setup_SvcWorker: function () {
   		// setup application caching
   		if (navigator.serviceWorker) {
-	        console.log("Service worker API available");
+	        // console.log("Service worker API available");
 	        navigator.serviceWorker.register('../serviceworker.js')
 	        .then ( function (registration) {
 	          console.log("Service worker registration success!", registration.scope);
