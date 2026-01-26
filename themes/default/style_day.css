@@ -308,9 +308,13 @@ html { font-size: 16px; }
 }
 */
 /* Desktop scaling (Your existing logic) */
-@media screen and (min-width: 800px) {
+@media screen and (max-width: 1159px) {
     html { font-size: calc(0.5 * (1em + 1vw)); }
-}
+		#biblioFoto {
+			width: 85px;
+			height: auto;
+		}
+	}
 
 /* Responsive adjustment for small screens */
 @media screen and (max-width: 799px) {
@@ -338,6 +342,7 @@ html { font-size: 16px; }
 		margin-left: 38vw;
 		margin-top: 10px;
 		margin-bottom: 10px;
+		width: 100px;
+		height: auto;
 	}
-
 }
