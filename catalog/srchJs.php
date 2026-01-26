@@ -655,7 +655,7 @@ var bs = {
 		//console.log('URL: ' + bs.url);
 
 		$.post(bs.url, params, function(response) {
-			console.log("Server response: ", response);
+			// console.log("Server response: ", response);
 
 			// Extract $rslt: value using regex
 			var match = response.match(/\$rslt:\s*(.*)/i);
@@ -681,7 +681,7 @@ var bs = {
 		//console.log('URL: ' + bs.url);
 
 		$.post(bs.url, params, function(response) {
-			console.log("Server response: ", response);
+			// console.log("Server response: ", response);
 
 			// Extract $rslt: value using regex
 			var match = response.match(/\$rslt:\s*(.*)/i);
@@ -794,7 +794,7 @@ var bs = {
 		e.preventDefault();
 		e.stopPropagation();
 		var params = "&mode=updateBiblio&" + $('#biblioEditForm').not('.online').serialize();
-			console.log('params: ' +params);
+			// console.log('params: ' +params);
 	    $.post(ie.url, params, function(response){
 	        if (response == '!!success!!'){
     		    $('#msgDiv').html('<?php echo T("Update Biblio Success!"); ?>');
