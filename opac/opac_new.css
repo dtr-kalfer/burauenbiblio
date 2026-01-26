@@ -49,7 +49,7 @@ p.version_bib {
 
 /* ---------------------------- */
 #menuBtn {display:block; width: 100%;}
-.menuSect { display:none; }
+.menuSect { display:block; }
 
 
 /* ---------------------------- */
@@ -57,6 +57,15 @@ p.version_bib {
 	/* For Desktops */
 	#menuBtn { display:none; }
 	.menuSect {display:block; }
+
+	#navSearchMenu {
+		text-align: left;
+		margin: 0 0 5px 10px;
+		a {
+			display: block;
+			padding: 3px 0;	
+		}
+	}	
 }
 
 /* Responsive adjustment for small screens */
@@ -73,5 +82,6 @@ p.version_bib {
 	div {
 		font-size: 12px;
 	}
+
 
 }
