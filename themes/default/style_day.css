@@ -7,8 +7,8 @@ body {
 
 /* useful classes that may appear anywhere */
 .note { color:gray; }
-.error { color:red; /*!important;*/ }
-.warning { color:orange; /*!important;*/ }
+.error { color:red; }
+.warning { color:orange; }
 .hiWarning {color:white; background:orange; }
 .info { color: green }
 .italic { color:lightblue; }
@@ -24,7 +24,7 @@ span.reqd { font-weight:bold; }
 h5#reqdNote { background:#EFDB8A;}
 
 fieldset { border:0; margin:0; padding:0; }
-fieldset, ledgend { background-color:#ffffdd; }
+fieldset, legend { background-color:#ffffdd; }
 
 ::placeholder, .placeholder { color:#000; }
 
@@ -85,7 +85,7 @@ li.nav_selected::first-line { background-color: #ddd; font-weight: bold; }
 .compact_info_display th.title { font:1.0em serif regular;	/* 16/16 */ }
 .compact_info_display th.author { font:1.0em serif regular;	/* 16/16 */ }
 .compact_info_display li { font:0.87em serif;	/* 14/16 */ }
-.hilite { color:white; background-color:green; }
+.hilite { color:white; background-color:red; }
 .search_result .available { font:0.87em serif;	/* 14/16 */ }
 
 /*************************************************/
@@ -119,11 +119,9 @@ tbody.striped tr:nth-child(even) { background-color:#CDC; }
 
 @media screen and (min-width:800px) {
 	/* For Desktops */
-		html { font-size: calc(0.5*(1em + 1vw)); } /* adjust font to size of user's screen */
+		html { font-size: calc(0.5*(1em + 1vw)); }
 
-		h3.theHead { font:bold 1.0em serif; /* 16/16 */ color:white;}
-
-	/* Additional night mode styles can be added or modified here */
+		h3.theHead { font: bold 1.0em Arial; color:white;}
 
 	#password {
 		padding: 3px;
@@ -135,127 +133,7 @@ tbody.striped tr:nth-child(even) { background-color:#CDC; }
 
 }
 
-/* ################### custom day+night slider #################### */
-:root {
-	--bg1: #e0e0e0;
-	--bg2: #100f12;
-	--orange: #ffc207;
-	--dark-purple: #27173A;
-}
-
-.slidecontainer {
-	margin: 5px;
-	padding: 5px;
-	border-sizing: border-box;
-	height: auto;
-	/* background-color: var(--bg1); */
-	transition: all 0.8s;
-	display: grid;
-	place-items: center;
-}
-
-.switch {
-	position: relative;
-	display: inline-block;
-	width: 80px;
-	height: 40px;
-	border-radius: 50px;
-	/* background: bisque; */
-	overflow: hidden;
-}
-
-#invisible {
-	/* in tutorial, this is defined as input element */
-	opacity: 0;
-	width: 0;
-	height: 0;
-}
-
-.slider {
-	position: absolute;
-	background-color: blue;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	border-radius: 50px;
-	transition: all 0.6s;
-	cursor: pointer;
-	box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
-}
-
-.slider::before {
-	position: absolute;
-	content: "";
-	background: var(--orange);
-	height: 30px;
-	width: 30px;
-	border-radius: 50%; 
-	left: 5px;
-	bottom: 5px;
-	transition: all 0.5s;
-	/* box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.7); */
-	box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.7), 0 2px 3px rgba(0, 0, 0, 0.7);
-}
-
-.slider::after {
-	position: absolute;
-	content: "";
-	height: 30px;
-	width: 30px;
-	background: blue;
-	border-radius: 50%;
-	left: -30px;
-	bottom: 4px;
-	transition: all 0.5s;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-#invisible:checked + .slider::before {
-	transform: translateX(40px);
-}
-
-#invisible:checked + .slider::after {
-	transform: translateX(60px);
-}
-
-.quote-container {
-	display: grid;
-	place-content: center;
-	width: 436px;
-  height: auto;
-  border-width: 10px; /* Adjust border width as needed */
-  border-style: solid;
-  border-image: url('circle_orange.png') 10 repeat; /* Replace 'border-image.png' with the path to your border image */
-  padding: 20px; /* Adjust padding as needed */
-  box-sizing: border-box; /* Ensure padding is included in the width and height */
-	/* background-image: url('day_skyline.jpg'); */
-	background-image: linear-gradient(blue, skyblue);
-	background-size: cover;
-	position: relative;
-}
-
-.quote-container::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%; /* Inherit the width of the quote-container */
-  height: 100%; /* Inherit the height of the quote-container */
-  /* background: rgba(0, 0, 0, 0.4);  */
-}
-
-.quote-text {
-	width: 100%;
-	font-family: consolas, sans-serif; /* Choose your preferred font family */
-  font-size: 24px; /* Adjust font size as needed */
-	font-weight: bold;
-  text-align: center;
-  line-height: 1.5; /* Adjust line height as needed */
-	color: white;
-	text-shadow: 3px 3px 3px black;
-	z-index: 1;
-}
+/* ########################## */
 
 #id_repo {
 	background-color: brown;
@@ -264,6 +142,7 @@ tbody.striped tr:nth-child(even) { background-color:#CDC; }
 	text-align: center;
 	margin: 10px 0;
 	padding: 10px;
+	width: auto;
 }
 #ttlHits {
 	font-weight: bold;
@@ -272,16 +151,12 @@ tbody.striped tr:nth-child(even) { background-color:#CDC; }
 	padding: 10px;
 	width: 100%;
 }
+
 .copyright {
 	position: relative;
 	color: white;
 	font-weight: bold;
 	text-decoration: none;
-	
-}
-
-.copyright:hover {
-	color: bisque;
 }
 
 .inlineFldSet2 {
@@ -322,8 +197,7 @@ html { font-size: 16px; }
 		background-color: white;
 	}	
 	
-
-
+/* fit the thumbnail into the small slot, for responsive  */
 @media screen and (max-width: 1159px) {
     html { font-size: calc(0.5 * (1em + 1vw)); }
 		#biblioFoto {
@@ -366,6 +240,7 @@ html { font-size: 16px; }
 	.mylibname {
 		padding: 5px 0;
 		font-size: 16px;
+		font-weight: bold;
 	}
 	
 	#accordion h3 {

@@ -41,11 +41,9 @@
 						<a href="https://github.com/dtr-kalfer" target="_blank">
 							<img src="../images/burauen_biblio_sm.webp" border="0" alt="BurauenBiblio" />
 						</a>
-						<br />
+						
 					</div>
 					<p class="version_bib"><?php echo H(OBIB_VARIANT) . " " . H(OBIB_CODE_VERSION);?></p>
-					
-					<br />
 					<h3 class="endfooter">
 						<a  href="../COPYRIGHT.html" target="_blank">© COPYRIGHT</a>
 					</h3>

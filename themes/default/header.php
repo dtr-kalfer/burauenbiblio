@@ -105,7 +105,6 @@ if ($tab != 'help') {
 				<a href="https://github.com/dtr-kalfer" target="_blank">
 					<img id="imglogo" src="../images/burauen_biblio_sm.webp" border="0" alt="BurauenBiblio" />
 				</a>
-				<br />
 			</div>
 
 			<p class="version_bib"><?php echo H(OBIB_VARIANT) . " " . H(OBIB_CODE_VERSION);?></p>
