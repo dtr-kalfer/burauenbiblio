@@ -307,13 +307,40 @@ html { font-size: 16px; }
 		}	
 }
 */
-/* Desktop scaling (Your existing logic) */
+
+/* Desktop scaling (hover on listItem -F.Tumulak 1/27/2026) */
+
+	/* For Desktops */
+	#menuBtn { display:none; }
+	.menuSect {display:block; }
+
+	#navSearchMenu {
+		text-align: left;
+		margin: 0 0 5px 10px;
+		a {
+			display: block;
+			padding: 3px 0;	
+		}
+	}	
+
+	#srchRslts .listItem {
+		transition: 0.1s;
+	}
+
+	#srchRslts .listItem:hover {
+		transform: scale(1.02);
+		background-color: white;
+	}	
+	
+
+
 @media screen and (max-width: 1159px) {
     html { font-size: calc(0.5 * (1em + 1vw)); }
 		#biblioFoto {
 			width: 85px;
 			height: auto;
 		}
+		
 	}
 
 /* Responsive adjustment for small screens */
