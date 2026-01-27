@@ -298,16 +298,6 @@ tbody.striped tr:nth-child(even) { background-color:#CDC; }
 /* Base for Phones */
 html { font-size: 16px; } 
 
-/* Tablet scaling */
-/*
-@media screen and (min-width: 600px) {
-    html { font-size: calc(1.0 * (0.8em + 0.5vw)); }
-		#aboutlib {
-			text-align: center;
-		}	
-}
-*/
-
 /* Desktop scaling (hover on listItem -F.Tumulak 1/27/2026) */
 
 	/* For Desktops */
