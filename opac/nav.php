@@ -12,7 +12,7 @@
 </style>
     <nav id="accordion" role="navigation" aria-label="site" tabindex="-1">
   	<section class="menuSect">
-       	<h3 class="navHeading">OPAC Search Mode</h3>
+       	<h3 class="navHeading">🔍 OPAC Search Mode</h3>
 				<div class="navContent" id="navSearchMenu">
 			  <a href="../catalog/srchForms.php?tab=OPAC" title="search">📚 OPAC Library Search</a>
 			  <a href="../opac/doiSearchForms.php?tab=OPAC" title="doi">📚 DOI Search</a>
@@ -21,7 +21,7 @@
    	</section>
 
 		<section class="menuSect">
-			<h3 class="navHeading" id="defaultOpen">About Library</h3>
+			<h3 class="navHeading" id="defaultOpen">📚 About Library</h3>
 			<div class="navContent about" id="aboutlib">About Library<br />
 				<?php if (Settings::get('library_image_url') != "") {
 					echo '<img id="logo"'.' src="'.Settings::get("library_image_url").'" />';
@@ -47,7 +47,7 @@
 					
 					<br />
 					<h3 class="endfooter">
-						<a  href="../COPYRIGHT.html" target="_blank">COPYRIGHT</a>
+						<a  href="../COPYRIGHT.html" target="_blank">© COPYRIGHT</a>
 					</h3>
 				</footer>
 	        </div>
