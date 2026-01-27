@@ -51,6 +51,14 @@ p.version_bib {
 #menuBtn {display:block; width: 100%;}
 .menuSect { display:block; }
 
+#srchRslts .listItem {
+	transition: 0.1s;
+}
+
+#srchRslts .listItem:hover {
+	transform: scale(1.02);
+	background-color: white;
+}	
 
 /* Desktop scaling (hover on listItem -F.Tumulak 1/27/2026) OPAC */
 @media screen and (min-width:800px) {
@@ -65,15 +73,6 @@ p.version_bib {
 			display: block;
 			padding: 3px 0;	
 		}
-	}	
-
-	#srchRslts .listItem {
-		transition: 0.1s;
-	}
-
-	#srchRslts .listItem:hover {
-		transform: scale(1.02);
-		background-color: white;
 	}	
 	
 }
