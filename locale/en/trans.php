@@ -96,7 +96,8 @@ $trans["Update Policy"] = "Update Policy";
 $trans["Current Borrow Policies"] = "Current Borrow Policies";
 $trans["No collections found."] = "No collections found.";
 $trans["Biblio Count"] = "Biblio Count";
-
+$trans["Tagged"] = "Tagged";
+$trans["No tagged items found in the cart."] = "No tagged items found in the cart.";
 
 $trans["(enter 0 for unlimited)"] = "(enter 0 for unlimited)";
 $trans["(when available)"] = "(when available)";
