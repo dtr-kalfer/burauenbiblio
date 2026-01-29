@@ -11,6 +11,8 @@ Guide:
 - Date format: YYYY-MM-DD
 
 ## [unreleased] YYYY-MM-DD
+- Updated Tagged Item feature to use class/autoloader setup instead of rpt.
+- Updated welcome page with OPAC button on top left.
 - Updated CSS styling for OPAC, biblio photo displayed at center. Leftmost list item column set @ 200px.
 - Updated CSS styling for OPAC and Staff Navigation Menu. Improved display and readability.
 - Updated responsiveness for mobile and tablet viewing.
