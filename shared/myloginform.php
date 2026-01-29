@@ -62,10 +62,14 @@ body {
     max-width: 380px;
     padding: 2.5rem 2rem;
     background: #eee;
-    border-radius: 12px;
+    
+		border-top-right-radius: 30px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
     text-align: center;
+
+    position: relative; /* 👈 important */
 }
+
 
 /* ---- LOGO ---- */
 .login-logo img {
@@ -120,6 +124,7 @@ body {
     background: #079C2F;
     border: none;
     border-radius: 6px;
+		
     cursor: pointer;
     transition: background 0.2s, opacity 0.2s;
 }
@@ -150,20 +155,7 @@ body {
 }
 
 /* ---- MOBILE ---- */
-@media (max-width: 420px) {
 
-		
-  main#content {
-    position: static;
-    left: auto;
-    top: auto;
-    width: auto;
-    padding: 0;
-		
-		background: transparent;
-		border: none;
-  }		
-}
 
 /* Login page layout override */
 @media screen and (min-width: 800px) {
@@ -179,14 +171,79 @@ body {
   }
 }
 
+/* Login page layout override */
+@media screen and (max-width: 799px) {
+  main#content {
+		border-top-right-radius: 30px;
+    position: static;
+    left: auto;
+    top: auto;
+    width: auto;
+    padding: 0;
+		
+		background: transparent;
+		border: none;
+  }
+}
+
 #sidebar {
 	display: none;
 }
+
+.opac-text {
+	display: none;
+}
+/* ---- OPAC BUTTON (INSIDE CARD) ---- */
+.opac-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    width: 56px;
+    height: 56px;
+
+    border-radius: 50%;
+    background: transparent;
+    color: #fff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+		padding-bottom: 2px;
+    text-decoration: none;
+
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s;
+}
+
+.opac-btn:hover {
+    /* background: #09C83C; */
+		background: #079C2F;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 9px rgba(0, 0, 0, 0.3);
+		.opac-text {
+			display: flex;
+			font-size: 0.9rem;
+		}
+		
+		.opac-book {
+			display: none;
+		}
+}
+
+.opac-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+}
 </style>
-
 <section class="login-container">
-
-    <div class="login-logo">
+		<a href="../catalog/srchForms.php?tab=OPAC" class="opac-btn"><span class="opac-book">📚</span><span class="opac-text">OPAC</span></a>
+		
+		<div class="login-logo">
         <!-- Placeholder logo -->
         
 				<a href="https://github.com/dtr-kalfer" target="_blank"><img src="../images/burauenbiblio2.webp" alt="BurauenBiblio Logo"></a>
