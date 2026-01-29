@@ -50,8 +50,9 @@ function staff_menu() {
 		//if (isset($_SESSION['rpt_BiblioSearch'])) {
 		//	Nav::node('cataloging/search', T("old search results"), '../shared/biblio_search.php?searchType=previous&tab='.U($tab));
 		//}
-
-		Nav::node('cataloging/cart', T("Tagged Items"), '../shared/req_cart2.php?type=request_cart');
+		Nav::node('cataloging/tagged', T("Tagged Items"), "../catalog/taggedItems.php");
+		
+		// Nav::node('cataloging/cart', T("Tagged Items"), '../shared/req_cart2.php?type=request_cart');
 			$params = 'bibid='.U(isset($_REQUEST["bibid"]));
 			if (isset($_REQUEST['rpt']) and isset($_REQUEST['seqno'])) {
 				$params .= '&rpt='.U($_REQUEST['rpt']);
