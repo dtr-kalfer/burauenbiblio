@@ -11,7 +11,8 @@ function staff_menu() {
 		Nav::node('circulation/searchform', T("Members"), '../circ/memberForms.php');
 		Nav::node('circulation/search', T("SearchResults"));
 
-		Nav::node('circulation/bookings', T("Bookings"), '../circ/bookings.php?type=holds');
+		Nav::node('circulation/bookings_v2', T("Bookings"), '../circ/bookingsv2.php'); // new booking class based --F.Tumuak
+		// Nav::node('circulation/bookings', T("Bookings"), '../circ/bookings.php?type=holds'); obsolete --F.Tumulak
 		Nav::node('circulation/bookings/cart', T("Booking Cart")); //booking cart removed --Ferdinand Tumulak
 		Nav::node('circulation/bookings/pending', T("Pending Bookings"));
 
@@ -52,7 +53,7 @@ function staff_menu() {
 		//}
 		Nav::node('cataloging/tagged', T("Tagged Items"), "../catalog/taggedItems.php");
 		
-		// Nav::node('cataloging/cart', T("Tagged Items"), '../shared/req_cart2.php?type=request_cart');
+		// Nav::node('cataloging/cart', T("Tagged Items"), '../shared/req_cart2.php?type=request_cart'); obsolete --F.Tumulak
 			$params = 'bibid='.U(isset($_REQUEST["bibid"]));
 			if (isset($_REQUEST['rpt']) and isset($_REQUEST['seqno'])) {
 				$params .= '&rpt='.U($_REQUEST['rpt']);
