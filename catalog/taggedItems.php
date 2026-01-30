@@ -1,27 +1,30 @@
 <style>
 .tagged-table {
     width: 750px;
-    
+    max-height: 525px;   /* pick what feels right */
+    overflow-y: auto; /* make the y-axis scrollable when overflow is reached */
     border-radius: 6px;
-    overflow: hidden;
     font-size: 14px;
 }
 
 .tagged-row {
     display: grid;
-    grid-template-columns: 80px 1fr 1fr;
+    grid-template-columns: 80px 1fr 1fr 1fr;
     padding: 3px 8px;
     border-bottom: 1px solid #666;
     align-items: start; /* important for multi-line text */
 }
 
-
 .tagged-row.header {
+    position: sticky;
+    top: 0;
+    z-index: 2;
     background: #f4f4f4;
     font-weight: bold;
+    border-bottom: 2px solid #555;
 }
 
-/*-- preceed before hover styling --*/
+/*-- this should preceed before any hover styling --*/
 /*-- .tagged-row:nth-child(n):hover --*/
 .tagged-row:nth-child(even):not(.header) {
     background: #eee;
@@ -107,7 +110,8 @@ if (empty($rows)) {
     /* Header */
     echo "
     <div class='tagged-row header'>
-        <div class='tagged-cell nowrap'>BibID</div>
+        <div class='tagged-cell wrap'>BibID</div>
+				<div class='tagged-cell wrap'>Call Number</div>
         <div class='tagged-cell wrap'>Title</div>
         <div class='tagged-cell wrap'>Author</div>
     </div>
@@ -118,6 +122,7 @@ if (empty($rows)) {
         echo "
         <div class='tagged-row'>
             <div class='tagged-cell nowrap'>{$row['bibid']}</div>
+						<div class='tagged-cell wrap'>{$row['call_number']}</div>
             <div class='tagged-cell wrap'>{$row['title']}</div>
             <div class='tagged-cell wrap'>{$row['author']}</div>
         </div>
