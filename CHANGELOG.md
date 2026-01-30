@@ -11,11 +11,13 @@ Guide:
 - Date format: YYYY-MM-DD
 
 ## [unreleased] YYYY-MM-DD
+- Updated Tagged Item results to include column 'Call Number', together with BibId, Title, Author.
+- Refactored SQL command using MARC tags logic instead of 'fields+x' setup.
 - Updated Tagged Item feature to use class/autoloader setup instead of rpt.
 - Updated welcome page with OPAC button on top left.
 - Updated CSS styling for OPAC, biblio photo displayed at center. Leftmost list item column set @ 200px.
 - Updated CSS styling for OPAC and Staff Navigation Menu. Improved display and readability.
-- Updated responsiveness for mobile and tablet viewing.
+- Updated responsiveness for mobile and tablet (OPAC viewing).
 
 ## [3.25.4] 2026-01-22
 - Critical Fixed: Delete photo thumbnail confirmation keeps reappearing even after 'cancel' or 'ok'.
