@@ -54,7 +54,7 @@ class Tagged extends \ConnectDB
 						ON a.fieldid = af.fieldid
 					 AND a.subfield_cd = 'a'
 
-				ORDER BY title;
+				ORDER BY bibid;
         ";
 
         // Uses ConnectDB::select()
