@@ -1,7 +1,7 @@
 <style>
 .tagged-table {
     width: 750px;
-    max-height: 525px;   /* pick what feels right */
+    max-height: 505px;   /* pick what feels right */
     overflow-y: auto; /* make the y-axis scrollable when overflow is reached */
     border-radius: 6px;
     font-size: 14px;
@@ -61,6 +61,10 @@
 h3.tagged {
 	background-color: red;
 }
+.totalc {
+	font-weight: bold;
+	text-align: center;
+}
 </style>
 <?php 
 /* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
@@ -84,7 +88,7 @@ use Tagged\Tagged;
 
 $tagged = new Tagged();
 $rows = $tagged->getTaggedBibItems();
-
+$total = count($rows);
 ?>
 <h3 class="tagged">📚 <?php echo T("The Tagged Items Cart"); ?> 📚</h3>
 <p>
@@ -99,6 +103,7 @@ The Tagged Items Cart is a *temporary holding space* for catalog items that may 
 <h3 class="tagged">
 	📚 <?php echo T("List of tagged items for review"); ?> 📚
 </h2>
+<p class="totalc">Total tagged items: <?php echo $total; ?></p>
 <section>
 <?php 
 if (empty($rows)) {
