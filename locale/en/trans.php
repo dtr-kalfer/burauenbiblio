@@ -98,6 +98,8 @@ $trans["No collections found."] = "No collections found.";
 $trans["Biblio Count"] = "Biblio Count";
 $trans["Tagged"] = "Tagged";
 $trans["No tagged items found in the cart."] = "No tagged items found in the cart.";
+$trans["The Booked Items Cart"] = "The Booked Items Cart";
+$trans["List of booked items"] = "List of booked items";
 
 $trans["(enter 0 for unlimited)"] = "(enter 0 for unlimited)";
 $trans["(when available)"] = "(when available)";
