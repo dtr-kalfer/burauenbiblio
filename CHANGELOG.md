@@ -11,6 +11,7 @@ Guide:
 - Date format: YYYY-MM-DD
 
 ## [unreleased] YYYY-MM-DD
+- Fixed: tag/untag status getting stuck is now fixed. It happens when another search query was made.
 - Updated Tagged Item results to include column 'Call Number', together with BibId, Title, Author.
 - Refactored SQL command using MARC tags logic instead of 'fields+x' setup.
 - Updated Tagged Item feature to use class/autoloader setup instead of rpt.
