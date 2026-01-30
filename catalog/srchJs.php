@@ -107,10 +107,10 @@ var bs = {
 		$('.bibGobkBtn').on('click',null,function () {
 		  if (bs.multiMode) {
 				bs.rtnToList();
-				$('#cart_result').html("");
 			} else {
 			  bs.rtnToSrch();
 			}
+			$('#cart_result').html("");
 		});
 
 		// for the item editor screen
@@ -655,6 +655,7 @@ var bs = {
 		//console.log('URL: ' + bs.url);
 
 		$.post(bs.url, params, function(response) {
+			if ($('#cart_result').length === 0) return;
 			// console.log("Server response: ", response);
 
 			// Extract $rslt: value using regex
@@ -681,6 +682,7 @@ var bs = {
 		//console.log('URL: ' + bs.url);
 
 		$.post(bs.url, params, function(response) {
+			if ($('#cart_result').length === 0) return; // this should fix stuck status result
 			// console.log("Server response: ", response);
 
 			// Extract $rslt: value using regex
