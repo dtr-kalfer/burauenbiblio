@@ -25,7 +25,7 @@ The member records are entirely fictitious and do not represent real individuals
 
 ## ✅ PHP 8.0 Migration Notes
 
-![Homepage](./readme_assets/burauenbiblio_search.webp "BurauenBiblio Homepage")
+![Homepage](./readme_assets/burauenbiblio_search1.webp "BurauenBiblio Homepage")
 
 The **BurauenBiblio System** is in active use at **Burauen Community College**, supporting bibliographic search requests from both students and faculty. It currently manages nearly **5,000 bibliographic records**, with continuous growth in its collection.
 
@@ -44,7 +44,7 @@ If you wish to try BurauenBiblio on your existing Openbiblio database:
 
 ## 📚 Updated Login & Welcome Interface
 
-![Homepage](./readme_assets/new_login_form.webp "BurauenBiblio Homepage")
+![Homepage](./readme_assets/new_login_form1.webp "BurauenBiblio Homepage")
 
 The login and welcome page UI has been refreshed with a cleaner, modern layout inspired by contemporary web interfaces.
 
@@ -52,7 +52,7 @@ This update improves visual clarity, accessibility, and mobile responsiveness wh
 
 ## 📚 OPAC eBook Search and Download (Gutendex Integration)
 
-![Homepage](./readme_assets/gutentex_sample_result.webp "BurauenBiblio Homepage")
+![Homepage](./readme_assets/gutentex_sample_result1.webp "BurauenBiblio Homepage")
 
 BurauenBiblio now includes a lightweight eBook search module powered by the
 [Gutendex API](https://gutendex.com/)
@@ -67,7 +67,7 @@ https://github.com/garethbjohnson/gutendex
 - 100% free and open-source, ideal for educational and library use.
 - eBook search appended on OPAC module.
 
-![Homepage](./readme_assets/opac_ebook_download.webp "BurauenBiblio Homepage")
+![Homepage](./readme_assets/opac_ebook_download1.webp "BurauenBiblio Homepage")
 
 ### ⚖️ License & Attribution
 This feature accesses metadata and eBook files hosted by **Project Gutenberg**.
@@ -80,7 +80,7 @@ official Project Gutenberg servers.
 
 ### 📌 Calendar Manager
 
-![Homepage](./readme_assets/sample_calendar_image.webp "BurauenBiblio Homepage")
+![Homepage](./readme_assets/sample_calendar_image1.webp "BurauenBiblio Homepage")
 
 The system uses **Calendar Logic** to accurately calculate due dates based on your **library’s open and closed days**.
 
@@ -100,7 +100,7 @@ This update refactors the previous policy system into a simpler, per-day overdue
 
 ### 📌 OPAC DOI Search
 
-![Homepage](./readme_assets/doi_sample_image.webp "BurauenBiblio Homepage")
+![Homepage](./readme_assets/doi_sample_image1.webp "BurauenBiblio Homepage")
 
 **DOI search** allows DOI to URL resolve, and patrons get redirected to the **official, authoritative source of the article (publisher, repository, or open-access platform)** on the internet.
 
@@ -113,7 +113,7 @@ This update refactors the previous policy system into a simpler, per-day overdue
 
 ### 📌 To-Do List 
 
-![Homepage](./readme_assets/todo_list.webp "BurauenBiblio Homepage")
+![Homepage](./readme_assets/todo_list1.webp "BurauenBiblio Homepage")
 
 The **To-Do List** is a simple yet powerful enhancement to the BurauenBiblio library system. It allows staff members to easily **jot down, organize, and share important notes, reminders, and tasks** directly within the library interface. Whether it’s for planning upcoming events, tracking routine duties, reminding colleagues about library schedules, or noting down quick ideas — the to-do list keeps everyone in sync.
 
@@ -125,7 +125,7 @@ The **To-Do List** is a simple yet powerful enhancement to the BurauenBiblio lib
 
 ### 📌 MARC tags setup
 
-![Homepage](./readme_assets/marc_tags_ph2.webp "BurauenBiblio Homepage")
+![Homepage](./readme_assets/marc_tags_ph21.webp "BurauenBiblio Homepage")
 
 The included SQL file provides MARC tag entries tailored for **Philippine-compatible** library records.
 
@@ -133,7 +133,7 @@ You may also customize or extend the entries to align with your own country’s 
 
 ### 📌 Z39.50 Online Metadata Retrieval
 
-![Homepage](./readme_assets/metadata_retrieval.webp "BurauenBiblio Homepage")
+![Homepage](./readme_assets/metadata_retrieval1.webp "BurauenBiblio Homepage")
 
 Support for metadata retrieval process—particularly for cataloging by ISBN/LCCN using remote bibliographic sources.
 
@@ -237,7 +237,7 @@ This tool:
 
 ## 🙌 Project Direction
 
-![Homepage](./readme_assets/actual_use_case.webp "BurauenBiblio Homepage")
+![Homepage](./readme_assets/actual_use_case1.webp "BurauenBiblio Homepage")
 
 This project is part of my ongoing personal initiative to modernize the OpenBiblio codebase.
 
