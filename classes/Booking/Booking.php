@@ -11,6 +11,7 @@ class Booking extends \ConnectDB
      * Get booked or reserved items from cart
      *
      * @return array
+		 * Please use this sql as a baseline reference for reservation and join stuff in future. --> F.Tumulak
      */
     public function getBookedItems(): array
     {
@@ -21,12 +22,14 @@ class Booking extends \ConnectDB
 						bc.barcode_nmbr,
 						bsh.status_cd,
 						bk.due_dt,
+						mc.description AS classification_name,
 						stat.description AS status,
 						DATE_FORMAT(bh.hold_begin_dt, '%m/%d/%Y') AS hold_begin,
 						IFNULL(DATE_FORMAT(bk.due_dt, '%m/%d/%Y'), 'N/A') AS due,
 						CONCAT(ts.subfield_data, ' ', IFNULL(sub.subfield_data, '')) AS title
 				FROM biblio_hold bh
 				JOIN member m ON m.mbrid = bh.mbrid
+				JOIN mbr_classify_dm mc ON mc.code = m.classification
 				JOIN biblio_copy bc ON bc.copyid = bh.copyid
 				JOIN biblio_status_hist bsh ON bsh.histid = bc.histid
 				JOIN biblio_status_dm stat ON stat.code = bsh.status_cd

@@ -11,7 +11,8 @@ Guide:
 - Date format: YYYY-MM-DD
 
 ## [unreleased] YYYY-MM-DD
-- Refactor: circulation node booking/reservation. Use class setup instead of using rpt.)
+- Refactor: circulation node booking/reservation. Additional column *Member Type* on booking results.
+- Refactor: circulation node booking/reservation. Use class setup instead of using rpt.
 - Circulation node booking: date requested column for booking patrons.
 - Fixed: tag/untag status getting stuck is now fixed. It happens when another search query was made.
 - Updated Tagged Item results to include column 'Call Number', together with BibId, Title, Author.
