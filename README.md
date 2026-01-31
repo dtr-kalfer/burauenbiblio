@@ -44,7 +44,7 @@ If you wish to try BurauenBiblio on your existing Openbiblio database:
 
 ## 📚 Updated Login & Welcome Interface
 
-![Homepage](./readme_assets/new_login_form1.webp "BurauenBiblio Homepage")
+![Homepage](./readme_assets/new_login_form11.webp "BurauenBiblio Homepage")
 
 The login and welcome page UI has been refreshed with a cleaner, modern layout inspired by contemporary web interfaces.
 
