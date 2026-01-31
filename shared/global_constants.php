@@ -35,7 +35,7 @@ define("OBIB_DATABASE", ""); // added global constant OBIB_DATABASE not defined 
  *  Misc. system constants
  ****************************************************************************
  */
-define("OBIB_CODE_VERSION","3.25.4"); // added global constant BurauenBiblio verion --F.Tumulak
+define("OBIB_CODE_VERSION","3.28.5"); // added global constant BurauenBiblio verion --F.Tumulak
 define("OBIB_VARIANT","BurauenBiblio"); // added global constant BurauenBiblio verion --F.Tumulak 1/24/2026
 define("OBIB_LATEST_DB_VERSION","1.0b");
 
