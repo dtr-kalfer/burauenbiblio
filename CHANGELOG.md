@@ -10,7 +10,7 @@ Guide:
 - version 2.x.x below PHP 7.4.26 supported
 - Date format: YYYY-MM-DD
 
-## [unreleased] YYYY-MM-DD
+## [3.28.5] 2026-01-31
 - Refactor: circulation node booking/reservation. Additional column *Member Type* on booking results.
 - Refactor: circulation node booking/reservation. Use class setup instead of using rpt.
 - Circulation node booking: date requested column for booking patrons.
