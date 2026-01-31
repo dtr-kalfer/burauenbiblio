@@ -113,7 +113,7 @@ This update refactors the previous policy system into a simpler, per-day overdue
 
 ### 📌 To-Do List 
 
-![Homepage](./readme_assets/todo_list1.webp "BurauenBiblio Homepage")
+![Homepage](./readme_assets/todo_list2.webp "BurauenBiblio Homepage")
 
 The **To-Do List** is a simple yet powerful enhancement to the BurauenBiblio library system. It allows staff members to easily **jot down, organize, and share important notes, reminders, and tasks** directly within the library interface. Whether it’s for planning upcoming events, tracking routine duties, reminding colleagues about library schedules, or noting down quick ideas — the to-do list keeps everyone in sync.
 
