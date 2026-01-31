@@ -1,6 +1,6 @@
 <style>
 .tagged-table {
-    width: 850px;
+    width: 900px;
     max-height: 525px;   /* pick what feels right */
     overflow-y: auto; /* make the y-axis scrollable when overflow is reached */
     border-radius: 6px;
@@ -9,7 +9,7 @@
 
 .tagged-row {
     display: grid;
-    grid-template-columns: 140px 2fr 1fr 1fr 2fr;
+    grid-template-columns: 140px 2fr 1fr 1fr 2fr 1fr;
     padding: 3px 8px;
     border-bottom: 1px solid #666;
     align-items: start; /* important for multi-line text */
@@ -120,11 +120,12 @@ if (empty($rows)) {
     /* Header */
     echo "
     <div class='tagged-row header'>
-				<div class='tagged-cell wrap'>Barcode</div>
+				<div class='tagged-cell nowrap'>Barcode</div>
 				<div class='tagged-cell wrap'>Title</div>
         <div class='tagged-cell wrap'>Status</div>
         <div class='tagged-cell wrap'>Request Date</div>
 				<div class='tagged-cell wrap'>Requested by</div>
+				<div class='tagged-cell wrap'>Type</div>
     </div>
     ";
 
@@ -137,6 +138,7 @@ if (empty($rows)) {
             <div class='tagged-cell wrap'>{$row['status']}</div>
             <div class='tagged-cell wrap'>{$row['hold_begin']}</div>
 						<div class='tagged-cell wrap'>{$row['member']}</div>
+						<div class='tagged-cell wrap'>{$row['classification_name']}</div>
         </div>
         ";
     }
