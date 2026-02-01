@@ -137,6 +137,18 @@ You may also customize or extend the entries to align with your own country’s 
 
 Support for metadata retrieval process—particularly for cataloging by ISBN/LCCN using remote bibliographic sources.
 
+### 📦 Booked Items Cart
+
+![Homepage](./readme_assets/booked_items1.webp "Booked Items")
+
+The **Booked Items Cart** is a reservation list requested by patrons. It supports reservations for specific titles, high-demand books, and materials that are frequently checked out, operating on a first-come, first-served basis.
+
+### 📚 Tagged Items Cart
+
+![Homepage](./readme_assets/tagged_items1.webp "Tagged Items")
+
+**Tagged Items** is a temporary review cart for bibliographic records that require attention. It helps staff quickly identify materials with incomplete metadata, call number conflicts, duplicate records, or physical issues, enabling focused cleanup and quality control within the catalog.
+
 ## 📝 Analytics
 
 ### 📝 Analytics - Monthly Circulation Report 
