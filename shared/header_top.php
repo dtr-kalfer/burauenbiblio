@@ -26,7 +26,7 @@
   <!--link rel="apple-touch-icon" href="../apple-touch-icon.png"-->
   <style>
     html, body {
-      background-color: #111;
+      background-color: #052e08;
     }
   </style>
   <!-- build title using library's name (or current-site name) from database -->
@@ -76,7 +76,10 @@
     }
     ?>
   </title>
-
+	<!-- PWA Progressive Web App -->
+	<meta name="theme-color" content="#084508" media="(prefers-color-scheme: light)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">	
 	<!-- Project Metadata for OpenBiblio -->
 	<meta name="description" content="OpenBiblio Library System - Originally developed as version 1.0a">
 	<meta name="author" content="Luuk Jansen, Fred LaPlante, Jane Sandberg, Micah Stetson">
