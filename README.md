@@ -300,6 +300,7 @@ This project makes use of the following open-source libraries and resources:
 - Chart.js – Data visualization (MIT)
 - jsCalendar – Todo list Calendar UI component (MIT)
 - Gutendex – Public book catalog API for Project Gutenberg (MIT)
+- fpdf – Generate PDF files directly using PHP (Permissive License)
 
 👀 See [CREDITS.md](./CREDITS.md) for additional attribution details or see LICENSES/ directory.
 

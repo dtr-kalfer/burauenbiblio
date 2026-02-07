@@ -32,6 +32,20 @@ Reed–Solomon error correction implementation:
 
 ---
 
+## FPDF
+
+**FPDF** is used for generating PDF documents.
+
+- Project: FPDF
+- Author: Olivier Plathey
+- License: FPDF License
+- Website: https://www.fpdf.org/
+
+FPDF is a lightweight PHP library for creating PDF files without external
+dependencies.
+
+---
+
 ## DejaVu Sans Mono
 
 **DejaVu Sans Mono** is used for rendering 13-digit numeric identifiers beneath
