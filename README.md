@@ -296,9 +296,7 @@ This project makes use of the following open-source libraries and resources:
 - jsCalendar – Todo list Calendar UI component (MIT)
 - Gutendex – Public book catalog API for Project Gutenberg (MIT)
 
-Additional license and attribution details can be found in
-CREDITS.md
-and the LICENSES/ directory.
+👀 See [CREDITS.md](./CREDITS.md) for additional attribution details or see LICENSES/ directory.
 
 ## 📦 Installation
 
