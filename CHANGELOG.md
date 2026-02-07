@@ -10,6 +10,9 @@ Guide:
 - version 2.x.x below PHP 7.4.26 supported
 - Date format: YYYY-MM-DD
 
+## [unreleased] YYYY-MM-DD
+- Updated: QR styling in preparation for QR code printing support.
+
 ## [3.28.5] 2026-01-31
 - Added: PWA (Progressive Web App) Styling using dark green theme.
 - Refactor: circulation node booking/reservation. Additional column *Member Type* on booking results.
