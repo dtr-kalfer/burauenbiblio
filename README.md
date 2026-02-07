@@ -1,3 +1,6 @@
+![License](https://img.shields.io/badge/license-GPL-blue)
+![Third-Party Licenses](https://img.shields.io/badge/third--party-licenses-included-brightgreen)
+
 # BurauenBiblio 📚🌴
 
 ## Project Credit & Intent
