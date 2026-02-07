@@ -4,6 +4,11 @@ html { font-size: calc(1.0*(1em + 1vw)); } /* adjust font to size of user's scre
 body {
     color:#000000;
 }
+/* Placeholder default Grey color */
+::placeholder {
+  color: #888; /* Grey color */
+  opacity: 0.5;
+}
 
 /* useful classes that may appear anywhere */
 .note { color:gray; }
@@ -42,6 +47,10 @@ input[type=button]:hover, input[type=submit]:hover, button:hover, #somebutton:ho
     border-color: #AAA; /* Change border color on hover */
 }	
 
+input[type=button]:active, input[type=submit]:active, button:active, #somebutton:active {
+    background-color: green; /* Change background color on hover */
+}
+
 input:focus { background:rgb(230,255,255); }
 input:disabled,
 button:disabled { background:#dddddd; color:#888888; }
@@ -61,13 +70,15 @@ h1.theHead { color:white; }
 #library_name { color:black; }
 
 ul.nav_main > li.nav_selected { border: 10px double bisque; background-color: beige;}
+li.nav_selected a:active {background-color: orange;}
+
 nav a { color:darkblue; }
 nav a:visited { color:darkblue; }
 nav a.button { font:0.75em serif; /* 12/16 */ color:black; background:#b2dae4; }
 nav a.button:visited { color:black; }
-li.nav_selected::first-line { background-color: #ddd; font-weight: bold; }
-.nav_selected li:hover {background-color: bisque;}
 
+li.nav_selected::first-line { background-color: #ddd; font-weight: bold; }
+.nav_selected li:hover {background-color: #eee;}
 
 /*************************************************/
 #content { background:white; }
