@@ -269,6 +269,21 @@ This modernization effort builds on the original **OpenBiblio system**, tailored
 
 If you find this project valuable, you can support its development so it can continue to grow and serve libraries effectively.
 
+## 🔖 Attributions
+
+This project makes use of the following open-source libraries and resources:
+
+- phpqrcode – QR code generation (LGPL)
+- DejaVu Sans Mono – Numeric label font (SIL Open Font License 1.1)
+- HTMX – Dynamic server-driven UI (MIT)
+- Chart.js – Data visualization (MIT)
+- jsCalendar – Todo list Calendar UI component (MIT)
+- Gutendex – Public book catalog API for Project Gutenberg (MIT)
+
+Additional license and attribution details can be found in
+CREDITS.md
+and the LICENSES/ directory.
+
 ## 📦 Installation
 
 📌 See [how_to_install.md](./how_to_install.md) for installation.
