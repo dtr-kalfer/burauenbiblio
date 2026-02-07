@@ -101,6 +101,8 @@ $trans["No tagged items found in the cart."] = "No tagged items found in the car
 $trans["The Booked Items Cart"] = "The Booked Items Cart";
 $trans["List of booked items"] = "List of booked items";
 $trans["No booked items found in the cart."] = "No booked items found in the cart.";
+$trans["QR Gen."] = "QR Gen.";
+$trans["QR Generator"] = "QR Generator";
 
 $trans["(enter 0 for unlimited)"] = "(enter 0 for unlimited)";
 $trans["(when available)"] = "(when available)";
