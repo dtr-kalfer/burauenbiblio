@@ -92,6 +92,8 @@ This feature adds a QR Code generation and batch-printing system to BurauenBibli
 - Optimized for half A4 sticker paper (105mm × 297mm)
 - Avoids thermal printer fading by using inkjet / laser printers
 
+![Homepage](./readme_assets/qr_printout.webp "BurauenBiblio Homepage")
+
 This approach allows libraries to print QR labels once, then cut and paste them onto books as needed.
 
 ### 📌 Calendar Manager

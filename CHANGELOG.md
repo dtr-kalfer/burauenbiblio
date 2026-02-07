@@ -10,8 +10,9 @@ Guide:
 - version 2.x.x below PHP 7.4.26 supported
 - Date format: YYYY-MM-DD
 
-## [unreleased] YYYY-MM-DD
+## [3.32.8] 2026-02-07
 - Added: QR code printing feature for barcoding books. (See README.md for details)
+- Added: phpqrcode – QR code generation (LGPL) libraries.
 - Updated: QR styling in preparation for QR code printing support.
 
 ## [3.28.5] 2026-01-31
