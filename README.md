@@ -1,5 +1,5 @@
 ![License](https://img.shields.io/badge/license-GPL-blue)
-![Third-Party Licenses](https://img.shields.io/badge/third--party-licenses-included-brightgreen)
+[![Third-Party Licenses](https://img.shields.io/badge/third--party-licenses-included-brightgreen)](CREDITS.md)
 
 # BurauenBiblio 📚🌴
 
