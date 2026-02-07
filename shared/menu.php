@@ -85,6 +85,8 @@ function staff_menu() {
 		Nav::node('admin', T("Admin"), '../admin/index.php');
 		
 		Nav::node('admin/info', T("App. Info"), '../admin/app_stats.php'); // Added this app. information status -->F.Tumulak
+
+		Nav::node('admin/qr_code', T("QR Gen."), '../admin/qr_form.php'); // Added this app. qr form -->F.Tumulak
 		
 		Nav::node('admin/analytics', T("analytics"),'../circ/attendance_form.php');
 			Nav::node('admin/analytics/attendance', T("attendance"),'../circ/attendance_form.php');
