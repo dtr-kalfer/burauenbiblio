@@ -78,6 +78,22 @@ official Project Gutenberg servers.
 
 ## 📌 Other Features
 
+### 📦 QR Code Generator & Print Sheet Feature
+
+![Homepage](./readme_assets/qr_sampler.webp "BurauenBiblio Homepage")
+
+This feature adds a QR Code generation and batch-printing system to BurauenBiblio, designed for durability, print efficiency, and real-world library workflows.
+
+✨ Overview
+
+- Generates QR codes from 13-digit numeric identifiers
+- Saves QR images as PNG files for reuse and batch printing
+- Produces a 3 × 8 QR code layout (24 stickers total)
+- Optimized for half A4 sticker paper (105mm × 297mm)
+- Avoids thermal printer fading by using inkjet / laser printers
+
+This approach allows libraries to print QR labels once, then cut and paste them onto books as needed.
+
 ### 📌 Calendar Manager
 
 ![Homepage](./readme_assets/sample_calendar_image1.webp "BurauenBiblio Homepage")

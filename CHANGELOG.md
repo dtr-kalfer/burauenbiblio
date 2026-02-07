@@ -11,6 +11,7 @@ Guide:
 - Date format: YYYY-MM-DD
 
 ## [unreleased] YYYY-MM-DD
+- Added: QR code printing feature for barcoding books. (See README.md for details)
 - Updated: QR styling in preparation for QR code printing support.
 
 ## [3.28.5] 2026-01-31
