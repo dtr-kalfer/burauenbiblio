@@ -17,7 +17,7 @@ It is named in honor of my hometown in Leyte, **Burauen**.
 
 📌 See [CHANGELOG.md](./CHANGELOG.md) for version history.
 
-![Homepage](./readme_assets/opac_system2.webp "BurauenBiblio Homepage")
+![OPAC system](./readme_assets/opac_system2.webp)
 
 This repository includes a small set of sample bibliographic records (books) and fictional member accounts as part of the included SQL data.
 These are provided solely for the purpose of demonstrating and testing the functionality of the OpenBiblio system.
@@ -28,7 +28,7 @@ The member records are entirely fictitious and do not represent real individuals
 
 ## ✅ PHP 8.0 Migration Notes
 
-![Homepage](./readme_assets/burauenbiblio_search1.webp "BurauenBiblio Homepage")
+![search sample](./readme_assets/burauenbiblio_search1.webp)
 
 The **BurauenBiblio System** is in active use at **Burauen Community College**, supporting bibliographic search requests from both students and faculty. It currently manages nearly **5,000 bibliographic records**, with continuous growth in its collection.
 
@@ -47,7 +47,7 @@ If you wish to try BurauenBiblio on your existing Openbiblio database:
 
 ## 📚 Updated Login & Welcome Interface
 
-![Homepage](./readme_assets/welcome_screen_new.webp "BurauenBiblio Homepage")
+![welcome screen](./readme_assets/welcome_screen_new.webp)
 
 The login and welcome page UI has been refreshed with a cleaner and modern progressive web app layout.
 
@@ -55,7 +55,7 @@ This update improves visual clarity, accessibility, and mobile responsiveness wh
 
 ## 📚 OPAC eBook Search and Download (Gutendex Integration)
 
-![Homepage](./readme_assets/gutentex_sample_result1.webp "BurauenBiblio Homepage")
+![gutendex](./readme_assets/gutentex_sample_result1.webp)
 
 BurauenBiblio now includes a lightweight eBook search module powered by the
 [Gutendex API](https://gutendex.com/)
@@ -70,7 +70,7 @@ https://github.com/garethbjohnson/gutendex
 - 100% free and open-source, ideal for educational and library use.
 - eBook search appended on OPAC module.
 
-![Homepage](./readme_assets/opac_ebook_download1.webp "BurauenBiblio Homepage")
+![gutendex sample result](./readme_assets/opac_ebook_download1.webp)
 
 ### ⚖️ License & Attribution
 This feature accesses metadata and eBook files hosted by **Project Gutenberg**.
@@ -83,7 +83,7 @@ official Project Gutenberg servers.
 
 ### 📦 QR Code Generator & Print Sheet Feature
 
-![Homepage](./readme_assets/qr_sampler.webp "BurauenBiblio Homepage")
+![QR UI sample](./readme_assets/qr_sampler.webp)
 
 This feature adds a QR Code generation and batch-printing system to BurauenBiblio, designed for durability, print efficiency, and real-world library workflows.
 
@@ -95,25 +95,25 @@ This feature adds a QR Code generation and batch-printing system to BurauenBibli
 - Optimized for half A4 sticker paper (105mm × 297mm)
 - Avoids thermal printer fading by using inkjet / laser printers
 
-![Homepage](./readme_assets/qr_printout.webp "BurauenBiblio Homepage")
+![QR actual print](./readme_assets/qr_printout.webp)
 
 This approach allows libraries to print QR labels once, then cut and paste them onto books as needed.
 
 ### 📌 Calendar Manager
 
-![Homepage](./readme_assets/sample_calendar_image1.webp "BurauenBiblio Homepage")
+![calendar](./readme_assets/sample_calendar_image1.webp)
 
 The system uses **Calendar Logic** to accurately calculate due dates based on your **library’s open and closed days**.
 
 ### 📌 Set limit on overdue charges
 
-![Homepage](./readme_assets/overdue_notice.webp "BurauenBiblio Homepage")
+![overdue](./readme_assets/overdue_notice.webp)
 
 Member types can be configured with **overdue charge** settings. When a patron exceeds the overdue limit accumulated from the penalty/day, they are **restricted** from making additional borrowings.
 
 ### 📌 Collection Setup (borrowing policy)
 
-![Homepage](./readme_assets/collection_setup.webp "BurauenBiblio Homepage")
+![collection setup](./readme_assets/collection_setup.webp)
 
 The **Collection Setup** page manages **penalty rates** and **borrowing duration** per collection.
 
@@ -121,7 +121,7 @@ This update refactors the previous policy system into a simpler, per-day overdue
 
 ### 📌 OPAC DOI Search
 
-![Homepage](./readme_assets/doi_sample_image1.webp "BurauenBiblio Homepage")
+![DOI search](./readme_assets/doi_sample_image1.webp)
 
 **DOI search** allows DOI to URL resolve, and patrons get redirected to the **official, authoritative source of the article (publisher, repository, or open-access platform)** on the internet.
 
@@ -134,19 +134,19 @@ This update refactors the previous policy system into a simpler, per-day overdue
 
 ### 📌 To-Do List 
 
-![Homepage](./readme_assets/todo_list2.webp "BurauenBiblio Homepage")
+![todo list](./readme_assets/todo_list2.webp)
 
 The **To-Do List** is a simple yet powerful enhancement to the BurauenBiblio library system. It allows staff members to easily **jot down, organize, and share important notes, reminders, and tasks** directly within the library interface. Whether it’s for planning upcoming events, tracking routine duties, reminding colleagues about library schedules, or noting down quick ideas — the to-do list keeps everyone in sync.
 
 ### 📌 Card Catalog
 
-![Homepage](./images/card_catalog_demo_sample.webp "BurauenBiblio Homepage")
+![card catalog demo](./images/card_catalog_demo_sample.webp)
 
 **BurauenBiblio** prints card catalogs in a **custom 8 × 5 inch layout PDF format**, applicable for longer titles, barcodes and subject terms. It uses long bond paper (8.5 × 13 inches) which allows for two card catalog prints for each page and supports up to 35 barcode (copies). This feature helps support local libraries in need of card catalog prints.
 
 ### 📌 MARC tags setup
 
-![Homepage](./readme_assets/marc_tags_ph22.webp "BurauenBiblio Homepage")
+![MARC tags](./readme_assets/marc_tags_ph22.webp)
 
 The included SQL file provides MARC tag entries tailored for **Philippine-compatible** library records.
 
@@ -154,19 +154,19 @@ You may also customize or extend the entries to align with your own country’s 
 
 ### 📌 Z39.50 Online Metadata Retrieval
 
-![Homepage](./readme_assets/metadata_retrieval1.webp "BurauenBiblio Homepage")
+![metadata retrieval](./readme_assets/metadata_retrieval1.webp)
 
 Support for metadata retrieval process—particularly for cataloging by ISBN/LCCN using remote bibliographic sources.
 
 ### 📦 Booked Items Cart
 
-![Homepage](./readme_assets/booked_items1.webp "Booked Items")
+![booked items](./readme_assets/booked_items1.webp)
 
 The **Booked Items Cart** is a reservation list requested by patrons. It supports reservations for specific titles, high-demand books, and materials that are frequently checked out, operating on a first-come, first-served basis.
 
 ### 📚 Tagged Items Cart
 
-![Homepage](./readme_assets/tagged_items1.webp "Tagged Items")
+![tagged items](./readme_assets/tagged_items1.webp)
 
 **Tagged Items** is a temporary review cart for bibliographic records that require attention. It helps staff quickly identify materials with incomplete metadata, call number conflicts, duplicate records, or physical issues, enabling focused cleanup and quality control within the catalog.
 
@@ -174,13 +174,13 @@ The **Booked Items Cart** is a reservation list requested by patrons. It support
 
 ### 📝 Analytics - Monthly Circulation Report 
 
-![Homepage](./readme_assets/monthly_circ.webp "BurauenBiblio Homepage")
+![monthly circulation](./readme_assets/monthly_circ.webp)
 
 The **Monthly Circulation Report** is a dynamic analytics feature in BurauenBiblio that visualizes the **total number of items borrowed per month**, across a selected range of time. It helps library staff and administrators: 📅 **Track Borrowing Trends** 📚 **Evaluate Usage Patterns** 🎯 **Support Decision-Making** based on actual demand.
 
 ### 📝 Analytics - Top 30 Dewey Decimal Stats
 
-![Homepage](./readme_assets/deweydecimalchart.webp "BurauenBiblio Homepage")
+![DDC Chart](./readme_assets/deweydecimalchart.webp)
 
 The **Top 30 DDC Stats** feature provides an analysis of the library’s collection by visualizing the **number of copies per Dewey Decimal Classification (DDC) category**. A utility is included which allows creation of DDC table needed to make a graph (Number of Copies VS. DDC code).  The DDC utility requires a certain amount of catalogued books using DDC to get a meaningful chart.
 
@@ -188,7 +188,7 @@ Added 'Export to JSON' feature viewing data into JSON format for other value add
 
 ### 📝 Advanced Dewey Decimal Classification Mapping
 
-![Homepage](./readme_assets/ddcmappingtable.webp "BurauenBiblio Homepage")
+![Advance DDC](./readme_assets/ddcmappingtable.webp)
 
 This process enriches bibliographic records by interpreting **Dewey Decimal Classification (DDC) numbers** into **human-readable subject categories**.
 
@@ -205,9 +205,9 @@ Both **DDC Stats** and **DDC table listing** helps:
 
 ### 📝 Analytics - Top 30 Borrowed Books and Top 30 Most-viewed books
 
-![Homepage](./readme_assets/sample_borrowed.webp "BurauenBiblio Homepage")
+![borrowed books](./readme_assets/sample_borrowed.webp)
 
-![Homepage](./readme_assets/sample_viewed.webp "BurauenBiblio Homepage")
+![viewed books](./readme_assets/sample_viewed.webp)
 
 The **Top 30 Borrowed Books list** showcases the titles most frequently borrowed over the past six months. The data is taken from the circulation report.
 
@@ -215,21 +215,21 @@ The **Top 30 Most-Viewed Books** tracks books that are regularly read or referen
 
 Before reshelving, staff can use the dedicated **In-House Book Activity Tracker** form:
 
-![Homepage](./readme_assets/dailytally3.webp "BurauenBiblio Homepage")
+![daily tally](./readme_assets/dailytally3.webp)
 
 By scanning each book’s barcode—either using a barcode scanner or manual input—the system **automatically records book activity** and provides an option to **view the most recently scanned items**. This feature helps reduce reliance on paper-based tallies and ensures more accurate records. In addition, daily book tallies are **visualized through an interactive graph** with an integrated **JSON export** option for reporting and data analysis.
 
-![Homepage](./readme_assets/books_read_per_day.webp "BurauenBiblio Homepage")
+![books read per day](./readme_assets/books_read_per_day.webp)
 
 These analytics provide valuable insights into **reading trends**, **student preferences**, and **subject demand**. They support **data-driven collection development** while helping libraries move toward a **paperless, more efficient workflow**.
 
 ### 📝 Analytics - Library Attendance Tracking
 
-![Homepage](./readme_assets/attendance_tracking.webp "BurauenBiblio Homepage")
+![attendance tracking](./readme_assets/attendance_tracking.webp)
 
 A logging system designed for statistical reporting and community interaction insights. The feature allows encoding of monthly visits categorized by user type (Student, Faculty, Visitor) and, when applicable, by academic program. Using dynamic visualizations powered by Chart.js, library staff can instantly view attendance trends across custom date ranges.
 
-![Homepage](./readme_assets/export_json.webp "BurauenBiblio Homepage")
+![export to JSON](./readme_assets/export_json.webp)
 
 Added 'Export attendance to JSON' format with 'student' only filter. You can use the info for other JSON supported services i.e. e-bulletin.
 
@@ -237,23 +237,23 @@ Added 'Export attendance to JSON' format with 'student' only filter. You can use
 
 ### 🧹 Utility - Thumbnail Check
 
-![Homepage](./readme_assets/missing_thumbnails.webp "BurauenBiblio Homepage")
+![missing thumbnails](./readme_assets/missing_thumbnails.webp)
 
 Thumbnail check is a utility feature that finds missing thumbnail and broken image URL that is linked into the biblio records.
 
-![Homepage](./readme_assets/no_thumbnails_included.webp "BurauenBiblio Homepage")
+![no thumbnails included](./readme_assets/no_thumbnails_included.webp)
 
 It includes biblio records without thumbnails, which happens when add thumbnail form is cancelled.
 
 ### 🧹 Utility - Orphaned BibID Cleanup Tool
 
-![Homepage](./readme_assets/checkorpanedbibids.webp "BurauenBiblio Homepage")
+![orphaned bibids](./readme_assets/checkorpanedbibids.webp)
 
 This tool helps maintain a **clean and optimized** OpenBiblio database by identifying and removing **orphaned biblios** — records that have no associated barcode copies.
 
 ### 🧹 Utility - Database Migration Manager
 
-![Homepage](./readme_assets/migrate_tool1.webp "BurauenBiblio Homepage")
+![migration tool](./readme_assets/migrate_tool1.webp)
 
 If you wish to try out Burauenbiblio to your existing Openbiblio database, you may use this tool to make your db compatible. This utility allows the database structure to evolve safely as new features are introduced — without breaking the existing database. 
 
@@ -270,7 +270,7 @@ This tool:
 
 ## 🙌 Project Direction
 
-![Homepage](./readme_assets/actual_use_case1.webp "BurauenBiblio Homepage")
+![actual results](./readme_assets/actual_use_case1.webp)
 
 This project is part of my ongoing personal initiative to modernize the OpenBiblio codebase.
 
