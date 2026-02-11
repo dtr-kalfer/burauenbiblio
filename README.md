@@ -99,6 +99,18 @@ This feature adds a QR Code generation and batch-printing system to BurauenBibli
 
 This approach allows libraries to print QR labels once, then cut and paste them onto books as needed.
 
+🖨️ Printing Instructions
+
+Each QR code requires a 13-digit number
+
+Generate up to 8 QR codes per batch to fully maximize one half of an A4 sheet
+
+Each QR code is printed 3 times on the sheet:
+
+- Front cover (inside)
+- Back cover (inside)
+- Back cover (near book summary)
+
 ### 📌 Calendar Manager
 
 ![calendar](./readme_assets/sample_calendar_image1.webp "calendar")
