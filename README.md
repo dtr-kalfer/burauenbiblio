@@ -83,7 +83,7 @@ official Project Gutenberg servers.
 
 ### 📦 QR Code Generator & Print Sheet Feature
 
-![QR UI sample](./readme_assets/qr_print_result.png "QR UI sample")
+![QR UI sample](./readme_assets/qr_print_result.webp "QR UI sample")
 
 This feature adds a QR Code generation and batch-printing system to BurauenBiblio, designed for durability, print efficiency, and real-world library workflows.
 

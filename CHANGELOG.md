@@ -10,6 +10,9 @@ Guide:
 - version 2.x.x below PHP 7.4.26 supported
 - Date format: YYYY-MM-DD
 
+## [unreleased] yyyy-mm-dd
+- Updated: QR code support 16 set of QR instead of 8.
+
 ## [3.32.8] 2026-02-07
 - Added: QR code printing feature for barcoding books. (See README.md for details)
 - Added: phpqrcode – QR code generation (LGPL) libraries.
