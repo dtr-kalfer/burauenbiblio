@@ -14,7 +14,7 @@ $files = glob($imgDir . '/*.png');
 sort($files);
 
 // take max 8
-$files = array_slice($files, 0, 8);
+$files = array_slice($files, 0, 16);
 
 if (empty($files)) {
     echo "<p style='color:red'>No saved QR images found.</p>";
@@ -32,7 +32,7 @@ if (empty($files)) {
 /* --- PRINT PAGE SETUP --- */
 @media print {
   @page {
-    size: 105mm 297mm;
+    size: 210mm 297mm;
     margin: 0;
   }
 
@@ -61,11 +61,11 @@ if (empty($files)) {
 
 /* --- SHEET --- */
 .qr-sheet {
-  width: 105mm;
+  width: 210mm;
   height: 270mm;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(8, 1fr);
+	grid-template-columns: repeat(6, 1fr);
+	grid-template-rows: repeat(8, 1fr);
   padding: 1mm 3mm;
   
   box-sizing: border-box;

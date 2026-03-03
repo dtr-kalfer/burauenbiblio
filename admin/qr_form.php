@@ -18,7 +18,7 @@
 }
 .wrapper-section {
 	overflow-y: scroll;
-	width: 500px;
+	width: 830px;
 }
 .preview {
 	text-align: center;
@@ -64,9 +64,9 @@
 <section class="wrapper-section">
 	<h3 class="tagged">📚 <?php echo T("QR Generator"); ?> 📚</h3>
 
-	<p>This section will generate a 3x8 QR Code Sheet</p>
+	<p>This section will generate a 6x8 QR Code Sheet</p>
 	<p>
-	Each QR-code requires a 13-digit number and will be printed on a half size A4 paper. Generate at least 8 qr-code to maximize one-half A4 size paper.
+	Each QR-code requires a 13-digit number and will be printed on a full size A4 paper. Generate 16 qr-code to maximize the A4 size paper.
 	Each QR-code have 3 copies.<br>
 	*Note: Please set printer paper size to A4.
 	<br>
@@ -97,11 +97,11 @@
 				hx-swap="innerHTML"
 				class="showlayoutbtn"
 		>
-		🖨 Preview A4 (Half) Layout
+		🖨 Preview A4 (full) Layout
 		</button>
 	</div>
 	<p>
-  📦 Saved QR images (max: 8 per print):
+  📦 Saved QR images (max: 16 per print):
   <strong id="qr-counter"><?php echo $qrCount; ?></strong>
 	</p>
 	
