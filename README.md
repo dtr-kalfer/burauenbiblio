@@ -83,7 +83,7 @@ official Project Gutenberg servers.
 
 ### 📦 QR Code Generator & Print Sheet Feature
 
-![QR UI sample](./readme_assets/qr_sampler.webp "QR UI sample")
+![QR UI sample](./readme_assets/qr_print_result.png "QR UI sample")
 
 This feature adds a QR Code generation and batch-printing system to BurauenBiblio, designed for durability, print efficiency, and real-world library workflows.
 
@@ -91,11 +91,11 @@ This feature adds a QR Code generation and batch-printing system to BurauenBibli
 
 - Generates QR codes from 13-digit numeric identifiers
 - Saves QR images as PNG files for reuse and batch printing
-- Produces a 3 × 8 QR code layout (24 stickers total)
-- Optimized for half A4 sticker paper (105mm × 297mm)
+- Produces a 6 × 8 QR code layout
+- Optimized for A4 size paper (210mm × 297mm)
 - Avoids thermal printer fading by using inkjet / laser printers
 
-![QR actual print](./readme_assets/qr_printout.webp)
+![QR actual print](./readme_assets/qr_print_freesize.webp)
 
 This approach allows libraries to print QR labels once, then cut and paste them onto books as needed.
 
@@ -103,7 +103,7 @@ This approach allows libraries to print QR labels once, then cut and paste them 
 
 Each QR code requires a 13-digit number
 
-Generate up to 8 QR codes per batch to fully maximize one half of an A4 sheet
+Generate up to 16 QR codes per batch using A4 sheet
 
 Each QR code is printed 3 times on the sheet:
 
