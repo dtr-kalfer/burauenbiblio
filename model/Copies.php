@@ -132,6 +132,7 @@ class Copies extends CoreTable {
 	}
 
 	## ========================= ##
+	## ========================= ##
 	public function getCopyInfo ($bibid) {
 		$copies = new Copies; // needed later
 		$bcopies = $copies->getMatches(array('bibid'=>$bibid),'barcode_nmbr');
@@ -185,94 +186,111 @@ class Copies extends CoreTable {
 		return $rslt;
 	}
 	## ========================= ##
+	
 	public function insertCopy($bibid,$copyid) {
-		//$this->lock();
-		if (empty($_POST['siteid'])) {
-			$theSite = $_SESSION['current_site'];
-		} else {
-			$theSite = $_POST['siteid'];
-		}
-		$sql = "INSERT `biblio_copy` SET "
-		      ."`bibid` = $bibid,"
-		      ."`barcode_nmbr` = '".$_POST['barcode_nmbr']."',"
-		      ."`siteid` = '$theSite'," // set to current site
-		      ."`create_dt` = NOW(),"
-		      ."`last_change_dt` = NOW(),"
-		      ."`last_change_userid` = " . $_SESSION['userid'] . ","
-		      ."`copy_desc` = '".$_POST['copy_desc']."' ";
+			$core = DbCore::getInstance();
 
-        $rows = $this->act($sql);
-		$copyid = $this->getInsertID();
+			if (empty($_POST['siteid'])) {
+					$theSite = $_SESSION['current_site'];
+			} else {
+					$theSite = $_POST['siteid'];
+			}
 
-		$sql = "Insert `biblio_status_hist` SET "
-		      ."`bibid` = $bibid,"
-		      ."`copyid` = $copyid,"
-		      ."`status_cd` = '" . $_POST['status_cd'] . "',"
-		      ."`status_begin_dt` = NOW()";
-		$rows = $this->act($sql);
-		$histid = $this->getInsertID();
+			// ✅ Escape values safely
+			$barcode = $core->dbh->quote($_POST['barcode_nmbr']);
+			$copy_desc = $core->dbh->quote($_POST['copy_desc']);
+			$status_cd = $core->dbh->quote($_POST['status_cd']);
+			$siteid = $core->dbh->quote($theSite);
 
-		$sql = "Update `biblio_copy` SET "
-		      ."`histid` = '$histid' "
-					." WHERE (`bibid` = $bibid) AND (`copyid` = $copyid) ";
-		$rows = $this->act($sql);
-		//$this->unlock();
+			$sql = "INSERT `biblio_copy` SET "
+						."`bibid` = $bibid,"
+						."`barcode_nmbr` = $barcode,"
+						."`siteid` = $siteid,"
+						."`create_dt` = NOW(),"
+						."`last_change_dt` = NOW(),"
+						."`last_change_userid` = " . $_SESSION['userid'] . ","
+						."`copy_desc` = $copy_desc";
 
-		$this->postCstmCopyFlds($bibid, $copyid);
+			$rows = $this->act($sql);
+			$copyid = $this->getInsertID();
 
-		return "!!success!!";
-	}
+			$sql = "INSERT `biblio_status_hist` SET "
+						."`bibid` = $bibid,"
+						."`copyid` = $copyid,"
+						."`status_cd` = $status_cd,"
+						."`status_begin_dt` = NOW()";
+
+			$rows = $this->act($sql);
+			$histid = $this->getInsertID();
+
+			$sql = "UPDATE `biblio_copy` SET "
+						."`histid` = '$histid' "
+						." WHERE (`bibid` = $bibid) AND (`copyid` = $copyid) ";
+
+			$rows = $this->act($sql);
+
+			$this->postCstmCopyFlds($bibid, $copyid);
+
+			return "!!success!!";
+	}	
+	
 	## ========================= ##
 	public function updateCopy($bibid,$copyid) {
-		$this->lock();
-		$sql = "SELECT `status_cd`, `histid` FROM `biblio_status_hist` "
-					." WHERE (`bibid` = $bibid) AND (`copyid` = $copyid)"
-					." ORDER BY status_begin_dt";
-		$rslt = $this->select($sql);
-		//$rcd = $rslt->fetch_assoc();  // only first (most recent) response wanted
-		$rcd = $rslt->fetchAll();  // only first (most recent) response wanted
-		$histid = $rcd['histid'] ?? '';
+			$this->lock();
+			$core = DbCore::getInstance();
 
-        // Changed this to nothing, so any message/output is taken as an error message - LJ
-        // Changed to specific success text to be looked for in JS - FL
-        // Not the nicest, but agree, is needed for activsting the buttons etc. - LJ
-        $message = "!!success!!";
+			$sql = "SELECT `status_cd`, `histid` FROM `biblio_status_hist` "
+						." WHERE (`bibid` = $bibid) AND (`copyid` = $copyid)"
+						." ORDER BY status_begin_dt";
 
-		if ( ($rcd['status_cd'] ?? '') != $_POST['status_cd']) {
-            if($_POST['status_cd'] == "out") {
-                //LJ: it does not seem possible to set to checkout without a user!
-                echo "Cannot change to status 'Checked out'. Changes NOT saved!";
-                return;
-            } else {
-                $sql = "INSERT `biblio_status_hist` SET "
-                    . "`status_cd` = '" . $_POST['status_cd'] . "',"
-                    . "`status_begin_dt` = NOW(),"
-                    . "`bibid` = $bibid,"
-                    . "`copyid` = $copyid ";
-                $rslt = $this->act($sql);
-                $histid = $this->getInsertID();
-            }
-		}
+			$rslt = $this->select($sql);
+			$rcd = $rslt->fetchAll();
+			$histid = $rcd['histid'] ?? '';
 
-		$sql = "UPDATE `biblio_copy` SET "
-		      		."`barcode_nmbr` = '" . $_POST['barcode_nmbr'] . "', "
-		      		."`copy_desc` = '" . $_POST['copy_desc'] . "', "
-		      		."`siteid` = '" . $_POST['siteid'] . "', "
-					."`histid` = " . $histid . " "
-					." WHERE (`bibid` = $bibid) AND (`copyid` = $copyid) ";
-		$rows = $this->act($sql);
+			$message = "!!success!!";
 
-        try {
-            $this->postCstmCopyFlds($bibid, $copyid);
-        } catch (Exception $e){
-            $message = "Custom fields error: $e->getMessage()";
-        }
+			// ✅ Escape inputs
+			$status_cd = $core->dbh->quote($_POST['status_cd']);
+			$barcode   = $core->dbh->quote($_POST['barcode_nmbr']);
+			$copy_desc = $core->dbh->quote($_POST['copy_desc']);
+			$siteid    = $core->dbh->quote($_POST['siteid']);
 
-		$this->unlock();
-		echo $message;
-		return;
-	}
+			if (($rcd['status_cd'] ?? '') != $_POST['status_cd']) {
+					if ($_POST['status_cd'] == "out") {
+							echo "Cannot change to status 'Checked out'. Changes NOT saved!";
+							return;
+					} else {
+							$sql = "INSERT `biblio_status_hist` SET "
+										."`status_cd` = $status_cd,"
+										."`status_begin_dt` = NOW(),"
+										."`bibid` = $bibid,"
+										."`copyid` = $copyid";
 
+							$rslt = $this->act($sql);
+							$histid = $this->getInsertID();
+					}
+			}
+
+			$sql = "UPDATE `biblio_copy` SET "
+						."`barcode_nmbr` = $barcode, "
+						."`copy_desc` = $copy_desc, "
+						."`siteid` = $siteid, "
+						."`histid` = " . $histid . " "
+						." WHERE (`bibid` = $bibid) AND (`copyid` = $copyid) ";
+
+			$rows = $this->act($sql);
+
+			try {
+					$this->postCstmCopyFlds($bibid, $copyid);
+			} catch (Exception $e){
+					$message = "Custom fields error: $e->getMessage()";
+			}
+
+			$this->unlock();
+			echo $message;
+			return;
+	}	
+	
 	## ========================= ##
 	public function deleteCopy($copyid) {
 		$this->lock();
@@ -573,4 +591,5 @@ class BarcdCopy extends Copy {
 	}
 }
 */
+
 
