@@ -30,7 +30,7 @@ The member records are entirely fictitious and do not represent real individuals
 
 ![search sample](./readme_assets/burauenbiblio_search1.webp "search sample")
 
-The **BurauenBiblio System** is in active use at **Burauen Community College**, supporting bibliographic search requests from both students and faculty. It currently manages nearly **5,000 bibliographic records**, with continuous growth in its collection.
+The **BurauenBiblio System** is actively used at **Burauen Community College** to support library cataloging and bibliographic search services for students and faculty. The system currently manages **4,808 bibliographic records** and **5,377 book volumes**, with its collection continuing to expand over time.
 
 ![Use case](./readme_assets/burauenbiblio_in_progress02.webp "burauenbiblio use case")
 
