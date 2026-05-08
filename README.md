@@ -36,8 +36,12 @@ The **BurauenBiblio System** is in active use at **Burauen Community College**, 
 
 For details: 
 
-- https://librarytechnology.org/library/211849
-- https://librarytechnology.org/libraries/search.pl?Country=Philippines&Type=Academic
+- 🔗 https://librarytechnology.org/library/211849
+- 🔗 https://librarytechnology.org/libraries/search.pl?Country=Philippines&Type=Academic
+
+Live demo of Burauenbiblio OPAC catalog search:
+
+- 🔗 https://drjaypcabrera.burauen.cc
 
 Designed to streamline library operations, BurauenBiblio provides tools for **cataloging**, **circulation management**, **Online Public Access Catalog (OPAC)**,  and other **staff-operated features** that enhance **workplace automation**.
 
