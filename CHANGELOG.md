@@ -10,6 +10,9 @@ Guide:
 - version 2.x.x below PHP 7.4.26 supported
 - Date format: YYYY-MM-DD
 
+## [3.36.0] 2026-05-23
+- Improved: overdue report, includes classification details of borrower i.e. faculty, student or other types.
+
 ## [3.35.0] 2026-04-25
 - Updated: QR code support 16 set of QR instead of 8.
 - Fixed model/Copies.php: input contains a single quote (like in book titles) on the description entry, and the code is not escaping it properly. Happens on both Add New biblio copy and Update biblio copy.
