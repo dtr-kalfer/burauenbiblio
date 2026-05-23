@@ -129,6 +129,9 @@ The system uses **Calendar Logic** to accurately calculate due dates based on yo
 
 Member types can be configured with **overdue charge** settings. When a patron exceeds the overdue limit accumulated from the penalty/day, they are **restricted** from making additional borrowings.
 
+![improved overdue results with classification](./readme_assets/improved_overdue_results.webp "overdue result")
+
+The **overdue report** has been improved by adding a clear **member classification** column that identifies whether each borrower is a student, faculty, or other type. This enhancement makes it easier to quickly understand the context of each overdue record and prioritize follow-ups accordingly.
 ### 📌 Collection Setup (borrowing policy)
 
 ![collection setup](./readme_assets/collection_setup.webp "collection setup")
