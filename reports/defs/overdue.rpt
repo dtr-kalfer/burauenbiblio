@@ -9,9 +9,10 @@
 .column first_name hidden
 .column last_name hidden
 .column mbr_name sort=member title=Member func=member_link
+.column classification sort=classification title=Classification
 .column site_name sort=site_member title=Site
 .column barcode_nmbr sort=barcode_nmbr title=Barcode
-.column price title=Price
+.column price title=Price hidden
 .column title sort=title func=biblio_link title=Title
 .column due_dt sort=due_dt func=booking_link title="Date Due"
 .column days_late sort="days_late" title="Days Late"
@@ -29,9 +30,11 @@
 .end parameters
 
 .sql
-	select b.*, bc.barcode_nmbr, bc.price,
-		m.mbrid, m.barcode_nmbr as mbr_bcode,
-		m.first_name, m.last_name, s.siteid,
+
+select b.*, bc.barcode_nmbr, bc.price,
+    m.mbrid, m.barcode_nmbr as mbr_bcode,
+    m.first_name, m.last_name, s.siteid,
+    mc.description as classification,
 		concat(m.first_name, ' ', m.last_name, ' (',
 			m.barcode_nmbr, ')') as mbr_name,
 		s.name as site_name,
@@ -40,6 +43,7 @@
 	from booking b join booking_member bkm
 		join member m join site s join biblio_copy bc join biblio_field titlef
 		join biblio_subfield titles
+		join mbr_classify_dm mc
 		left join biblio_subfield sub on sub.fieldid=titlef.fieldid
 			and sub.subfield_cd='b'
 	where bc.histid=b.out_histid
@@ -49,5 +53,6 @@
 		and b.due_dt < %as_of%
 		and bkm.bookingid=b.bookingid and m.mbrid=bkm.mbrid
 		and s.siteid=m.siteid
+		and mc.code = m.classification
 .	order_by_expr
 .end sql
