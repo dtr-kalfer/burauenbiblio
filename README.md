@@ -1,6 +1,6 @@
 [![License](https://img.shields.io/badge/license-GPL-blue)](LICENSE)
 [![Third-Party Licenses](https://img.shields.io/badge/%F0%9F%93%B1_3rd_party_licenses-included-brightgreen)](CREDITS.md)
-[![DOI](https://zenodo.org/badge/979103491.svg)](https://doi.org/10.5281/zenodo.20351658)
+[![DOI|191](https://zenodo.org/badge/979103491.svg)](https://doi.org/10.5281/zenodo.20351658)
 
 # BurauenBiblio 📚🌴
 
@@ -193,6 +193,20 @@ The **Booked Items Cart** is a reservation list requested by patrons. It support
 **Tagged Items** is a temporary review cart for bibliographic records that require attention. It helps staff quickly identify materials with incomplete metadata, call number conflicts, duplicate records, or physical issues, enabling focused cleanup and quality control within the catalog.
 
 ## 📝 Analytics
+
+### 📈 Collection Growth Analytics
+
+The **Collection Growth Analytics** module provides a visual overview of how the library’s catalog is expanding over time. It aggregates bibliographic records and physical copies added per week and presents them using interactive Chart.js graphs.
+
+![Collection Growth Analytics](./readme_assets/collection_growth.webp "monthly circulation")
+
+**Key benefits:**
+
+- Tracks weekly growth of bibliographic records and copies
+- Provides clear visual trends for collection development
+- Helps identify active cataloging periods or gaps in acquisition
+- Supports reporting needs for administration and accreditation
+- Improves decision-making for future collection planning
 
 ### 📝 Analytics - Monthly Circulation Report 
 
