@@ -10,6 +10,9 @@ Guide:
 - version 2.x.x below PHP 7.4.26 supported
 - Date format: YYYY-MM-DD
 
+## [Unreleased] YYYY-MM-DD
+- Added new analytics feature: Collection Growth Analytics. It tracks weekly growth of bibliographic records and copies and present it using interactive Chart.js graphs.
+
 ## [3.36.0] 2026-05-23
 - Improved: overdue report, includes classification details of borrower i.e. faculty, student or other types.
 
