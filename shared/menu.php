@@ -94,6 +94,7 @@ function staff_menu() {
 			Nav::node('admin/analytics/create_ddc', T("create_ddc"),'../catalog/create_ddc.php');
 			Nav::node('admin/analytics/ddc_chart', T("ddc_chart"),'../catalog/ddc_chart.php');	
 			Nav::node('admin/analytics/ddc_top30list', T("ddc_top30list"),'../catalog/ddc_top30list.php');	
+			Nav::node('admin/analytics/Collection', T("Growth"),'../admin/collection_chart.php');	
 				
 		Nav::node('admin/settings', T("Library Settings"), '../admin/settingsForm.php');
 		Nav::node('admin/staff', T("Staff Admin"), '../admin/staffForm.php');
