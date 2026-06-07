@@ -37,6 +37,8 @@
 
 # OS generated files #
 ######################
+.obsidian
+home
 .DS_Store
 .DS_Store?
 ._*
