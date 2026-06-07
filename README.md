@@ -343,3 +343,7 @@ This project makes use of the following open-source libraries and resources:
 ## 📦 Installation
 
 📌 See [how_to_install.md](./how_to_install.md) for installation.
+
+## 📦 Technical Note
+
+📌 See [TECHNICAL_NOTE.md](./TECHNICAL_NOTE.md) for more details.
