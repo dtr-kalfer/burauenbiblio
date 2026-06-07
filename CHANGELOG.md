@@ -12,6 +12,7 @@ Guide:
 
 ## [Unreleased] YYYY-MM-DD
 - Added new analytics feature: Collection Growth Analytics. It tracks weekly growth of bibliographic records and copies and present it using interactive Chart.js graphs.
+- Added: TECHNICAL_NOTE.md for research/zenodo related updates.
 
 ## [3.36.0] 2026-05-23
 - Improved: overdue report, includes classification details of borrower i.e. faculty, student or other types.
