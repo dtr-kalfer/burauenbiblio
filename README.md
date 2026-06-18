@@ -226,19 +226,44 @@ Added 'Export to JSON' feature viewing data into JSON format for other value add
 
 ![Advance DDC](./readme_assets/ddcmappingtable.webp "Advance DDC")
 
-This process enriches bibliographic records by interpreting **Dewey Decimal Classification (DDC) numbers** into **human-readable subject categories**.
+This feature enriches bibliographic records within **burauenbiblio** by dynamically interpreting raw **Dewey Decimal Classification (DDC) numbers** into structured, human-readable subject categories.
+#### ⚙️ How It Works: The 3-Level Processing Pipeline
 
-Using a **reference dataset**, we translate **raw numerical codes** into three levels of categorization: **Main Class, Division Class and Topic Class**.
+The system utilizes three internal helper functions to parse call numbers sequentially against an open-access reference schema (with top-level taxonomies adapted from Wikipedia under the **CC BY-SA 4.0** license). This isolates data into three distinct, deterministic tiers:
 
-Both **DDC Stats** and **DDC table listing** helps:
-- Identify which classes/discipline dominate the collection.
-- Spot underrepresented categories where more resources may be needed.
-- Make data-informed decision for future acquisitions, inventory reviews and budget planning.
-- Demonstrate the diversity of holdings to stakeholders, management, or partner institutions.
-- Saves time compared to manual catalog analysis.
+1. **Level 1 (Main Class):** Identifies the broad macrohundreds category (e.g., `300 — Social Sciences`).
+    
+2. **Level 2 (Division Class):** Extracts the secondary ten-digit discipline discipline mapping (e.g., `330 — Economics`).
+    
+3. **Level 3 (Topic Class):** Resolves the specific granular topic assigned to the physical or digital volume.
+    
+
+Once this 3-level processing pass is complete, the data is indexed into a dynamic staging table (`extract_ddc`), making it instantly available for internal reporting or external scientific research.
+
+![Export All Collection vs DDC](./readme_assets/export_all_ddc.avif)
+#### 📊 Institutional and Research Applications
+
+Both **DDC Stats** and the **Full DDC Table Listings** empower library administrators to:
+
+- **Identify Collection Strengths:** Instantly see which academic classes or disciplines dominate the active collection.
+    
+- **Perform Gap Analysis:** Spot underrepresented categories where core reference materials or curriculum resources may be lacking.
+    
+- **Drive Procurement Data:** Make data-informed decisions for future book acquisitions, systematic inventory reviews, and annual budget allocations.
+    
+- **Streamline Compliance:** Demonstrate the diversity and depth of holdings to stakeholders, management, or institutional accreditation bodies.
+    
+- **Eliminate Manual Audits:** Saves significant administrative time compared to traditional, manual shelf-list catalog analysis.
+    
+#### 💾 Extended Feature: Complete Dataset Exports (`.json` / `.csv`)
+
+While the core admin dashboard provides a curated, stylized view of the **Top 30 DDC Classifications**, a newly engineered, non-limiting export feature allows system administrators to pull the **entire** active library collection profile.
+
+This extended pipeline bypasses standard browser memory thresholds by streaming the entire long-tail classification census directly into flat-file formats. This allows for seamless external data warehousing, statistical script execution, or direct upload to open-science data repositories.
+
+![Use as dataset](./readme_assets/sample_dataset_zen.avif)
 
 > DDC category descriptions are adapted from [Wikipedia](https://en.wikipedia.org/wiki/List_of_Dewey_Decimal_classes) under the [CC BY-SA 4.0 License](https://creativecommons.org/licenses/by-sa/4.0/)
-
 ### 📝 Analytics - Top 30 Borrowed Books and Top 30 Most-viewed books
 
 ![borrowed books](./readme_assets/sample_borrowed.webp "borrowed books")
