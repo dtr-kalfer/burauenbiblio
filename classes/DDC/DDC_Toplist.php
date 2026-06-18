@@ -33,4 +33,21 @@ class DDC_Toplist extends \ConnectDB
 								];
         }
     }
+		
+		public function make_full_list()
+    {
+        try {
+            // No LIMIT 30 here, and sorting primarily by DDC for clean data structure
+            $sql = "
+                SELECT ddc, classification AS main, classification_div AS division, classification_adv AS topic, COUNT(*) AS total
+                FROM extract_ddc
+                GROUP BY ddc
+                ORDER BY ddc ASC
+            ";
+            return $this->select($sql);
+        } catch (\Exception $e) {
+            return ['success' => false, 'message' => "❌ Error: " . $e->getMessage()];
+        }
+    }
+		
 }
