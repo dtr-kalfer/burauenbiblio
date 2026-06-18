@@ -22,6 +22,20 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 		p,input,button {
 			margin: 10px;
 		}
+		
+		.download_list {
+			text-align: center;
+			padding: 5px;
+			a {
+					border: 1px solid black;
+					padding: 5px;
+					
+			}
+		}
+
+		.download_list a:hover {
+			background-color: #ddd;
+		}
 </style>
 <section class="form-container-createddc">
 		<section class="create-ddc">
@@ -42,7 +56,8 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 			</ul>
 			
 			<p>
-				The table generated will create a graph for <strong>Top 30 DDC Stats (DDC# Chart)</strong>.
+				The table generated will create a graph for <strong>DDC# Chart</strong>.
+				You may also generate Level 2 & 3 division and topic mapping for your collection for <b>DDC Top 30 List</b>.
 			</p>
 		</section>
 
@@ -66,6 +81,13 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
           autocomplete="off">
         <button type="submit">Process Level III (Topic Class) Mapping</button>
     </form>
+
+		<p>
+			Please click the three DDC Process levels first before downloading the complete list.
+		</p>
+
+		<p class="download_list"><a href="./ddc_export.php?format=json">Download Complete DDC1,2,3 List (.json)</a></p>
+		<p class="download_list"><a href="./ddc_export.php?format=csv">Download Complete DDC1,2,3 List (.csv)</a></p>
 
     <div id="result"></div>
 		
