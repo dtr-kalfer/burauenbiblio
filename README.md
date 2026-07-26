@@ -282,6 +282,8 @@ By scanning each book’s barcode—either using a barcode scanner or manual inp
 
 ![books read per day](./readme_assets/books_read_per_day.webp "books read per day")
 
+Both the Top 30 Analytics has a Year-Month JSON Export feature, allowing library staff to identify books actively used within the specified year-month setup.
+
 These analytics provide valuable insights into **reading trends**, **student preferences**, and **subject demand**. They support **data-driven collection development** while helping libraries move toward a **paperless, more efficient workflow**.
 
 ### 📝 Analytics - Library Attendance Tracking
