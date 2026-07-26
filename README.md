@@ -284,6 +284,8 @@ By scanning each book’s barcode—either using a barcode scanner or manual inp
 
 Both the Top 30 Analytics has a Year-Month JSON Export feature, allowing library staff to identify books actively used within the specified year-month setup.
 
+![List of active books per month](./readme_assets/json-export-top30-both.avif "List of active books per month")
+
 These analytics provide valuable insights into **reading trends**, **student preferences**, and **subject demand**. They support **data-driven collection development** while helping libraries move toward a **paperless, more efficient workflow**.
 
 ### 📝 Analytics - Library Attendance Tracking
