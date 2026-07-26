@@ -11,6 +11,8 @@ Guide:
 - Date format: YYYY-MM-DD
 
 ## [Unreleased] YYYY-MM-DD
+- Added new feature in Top30 in-house book activity (JSON Export): A year-month JSON export for list of books (Title, Author, ISBN, checkout count) actively used (but not borrowed) within library premise.
+- Added new feature in Top30 borrowed book (checked out) (JSON Export): A year-month JSON export for list of books (Title, Author, ISBN, checkout count) actively borrowed outside library premise.
 - Added new analytics feature: Collection Growth Analytics. It tracks weekly growth of bibliographic records and copies and present it using interactive Chart.js graphs.
 - Added: TECHNICAL_NOTE.md for research/zenodo related updates.
 - Added: New feature 'Export complete collection list with DDC with auto-generated 3 level interpretation', allowing export of collection into .json or .csv format.
