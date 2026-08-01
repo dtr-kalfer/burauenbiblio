@@ -11,6 +11,9 @@ Guide:
 - Date format: YYYY-MM-DD
 
 ## [Unreleased] YYYY-MM-DD
+- Fixed infinite spinner bug during empty catalog search result.
+- Fixed response for ongoing search query (spinner), and correct response if no results found.
+- Begin refactor base code to support PHP 8.3, sanitized redundant and uninitialized function, updated deprecated syntax (7 files).
 - Added new feature in Top30 in-house book activity (JSON Export): A year-month JSON export for list of books (Title, Author, ISBN, checkout count) actively used (but not borrowed) within library premise.
 - Added new feature in Top30 borrowed book (checked out) (JSON Export): A year-month JSON export for list of books (Title, Author, ISBN, checkout count) actively borrowed outside library premise.
 - Added new analytics feature: Collection Growth Analytics. It tracks weekly growth of bibliographic records and copies and present it using interactive Chart.js graphs.
