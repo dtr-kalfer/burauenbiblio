@@ -450,7 +450,7 @@ var bs = {
     // "Searching..." placeholder
     $('#srchRslts').html(
       '<p class="error">' +
-      ' <img src="../images/please_wait.gif" width="26" />' +
+      ' <img src="../images/512-1.webp" width="36" />' +
       ' <?php echo $tSearching; ?>' +
       '</p>\n'
     );
