@@ -64,7 +64,7 @@ function staff_menu() {
 
 			
 		//	Nav::node('cataloging/biblio/editmarc', T("Edit MARC"), "../catalog/biblio_marc_edit_form.php?".$params);
-		//	Nav::node('cataloging/biblio/editstock', T("Edit Stock Info"));
+		// 	Nav::node('cataloging/biblio/editstock', T("Edit Stock Info"));
 		//	Nav::node('cataloging/biblio/newlike', T("New Like"), "../catalog/biblio_new_like.php?".$menu_params);
 			
 		//	Nav::node('cataloging/biblio/bookings', T("Item Bookings"), "../reports/run_report.php?type=bookings");
@@ -102,7 +102,9 @@ function staff_menu() {
 		Nav::node('admin/biblioCopyFields', T("Biblio Copy Fields"),'../admin/biblioCopyFldsForm.php');
 		Nav::node('admin/calendar', T("Calendar Manager"), '../admin/calendarForm.php');
 		
-		Nav::node('admin/borrow_policy', T("Collections"), '../admin/borrow_policy.php');
+		Nav::node('admin/borrow_policy', T("Collections"), '../admin/edit_collection.php');
+		// Nav::node('admin/borrow_policy', T("Collections"), '../admin/borrow_policy.php');
+		
 		Nav::node('admin/media', T("Media Types"), '../admin/mediaForm.php');
 
 		Nav::node('admin/upload_usmarc', T("MARC Import"), "../catalog/importMarcForms.php"); // This one is now working good --F.Tumulak
