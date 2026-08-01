@@ -1,4 +1,46 @@
-<script language="JavaScript" defer >
+<?php
+/**
+ * JavaScript portion of the Biblio ExistingItem Manager
+ * This file is part of a copyrighted work; it is distributed with NO WARRANTY.
+ * See the file COPYRIGHT.html for more details.
+ *
+ * Refactored for PHP 8.3 compatibility, safer JS, and better maintainability. -F. Tumulak
+ *
+ * Original openbiblio @author Luuk Jansen
+ * Original openbiblio @author Fred LaPlante
+ */
+
+declare(strict_types=1);
+
+// ---------------------------------------------------------------------------
+// 1. PHP-side helpers: prepare values injected into JS
+// ---------------------------------------------------------------------------
+$opacMode       = in_array($tab, ['opac', 'circulation'], true);
+$opacModeJs     = $opacMode ? 'true' : 'false';
+$showMarcJs     = JS(T('Show Marc Tags'));
+$hideMarcJs     = JS(T('Hide Marc Tags'));
+$libName        = JS((string) ($_SESSION['libName'] ?? ''));
+$whereAmI       = JS(T('curently viewing site') . ': ' . ($_SESSION['libName'] ?? ''));
+
+// Translated strings for inline JS use
+$tAll           = JS(T('All'));
+$tSearching     = JS(T('Searching'));
+$tNothingFound  = JS(T('Nothing Found'));
+$tNothingByBarc = JS(T('NothingFoundByBarcdSearch'));
+$tItems         = JS(T('Items'));
+$tUpdate        = JS(T('Update'));
+$tUpdateSuccess = JS(T('Update Biblio Success!'));
+$tEditFoto      = JS(T('EditingExistingFoto'));
+$tAddFoto       = JS(T('AddingNewFoto'));
+$tEnterFoto     = JS(T('EnterNewPhotoInfo'));
+$tCoverFoto     = JS(T('CoverPhotoFor'));
+
+$showPhotos     = Settings::get('show_item_photos');
+$barcdWidth     = (int) Settings::get('item_barcode_width');
+$curSite        = JS(Settings::get('library_name'));
+$uploadDir      = JS(OBIB_UPLOAD_DIR);
+?>
+<script defer>
 /* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
  * See the file COPYRIGHT.html for more details.
  */
@@ -9,831 +51,809 @@
  * @author Fred LaPlante
  */
 "use strict";
-<?php
-	// If (a circulation user and NOT a cataloging user) the system should treat the user as opac
-  //	if(strtolower($tab) == 'opac' || ($_SESSION["hasCircAuth"] && !$_SESSION["hasCatalogAuth"]))
-	if(strtolower($tab) == 'opac' || strtolower($tab) == 'circulation' )
-	  echo "var opacMode = true;";
-	else
-	  echo "var opacMode = false;";
-?>
-//------------------------------------------------------------------------------
 
+// ---------------------------------------------------------------------------
+// Mode flag set by PHP
+// ---------------------------------------------------------------------------
+var opacMode = <?php echo $opacModeJs; ?>;
+
+// ---------------------------------------------------------------------------
+// Main search object (namespace)
+// ---------------------------------------------------------------------------
 var bs = {
-	<?php
-		echo "showMarc: '".T("Show Marc Tags")."',\n";
-		echo "hideMarc: '".T("Hide Marc Tags")."',\n";
-		echo "whereAmI: '".T("curently viewing site").": ".$_SESSION['libName']."',\n";
-	?>
-	multiMode: false,
-	
-	init: function () {
-		// get header stuff going first
-		bs.initWidgets();
-		bs.url = '../catalog/catalogServer.php';
-		bs.listSrvr = '../shared/listSrvr.php';
-		bs.urlLookup = '../catalog/onlineServer.php'; //may not exist
-		bs.opts = [];
+  showMarc:   "<?php echo $showMarcJs; ?>",
+  hideMarc:   "<?php echo $hideMarcJs; ?>",
+  whereAmI:   "<?php echo $whereAmI; ?>",
+  multiMode:   false,
 
-		$('#whereAmI').html(bs.whereAmI);
+  // =========================================================================
+  // init — kick everything off
+  // =========================================================================
+  init: function () {
+    bs.initWidgets();
 
-		// for search criteria form
-		$('#barcdSrchBtn').on('click',null,bs.doBarcdSearch);
-		$('#phraseSrchBtn').on('click',null,bs.doPhraseSearch);
-		bs.srchBtnClr = $('#phraseSrchBtn').css('color');
-		$('#bc_searchBarcd').on('keyup',null,bs.checkBarcdSrchBtn);
-		$('#bc_searchBarcd').on('change',null,bs.formatBarcode);
-		$('#ph_searchText').on('keyup',null,bs.checkPhraseSrchBtn);
+    // Server endpoints
+    bs.url       = '../catalog/catalogServer.php';
+    bs.listSrvr  = '../shared/listSrvr.php';
+    bs.urlLookup = '../catalog/onlineServer.php'; // may not exist
+    bs.opts      = {};
+    bs.biblio    = [];
 
-		$('#advancedSrch').hide();
-		$('#advanceQ:checked').val(['N'])
-		$('#advanceQ').on('click',null,function(){
-			if ($('#advanceQ:checked').val() == 'Y')
-				$('#advancedSrch').show();
-			else
-				$('#advancedSrch').hide();
-		});
-		/*
-		$('#srchMediaTypes').on('change',null,function (e) {
-			var materialCd = $('#srchMediaTypes option:selected').val();
-			if (materialCd == 'all')
-				$('#marcTagsRow').hide();
-			else
-				bs.fetchMediaMarcTags(materialCd);
-				$('#marcTagsRow').show();
-		});
-		*/
-		
-		// improve text-input box be more responsive, respond with drop down selection.--F.Tumulak
-		$('#ph_searchText').on('input change', bs.checkPhraseSrchBtn);
-		$('#bc_searchBarcd').on('input change', bs.checkBarcdSrchBtn);
+    $('#whereAmI').html(bs.whereAmI);
 
-		// for the search results section
-		$('#addNewBtn').on('click',null,bs.doNewCopy);
-		$('#addList2CartBtn').on('click',null,bs.doAddListToCart);
-		$('#addItem2CartBtn').on('click',null,bs.doAddItemToCart);
-		$('#delItem2CartBtn').on('click',null,bs.doDelItemToCart);
-		$('.listGobkBtn').on('click',null,bs.rtnToSrch);
-		$('#biblioListDiv .goPrevBtn').on('click',null,function () {bs.goPrevPage(bs.previousPageItem);});
-		$('#biblioListDiv .goNextBtn').on('click',null,function () {bs.goNextPage(bs.nextPageItem);});
-		$('#biblioListDiv .goNextBtn').disable();
-		$('#biblioListDiv .goPrevBtn').disable();
+    // --- Search form bindings ---
+    $('#barcdSrchBtn').on('click', null, bs.doBarcdSearch);
+    $('#phraseSrchBtn').on('click', null, bs.doPhraseSearch);
+    bs.srchBtnClr = $('#phraseSrchBtn').css('color');
 
-		// for the single biblio display screen
-		$('#photoAddBtn').on('click',null,function () {
-			bs.doPhotoAdd(bs.theBiblio);
-		});
-		$('#photoEditBtn').on('click',null,function () {
-            $('#updtFotoBtn').show();
-			bs.doPhotoEdit(bs.theBiblio);
-		});
-		$('#biblioEditBtn').on('click',null,function () {
-			ie.doItemEdit(bs.theBiblio);
-		});
-		$('#biblioDeleteBtn').on('click',null,function () {
-			idis.doItemDelete(bs.theBiblio);
-		});
-		$('#marcBtn').on('click',null,function () {
-		  var marcFld$ = $('#biblioDiv td.filterable');
-		  if (marcFld$.is(':hidden')) {
-				$('#biblioDiv td.filterable').show();
-				$('#marcBtn').val(bs.hideMarc);
-			}
-			else {
-				$('#biblioDiv td.filterable').hide();
-				$('#marcBtn').val(bs.showMarc);
-			}
-		});
-		$('.bibGobkBtn').on('click',null,function () {
-		  if (bs.multiMode) {
-				bs.rtnToList();
-			} else {
-			  bs.rtnToSrch();
-			}
-			$('#cart_result').html("");
-		});
+    $('#bc_searchBarcd').on('keyup',  null, bs.checkBarcdSrchBtn);
+    $('#bc_searchBarcd').on('change', null, bs.formatBarcode);
+    $('#bc_searchBarcd').on('input change', bs.checkBarcdSrchBtn);
 
-		// for the item editor screen
-		$('#itemSubmitBtn').on('click',null,bs.doItemUpdate)
-											 .val('<?php echo T("Update"); ?>');
+    $('#ph_searchText').on('keyup',  null, bs.checkPhraseSrchBtn);
+    $('#ph_searchText').on('input change', bs.checkPhraseSrchBtn);
 
-		$('#copyCancelBtn').on('click',null,function () {
-			idis.fetchCopyInfo(); // refresh copy display
-			bs.rtnToBiblio();
-		});
+    // --- Advanced search toggle ---
+    $('#advancedSrch').hide();
+    $('#advanceQ').prop('checked', false);
+    $('#advanceQ').on('click', null, function () {
+      $('#advancedSrch').toggle($('#advanceQ').prop('checked'));
+    });
 
-		// for the item edit and online update functions
-		$('.itemGobkBtn').on('click',null,function () {
-   			$('#itemEditorDiv').hide();
-		 	$('#biblioDiv').show();
-		});
-			
-		bs.resetForms();
-		bs.fetchOpts();
-		bs.fetchCrntMbrInfo();
-		// prepare pull-down lists
-		bs.fetchSiteList(); // also inits itemDisplayJs
-        bs.fetchStatusCdsList($('#status_cd'));
-		bs.fetchMaterialList();
-		bs.fetchCollectionList();
-		bs.fetchAudienceList();
-		// needed for search results presentation
-		bs.fetchMediaDisplayInfo();
-		bs.fetchMediaLineCnt();
-		bs.fetchMediaIconUrls();
-	},
-	//------------------------------
-	initWidgets: function () {
-	},
-	resetForms: function () {
-	  	//console.log('resetting Search Form');
-		$('#advancedSrch').hide();
-		$('#marcTagsRow').hide();
-	  	$('#crntMbrDiv').hide();
-	  	$('#searchDiv').show();
-		obib.hideMsg('now');
-	  	$('#biblioDiv').hide();
-	  	$('#biblioListDiv').hide();
-	  	$('#itemEditorDiv').hide();
-	  	$('#copyEditorDiv').hide();
-	  	$('#photoEditorDiv').hide();
-	  	bs.multiMode = false;
-	  	bs.checkPhraseSrchBtn();
-	  	bs.checkBarcdSrchBtn();
-		$('#marcBtn').val(bs.showMarc);
-		if (opacMode) $('#barcodeSearch').hide();
-		$('#ph_searchText').focus();
-	},
-	rtnToSrch: function () {
-  		$('tbody#biblio').html('');
-  	  	$('tbody#copies').html('');
-		obib.hideMsg();
-		$('#editRsltMsg').html('');
-		$('#biblioDiv').hide();
-		$('#biblioListDiv').hide();
-		$('#searchDiv').show();
-		$('#itemEditorDiv').hide();
-		$('#copyEditorDiv').hide();
-		$('#photoEditorDiv').hide();
-		bs.checkPhraseSrchBtn();
-		bs.checkBarcdSrchBtn();
-	},
-	rtnToList: function () {
-		obib.hideMsg();
-		$('#editRsltMsg').html('');
-		$('#biblioDiv').hide();
-		$('#biblioListDiv').show();
-		$('#searchDiv').hide();
-		$('#itemEditorDiv').hide();
-		$('#copyEditorDiv').hide();
-		$('#photoEditorDiv').hide();
-	},
-	rtnToBiblio: function () {
-		obib.hideMsg();
-		$('#biblioDiv').show();
-		$('#biblioListDiv').hide();
-		$('#searchDiv').hide();
-		$('#itemEditorDiv').hide();
-		$('#copyEditorDiv').hide();
-		$('#photoEditorDiv').hide();
-	},
+    // --- Results / biblio section bindings ---
+    $('#addNewBtn').on('click', null, bs.doNewCopy);
+    $('#addItem2CartBtn').on('click', null, bs.doAddItemToCart);
+    $('#delItem2CartBtn').on('click', null, bs.doDelItemToCart);
+    $('.listGobkBtn').on('click', null, bs.rtnToSrch);
 
-	checkPhraseSrchBtn: function () {
-		if (($('#ph_searchText').val()).length > 0) { // empty input
-			$('#phraseSrchBtn').enable().css('color', bs.srchBtnClr);
-		} else {
-			$('#phraseSrchBtn').disable().css('color', '#888888');
-		}
-	},
-	checkBarcdSrchBtn: function () {
-		if (($('#bc_searchBarcd').val()).length > 0) { // empty input
-			$('#barcdSrchBtn').enable().css('color', bs.srchBtnClr);
-		} else {
-			$('#barcdSrchBtn').disable().css('color', '#888888');
-		}
-	},
-	formatBarcode: function () {
-		var barcd = $.trim($('#bc_searchBarcd').val());
-		barcd = flos.pad(barcd,bs.opts.barcdWidth,'0');
-		$('#bc_searchBarcd').val(barcd); // redisplay expanded value
-	},
+    $('#biblioListDiv .goPrevBtn').on('click', null, function () {
+      bs.goPrevPage(bs.previousPageItem);
+    });
+    $('#biblioListDiv .goNextBtn').on('click', null, function () {
+      bs.goNextPage(bs.nextPageItem);
+    });
+    $('#biblioListDiv .goNextBtn').disable();
+    $('#biblioListDiv .goPrevBtn').disable();
 
-	doAltStart: function () {
+    // --- Single biblio display bindings ---
+    $('#photoAddBtn').on('click', null, function () {
+      bs.doPhotoAdd(bs.theBiblio);
+    });
+    $('#photoEditBtn').on('click', null, function () {
+      $('#updtFotoBtn').show();
+      bs.doPhotoEdit(bs.theBiblio);
+    });
+    $('#biblioEditBtn').on('click', null, function () {
+      ie.doItemEdit(bs.theBiblio);
+    });
+    $('#biblioDeleteBtn').on('click', null, function () {
+      idis.doItemDelete(bs.theBiblio);
+    });
+    $('#marcBtn').on('click', null, function () {
+      var marcFlds = $('#biblioDiv td.filterable');
+      if (marcFlds.is(':hidden')) {
+        marcFlds.show();
+        $('#marcBtn').val(bs.hideMarc);
+      } else {
+        marcFlds.hide();
+        $('#marcBtn').val(bs.showMarc);
+      }
+    });
+    $('.bibGobkBtn').on('click', null, function () {
+      if (bs.multiMode) {
+        bs.rtnToList();
+      } else {
+        bs.rtnToSrch();
+      }
+      $('#cart_result').html('');
+    });
 
+    // --- Item editor bindings ---
+    $('#itemSubmitBtn').on('click', null, bs.doItemUpdate)
+      .val('<?php echo $tUpdate; ?>');
 
-		<?php
-		if (isset($_REQUEST['barcd'])) {
-				$barcd = json_encode($_REQUEST['barcd']);
-				echo "$('#bc_searchBarcd').val($barcd);\n";
-				echo "bs.doBarcdSearch();\n";
-		} elseif (isset($_REQUEST['bibid'])) {
-				$bibid = (int) $_REQUEST['bibid']; // Safe cast to int
-				echo "bs.doBibidSearch($bibid);\n";
-		} elseif (isset($_REQUEST['searchText'])) {
-				$searchText = json_encode($_REQUEST['searchText']);
-				$searchType = json_encode($_REQUEST['searchType'] ?? '');
-				echo "$('#ph_searchText').val($searchText);\n";
-				echo "$('#ph_searchType').val($searchType);\n";
-				echo "bs.doPhraseSearch();\n";
-		}
-		?>
+    $('#copyCancelBtn').on('click', null, function () {
+      idis.fetchCopyInfo();
+      bs.rtnToBiblio();
+    });
 
+    $('.itemGobkBtn').on('click', null, function () {
+      $('#itemEditorDiv').hide();
+      $('#biblioDiv').show();
+    });
 
-	},
+    // --- Initialise UI and load data ---
+    bs.resetForms();
+    bs.fetchOpts();
+    bs.fetchCrntMbrInfo();
 
-	//------------------------------
-	fetchOpts: function () {
-		bs.opts['showBiblioPhotos'] = '<?php echo Settings::get('show_item_photos');?>';
-		bs.opts['barcdWidth'] = <?php echo Settings::get('item_barcode_width');?>;
-    	bs.opts['current_site'] = '<?php echo Settings::get('library_name');?>';
-	},
-	fetchCrntMbrInfo: function () {
-	  	$.post(bs.url,{mode:'getCrntMbrInfo'}, function(data){
-			$('#crntMbrDiv').empty().html(data).show();
-		}, 'json');
-	},
-	fetchMaterialList: function () {
-        list.getMaterialList($('#srchMediaTypes'), function () {
-		   $('#srchMediaTypes').prepend('<option value="all" selected="selected"><?php echo T("All");?></option>');
-        });
-	},
-	fetchMediaMarcTags: function (materialCd) {
-	  $.post(bs.listSrvr,{'mode':'getMediaMarcTags', 'media':materialCd}, function(data){
-			var html = '<option value="all" selected="selected"><?php echo T("All"); ?></option>' + html;
-            $.each(data, function (key, value) {
-				html+= '<option value="'+key+'">'+key+': '+value+'</option>';
-			});
-			$('#srchMarcTags').html(html);
-		}, 'json');
-	},
-	fetchCollectionList: function () {
-        list.getCollectionList($('#srchCollections'), function () {
-		   $('#srchCollections').prepend('<option value="all" selected="selected"><?php echo T("All");?></option>');
-        });
-	},
-	fetchAudienceList: function () {
-	  $.post(bs.listSrvr,{'mode':'getAudienceList'}, function(data){
-			var html = '';
+    bs.fetchSiteList();           // also inits itemDisplayJs
+    bs.fetchStatusCdsList($('#status_cd'));
+    bs.fetchMaterialList();
+    bs.fetchCollectionList();
+    bs.fetchAudienceList();
+
+    bs.fetchMediaDisplayInfo();
+    bs.fetchMediaLineCnt();
+    bs.fetchMediaIconUrls();
+  },
+
+  // =========================================================================
+  // Widget / plugin init hook (extension point)
+  // =========================================================================
+  initWidgets: function () {
+  },
+
+  // =========================================================================
+  // resetForms — return to initial search view
+  // =========================================================================
+  resetForms: function () {
+    var $div = function (id) { return $('#' + id); };
+
+    $('#advancedSrch').hide();
+    $('#marcTagsRow').hide();
+    $div('crntMbrDiv').hide();
+    $div('searchDiv').show();
+    obib.hideMsg('now');
+    $div('biblioDiv').hide();
+    $div('biblioListDiv').hide();
+    $div('itemEditorDiv').hide();
+    $div('copyEditorDiv').hide();
+    $div('photoEditorDiv').hide();
+
+    bs.multiMode = false;
+    bs.checkPhraseSrchBtn();
+    bs.checkBarcdSrchBtn();
+
+    $('#marcBtn').val(bs.showMarc);
+    if (opacMode) {
+      $('#barcodeSearch').hide();
+    }
+    $('#ph_searchText').focus();
+  },
+
+  // =========================================================================
+  // Navigation helpers
+  // =========================================================================
+  rtnToSrch: function () {
+    $('tbody#biblio').html('');
+    $('tbody#copies').html('');
+    obib.hideMsg();
+    $('#editRsltMsg').html('');
+    $('#biblioDiv').hide();
+    $('#biblioListDiv').hide();
+    $('#searchDiv').show();
+    $('#itemEditorDiv').hide();
+    $('#copyEditorDiv').hide();
+    $('#photoEditorDiv').hide();
+    bs.checkPhraseSrchBtn();
+    bs.checkBarcdSrchBtn();
+  },
+
+  rtnToList: function () {
+    obib.hideMsg();
+    $('#editRsltMsg').html('');
+    $('#biblioDiv').hide();
+    $('#biblioListDiv').show();
+    $('#searchDiv').hide();
+    $('#itemEditorDiv').hide();
+    $('#copyEditorDiv').hide();
+    $('#photoEditorDiv').hide();
+  },
+
+  rtnToBiblio: function () {
+    obib.hideMsg();
+    $('#biblioDiv').show();
+    $('#biblioListDiv').hide();
+    $('#searchDiv').hide();
+    $('#itemEditorDiv').hide();
+    $('#copyEditorDiv').hide();
+    $('#photoEditorDiv').hide();
+  },
+
+  // =========================================================================
+  // Search button enable/disable helpers
+  // =========================================================================
+  checkPhraseSrchBtn: function () {
+    var hasText = $('#ph_searchText').val().length > 0;
+    $('#phraseSrchBtn').prop('disabled', !hasText)
+      .css('color', hasText ? bs.srchBtnClr : '#888888');
+  },
+
+  checkBarcdSrchBtn: function () {
+    var hasText = $('#bc_searchBarcd').val().length > 0;
+    $('#barcdSrchBtn').prop('disabled', !hasText)
+      .css('color', hasText ? bs.srchBtnClr : '#888888');
+  },
+
+  formatBarcode: function () {
+    var barcd = $.trim($('#bc_searchBarcd').val());
+    barcd = flos.pad(barcd, bs.opts.barcdWidth, '0');
+    $('#bc_searchBarcd').val(barcd);
+  },
+
+  // =========================================================================
+  // doAltStart — alternative entry point (triggered from PHP params)
+  // =========================================================================
+  doAltStart: function () {
+    <?php if (isset($_REQUEST['barcd'])): ?>
+      $('#bc_searchBarcd').val(<?php echo json_encode($_REQUEST['barcd']); ?>);
+      bs.doBarcdSearch();
+    <?php elseif (isset($_REQUEST['bibid'])): ?>
+      bs.doBibidSearch(<?php echo (int) $_REQUEST['bibid']; ?>);
+    <?php elseif (isset($_REQUEST['searchText'])): ?>
+      $('#ph_searchText').val(<?php echo json_encode($_REQUEST['searchText']); ?>);
+      $('#ph_searchType').val(<?php echo json_encode($_REQUEST['searchType'] ?? ''); ?>);
+      bs.doPhraseSearch();
+    <?php endif; ?>
+  },
+
+  // =========================================================================
+  // Data fetchers — populate dropdowns and options
+  // =========================================================================
+  fetchOpts: function () {
+    bs.opts.showBiblioPhotos = '<?php echo $showPhotos; ?>';
+    bs.opts.barcdWidth       = <?php echo $barcdWidth; ?>;
+    bs.opts.current_site     = '<?php echo $curSite; ?>';
+  },
+
+  fetchCrntMbrInfo: function () {
+    $.post(bs.url, { mode: 'getCrntMbrInfo' }, function (data) {
+      $('#crntMbrDiv').empty().html(data).show();
+    }, 'json');
+  },
+
+  fetchMaterialList: function () {
+    list.getMaterialList($('#srchMediaTypes'), function () {
+      $('#srchMediaTypes').prepend('<option value="all" selected="selected"><?php echo $tAll; ?></option>');
+    });
+  },
+
+  fetchCollectionList: function () {
+    list.getCollectionList($('#srchCollections'), function () {
+      $('#srchCollections').prepend('<option value="all" selected="selected"><?php echo $tAll; ?></option>');
+    });
+  },
+
+  fetchAudienceList: function () {
+    $.post(bs.listSrvr, { mode: 'getAudienceList' }, function (data) {
+      var html = '';
       for (var n in data) {
-				html+= '<option value="'+data[n]+'">'+data[n]+'</option>';
-			}
-			$('#itemEditColls').html(html);
-			html = '<option value="all"  selected="selected"><?php echo T("All");?></option>' + html;
-			$('#audienceLevel').html(html);
-		}, 'json');
-	},
-    fetchStatusCdsList: function(where) {
-        list.getStatusCds(where);
-    },
-	fetchSiteList: function () {
-	  $.post(bs.listSrvr,{'mode':'getSiteList'}, function(data){
-			bs.siteList = data;
-			var html = '';
-            for (var n in data) {
-				html+= '<option value="'+n+'">'+data[n]+'</option>';
-			}
-			$('#copySite').html(html);
-			html = '<option value="all" selected="selected"><?php echo T("All");?></option>' + html;
-			$('#srchSites').html(html);
+        if (Object.prototype.hasOwnProperty.call(data, n)) {
+          html += '<option value="' + data[n] + '">' + data[n] + '</option>';
+        }
+      }
+      $('#itemEditColls').html(html);
+      html = '<option value="all" selected="selected"><?php echo $tAll; ?></option>' + html;
+      $('#audienceLevel').html(html);
+    }, 'json');
+  },
 
-			idis.init(bs.opts, bs.siteList); // used for biblio item & copy displays
-			ie.init(bs.opts, bs.siteList); // ensure field bindings are current
+  fetchStatusCdsList: function (where) {
+    list.getStatusCds(where);
+  },
 
-			// now ready to begin a search
-			bs.doAltStart();
-		}, 'json');
-	},
-	fetchMediaDisplayInfo: function () {
-	  $.post(bs.url,{mode:'getMediaDisplayInfo',howMany:'all'}, function(response){
-			bs.displayInfo = response;
-		}, 'json');
-	},
-	fetchMediaIconUrls: function () {
-	  $.post(bs.listSrvr,{mode:'getMediaIconUrls'}, function(response){
-			bs.mediaIconUrls = response;
-		}, 'json');
-	},
-	fetchMediaLineCnt: function () {
-	  $.post(bs.url,{mode:'getMediaLineCnt'}, function(response){
-			bs.mediaLineCnt = response;
-		}, 'json');
-	},
+  fetchSiteList: function () {
+    $.post(bs.listSrvr, { mode: 'getSiteList' }, function (data) {
+      bs.siteList = data;
+      var html = '';
+      for (var n in data) {
+        if (Object.prototype.hasOwnProperty.call(data, n)) {
+          html += '<option value="' + n + '">' + data[n] + '</option>';
+        }
+      }
+      $('#copySite').html(html);
+      html = '<option value="all" selected="selected"><?php echo $tAll; ?></option>' + html;
+      $('#srchSites').html(html);
 
-	/* ====================================== */
-	doBibidSearch: function (bibid) {
-        bs.srchType = 'bibid';
-        $('p.error').html('').hide();
-        var params = '&mode=doBibidSearch&bibid='+bibid;
+      idis.init(bs.opts, bs.siteList);
+      ie.init(bs.opts, bs.siteList);
 
-				$.post(bs.url, params, function(jsonInpt)
-								{
-									if (typeof jsonInpt !== 'object') { //This is supposedly object --F.T.
-											obib.showMsg(jsonInpt);
-									} else {
-											bs.biblio = jsonInpt;
-											if (!bs.biblio.hdr) {
-													obib.showMsg('<?php echo T("NothingFoundByBarcdSearch") ?>');
-											} else {
-													idis.showOneBiblio(bs.biblio);
-											}
-									}
-									$('#searchDiv').hide();
-									$('#biblioDiv').show();
-								},
-								'json'
-							);
-		return false;
-	},
+      bs.doAltStart();
+    }, 'json');
+  },
 
-	doBarcdSearch: function (e) {
-		var barcd = $.trim($('#searchBarcd').val());
-		barcd = flos.pad(barcd,bs.opts.barcdWidth,'0');
-		$('#searchBarcd').val(barcd); // redisplay expanded value
-		
-	    bs.srchType = 'barCd';
-	    $('p.error').html('').hide();
-	    var params = $('#barcodeSearch').serialize();
-		params += '&mode=doBarcdSearch';
-	    $.post(bs.url,params, function(jsonInpt){
-			if (jsonInpt.message) {
-				obib.showMsg(jsonInpt.message);
-				return false;
-			} else {
-				bs.biblio = jsonInpt;
-				if (bs.biblio.hdr != null) {
-					bs.multiMode = false;
-					idis.showOneBiblio(bs.biblio)
-					//idis.fetchCopyInfo();
-				}
-				else if (bs.biblio.hdr == null) {
-				    var msgTxt =
-	  			    obib.showMsg('<?php echo T("Nothing Found") ?>');
-	  			    bs.rtnToSrch();
-				}
-				else {
-					bs.multiMode = false;
-					idis.showOneBiblio(bs.biblio)
-				}
-            }
-		    $('#searchDiv').hide();
-	        $('#biblioDiv').show();
-		}, 'json');
-		return false;
-	},
-	doPhraseSearch: function (e,firstItem) {
-        $('#biblioListDiv').show()
-        $('#searchDiv').hide();
-        $('#resultsArea').html('');
+  fetchMediaDisplayInfo: function () {
+    $.post(bs.url, { mode: 'getMediaDisplayInfo', howMany: 'all' }, function (response) {
+      bs.displayInfo = response;
+    }, 'json');
+  },
 
-		// searchType 'ID' gets special handling
-		var searchType = $('#ph_searchType option:selected').val();
-		var searchText = $('#ph_searchText').val();
-		$('#srchRsltTitl').html(searchText);
-		//console.log('searchType==>'+searchType+'; searchText==>'+searchText);
-		if (searchType == 'id') {
-			e.preventDefault();
-            bs.doBibidSearch(searchText);
-			return false;
-		}
+  fetchMediaIconUrls: function () {
+    $.post(bs.listSrvr, { mode: 'getMediaIconUrls' }, function (response) {
+      bs.mediaIconUrls = response;
+    }, 'json');
+  },
 
-        /* Moved this forward to show a please wait text, as search can take */
-		/*up to a second on a large databse and user might click twice.      */
-		var msg = '<p class="error">'
-				  '	<img src="../images/please_wait.gif" width="26" />'
-                  '	<?php echo T("Searching"); ?>'
-				  '</p>'+"\n";
-	    $('#srchRslts').html(msg);
+  fetchMediaLineCnt: function () {
+    $.post(bs.url, { mode: 'getMediaLineCnt' }, function (response) {
+      bs.mediaLineCnt = response;
+    }, 'json');
+  },
 
-        $('.rsltQuan').html('');
-        if(firstItem==null) firstItem=0;
-        bs.srchType = 'phrase';
-	    var params = $('#phraseSearch').serialize();
-		params += '&mode=doPhraseSearch&firstItem='+firstItem;
+  // =========================================================================
+  // Search methods
+  // =========================================================================
+  doBibidSearch: function (bibid) {
+    bs.srchType = 'bibid';
+    $('p.error').html('').hide();
 
-	    $.post(bs.url,params, function(jsonInpt){
-			//if ($.trim(jsonInpt).substr(0,1) != '[') {
-			//if ($.trim(jsonInpt).substr(0,1) != '[') {
-			//	$('#userMsg').html(jsonInpt).show();
-			//} else {
-				//var biblioList = JSON.parse(jsonInpt);
-				var biblioList = jsonInpt;
+    $.post(bs.url, '&mode=doBibidSearch&bibid=' + bibid, function (jsonInpt) {
+      if (typeof jsonInpt !== 'object') {
+        obib.showMsg(jsonInpt);
+      } else {
+        bs.biblio = jsonInpt;
+        if (!bs.biblio.hdr) {
+          obib.showMsg('<?php echo $tNothingByBarc; ?>');
+        } else {
+          idis.showOneBiblio(bs.biblio);
+        }
+      }
+      $('#searchDiv').hide();
+      $('#biblioDiv').show();
+    }, 'json').fail(function () {
+      obib.showMsg('<?php echo $tNothingFound; ?>');
+      $('#searchDiv').hide();
+      $('#biblioDiv').show();
+    });
+    return false;
+  },
 
-				if ((biblioList.length == 0) || ($.trim(jsonInpt) == '[]') ) {
-                    //console.log('no hits');
-                    bs.multiMode = false;
-                    $('#srchRslts').html('<p class="error"><?php echo T("Nothing Found") ?></p>');
-                    $('#biblioListDiv .goNextBtn').disable();
-                    $('#biblioListDiv .goPrevBtn').disable();
-				}
-				else if (biblioList.length == 2 && firstItem == 0) {
-                    //console.log('single hit');
-					// Changed to two, as an extra record is added with the amount of records etc.
-					// (also, if not first page ignore this) - LJ
-				    bs.multiMode = false;
-      		        // Changed from 0 to 1 as the first row shows record info
-					bs.biblio = JSON.parse(biblioList[1]);
-					idis.showOneBiblio(bs.biblio)
-					//idis.fetchCopyInfo();
-				}
-				else {
-                    //console.log('multiple hits');
-				    bs.multiMode = true;
-				    bs.showList(firstItem, biblioList);
-				}
-	       //}
-		}, 'json');
-		return false;
-	},
+  doBarcdSearch: function (e) {
+    var barcd = $.trim($('#searchBarcd').val());
+    barcd = flos.pad(barcd, bs.opts.barcdWidth, '0');
+    $('#searchBarcd').val(barcd);
 
-	/* ====================================== */
-	getPhoto: function (bibid, dest) {
-		//if (bibid === undefined) console.log('Missing bibid in getPhoto()');
-		$.post(bs.url,{ 'mode':'getPhoto', 'bibid':bibid  }, function(data){
-			if (data != null) {
-                var foto = data[0];
-				$(dest).html($('<img src="'+foto['url']+'" class="biblioImage hover">'));
-			}
-		}, 'json');
-	},
+    bs.srchType = 'barCd';
+    $('p.error').html('').hide();
 
-	showList: function (firstItem, biblioData) {
-		if(firstItem == null) firstItem=0;
-	  
-		// print 'number found'('first displayed#'- 'last displayed#')
-		// Modified in order to limit results per page. First "record" contains this data - LJ
-		var queryInfo = JSON.parse(biblioData[0]);
-		var firstItem = parseInt(queryInfo.firstItem),
-			lastItem = parseInt(queryInfo.lastItem),
-			perPage = parseInt(queryInfo.itemsPage),
-			ttlNum = parseInt(queryInfo.totalNum),
-			modFirstItem = parseInt(queryInfo.firstItem) + 1;
+    var params = $('#barcodeSearch').serialize() + '&mode=doBarcdSearch';
+    $.post(bs.url, params, function (jsonInpt) {
+      if (jsonInpt && jsonInpt.message) {
+        obib.showMsg(jsonInpt.message);
+        return;
+      }
+      bs.biblio = jsonInpt;
+      if (bs.biblio && bs.biblio.hdr !== null && bs.biblio.hdr !== undefined) {
+        bs.multiMode = false;
+        idis.showOneBiblio(bs.biblio);
+      } else {
+        obib.showMsg('<?php echo $tNothingFound; ?>');
+        bs.rtnToSrch();
+      }
+      $('#searchDiv').hide();
+      $('#biblioDiv').show();
+    }, 'json').fail(function () {
+      obib.showMsg('<?php echo $tNothingFound; ?>');
+      $('#searchDiv').hide();
+      $('#biblioDiv').show();
+    });
+    return false;
+  },
 
-		// we need a sorted list of biblios for display
-		// 1. clone list without the info record
-		var biblioList = biblioData.slice(1);
-		//console.log(biblioList);
-		// 2. construct an array of bibioList indeces and various sort keys
-		var keys = ['Call Number', 'Title', 'Author'];
-		var biblioNdx = [];
-		for (var nBiblio in biblioList) {
-			biblioNdx[nBiblio] = [];
-			biblioNdx[nBiblio]['index'] = nBiblio;
-			var biblio = JSON.parse(biblioList[nBiblio]);
-			var hdr = biblio.hdr;   //console.log(hdr); console.log("--");
-			var marc = biblio.marc;  //console.log(marc); console.log("--");
-			for (var nEntry in marc) {
-				var key = marc[nEntry].lbl
-				//console.log("testing lbl '"+key+"'' for a match for biblio #"+String(nEntry));
-				if (keys.includes(key)) {
-					//console.log("found a match to "+key);
-					//console.log("placing '"+marc[nEntry].value+"'' into '"+key+"'' column for biblio #"+String(nBiblio));
-					biblioNdx[nBiblio][key] = marc[nEntry].value;
-				}
-			}
-			//console.log(biblioNdx);
-			console.log("- - - - -");
-		}
-		// 3. sort the biblio Index array
-		var sortBy = $('#sortBy option:selected').val();
-		//console.log("sorting by '"+sortBy+"'");
-		biblioNdx.sort(bs.by(sortBy, true));
-		//console.log(biblioNdx);
+  doPhraseSearch: function (e, firstItem) {
+    $('#biblioListDiv').show();
+    $('#searchDiv').hide();
+    $('#resultsArea').html('');
 
-		$('.rsltQuan').html(' '+ttlNum+' <?php echo T("Items"); ?>('+modFirstItem+'-'+lastItem+ ') ');
-		bs.biblio = [];
+    var searchType = $('#ph_searchType option:selected').val();
+    var searchText = $('#ph_searchText').val();
+    $('#srchRsltTitl').html(searchText);
 
-		$('#listTbl tbody#srchRslts').html('');
-//		for (var nBiblio in biblioList) {
-		for (var nSeqno in biblioNdx) {
-			var ndx = biblioNdx[nSeqno]['index']
-			var biblio = JSON.parse(biblioList[ndx]);
-			if (!biblio.hdr) {
-				console.log('biblio hdr missing for record #'+nBiblio+' of the current setDate.');
-				continue;
-			}
+    // Special handling for ID search
+    if (searchType === 'id') {
+      if (e) { e.preventDefault(); }
+      bs.doBibidSearch(searchText);
+      return false;
+    }
 
-			var title = '', booktitle='', booksubtitle='', reporttitle='', reportsubtitle='',
-					author='', coauthor='', editors='', corporate='',
-					year='', journal='', jrnlDate='',
-					callNo='', edition ='', pubDate='', nrCopies=0, avail='❌';
-			var html = '';
-			var hdr = biblio.hdr;
-			var cpys = biblio.cpys.length; // get the number of elements inside the array --> F.Tu7mulak
-			
-			idis.crntBibid = hdr.bibid;
-			bs.biblio[hdr.bibid] = biblio;
-			var imageFile = bs.mediaIconUrls[hdr.material_cd];
-			html += '<tr class="listItem" >\n';
+    // "Searching..." placeholder
+    $('#srchRslts').html(
+      '<p class="error">' +
+      ' <img src="../images/please_wait.gif" width="26" />' +
+      ' <?php echo $tSearching; ?>' +
+      '</p>\n'
+    );
 
-			//--// the leftside pretty stuff
-			html += '	<td style="width: 200px;">\n';
-			html += '		<div class="itemVisual" > \n';
-			/* if wanted, we create space for a possible photo, and fill it if one is found */
-			var showFoto = '<?php echo Settings::get('show_item_photos'); ?>';
-			if ((showFoto == 'Y') && (hdr.bibid !== undefined)){
-				html += '		<div class="photos"  id="photo_'+hdr.bibid+'">\n';
-				html += '			<img src="../images/shim.gif" class="biblioImage noHover" height="50px" width="50px" '
-												   + 'height="'+bs.fotoHeight+'" width="'+bs.fotoWidth+'" >';
-				html += '		</div>'+"\n";
-				bs.getPhoto(hdr.bibid, '#photo_'+hdr.bibid );
-			}
-			if (cpys > 0) {avail='✅'} else {avail='❌'}
-			/*  some administrative info and a 'more detail' button */
-			html += '	<div class="dashBds" >\n';
-			html += ' 	<div class="dashBdsA" >';
-			html += '			<p><b>🔖Bibid: <mark>' + hdr.bibid + '</mark> <br>' +avail+ 'Copies: '+cpys+'<b></p>';
-			html += '		</div>\n';
-			html += ' 	<div class="dashBdsB" >\n';
-			//html += '			<hr />'+'\n';
-			html += '		</div>\n';
-			html += ' 	<div class="dashBdsC">';
-			html += '			<input type="hidden" value="'+hdr.bibid+'" />'+'\n';
-			html += '			<input type="button" style="margin-top: 20px;" class="moreBtn" value="<?php echo '🔍 View Info'; ?>" />'+'\n';
-			html += ' 	</div>';
-			html += '	</div>\n';
-			html += '</div></td>';  // end of itemVisual div
+    $('.rsltQuan').html('');
+    if (firstItem === null || firstItem === undefined) {
+      firstItem = 0;
+    }
+    bs.srchType = 'phrase';
+    var params = $('#phraseSearch').serialize() + '&mode=doPhraseSearch&firstItem=' + firstItem;
 
-			/* the more useful stuff, biblio data */
-			var marc = biblio.marc;
-			if (marc) {
-				//// Construct all potential lines for later use.
-				var lines = [],
-					lineNo;
-				$.each(marc, function (ndx, fld) {
-					//if (!fld.value) fld.value = 'n/a';
-					if (!fld.value) fld.value = '';
-					lineNo = fld.line;
-//					lines[lineNo] = fld.value.trim();
-					lines.push(fld.value.trim());
-				});
-			} else {
-				// skip these
-				title = 'unknown'; callNo = 'not assigned';
-				continue;
-			}
+    $.post(bs.url, params, function (jsonInpt) {
+      var biblioList = jsonInpt;
 
-			//--// Display first 'N' lines of biblio information
-			// number of rows to display is based on Media type
-			var N = bs.mediaLineCnt[hdr.material_cd];
-			var emojis = ['🔖<b> Call Number: </b>', '👨‍💼<b> Author: </b>', '📙<b> Title: </b>']; // Array containing emojis
-			
-			html += '<td id="itemInfo">\n';
-			for (var i=0; i<N; i++) {
-				if (!lines[i]) continue; // skip null, undefined or non-existent elements
-				var emoji = emojis[i] ? emojis[i] : ''; // Get the emoji corresponding to index i, if it exists
-				if (lines[i] != '') html += '<p class="searchListItem">'+emoji+lines[i]+'</p>\n';
-			}
-			html += '</tr>\n';
-			$('#srchRslts').append(html);
-		}
-		obib.reStripe2('listTbl','odd');
+      if (!biblioList || biblioList.length === 0 || $.trim(jsonInpt) === '[]') {
+        // No hits
+        bs.multiMode = false;
+        $('#srchRslts').html('<p class="error"><?php echo $tNothingFound; ?></p>');
+        $('#biblioListDiv .goNextBtn').disable();
+        $('#biblioListDiv .goPrevBtn').disable();
+      } else if (biblioList.length === 2 && firstItem === 0) {
+        // Single hit (first record is query info, second is the biblio)
+        bs.multiMode = false;
+        bs.biblio = JSON.parse(biblioList[1]);
+        idis.showOneBiblio(bs.biblio);
+      } else {
+        // Multiple hits
+        bs.multiMode = true;
+        bs.showList(firstItem, biblioList);
+      }
+    }, 'json').fail(function () {
+      // JSON parse failed — likely a PHP warning/notice in the response
+      $('#srchRslts').html('<p class="error"><?php echo $tNothingFound; ?></p>');
+      $('#biblioListDiv .goNextBtn').disable();
+      $('#biblioListDiv .goPrevBtn').disable();
+    });
+    return false;
+  },
 
-	    // this button is created dynamically, so duplicate binding is not possible
-		$('.moreBtn').on('click',null,bs.getPhraseSrchDetails);
-		
-		// enable or disable next / prev buttons
-		if(firstItem>=perPage){
-			bs.previousPageItem = firstItem - perPage;
-			$('#biblioListDiv .goPrevBtn').enable();
-		} else {
-			$('#biblioListDiv .goPrevBtn').disable();
-		}
-		if((perPage+firstItem <= lastItem)&&(ttlNum!=lastItem)){
-			bs.nextPageItem = perPage + firstItem;
-			$('#biblioListDiv .goNextBtn').enable();
-		} else {
-			$('#biblioListDiv .goNextBtn').disable();
-		}
-		
-		$('#biblioListDiv').show()
-		$('#biblioDiv').hide()
- 		$('#searchDiv').hide();
-	},
+  // =========================================================================
+  // getPhoto — fetch and display a biblio thumbnail
+  // =========================================================================
+  getPhoto: function (bibid, dest) {
+    $.post(bs.url, { mode: 'getPhoto', bibid: bibid }, function (data) {
+      if (data && data.length > 0) {
+        var foto = data[0];
+        $(dest).html($('<img src="' + foto.url + '" class="biblioImage hover">'));
+      }
+    }, 'json');
+  },
 
-	by: function(field, reverse, primer){
-		// json object array sort based on work described at
-		// http://stackoverflow.com/a/979325/2502532
-   		var key = function (x) {
-   			return primer ? primer(x[field]) : x[field];
-		};
+  // =========================================================================
+  // showList — build the multi-result search list table
+  // =========================================================================
+  showList: function (firstItem, biblioData) {
+    if (firstItem === null || firstItem === undefined) {
+      firstItem = 0;
+    }
 
-   		return function (a,b) {
-	  		var A = key(a), B = key(b);
-	  		return ( (A < B) ? -1 : ((A > B) ? 1 : 0) ) * [-1,1][+!!reverse];
-   		}
-	},
+    // Parse query metadata (first record)
+    var queryInfo = JSON.parse(biblioData[0]);
+    var perPage       = parseInt(queryInfo.itemsPage, 10);
+    var ttlNum        = parseInt(queryInfo.totalNum, 10);
+    var lastItem      = parseInt(queryInfo.lastItem, 10);
+    var modFirstItem  = parseInt(queryInfo.firstItem, 10) + 1;
+    firstItem         = parseInt(queryInfo.firstItem, 10);
 
-	goNextPage:function (firstItem) {
-		$('#biblioListDiv .goNextBtn').disable();
-		bs.doPhraseSearch(null,firstItem);
-	},
-	goPrevPage:function (firstItem) {
-		$('#biblioListDiv .goPrevBtn').disable();
-		bs.doPhraseSearch(null,firstItem);
-	},
-	doAddListToCart:function () {
-    var params = "mode=addToCart&name=bibid&tab=catalog";
-		for (var bibid in bs.biblio) {
-	  	params += "&id[]="+bibid;
-		}
-	    $.post(bs.url, params, function(response){
-	    $('#results_found').html(response);
-	  }, 'json');
-	},
-	getPhraseSrchDetails: function () {
-	  var bibid = $(this).prev().val();
-		bs.biblio.bibid = bibid;
-		idis.showOneBiblio(bs.biblio[bibid]);
-		//idis.fetchCopyInfo(bs.biblio[bibid]);
-	},
-	doDelItemToCart: function () {
-		var params = "mode=delToCart&name=bibid&tab=catalog";
-		const bibid = document.getElementById("theBibId").textContent.trim();
-		params += "&id[]=" + bibid;
+    // Clone list without the info record
+    var biblioList = biblioData.slice(1);
 
-		//console.log('Del item to cart params: ' + params);
-		//console.log('URL: ' + bs.url);
+    // Build sort index
+    var sortKeys = ['Call Number', 'Title', 'Author'];
+    var biblioNdx = [];
+    for (var i = 0; i < biblioList.length; i++) {
+      var entry = { index: i };
+      var biblio = JSON.parse(biblioList[i]);
+      var marc = biblio.marc;
+      if (marc) {
+        for (var j = 0; j < marc.length; j++) {
+          var key = marc[j].lbl;
+          if (sortKeys.indexOf(key) !== -1) {
+            entry[key] = marc[j].value;
+          }
+        }
+      }
+      biblioNdx.push(entry);
+    }
 
-		$.post(bs.url, params, function(response) {
-			if ($('#cart_result').length === 0) return;
-			// console.log("Server response: ", response);
+    // Sort
+    var sortBy = $('#sortBy option:selected').val();
+    biblioNdx.sort(bs.by(sortBy, true));
 
-			// Extract $rslt: value using regex
-			var match = response.match(/\$rslt:\s*(.*)/i);
-			var rslt = match ? match[1].trim() : null;
+    // Display result count
+    $('.rsltQuan').html(' ' + ttlNum + ' <?php echo $tItems; ?>(' + modFirstItem + '-' + lastItem + ') ');
+    bs.biblio = [];
 
-			// Decide message
-			if (rslt === "1") {
-				$('#cart_result').html("<h4>✅ Item untagged! ✅</h4>");
-			} else {
-				$('#cart_result').html("<h4>⚠️ Nothing to untag! (Not present on Tagged Items) ⚠️</i></h4>");
-			}
+    var $srchRslts = $('#listTbl tbody#srchRslts');
+    $srchRslts.html('');
 
-		}, 'text');
-	},
-	
-	doAddItemToCart: function () {
-		var params = "mode=addToCart&name=bibid&tab=catalog";
-		const bibid = document.getElementById("theBibId").textContent.trim();
-		params += "&id[]=" + bibid;
+    for (var seq = 0; seq < biblioNdx.length; seq++) {
+      var ndx = biblioNdx[seq].index;
+      var biblio = JSON.parse(biblioList[ndx]);
 
+      if (!biblio.hdr) {
+        continue;
+      }
 
-		//console.log('Add item to cart params: ' + params);
-		//console.log('URL: ' + bs.url);
+      var hdr  = biblio.hdr;
+      var cpys = biblio.cpys ? biblio.cpys.length : 0;
+      var avail = cpys > 0 ? '\u2705' : '\u274C'; // ✅ : ❌
 
-		$.post(bs.url, params, function(response) {
-			if ($('#cart_result').length === 0) return; // this should fix stuck status result
-			// console.log("Server response: ", response);
+      idis.crntBibid = hdr.bibid;
+      bs.biblio[hdr.bibid] = biblio;
 
-			// Extract $rslt: value using regex
-			var match = response.match(/\$rslt:\s*(.*)/i);
-			var rslt = match ? match[1].trim() : null;
+      var html = '<tr class="listItem">\n';
 
-			// Decide message
-			if (rslt === "1") {
-				$('#cart_result').html("<h4>⚠️ Already tagged! ⚠️</h4>");
-			} else {
-				$('#cart_result').html("<h4>✅ Item tagged! <i>(See Tagged Items)✅</i></h4>");
-			}
+      // --- Left column: visual / photo ---
+      html += '<td style="width: 200px;">\n';
+      html += '<div class="itemVisual">\n';
 
-		}, 'text');
-	},
-	
-	/* ====================================== */
-	
-	makeDueDateStr: function (dtOut, daysDueBack) {
-		if(daysDueBack==null) daysDueBack=0;
-		var dt = dtOut.split(' ');
-		var dat = dt[0]; var tm = dt[1];daysDueBack
-		var datAray = dat.split('-');
-		var theYr = datAray[0];
-		var theMo = datAray[1]-1;
-		var theDy = datAray[2];
-		var dateOut = new Date(theYr,theMo,theDy);
-		dateOut.setDate(dateOut.getDate() + daysDueBack);
-		return dateOut.toDateString();
-	},
-	
+      if (bs.opts.showBiblioPhotos === 'Y' && hdr.bibid !== undefined) {
+        html += '<div class="photos" id="photo_' + hdr.bibid + '">\n';
+        html += '<img src="../images/shim.gif" class="biblioImage noHover" height="50px" width="50px" />\n';
+        html += '</div>\n';
+        bs.getPhoto(hdr.bibid, '#photo_' + hdr.bibid);
+      }
 
-	//------------------------------
-	findMarcField: function (biblio, tag) {
-	  for (var i=0; i< biblio.data.length; i++) {
-			var tmp = eval('('+biblio.data[i]+')');
-			if (tmp.marcTag == tag) {
-				return tmp;
-			}
-		};
-		return null;
-	},
-	findMarcFieldSet: function (biblio, tag) {
-	  var fldSet = []; var n = 0;
-	  for (var i=0; i< biblio.data.length; i++) {
-			var tmp = eval('('+biblio.data[i]+')');
-			if (tmp.marcTag == tag) {
-				fldSet[n] = tmp;  n++;
-			}
-		}
-		return fldSet;
-	},
+      html += '<div class="dashBds">\n';
+      html += '<div class="dashBdsA">';
+      html += '<p><b>\uD83D\uDD16Bibid: <mark>' + hdr.bibid + '</mark> <br>' + avail + 'Copies: ' + cpys + '</b></p>';
+      html += '</div>\n';
+      html += '<div class="dashBdsB"></div>\n';
+      html += '<div class="dashBdsC">';
+      html += '<input type="hidden" value="' + hdr.bibid + '" />\n';
+      html += '<input type="button" style="margin-top: 20px;" class="moreBtn" value="\uD83D\uDD0D View Info" />\n';
+      html += '</div>';
+      html += '</div>\n';   // .dashBds
+      html += '</div></td>'; // .itemVisual
 
-	/* ====================================== */
-	doPhotoEdit: function () {
-    if (!wc.url) wc.init;
+      // --- Right column: biblio data lines ---
+      var marc = biblio.marc;
+      if (!marc) {
+        html += '</tr>\n';
+        $srchRslts.append(html);
+        continue;
+      }
 
-		//$('#updtFotoBtn').hide();
-		$('#fotoHdr').val('<?php echo T("EditingExistingFoto"); ?>')
-		$('#deltFotoBtn').show();
-		$('#addFotoBtn').hide();
+      var lines = [];
+      $.each(marc, function (i, fld) {
+        lines.push((fld.value || '').trim());
+      });
 
-		$('#updtFotoBtn').show(); //not yet available
-        //$('#userMsg').html('<p class="warning">not yet implemented.<br />delete existing photo and add new.</p>').show();
+      var N = bs.mediaLineCnt[hdr.material_cd];
+      var emojis = [
+        '\uD83D\uDD16<b> Call Number: </b>',
+        '\uD83D\uDC68\u200D\uD83D\uDCBC<b> Author: </b>',
+        '\uD83D\uDCD9<b> Title: </b>'
+      ];
 
-        $('#fotoMsg').hide();
-		$('#fotoMode').val('updatePhoto')
-		$('#fotoSrce').attr({'required':false, 'aria-required':false});
-		bs.showPhotoForm();
-	},
-	doPhotoAdd: function () {
-    if (!wc.url) wc.init;
+      html += '<td id="itemInfo">\n';
+      for (var k = 0; k < N && k < lines.length; k++) {
+        if (lines[k]) {
+          var emoji = emojis[k] || '';
+          html += '<p class="searchListItem">' + emoji + lines[k] + '</p>\n';
+        }
+      }
+      html += '</td></tr>\n';
 
-		$('#updtFotoBtn').hide();
-		$('#fotoHdr').val('<?php echo T("AddingNewFoto"); ?>')
-		$('#deltFotoBtn').hide();
-		//$('#updtFotoBtn').hide(); // not yet available
-		$('#addFotoBtn').show();
-        $('#fotoMsg').hide();
-		$('#fotoMode').val('addNewPhoto')
-		$('#fotoSrce').attr({'required':true, 'aria-required':true});
-		bs.showPhotoForm();
-	},
-	showPhotoForm: function () {
-    	if (!wc.url) wc.init;
+      $srchRslts.append(html);
+    }
 
-	  	$('#biblioDiv').hide();
-	  	$('#fotoSrce').val('')
-	  	$('#fotoBibid').val(idis.crntBibid);
+    obib.reStripe2('listTbl', 'odd');
 
-	  	if (idis.crntFoto == null) {
-			$('#fotoEdLegend').html('<?php echo T("EnterNewPhotoInfo"); ?>');
-	  	    $('#fotoName').val(idis.crntBibid+'.jpg');
-			wc.eraseImage();
-	  	} else {
-			$('#fotoEdLegend').html('<?php echo T("CoverPhotoFor");?>: '+idis.crntTitle);
-	  	    $('#fotoName').val('<?php echo OBIB_UPLOAD_DIR; ?>'+idis.crntFoto.url);
-			wc.showImage($('#fotoName').val());
-		}
-		$('.gobkFotoBtn').on('click',null,bs.rtnToBiblio);
-		$('#photoEditorDiv').show();
-	},
-	
-	/* ====================================== */
-	doItemEdit: function (biblio) {
-		ie.doItemEdit(biblio);
-		return;
-	},
+    // Bind "more detail" buttons (created dynamically, no duplicate risk)
+    $('.moreBtn').on('click', null, bs.getPhraseSrchDetails);
 
-	doItemUpdate: function (e) {
-		e.preventDefault();
-		e.stopPropagation();
-		var params = "&mode=updateBiblio&" + $('#biblioEditForm').not('.online').serialize();
-			// console.log('params: ' +params);
-	    $.post(ie.url, params, function(response){
-	        if (response == '!!success!!'){
-    		    $('#msgDiv').html('<?php echo T("Update Biblio Success!"); ?>');
-						$('#itemEditorDiv').hide();
-						// repeat search with existing criteria, to assurre a current display
-						// set a timeout for response --F.Tumulak
-						setTimeout(function()
-						{$('#msgDiv').show().hide(3000);}, 3000);
-						// show #msgDiv again for smoother transition on successive update
-						$('#msgDiv').show();
-				if (bs.srchType == 'barCd')
-					bs.doBarcdSearch();
-				else if (bs.srchType = 'phrase')
-					bs.doPhraseSearch();
-			} else {
-			  // failure, show error msg, leave form in place
-				$('#itemRsltMsg').html(response);
-	 		}
-	    }, 'text');
-	    return false;
-	},
+    // Pagination buttons
+    if (firstItem >= perPage) {
+      bs.previousPageItem = firstItem - perPage;
+      $('#biblioListDiv .goPrevBtn').enable();
+    } else {
+      $('#biblioListDiv .goPrevBtn').disable();
+    }
+    if ((perPage + firstItem <= lastItem) && (ttlNum !== lastItem)) {
+      bs.nextPageItem = perPage + firstItem;
+      $('#biblioListDiv .goNextBtn').enable();
+    } else {
+      $('#biblioListDiv .goNextBtn').disable();
+    }
 
-	/* ====================================== */
-	doNewCopy: function (e) {
-  	    e.stopPropagation();
-		$('#biblioDiv').hide();
-		$('#copyBibid').val(idis.crntBibid);
-  	    var crntsite = bs.opts.current_site
-		$('#copySite').val(crntsite);
+    $('#biblioListDiv').show();
+    $('#biblioDiv').hide();
+    $('#searchDiv').hide();
+  },
 
-		$('#copyEditorDiv').show();
-		ced.bibid = idis.crntBibid;
-		ced.doCopyNew(e);
-		e.preventDefault();
-	},
+  // =========================================================================
+  // by — generic array-of-objects sort comparator
+  // based on http://stackoverflow.com/a/979325/2502532
+  // =========================================================================
+  by: function (field, reverse, primer) {
+    var key = function (x) {
+      return primer ? primer(x[field]) : x[field];
+    };
+    return function (a, b) {
+      var A = key(a), B = key(b);
+      return ((A < B) ? -1 : ((A > B) ? 1 : 0)) * (reverse ? -1 : 1);
+    };
+  },
 
+  // =========================================================================
+  // Pagination
+  // =========================================================================
+  goNextPage: function (firstItem) {
+    $('#biblioListDiv .goNextBtn').disable();
+    bs.doPhraseSearch(null, firstItem);
+  },
+  goPrevPage: function (firstItem) {
+    $('#biblioListDiv .goPrevBtn').disable();
+    bs.doPhraseSearch(null, firstItem);
+  },
+
+  // =========================================================================
+  // Cart / tagging
+  // =========================================================================
+  getPhraseSrchDetails: function () {
+    var bibid = $(this).prev().val();
+    idis.showOneBiblio(bs.biblio[bibid]);
+  },
+
+  doDelItemToCart: function () {
+    var bibid = document.getElementById('theBibId').textContent.trim();
+    var params = 'mode=delToCart&name=bibid&tab=catalog&id[]=' + bibid;
+    $.post(bs.url, params, function (response) {
+      if ($('#cart_result').length === 0) { return; }
+      var match = response.match(/\$rslt:\s*(.*)/i);
+      var rslt = match ? match[1].trim() : null;
+      if (rslt === '1') {
+        $('#cart_result').html('<h4>✅ Item untagged! ✅</h4>');
+      } else {
+        $('#cart_result').html('<h4>⚠️ Nothing to untag! (Not present on Tagged Items) ⚠️</h4>');
+      }
+    }, 'text');
+  },
+
+  doAddItemToCart: function () {
+    var bibid = document.getElementById('theBibId').textContent.trim();
+    var params = 'mode=addToCart&name=bibid&tab=catalog&id[]=' + bibid;
+    $.post(bs.url, params, function (response) {
+      if ($('#cart_result').length === 0) { return; }
+      var match = response.match(/\$rslt:\s*(.*)/i);
+      var rslt = match ? match[1].trim() : null;
+      if (rslt === '1') {
+        $('#cart_result').html('<h4>⚠️ Already tagged! ⚠️</h4>');
+      } else {
+        $('#cart_result').html('<h4>✅ Item tagged! <i>(See Tagged Items)✅</i></h4>');
+      }
+    }, 'text');
+  },
+
+  // =========================================================================
+  // makeDueDateStr — calculate due date from checkout date
+  // =========================================================================
+  makeDueDateStr: function (dtOut, daysDueBack) {
+    if (daysDueBack === null || daysDueBack === undefined) {
+      daysDueBack = 0;
+    }
+    var parts = dtOut.split(' ');
+    var dat = parts[0].split('-');
+    var dateOut = new Date(dat[0], dat[1] - 1, dat[2]);
+    dateOut.setDate(dateOut.getDate() + daysDueBack);
+    return dateOut.toDateString();
+  },
+
+  // =========================================================================
+  // findMarcField / findMarcFieldSet — MARC field lookup (no eval!)
+  // =========================================================================
+  findMarcField: function (biblio, tag) {
+    if (!biblio || !biblio.data) { return null; }
+    for (var i = 0; i < biblio.data.length; i++) {
+      var tmp = (typeof biblio.data[i] === 'string')
+        ? JSON.parse(biblio.data[i])
+        : biblio.data[i];
+      if (tmp.marcTag === tag) {
+        return tmp;
+      }
+    }
+    return null;
+  },
+
+  findMarcFieldSet: function (biblio, tag) {
+    var fldSet = [];
+    if (!biblio || !biblio.data) { return fldSet; }
+    for (var i = 0; i < biblio.data.length; i++) {
+      var tmp = (typeof biblio.data[i] === 'string')
+        ? JSON.parse(biblio.data[i])
+        : biblio.data[i];
+      if (tmp.marcTag === tag) {
+        fldSet.push(tmp);
+      }
+    }
+    return fldSet;
+  },
+
+  // =========================================================================
+  // Photo editing
+  // =========================================================================
+  doPhotoEdit: function () {
+    if (!wc.url) { wc.init(); }
+
+    $('#fotoHdr').val('<?php echo $tEditFoto; ?>');
+    $('#deltFotoBtn').show();
+    $('#addFotoBtn').hide();
+    $('#updtFotoBtn').show();
+    $('#fotoMsg').hide();
+    $('#fotoMode').val('updatePhoto');
+    $('#fotoSrce').attr({ required: false, 'aria-required': false });
+    bs.showPhotoForm();
+  },
+
+  doPhotoAdd: function () {
+    if (!wc.url) { wc.init(); }
+
+    $('#updtFotoBtn').hide();
+    $('#fotoHdr').val('<?php echo $tAddFoto; ?>');
+    $('#deltFotoBtn').hide();
+    $('#addFotoBtn').show();
+    $('#fotoMsg').hide();
+    $('#fotoMode').val('addNewPhoto');
+    $('#fotoSrce').attr({ required: true, 'aria-required': true });
+    bs.showPhotoForm();
+  },
+
+  showPhotoForm: function () {
+    if (!wc.url) { wc.init(); }
+
+    $('#biblioDiv').hide();
+    $('#fotoSrce').val('');
+    $('#fotoBibid').val(idis.crntBibid);
+
+    if (idis.crntFoto === null || idis.crntFoto === undefined) {
+      $('#fotoEdLegend').html('<?php echo $tEnterFoto; ?>');
+      $('#fotoName').val(idis.crntBibid + '.jpg');
+      wc.eraseImage();
+    } else {
+      $('#fotoEdLegend').html('<?php echo $tCoverFoto; ?>: ' + idis.crntTitle);
+      $('#fotoName').val('<?php echo $uploadDir; ?>' + idis.crntFoto.url);
+      wc.showImage($('#fotoName').val());
+    }
+
+    $('.gobkFotoBtn').on('click', null, bs.rtnToBiblio);
+    $('#photoEditorDiv').show();
+  },
+
+  // =========================================================================
+  // Item editing
+  // =========================================================================
+  doItemEdit: function (biblio) {
+    ie.doItemEdit(biblio);
+  },
+
+  doItemUpdate: function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    var params = '&mode=updateBiblio&' + $('#biblioEditForm').not('.online').serialize();
+    $.post(ie.url, params, function (response) {
+      if (response === '!!success!!') {
+        $('#msgDiv').html('<?php echo $tUpdateSuccess; ?>');
+        $('#itemEditorDiv').hide();
+        setTimeout(function () {
+          $('#msgDiv').show().hide(3000);
+        }, 3000);
+        $('#msgDiv').show();
+        if (bs.srchType === 'barCd') {
+          bs.doBarcdSearch();
+        } else if (bs.srchType === 'phrase') {
+          bs.doPhraseSearch();
+        }
+      } else {
+        $('#itemRsltMsg').html(response);
+      }
+    }, 'text');
+    return false;
+  },
+
+  // =========================================================================
+  // Copy creation
+  // =========================================================================
+  doNewCopy: function (e) {
+    e.stopPropagation();
+    $('#biblioDiv').hide();
+    $('#copyBibid').val(idis.crntBibid);
+    $('#copySite').val(bs.opts.current_site);
+
+    $('#copyEditorDiv').show();
+    ced.bibid = idis.crntBibid;
+    ced.doCopyNew(e);
+    e.preventDefault();
+  }
 };
+
+// ---------------------------------------------------------------------------
+// Kick off on DOM ready
+// ---------------------------------------------------------------------------
 $(document).ready(bs.init);
 
 </script>
