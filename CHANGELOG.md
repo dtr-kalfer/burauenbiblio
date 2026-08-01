@@ -11,6 +11,7 @@ Guide:
 - Date format: YYYY-MM-DD
 
 ## [Unreleased] YYYY-MM-DD
+- Added animated search emoji magnifying lens by Google Emoji CC by 4.0 desaturated/resized to 36px.
 - Fixed infinite spinner bug during empty catalog search result.
 - Fixed response for ongoing search query (spinner), and correct response if no results found.
 - Begin refactor base code to support PHP 8.3, sanitized redundant and uninitialized function, updated deprecated syntax (7 files).
