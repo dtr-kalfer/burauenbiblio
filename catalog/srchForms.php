@@ -233,7 +233,6 @@ $escAttr = static fn(string $key): string => H(T($key));
         <ul id="flagInfo">
           <li>✅ <?php echo $escAttr('Available'); ?></li>
           <li>❌ <?php echo $escAttr('On loan/not available'); ?></li>
-          <li><p>📌 Press CTRL+F5 on your browser to refresh image (In case no response from thumbnail add or remove )</p></li>
         </ul>
         <?php endif; ?>
       </fieldset>
