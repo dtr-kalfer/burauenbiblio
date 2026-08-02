@@ -64,8 +64,8 @@ $trans["attendance_chart"] = "Att. Chart";
 $trans["invalid_month_format"] = "Invalid month format. Please use YYYY-MM (e.g. 2025-01).";
 $trans["Collection Details"] = "Collection Details";
 $trans["Collection Type"] = "Collection Type";
-$trans["has been updated."] = "has been updated.";
-$trans["has been deleted."] = "has been deleted.";
+$trans["has been updated."] = "has been updated. ✅";
+$trans["has been deleted."] = "has been deleted. ❌";
 
 
 $trans["e.g. Research Paper, Journal, Magazine"] = "e.g. Research Paper, Journal, Magazine";
@@ -77,7 +77,7 @@ $trans["Late Fee (per day)"] = "Late Fee (per day)";
 $trans["Due Date Rule"] = "Due Date Rule";
 $trans["Important Date Rule"] = "Important Date Rule";
 $trans["Minutes Before Closing"] = "Minutes Before Closing";
-$trans["Add Collection"] = "Add Collection";
+$trans["Add Collection"] = "✅ Add Collection";
 $trans["Are you sure you want to delete"] = "Are you sure you want to delete";
 $trans["Actions"] = "Actions";
 $trans["Simple (add days)"] = "Simple (add days)";
@@ -88,9 +88,11 @@ $trans["Not Enabled"] = "Not Enabled";
 $trans["Ceiling Date"] = "Ceiling Date";
 $trans["Specific Date"] = "Specific Date";
 $trans["Existing Collections"] = "Existing Collections";
-$trans["Update Collection"] = "Update Collection";
+$trans["Update Collection"] = "🔄 Update Collection";
 $trans["Edit Collections"] = "Edit Collections";
 $trans["Manage Collections"] = "Manage Collections";
+$trans["has been added."] = "has been added. ✅";
+
 
 //-----------------
 
@@ -451,7 +453,7 @@ $trans["Default"] = "Default";
 $trans["Default Dewey"] = "Default Dewey";
 $trans["Default (Y/N)"] = "Default (Y/N)";
 $trans["del"] = "del";
-$trans["Delete"] = "Delete";
+$trans["Delete"] = "❌ Delete";
 $trans["Delete by Barcode"] = "Delete by Barcode";
 $trans["Delete by Biblio Id"] = "Delete by Biblio Id";
 $trans["Delete completed"] = "Delete completed";
