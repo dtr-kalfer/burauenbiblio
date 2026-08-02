@@ -11,9 +11,10 @@ Guide:
 - Date format: YYYY-MM-DD
 
 ## [Unreleased] YYYY-MM-DD
+- Improved Bookings/Reservation Menu: Link to the patron's borrowing info are dynamically included to avoid manually navigating the members form menu.
 - Added new feature: collection management (Collection), consolidated into a full admin CRUD for new collection (i.e. Thesis, Journal Papers.. etc) and existing collection (policies and settings).
 - Refactor for PHP 8.3 support and preparation, bugfix (BiblioImages.php, Bookings.php, Holds.php, Members.php, Collections.php)
-- Added animated search emoji magnifying lens by Google Emoji CC by 4.0 desaturated/resized to 36px.
+- Added animated search emoji magnifying lens by [Google Emoji](https://googlefonts.github.io/noto-emoji-animation/documentation) [CC by 4.0](https://creativecommons.org/licenses/by/4.0/legalcode)  desaturated/resized to 36px.
 - Fixed infinite spinner bug during empty catalog search result.
 - Fixed response for ongoing search query (spinner), and correct response if no results found.
 - Begin refactor base code to support PHP 8.3, sanitized redundant and uninitialized function, updated deprecated syntax (7 files).
