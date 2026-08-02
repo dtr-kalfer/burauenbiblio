@@ -32,7 +32,7 @@
 
 .tagged-row:hover:not(.header) {
     background: bisque;
-		cursor: pointer;
+    cursor: pointer;
 }
 
 .tagged-cell {
@@ -40,12 +40,12 @@
 }
 
 .notagfound {
-	 border: 1px dashed #ccc;
+   border: 1px dashed #ccc;
    padding: 12px;
    background: #fafafa;
    font-style: italic;
    color: #555;
-	 text-align: center;
+   text-align: center;
 }
 
 .tagged-cell.wrap {
@@ -59,11 +59,39 @@
 }
 
 h3.tagged {
-	background-color: darkblue;
+  background-color: darkblue;
 }
 .totalc {
-	font-weight: bold;
-	text-align: center;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* ── Clickable member link styling ───────────────────────────────────── */
+.member-link {
+    color: #1a56db;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px dashed #1a56db;
+    transition: color 0.15s, border-color 0.15s;
+}
+.member-link:hover {
+    color: #0d3b9e;
+    border-bottom-style: solid;
+}
+.member-link::after {
+    content: " ↗";
+    font-size: 0.75em;
+    opacity: 0.5;
+}
+.barcode-link {
+    color: #333;
+    text-decoration: none;
+    font-family: monospace;
+    border-bottom: 1px dotted #999;
+}
+.barcode-link:hover {
+    color: #1a56db;
+    border-bottom-color: #1a56db;
 }
 </style>
 <?php
@@ -72,25 +100,25 @@ h3.tagged {
  */
  // Use this as a generic template for informational query + custom sql --F.Tumulak
 
-	require_once("../shared/common.php");
+  require_once("../shared/common.php");
 
-	$tab="circulation";
-	$nav="bookings_v2";
-	if (isset($_REQUEST['tab'])) {
-		$tab = $_REQUEST['tab'];
-	}
-	if (isset($_REQUEST['nav'])) {
-		$nav = $_REQUEST['nav'];
-	}
-	require_once(REL(__FILE__, "../shared/logincheck.php"));
-	
-	Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
-	
-	require_once("../shared/guard_doggy.php");
+  $tab="circulation";
+  $nav="bookings_v2";
+  if (isset($_REQUEST['tab'])) {
+    $tab = $_REQUEST['tab'];
+  }
+  if (isset($_REQUEST['nav'])) {
+    $nav = $_REQUEST['nav'];
+  }
+  require_once(REL(__FILE__, "../shared/logincheck.php"));
 
-	require_once __DIR__ . '/../autoload.php'; // adjust the ../ if necessary depending on your source path.
+  Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 
-	use Booking\Booking;
+  require_once("../shared/guard_doggy.php");
+
+  require_once __DIR__ . '/../autoload.php'; // adjust the ../ if necessary depending on your source path.
+
+  use Booking\Booking;
 
 $booked = new Booking();
 $rows = $booked->getBookedItems();
@@ -100,17 +128,23 @@ $total = count($rows);
 <p>
 The Booked Items Cart is a *Reservation feature* for patrons that may request:</p>
 <ul>
-	<li>Reservation for a specific book.</li>
-	<li>Books that are checked out constantly.</li>
-	<li>First come first served reservation basis</li>
+  <li>Reservation for a specific book.</li>
+  <li>Books that are checked out constantly.</li>
+  <li>First come first served reservation basis</li>
 </ul>
 
 <h3 class="tagged">
-	📚 <?php echo T("List of booked items"); ?> 📚
+  📚 <?php echo T("List of booked items"); ?> 📚
 </h2>
-<p class="totalc">Total booked items: <?php echo $total; ?></p>
+<p class="totalc">
+  Total booked items: <?php echo $total; ?>
+  <br />
+  <small style="font-weight: normal; font-size: 0.85em;">
+    💡 <?php echo T("Click a patron name to view their circulation status."); ?>
+  </small>
+</p>
 <section>
-<?php 
+<?php
 if (empty($rows)) {
     echo "<div class='notagfound'>" . T("No booked items found in the cart.") . "</div>";
 } else {
@@ -120,25 +154,34 @@ if (empty($rows)) {
     /* Header */
     echo "
     <div class='tagged-row header'>
-				<div class='tagged-cell nowrap'>Barcode</div>
-				<div class='tagged-cell wrap'>Title</div>
+        <div class='tagged-cell nowrap'>Barcode</div>
+        <div class='tagged-cell wrap'>Title</div>
         <div class='tagged-cell wrap'>Status</div>
         <div class='tagged-cell wrap'>Request Date</div>
-				<div class='tagged-cell wrap'>Requested by</div>
-				<div class='tagged-cell wrap'>Type</div>
+        <div class='tagged-cell wrap'>Requested by</div>
+        <div class='tagged-cell wrap'>Type</div>
     </div>
     ";
 
     /* Rows */
     foreach ($rows as $row) {
+        $mbrid = $row['mbrid'] ?? '';
+        $memberUrl = "memberForms.php?mbrid=" . urlencode((string) $mbrid);
+        $memberName = H($row['member'] ?? 'Unknown');
+        $barcode = H($row['barcode_nmbr'] ?? '');
+
         echo "
         <div class='tagged-row'>
-            <div class='tagged-cell nowrap'>{$row['barcode_nmbr']}</div>
-						<div class='tagged-cell wrap'>{$row['title']}</div>
-            <div class='tagged-cell wrap'>{$row['status']}</div>
-            <div class='tagged-cell wrap'>{$row['hold_begin']}</div>
-						<div class='tagged-cell wrap'>{$row['member']}</div>
-						<div class='tagged-cell wrap'>{$row['classification_name']}</div>
+            <div class='tagged-cell nowrap'>
+                <a href='{$memberUrl}' class='barcode-link' title='" . T("View member status") . "'>{$barcode}</a>
+            </div>
+            <div class='tagged-cell wrap'>" . H($row['title'] ?? '') . "</div>
+            <div class='tagged-cell wrap'>" . H($row['status'] ?? '') . "</div>
+            <div class='tagged-cell wrap'>" . H($row['hold_begin'] ?? '') . "</div>
+            <div class='tagged-cell wrap'>
+                <a href='{$memberUrl}' class='member-link' title='" . T("View member status") . "'>{$memberName}</a>
+            </div>
+            <div class='tagged-cell wrap'>" . H($row['classification_name'] ?? '') . "</div>
         </div>
         ";
     }
@@ -147,4 +190,3 @@ if (empty($rows)) {
 }
 ?>
 </section>
-	
