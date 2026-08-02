@@ -62,6 +62,37 @@ $trans["top30active"] = "🔥 Top 30 Borrowed Book Titles within 6 months";
 $trans["attendance"] = "Att. Form";
 $trans["attendance_chart"] = "Att. Chart";
 $trans["invalid_month_format"] = "Invalid month format. Please use YYYY-MM (e.g. 2025-01).";
+$trans["Collection Details"] = "Collection Details";
+$trans["Collection Type"] = "Collection Type";
+$trans["has been updated."] = "has been updated.";
+$trans["has been deleted."] = "has been deleted.";
+
+
+$trans["e.g. Research Paper, Journal, Magazine"] = "e.g. Research Paper, Journal, Magazine";
+$trans["Circulated"] = "Circulated";
+$trans["Distributed"] = "Distributed";
+$trans["Set as Default"] = "Set as Default";
+$trans["Loan Period (days)"] = "Loan Period (days)";
+$trans["Late Fee (per day)"] = "Late Fee (per day)";
+$trans["Due Date Rule"] = "Due Date Rule";
+$trans["Important Date Rule"] = "Important Date Rule";
+$trans["Minutes Before Closing"] = "Minutes Before Closing";
+$trans["Add Collection"] = "Add Collection";
+$trans["Are you sure you want to delete"] = "Are you sure you want to delete";
+$trans["Actions"] = "Actions";
+$trans["Simple (add days)"] = "Simple (add days)";
+$trans["At Midnight"] = "At Midnight";
+$trans["Before We Close"] = "Before We Close";
+$trans["Manual Entry"] = "Manual Entry";
+$trans["Not Enabled"] = "Not Enabled";
+$trans["Ceiling Date"] = "Ceiling Date";
+$trans["Specific Date"] = "Specific Date";
+$trans["Existing Collections"] = "Existing Collections";
+$trans["Update Collection"] = "Update Collection";
+$trans["Edit Collections"] = "Edit Collections";
+$trans["Manage Collections"] = "Manage Collections";
+
+//-----------------
 
 $trans["Date of Visit"] = "Date of Visit";
 $trans["User Type"] = "User Type";
@@ -104,6 +135,7 @@ $trans["No booked items found in the cart."] = "No booked items found in the car
 $trans["QR Gen."] = "QR Gen.";
 $trans["QR Generator"] = "QR Generator";
 $trans["Growth"] = "Growth";
+
 
 $trans["(enter 0 for unlimited)"] = "(enter 0 for unlimited)";
 $trans["(when available)"] = "(when available)";
