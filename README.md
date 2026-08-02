@@ -180,9 +180,9 @@ Support for metadata retrieval process—particularly for cataloging by ISBN/LCC
 
 ### 📦 Booked Items Cart
 
-![booked items](./readme_assets/booked_items1.webp "booked items")
+![booked items](./readme_assets/new_bookings_menu.avif "booked items")
 
-The **Booked Items Cart** is a reservation list requested by patrons. It supports reservations for specific titles, high-demand books, and materials that are frequently checked out, operating on a first-come, first-served basis.
+The **Booked Items Cart** is a reservation list requested by patrons. It supports reservations for specific titles, high-demand books, and materials that are frequently checked out, operating on a first-come, first-served basis and encoded by the library staff. The Booked Item List includes a dynamic link to the requesting patron's form.
 
 ### 📚 Tagged Items Cart
 
