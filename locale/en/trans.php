@@ -92,6 +92,8 @@ $trans["Update Collection"] = "🔄 Update Collection";
 $trans["Edit Collections"] = "Edit Collections";
 $trans["Manage Collections"] = "Manage Collections";
 $trans["has been added."] = "has been added. ✅";
+$trans["Click a patron name to view their circulation status."] = "Click a patron name to view their circulation status.";
+$trans["View member status"] = "View member status";
 
 
 //-----------------
