@@ -203,10 +203,29 @@ ul.nav_sub li { margin-bottom:0; font-weight:normal; }
 ul.nav_sub li.nav_selected { font-weight:bold; list-style-type:disc; }
 	
 nav a.button {
-	border:solid black 2px;
-	padding:3px;
+	border:solid black 1px;
+	padding:5px;
 	text-decoration:none;
 	}
+	
+.collection_button {
+	border:solid black 1px;
+	padding: 2px 20px;
+	text-decoration:none;	
+	margin: 0.1rem;
+	background-color: #eee;
+}
+
+.xstriped td {
+	border: 1px solid #ccc;
+	align-items: top;
+	vertical-align: center;
+}
+
+.xstriped tr:nth-child(even) {
+	background-color: #ddd;
+}
+
 nav a.button:hover { text-decoration:underline; }
 
 /*************************************************/
@@ -247,7 +266,7 @@ input[type=submit],
 button { 
 		font-size:0.9rem;
 	}
-
+	
 /* add changes to separate buttons from accidentally getting pressed -- ftumulak */
 #btnRow,
 .btnRow {margin:0; padding:0; display: flex; flex-dircetion: row; justify-content: space-around;
@@ -628,7 +647,7 @@ div#configDiv{
 
 	/* ------------------ custom built css here ----------------- */
 	/* #hideMe, #mbrAcntBtn, #bkgBtn, #holdBtn {display: none;} */
-	input[type=button]:hover, input[type=submit]:hover, button:hover, #somebutton:hover {
+	input[type=button]:hover, input[type=submit]:hover, button:hover, .collection_button:hover, #somebutton:hover {
 			background-color: #ffa500; /* Change background color on hover */
 			color: #fff; /* Change text color on hover */
 			border-color: #AAA; /* Change border color on hover */
