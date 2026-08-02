@@ -133,13 +133,13 @@ Member types can be configured with **overdue charge** settings. When a patron e
 ![improved overdue results with classification](./readme_assets/improved_overdue_results.webp "overdue result")
 
 The **overdue report** has been improved by adding a clear **member classification** column that identifies whether each borrower is a student, faculty, or other type. This enhancement makes it easier to quickly understand the context of each overdue record and prioritize follow-ups accordingly.
-### 📌 Collection Setup (borrowing policy)
+### 📌 Collection Management (borrowing policy + custom collection type)
 
 ![collection setup](./readme_assets/collection_setup.webp "collection setup")
 
-The **Collection Setup** page manages **penalty rates** and **borrowing duration** per collection.
+The **Collection Setup** page manages **penalty rates** and **borrowing duration** per collection. In addition, custom collection can be added, which will be inherited  into the 'New Item' dropdown menu. New custom collection such as journal, thesis and other research related materials can be extended into the cataloging setup. 
 
-This update refactors the previous policy system into a simpler, per-day overdue model, improving clarity, maintainability, and consistency when adjusting borrowing rules.
+This update refactors the previous policy system into a simpler, per-day overdue model, improving clarity, maintainability, and consistency when adjusting borrowing rules and custom collections.
 
 ### 📌 OPAC DOI Search
 
