@@ -11,6 +11,8 @@ Guide:
 - Date format: YYYY-MM-DD
 
 ## [Unreleased] YYYY-MM-DD
+- Added new feature: collection management (Collection), consolidated into a full admin CRUD for new collection (i.e. Thesis, Journal Papers.. etc) and existing collection (policies and settings).
+- Refactor for PHP 8.3 support and preparation, bugfix (BiblioImages.php, Bookings.php, Holds.php, Members.php, Collections.php)
 - Added animated search emoji magnifying lens by Google Emoji CC by 4.0 desaturated/resized to 36px.
 - Fixed infinite spinner bug during empty catalog search result.
 - Fixed response for ongoing search query (spinner), and correct response if no results found.
