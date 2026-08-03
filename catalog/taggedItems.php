@@ -32,7 +32,7 @@
 
 .tagged-row:hover:not(.header) {
     background: bisque;
-		cursor: pointer;
+    cursor: pointer;
 }
 
 .tagged-cell {
@@ -40,12 +40,12 @@
 }
 
 .notagfound {
-	 border: 1px dashed #ccc;
+   border: 1px dashed #ccc;
    padding: 12px;
    background: #fafafa;
    font-style: italic;
    color: #555;
-	 text-align: center;
+   text-align: center;
 }
 
 .tagged-cell.wrap {
@@ -59,14 +59,32 @@
 }
 
 h3.tagged {
-	background-color: red;
+  background-color: red;
 }
 .totalc {
-	font-weight: bold;
-	text-align: center;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* ── Clickable bib link styling ────────────────────────────────────── */
+.tagged-link {
+    color: #1a56db;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px dashed #1a56db;
+    transition: color 0.15s, border-color 0.15s;
+}
+.tagged-link:hover {
+    color: #0d3b9e;
+    border-bottom-style: solid;
+}
+.tagged-link::after {
+    content: " ↗";
+    font-size: 0.75em;
+    opacity: 0.5;
 }
 </style>
-<?php 
+<?php
 /* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
  * See the file COPYRIGHT.html for more details. --Ferdinand Tumulak
  */
@@ -74,7 +92,7 @@ h3.tagged {
 
 require_once("../shared/common.php");
 $tab = "cataloging";
-$nav = "tagged";	
+$nav = "tagged";
 
 require_once(REL(__FILE__, "../shared/logincheck.php"));
 
@@ -94,18 +112,24 @@ $total = count($rows);
 <p>
 The Tagged Items Cart is a *temporary holding space* for catalog items that may have:</p>
 <ul>
-	<li>Some damages or defects present in the book.</li>
-	<li>Incomplete biblio details.</li>
-	<li>Conflicting call numbers.</li>
-	<li>Duplicate Biblio Records.</li>
+  <li>Some damages or defects present in the book.</li>
+  <li>Incomplete biblio details.</li>
+  <li>Conflicting call numbers.</li>
+  <li>Duplicate Biblio Records.</li>
 </ul>
 
 <h3 class="tagged">
-	📚 <?php echo T("List of tagged items for review"); ?> 📚
+  📚 <?php echo T("List of tagged items for review"); ?> 📚
 </h2>
-<p class="totalc">Total tagged items: <?php echo $total; ?></p>
+<p class="totalc">
+  Total tagged items: <?php echo $total; ?>
+  <br />
+  <small style="font-weight: normal; font-size: 0.85em; color: #c00;">
+    💡 <?php echo T("Click a BibID or Title to view the full record."); ?>
+  </small>
+</p>
 <section>
-<?php 
+<?php
 if (empty($rows)) {
     echo "<div class='notagfound'>" . T("No tagged items found in the cart.") . "</div>";
 } else {
@@ -116,7 +140,7 @@ if (empty($rows)) {
     echo "
     <div class='tagged-row header'>
         <div class='tagged-cell wrap'>BibID</div>
-				<div class='tagged-cell wrap'>Call Number</div>
+        <div class='tagged-cell wrap'>Call Number</div>
         <div class='tagged-cell wrap'>Title</div>
         <div class='tagged-cell wrap'>Author</div>
     </div>
@@ -124,12 +148,19 @@ if (empty($rows)) {
 
     /* Rows */
     foreach ($rows as $row) {
+        $bibid   = $row['bibid'] ?? '';
+        $srchUrl = "srchForms.php?bibid=" . urlencode((string) $bibid);
+
         echo "
         <div class='tagged-row'>
-            <div class='tagged-cell nowrap'>{$row['bibid']}</div>
-						<div class='tagged-cell wrap'>{$row['call_number']}</div>
-            <div class='tagged-cell wrap'>{$row['title']}</div>
-            <div class='tagged-cell wrap'>{$row['author']}</div>
+            <div class='tagged-cell nowrap'>
+                <a href='{$srchUrl}' class='tagged-link' title='" . T("View full record") . "'>" . H($bibid) . "</a>
+            </div>
+            <div class='tagged-cell wrap'>" . H($row['call_number'] ?? '') . "</div>
+            <div class='tagged-cell wrap'>
+                <a href='{$srchUrl}' class='tagged-link' title='" . T("View full record") . "'>" . H($row['title'] ?? '') . "</a>
+            </div>
+            <div class='tagged-cell wrap'>" . H($row['author'] ?? '') . "</div>
         </div>
         ";
     }
