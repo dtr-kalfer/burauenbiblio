@@ -94,6 +94,8 @@ $trans["Manage Collections"] = "Manage Collections";
 $trans["has been added."] = "has been added. ✅";
 $trans["Click a patron name to view their circulation status."] = "Click a patron name to view their circulation status.";
 $trans["View member status"] = "View member status";
+$trans["View full record"] = "View full record";
+$trans["Click a BibID or Title to view the full record."] = "Click a BibID or Title to view the full record.";
 
 
 //-----------------
