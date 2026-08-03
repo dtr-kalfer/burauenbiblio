@@ -1,171 +1,185 @@
 <?php
 /* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
  * See the file COPYRIGHT.html for more details.
+ *
+ * Calendars_refactored.php — PHP 8.3 compatible version with bug fixes.
+ * To use: rename to Calendars.php after testing.
+ *
+ * Changes from original:
+ *   - declare(strict_types=1)
+ *   - array() → [] syntax
+ *   - FIXED: deleteOne() func_get_args() → func_get_arg(0) (was using array as scalar)
+ *   - FIXED: getNewDueDateCal_debug() undefined $calendarId → added parameter
+ *   - FIXED: isOpen() null-safe already OK, but tightened return
  */
+
+declare(strict_types=1);
 
 require_once(REL(__FILE__, "../classes/DmTable.php"));
 require_once(REL(__FILE__, "../classes/Date.php"));
 
 class Calendars extends DmTable {
-	public function __construct() {
-		parent::__construct();
-		$this->setName('calendar_dm');
-		$this->setFields(array(
-			'code'=>'string',
-			'description'=>'string',
-			'default_flg'=>'string',
-		));
-        $this->setReq(array(
+  public function __construct() {
+    parent::__construct();
+    $this->setName('calendar_dm');
+    $this->setFields([
+      'code'=>'string',
+      'description'=>'string',
+      'default_flg'=>'string',
+    ]);
+        $this->setReq([
             'code', 'description', 'default_flg',
-        ));
-		$this->setKey('code');
-		$this->setSequenceField('code');
-	}
-	function isOpen($calendar, $day) {
-		$sql = $this->mkSQL('SELECT open FROM calendar '
-			. 'WHERE calendar=%N AND date = %Q ',
-			$calendar, $day);
-		$row = $this->select1($sql);
-        if($row != null) {
+        ]);
+    $this->setKey('code');
+    $this->setSequenceField('code');
+  }
+  function isOpen($calendar, $day) {
+    $sql = $this->mkSQL('SELECT open FROM calendar '
+      . 'WHERE calendar=%N AND date = %Q ',
+      $calendar, $day);
+    $row = $this->select1($sql);
+        if ($row !== null) {
             if ($row['open'] == 'No') {
                 return false;
             }
         }
         return true;
-	}
-	function rename($code, $name) {
-		$this->update(array('code'=>$code, 'description'=>$name));
-	}
-	function deleteOne() {
-		$code = func_get_args();
-		if ($code == OBIB_MASTER_CALENDAR)
-			Fatal::internalError(T("CannotDeleteMasterCalendar"));
-		$this->lock();
-		$sql = $this->mkSQL('DELETE FROM calendar_dm WHERE code=%N', $code);
-		$this->act($sql);
-		$sql = $this->mkSQL('DELETE FROM calendar WHERE calendar=%N', $code);
-		$this->act($sql);
-		$this->unlock();
-	}
-	function extend($calendar, $from, $to) {
-		$this->lock();
-		$sql = $this->mkSQL('SELECT MAX(date) max, MIN(date) min FROM calendar '
-			. 'WHERE calendar=%N GROUP BY calendar ',
-			$calendar);
-		$row = $this->select01($sql);
-		if (!$row) {
-			$this->_createDays($calendar, $from, $to);
-		} else {
-			$min = $row['min'];
-			$max = $row['max'];
-			if (Date::daysLater($min, $from)) {
-				$this->_createDays($calendar, $from, Date::addDays($min, -1));
-			}
-			if (Date::daysLater($to, $max)) {
-				$this->_createDays($calendar, Date::addDays($max, 1), $to);
-			}
-		}
-		$this->unlock();
-	}
-	function _createDays($calendar, $from, $to) {
-		if (Date::daysLater($to, $from) < 0) {
-			Fatal::internalError(T("CalendarsLaterDate"));
-		}
-		foreach (Date::getDays($from, $to) as $d) {
-			$sql = $this->mkSQL("INSERT INTO calendar SET "
-//				. "calendar=%N, date=%Q, open='Unset' ",
-				. "calendar=%N, date=%Q, open='Yes' ",
-				$calendar, $d);
-			$this->act($sql);
-		}
-	}
-	function getDays($calendar, $from, $to) {
-		$this->extend($calendar, $from, $to);
-		$sql = $this->mkSQL('SELECT date, open FROM calendar '
-			. 'WHERE calendar=%N AND date >= %Q '
-			. 'AND date <= %Q ',
-			$calendar, $from, $to);
-		//echo "sql=$sql<br />";
-		return $this->select($sql);
-	}
-	function setDays($calendar, $days) {
-		if (empty($days)) {
-			return;
-		}
-		$min = '9999-99-99';
-		$max = '0000-00-00';
-		$sql = 'REPLACE INTO calendar VALUES ';
-		foreach ($days as $d) {
-			list($date, $open) = $d;
-			if ($date < $min) {
-				$min = $date;
-			}
-			if ($date > $max) {
-				$max = $date;
-			}
-			$sql .= $this->mkSQL('(%N, %Q, %Q), ',
-				$calendar, $date, $open);
-		}
-		# Remove trailing ', '
-		$sql = substr($sql, 0, -2);
-		# Be sure we can't have gaps in the calendar.
-		$this->extend($calendar, $min, $max);
-		$this->lock();
-		$this->act($sql);
-		$this->unlock();
-	}
+  }
+  function rename($code, $name) {
+    $this->update(['code'=>$code, 'description'=>$name]);
+  }
+  function deleteOne() {
+    // 🐛 FIXED: func_get_args() returns array — must use func_get_arg(0)
+    $code = func_get_arg(0);
+    if ($code == OBIB_MASTER_CALENDAR)
+      Fatal::internalError(T("CannotDeleteMasterCalendar"));
+    $this->lock();
+    $sql = $this->mkSQL('DELETE FROM calendar_dm WHERE code=%N', $code);
+    $this->act($sql);
+    $sql = $this->mkSQL('DELETE FROM calendar WHERE calendar=%N', $code);
+    $this->act($sql);
+    $this->unlock();
+  }
+  function extend($calendar, $from, $to) {
+    $this->lock();
+    $sql = $this->mkSQL('SELECT MAX(date) max, MIN(date) min FROM calendar '
+      . 'WHERE calendar=%N GROUP BY calendar ',
+      $calendar);
+    $row = $this->select01($sql);
+    if (!$row) {
+      $this->_createDays($calendar, $from, $to);
+    } else {
+      $min = $row['min'];
+      $max = $row['max'];
+      if (Date::daysLater($min, $from)) {
+        $this->_createDays($calendar, $from, Date::addDays($min, -1));
+      }
+      if (Date::daysLater($to, $max)) {
+        $this->_createDays($calendar, Date::addDays($max, 1), $to);
+      }
+    }
+    $this->unlock();
+  }
+  function _createDays($calendar, $from, $to) {
+    if (Date::daysLater($to, $from) < 0) {
+      Fatal::internalError(T("CalendarsLaterDate"));
+    }
+    foreach (Date::getDays($from, $to) as $d) {
+      $sql = $this->mkSQL("INSERT INTO calendar SET "
+//        . "calendar=%N, date=%Q, open='Unset' ",
+        . "calendar=%N, date=%Q, open='Yes' ",
+        $calendar, $d);
+      $this->act($sql);
+    }
+  }
+  function getDays($calendar, $from, $to) {
+    $this->extend($calendar, $from, $to);
+    $sql = $this->mkSQL('SELECT date, open FROM calendar '
+      . 'WHERE calendar=%N AND date >= %Q '
+      . 'AND date <= %Q ',
+      $calendar, $from, $to);
+    //echo "sql=$sql<br />";
+    return $this->select($sql);
+  }
+  function setDays($calendar, $days) {
+    if (empty($days)) {
+      return;
+    }
+    $min = '9999-99-99';
+    $max = '0000-00-00';
+    $sql = 'REPLACE INTO calendar VALUES ';
+    foreach ($days as $d) {
+      list($date, $open) = $d;
+      if ($date < $min) {
+        $min = $date;
+      }
+      if ($date > $max) {
+        $max = $date;
+      }
+      $sql .= $this->mkSQL('(%N, %Q, %Q), ',
+        $calendar, $date, $open);
+    }
+    # Remove trailing ', '
+    $sql = substr($sql, 0, -2);
+    # Be sure we can't have gaps in the calendar.
+    $this->extend($calendar, $min, $max);
+    $this->lock();
+    $this->act($sql);
+    $this->unlock();
+  }
 
-	public function getNewDueDateCal_debug($oldDueDate) {
-		if (!$oldDueDate) {
-			echo "DEBUG: oldDueDate is null or empty"; die();
-		}
+  // 🐛 FIXED: $calendarId was undefined — added as parameter
+  public function getNewDueDateCal_debug($calendarId, $oldDueDate) {
+    if (!$oldDueDate) {
+      echo "DEBUG: oldDueDate is null or empty"; die();
+    }
 
-		echo "DEBUG: Querying with date $oldDueDate\n";
+    echo "DEBUG: Querying with date $oldDueDate\n";
 
-		$sql = $this->mkSQL(
-			'SELECT date
-			 FROM calendar
-			 WHERE calendar = 1
-				 AND date >= %Q
-				 AND open = "Yes"
-			 ORDER BY date ASC
-			 LIMIT 1',
-			$calendarId,
-			$oldDueDate
-		);
+    $sql = $this->mkSQL(
+      'SELECT date
+       FROM calendar
+       WHERE calendar = %N
+         AND date >= %Q
+         AND open = "Yes"
+       ORDER BY date ASC
+       LIMIT 1',
+      $calendarId,
+      $oldDueDate
+    );
 
-		echo "DEBUG: SQL = $sql\n"; // See actual query
-		$result = $this->select01($sql);
+    echo "DEBUG: SQL = $sql\n"; // See actual query
+    $result = $this->select01($sql);
 
-		if ($result && !empty($result['date'])) {
-			echo "DEBUG: Found open date: " . $result['date']; die();
-			return $result['date'];
-		}
+    if ($result && !empty($result['date'])) {
+      echo "DEBUG: Found open date: " . $result['date']; die();
+      return $result['date'];
+    }
 
-		echo "DEBUG: No open date found, returning fallback."; die();
-		return $oldDueDate;
-	}
-	
-	public function getNewDueDateCal($oldDueDate) {
-		// Query next open date after old due date
-		$sql = $this->mkSQL(
-			'SELECT date
-			 FROM calendar
-			 WHERE calendar=1
-				 AND date >= %Q
-				 AND open = "Yes"
-			 ORDER BY date ASC
-			 LIMIT 1',
-			$oldDueDate
-		);
+    echo "DEBUG: No open date found, returning fallback."; die();
+    return $oldDueDate;
+  }
 
-		$result = $this->select01($sql); // select01 returns a single row
-		
-		if ($result && !empty($result['date'])) {
-			return $result['date'];	
-		}
+  public function getNewDueDateCal($oldDueDate) {
+    // Query next open date after old due date
+    $sql = $this->mkSQL(
+      'SELECT date
+       FROM calendar
+       WHERE calendar=1
+         AND date >= %Q
+         AND open = "Yes"
+       ORDER BY date ASC
+       LIMIT 1',
+      $oldDueDate
+    );
 
-		// If no open date is found, return original date as fallback
-		return $oldDueDate;
-	}	
+    $result = $this->select01($sql); // select01 returns a single row
+
+    if ($result && !empty($result['date'])) {
+      return $result['date'];
+    }
+
+    // If no open date is found, return original date as fallback
+    return $oldDueDate;
+  }
 }
