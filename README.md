@@ -186,7 +186,7 @@ The **Booked Items Cart** is a reservation list requested by patrons. It support
 
 ### 📚 Tagged Items Cart
 
-![tagged items](./readme_assets/tagged_items1.webp "tagged items")
+![tagged items](./readme_assets/tagged_items_cart01.avif "tagged items")
 
 **Tagged Items** is a temporary review cart for bibliographic records that require attention. It helps staff quickly identify materials with incomplete metadata, call number conflicts, duplicate records, or physical issues, enabling focused cleanup and quality control within the catalog.
 
