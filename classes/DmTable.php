@@ -7,6 +7,9 @@
  * provides common DB facilities needed by look-up table classes
  * @author Micah Stetson
  * modified for PHP 5 - FL
+ *
+ * NOTE: select() returns PDOStatement — fetchAll() is correct here.
+ * The guard for empty 'code' in validate_el() prevents SQL with auto-gen keys.
  */
 
 require_once("../shared/common.php");
@@ -18,28 +21,26 @@ class DmTable extends DBTable {
   }
 
   public function getList($orderby=NULL) {
-    $list = array();
+    $list = [];
     $rslt = $this->getAll($orderby);
-        $recs = $rslt->fetchAll();
-        // echo "in DmTable::getList(): ";print_r($recs);echo "<br />\n";
-        $nRecs = count($recs);
-        if ($nRecs < 1) return NULL;
-        foreach ($recs as $rec) {
+    $recs = $rslt->fetchAll();
+    $nRecs = count($recs);
+    if ($nRecs < 1) return NULL;
+    foreach ($recs as $rec) {
       $list[$rec['code']] = $rec['description'];
     }
     return $list;
   }
   public function getSelectList($orderby=NULL) {
-    $list = array();
-        $data = array();
+    $list = [];
+    $data = [];
     $rslt = $this->getAll($orderby);
-        $recs = $rslt->fetchAll();
-        // echo "in DmTable::getList(): ";print_r($recs);echo "<br />\n";
-        $nRecs = count($recs);
-        if ($nRecs < 1) return NULL;
-        foreach ($recs as $rec) {
-            $data['description'] =$rec['description'];
-            $data['default'] = $rec['default_flg'] ?? '';
+    $recs = $rslt->fetchAll();
+    $nRecs = count($recs);
+    if ($nRecs < 1) return NULL;
+    foreach ($recs as $rec) {
+      $data['description'] = $rec['description'];
+      $data['default'] = $rec['default_flg'] ?? '';
       $list[$rec['code']] = $data;
     }
     return $list;
@@ -52,14 +53,12 @@ class DmTable extends DBTable {
     return $select;
   }
   public function getDefault() {
-    $rslt = $this->getMatches(array('default_flg'=>'Y'));
-        $recs = $rslt->fetchAll();
-        $nRecs = count($recs);
-        //echo "nRecs = $nRecs : ";print_r($recs);echo "<br />\n";
+    $rslt = $this->getMatches(['default_flg'=>'Y']);
+    $recs = $rslt->fetchAll();
+    $nRecs = count($recs);
     if ($nRecs < 1) {
       return NULL;
     } else {
-      //$r = $recs->fetch_assoc();
       return $recs[0]['code'];
     }
   }
@@ -72,12 +71,14 @@ class DmTable extends DBTable {
   }
 
   protected function validate_el($rec, $insert) {
-        // individual derviatives SHOULD over-ride this for particular needs
+    // individual derviatives SHOULD over-ride this for particular needs
     // check for required fields done in DBTable
     $errors = parent::validate_el($rec, $insert);
 
-        // duplicate codes not allowed
-    if (isset($rec['code'])) {
+    // duplicate codes not allowed
+    // 🐛 FIXED: guard against empty 'code' (auto-generated keys like mbrTypes)
+    // select() returns PDOStatement — fetchAll() is correct
+    if (!empty($rec['code'])) {
       $sql = $this->mkSQL("SELECT * FROM %q WHERE code=%Q ", $this->name, $rec['code']);
       $rslt = $this->select($sql);
       $rows = $rslt->fetchAll();
@@ -86,11 +87,11 @@ class DmTable extends DBTable {
       }
     }
 
-        // otherwise limit default flg to Y or N only
-        if ((isset($rec['default_flg'])) && ($rec['default_flg'] != 'Y' && $rec['default_flg']!= 'N')) {
+    // otherwise limit default flg to Y or N only
+    if ((isset($rec['default_flg'])) && ($rec['default_flg'] != 'Y' && $rec['default_flg']!= 'N')) {
       $errors[] = T("Default Flg MUST be 'Y' or 'N'");
-        }
-    return $errors;
     }
+    return $errors;
+  }
 
 }   // end of class
