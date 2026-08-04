@@ -11,6 +11,7 @@ Guide:
 - Date format: YYYY-MM-DD
 
 ## [Unreleased] YYYY-MM-DD
+- Fixed: Error: Server error: parsererror on several forms: Member Types, Media Types, Biblio Copy Fields, show correct response when add or delete records.
 - Improved Tagged Items: Added bibliographic, No more manually copying the BibID and pasting it into the search form, one click from the tagged cart straight to the full record. 
 - Improved Bookings/Reservation Menu: Link to the patron's borrowing info are dynamically included to avoid manually navigating the members form menu.
 - Added new feature: collection management (Collection), consolidated into a full admin CRUD for new collection (i.e. Thesis, Journal Papers.. etc) and existing collection (policies and settings).
