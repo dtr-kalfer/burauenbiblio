@@ -107,7 +107,7 @@
     <ul id="btnRow">
       <li><input type="submit" id="updtBtn" name="updtBtn" class="actnBtns" value="<?php echo T("Update"); ?>" /></li>
       <li><input type="button" id="cnclBtn" name="cnclBtn" class="cnclBtn" value="<?php echo T("Go Back"); ?>" /></li>
-      <li><input type="submit" id="deltBtn" name="deltBtn" class="actnBtns" value="<?php echo T("Delete"); ?>" /></li>
+      <!-- <li><input type="submit" id="deltBtn" name="deltBtn" class="actnBtns" value="<?php // echo T("Delete"); ?>" /></li> -->
     </ul>
   </fieldset>
   </form>
