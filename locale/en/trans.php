@@ -97,6 +97,7 @@ $trans["View member status"] = "View member status";
 $trans["View full record"] = "View full record";
 $trans["Click a BibID or Title to view the full record."] = "Click a BibID or Title to view the full record.";
 
+$trans["Missing Books"] = "Missing Books";
 
 //-----------------
 
