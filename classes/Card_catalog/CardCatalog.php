@@ -12,6 +12,26 @@ class CardCatalog extends \ConnectDB
     /**
      * Get a single MARC subfield value for a given bibid, tag, and subfield code.
      */
+		 
+		public function get_book_details($bibid) {
+				return [
+						'call_no'   => $this->getMarcSubfield($bibid, '099', 'a'),
+						'author'    => $this->getMarcSubfield($bibid, '100', 'a'),
+						'title'     => $this->getMarcSubfield($bibid, '245', 'a'),
+						'sub_title' => $this->getMarcSubfield($bibid, '245', 'b'),
+						'stmt_resp' => $this->getMarcSubfield($bibid, '245', 'c'),
+						'place'     => $this->getMarcSubfield($bibid, '260', 'a'),
+						'publisher' => $this->getMarcSubfield($bibid, '260', 'b'),
+						'year'      => $this->getMarcSubfield($bibid, '260', 'c'),
+						'extent'    => $this->getMarcSubfield($bibid, '300', 'a'),
+						'other_det' => $this->getMarcSubfield($bibid, '300', 'b'),
+						'dimension' => $this->getMarcSubfield($bibid, '300', 'c'),
+						'note'      => $this->getMarcSubfield($bibid, '504', 'a'),
+						'isbn'      => $this->getMarcSubfield($bibid, '020', 'a'),
+						'subjects'  => $this->getMarcSubfield($bibid, '650', 'a')
+				];
+		}
+		 
     public function getMarcSubfield(int $bibid, string $tag, string $subfield_cd): string {
         $sql = "SELECT s.subfield_data
                   FROM biblio_field AS f
