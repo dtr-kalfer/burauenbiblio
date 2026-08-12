@@ -212,6 +212,12 @@ The **Collection Growth Analytics** module provides a visual overview of how the
 
 The **Monthly Circulation Report** is a dynamic analytics feature in BurauenBiblio that visualizes the **total number of items borrowed per month**, across a selected range of time. It helps library staff and administrators: 📅 **Track Borrowing Trends** 📚 **Evaluate Usage Patterns** 🎯 **Support Decision-Making** based on actual demand.
 
+### 📝 Analytics - Missing Books Report 
+
+![monthly circulation](./readme_assets/missing_books_report.avif "missing books report")
+
+The **Missing Books Report** is a feature which allows missing books to be listed (with hyperlinks) and be linked to its catalogued records. This help library staff make a detailed tally on lost or missing books inside the library premise. A book or item identified by the staff as missing can be tagged using a unique keyword of 'ITEM-IS-MISSING' on its description entry (Edit Copy Properties Form) allowing for organized and transparent report. 'Export to JSON' is also included in the list for a detailed copy of the missing books in JSON format.
+
 ### 📝 Analytics - Top 30 Dewey Decimal Stats
 
 ![DDC Chart](./readme_assets/deweydecimalchart.webp "DDC Chart")

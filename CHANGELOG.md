@@ -11,6 +11,8 @@ Guide:
 - Date format: YYYY-MM-DD
 
 ## [Unreleased] YYYY-MM-DD
+- New feature: Added 'Missing Books' report. This feature allows to edit copy properties (description entry) with a unique 'ITEM-IS-MISSING' tag, all barcode copies with the tag of 'ITEM-IS-MISSING' under its description will be listed in the 'missing books' report. 
+- New feature: Added 'Missing Books' export to json for other purpose/audit.
 - Fixed: Admin Site Form 'not saving and no response' bug.
 - Fixed: Error: Server error: parsererror on several forms: Staff Form (Add new staff), Member Types, Media Types, Biblio Copy Fields, show correct response when add or delete records.
 - Improved Tagged Items: Added bibliographic, No more manually copying the BibID and pasting it into the search form, one click from the tagged cart straight to the full record. 
