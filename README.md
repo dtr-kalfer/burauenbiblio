@@ -162,7 +162,9 @@ The **To-Do List** is a simple yet powerful enhancement to the BurauenBiblio lib
 
 ![card catalog demo](./images/card_catalog_demo_sample.webp "card catalog demo")
 
-**BurauenBiblio** prints card catalogs in a **custom 8 × 5 inch layout PDF format**, applicable for longer titles, barcodes and subject terms. It uses long bond paper (8.5 × 13 inches) which allows for two card catalog prints for each page and supports up to 35 barcode (copies). This feature helps support local libraries in need of card catalog prints.
+**BurauenBiblio** supports card catalog printing in a **custom 8 × 5-inch PDF layout**, providing sufficient space for longer titles, barcodes, and subject terms. The layout is designed for **8.5 × 13-inch long bond paper**, allowing two catalog cards to be printed on a single sheet.
+
+The system supports both **title cards and author cards**, providing greater flexibility for libraries that continue to use physical card catalogs. This feature is designed to provide a practical and resource-efficient solution for local libraries that require printed catalog cards for their collections.
 
 ### 📌 MARC tags setup
 
@@ -216,7 +218,11 @@ The **Monthly Circulation Report** is a dynamic analytics feature in BurauenBibl
 
 ![monthly circulation](./readme_assets/missing_books_report.avif "missing books report")
 
-The **Missing Books Report** is a feature which allows missing books to be listed (with hyperlinks) and be linked to its catalogued records. This help library staff make a detailed tally on lost or missing books inside the library premise. A book or item identified by the staff as missing can be tagged using a unique keyword of 'ITEM-IS-MISSING' on its description entry (Edit Copy Properties Form) allowing for organized and transparent report. 'Export to JSON' is also included in the list for a detailed copy of the missing books in JSON format.
+The **Missing Books Report** provides library staff with an organized list of books and other items identified as missing, with each entry linked directly to its corresponding catalog record. This allows staff to efficiently review, verify, and maintain a detailed record of missing items within the library collection.
+
+A book or item can be identified as missing by entering the unique keyword **ITEM-IS-MISSING** in its description field through the **Edit Copy Properties** form. BurauenBiblio then uses this identifier to generate an organized and transparent missing-items report.
+
+The report also includes an **Export to JSON** function, allowing the complete list of missing items and their associated catalog information to be exported in structured JSON format for further processing, archival, or data analysis.
 
 ### 📝 Analytics - Top 30 Dewey Decimal Stats
 
