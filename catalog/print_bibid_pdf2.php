@@ -1,243 +1,99 @@
 <?php
-	/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
-	 * See the file COPYRIGHT.html for more details.
-	 * This is an add-on feature for Burauenbiblio developed by Ferdinand Tumulak
-	 * For bibid card catalog printing use.
-	 * it now uses prepared statements and built-in class functions.
-	 */
-	require_once("../shared/guard_doggy.php");
-	require_once("../includes/fpdf/fpdf.php"); 
-	require_once __DIR__ . '/../autoload.php'; // adjust the ../ if necessary depending on your source path.
-	use Card_catalog\CardCatalog;
-	
-	$catalog = new CardCatalog();
-			
-		// ------------------------------ BIBID SET A ---------------------------- 
+  /* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
+   * See the file COPYRIGHT.html for more details.
+   */
+  require_once("../shared/guard_doggy.php");
+  require_once("../includes/fpdf/fpdf.php");
+  require_once __DIR__ . '/../autoload.php';
+  use Card_catalog\CardCatalog;
 
-		$bibid1 = (int)$_GET["bibid_fpdf"];
-		$book = [
-    'call_no'   => $catalog->getMarcSubfield($bibid1, '099', 'a'),
-    'author'    => $catalog->getMarcSubfield($bibid1, '100', 'a'),
-    'title'     => $catalog->getMarcSubfield($bibid1, '245', 'a'),
-    'sub_title' => $catalog->getMarcSubfield($bibid1, '245', 'b'),
-    'stmt_resp' => $catalog->getMarcSubfield($bibid1, '245', 'c'),
-    'place'     => $catalog->getMarcSubfield($bibid1, '260', 'a'),
-    'publisher' => $catalog->getMarcSubfield($bibid1, '260', 'b'),
-    'year'      => $catalog->getMarcSubfield($bibid1, '260', 'c'),
-    'extent'    => $catalog->getMarcSubfield($bibid1, '300', 'a'),
-    'other_det' => $catalog->getMarcSubfield($bibid1, '300', 'b'),
-    'dimension' => $catalog->getMarcSubfield($bibid1, '300', 'c'),
-    'note'      => $catalog->getMarcSubfield($bibid1, '504', 'a'),
-    'isbn'      => $catalog->getMarcSubfield($bibid1, '020', 'a'),
-    'subjects'  => implode(" ", [
-        $catalog->getMarcSubfield($bibid1, '650', 'a'),
-        $catalog->getMarcSubfield($bibid1, '650', 'b'),
-        $catalog->getMarcSubfield($bibid1, '650', 'c'),
-        $catalog->getMarcSubfield($bibid1, '650', 'd')
-				])
-		];
+  $catalog = new CardCatalog();
 
-		// replace $arr_a with the explicit $book
+    function draw_card($pdf, $book, $card_type, $y_offset) {
+        // Main heading (Author, Title, or Subject)
+        $pdf->SetXY(40, $y_offset + 5);
+        $pdf->SetFont('Courier', 'B', 11);
+        if ($card_type == 'title') {
+            $heading = $book['title'];
+        } else if ($card_type == 'subject') {
+            $heading = strtoupper($book['subjects']);
+        } else { // Author is the default
+            $heading = $book['author'];
+        }
+        $pdf->Cell(0, 5, $heading, 0, 1);
 
-		// get book barcode info
+        // Call Number
+        $pdf->SetFont('Courier', '', 10);
+        $pdf->SetXY(20, $y_offset + 15);
+        $call_no_parts = explode(" ", $book['call_no']);
+        foreach ($call_no_parts as $part) {
+            $pdf->Cell(20, 5, $part, 0, 2);
+            $pdf->SetX(20);
+        }
 
-		$barcodes =  $catalog->get_trimmed_barcodes($bibid1);
+        // Main content block (indented)
+        $pdf->SetXY(40, $pdf->GetY() + 5); // Position relative to call number
+        $title_line = $book['title'];
+        if (!empty($book['sub_title'])) {
+            $title_line .= ": " . $book['sub_title'];
+        }
+        if (!empty($book['stmt_resp'])) {
+            $title_line .= " / " . $book['stmt_resp'];
+        }
+        $pdf->MultiCell(150, 5, $title_line, 0, 'L');
 
-		// -----------------------------------------------------
-		
-		// PREPARE PDF 
-		// 215.9mm x 279.4mm short bond
-		// writable = 216 - 10x2 = 196
-		
-		// $pdf = new FPDF('P','mm',array(215,330)); <---------- setting paper size manually, in mm
-		
-		$pdf = new FPDF('p', 'mm', array(215,330));
-		$pdf->AddPage();
-		
-		//$pdf->SetMargins(13,15);
-		// set font to Arial, Bold, 14pt
-		$pdf->SetFont('Courier', 'B', 10);
-		
-		//$pdf->Image('./images/5x8outline.png',10,10,196,127);
-		$pdf->Image('./horizontal.png',0,117,210,50);
-		
-		// Cell syntax
-		// Cell(width,height,text,border,endline,[align]) where [] means optional C,R,L
-		// L = 201mm, H = 125mm
-		
-		$call_no = explode(" " , $book['call_no']); // break down call no. accdg. to space between
-		// check if call number is properly set
-		$call_no[0] = isset($call_no[0]) ? $call_no[0] : ' ';
-		$call_no[1] = isset($call_no[1]) ? $call_no[1] : ' ';
-		$call_no[2] = isset($call_no[2]) ? $call_no[2] : ' ';
-		$call_no[3] = isset($call_no[3]) ? $call_no[3] : ' ';
-		
-		$pdf->Cell(55,5,'',0,1);
-		$pdf->Cell(55,5,$call_no[0],0,1);
-		$pdf->Cell(55,5,$call_no[1],0,1);
-		$pdf->Cell(55,5,$call_no[2],0,0);		$pdf->Cell(141,5,$book['stmt_resp'],0,1); 
-		$pdf->Cell(55,5,$call_no[3],0,0);
+        $pdf->SetX(40);
+        $pub_line = $book['place'] . ": " . $book['publisher'] . ", " . $book['year'] . ".";
+        $pdf->MultiCell(150, 5, $pub_line, 0, 'L');
 
-		//max length for merge_text01 is 299 characters , 5 lines
-		
- 		if (trim($book['title']) == '') { //no title, only subtitle
-			$title = '        ';
-		} else {
-			$title = '        ' . $book['title'] . ': ';
-		}
+        $pdf->SetX(40);
+        $phys_desc = $book['extent'];
+        if (!empty($book['other_det'])) {
+            $phys_desc .= " : " . $book['other_det'];
+        }
+        if (!empty($book['dimension'])) {
+            $phys_desc .= " ; " . $book['dimension'];
+        }
+        $pdf->MultiCell(150, 5, $phys_desc, 0, 'L');
+        $pdf->Ln(5);
 
-		$merge_text01 =  $title . $book['sub_title'] . "/ " . $book['author'] . ".-- " . $book['place'] . ": " . $book['publisher'] . ", " . $book['year'] . ".\n" 
-														. "        " . $book['extent'] . "; " .  $book['other_det'] . ": " . $book['dimension'];
-		// prevent negative padding
-		$length_append = max(0, 291 - strlen($merge_text01));
-		
-		$merge_text01 .= str_repeat(" ", $length_append); // appends length to maintain consistent amount of characters for 4 lines
-		
-		$pdf->MultiCell(141,5,$merge_text01,0,'L');
-		
-		$pdf->Cell(55,5,'',0,0);
-		
-		$bib_etc = "        " . $book['note'] ;
-		$pdf->Cell(141,5,$bib_etc,0,1);
-		$pdf->Cell(55,5,'',0,0);
-		
-		$isbn = "        ISBN: " . $book['isbn'];
-		$pdf->Cell(141,5,$isbn,0,1);
-		
-		$pdf->Cell(55,5,'',0,0);
-		$pdf->Cell(141,5,'',0,1);
-		
-		$pdf->Cell(55,20,'',0,0);
-		
- 		$merge_text02 = "        " . $book['subjects'];
+        // Notes and ISBN
+        if (!empty($book['note'])) {
+            $pdf->SetX(40);
+            $pdf->MultiCell(150, 5, $book['note'], 0, 'L');
+        }
+        if (!empty($book['isbn'])) {
+            $pdf->SetX(40);
+            $pdf->MultiCell(150, 5, "ISBN: " . $book['isbn'], 0, 'L');
+        }
+        $pdf->Ln(10);
 
-		$length_append = 227 - strlen($merge_text02);
-		
-		$merge_text02 .= str_repeat(" ", $length_append);
-		
-		$pdf->MultiCell(141,5,$merge_text02,0,'L');
-		
-		// barcode starts here
-		
-		$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 0),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 7),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 14),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 21),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 28),0,1);
-		$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 1),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 8),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 15),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 22),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 29),0,1);
-		$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 2),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 9),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 16),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 23),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 30),0,1);
-		$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 3),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 10),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 17),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 24),0,0);$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 31),0,1);
-		$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 4),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 11),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 18),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 25),0,0);$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 32),0,1);
-		$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 5),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 12),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 19),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 26),0,0);$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 33),0,1);
-		$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 6),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 13),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 20),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 27),0,0);$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 34),0,1);		
-		
-		$pdf->Cell(55,5,'',0,1); //spacers before another bibid
-		$pdf->Cell(55,5,'',0,1); //spacers before another bibid
-		$pdf->Cell(55,5,'',0,1); //spacers before another bibid
-		$pdf->Cell(55,5,'',0,1); //spacers before another bibid
-		
-		
-		//Horizontal-Line-No-Background.png
-		//$pdf->Image('./images/5x8outline.png',10,150,196,127);
-		$pdf->Image('./horizontal.png',0,257,210,50);
-		$call_no_1 = $book['call_no']; //save the call_no_1 entried for file saving purpose in pdf
+        // Tracings (Subjects and other entries)
+        $pdf->SetX(45);
+        $pdf->MultiCell(150, 5, "1. " . $book['subjects'] . ".", 0, 'L');
+        $pdf->SetX(45);
+        $pdf->MultiCell(150, 5, "I. Title.", 0, 'L');
+    }
 
-		// ------------------------------ BIBID SET B ---------------------------- 
+    // --- Main Script ---
 
-		$bibid2 = (int)$_GET["bibid_fpdf2"];
+    $bibid1 = (int)$_GET["bibid_fpdf"];
+    $bibid2 = (int)$_GET["bibid_fpdf2"];
+    $card_type = $_GET["card_type"];
 
-		$book = [
-    'call_no'   => $catalog->getMarcSubfield($bibid2, '099', 'a'),
-    'author'    => $catalog->getMarcSubfield($bibid2, '100', 'a'),
-    'title'     => $catalog->getMarcSubfield($bibid2, '245', 'a'),
-    'sub_title' => $catalog->getMarcSubfield($bibid2, '245', 'b'),
-    'stmt_resp' => $catalog->getMarcSubfield($bibid2, '245', 'c'),
-    'place'     => $catalog->getMarcSubfield($bibid2, '260', 'a'),
-    'publisher' => $catalog->getMarcSubfield($bibid2, '260', 'b'),
-    'year'      => $catalog->getMarcSubfield($bibid2, '260', 'c'),
-    'extent'    => $catalog->getMarcSubfield($bibid2, '300', 'a'),
-    'other_det' => $catalog->getMarcSubfield($bibid2, '300', 'b'),
-    'dimension' => $catalog->getMarcSubfield($bibid2, '300', 'c'),
-    'note'      => $catalog->getMarcSubfield($bibid2, '504', 'a'),
-    'isbn'      => $catalog->getMarcSubfield($bibid2, '020', 'a'),
-    'subjects'  => implode(" ", [
-        $catalog->getMarcSubfield($bibid2, '650', 'a'),
-        $catalog->getMarcSubfield($bibid2, '650', 'b'),
-        $catalog->getMarcSubfield($bibid2, '650', 'c'),
-        $catalog->getMarcSubfield($bibid2, '650', 'd')
-				])
-		];		
+    $book1_data = $catalog->get_book_details($bibid1);
+    $book2_data = $catalog->get_book_details($bibid2);
 
-		// get book barcode info
+    $pdf = new FPDF('P', 'mm', array(215.9, 279.4)); // Standard Letter size
+    $pdf->SetMargins(10, 10);
+    $pdf->AddPage();
 
-		$barcodes =  $catalog->get_trimmed_barcodes($bibid2);
-		
-		// --------------------------------------------------------
-		
-		$call_no = explode(" " , $book['call_no']); // break down call no. accdg. to space between
-		// check if call number is properly set
-		$call_no[0] = isset($call_no[0]) ? $call_no[0] : ' ';
-		$call_no[1] = isset($call_no[1]) ? $call_no[1] : ' ';
-		$call_no[2] = isset($call_no[2]) ? $call_no[2] : ' ';
-		$call_no[3] = isset($call_no[3]) ? $call_no[3] : ' ';
+    // First Card (top half of the page)
+    draw_card($pdf, $book1_data, $card_type, 10);
 
-		$pdf->Cell(55,5,'',0,1);
-		$pdf->Cell(55,5,$call_no[0],0,1);
-		$pdf->Cell(55,5,$call_no[1],0,1);
-		$pdf->Cell(55,5,$call_no[2],0,0);		$pdf->Cell(141,5,$book['stmt_resp'],0,1); 
-		$pdf->Cell(55,5,$call_no[3],0,0);
+    // Second Card (bottom half of the page)
+    draw_card($pdf, $book2_data, $card_type, 145); // 10mm top margin + 135mm for first card area
 
-		//max length for merge_text01 is 299 characters , 5 lines
-		
- 		if (trim($book['title']) == '') { //no title, only subtitle
-			$title = '        ';
-		} else {
-			$title = '        ' . $book['title'] . ': ';
-		}
-
-		$merge_text01 =  $title . $book['sub_title'] . "/ " . $book['author'] . ".-- " . $book['place'] . ": " . $book['publisher'] . ", " . $book['year'] . ".\n" 
-														. "        " . $book['extent'] . "; " .  $book['other_det'] . ": " . $book['dimension'];
-		// prevent negative padding
-		$length_append = max(0, 291 - strlen($merge_text01));
-		
-		$merge_text01 .= str_repeat(" ", $length_append); // appends length to maintain consistent amount of characters for 4 lines
-		
-		$pdf->MultiCell(141,5,$merge_text01,0,'L');
-		
-		$pdf->Cell(55,5,'',0,0);
-		
-		$bib_etc = "        " . $book['note'];
-		$pdf->Cell(141,5,$bib_etc,0,1);
-		$pdf->Cell(55,5,'',0,0);
-		
-		$isbn = "        ISBN: " . $book['isbn'];
-		$pdf->Cell(141,5,$isbn,0,1);
-		
-		$pdf->Cell(55,5,'',0,0);
-		$pdf->Cell(141,5,'',0,1);
-		
-		$pdf->Cell(55,20,'',0,0);
-		
-		$merge_text02 = "        " . $book['subjects'];
-
-		$length_append = 227 - strlen($merge_text02);
-		
-		$merge_text02 .= str_repeat(" ", $length_append);
-		
-		$pdf->MultiCell(141,5,$merge_text02,0,'L');
-		
-		// barcode starts here
-		
-		$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 0),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 7),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 14),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 21),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 28),0,1);
-		$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 1),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 8),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 15),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 22),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 29),0,1);
-		$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 2),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 9),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 16),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 23),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 30),0,1);
-		$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 3),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 10),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 17),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 24),0,0);$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 31),0,1);
-		$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 4),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 11),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 18),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 25),0,0);$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 32),0,1);
-		$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 5),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 12),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 19),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 26),0,0);$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 33),0,1);
-		$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 6),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 13),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 20),0,0); $pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 27),0,0);$pdf->Cell(18,5,$catalog->safe_barcode($barcodes, 34),0,1);		
-				
-		//$pdf->Image('./images/5x8outline.png',10,10,196,127);
-		
-		$call_no_2 = $book['call_no']; //save the call_no_2 entried for file saving purpose in pdf
-		
-		$filename_format = 'Author_card-' . $call_no_1 . '--'. $call_no_2  . '.pdf';
-		$pdf->Output($filename_format, 'D');
-		//$pdf->Output('F', 'reports/report.pdf'); alternative way of saving the pdf
-		
-		// -----------------------------------------------------
+  $filename_format = ucfirst($card_type) . '_card-' . $book1_data['call_no'] . '--'. $book2_data['call_no']  . '.pdf';
+  $pdf->Output($filename_format, 'D');
+?>
