@@ -11,7 +11,7 @@ Guide:
 - Date format: YYYY-MM-DD
 
 ## [Unreleased] YYYY-MM-DD
-- New feature: Added a dropdown selection for Card Catalog print. Now supports Title cards and Author cards in generating pdf layouts.
+- New feature: Added a dropdown selection for Card Catalog print. Now supports Title cards and Author cards in generating pdf layouts (pdf layouts improved).
 - New feature: Added 'Missing Books' report. This feature allows to edit copy properties (description entry) with a unique 'ITEM-IS-MISSING' tag, all barcode copies with the tag of 'ITEM-IS-MISSING' under its description will be listed in the 'missing books' report. 
 - New feature: Added 'Missing Books' export to json for other purpose/audit.
 - Fixed: Admin Site Form 'not saving and no response' bug.
