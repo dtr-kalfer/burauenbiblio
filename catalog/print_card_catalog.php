@@ -54,7 +54,7 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 
     <div id="sample_card_catalog">
     <h3>Sample Printout</h3>
-    <img id="" src="../images/card_catalog_sample2.avif" alt="sample card catalog" />
+    <img id="" src="../images/card_catalog_sample3.avif" alt="sample card catalog" />
     </div>
 
     <div id="other_details" style="display: none;
