@@ -18,7 +18,7 @@
         } else if ($card_type == 'subject') {
             $heading = strtoupper($book['subjects']);
         } else { // Author is the default
-            $heading = $book['author'];
+            $heading = $book['stmt_resp'];
         }
         $pdf->Cell(0, 5, $heading, 0, 1);
 
