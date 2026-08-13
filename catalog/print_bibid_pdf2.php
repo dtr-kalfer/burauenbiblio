@@ -12,18 +12,18 @@
     function draw_card($pdf, $book, $card_type, $y_offset) {
         // Main heading (Author, Title, or Subject)
         $pdf->SetXY(40, $y_offset + 5);
-        $pdf->SetFont('Courier', 'B', 11);
+        $pdf->SetFont('Courier', 'B', 12);
         if ($card_type == 'title') {
             $heading = $book['title'];
         } else if ($card_type == 'subject') {
             $heading = strtoupper($book['subjects']);
         } else { // Author is the default
-            $heading = $book['stmt_resp'];
+            $heading = $book['author'];
         }
         $pdf->Cell(0, 5, $heading, 0, 1);
 
         // Call Number
-        $pdf->SetFont('Courier', '', 10);
+        $pdf->SetFont('Courier', 'B', 10);
         $pdf->SetXY(20, $y_offset + 15);
         $call_no_parts = explode(" ", $book['call_no']);
         foreach ($call_no_parts as $part) {
@@ -72,7 +72,7 @@
         $pdf->SetX(45);
         $pdf->MultiCell(150, 5, "1. " . $book['subjects'] . ".", 0, 'L');
         $pdf->SetX(45);
-        $pdf->MultiCell(150, 5, "I. Title.", 0, 'L');
+        $pdf->MultiCell(150, 5, " ", 0, 'L');
     }
 
     // --- Main Script ---
