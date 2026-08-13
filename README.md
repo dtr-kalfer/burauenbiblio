@@ -228,7 +228,7 @@ The report also includes an **Export to JSON** function, allowing the complete l
 
 ![DDC Chart](./readme_assets/deweydecimalchart.webp "DDC Chart")
 
-The **Top 30 DDC Stats** feature provides an analysis of the library’s collection by visualizing the **number of copies per Dewey Decimal Classification (DDC) category**. A utility is included which allows creation of DDC table needed to make a graph (Number of Copies VS. DDC code).  The DDC utility requires a certain amount of catalogued books using DDC to get a meaningful chart.
+The **Top 30 DDC Stats** feature provides an analysis of the library’s collection by visualizing the **number of copies per Dewey Decimal Classification (DDC) category**. A utility is included which allows creation of DDC table needed to make a graph (Number of Copies VS. DDC code).  The DDC utility requires a certain amount of catalogued books using DDC to get a meaningful chart. It also supports export csv, generating DDC classified level 1 summary with respect to number of book titles/volumes categorized within their 5 year and 10 year span (current year as its reference).
 
 Added 'Export to JSON' feature viewing data into JSON format for other value adding services i.e. e-bulletin.
 
