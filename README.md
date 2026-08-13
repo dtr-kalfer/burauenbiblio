@@ -160,11 +160,11 @@ The **To-Do List** is a simple yet powerful enhancement to the BurauenBiblio lib
 
 ### 📌 Card Catalog
 
-![card catalog demo](./images/card_catalog_demo_sample.webp "card catalog demo")
+![card catalog demo](./images/card_catalog_sample_readme.avif "card catalog demo")
 
 **BurauenBiblio** supports card catalog printing in a **custom 8 × 5-inch PDF layout**, providing sufficient space for longer titles, barcodes, and subject terms. The layout is designed for **8.5 × 13-inch long bond paper**, allowing two catalog cards to be printed on a single sheet.
 
-The system supports both **title cards and author cards**, providing greater flexibility for libraries that continue to use physical card catalogs. This feature is designed to provide a practical and resource-efficient solution for local libraries that require printed catalog cards for their collections.
+The system supports **title card, author card and subject card** print, providing greater flexibility for libraries that continue to use physical card catalogs. This feature is designed to provide a practical and resource-efficient solution for local libraries that require printed catalog cards for their collections.
 
 ### 📌 MARC tags setup
 
@@ -323,7 +323,7 @@ It includes biblio records without thumbnails, which happens when add thumbnail 
 ### 🧹 Utility - Orphaned BibID Cleanup Tool
 
 ![orphaned bibids](./readme_assets/checkorpanedbibids.webp "orphaned bibids")
-
+7
 This tool helps maintain a **clean and optimized** OpenBiblio database by identifying and removing **orphaned biblios** — records that have no associated barcode copies.
 
 ### 🧹 Utility - Database Migration Manager
