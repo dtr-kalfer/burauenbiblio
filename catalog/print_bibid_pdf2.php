@@ -18,7 +18,7 @@
         } else if ($card_type == 'subject') {
             $heading = strtoupper($book['subjects']);
         } else { // Author is the default
-            $heading = $book['author'];
+            $heading = $book['stmt_resp'];
         }
         $pdf->Cell(0, 5, $heading, 0, 1);
 
@@ -33,7 +33,7 @@
 
         // Main content block (indented)
         $pdf->SetXY(40, $pdf->GetY() + 5); // Position relative to call number
-        $title_line = $book['title'];
+        $title_line = "    " . $book['title'];
         if (!empty($book['sub_title'])) {
             $title_line .= ": " . $book['sub_title'];
         }
@@ -52,8 +52,15 @@
             $phys_desc .= " : " . $book['other_det'];
         }
         if (!empty($book['dimension'])) {
-            $phys_desc .= " ; " . $book['dimension'];
+						$dimension = $book['dimension'];
+
+						// Convert mm and cm to their full names (case-insensitive)
+						$dimension = str_ireplace('mm', 'millimeter', $dimension);
+						$dimension = str_ireplace('cm', 'centimeter', $dimension);
+
+						$phys_desc .= " ; " . $dimension;					
         }
+
         $pdf->MultiCell(150, 5, $phys_desc, 0, 'L');
         $pdf->Ln(5);
 
@@ -70,7 +77,7 @@
 
         // Tracings (Subjects and other entries)
         $pdf->SetX(45);
-        $pdf->MultiCell(150, 5, "1. " . $book['subjects'] . ".", 0, 'L');
+        $pdf->MultiCell(150, 5, "    " . $book['subjects'] . ".", 0, 'L');
         $pdf->SetX(45);
         $pdf->MultiCell(150, 5, " ", 0, 'L');
     }
