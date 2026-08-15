@@ -224,13 +224,15 @@ A book or item can be identified as missing by entering the unique keyword **ITE
 
 The report also includes an **Export to JSON** function, allowing the complete list of missing items and their associated catalog information to be exported in structured JSON format for further processing, archival, or data analysis.
 
-### 📝 Analytics - Top 30 Dewey Decimal Stats
+### 📝 Analytics - Dewey Decimal Stats
 
 ![DDC Chart](./readme_assets/deweydecimalchart.webp "DDC Chart")
 
-The **Top 30 DDC Stats** feature provides an analysis of the library’s collection by visualizing the **number of copies per Dewey Decimal Classification (DDC) category**. A utility is included which allows creation of DDC table needed to make a graph (Number of Copies VS. DDC code).  The DDC utility requires a certain amount of catalogued books using DDC to get a meaningful chart. It also supports export csv, generating DDC classified level 1 summary with respect to number of book titles/volumes categorized within their 5 year and 10 year span (current year as its reference).
+The **DDC Stats** feature provides an analysis of the library’s collection by visualizing the **number of copies per Dewey Decimal Classification (DDC) category**. A utility is included which allows creation of DDC table needed to make a graph (Number of Copies VS. DDC code).  The DDC utility requires a certain amount of catalogued books using DDC to get a meaningful chart. It also supports export csv, generating **DDC Holdings Summary by Copyright Year** with respect to number of book titles/volumes categorized that falls within the 5 year and 10 year span (current year as its reference).
 
 Added 'Export to JSON' feature viewing data into JSON format for other value adding services i.e. e-bulletin.
+
+> DDC category descriptions are adapted from [Wikipedia](https://en.wikipedia.org/wiki/List_of_Dewey_Decimal_classes) under the [CC BY-SA 4.0 License](https://creativecommons.org/licenses/by-sa/4.0/)
 
 ### 📝 Advanced Dewey Decimal Classification Mapping
 
@@ -251,9 +253,20 @@ The system utilizes three internal helper functions to parse call numbers sequen
 Once this 3-level processing pass is complete, the data is indexed into a dynamic staging table (`extract_ddc`), making it instantly available for internal reporting or external scientific research.
 
 ![Export All Collection vs DDC](./readme_assets/export_all_ddc.avif)
+
+#### DDC Holdings Summary by Copyright Year
+
+![Export All Collection vs DDC](./readme_assets/subject_area_year_span.avif)
+
+The **DDC Holdings Summary by Copyright Year** provides a structured overview of the library's book collection by **Dewey Decimal Classification (DDC) subject area**, including both the number of **unique titles and total volumes held**.
+
+The report also identifies books copyrighted within the **last 10 years** and **last 5 years**, allowing library staff to assess the recency of their collection across different subject areas. This provides a useful basis for **collection evaluation, acquisition planning, and identifying subject areas that may require updating or additional resources**.
+
+The generated summary presents the data in a concise tabular format, showing the overall holdings alongside their corresponding 10-year and 5-year copyright-year ranges. This allows libraries to quickly compare collection size and recency across DDC subject areas and support more informed collection development decisions.
+
 #### 📊 Institutional and Research Applications
 
-Both **DDC Stats** and the **Full DDC Table Listings** empower library administrators to:
+The **DDC Stats**, **DDC Holdings Summary**  and the **Full DDC Table Listings** empower library administrators to:
 
 - **Identify Collection Strengths:** Instantly see which academic classes or disciplines dominate the active collection.
     
@@ -271,9 +284,9 @@ While the core admin dashboard provides a curated, stylized view of the **Top 30
 
 This extended pipeline bypasses standard browser memory thresholds by streaming the entire long-tail classification census directly into flat-file formats. This allows for seamless external data warehousing, statistical script execution, or direct upload to open-science data repositories.
 
-![Use as dataset](./readme_assets/sample_dataset_zen.avif)
+![Use as dataset|697](./readme_assets/sample_dataset_zen.avif)
 
-> DDC category descriptions are adapted from [Wikipedia](https://en.wikipedia.org/wiki/List_of_Dewey_Decimal_classes) under the [CC BY-SA 4.0 License](https://creativecommons.org/licenses/by-sa/4.0/)
+
 ### 📝 Analytics - Top 30 Borrowed Books and Top 30 Most-viewed books
 
 ![borrowed books](./readme_assets/sample_borrowed.webp "borrowed books")
