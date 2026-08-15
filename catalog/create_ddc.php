@@ -156,4 +156,5 @@ document.getElementById('createddc-form3').addEventListener('submit', function(e
     }, 3000);
 });
 </script>
+<p>Export DDC Level 1 vs. Total Titles and Volumes within 5 year <br> and 10 Year Copyrighted Span (from generated process levels)</p>
 <p class='download_list'><a href='./ddc_summary_export.php'>Download DDC Summary Report (.csv)</a></p>
