@@ -98,6 +98,7 @@ $trans["View full record"] = "View full record";
 $trans["Click a BibID or Title to view the full record."] = "Click a BibID or Title to view the full record.";
 
 $trans["Missing Books"] = "Missing Books";
+$trans["ddc_summary"] = "DDC Summary";
 
 //-----------------
 
