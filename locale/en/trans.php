@@ -99,6 +99,7 @@ $trans["Click a BibID or Title to view the full record."] = "Click a BibID or Ti
 
 $trans["Missing Books"] = "Missing Books";
 $trans["ddc_summary"] = "DDC Summary";
+$trans["Timezone"] = "Timezone";
 
 //-----------------
 
