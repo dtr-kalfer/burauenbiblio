@@ -19,10 +19,10 @@
 			<ul class="controls inline">
 				<!-- the displayed tab order will follow the order of the following links -->
 				<li class="active"><a href="#libraryPage"><?php echo T("Library"); ?></a></li>
-				
-				
-				
-				
+				<li><a href="#localePage"><?php echo T("Locale"); ?></a></li>
+				<!-- <li><a href="#requestPage"><?php // echo T("Requests"); ?></a></li> -->
+				<!-- <li><a href="#photoPage"><?php // echo T("CoverPhotos"); ?></a></li> -->
+				<!-- <li><a href="#opacPage"><?php // echo T("OPAC"); ?></a></li> -->
 				
 			</ul>
 
@@ -48,13 +48,36 @@
 						<label for="library_image_url"><?php echo T("Library Image"); ?></label>
 						<input type="text" id="library_image_url" name="library_image_url" maxlength="64" placeholder="photo of your choice" />
 						<br />
-						
+						<!-- <label for="show_lib_info"><?php // echo T("Show Lib Info on Staff pages"); ?></label> -->
+						<!-- <input type="checkbox" id="show_lib_info" name="show_lib_info" value="Y" /> -->
 					</fieldset>
-					<fieldset class="inlineFldSet2">
+					<fieldset class="inlineFldSet">
 						<img id="libImg" width="150" height="150" />
 					</fieldset>
-					<p>*note: Set logo background to transparent for best results.</p>
 				</div>
+				<!-- modify this part to add the timezone block -->
+        <div id="localePage" class="block">
+					<!-- This will be fixed later to support other language -->
+					<br />
+					<br />
+          <!-- <label for="locale"><?php // echo T("Available languages"); ?></label> -->
+          <!-- <select id="locale" name="locale" ></select> -->
+          <br />
+          <label for="charset"><?php echo T("Character Set"); ?></label>
+          <input type="text" id="charset" name="charset" readonly>
+          <br />
+          <label for="timezone"><?php echo T("Timezone"); ?></label>
+          <select id="timezone" name="timezone"></select>
+          <br />
+          <label for="first_day_of_week"><?php echo T("First day of week"); ?></label>
+          <select id="first_day_of_week" name="first_day_of_week" ></select>
+        </div>
+				
+
+
+
+
+				<hr>
 				<input type="hidden" id="cat" name="cat" value="settings" />
 				<input type="hidden" id="mode" name="mode" />
 				<input type="submit" id="updtBtn" value="Update" />
@@ -69,7 +92,8 @@
 </div>
 
 <?php
- 	require_once(REL(__FILE__,'../shared/footer.php'));
+  	require_once(REL(__FILE__,'../shared/footer.php'));
+
 	require_once(REL(__FILE__, "../admin/settingsJs.php"));
 ?>
 </body>
