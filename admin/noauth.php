@@ -9,7 +9,7 @@
 		
 		require_once(REL(__FILE__, "../shared/logincheck.php"));
 		Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
-		date_default_timezone_set('Asia/Manila'); // Philippine timezone
+		// date_default_timezone_set('Asia/Manila'); // Philippine timezone
 ?>
 <link rel="stylesheet" type="text/css" href="../jscalendar/jsCalendar.min.css">
 <script type="text/javascript" src="../jscalendar/jsCalendar.min.js"></script>
@@ -34,7 +34,7 @@
 		</section>
 	</div>
 	<?php echo '<p  style="text-align: center;" >' . T("showhowtouse") . '</p>'; ?>
-	<h3><?php echo T("Today is: ") . date("m-d-Y"); ?></h3>
+	<h3><?php echo T("Today is: ") . date('Y-m-d H:i:s') . " " . date_default_timezone_get(); ?></h3>
 
 </section>
 <script>
