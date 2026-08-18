@@ -35,7 +35,9 @@ require_once(REL(__FILE__, "../shared/logincheck.php"));
 
 ?>
 <script src="./js/chart.js"></script>
-<h2>Circulation Report</h2>
+<h2>Circulation Report <?php echo date_default_timezone_get();
+echo '<br>';
+echo date('Y-m-d H:i:s T P'); ?></h2>
 <section style="width: 600px;" id="circ_section">
 <?php 
 
@@ -67,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['start'], $_GET['end'], 
 	// do the default --> F.Tumulak
 	
 		// Set timezone (optional but good for consistency)
-		date_default_timezone_set('Asia/Manila');
+		// date_default_timezone_set('Asia/Manila');
 
 		// Get current month in YYYY-MM format
 		$endMonth = $_GET['end'] ?? date('Y-m');
@@ -92,6 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['start'], $_GET['end'], 
   <button type="submit" name="action" value="generate"><?= T("Generate Report") ?></button>
   <button type="submit" name="action" value="export"><?= T("Export to JSON") ?></button>
 </form>
+
 <canvas id="myChart"></canvas>
 
 <?php 
