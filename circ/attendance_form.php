@@ -1,95 +1,107 @@
 <?php
-	/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
-	 * See the file COPYRIGHT.html for more details. --F.Tumulak
-	 */
-	require_once("../shared/common.php");
-	$tab = "admin/analytics";
-	$nav = "attendance";	
-	require_once(REL(__FILE__, "../shared/logincheck.php"));
-	Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
+  /* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
+   * See the file COPYRIGHT.html for more details. --F.Tumulak
+   */
+  require_once("../shared/common.php");
+  $tab = "admin/analytics";
+  $nav = "attendance";
+  require_once(REL(__FILE__, "../shared/logincheck.php"));
+  Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 
-	// require_once __DIR__ . '/../Classes/Attendance.php'; //extends ConnectDB class
-	
-	require_once __DIR__ . '/../autoload.php'; // adjust the ../ if necessary depending on your source path.
-	use LibraryAttendance\Attendance;
-	
-	$db = new Attendance();
-	$success = false;
+  // require_once __DIR__ . '/../Classes/Attendance.php'; //extends ConnectDB class
 
-	// ---------------------
-	// ATTENDANCE HANDLER
-	// ---------------------
-	$attendance_success = false;
-	$attendance_error = '';
+  require_once __DIR__ . '/../autoload.php'; // adjust the ../ if necessary depending on your source path.
+  use LibraryAttendance\Attendance;
 
-	if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === "attendance") {
-			if (isset($_POST['delete_id'])) {
-					$delete_id = intval($_POST['delete_id']);
-					$success = $db->deleteAttendance($delete_id); 
-					if ($success) {
-							$attendance_success = true;
-					} else {
-							$attendance_error = "Failed to delete record: " . $stmt->error;
-					}
-					$db->close();
-			} else {
-					$date = $_POST['date'] ?? '';
-					$user_type = $_POST['user_type'] ?? '';
-					$course = $_POST['course'] ?? null;
-					$count = intval($_POST['count'] ?? 1);
-					
-					$success = $db->addAttendance($date, $user_type, $course, $count);
-					if ($success) {
-							$attendance_success = true;
-					} else {
-							$attendance_error = "Error: " . $stmt->error;
-					}
-					$db->close();
-			}
-			
-	}
+  $db = new Attendance();
+  $success = false;
 
-	// ---------------------
-	// COURSE MANAGEMENT HANDLER
-	// ---------------------
-	$course_success = false;
-	$course_error = '';
+  // ---------------------
+  // ATTENDANCE HANDLER
+  // ---------------------
+  $attendance_success = false;
+  $attendance_error = '';
 
-	if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === "courses") {
-			// ADD NEW COURSE
-			if (isset($_POST['new_course']) && !empty(trim($_POST['new_course']))) {
-					$new_course = trim($_POST['new_course']);
-					
-					$success = $db->addCourse($new_course);
+  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === "attendance") {
+      if (isset($_POST['delete_id'])) {
+          $delete_id = intval($_POST['delete_id']);
+          $success = $db->deleteAttendance($delete_id);
+          if ($success) {
+              $attendance_success = true;
+          } else {
+              $attendance_error = "Failed to delete record: " . $stmt->error;
+          }
+          $db->close();
+      } else {
+          $date = $_POST['date'] ?? '';
+          $user_type = $_POST['user_type'] ?? '';
+          $course = $_POST['course'] ?? null;
+          $count = intval($_POST['count'] ?? 1);
 
-					if ($success) {
-							$course_success = "Course added successfully!";
-					} else {
-							$course_error = "Failed to add course: " . $stmt->error;
-					}
-					$db->close();
-			}
+          $success = $db->addAttendance($date, $user_type, $course, $count);
+          if ($success) {
+              $attendance_success = true;
+          } else {
+              $attendance_error = "Error: " . $stmt->error;
+          }
+          $db->close();
+      }
 
-			// DELETE COURSE
-			if (isset($_POST['delete_course_id'])) {
-					$delete_course_id = intval($_POST['delete_course_id']);
+  }
 
-					$success = $db->delCourse($delete_course_id); 
+  // ---------------------
+  // COURSE MANAGEMENT HANDLER
+  // ---------------------
+  $course_success = false;
+  $course_error = '';
 
-					if ($success) {
-							$course_success = "Course deleted successfully!";
-					} else {
-							$course_error = "Failed to delete course: " . $stmt->error;
-					}
-					$db->close();
-			}
-	}
+  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === "courses") {
+      // ADD NEW COURSE
+      if (isset($_POST['new_course']) && !empty(trim($_POST['new_course']))) {
+          $new_course = trim($_POST['new_course']);
 
-	$toggle = isset($_POST['action']) && $_POST['action'] === 'courses';
+          $success = $db->addCourse($new_course);
 
-	// Fetch courses for dropdown
+          if ($success) {
+              $course_success = "Course added successfully!";
+          } else {
+              $course_error = "Failed to add course: " . $stmt->error;
+          }
+          $db->close();
+      }
 
-	$courses = $db->getAllCourses();
+      // DELETE COURSE
+      if (isset($_POST['delete_course_id'])) {
+          $delete_course_id = intval($_POST['delete_course_id']);
+
+          $success = $db->delCourse($delete_course_id);
+
+          if ($success) {
+              $course_success = "Course deleted successfully!";
+          } else {
+              $course_error = "Failed to delete course: " . $stmt->error;
+          }
+          $db->close();
+      }
+  }
+
+  $toggle = isset($_POST['action']) && $_POST['action'] === 'courses';
+
+  // Fetch courses for dropdown
+
+  $courses = $db->getAllCourses();
+
+  // ---------------------
+  // PAGINATION (fixed 25 per page, newest first)
+  // ---------------------
+  $perPage  = 25;
+  $totalRows = $db->countAttendance();
+  $totalPages = max(1, (int)ceil($totalRows / $perPage));
+  $page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
+  if ($page > $totalPages) {
+      $page = $totalPages;
+  }
+  $result = $db->getAttendancePage($page, $perPage);
 ?>
 <style>
     .form-container-attendance {
@@ -167,14 +179,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php
-						$result = $db->getAllAttendance();
-						
-            // $result = $connection->query("SELECT * FROM library_attendance ORDER BY id DESC");
-            
-						if (!empty($result)) {
-						    foreach ($result as $row):
-            ?>
+            <?php if (!empty($result)): foreach ($result as $row): ?>
             <tr>
                 <td><?= $row['id'] ?></td>
                 <td><?= htmlspecialchars($row['date']) ?></td>
@@ -189,9 +194,47 @@
                     </form>
                 </td>
             </tr>
-            <?php endforeach; } ?>
+            <?php endforeach; else: ?>
+            <tr><td colspan="6" style="text-align:center;">No records found.</td></tr>
+            <?php endif; ?>
         </tbody>
     </table>
+
+    <?php if ($totalPages > 1): ?>
+    <div style="margin-top: 10px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <?php if ($page > 1): ?>
+            <a href="?page=<?= $page - 1 ?>">&laquo; Prev</a>
+        <?php else: ?>
+            <span style="color:#aaa;">&laquo; Prev</span>
+        <?php endif; ?>
+
+        <?php
+            $start = max(1, $page - 2);
+            $end = min($totalPages, $page + 2);
+            if ($start > 1) echo '<a href="?page=1">1</a> ';
+            if ($start > 2) echo '<span>...</span> ';
+            for ($i = $start; $i <= $end; $i++) {
+                if ($i == $page) {
+                    echo '<strong style="padding:2px 6px;background:#333;color:#fff;border-radius:3px;">' . $i . '</strong>';
+                } else {
+                    echo '<a href="?page=' . $i . '">' . $i . '</a> ';
+                }
+            }
+            if ($end < $totalPages - 1) echo '<span>...</span> ';
+            if ($end < $totalPages) echo '<a href="?page=' . $totalPages . '">' . $totalPages . '</a>';
+        ?>
+
+        <?php if ($page < $totalPages): ?>
+            <a href="?page=<?= $page + 1 ?>">Next &raquo;</a>
+        <?php else: ?>
+            <span style="color:#aaa;">&laquo; Next</span>
+        <?php endif; ?>
+
+        <span style="margin-left:auto; color:#555;">
+            Page <?= $page ?> of <?= $totalPages ?> &mdash; <?= $totalRows ?> record<?= $totalRows == 1 ? '' : 's' ?>
+        </span>
+    </div>
+    <?php endif; ?>
 </section>
 
 <!-- =================== MANAGE COURSES =================== -->
@@ -251,7 +294,7 @@
             document.getElementById('course').value = '';
         }
     }
-		
+
     function toggleSections() {
         const attendance = document.getElementById("attendanceSection");
         const courses = document.getElementById("coursesSection");
@@ -264,5 +307,5 @@
             courses.style.display = "block";
         }
     }
-	
+
 </script>
