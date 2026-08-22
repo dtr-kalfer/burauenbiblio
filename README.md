@@ -336,7 +336,7 @@ It includes biblio records without thumbnails, which happens when add thumbnail 
 ### 🧹 Utility - Orphaned BibID Cleanup Tool
 
 ![orphaned bibids](./readme_assets/checkorpanedbibids.webp "orphaned bibids")
-7
+
 This tool helps maintain a **clean and optimized** OpenBiblio database by identifying and removing **orphaned biblios** — records that have no associated barcode copies.
 
 ### 🧹 Utility - Database Migration Manager
@@ -358,17 +358,17 @@ This tool:
 
 ## 🙌 Project Direction
 
-![actual results](./readme_assets/actual_use_case1.webp "actual results")
+![actual results](./readme_assets/actual_use_case_v2.avif "actual results")
 
 This project is part of my ongoing personal initiative to modernize the OpenBiblio codebase.
 
 The development focuses on:
 
 - Fixing critical bugs
-
 - Enhancing the user interface
-
 - Introducing new features to improve usability and performance
+- Since timezone select is now fixed, add language support (Future) is possible
+- PHP 8.3 Compatibility (Future)
 
 Recent updates also incorporate **HTMX** and other modern frontend tools, delivering a more dynamic and responsive user experience—without the overhead of a full JavaScript framework. This approach keeps the system lightweight, accessible, and well-suited for **small libraries and schools** while aligning with current **web standards**.
 
