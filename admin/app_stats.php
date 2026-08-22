@@ -66,6 +66,13 @@
 			echo "Peak Memory Usage: <b>" . round(memory_get_peak_usage() / 1024, 2) . " KB</b>";
 			?>
 		</div>
+		
+		<div class="section">
+			<h2>Date, Time, Burauenbiblio Timezone Settings</h2>
+			<p><b><?php echo T("Today is: ") . date('Y-m-d H:i:s') . " " . date_default_timezone_get(); ?></b></p>
+			<p>How to Set Timezone: Admin > LIbrary Settings > Locale</p>
+		</div>
+		
 	</section>	
 	
 	<?php
