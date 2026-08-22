@@ -11,6 +11,7 @@ Guide:
 - Date format: YYYY-MM-DD
 
 ## [Unreleased] YYYY-MM-DD
+- Added pagination feature: Monthly (per program) attendance for analytics. Also, pagination feature for missing thumbnails (under cataloging services).
 - Added a working timezone setup: This will support OPAC setup with other countries with having a different timezone setup. 
 - New feature: Added a DDC holdings summary by copyrighted year. This include the number of titles (count) versus their publication year (i.e. Titles copyrighted within 5 year and 10 year, curreent year as reference). Useful for identifying library collection with respect to its DDC areas within the specified year-range.
 - New feature: Added a dropdown selection for Card Catalog print. Now supports Title cards and Author cards in generating pdf layouts (pdf layouts improved).
