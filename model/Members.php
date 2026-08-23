@@ -113,15 +113,12 @@ class Members extends CoreTable {
 
       $frag = '%'.$nameFrag.'%';
 
-      // Determine which column to search based on $search_name
-      if (ctype_alpha(trim($nameFrag))) {
-        $column = 'first_name';
-      } else {
-        $column = 'last_name';
-      }
-
-      // Construct the SQL query dynamically
-      $sql = $this->mkSQL("SELECT mbrid, barcode_nmbr, first_name, last_name, city, home_phone, work_phone, classification, siteid FROM member WHERE {$column} LIKE %Q "
+      // FIX: always search the surname column (last_name).
+      // The old ctype_alpha() check sent alphabetic input (normal surnames)
+      // to first_name, contradicting the "Find Member by Surname" form.
+      // Student/faculty numbers are also stored in last_name, so searching
+      // last_name unconditionally covers both alphabetic and numeric input.
+      $sql = $this->mkSQL("SELECT mbrid, barcode_nmbr, first_name, last_name, city, home_phone, work_phone, classification, siteid FROM member WHERE last_name LIKE %Q "
                                                          ."ORDER BY last_name", $frag);
 
       return $this->select($sql);
