@@ -15,19 +15,19 @@
 return [
     [
         "name" => "Add_loan_allotment_feature",
-				"sql"  => "ALTER TABLE mbr_classify_dm ADD loan_allotment SMALLINT(3) NOT NULL DEFAULT 0"
+        "sql"  => "ALTER TABLE mbr_classify_dm ADD loan_allotment SMALLINT(3) NOT NULL DEFAULT 0"
     ],
     [
         "name" => "Fix_fines_greater_than_99.99",
-				"sql"  => "ALTER TABLE mbr_classify_dm MODIFY max_fines DECIMAL(6,2) NOT NULL"
+        "sql"  => "ALTER TABLE mbr_classify_dm MODIFY max_fines DECIMAL(6,2) NOT NULL"
     ],
     [
         "name" => "Enable_payments_penalty_history_mode_on_members_step1",
-				"sql"  => "ALTER TABLE member_account MODIFY create_dt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        "sql"  => "ALTER TABLE member_account MODIFY create_dt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP"
     ],
     [
         "name" => "Enable_payments_penalty_history_mode_on_members_step2",
-				"sql"  => "ALTER TABLE member_account DROP PRIMARY KEY, ADD PRIMARY KEY (transid), MODIFY transid INT(11) NOT NULL AUTO_INCREMENT"
+        "sql"  => "ALTER TABLE member_account DROP PRIMARY KEY, ADD PRIMARY KEY (transid), MODIFY transid INT(11) NOT NULL AUTO_INCREMENT"
     ],
     [
         "name" => "Create_library_attendance_table",
@@ -64,35 +64,35 @@ return [
     [
         "name" => "Create_table_courses",
         "sql"  => "CREATE TABLE IF NOT EXISTS tbl_courses (
-						id INT AUTO_INCREMENT PRIMARY KEY,
-						course_name VARCHAR(100) NOT NULL UNIQUE
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            course_name VARCHAR(100) NOT NULL UNIQUE
         )"
-    ],		
+    ],
     [
         "name" => "Populate_table_courses",
         "sql"  => "INSERT INTO tbl_courses (course_name) VALUES
-					('BSABM'),
-					('BSAE'),
-					('BPA'),
-					('BSE'),
-					('BMLS')
+          ('BSABM'),
+          ('BSAE'),
+          ('BPA'),
+          ('BSE'),
+          ('BMLS')
         "
     ],
     [
         "name" => "Fix error: invalid datetime defaults biblio_copy InnoDB migrate",
-				"sql"  => "ALTER TABLE `biblio_copy`
-										MODIFY `create_dt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-										MODIFY `last_change_dt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
-										ON UPDATE CURRENT_TIMESTAMP		
-									"		
+        "sql"  => "ALTER TABLE `biblio_copy`
+                    MODIFY `create_dt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                    MODIFY `last_change_dt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+                    ON UPDATE CURRENT_TIMESTAMP
+                  "
     ],
     [
         "name" => "Fix error: invalid datetime defaults biblio InnoDB migrate",
-				"sql"  => "ALTER TABLE `biblio`
-										MODIFY `create_dt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-										MODIFY `last_change_dt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
-										ON UPDATE CURRENT_TIMESTAMP	
-									"		
+        "sql"  => "ALTER TABLE `biblio`
+                    MODIFY `create_dt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                    MODIFY `last_change_dt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+                    ON UPDATE CURRENT_TIMESTAMP
+                  "
     ],
     [
         "name" => "Change to InnoDB table `usmarc_indicator_dm`",
@@ -287,12 +287,20 @@ return [
         "name" => "Change to InnoDB table `settings`",
         "sql"  => "ALTER TABLE `settings` ENGINE=InnoDB"
     ],
-		[
+    [
         "name" => "Change to InnoDB table `biblio`",
         "sql"  => "ALTER TABLE `biblio` ENGINE=InnoDB"
     ],
-		[
+    [
         "name" => "Change to InnoDB table `biblio_copy`",
         "sql"  => "ALTER TABLE `biblio_copy` ENGINE=InnoDB"
+    ],
+    [
+        "name" => "Add_member_qrcode_column",
+        "sql"  => "ALTER TABLE `member` ADD COLUMN `qrcode` VARCHAR(50) DEFAULT NULL AFTER `barcode_nmbr`"
+    ],
+    [
+        "name" => "Add_timezone_setting",
+        "sql"  => "INSERT IGNORE INTO `settings` (`name`, `position`, `title`, `type`, `width`, `type_data`, `validator`, `value`, `menu`) VALUES ('timezone', 10, 'Timezone', 'select', NULL, 'timezones', NULL, 'Asia/Manila', 'admin')"
     ],
 ];
