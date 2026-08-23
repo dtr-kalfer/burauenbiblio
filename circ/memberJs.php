@@ -229,16 +229,16 @@ var mf = {
     return false;
   },
 
-  doBarCdSearch: function () { // improved: added validity check (6 to 8 digits) for empty input --F.Tumulak
+  doBarCdSearch: function () { // FIX: QR code (student/faculty ID) lookup; accepts alphanumeric input --F.
     var barcdInput = $('#searchByBarcd')[0]; // get the DOM element
     var barcd = $.trim(barcdInput.value);
 
     // Update input value (cleaned one)
     $('#searchByBarcd').val(barcd);
 
-    // Check if empty or invalid (manual check or HTML5 validity)
-    if (!barcd || !/^\d{6,8}$/.test(barcd)) {
-      barcdInput.setCustomValidity("Please enter 6 to 8 digits.");
+    // Check if empty or too long (QR codes may be alphanumeric)
+    if (!barcd || barcd.length > 50) {
+      barcdInput.setCustomValidity("Please enter the Student/Faculty ID number (max 50 characters).");
       barcdInput.reportValidity(); // Show the browser's native tooltip
       return false; // stop the function
     } else {
@@ -247,7 +247,7 @@ var mf = {
 
     // Proceed with search
     mf.srchType = 'barCd';
-    var params = 'mode=doBarcdSearch&barcdNmbr=' + barcd;
+    var params = 'mode=doBarcdSearch&barcdNmbr=' + encodeURIComponent(barcd);
     $.post(mf.url, params, mf.handleMbrResponse_barcd);
     return false;
   },
@@ -384,6 +384,8 @@ var mf = {
         let mbr = results[i];
         html += '<tr>\n';
         html += '  <td>' + mbr.barcode_nmbr + '</td>\n';
+        // FIX: show student/faculty ID (qrcode) next to card number --F.
+        html += '  <td>' + (mbr.qrcode || '') + '</td>\n';
         if (mbr.hasOwnProperty('first_legal_name') || mbr.hasOwnProperty('last_legal_name')) {
           html += '  <td><i>' + mf.doConcatLegalName(mbr) + ', <?php echo T('see'); ?> </i><a href="#" id="' + mbr.mbrid + '">' + mbr.last_name + ', ' + mbr.first_name + '</a></td>\n';
         } else {
@@ -499,6 +501,7 @@ var mf = {
     $('#mbrName').val(mbr.last_name+', '+mbr.first_name);
     $('#mbrSite').val("...");
     $('#mbrCardNo').val(mbr.barcode_nmbr);
+    $('#mbrQrcode').val(mbr.qrcode || ''); // show student/faculty ID --F.
     mf.mbrid = mbr.mbrid;
     mf.doGetCheckOuts(mf.mbrid);
     $.post(mf.url,{mode:'getSite', 'siteid':mbr.siteid}, function (response) {
@@ -886,6 +889,9 @@ var mf = {
     } else {
       $('#barcode_nmbr').removeAttr('readonly');
     }
+
+    // QR Code (student/faculty number) --F.
+    $('#qrcode').val(mbr.qrcode || '');
 
     $('#last_name').val(mbr.last_name);
     $('#first_name').val(mbr.first_name);
