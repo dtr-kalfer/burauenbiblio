@@ -34,7 +34,7 @@ $trans["Allow delete button / Reports"] = "Allow delete button / Reports";
 $trans["Find patron by surname or QR-code"] = "Find patron by surname or QR-code";
 $trans["Surname or QR-Code"] = "Surname or QR-Code";
 $trans["App. Info"] = "App. Info";
-$trans["QR code"] = "QR code";
+$trans["QR code"] = "QR Code";
 $trans["Full Name"] = "Full Name";
 $trans["Late fee rate"] = "Late fee rate";
 $trans["Barcode Count"] = "Barcode Count";
@@ -101,6 +101,10 @@ $trans["Missing Books"] = "Missing Books";
 $trans["ddc_summary"] = "DDC Summary";
 $trans["Timezone"] = "Timezone";
 
+$trans["Student/Faculty ID"] = "Student/Faculty ID";
+$trans["Find Member by QR Code"] = "Find Member by QR Code";
+$trans["Student/Faculty ID Number"] = "Student/Faculty ID Number";
+
 //-----------------
 
 $trans["Date of Visit"] = "Date of Visit";
@@ -144,7 +148,7 @@ $trans["No booked items found in the cart."] = "No booked items found in the car
 $trans["QR Gen."] = "QR Gen.";
 $trans["QR Generator"] = "QR Generator";
 $trans["Growth"] = "Growth";
-
+$trans["Student/Faculty Number"] = "Student/Faculty Number";
 
 $trans["(enter 0 for unlimited)"] = "(enter 0 for unlimited)";
 $trans["(when available)"] = "(when available)";
@@ -802,7 +806,7 @@ $trans["modelBookingsAlreadyCheckedOut"] = "The booking has already been checked
 $trans["modelBookingsBarcodeNoMatch"] = "The given copy barcode doesn't match the booking.";
 $trans["modelBookingsClosedOnBookDate"] = "Member's site is closed on the booking date.";
 $trans["modelBookingsClosedOnDueDate"] = "Member's site is closed on the due date.";
-$trans["modelBookingsClosedToday"] = "Member's site is closed today.";
+$trans["modelBookingsClosedToday"] = "Member's site is closed today (Calendar Set as weekends or holiday). ";
 $trans["modelBookingsCopyUnavailable"] = "The copy with barcode %barcode% is unavailable or already checked out.";
 $trans["modelBookingsDueNotEarlier"] = "The due date cannot be earlier than the checkout date.";
 $trans["modelBookingsHeldForOtherMember"] = "The copy with barcode %barcode% is on hold for another member.";
