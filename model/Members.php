@@ -31,6 +31,7 @@ class Members extends CoreTable {
       'mbrid'=>'number',
       'siteid'=>'number',
       'barcode_nmbr'=>'string',
+      'qrcode'=>'string',
       'first_name'=>'string',
       'last_name'=>'string',
       'first_legal_name'=>'string',
@@ -103,6 +104,13 @@ class Members extends CoreTable {
     return $this->select1($sql);
   }
 
+  // FIX: circulation "Find Member by Code" now looks up the QR code
+  // (student/faculty ID number) stored in member.qrcode --F.
+  function getMbrByQrcode($qrcode) {
+    $sql = $this->mkSQL("SELECT * FROM member WHERE qrcode = %Q ", $qrcode);
+    return $this->select1($sql);
+  }
+
   /*
   critical files used for custom bcc setup
   model/Members.php
@@ -118,7 +126,7 @@ class Members extends CoreTable {
       // to first_name, contradicting the "Find Member by Surname" form.
       // Student/faculty numbers are also stored in last_name, so searching
       // last_name unconditionally covers both alphabetic and numeric input.
-      $sql = $this->mkSQL("SELECT mbrid, barcode_nmbr, first_name, last_name, city, home_phone, work_phone, classification, siteid FROM member WHERE last_name LIKE %Q "
+      $sql = $this->mkSQL("SELECT mbrid, barcode_nmbr, qrcode, first_name, last_name, city, home_phone, work_phone, classification, siteid FROM member WHERE last_name LIKE %Q "
                                                          ."ORDER BY last_name", $frag);
 
       return $this->select($sql);
@@ -131,7 +139,7 @@ class Members extends CoreTable {
 
   function getMbrByLegalName($nameFrag) {
     $frag = '%'.$nameFrag.'%';
-    $sql = $this->mkSQL("SELECT mbrid, barcode_nmbr, first_name, last_name, first_legal_name, last_legal_name, city, home_phone, work_phone, classification, siteid FROM member "
+    $sql = $this->mkSQL("SELECT mbrid, barcode_nmbr, qrcode, first_name, last_name, first_legal_name, last_legal_name, city, home_phone, work_phone, classification, siteid FROM member "
       ."WHERE (last_legal_name LIKE %Q OR last_name LIKE %Q ) "
       ."AND (last_legal_name IS NOT NULL OR first_legal_name IS NOT NULL) "
        ."ORDER BY last_legal_name", $frag, $frag);
