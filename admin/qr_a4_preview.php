@@ -3,9 +3,14 @@
  * See the file COPYRIGHT.html for more details. --F. Tumulak 1/30/2026
  */
 require_once("../shared/guard_doggy.php");
+require_once("qr_settings.php");
 
 $imgDir = __DIR__ . '/qr_code_images';
 $webDir = 'qr_code_images';
+
+// Copies per unique QR: 1 (single copy, up to 48 items) or 3 (default, up to 16 items)
+$copies = isset($_GET['copies']) ? max(1, min(3, (int)$_GET['copies'])) : 3;
+$maxFiles = ($copies === 1) ? 48 : 16;
 
 // get png files
 $files = glob($imgDir . '/*.png');
@@ -13,8 +18,8 @@ $files = glob($imgDir . '/*.png');
 // sort for consistency (by name)
 sort($files);
 
-// take max 8
-$files = array_slice($files, 0, 16);
+// take appropriate number of items based on layout mode
+$files = array_slice($files, 0, $maxFiles);
 
 if (empty($files)) {
     echo "<p style='color:red'>No saved QR images found.</p>";
@@ -45,17 +50,17 @@ if (empty($files)) {
     background: none;
   }
 
-  .print-btn, #qr_form, #sidebar, h3, p, button {
-    display: none;
+  .print-btn, #qr_form, #sidebar, h3, p, button, .preview, fieldset {
+    display: none !important;
   }
 
-	* {
-	border: none;
-	}
+  * {
+  border: none;
+  }
 
-	.qr-preview {
-		display: none;
-	}
+  .qr-preview {
+    display: none;
+  }
 
 }
 
@@ -64,13 +69,13 @@ if (empty($files)) {
   width: 210mm;
   height: 270mm;
   display: grid;
-	grid-template-columns: repeat(6, 1fr);
-	grid-template-rows: repeat(8, 1fr);
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(8, 1fr);
   padding: 1mm 3mm;
-  
+
   box-sizing: border-box;
   background: white;
-  
+
 }
 
 /* --- QR CELL --- */
@@ -78,19 +83,24 @@ if (empty($files)) {
   display: flex;
   align-items: center;
   justify-content: center;
-	border: 1px dashed #999;
+  border: 1px dashed #999;
 }
 
 .qr-cell img {
   max-width: 75%;
-  
+
+}
+
+/* Member labels (200x200, name + ID under QR) get a bit more room */
+.qr-cell img[src*="qr_mbr_"] {
+  max-width: 92%;
 }
 </style>
 
 <div class="qr-sheet-wrapper">
 
   <button class="print-btn" onclick="window.print()">
-    🖨 Print / Export PDF
+    🖨 Print / Export PDF (Layout: <?php echo $copies; ?> cop<?php echo ($copies === 1 ? 'y' : 'ies' ); ?> per QR)
   </button>
 
   <div class="qr-sheet">
@@ -99,8 +109,7 @@ if (empty($files)) {
           $filename = basename($file);
           $src = $webDir . '/' . $filename;
 
-          // 3 duplicates per QR
-          for ($i = 0; $i < 3; $i++) {
+          for ($i = 0; $i < $copies; $i++) {
               echo "
                 <div class='qr-cell'>
                   <img src='{$src}'>
@@ -110,5 +119,5 @@ if (empty($files)) {
       }
     ?>
   </div>
-	
+
 </div>
