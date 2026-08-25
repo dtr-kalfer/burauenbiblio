@@ -92,13 +92,16 @@ official Project Gutenberg servers.
 
 ![QR UI sample](./readme_assets/qr_print_result.webp "QR UI sample")
 
-This feature adds a QR Code generation and batch-printing system to BurauenBiblio, designed for durability, print efficiency, and real-world library workflows.
+This feature adds a QR Code generation and batch-printing system to BurauenBiblio, designed for durability, print efficiency, and real-world library workflows. It supports book QR code printing and also library patron's QR code (i.e. Student ID number or Faculty ID number). The workflow supports single print QR or multiple print QR (good for labeling interior leaves of book and back cover).
 
 ✨ Overview
 
-- Generates QR codes from 13-digit numeric identifiers
+- Generates QR codes from 13-digit numeric identifiers for books
+- Generates QR codes for patrons (8 digit student/faculty codes)
+- Supports single QR prints or 3 x QR prints (QR book labels)
 - Saves QR images as PNG files for reuse and batch printing
-- Produces a 6 × 8 QR code layout
+- Produces a 6 × 8 QR code layout (book QR labels)
+- Produces a 48 pc. QR for patrons/members
 - Optimized for A4 size paper (210mm × 297mm)
 - Avoids thermal printer fading by using inkjet / laser printers
 
