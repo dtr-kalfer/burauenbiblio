@@ -27,7 +27,12 @@ The book entries are either fictional or based on public domain sources, and any
 
 The member records are entirely fictitious and do not represent real individuals.
 
-## ✅ PHP 8.3.36 Migration Notes
+## ✅ Supports latest PHP 8.3.36
+
+PHP 8.3.36 was released to counter against:
+-	CVE-2026-109618: unauthenticated remote code execution
+-	CVE-2026-109619: Trigger a use-after-free to disclose worker memory or execute code
+-	More details here [php2shell](https://www.php2shell.com/)
 
 ![search sample](./readme_assets/burauenbiblio_search1.webp "search sample")
 
@@ -47,11 +52,6 @@ Live demo of Burauenbiblio OPAC catalog search:
 Designed to streamline library operations, BurauenBiblio provides tools for **cataloging**, **circulation management**, **Online Public Access Catalog (OPAC)**,  and other **staff-operated features** that enhance **workplace automation**.
 
 Upgraded to run on latest **PHP 8.3.36**, the system delivers substantial performance gains—up to **2× to 4× faster than PHP 5.7**—while maintaining **full compatibility** with the college’s existing **legacy hardware**.
-
-PHP 8.3.36 was released to counter against:
--	CVE-2026-109618: unauthenticated remote code execution
--	CVE-2026-109619: Trigger a use-after-free to disclose worker memory or execute code
--	More details here [php2shell](https://www.php2shell.com/)
 
 If you wish to try BurauenBiblio on your existing Openbiblio database:
 
