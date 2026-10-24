@@ -96,16 +96,10 @@ class Members extends CoreTable {
 
       $frag = '%'.$nameFrag.'%';
 
-      // Determine which column to search based on $search_name
-      if (ctype_alpha(trim($nameFrag))) {
-        $column = 'first_name';
-      } else {
-        $column = 'last_name';
-      }
+      $column = 'last_name';
 
       // Construct the SQL query dynamically
-      $sql = $this->mkSQL("SELECT mbrid, barcode_nmbr, first_name, last_name, city, home_phone, work_phone, classification, siteid FROM member WHERE {$column} LIKE %Q "
-                                                         ."ORDER BY last_name", $frag);
+      $sql = $this->mkSQL("SELECT mbrid, barcode_nmbr, first_name, last_name, city, home_phone, work_phone, classification, siteid FROM member WHERE {$column} LIKE %Q "                                                         ."ORDER BY last_name", $frag);
 
       return $this->select($sql);
   }
