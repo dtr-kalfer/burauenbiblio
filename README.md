@@ -6,7 +6,7 @@
 
 ## Project Credit & Intent
 
-**BurauenBiblio** is a derivative work of the original **OpenBiblio** system, tailored for modern **PHP8.0** environments and localized school library needs in the **Philippines**.
+**BurauenBiblio** is a derivative work of the original **OpenBiblio** system, tailored for modern **PHP8.3** environments and localized school library needs in the **Philippines**.
 Maintained as a community-driven, open-source initiative to revitalize and extend OpenBiblio's functionality designed to aid small libraries and schools.
 It is named in honor of my hometown in Leyte, **Burauen**.
 
