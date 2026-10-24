@@ -27,6 +27,7 @@
 class DbCore
 {
     public $dbh; // handle of the db connection
+    public $dsn; // database connection parameters
     private static $instance;
 
     private function __construct() {
