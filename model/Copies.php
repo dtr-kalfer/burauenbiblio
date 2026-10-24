@@ -1,17 +1,6 @@
 <?php
 /* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
- * See the file COPYRIGHT.html for more details. 
- * Refactored for PHP 8.3 compatibility, safer JS, and better maintainability. -F. Tumulak
- *
- * Changes from original:
- *   - declare(strict_types=1)
- *   - array() → [] syntax
- *   - $_SESSION / $_POST null guards
- *   - Fixed: isDuplicateBarcd() dead $errors[] assignment
- *   - Fixed: updateCopy() fetchAll() indexed as single row
- *   - Fixed: getHoldMember() redundant execute() call
- *   - Fixed: getNewBarCode() null guard for empty table
- *   - Fixed: getBibsForCpys() global $opts null guard
+ * See the file COPYRIGHT.html for more details.
  */
 
 declare(strict_types=1);
@@ -35,6 +24,9 @@ require_once(REL(__FILE__, "../model/MediaTypes.php"));
  */
 
 class Copies extends CoreTable {
+  public $custom;
+  public $circ_restriction;
+
   public function __construct() {
     parent::__construct();
     $this->setName('biblio_copy');
@@ -111,8 +103,7 @@ class Copies extends CoreTable {
     public function getNewBarCode($width){
         $sql = $this->mkSQL("select max(barcode_nmbr) as lastNmbr from biblio_copy");
         $cpy = $this->select1($sql);
-        // 🐛 FIXED: null guard — if table is empty, max() returns NULL
-        $nmbr = (int) ($cpy['lastNmbr'] ?? 0) + 1;
+        $nmbr = $cpy['lastNmbr'] + 1;
         if (empty($width)) $w = 13; else $w = $width;
         return sprintf("%0" . $w . "s", $nmbr);
 
@@ -133,14 +124,12 @@ class Copies extends CoreTable {
   ## ========================= ##
   public function getBibsForCpys ($barcode_list) {
     global $opts;
-    // 🐛 FIXED: $opts may not be set if called outside normal request flow
-    $barcdWidth = $opts['barcdWidth'] ?? 13;
     $copies = new Copies;
     # build an array of barcodes
     $barcodes = [];
     foreach (explode("\n", $barcode_list) as $b) {
       if (trim($b) != "") {
-        $barcodes[] = str_pad(trim($b), $barcdWidth, '0', STR_PAD_LEFT);
+        $barcodes[] = str_pad(trim($b), $opts['barcdWidth'], '0', STR_PAD_LEFT);
       }
     }
     $rslt = $copies->lookupBulk_el($barcodes);
@@ -261,9 +250,7 @@ class Copies extends CoreTable {
             ." ORDER BY status_begin_dt";
 
       $rslt = $this->select($sql);
-      // 🐛 FIXED: fetchAll() returns array of rows, need [0] for first row
-      $rows = $rslt->fetchAll();
-      $rcd = $rows[0] ?? [];
+      $rcd = $rslt->fetchAll();
       $histid = $rcd['histid'] ?? '';
 
       $message = "!!success!!";
@@ -309,7 +296,7 @@ class Copies extends CoreTable {
       echo $message;
       return;
   }
-	
+
   ## ========================= ##
   public function deleteCopy($copyid) {
     $this->lock();
@@ -378,8 +365,6 @@ class Copies extends CoreTable {
   public function isDuplicateBarcd($barcd,$cpyid) {
     /* Check for duplicate barcodes */
     /* broken out from validate_el() for access by client via AJAX - fl*/
-    // 🐛 FIXED: removed dead $errors[] assignment — $errors was undefined in this scope
-    // and the caller (validate_el) handles its own FieldError creation.
     if (isset($barcd)) {
       $sql = $this->mkSQL("select count(*) count from biblio_copy "
         . "where barcode_nmbr=%Q ", $barcd);
@@ -388,6 +373,7 @@ class Copies extends CoreTable {
       }
       $duplicates = $this->select1($sql);
       if ($duplicates['count'] > 0) {
+        $errors[] = new FieldError('barcode_nmbr', T("Barcode number already in use."));
         return true;
       }
       return false;
@@ -431,8 +417,8 @@ class Copies extends CoreTable {
          . "from member mbr, biblio_hold bh "
          . "where mbr.mbrid=bh.mbrid ";
     $sql .= $this->mkSQL("and bh.copyid=%N order by bh.hold_begin_dt", $copyid);
-    // 🐛 FIXED: removed redundant $holds->execute() — select() already executed the query
     $holds = $this->select($sql);
+    $holds->execute();
     return $holds->fetchAll(PDO::FETCH_ASSOC);
   }
 
