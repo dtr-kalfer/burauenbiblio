@@ -1,23 +1,7 @@
 <?php
 /* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
  * See the file COPYRIGHT.html for more details.
- *
- * Bookings_refactored.php — PHP 8.3 compatible version with bug fixes.
- * To use: rename to Bookings.php after testing.
- *
- * Changes from original:
- *   - declare(strict_types=1)
- *   - array() → [] syntax
- *   - FIXED: type=heap → ENGINE=MEMORY (MySQL 8.0+ compat)
- *   - FIXED: new Error(...) → new OBErr(...) (Error class doesn't exist in codebase)
- *   - FIXED: $rows->num_rows → PDO rowCount()
- *   - FIXED: $checkouts .= (string concat) → $checkouts += (addition)
- *   - FIXED: $memberType undefined → initialized + fixed = vs ==
- *   - FIXED: PDOStatement fetch_assoc() → fetch() calls
- *   - FIXED: $_REQUEST guard for undefined index
  */
-
-declare(strict_types=1);
 
 require_once(REL(__FILE__, "../classes/CoreTable.php"));
 require_once(REL(__FILE__, "../classes/Date.php"));
@@ -35,10 +19,12 @@ require_once(REL(__FILE__, "../model/Members.php"));
  **/
 
 class Bookings extends CoreTable {
+  public $outDate;
+
   public function __construct() {
     parent::__construct();
     $this->setName('booking');
-    $this->setFields([
+    $this->setFields(array(
       'bookingid'=>'number',
       'bibid'=>'number',
       'book_dt'=>'string',
@@ -47,11 +33,11 @@ class Bookings extends CoreTable {
       'out_dt'=>'string',
       'ret_histid'=>'number',
       'ret_dt'=>'string',
-    ]);
+    ));
     $this->setKey('bookingid');
-        $this->setReq([
+        $this->setReq(array(
             'mbrids', 'bibid', 'book_dt', 'due_dt',
-        ]);
+        ));
     $this->setSequenceField('bookingid');
     $this->setForeignKey('bibid', 'biblio', 'bibid');
     $this->setForeignKey('out_histid', 'biblio_status_hist', 'histid');
@@ -144,8 +130,7 @@ public function getNewDueDate($oldDueDate, $calendarId = 1) {
     $cal = new Calendars;
     $cal->extend($calendar, $since, $before);
 
-    // 🐛 FIXED: type=heap → ENGINE=MEMORY (MySQL 8.0+ compat)
-    $sql = 'create temporary table bk1 ENGINE=MEMORY '
+    $sql = 'create temporary table bk1 type=heap '
       . 'select bk.bookingid, '
       . 'ifnull(bk.out_dt, bk.book_dt) as outd, '
       . 'if(bk.out_dt is null, bk.due_dt, '
@@ -166,8 +151,8 @@ public function getNewDueDate($oldDueDate, $calendarId = 1) {
     }
     $this->act($sql);
     # MySQL doesn't support self joins on temp tables
-    $this->act('create temporary table bk2 ENGINE=MEMORY select * from bk1');
-    $sql = 'create temporary table overlaps ENGINE=MEMORY '
+    $this->act('create temporary table bk2 type=heap select * from bk1');
+    $sql = 'create temporary table overlaps type=heap '
            . 'select c.date, c.open, bk1.bookingid, '
            . 'count(distinct bk2.bookingid) as noverlaps '
            . 'from calendar c '
@@ -188,7 +173,7 @@ public function getNewDueDate($oldDueDate, $calendarId = 1) {
   }
   protected function validate_el($new, $insert) {
         if ($insert) {
-      $old = [];
+      $old = array();
     } else {
       $old = $this->getOne($new['bookingid']);
     }
@@ -204,8 +189,7 @@ public function getNewDueDate($oldDueDate, $calendarId = 1) {
         $sql = $this->mkSQL('select mbrid from member '
           . 'where mbrid=%N', $mbrid);
         if (!$this->select01($sql)) {
-          // 🐛 FIXED: Error class doesn't exist, use OBErr
-          $errors[] = new OBErr(T("modelBookingsMemberNoExist"));
+          $errors[] = new Error(T("modelBookingsMemberNoExist"));
         }
       }
     }
@@ -213,7 +197,7 @@ public function getNewDueDate($oldDueDate, $calendarId = 1) {
     if (isset($new['book_dt']) or isset($new['due_dt']) or isset($new['bibid'])) {
       # Check that due date is after out date
       if ($booking['due_dt'] <= $booking['book_dt']) {
-        $errors[] = new OBErr(T("modelBookingsDueNotEarlier"));
+        $errors[] = new Error(T("modelBookingsDueNotEarlier"));
       }
       if (empty($old) && $booking['book_dt'] < date('Y-m-d')) {
         $errors[] = new IgnorableFieldError('date', T("Date is in the past"));
@@ -228,7 +212,7 @@ public function getNewDueDate($oldDueDate, $calendarId = 1) {
 
       # Check that copies exist
       if ($ncopies == 0) {
-        $errors[] = new OBErr(T("modelBookingsNotEnoughCopies"));
+        $errors[] = new Error(T("modelBookingsNotEnoughCopies"));
       }
 
       if ($errors) {
@@ -265,7 +249,7 @@ public function getNewDueDate($oldDueDate, $calendarId = 1) {
 
       $data = $rows->fetchAll(PDO::FETCH_ASSOC);
       if (count($data) != 0) {
-        $errors[] = new OBErr(T("modelBookingsNotEnoughCopies"));
+        $errors[] = new Error(T("modelBookingsNotEnoughCopies"));
         return $errors;
       }
     }
@@ -284,7 +268,7 @@ public function getNewDueDate($oldDueDate, $calendarId = 1) {
         . 'and c.open=\'No\' '
         . 'and c.date=%Q and m.mbrid in ',
         $booking['book_dt']);
-      $mbrids = [];
+      $mbrids = array();
       foreach ($booking['mbrids'] as $m) {
         $mbrids[] = $this->mkSQL('%N', $m);
       }
@@ -319,11 +303,10 @@ public function getNewDueDate($oldDueDate, $calendarId = 1) {
     $sql = $this->mkSQL('SELECT * FROM booking_member '
       . 'WHERE bookingid=%N ', $bookingid);
     $rs = $this->select($sql);
-    $mbrids = [];
-    while ($r = $rs->fetch(PDO::FETCH_ASSOC))
+    $mbrids = array();
+    while ($r = $rs->fetch_assoc())
       $mbrids[] = $r['mbrid'];
-    // 🐛 FIXED: guard $_REQUEST['mbrid'] for undefined index
-    if (!in_array(($_REQUEST['mbrid'] ?? null), $mbrids)) $mbrids[] = $_REQUEST['mbrid'] ?? null;
+    if (!in_array($_REQUEST['mbrid'],$mbrids)) $mbrids[] = $_REQUEST['mbrid'];
     return $mbrids;
   }
   function _putMbrids($bookingid, $mbrids) {
@@ -344,11 +327,11 @@ public function getNewDueDate($oldDueDate, $calendarId = 1) {
     list($id, $errs) = parent::insert_el($rec, $confirmed);
     if ($errs) {
       $this->unlock();
-      return [NULL, $errs];
+      return array(NULL, $errs);
     }
     $this->_putMbrids($id, $rec['mbrids']);
     $this->unlock();
-    return [$id, NULL];
+    return array($id, NULL);
   }
 
   function update_el($rec, $confirmed=false) {
@@ -374,17 +357,16 @@ public function getNewDueDate($oldDueDate, $calendarId = 1) {
       . 'and c.copyid=s.copyid '
       . $this->mkSQL(' and b.bookingid=%N ', $bookingid);
     $rows = $this->select($sql);
-    // 🐛 FIXED: PDOStatement doesn't have num_rows, use rowCount()
-    if ($rows->rowCount() != 0) {
-      $ids = [];
-      while ($r = $rows->fetch(PDO::FETCH_ASSOC)) {
+    if ($rows->num_rows != 0) {
+      $ids = array();
+      while ($r = $rows->fetch_assoc()) {
         if ($r['histid'] == $r['curr_histid']) {
           $history = new History;
-          $history->insert([
+          $history->insert(array(
             'bibid'=>$r['bibid'],
             'copyid'=>$r['copyid'],
             'status_cd'=>OBIB_STATUS_IN,
-          ]);
+          ));
         }
         $ids[] = $this->mkSQL('%N', $r['histid']);
       }
@@ -401,7 +383,7 @@ public function getNewDueDate($oldDueDate, $calendarId = 1) {
   function deleteMatches($fields) {
     $this->lock();
     $rows = $this->getMatches($fields);
-    while ($r = $rows->fetch(PDO::FETCH_ASSOC)) {
+    while ($r = $rows->fetch_assoc()) {
       $this->deleteOne($r['bookingid']);
     }
     $this->unlock();
@@ -417,28 +399,27 @@ public function getNewDueDate($oldDueDate, $calendarId = 1) {
 
   // LJ: IS THIS STILL USED??? NOT SURE!
 
-  function verifyCheckout_e($bookingid, $barcode, $out_copyids=[]) {
+  function verifyCheckout_e($bookingid, $barcode, $out_copyids=array()) {
     $this->lock();
-    $err = null;
     do {
       if (!$barcode) {
-        $err = new OBErr(T("No barcode set."));
+        $err = new Error(T("No barcode set."));
         break;
       }
       $copies = new Copies;
       $copy = $copies->getByBarcode($barcode);
       if (!$copy) {
-        $err = new OBErr(T("No copy with barcode").' '.$barcode);
+        $err = new Error(T("No copy with barcode").' '.$barcode);
         break;
       }
 
       $booking = $this->getOne($bookingid);
       if ($copy['bibid'] != $booking['bibid']) {
-        $err = new OBErr(T("modelBookingsBarcodeNoMatch"));
+        $err = new Error(T("modelBookingsBarcodeNoMatch"));
         break;
       }
       if (!empty($booking['out_histid'])) {
-        $err = new OBErr(T("modelBookingsAlreadyCheckedOut"));
+        $err = new Error(T("modelBookingsAlreadyCheckedOut"));
         break;
       }
       $booking['mbrids'] = $this->_getMbrids($booking['bibid']);
@@ -448,11 +429,11 @@ public function getNewDueDate($oldDueDate, $calendarId = 1) {
 //      $status = $history->maybeGetOne($this->histid);
 //      if ($status['status_cd'] == OBIB_STATUS_OUT) {
       if ($this->statusCd == OBIB_STATUS_OUT) {
-        $err = new OBErr(T("modelBookingsCopyUnavailable", ['barcode'=>$barcode]));
+        $err = new Error(T("modelBookingsCopyUnavailable", array('barcode'=>$barcode)));
         break;
       }
       if (in_array($this->copyid, $out_copyids)) {
-        $err = new OBErr(T("modelBookingsSetForOtherBooking", ['barcode'=>$barcode]));
+        $err = new Error(T("modelBookingsSetForOtherBooking", array('barcode'=>$barcode)));
         break;
       }
 
@@ -467,7 +448,7 @@ public function getNewDueDate($oldDueDate, $calendarId = 1) {
           }
         }
         if ($all_fined) {
-          $err = new OBErr((T("modelBookingsPayFinesFirst")." $balance"));
+          $err = new Error((T("modelBookingsPayFinesFirst")." $balance"));
           break;
         }
       }
@@ -476,7 +457,7 @@ public function getNewDueDate($oldDueDate, $calendarId = 1) {
       $collections = new Collections;
       $coll = $collections->getByBibid($this->bibid);
       if ($coll['days_due_back'] <= 0) {
-        $err = new OBErr(T("modelBookingsNotAvailable"));
+        $err = new Error(T("modelBookingsNotAvailable"));
         break;
       }
 
@@ -487,31 +468,28 @@ public function getNewDueDate($oldDueDate, $calendarId = 1) {
       $acct = new MemberAccounts;
       $members = new Members();
       $checkouts = 0;
-      $memberType = 1; // 🐛 FIXED: initialized, defaults to adult
       foreach ($booking['mbrids'] as $mbrid) {
-        // 🐛 FIXED: .= (string concat) → += (addition), nmbr_rows → rowCount()
-        $checkouts += $copies->getMemberCheckouts($mbrid)->rowCount();
+        $checkouts .= $copies->getMemberCheckouts($mbrid)->nmbr_rows;
         # Also get if an adult (1) or juvenile (2). Not sure why there can be more members, and assume it will only be one,
         # but will take adult as overruling if both are given - LJ
         $mbr = $members->maybeGetOne($mbrid);
         if($memberType != 1) $memberType = $mbr['classification'];
       }
-      // 🐛 FIXED: = (assignment) → == (comparison)
-      if($memberType == 1){
+      if($memberType = 1){
         $limit = $material['adult_checkout_limit'];
       } else {
         $limit = $material['juvenile_checkout_limit'];
       }
       if($limit <= $checkouts){
-        $err = new OBErr(T("Member has exceeded %number% items", ['number'=>$limit]));
+        $err = new Error(T("Member has exceeded %number% items", array('number'=>$limit)));
         break;
       }
     } while (0);
     $this->unlock();
     if ($err) {
-      return [NULL, NULL, $err];
+      return array(NULL, NULL, $err);
     } else {
-      return [$this->bibid, $this->copyid, NULL];
+      return array($this->bibid, $this->copyid, NULL);
     }
   }
 
@@ -523,21 +501,21 @@ public function getNewDueDate($oldDueDate, $calendarId = 1) {
       return $error;
     }
     $history = new History;
-    $history->insert([
+    $history->insert(array(
       'histid'=>$this->histid,
       'bibid'=>$this->bibid,
       'copyid'=>$this->copyid,
       'status_cd'=>OBIB_STATUS_OUT,
-    ]);
+    ));
     $this->unlock();
     return NULL;
   }
 
   function checkoutBatch_el($checkouts) {
     $this->lock();
-    $bibids = [];
-    $copyids = [];
-    $errors = [];
+    $bibids = array();
+    $copyids = array();
+    $errors = array();
     foreach ($checkouts as $bookingid => $barcode) {
       list($bibid, $copyid, $error)
         = $this->verifyCheckout_e($bookingid, $barcode, $copyids);
@@ -554,15 +532,15 @@ public function getNewDueDate($oldDueDate, $calendarId = 1) {
     }
     $history = new History;
     foreach ($checkouts as $bookingid => $barcode) {
-      $history->insert([
+      $history->insert(array(
         'bibid'=>$bibids[$bookingid],
         'copyid'=>$copyids[$bookingid],
         'status_cd'=>OBIB_STATUS_OUT,
         'bookingid'=>$bookingid,
-      ]);
+      ));
     }
     $this->unlock();
-    return [];
+    return array();
   }
 
   function quickCheckout_e($barcode, $mbrids, $calCd = 1, $loanAllotment = 0) { // switch place calCd vs mbrid, deprecation comply v8.0 --F.Tumulak
@@ -582,22 +560,22 @@ public function getNewDueDate($oldDueDate, $calendarId = 1) {
     if ($status == NULL) {
       ## no entry found, need an initial entry for reports
       $status['status_cd'] = OBIB_DEFAULT_STATUS;
-      $rslt = $history->insert([
+      $rslt = $history->insert(array(
         'bibid'=>$bibid,
         'copyid'=>$copyid,
         'status_cd'=>$status['status_cd'],
-      ]);
+      ));
         } else if($status['status_cd'] == OBIB_STATUS_OUT){
-            return new OBErr(T("modelBookingsAlreadyCheckedOut"));
+            return new Error(T("modelBookingsAlreadyCheckedOut"));
     } else if($status['status_cd'] == OBIB_STATUS_NOT_ON_LOAN){
-      return new OBErr(T("modelBookingsNotOnLoan", ["barcode"=>$barcode]));
+      return new Error(T("modelBookingsNotOnLoan", array("barcode"=>$barcode)));
     } else if ($status['status_cd'] == OBIB_STATUS_ON_HOLD) {
       include_once(REL(__FILE__, "../model/Holds.php"));
       $holds = new Holds;
       if ($hold = $holds->getFirstHold($copyid)) {
         if (!in_array($hold['mbrid'], $mbrids)) {
           $this->unlock();
-          return new OBErr(T("modelBookingsHeldForOtherMember", ["barcode"=>$barcode]));
+          return new Error(T("modelBookingsHeldForOtherMember", array("barcode"=>$barcode)));
         } else {
           $holds->deleteOne($hold['holdid']);
         }
@@ -605,7 +583,7 @@ public function getNewDueDate($oldDueDate, $calendarId = 1) {
         } else {
             if ($status['status_cd'] != OBIB_STATUS_IN && $status['status_cd'] != OBIB_STATUS_SHELVING_CART) {
                 // LJ: The above seemed incomplete (and the check functions are not called anymore, e.g. verifyCheckout_e). Somebody please verify
-                return new OBErr(T("modelBookingsNotAvailable", ["barcode"=>$barcode]));
+                return new Error(T("modelBookingsNotAvailable", array("barcode"=>$barcode)));
             }
         }
 
@@ -618,7 +596,7 @@ public function getNewDueDate($oldDueDate, $calendarId = 1) {
 
     if ($loanDuration <= 0) {
       $this->unlock();
-      return new OBErr(T("modelBookingsNotAvailable", ["barcode"=>$barcode]));
+      return new Error(T("modelBookingsNotAvailable", array("barcode"=>$barcode)));
     }
 
     ## get current date
@@ -642,24 +620,24 @@ public function getNewDueDate($oldDueDate, $calendarId = 1) {
     ## all OK, begin DB update for checkout
 
     list($this->bookingid, $err) = $this->insert_el(
-          ["book_dt" =>$today,
+          array("book_dt" =>$today,
                 "bibid" =>$bibid,
                 "out_dt" =>$this->outDate,
                 "out_histid" =>$histid,
                 "due_dt" =>$due_dt_val,
                 "mbrids" =>$mbrids,
-    ]);
+    ));
     if ($err) {
       $this->unlock();
       return $err;
     }
     $this->statusCd = OBIB_STATUS_OUT;
-    list($this->histid, $err) = $history->insert_el([
+    list($this->histid, $err) = $history->insert_el(array(
       'bibid'=>$bibid,
       'copyid'=>$copyid,
       'status_cd'=>$this->statusCd,
       'bookingid'=>$this->bookingid,
-    ]);
+    ));
     if ($err) {
       $this->unlock();
             //echo "Error: " . $err . "/n";
@@ -667,17 +645,17 @@ public function getNewDueDate($oldDueDate, $calendarId = 1) {
     }
 
     $copies = new Copies;
-    $copies->update([
+    $copies->update(array(
       'copyid'=>$copyid,
       'histid'=>$this->histid,
-    ]);
+    ));
 
-    $this->update([
+    $this->update(array(
       "bookingid"=>$this->bookingid,
       "out_histid" =>$this->histid,
       "out_dt" =>$this->outDate,
           "mbrids" =>$mbrids,
-    ]);
+    ));
 
   //  $err = $this->checkout_e($bookingid, $barcode);
   //  if ($err) {
@@ -715,14 +693,14 @@ class BookingsIter extends Iter {
     $this->db = new Queryi;
   }
   function next() {
-    $row = $this->rows->fetch(PDO::FETCH_ASSOC);
+    $row = $this->rows->fetch_assoc();
     if (!$row)
       return NULL;
     $sql = $this->mkSQL('SELECT * FROM booking_member '
       . 'WHERE bookingid=%N ', $row['bookingid']);
     $rs = $this->select($sql);
-    $row['mbrids'] = [];
-    while ($r = $rs->fetch(PDO::FETCH_ASSOC))
+    $row['mbrids'] = array();
+    while ($r = $rs->fetch_assoc())
       $row['mbrids'][] = $r['mbrid'];
     return $row;
   }
