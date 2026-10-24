@@ -10,7 +10,34 @@ Guide:
 - version 2.x.x below PHP 7.4.26 supported
 - Date format: YYYY-MM-DD
 
-## [Unreleased] YYYY-MM-DD
+## [4.1.8] 2026-10-24
+
+- Major Update / Refactor Burauenbiblio to work with latest PHP 8.3.36
+- PHP 8.3.36 was released to counter against:
+	CVE-2026-109618: unauthenticated remote code execution
+	CVE-2026-109619: Trigger a use-after-free to disclose worker memory or execute code
+	More details here [php2shell](https://www.php2shell.com/)
+	
+- PHP Files and dependencies updated:
+defs/_php_example.php, defs/MemberSearch.php, defs/biblio_cart.php, reports/reportSrvr.php
+reports/run_report.php, reports/reportJs.php, classes/Queryi.php
+classes/DbCore.php
+model/Settings.php
+locale/en/metadata.php (including other language)
+classes/DBTable.php
+model/Members.php
+model/Copies.php
+classes/Marc.php
+model/Biblios.php
+model/Collections.php
+model/Bookings.php
+classes/Links.php
+classes/ReportDisplay.php
+classes/Iter.php
+classes/Rpt.php
+catalog/class/Qtest.php
+model/ReportDisplays.php
+classes/Calendar.php
 
 - Fixed: MARC Import .mkc no response when import.
 - Fixed: z39.50 previous search still appear. An infinite loop stuck, when host does not respond.

@@ -27,7 +27,7 @@ The book entries are either fictional or based on public domain sources, and any
 
 The member records are entirely fictitious and do not represent real individuals.
 
-## ✅ PHP 8.0 Migration Notes
+## ✅ PHP 8.3.36 Migration Notes
 
 ![search sample](./readme_assets/burauenbiblio_search1.webp "search sample")
 
@@ -46,7 +46,12 @@ Live demo of Burauenbiblio OPAC catalog search:
 
 Designed to streamline library operations, BurauenBiblio provides tools for **cataloging**, **circulation management**, **Online Public Access Catalog (OPAC)**,  and other **staff-operated features** that enhance **workplace automation**.
 
-Upgraded to run on **PHP 8.0**, the system delivers substantial performance gains—up to **2× to 4× faster than PHP 5.7**—while maintaining **full compatibility** with the college’s existing **legacy hardware**.
+Upgraded to run on latest **PHP 8.3.36**, the system delivers substantial performance gains—up to **2× to 4× faster than PHP 5.7**—while maintaining **full compatibility** with the college’s existing **legacy hardware**.
+
+PHP 8.3.36 was released to counter against:
+-	CVE-2026-109618: unauthenticated remote code execution
+-	CVE-2026-109619: Trigger a use-after-free to disclose worker memory or execute code
+-	More details here [php2shell](https://www.php2shell.com/)
 
 If you wish to try BurauenBiblio on your existing Openbiblio database:
 
@@ -289,7 +294,6 @@ This extended pipeline bypasses standard browser memory thresholds by streaming 
 
 ![Use as dataset|697](./readme_assets/sample_dataset_zen.avif)
 
-
 ### 📝 Analytics - Top 30 Borrowed Books and Top 30 Most-viewed books
 
 ![borrowed books](./readme_assets/sample_borrowed.webp "borrowed books")
@@ -361,7 +365,7 @@ This tool:
 
 ## 🙌 Project Direction
 
-![actual results](./readme_assets/actual_use_case_v2.avif "actual results")
+![actual results](./readme_assets/actual_use_case_new.avif "actual results")
 
 This project is part of my ongoing personal initiative to modernize the OpenBiblio codebase.
 
@@ -371,7 +375,7 @@ The development focuses on:
 - Enhancing the user interface
 - Introducing new features to improve usability and performance
 - Since timezone select is now fixed, add language support (Future) is possible
-- PHP 8.3 Compatibility (Future)
+- Full support for PHP 8.4
 
 Recent updates also incorporate **HTMX** and other modern frontend tools, delivering a more dynamic and responsive user experience—without the overhead of a full JavaScript framework. This approach keeps the system lightweight, accessible, and well-suited for **small libraries and schools** while aligning with current **web standards**.
 
@@ -379,7 +383,7 @@ On the backend, parts of the **legacy procedural PHP code** have been refactored
 
 This modernization effort builds on the original **OpenBiblio system**, tailored to the needs of libraries in the **Philippines**, with a strong focus on **performance, compatibility, and ease of use**.
 
-If you find this project valuable, you can support its development so it can continue to grow and serve libraries effectively.
+If you find this project valuable, please support my work.
 
 ## 🔖 Attributions
 
