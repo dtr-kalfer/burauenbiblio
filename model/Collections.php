@@ -221,6 +221,8 @@ class DistCollections extends DBTable {
 }
 
 class Collections extends DmTable {
+  public $colltypes;
+
   public function __construct() {
     parent::__construct();
     $this->setName('collection_dm');
