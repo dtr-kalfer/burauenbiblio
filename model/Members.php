@@ -1,22 +1,7 @@
 <?php
 /* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
  * See the file COPYRIGHT.html for more details.
- *
- * Members_refactored.php — PHP 8.3 compatible version with bug fixes.
- * To use: rename to Members.php after testing.
- *
- * Changes from original:
- *   - declare(strict_types=1)
- *   - array() → [] syntax
- *   - FIXED: $this->reqdFlds → $this->reqFields (undefined property, DBTable uses reqFields)
- *   - FIXED: $_SESSION in constructor without null guard
- *   - FIXED: loginMbrid() $rows->fetchall() → fetchAll() + array access fix
- *   - FIXED: getNewBarCode() null guard for empty member table
- *   - FIXED: update_el() inconsistent return type
- *   - FIXED: insert_el() FieldError/OBErr return — should return [$seqVal, $errors]
  */
-
-declare(strict_types=1);
 
 require_once(REL(__FILE__, "../classes/CoreTable.php"));
 require_once(REL(__FILE__, "../classes/Iter.php"));
@@ -24,14 +9,15 @@ require_once(REL(__FILE__, "../model/MemberCustomFields.php"));
 require_once(REL(__FILE__, "../model/MemberAccounts.php"));
 
 class Members extends CoreTable {
+  public $custom;
+
   public function __construct() {
     parent::__construct();
     $this->setName('member');
-    $this->setFields([
+    $this->setFields(array(
       'mbrid'=>'number',
       'siteid'=>'number',
       'barcode_nmbr'=>'string',
-      'qrcode'=>'string',
       'first_name'=>'string',
       'last_name'=>'string',
       'first_legal_name'=>'string',
@@ -49,32 +35,30 @@ class Members extends CoreTable {
             'password'=>'string',
       'school_grade'=>'number',
       'school_teacher'=>'string',
-    ]);
+    ));
     $this->setKey('mbrid');
     $this->setSequenceField('mbrid');
     $this->setForeignKey('siteid', 'site', 'siteid');
     $this->setIter('MembersIter');
 
-    $this->setReq([
+    $this->setReq(array(
       'last_name',
       'first_name',
       'home_phone',
       'classification',
-    ]);
-    // 🐛 FIXED: $this->reqdFlds was undefined — DBTable property is $this->reqFields
-    // Also guarded $_SESSION access
-    if (($_SESSION['mbrBarcode_flg'] ?? 'N') == 'Y') {
-      $this->reqFields[] = 'barcode_nmbr';
+    ));
+    if ($_SESSION['mbrBarcode_flg']=='Y') {
+      $this->reqdFlds[] = 'barcode_nmbr';
     }
 
     $this->custom = new MemberCustomFields;
 /*       This is taken care of in .../models/MemberCustomFields
     $this->custom->setName('member_fields');
-    $this->custom->setFields([
+    $this->custom->setFields(array(
       'mbrid'=>'string',
       'code'=>'string',
       'data'=>'string',
-    ]);
+    ));
     $this->custom->setKey('mbrid', 'code');
     $this->custom->setForeignKey('mbrid', 'member', 'mbrid');
 */
@@ -84,10 +68,8 @@ class Members extends CoreTable {
     //$sql = $this->mkSQL("select max(copyid) as lastCopy from biblio_copy");
     $sql = $this->mkSQL("select max(cast(barcode_nmbr as signed)) as lastNmbr from member");
     $mbr = $this->select1($sql);
-    // 🐛 FIXED: null guard — if table is empty, max() returns NULL
-    $lastNmbr = (int) ($mbr['lastNmbr'] ?? 0);
     if(empty($width)) $w = 13; else $w = $width;
-    return sprintf("%0".$w."s", ($lastNmbr + 1));
+    return sprintf("%0".$w."s",($mbr['lastNmbr']+1));
   }
 
   // Seems duplicate from above, so removing.
@@ -104,13 +86,6 @@ class Members extends CoreTable {
     return $this->select1($sql);
   }
 
-  // FIX: circulation "Find Member by Code" now looks up the QR code
-  // (student/faculty ID number) stored in member.qrcode --F.
-  function getMbrByQrcode($qrcode) {
-    $sql = $this->mkSQL("SELECT * FROM member WHERE qrcode = %Q ", $qrcode);
-    return $this->select1($sql);
-  }
-
   /*
   critical files used for custom bcc setup
   model/Members.php
@@ -121,12 +96,15 @@ class Members extends CoreTable {
 
       $frag = '%'.$nameFrag.'%';
 
-      // FIX: always search the surname column (last_name).
-      // The old ctype_alpha() check sent alphabetic input (normal surnames)
-      // to first_name, contradicting the "Find Member by Surname" form.
-      // Student/faculty numbers are also stored in last_name, so searching
-      // last_name unconditionally covers both alphabetic and numeric input.
-      $sql = $this->mkSQL("SELECT mbrid, barcode_nmbr, qrcode, first_name, last_name, city, home_phone, work_phone, classification, siteid FROM member WHERE last_name LIKE %Q "
+      // Determine which column to search based on $search_name
+      if (ctype_alpha(trim($nameFrag))) {
+        $column = 'first_name';
+      } else {
+        $column = 'last_name';
+      }
+
+      // Construct the SQL query dynamically
+      $sql = $this->mkSQL("SELECT mbrid, barcode_nmbr, first_name, last_name, city, home_phone, work_phone, classification, siteid FROM member WHERE {$column} LIKE %Q "
                                                          ."ORDER BY last_name", $frag);
 
       return $this->select($sql);
@@ -139,7 +117,7 @@ class Members extends CoreTable {
 
   function getMbrByLegalName($nameFrag) {
     $frag = '%'.$nameFrag.'%';
-    $sql = $this->mkSQL("SELECT mbrid, barcode_nmbr, qrcode, first_name, last_name, first_legal_name, last_legal_name, city, home_phone, work_phone, classification, siteid FROM member "
+    $sql = $this->mkSQL("SELECT mbrid, barcode_nmbr, first_name, last_name, first_legal_name, last_legal_name, city, home_phone, work_phone, classification, siteid FROM member "
       ."WHERE (last_legal_name LIKE %Q OR last_name LIKE %Q ) "
       ."AND (last_legal_name IS NOT NULL OR first_legal_name IS NOT NULL) "
        ."ORDER BY last_legal_name", $frag, $frag);
@@ -174,28 +152,26 @@ class Members extends CoreTable {
       . 'AND (barcode_nmbr=%Q or email=%Q) ',
       $password, $id, $id);
     $rslt = $this->select($sql);
-    // 🐛 FIXED: fetchall() → fetchAll(), and $rows was array of rows, not single row
-    $rows = $rslt->fetchAll();
+    $rows = $rslt->fetchall();
     if (count($rows) != 1) {
       return NULL;
     }
 //    $r = $rows->fetch_assoc();
 //    return $r['mbrid'];
-    return $rows[0]['mbrid'];
+    return $rows['mbrid'];
   }
   function insert_el($mbr, $confirmed=false) {
     //echo "in Members::insert_el(); ";
     // this mechanism present in DBtable::validate()
-    //foreach ($this->reqFields as $field) {
+    //foreach ($this->reqdFlds as $field) {
     //  if (!isset($mbr[$field])) {return new OBErr('Required fields missing: '.$field);}
     //}
     if (isset($mbr['password'])) {
-      if (strlen($mbr['password']) < 4 && !($_SESSION["hasCircAuth"] ?? false)) {
-        // 🐛 FIXED: insert_el must return [$seqVal, $errors] per DBTable contract
-        return [NULL, [new FieldError('password', T("Password at least 4 chars"))]];
+      if (strlen($mbr['password']) < 4 && !$_SESSION["hasCircAuth"]) {
+        return new FieldError('password', T("Password at least 4 chars"));
       }
       if (!isset($mbr['confirm-pw']) or $mbr['confirm-pw'] != $mbr['password']) {
-        return [NULL, [new FieldError('password', T("Supplied passwords do not match"))]];
+        return new FieldError('password', T("Supplied passwords do not match"));
       }
       $mbr['password'] = md5($mbr['password']);
     } else {
@@ -207,13 +183,13 @@ class Members extends CoreTable {
     //if (0 == $this->insert_id) {
     //print_r($results);echo "<br />\n";
         if (NULL == $results[0]) {
-      return [NULL, [new OBErr(T('Member creation was not successful'))]];
+      return new OBErr(T('Member creation was not successful'));
     } else {
       return $results;
     }
   }
     function generatePassword($length = 8) {
-        $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()';
+        $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@�$%^&*()';
         $count = mb_strlen($chars);
 
         for ($i = 0, $result = ''; $i < $length; $i++) {
@@ -226,12 +202,10 @@ class Members extends CoreTable {
     if (isset($mbr['password']) and $mbr['password']) {
       if ($mbr['password'] == '*encrypted*') {
         unset($mbr['password']);
-      } else if (strlen($mbr['password']) < 4 && !($_SESSION["hasCircAuth"] ?? false)) {
-        // 🐛 FIXED: inconsistent return type — must be [$seqVal, $errors]
-        return [NULL, [new FieldError('password', T("Password at least 4 chars"))]];
+      } else if (strlen($mbr['password']) < 4 && !$_SESSION["hasCircAuth"]) {
+        return array(NULL, array(new FieldError('password', T("Password at least 4 chars"))));
       } else if (!isset($mbr['confirm-pw']) or $mbr['confirm-pw'] != $mbr['password']) {
-        // 🐛 FIXED: was returning array(new FieldError(...)) without [NULL, array(...)]
-        return [NULL, [new FieldError('password', T("Supplied passwords do not match"))]];
+        return array(new FieldError('password', T("Supplied passwords do not match")));
       } else {
         $mbr['password'] = md5($mbr['password']);
       }
@@ -248,7 +222,7 @@ class Members extends CoreTable {
   function deleteOne() {
     # FIXME - history
     $mbrid = func_get_args()[0];
-    $this->custom->deleteMatches(['mbrid'=>$mbrid]);
+    $this->custom->deleteMatches(array('mbrid'=>$mbrid));
     $acct = new MemberAccounts;
     $acct->deleteByMbrid($mbrid);
     return parent::deleteOne_member($mbrid);
@@ -264,25 +238,27 @@ class Members extends CoreTable {
 
   /* ---------------------------- */
   function getCustomFields($mbrid) {
-    return $this->custom->getMatches(['mbrid'=>$mbrid]);
+    return $this->custom->getMatches(array('mbrid'=>$mbrid));
   }
   function setCustomFields($mbrid, $customFldsarr) {
       $this->deleteCustomFields($mbrid);
     foreach ($customFldsarr as $code => $data) {
-      $fields= [
+      $fields= array(
         'mbrid'=>$mbrid ,
         'code'=>$code,
         'data'=>$data
-      ];
+      );
       $this->custom->insert($fields);
     }
   }
   function deleteCustomFields($mbrid) {
-//    $this->custom->deleteMatches(['mbrid'=>$mbrid]);
-    $this->deleteMatches(['mbrid'=>$mbrid]);
+//    $this->custom->deleteMatches(array('mbrid'=>$mbrid));
+    $this->deleteMatches(array('mbrid'=>$mbrid));
   }
 }
 class MembersIter extends Iter {
+  public $rows;
+
   public function __construct($rows) {
     //parent::__construct(); Fatal error: Uncaught Error: Cannot call constructor in C:\wamp64\www\openbiblio\model\Members.php on line 240 -F.T.
     $this->rows = $rows;
