@@ -153,7 +153,7 @@ class IgnorableFieldError extends IgnorableError {
 		}
 		exit(1);
 	}
-	assert_options(ASSERT_CALLBACK, "obibAssertHandler");
+	// assert_options(ASSERT_CALLBACK, "obibAssertHandler");
 
 /** Fatal Errors */
 class Fatal {
