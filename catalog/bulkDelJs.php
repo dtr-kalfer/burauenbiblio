@@ -1,3 +1,4 @@
+<?php //test ?>
 <script language="JavaScript" >
 // JavaScript Document
 //------------------------------------------------------------------------------
