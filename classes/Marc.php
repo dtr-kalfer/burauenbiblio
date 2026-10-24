@@ -208,6 +208,20 @@ class MarcDataField extends MarcField {
 /* -------------------------------------------------------------------------- */
 /* -------------------------------------------------------------------------- */
 class MarcRecord {
+  public $length;
+  public $status;
+  public $type;
+  public $impl_0708;
+  public $encoding;
+  public $nindicators;
+  public $identlen;
+  public $baseAddr;
+  public $impl1719;
+  public $entryMapLength;
+  public $entryMapStart;
+  public $entryMapImpl;
+  public $entryMapUndef;
+
   protected $default_leader = '00000nam a2200000uu 4500';
   protected $_leader_fields = array(
     # array(name, type, length, title, required value)
