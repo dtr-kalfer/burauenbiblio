@@ -86,6 +86,11 @@ class Members extends CoreTable {
     return $this->select1($sql);
   }
 
+  function getMbrByQrcode($qrcode) {
+    $sql = $this->mkSQL("SELECT * FROM member WHERE qrcode = %Q ", $qrcode);
+    return $this->select1($sql);
+  }
+
   /*
   critical files used for custom bcc setup
   model/Members.php
