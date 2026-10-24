@@ -11,6 +11,8 @@
 ## TODO FIXME needs to be replaced by global INTL class
 
 class ruMetaData {
+	public $locale_description;
+	
 	public function __construct() {
 		$this->locale_description = "русский язык";
 	}

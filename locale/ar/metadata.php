@@ -11,6 +11,8 @@
 ## TODO FIXME needs to be replaced by global INTL class
 
 class arMetaData {
+	public $locale_description;
+	
 	public function __construct() {
 		$this->locale_description = "اللغة العربية";
 	}

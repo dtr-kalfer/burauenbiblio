@@ -4,6 +4,8 @@
  */
 
 class frMetaData {
+	public $locale_description;
+	
 	public function __construct() {
 		$this->locale_description = "French";
 	}
