@@ -1,28 +1,17 @@
 <?php
 /* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
  * See the file COPYRIGHT.html for more details.
- *
- * Collections_refactored.php — PHP 8.3 compatible version with bug fixes.
- * To use: rename to Collections.php after testing.
- *
- * Changes from original:
- *   - declare(strict_types=1)
- *   - array() → [] syntax
- *   - FIXED: deleteMatches() fetch_assoc() → fetch(PDO::FETCH_ASSOC)
- *   - FIXED: $_SESSION access without null guard
- *   - FIXED: $important_date < $calculated_date with NULL string comparison
- *   - FIXED: $positive[] loop: FieldError referenced but not imported
  */
-
-declare(strict_types=1);
 
 require_once(REL(__FILE__, "../classes/DmTable.php"));
 
 class CircCollections extends DBTable {
+  public $calculators;
+
   public function __construct() {
     parent::__construct();
     $this->setName('collection_circ');
-    $this->setFields([
+    $this->setFields(array(
       'code'=>'number',
       'days_due_back'=>'number',
       'minutes_due_back'=>'number',
@@ -34,11 +23,11 @@ class CircCollections extends DBTable {
       'number_of_minutes_between_fee_applications'=>'number',
       'number_of_minutes_in_grace_period'=>'number',
       'pre_closing_padding'=>'number',
-    ]);
+    ));
     $this->setKey('code');
-        $this->setReq([
+        $this->setReq(array(
             'days_due_back', 'minutes_due_back', 'due_date_calculator', 'regular_late_fee',
-        ]);
+        ));
     $this->setForeignKey('code', 'collection_dm', 'code');
     $this->calculators = [];
 
@@ -54,9 +43,9 @@ class CircCollections extends DBTable {
     / Valid values in this array are: calendarid, siteid, collectionid, bibid
     /
     */
-    $this->calculators[] = [
+    $this->calculators[] = array(
       'code' => 'simple',
-      'required_params' => ['calendarid', 'calenderid', 'collectionid'],
+      'required_params' => array('calendarid', 'calenderid', 'collectionid'),
       'calculation' => 'SELECT CASE '
         // If due date would fall on a day the Library is closed, instead, move to 11:59 on the next open day
         . 'WHEN DATE (now() + INTERVAL days_due_back day + INTERVAL minutes_due_back minute) '
@@ -68,10 +57,10 @@ class CircCollections extends DBTable {
         // Otherwise, just add the requested days and minutes to the current time to arrive at the due date
         . 'ELSE (now() + INTERVAL days_due_back day + INTERVAL minutes_due_back minute) '
         . 'END AS due FROM collection_circ WHERE code=%N ',
-    ];
-    $this->calculators[] = [
+    );
+    $this->calculators[] = array(
       'code' => 'at_midnight',
-      'required_params' => ['calendarid', 'calenderid', 'collectionid'],
+      'required_params' => array('calendarid', 'calenderid', 'collectionid'),
       'calculation' => 'SELECT CASE '
         // If due date would fall on a day the Library is closed, instead, move to 11:59 on the next open day
         . 'WHEN DATE (now() + INTERVAL days_due_back day + INTERVAL minutes_due_back minute) '
@@ -84,10 +73,10 @@ class CircCollections extends DBTable {
         // Otherwise, just set to 11:59pm on the day the due date would normally fall
         . 'ELSE (DATE (now() + INTERVAL days_due_back day + INTERVAL minutes_due_back minute)  + INTERVAL 23 hour + 59 minute) '
         . 'END AS due FROM collection_circ WHERE code=%N ',
-    ];
-        $this->calculators[] = [
+    );
+        $this->calculators[] = array(
             'code' => 'before_we_close',
-            'required_params' => ['calendarid', 'calenderid', 'siteid', 'collectionid'],
+            'required_params' => array('calendarid', 'calenderid', 'siteid', 'collectionid'),
             'calculation' => 'SELECT CASE '
       // Check if due date would fall on a day the Library is closed
                           . 'WHEN DATE (now() + INTERVAL days_due_back day + INTERVAL minutes_due_back minute) '
@@ -108,11 +97,11 @@ class CircCollections extends DBTable {
       . 'INTERVAL TRUNCATE((open_hours.end_time / 100), 0) hour + INTERVAL (open_hours.end_time %% 100) minute - '
       . 'INTERVAL pre_closing_padding minute) '
                           . 'END AS due FROM collection_circ WHERE code=%N ',
-    ];
+    );
 /*
-                $this->calculators[] = [
+                $this->calculators[] = array(
                         'code' => 'keep_it_longer',
-                        'required_params' => ['calendarid', 'calenderid', 'collectionid'],
+                        'required_params' => array('calendarid', 'calenderid', 'collectionid'),
                         'calculation' => 'SELECT CASE '
                                 . 'WHEN (DATE (now() + INTERVAL days_due_back day + INTERVAL minutes_due_back minute) '
                                 . "IN (SELECT date FROM calendar WHERE calendar=%N AND open='No')) "
@@ -126,20 +115,20 @@ class CircCollections extends DBTable {
                                 . 'ORDER BY date ASC LIMIT 1) '
                                 . 'ELSE (DATE (now() + INTERVAL days_due_back day + INTERVAL minutes_due_back minute)  + INTERVAL 23 hour + 59 minute) '
                                 . 'END AS due FROM collection_circ WHERE code=%N ',
-    ];
+    );
 */
-        $this->calculators[] = [
+        $this->calculators[] = array(
             'code' => 'ask_me',
-            'required_params' => ['calendarid', 'calenderid', 'collectionid'],
+            'required_params' => array('calendarid', 'calenderid', 'collectionid'),
       // Don't select a due date at this stage
             'calculation' => 'SELECT NULL AS due ',
-    ];
+    );
   }
   protected function validate_el($rec, $insert) {
     // check for required fields done in DBTable
     $errors = parent::validate_el($rec, $insert);
 
-    $positive = ['days_due_back', 'regular_late_fee'];
+    $positive = array('days_due_back', 'regular_late_fee');
     foreach ($positive as $f) {
       if (!is_numeric($rec[$f])) {
         $errors[] = new FieldError($f, T("Field must be numeric"));
@@ -157,7 +146,7 @@ class CircCollections extends DBTable {
     return $calc_codes;
   }
   public function list_important_date_purposes() {
-    return ['not enabled', 'ceiling_date', 'specific_date'];
+    return Array('not enabled', 'ceiling_date', 'specific_date');
   }
   public function propose_due_date($member_id, $copy_barcode) {
     $calculated_date = NULL;
@@ -174,17 +163,14 @@ class CircCollections extends DBTable {
         foreach ($calc['required_params'] as $i) {
           $params[] = $this->get_parameter_for_calculator($i, $member, $copy, $collection_circ);
         }
-        $calculated_date = $this->select01($this->mkSQLFromArray(array_merge([$calc['calculation']], $params)))['due'];
+        $calculated_date = $this->select01($this->mkSQLFromArray(array_merge(array($calc['calculation']), $params)))['due'];
       }
     }
 
     // Then check for important date conflicts
-    // 🐛 FIXED: $important_date could be NULL/empty, comparing NULL with string
-    // would trigger PHP 8.3 type errors. Guard both values.
-    if ('ceiling_date' == $important_date_purpose && $important_date && $calculated_date
-        && $important_date < $calculated_date) {
+    if ('ceiling_date' == $important_date_purpose && $important_date<$calculated_date) {
       return $important_date;
-    } elseif ('specific_date' == $important_date_purpose && $important_date) {
+    } elseif ('specific_date' == $important_date_purpose) {
       return $important_date;
     }
     return $calculated_date;
@@ -193,12 +179,11 @@ class CircCollections extends DBTable {
   private function get_parameter_for_calculator($param, $member, $copy, $collection_circ) {
     switch ($param) {
       case 'calendarid':
-        // 🐛 FIXED: $_SESSION access without null guard
-        return $this->select01($this->mkSQL('SELECT calendar FROM site WHERE siteid=%N', ($_SESSION['current_site'] ?? 0)))['calendar'];
+        return $this->select01($this->mkSQL('SELECT calendar FROM site WHERE siteid=%N', $_SESSION['current_site']))['calendar'];
       case 'collectionid':
         return $collection_circ['code'];
       case 'siteid':
-        return $_SESSION['current_site'] ?? 0;
+        return $_SESSION['current_site'];
       default:
         return NULL;
     }
@@ -209,21 +194,21 @@ class DistCollections extends DBTable {
   public function __construct() {
     parent::__construct();
     $this->setName('collection_dist');
-    $this->setFields([
+    $this->setFields(array(
       'code'=>'number',
       'restock_threshold'=>'number',
-    ]);
+    ));
     $this->setKey('code');
-        $this->setReq([
+        $this->setReq(array(
             'restock_threshold'
-        ]);
+        ));
     $this->setForeignKey('code', 'collection_dm', 'code');
   }
   protected function validate_el($rec, $insert) {
     // check for required fields done in DBTable
     $errors = parent::validate_el($rec, $insert);
 
-    $positive = ['restock_threshold'];
+    $positive = array('restock_threshold');
     foreach ($positive as $f) {
       if (!is_numeric($rec[$f])) {
         $errors[] = new FieldError($f, T("Field must be numeric"));
@@ -239,22 +224,22 @@ class Collections extends DmTable {
   public function __construct() {
     parent::__construct();
     $this->setName('collection_dm');
-    $this->setFields([
+    $this->setFields(array(
       'code'=>'number',
       'description'=>'string',
       'default_flg'=>'string',
       'type'=>'string',
-    ]);
-        $this->setReq([
+    ));
+        $this->setReq(array(
             'description', 'default_flg', 'type'
-        ]);
+        ));
     $this->setSequenceField('code');
     $this->setKey('code');
 
-    $this->colltypes = [
+    $this->colltypes = array(
       'Circulated' => new CircCollections,
       'Distributed' => new DistCollections,
-    ];
+    );
   }
 
   protected function validate_el($rec, $insert) {
@@ -270,7 +255,7 @@ class Collections extends DmTable {
       $sql = $this->mkSQL("SELECT * FROM %q WHERE code=%Q ", $this->name, $rec['code']);
       $rslt = $this->select($sql);
       $rows = $rslt->fetchAll();
-      if ($insert && (count($rows) != 0)) {
+      if ($insert&& (count($rows) != 0)) {
         //$errors[] = new FieldError('code', T("Duplicate State Code not allowed"));
         $errors[] = T("Duplicate Code not allowed");
       }
@@ -288,11 +273,11 @@ class Collections extends DmTable {
             $rec['default_flg'] = 'N';
         }
         list($parm1, $parm2) = parent::insert($rec, $confirmed=false);
-        return [$parm1, $parm2];
+        return array($parm1, $parm2);
     }
 
   public function getTypeSelect() {
-    $types = [];
+    $types = array();
     foreach (array_keys($this->colltypes) as $t) {
       $types[$t] = $t;
     }
@@ -329,14 +314,14 @@ class Collections extends DmTable {
   public function insert_el($rec, $confirmed = false) {
     list ($id, $errs) = DBTable::insert_el($rec, $confirmed);
     if ($errs)
-      return [NULL, $errs];
+      return array(NULL, $errs);
     $rec['code'] = $id;
     list (, $errs) = $this->colltypes[$rec['type']]->insert_el($rec);
     if ($errs) {
       DBTable::deleteOne($id);
-      return [NULL, $errs];
+      return array(NULL, $errs);
     }
-    return [$id, NULL];
+    return array($id, NULL);
   }
   public function update_el($rec, $confirmed = false) {
     $old = $this->getOne($rec['code']);
@@ -365,8 +350,7 @@ class Collections extends DmTable {
   }
   public function deleteMatches($fields) {
     $rows = $this->getMatches($fields);
-    // 🐛 FIXED: fetch_assoc() on PDOStatement → fetch(PDO::FETCH_ASSOC)
-    while ($row = $rows->fetch(PDO::FETCH_ASSOC)) {
+    while ($row = $rows->fetch_assoc()) {
       $this->deleteOne($row['code']);
     }
   }
