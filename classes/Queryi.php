@@ -16,7 +16,7 @@ require_once("../shared/common.php");
 require_once(REL(__FILE__, "../classes/DbCore.php"));
 
 class Queryi {
-	private $lock_depth;
+	private $lockDepth;
 
 	public function __construct() {
 		$this->lockDepth = 0;
