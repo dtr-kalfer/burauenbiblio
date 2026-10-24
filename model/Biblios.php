@@ -1,7 +1,6 @@
 <?php
 /* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
  * See the file COPYRIGHT.html for more details.
- * Refactored for PHP 8.3 compatibility, safer JS, and better maintainability. -F. Tumulak 
  */
 
 declare(strict_types=1);
@@ -21,6 +20,8 @@ require_once(REL(__FILE__, "../model/BiblioImages.php"));
 
 class Biblios extends CoreTable {
   private $avIcon = "../images/circle_green.png";
+  public $marc;
+  public $marcRec;
 
   public function __construct() {
     parent::__construct();
@@ -268,19 +269,17 @@ class Biblios extends CoreTable {
     require_once(REL(__FILE__,"../catalog/biblioFields.php"));
   }
 
-	function deleteOne() {
-		$arg0 = func_get_args(0);
-        $bibid = $arg0[0];
+  function deleteOne($bibid) {
         //echo "in Biblios::deleteOne, bibid = ";print_r($bibid);echo "<br />\n";
-		$this->lock();
-		$imgs = new BiblioImages;
-		$imgs->deleteByBibid($bibid);
+    $this->lock();
+    $imgs = new BiblioImages;
+    $imgs->deleteByBibid($bibid);
 
-		$this->marc->delete($bibid);
+    $this->marc->delete($bibid);
 
-		parent::deleteOne($bibid);
-		$this->unlock();
-	}
+    parent::deleteOne($bibid);
+    $this->unlock();
+  }
 
   function deleteMatches($fields) {
     $this->lock();
