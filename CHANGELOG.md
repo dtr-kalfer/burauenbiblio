@@ -11,8 +11,6 @@ Guide:
 - version 2.x.x below PHP 7.4.26 supported
 - Date format: YYYY-MM-DD
 
-## [4.4.8] 2026-10-24
-
 (sticky)
 - Major Update / Refactor Burauenbiblio to work with latest PHP 8.3.36
 - PHP 8.3.36 was released to counter against:
@@ -20,7 +18,10 @@ Guide:
 	CVE-2026-109619: Trigger a use-after-free to disclose worker memory or execute code
 	More details here [php2shell](https://www.php2shell.com/)
 
+## [4.4.8] 2026-10-24
 - Updated Yaz z39.50 setup to work, instead of bypassing the request to SRU (http/xml) query. (Requires PHP Yaz 1.2.4 to work, see: How to install yaz into Burauenbiblio container.md).
+
+## [4.1.8] 2026-10-24
 
 - PHP Files and dependencies updated:
 defs/_php_example.php, defs/MemberSearch.php, defs/biblio_cart.php, reports/reportSrvr.php
