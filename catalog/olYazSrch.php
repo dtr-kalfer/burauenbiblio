@@ -1,8 +1,4 @@
 <?php
-/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
- * See the file COPYRIGHT.html for more details.
- */
-
     $hitNmbr = -1;
     $marcFlds = array();
     $subFlds = array();
@@ -67,6 +63,7 @@
       $timeout = 10; // Cap at 10s to prevent browser AJAX hanging
     }
     $waitOpts = array('timeout' => $timeout);
+  
     @yaz_wait($waitOpts);
 
     $ttlHits = 0;

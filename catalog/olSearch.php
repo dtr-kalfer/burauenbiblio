@@ -1,8 +1,4 @@
 <?php
-/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
- * See the file COPYRIGHT.html for more details.
- */
-
         //echo "postVars: ";print_r($postVars);echo"<br />\n";
         require_once(REL(__FILE__, '../catalog/olSrchVals.php'));
 
@@ -16,8 +12,6 @@
     } else {
       require_once (REL(__FILE__, '../catalog/olSruSrch.php'));
     }
-
-
 
     #### process the results ####
     $initialCond = false;
@@ -102,6 +96,24 @@
         $_POST['ttlHits'] = $ttlHits;
         $_POST['numHosts'] = $numHosts;
       }
-            echo json_encode($_POST);
+        $json = json_encode($_POST);
+
+        if ($json === false) {
+            error_log(
+                'BurauenBiblio JSON error: ' .
+                json_last_error_msg()
+            );
+
+            header('Content-Type: text/plain; charset=UTF-8');
+
+            echo 'JSON encoding failed: ';
+            echo json_last_error_msg();
+
             exit;
+        }
+
+        header('Content-Type: application/json; charset=UTF-8');
+
+        echo $json;
+        exit;
     }

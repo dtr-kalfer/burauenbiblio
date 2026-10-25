@@ -176,3 +176,4 @@
     if (!empty($sVal3)) $sQuery .= " and $sruQry3$sVal3";
     if (!empty($sVal4)) $sQuery .= " and $sruQry4$sVal4";
     if (!empty($sVal5)) $sQuery .= " and $sruQry5$sVal5";
+
