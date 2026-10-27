@@ -159,19 +159,22 @@ Page::header(['nav' => $tab . '/' . $nav, 'title' => T('Edit Collections')]);
 <section style="margin-bottom: 1rem; padding: 0 10px;">
   <h2><?php echo $editMode ? T("Update Collection") . " #" . (int) ($editData['code'] ?? 0) : T("Add New Collection"); ?></h2>
 
-  <form method="post" action="" style="max-width: 600px;">
+  <form method="post" action="" style="width: 700px;">
     <input type="hidden" name="action" value="<?php echo $editMode ? 'update' : 'add'; ?>" />
 
     <?php if ($editMode): ?>
       <input type="hidden" name="code" value="<?php echo (int) ($editData['code'] ?? 0); ?>" />
     <?php endif; ?>
 
-    <fieldset>
+    <fieldset style="border: 1px solid red;">
       <legend><?php echo T("Collection Details"); ?></legend>
-
+		
+		<!-- column 1 -->
+		<div style="display: flex; width: 100%; justify-content: space-around; padding: 10px;">
+			<div>
       <p>
         <label for="description"><?php echo T("Description"); ?>: <span class="reqd">*</span></label><br />
-        <input type="text" id="description" name="description" size="40"
+        <input type="text" id="description" name="description" size="30"
           placeholder="<?php echo T("e.g. Research Paper, Journal, Magazine"); ?>"
           value="<?php echo H($editData['description'] ?? ''); ?>"
           required aria-required="true" />
@@ -200,90 +203,92 @@ Page::header(['nav' => $tab . '/' . $nav, 'title' => T('Edit Collections')]);
           </option>
         </select>
       </p>
-
-      <!-- Circulation fields -->
-      <div id="circFields">
-        <p>
-          <label for="days_due_back"><?php echo T("Loan Period (days)"); ?>:</label><br />
-          <input type="number" id="days_due_back" name="days_due_back"
-            value="<?php echo (int) ($editData['days_due_back'] ?? 14); ?>"
-            min="0" max="365" size="4" />
-        </p>
-
-        <p>
-          <label for="regular_late_fee"><?php echo T("Late Fee (per day)"); ?>:</label><br />
-          <input type="number" id="regular_late_fee" name="regular_late_fee"
-            value="<?php echo number_format((float) ($editData['regular_late_fee'] ?? 0.00), 2, '.', ''); ?>"
-            min="0" max="99.99" step="0.01" size="6" />
-        </p>
-
-        <p>
-          <label for="due_date_calculator"><?php echo T("Due Date Rule"); ?>:</label><br />
-          <select id="due_date_calculator" name="due_date_calculator">
-            <?php
-            $calc = $editData['due_date_calculator'] ?? 'ask_me';
-            $calcs = [
-              'simple'           => T("Simple (add days)"),
-              'at_midnight'      => T("At Midnight"),
-              'before_we_close'  => T("Before We Close"),
-              'ask_me'           => T("Manual Entry"),
-            ];
-            foreach ($calcs as $val => $label):
-            ?>
-              <option value="<?php echo $val; ?>" <?php echo $calc === $val ? 'selected' : ''; ?>>
-                <?php echo $label; ?>
-              </option>
-            <?php endforeach; ?>
-          </select>
-        </p>
-
-        <p>
-          <label for="important_date_purpose"><?php echo T("Important Date Rule"); ?>:</label><br />
-          <select id="important_date_purpose" name="important_date_purpose">
-            <?php
-            $idp = $editData['important_date_purpose'] ?? 'not enabled';
-            $purposes = [
-              'not enabled'   => T("Not Enabled"),
-              'ceiling_date'  => T("Ceiling Date"),
-              'specific_date' => T("Specific Date"),
-            ];
-            foreach ($purposes as $val => $label):
-            ?>
-              <option value="<?php echo $val; ?>" <?php echo $idp === $val ? 'selected' : ''; ?>>
-                <?php echo $label; ?>
-              </option>
-            <?php endforeach; ?>
-          </select>
-        </p>
-
-        <p>
-          <label for="pre_closing_padding"><?php echo T("Minutes Before Closing"); ?>:</label><br />
-          <input type="number" id="pre_closing_padding" name="pre_closing_padding"
-            value="<?php echo (int) ($editData['pre_closing_padding'] ?? 30); ?>"
-            min="0" max="240" size="4" />
-        </p>
-      </div>
-
-      <!-- Distribution fields -->
-      <div id="distFields" style="display: <?php echo ($editData['type'] ?? '') === 'Distributed' ? '' : 'none'; ?>;">
-        <p>
-          <label for="restock_threshold"><?php echo T("Restock Threshold"); ?>:</label><br />
-          <input type="number" id="restock_threshold" name="restock_threshold"
-            value="<?php echo (int) ($editData['restock_threshold'] ?? 0); ?>"
-            min="0" size="4" />
-        </p>
-      </div>
+			</div>
 			
+      <!-- Circulation fields -->
+				<div id="circFields">
+					<p>
+						<label for="days_due_back"><?php echo T("Loan Period (days)"); ?>:</label><br />
+						<input type="number" id="days_due_back" name="days_due_back"
+							value="<?php echo (int) ($editData['days_due_back'] ?? 14); ?>"
+							min="0" max="365" size="4" />
+					</p>
+
+					<p>
+						<label for="regular_late_fee"><?php echo T("Late Fee (per day)"); ?>:</label><br />
+						<input type="number" id="regular_late_fee" name="regular_late_fee"
+							value="<?php echo number_format((float) ($editData['regular_late_fee'] ?? 0.00), 2, '.', ''); ?>"
+							min="0" max="99.99" step="0.01" size="6" />
+					</p>
+
+					<p>
+						<label for="due_date_calculator"><?php echo T("Due Date Rule"); ?>:</label><br />
+						<select id="due_date_calculator" name="due_date_calculator">
+							<?php
+							$calc = $editData['due_date_calculator'] ?? 'ask_me';
+							$calcs = [
+								'simple'           => T("Simple (add days)"),
+								'at_midnight'      => T("At Midnight"),
+								'before_we_close'  => T("Before We Close"),
+								'ask_me'           => T("Manual Entry"),
+							];
+							foreach ($calcs as $val => $label):
+							?>
+								<option value="<?php echo $val; ?>" <?php echo $calc === $val ? 'selected' : ''; ?>>
+									<?php echo $label; ?>
+								</option>
+							<?php endforeach; ?>
+						</select>
+					</p>
+
+					<p>
+						<label for="important_date_purpose"><?php echo T("Important Date Rule"); ?>:</label><br />
+						<select id="important_date_purpose" name="important_date_purpose">
+							<?php
+							$idp = $editData['important_date_purpose'] ?? 'not enabled';
+							$purposes = [
+								'not enabled'   => T("Not Enabled"),
+								'ceiling_date'  => T("Ceiling Date"),
+								'specific_date' => T("Specific Date"),
+							];
+							foreach ($purposes as $val => $label):
+							?>
+								<option value="<?php echo $val; ?>" <?php echo $idp === $val ? 'selected' : ''; ?>>
+									<?php echo $label; ?>
+								</option>
+							<?php endforeach; ?>
+						</select>
+					</p>
+
+					<p>
+						<label for="pre_closing_padding"><?php echo T("Minutes Before Closing"); ?>:</label><br />
+						<input type="number" id="pre_closing_padding" name="pre_closing_padding"
+							value="<?php echo (int) ($editData['pre_closing_padding'] ?? 30); ?>"
+							min="0" max="240" size="4" />
+					</p>
+				
+
+				<!-- Distribution fields -->
+				<div id="distFields" style="display: <?php echo ($editData['type'] ?? '') === 'Distributed' ? '' : 'none'; ?>;">
+					<p>
+						<label for="restock_threshold"><?php echo T("Restock Threshold"); ?>:</label><br />
+						<input type="number" id="restock_threshold" name="restock_threshold"
+							value="<?php echo (int) ($editData['restock_threshold'] ?? 0); ?>"
+							min="0" size="4" />
+					</p>
+				</div>
+			</div>
+		</div>
     </fieldset>
 
     <p>
       <?php if ($editMode): ?>
         <input type="submit" value="<?php echo T("Update Collection"); ?>" class="button" />
-        <a href="edit_collection.php" class="button" style="margin-left: 0.5rem;">
+        <a href="edit_collection.php" class="collection_button" style="margin-left: 0.5rem;">
           <?php echo T("Cancel"); ?>
         </a>
       <?php else: ?>
-        <input type="submit" value="<?php echo T("Add Collection"); ?>" class="button" />
+        <input type="submit" value="<?php echo T("Add Collection"); ?>" class="collection_button" />
       <?php endif; ?>
     </p>
   </form>
@@ -301,7 +306,7 @@ Page::header(['nav' => $tab . '/' . $nav, 'title' => T('Edit Collections')]);
   ?>
     <p><?php echo T("No collections have been defined."); ?></p>
   <?php else: ?>
-    <table class="striped" style="width: 100%;">
+    <table class="xstriped" style="width: 100%;">
       <thead>
         <tr>
           <th><?php echo T("Code"); ?></th>
@@ -322,7 +327,7 @@ Page::header(['nav' => $tab . '/' . $nav, 'title' => T('Edit Collections')]);
           <td><?php echo ($row['default_flg'] ?? 'N') === 'Y' ? T("Yes") : T("No"); ?></td>
           <td>
             <a href="edit_collection.php?edit=<?php echo (int) $row['code']; ?>"
-              class="button small"><?php echo T("Edit"); ?></a>
+              class="collection_button"><?php echo T("Edit"); ?></a>
           </td>
           <td>
             <form method="post" action=""
@@ -330,8 +335,7 @@ Page::header(['nav' => $tab . '/' . $nav, 'title' => T('Edit Collections')]);
               style="display: inline;">
               <input type="hidden" name="action" value="delete" />
               <input type="hidden" name="code" value="<?php echo (int) $row['code']; ?>" />
-              <input type="submit" value="<?php echo T("Delete"); ?>" class="button small"
-                style="background: #c33; color: #fff;" />
+              <input type="submit" value="<?php echo T("Delete"); ?>" class="collection_button" />
             </form>
           </td>
         </tr>

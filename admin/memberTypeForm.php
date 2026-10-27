@@ -22,9 +22,9 @@
             	<tr>
             		<td></td>
             		<th><?php echo T("Description"); ?></th>
-            		<th><?php echo T("Max Fine"); ?></th>
+            		<th><?php echo T("Limit"); ?></th>
             		<th><?php echo T("Default"); ?></th>
-								<th><?php echo T("Allotment"); ?></th>								
+								<th><?php echo T("Allotment"); ?></th>
             	</tr>
             	</thead>
 
@@ -95,3 +95,4 @@
 	require_once(REL(__FILE__, "../classes/JSAdmin.php"));
 	require_once(REL(__FILE__, "../admin/memberTypeJs6.php"));
 ?>
+

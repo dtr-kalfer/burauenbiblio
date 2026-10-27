@@ -269,7 +269,8 @@ class Biblios extends CoreTable {
     require_once(REL(__FILE__,"../catalog/biblioFields.php"));
   }
 
-  function deleteOne($bibid) {
+  function deleteOne() {
+    $bibid = func_get_args()[0];
         //echo "in Biblios::deleteOne, bibid = ";print_r($bibid);echo "<br />\n";
     $this->lock();
     $imgs = new BiblioImages;
