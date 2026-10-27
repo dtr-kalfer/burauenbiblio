@@ -143,7 +143,7 @@ Member types can be configured with **overdue charge** settings. When a patron e
 The **overdue report** has been improved by adding a clear **member classification** column that identifies whether each borrower is a student, faculty, or other type. This enhancement makes it easier to quickly understand the context of each overdue record and prioritize follow-ups accordingly.
 ### 📌 Collection Management (borrowing policy + custom collection type)
 
-![collection setup](./readme_assets/edit_collection_full_crud.avif "collection management")
+![collection setup](./readme_assets/edit_collection_full_crud2.avif "collection management")
 
 The **Collection Management** page manages **penalty rates** and **borrowing duration** per collection. In addition, a custom collection can be added which will then be inherited  into the 'New Item' dropdown menu under catalog section. New collection such as journal, thesis and other research related materials can be extended into the cataloging setup as needed by the school library. 
 
