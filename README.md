@@ -184,9 +184,15 @@ You may also customize or extend the entries to align with your own country’s 
 
 ### 📌 Z39.50 Online Metadata Retrieval
 
-![metadata retrieval](./readme_assets/metadata_retrieval1.webp "metadata retrieval")
+![metadata retrieval](./readme_assets/metadata_retrieval3.avif "metadata retrieval")
 
-Support for metadata retrieval process—particularly for cataloging by ISBN/LCCN using remote bibliographic sources.
+Z39.50 is a client-server information retrieval protocol standardized for communication between computer systems.
+
+It is commonly used to search remote catalogs and retrieve bibliographic records, including records encoded in MARC formats. 
+
+![metadata retrieval](./readme_assets/metadata_retrieval2.avif "metadata retrieval")
+
+BurauenBiblio requires PHP/YAZ extension installed and enabled for the Z39.50 protocol to work.
 
 ### 📦 Booked Items Cart
 
