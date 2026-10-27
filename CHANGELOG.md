@@ -18,6 +18,9 @@ Guide:
 	CVE-2026-109619: Trigger a use-after-free to disclose worker memory or execute code
 	More details here [php2shell](https://www.php2shell.com/)
 
+## [unreleased] yyyy-mm-dd
+- update: burauenbib_sample_clean.sql with cleaned/tested z39.50 host list.
+
 ## [4.8.8] 2026-10-27
 - i missed a few updates from my prototype folder, i just copied the entire thing so i don't miss any changes (specifically ./admin/edit_collection.php and more.)
 
