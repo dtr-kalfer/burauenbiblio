@@ -57,8 +57,8 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
     <img id="" src="../images/card_catalog_sample3.avif" alt="sample card catalog" />
     </div>
 
-    <div id="other_details" style="display: none;
-      <h3>Completing these info. will fill out the details of your Printed Card Catalog.</h3>
+    <div id="other_details" style="display: none;">
+		<h3>Completing these info. will fill out the details of your Printed Card Catalog.</h3>
       <table border="1" cellpadding="5" cellspacing="0">
       <thead>
         <tr>
