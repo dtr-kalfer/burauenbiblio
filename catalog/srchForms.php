@@ -73,11 +73,6 @@ $showDetailOpac = ($_SESSION['show_detail_opac'] ?? 'N') === 'Y';
 $showAddNewCopy = $isCatalogTab && !($hasCircAuth && !$hasCatalogAuth);
 
 // ---------------------------------------------------------------------------
-// 7. Helper: escape a translated string for use inside an HTML attribute
-// ---------------------------------------------------------------------------
-$escAttr = static fn(string $key): string => H(T($key));
-
-// ---------------------------------------------------------------------------
 // 8. Output the form (template / view layer)
 // ---------------------------------------------------------------------------
 ?>
@@ -92,12 +87,12 @@ $escAttr = static fn(string $key): string => H(T($key));
   <!-- ---- barcode search ---- -->
   <form role="form" id="barcodeSearch" name="barcodeSearch" method="post">
     <fieldset>
-      <legend><?php echo $escAttr('Find Item by Barcode'); ?></legend>
-      <label for="bc_searchBarcd" style="margin-left: 15px;"><?php echo $escAttr('Barcode'); ?>:</label>
+      <legend><?php echo T('Find Item by Barcode'); ?></legend>
+      <label for="bc_searchBarcd" style="margin-left: 15px;"><?php echo T('Barcode'); ?>:</label>
       <input type="text" id="bc_searchBarcd" name="searchBarcd" size="20" value=""
              inputmode="numeric" pattern="\d*" maxlength="13"
              oninput="this.value = this.value.replace(/\D/g, '').slice(0, 13)" />
-      <input type="submit" id="barcdSrchBtn" name="barcdSrchBtn" value="<?php echo $escAttr('Search'); ?>" class="srchByBarcdBtn" />
+      <input type="submit" id="barcdSrchBtn" name="barcdSrchBtn" value="<?php echo T('Search'); ?>" class="srchByBarcdBtn" />
       <input type="hidden" id="bc_searchType" name="searchType" value="barcodeNmbr" />
       <input type="hidden" id="bc_sortBy" name="sortBy" value="default" />
     </fieldset>
@@ -106,23 +101,23 @@ $escAttr = static fn(string $key): string => H(T($key));
   <!-- ---- phrase / keyword search ---- -->
   <form role="form" id="phraseSearch" name="phraseSearch" method="post">
     <fieldset>
-      <legend><?php echo $escAttr('Search Catalog'); ?></legend>
+      <legend><?php echo T('Search Catalog'); ?></legend>
       <table>
         <tbody id="mainTxtSrch">
         <tr>
           <td colspan="3">
             <select id="ph_searchType" name="searchType">
-              <option value="title"><?php echo $escAttr('Title'); ?></option>
-              <option value="author"><?php echo $escAttr('Author'); ?></option>
-              <option value="subject"><?php echo $escAttr('Subject'); ?></option>
-              <option value="keyword" selected><?php echo $escAttr('Keyword'); ?></option>
-              <option value="series"><?php echo $escAttr('Series'); ?></option>
-              <option value="publisher"><?php echo $escAttr('Publisher'); ?></option>
-              <option value="callno"><?php echo $escAttr('Call Number'); ?></option>
-              <option value="id"><?php echo $escAttr('bibid'); ?></option>
+              <option value="title"><?php echo T('Title'); ?></option>
+              <option value="author"><?php echo T('Author'); ?></option>
+              <option value="subject"><?php echo T('Subject'); ?></option>
+              <option value="keyword" selected><?php echo T('Keyword'); ?></option>
+              <option value="series"><?php echo T('Series'); ?></option>
+              <option value="publisher"><?php echo T('Publisher'); ?></option>
+              <option value="callno"><?php echo T('Call Number'); ?></option>
+              <option value="id"><?php echo T('bibid'); ?></option>
             </select>
             <input type="text" value="" id="ph_searchText" name="searchText" size="20" maxlength="256" />
-            <input type="submit" id="phraseSrchBtn" name="phraseSrchBtn" value="<?php echo $escAttr('Search'); ?>" class="phraseSrchBtnBtn" />
+            <input type="submit" id="phraseSrchBtn" name="phraseSrchBtn" value="<?php echo T('Search'); ?>" class="phraseSrchBtnBtn" />
           </td>
         </tr>
         <tr>
@@ -133,7 +128,7 @@ $escAttr = static fn(string $key): string => H(T($key));
         </tr>
         <tr>
           <td colspan="3">
-            <label for="advanceQ"><?php echo $escAttr('Advanced Search?'); ?></label>
+            <label for="advanceQ"><?php echo T('Advanced Search?'); ?></label>
             <input id="advanceQ" name="advanceQ" type="checkbox" value="Y" />
           </td>
         </tr>
@@ -143,52 +138,52 @@ $escAttr = static fn(string $key): string => H(T($key));
         <tbody id="advancedSrch">
         <tr>
           <td nowrap="true" colspan="3">
-            <label for="sortBy"><?php echo $escAttr('Sort by'); ?>: </label>
+            <label for="sortBy"><?php echo T('Sort by'); ?>: </label>
             <select id="sortBy" name="sortBy">
-              <option value="Author"><?php echo $escAttr('Author'); ?></option>
-              <option value="Call Number" selected><?php echo $escAttr('Call Number'); ?></option>
-              <option value="Title"><?php echo $escAttr('Title'); ?></option>
+              <option value="Author"><?php echo T('Author'); ?></option>
+              <option value="Call Number" selected><?php echo T('Call Number'); ?></option>
+              <option value="Title"><?php echo T('Title'); ?></option>
             </select>
           </td>
         </tr>
         <tr>
           <td colspan="3">
             <fieldset>
-              <legend><?php echo $escAttr('Limit Search Results'); ?></legend>
+              <legend><?php echo T('Limit Search Results'); ?></legend>
               <table border="0">
                 <tr class="searchRow">
-                  <td><label for="srchMediaTypes"><?php echo $escAttr('Media Type'); ?>: </label></td>
+                  <td><label for="srchMediaTypes"><?php echo T('Media Type'); ?>: </label></td>
                   <td><select id="srchMediaTypes" name="materialCd"></select></td>
                 </tr>
                 <tr class="searchRow">
-                  <td><label for="srchCollections"><?php echo $escAttr('Collection'); ?>: </label></td>
+                  <td><label for="srchCollections"><?php echo T('Collection'); ?>: </label></td>
                   <td><select id="srchCollections" name="collectionCd"></select></td>
                 </tr>
                 <tr class="searchRow">
-                  <td><label for="audienceLevel"><?php echo $escAttr('Audience Level'); ?>: </label></td>
+                  <td><label for="audienceLevel"><?php echo T('Audience Level'); ?>: </label></td>
                   <td>
                     <select id="audienceLevel" name="audienceLevel">
-                      <option value="all" selected><?php echo $escAttr('All'); ?></option>
+                      <option value="all" selected><?php echo T('All'); ?></option>
                     </select>
                   </td>
                 </tr>
                 <tr class="searchRow">
-                  <td><label for="srchSites"><?php echo $escAttr('Search Site'); ?>:</label></td>
+                  <td><label for="srchSites"><?php echo T('Search Site'); ?>:</label></td>
                   <td>
                     <select name="srchSites" id="srchSites">
-                      <option value="all" selected><?php echo $escAttr('All'); ?></option>
+                      <option value="all" selected><?php echo T('All'); ?></option>
                       <option>to be filled by server</option>
                     </select>
                   </td>
                 </tr>
                 <tr class="searchRow">
-                  <td><label><?php echo $escAttr('Production Date'); ?>:</label><br /></td>
+                  <td><label><?php echo T('Production Date'); ?>:</label><br /></td>
                   <td>
-                    <label for="from"><?php echo $escAttr('From Year'); ?>:</label>
+                    <label for="from"><?php echo T('From Year'); ?>:</label>
                     <input id="from" name="from" type="text" inputmode="numeric" size="4"
                            minlength="4" maxlength="4" pattern="\d{4}" />
                     <br />
-                    <label for="to"><?php echo $escAttr('To Year'); ?>:</label>
+                    <label for="to"><?php echo T('To Year'); ?>:</label>
                     <input id="to" name="to" type="text" inputmode="numeric" size="4"
                            minlength="4" maxlength="4" pattern="\d{4}" />
                   </td>
@@ -205,16 +200,16 @@ $escAttr = static fn(string $key): string => H(T($key));
 
 <!-- ======================================================================== -->
 <div id="biblioListDiv">
-  <h5><?php echo $escAttr('SearchResults'); ?> &quot;<span id="srchRsltTitl"></span>&quot;</h5>
+  <h5><?php echo T('SearchResults'); ?> &quot;<span id="srchRsltTitl"></span>&quot;</h5>
   <table>
   <tr>
     <td colspan="3">
       <ul class="pagBtns">
-        <li><input type="button" class="listGobkBtn" value="<?php echo $escAttr('Go Back'); ?>" /></li>
+        <li><input type="button" class="listGobkBtn" value="<?php echo T('Go Back'); ?>" /></li>
         <li>
-          <input type="button" class="goPrevBtn PgBtn" value="<?php echo $escAttr('Previous Page'); ?>" />
+          <input type="button" class="goPrevBtn PgBtn" value="<?php echo T('Previous Page'); ?>" />
           <span class="rsltQuan"></span>
-          <input type="button" class="goNextBtn PgBtn" value="<?php echo $escAttr('Next Page'); ?>" />
+          <input type="button" class="goNextBtn PgBtn" value="<?php echo T('Next Page'); ?>" />
         </li>
       </ul>
     </td>
@@ -231,8 +226,8 @@ $escAttr = static fn(string $key): string => H(T($key));
         </fieldset>
         <?php if ($showDetailOpac): ?>
         <ul id="flagInfo">
-          <li>✅ <?php echo $escAttr('Available'); ?></li>
-          <li>❌ <?php echo $escAttr('On loan/not available'); ?></li>
+          <li>✅ <?php echo T('Available'); ?></li>
+          <li>❌ <?php echo T('On loan/not available'); ?></li>
         </ul>
         <?php endif; ?>
       </fieldset>
@@ -241,11 +236,11 @@ $escAttr = static fn(string $key): string => H(T($key));
   <tr>
     <td colspan="3">
       <ul class="pagBtns">
-        <li><input type="button" class="listGobkBtn" value="<?php echo $escAttr('Go Back'); ?>" /></li>
+        <li><input type="button" class="listGobkBtn" value="<?php echo T('Go Back'); ?>" /></li>
         <li>
-          <input type="button" class="goPrevBtn PgBtn" value="<?php echo $escAttr('Previous Page'); ?>" />
+          <input type="button" class="goPrevBtn PgBtn" value="<?php echo T('Previous Page'); ?>" />
           <span class="rsltQuan"></span>
-          <input type="button" class="goNextBtn PgBtn" value="<?php echo $escAttr('Next Page'); ?>" />
+          <input type="button" class="goNextBtn PgBtn" value="<?php echo T('Next Page'); ?>" />
         </li>
       </ul>
     </td>
@@ -257,19 +252,19 @@ $escAttr = static fn(string $key): string => H(T($key));
 <div id="biblioDiv">
   <ul class="btnRow">
     <?php if (!$isReportTab): ?>
-      <li><input type="button" class="bibGobkBtn" value="<?php echo $escAttr('Go Back'); ?>" /></li>
+      <li><input type="button" class="bibGobkBtn" value="<?php echo T('Go Back'); ?>" /></li>
     <?php endif; ?>
     <li><input type="button" id="marcBtn" value="" /></li>
     <?php if ($hasCatalogAuth && $isCatalogTab): ?>
-      <li><input type="button" id="addItem2CartBtn" value="<?php echo $escAttr('Tag item'); ?>" /></li>
-      <li><input type="button" id="delItem2CartBtn" value="<?php echo $escAttr('Un-tag item'); ?>" /></li>
-      <li><input type="button" id="biblioEditBtn" value="<?php echo $escAttr('Edit This Item'); ?>" /></li>
+      <li><input type="button" id="addItem2CartBtn" value="<?php echo T('Tag item'); ?>" /></li>
+      <li><input type="button" id="delItem2CartBtn" value="<?php echo T('Un-tag item'); ?>" /></li>
+      <li><input type="button" id="biblioEditBtn" value="<?php echo T('Edit This Item'); ?>" /></li>
       <?php if ($showItemPhotos): ?>
-        <li><input type="button" id="photoEditBtn" value="<?php echo $escAttr('Edit This Photo'); ?>" /></li>
-        <li><input type="button" id="photoAddBtn" value="<?php echo $escAttr('Add New Photo'); ?>" /></li>
+        <li><input type="button" id="photoEditBtn" value="<?php echo T('Edit This Photo'); ?>" /></li>
+        <li><input type="button" id="photoAddBtn" value="<?php echo T('Add New Photo'); ?>" /></li>
       <?php endif; ?>
       <?php if ($hasReportsAuth): ?>
-        <li><input type="button" id="biblioDeleteBtn" value="<?php echo $escAttr('Delete This Item'); ?>" /></li>
+        <li><input type="button" id="biblioDeleteBtn" value="<?php echo T('Delete This Item'); ?>" /></li>
       <?php endif; ?>
     <?php endif; ?>
   </ul>
@@ -279,10 +274,10 @@ $escAttr = static fn(string $key): string => H(T($key));
 
   <ul class="btnRow">
     <?php if (!$isReportTab): ?>
-      <li><input type="button" class="bibGobkBtn" value="<?php echo $escAttr('Go Back'); ?>" /></li>
+      <li><input type="button" class="bibGobkBtn" value="<?php echo T('Go Back'); ?>" /></li>
     <?php endif; ?>
     <?php if ($showAddNewCopy): ?>
-      <li><input type="button" id="addNewBtn" class="button" value="<?php echo $escAttr('Add New Copy'); ?>" /></li>
+      <li><input type="button" id="addNewBtn" class="button" value="<?php echo T('Add New Copy'); ?>" /></li>
     <?php endif; ?>
   </ul>
 </div>
@@ -290,18 +285,18 @@ $escAttr = static fn(string $key): string => H(T($key));
 <!-- ======================================================================== -->
 <div id="itemEditorDiv">
   <form role="form" id="biblioEditForm" name="biblioEditForm">
-    <h5 id="reqdNote">*<?php echo $escAttr('Required note'); ?></h5>
+    <h5 id="reqdNote">*<?php echo T('Required note'); ?></h5>
     <div class="btnRow flexBoxed">
-      <input type="button" class="itemGobkBtn leftBtn" value="<?php echo $escAttr('Go Back'); ?>" />
+      <input type="button" class="itemGobkBtn leftBtn" value="<?php echo T('Go Back'); ?>" />
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <input type="button" id="onlnDoneBtn" class="button rightBtn" value="<?php echo $escAttr('Search Complete'); ?>" />
+      <input type="button" id="onlnDoneBtn" class="button rightBtn" value="<?php echo T('Search Complete'); ?>" />
     </div>
 
     <?php require_once REL(__FILE__, '../catalog/itemEditorForm.php'); ?>
 
-    <input type="button" id="itemSubmitBtn" value="<?php echo $escAttr('Submit'); ?>" />
+    <input type="button" id="itemSubmitBtn" value="<?php echo T('Submit'); ?>" />
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input type="button" value="<?php echo $escAttr('Go Back'); ?>" class="itemGobkBtn" />
+    <input type="button" value="<?php echo T('Go Back'); ?>" class="itemGobkBtn" />
   </form>
 </div>
 
@@ -316,9 +311,9 @@ $escAttr = static fn(string $key): string => H(T($key));
   <?php require_once REL(__FILE__, '../catalog/photoEditorForm.php'); ?>
 
   <ul class="btnRow">
-    <li><input type="button" class="gobkFotoBtn" value="<?php echo $escAttr('Go Back'); ?>" /></li>
-    <li><input type="submit" id="addFotoBtn" value="<?php echo $escAttr('Add New'); ?>" /></li>
-    <li><input type="button" id="deltFotoBtn" value="<?php echo $escAttr('Delete'); ?>" /></li>
+    <li><input type="button" class="gobkFotoBtn" value="<?php echo T('Go Back'); ?>" /></li>
+    <li><input type="submit" id="addFotoBtn" value="<?php echo T('Add New'); ?>" /></li>
+    <li><input type="button" id="deltFotoBtn" value="<?php echo T('Delete'); ?>" /></li>
   </ul>
 </div>
 <?php endif; ?>
