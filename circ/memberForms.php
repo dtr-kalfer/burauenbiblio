@@ -220,7 +220,7 @@
 <!-- ------------------------------------------------------------------------ -->
 <div id="editDiv">
   <form role="form" id="editForm" name="editForm" >
-  <p> Fields marked with * are required.</p>
+  <p><?php echo T("Fields marked with * are required."); ?> </p>
   <fieldset>
     <legend id="editHdr"></legend>
     <table>
