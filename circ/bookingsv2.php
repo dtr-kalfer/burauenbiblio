@@ -151,16 +151,16 @@ if (empty($rows)) {
     echo "<div class='tagged-table'>";
 
     /* Header */
-    echo "
-    <div class='tagged-row header'>
-        <div class='tagged-cell nowrap'>Barcode</div>
-        <div class='tagged-cell wrap'>Title</div>
-        <div class='tagged-cell wrap'>Status</div>
-        <div class='tagged-cell wrap'>Request Date</div>
-        <div class='tagged-cell wrap'>Requested by</div>
-        <div class='tagged-cell wrap'>Type</div>
-    </div>
-    ";
+		echo "
+		<div class='tagged-row header'>
+				<div class='tagged-cell nowrap'>" . T('Barcode') . "</div>
+				<div class='tagged-cell wrap'>" . T('Title') . "</div>
+				<div class='tagged-cell wrap'>" . T('Status') . "</div>
+				<div class='tagged-cell wrap'>" . T('Request Date') . "</div>
+				<div class='tagged-cell wrap'>" . T('Requested by') . "</div>
+				<div class='tagged-cell wrap'>" . T('Type') . "</div>
+		</div>
+		";
 
     /* Rows */
     foreach ($rows as $row) {
