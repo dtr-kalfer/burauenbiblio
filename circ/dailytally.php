@@ -25,19 +25,12 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 </style>
 <section class="form-container-attendance">
 		<section class="book-activity">
-			<h2>📚 In-House Book Activity Tracker (Daily Book Tally)</h2>
-			<p>
-				This tool allows library staff to record books frequently used or viewed by patrons before reshelving them.
-				Tracking these activities helps identify high-demand titles for future collection development.
-			</p>
-			<p>
-				All entries will contribute to the <strong>Top 30 Most-Viewed Books</strong> report and also to <strong>Daily T. (Chart)</strong>.
-			</p>
-			<p>
-				You may use a barcode scanner or manually type the relevant barcode numbers. Leading zeroes will be automatically prefixed to ensure a 13-digit format.
-			</p>
-
-			<h2>✅ Scan or Enter Book Barcode:</h2>
+			<h2><?php echo T("In-House Book Activity Tracker (Daily Book Tally)")?></h2>
+			<p><?php echo T("This tool allows library staff to record.."); ?></p>
+			<p><?php echo T("All entries will contribute to the.."); ?></p>
+			<p><?php echo T("You may use a barcode scanner or.."); ?></p>
+			
+			<h2><?php echo T("Scan or Enter Book Barcode"); ?></h2>
 		</section>
 
     <form id="barcode-form" 
@@ -45,16 +38,16 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
           hx-swap="innerHTML"
           autocomplete="off">
         <input type="text" name="barcode" id="barcode" value="" oninput="this.value = this.value.replace(/\D/g, '').slice(0, 13)" pattern="\d*" autofocus required>
-        <button type="submit">Submit</button>
+        <button type="submit"><?php echo T("Submit"); ?></button>
     </form>
 
 		<div id="result"></div>
-		<h2>✅ Check most recent listing</h2>
+		<h2><?php echo T("Check most recent listing"); ?></h2>
     <form id="listbooks-form" 
           hx-target="#result2"
           hx-swap="innerHTML"
           autocomplete="off">
-        <button type="submit">Check most recent listing</button>
+        <button type="submit"><?php echo T("Check most recent listing"); ?></button>
     </form>
 
     <div id="result2"></div>
