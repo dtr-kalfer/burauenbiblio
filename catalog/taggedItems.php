@@ -109,13 +109,12 @@ $rows = $tagged->getTaggedBibItems();
 $total = count($rows);
 ?>
 <h3 class="tagged">📚 <?php echo T("The Tagged Items Cart"); ?> 📚</h3>
-<p>
-The Tagged Items Cart is a *temporary holding space* for catalog items that may have:</p>
+<p><?php echo T("The Tagged Items Cart is a.."); ?></p>
 <ul>
-  <li>Some damages or defects present in the book.</li>
-  <li>Incomplete biblio details.</li>
-  <li>Conflicting call numbers.</li>
-  <li>Duplicate Biblio Records.</li>
+  <li><?php echo T("Some damages or defects present in the book."); ?></li>
+  <li><?php echo T("Incomplete biblio details."); ?></li>
+	<li><?php echo T("Conflicting call numbers."); ?></li>
+  <li><?php echo T("Duplicate Biblio Records."); ?></li>
 </ul>
 
 <h3 class="tagged">
