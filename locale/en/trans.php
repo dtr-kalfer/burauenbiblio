@@ -958,7 +958,6 @@ $trans["records found"] = "records found";
 $trans["records imported"] = "records imported";
 $trans["Records imported to database"] = "Imported records have been added to the Database";
 $trans["Records imported: %rec%"] = "Records imported: %rec%";
-
 $trans["Remove"] = "Remove";
 $trans["Remove from Cart"] = "Remove from Cart";
 $trans["Repeatable"] = "Repeatable";
@@ -977,6 +976,8 @@ $trans["reportsDesc"] = "Choose from one of the following links to run a report.
 $trans["ReportSelection"] = "Report Selection";
 $trans["Reqd"] = "Reqd";
 $trans["Request Cart"] = "Request Cart";
+$trans["Request Date"] = "Request Date";
+$trans["Requested by"] = "Requested by";
 $trans["Request Cart List"] = "Request Cart List";
 $trans["Request failed, call %library% %phone%"] = "Request failed to send, please call the %library% at %phone%.";
 $trans["Request From"] = "Request From";
