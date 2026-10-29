@@ -11,7 +11,7 @@ require_once("../shared/guard_doggy.php");
 <div style="width: 45vw;">
 	<h3>To-Do List</h3>
 	<form hx-disabled-elt="button" hx-post="../todolist/todo_add.php" hx-target="#todo-list" hx-swap="innerHTML" style="display: flex; align-items: center; gap: 5px;">
-		<input type="text" name="todo" id="todo-input" size="44" placeholder="Enter a new todo" required>
+		<input type="text" name="todo" id="todo-input" size="44" placeholder="<?php echo T('Enter a new todo'); ?>" required>
 		
 		<!-- Emoji Dropdown -->
 		<select id="emoji-selector" title="Add emoji" style="padding: 4px;">
@@ -30,17 +30,17 @@ require_once("../shared/guard_doggy.php");
 			<option value="💻">💻</option>
 		</select>
 
-		<input type="hidden" name="guard_token_key" value="<?php echo $_SESSION['guard_token_key']; ?>">
+		
 		<button hx-indicator="#myspinner" type="submit" style="padding-right: 30px;">
 			<img id="myspinner" class="htmx-indicator" width="15" src="../images/t_loading.webp" alt="" />
-			Add Task
+			<?php echo T('Add Task'); ?>
 		</button>
 		
 	</form>
 
 	<ul id="todo-list-container">
 		<ul id="todo-list"
-			hx-get="../todolist/todo_list.php?guard_token_key=<?php echo $_SESSION['guard_token_key']; ?>"
+			hx-get="../todolist/todo_list.php"
 			hx-trigger="load">
 			<!-- List loaded here -->
 		</ul>
