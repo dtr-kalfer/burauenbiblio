@@ -125,19 +125,18 @@ $rows = $booked->getBookedItems();
 $total = count($rows);
 ?>
 <h3 class="tagged">📚 <?php echo T("The Booked Items Cart"); ?> 📚</h3>
-<p>
-The Booked Items Cart is a *Reservation feature* for patrons that may request:</p>
+<p><?php echo T("The Booked Items Cart is a *Reservation feature* for patrons that may request:"); ?></p>
 <ul>
-  <li>Reservation for a specific book.</li>
-  <li>Books that are checked out constantly.</li>
-  <li>First come first served reservation basis</li>
+  <li><?php echo T("Reservation for a specific book."); ?></li>
+  <li><?php echo T("Books that are checked out constantly."); ?></li>
+  <li><?php echo T("First come first served reservation basis"); ?></li>
 </ul>
 
 <h3 class="tagged">
   📚 <?php echo T("List of booked items"); ?> 📚
 </h2>
 <p class="totalc">
-  Total booked items: <?php echo $total; ?>
+  <?php echo T("Total booked items"); ?>: <?php echo $total; ?>
   <br />
   <small style="font-weight: normal; font-size: 0.85em;">
     💡 <?php echo T("Click a patron name to view their circulation status."); ?>
