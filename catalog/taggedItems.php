@@ -139,10 +139,10 @@ if (empty($rows)) {
     /* Header */
     echo "
     <div class='tagged-row header'>
-        <div class='tagged-cell wrap'>BibID</div>
-        <div class='tagged-cell wrap'>Call Number</div>
-        <div class='tagged-cell wrap'>Title</div>
-        <div class='tagged-cell wrap'>Author</div>
+        <div class='tagged-cell wrap'>" . T('bibid') . "</div>
+        <div class='tagged-cell wrap'>" . T('Call Number') . "</div>
+        <div class='tagged-cell wrap'>" . T('Title') . "</div>
+        <div class='tagged-cell wrap'>" . T('Author') . "</div>
     </div>
     ";
 
