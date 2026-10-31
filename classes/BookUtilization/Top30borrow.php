@@ -54,7 +54,7 @@ class Top30borrow extends \ConnectDB
             return [
                 'success' => true,
                 'content' => $data,
-                'message' => '✅ Retrieved from: Circulation activity'
+                'message' => 'Retrieved from: Circulation activity'
             ];
 
         } catch (\Exception $e) {
