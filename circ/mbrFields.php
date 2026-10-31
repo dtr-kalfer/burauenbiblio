@@ -45,7 +45,9 @@
   <tr>
     <td><label for="qrcode"><?php echo T("QR code").' ('.T("Student/Faculty Number").')';?></label></td>
     <td valign="top">
-      <?php echo inputfield("text","qrcode",isset($mbr['qrcode']),$attr=array("size"=>20,"max"=>50,"maxlength"=>50,"placeholder"=>"Scan or type ID number"),$pageErrors); ?>
+      <?php 
+			$placeholder_msg = T("Scan or type ID number");
+			echo inputfield("text","qrcode",isset($mbr['qrcode']),$attr=array("size"=>20,"max"=>50,"maxlength"=>50,"placeholder"=>$placeholder_msg),$pageErrors); ?>
     </td>
   </tr>
   <tr>
