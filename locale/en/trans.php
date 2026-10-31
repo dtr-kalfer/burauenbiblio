@@ -1216,6 +1216,7 @@ $trans["Total Check-ins"] = "Total Check-ins";
 $trans["Total Checkouts"] = "Total Checkouts";
 $trans["Total Holdings Value"] = "Total Holdings Value";
 $trans["Total Loan Period"] = "Total Loan Period";
+$trans["Total tagged items:"] = "Total tagged items:";
 $trans["To-do List Section"] = "To-do List Section";
 $trans["Trans Type"] = "Trans Type";
 $trans["Transaction Activity"] = "Transaction Activity";
