@@ -569,7 +569,7 @@ var ni = {
         else {
           // numHits >= 1 valid hit
           $('#choiceSpace').empty();
-          $('#ttlHits').html('Number of Hits: ' + numHits);
+          $('#ttlHits').html('<?php echo T("Number of Hits: "); ?>' + numHits);
           ni.singleHit = (numHits === 1);
           var countRendered = 0, html;
           ni.hostData = rslts.data;
@@ -577,22 +577,22 @@ var ni = {
           $.each(rslts.data, function(hostIndex, hostData) {
             if (typeof hostData !== 'undefined' && hostData) {
               var hostName = (ni.hostJSON && ni.hostJSON[hostIndex]) ? ni.hostJSON[hostIndex].name : ('Host ' + hostIndex);
-              $('#choiceSpace').append('<h4 id="id_repo">Repository: ' + hostName + '</h4>');
+              $('#choiceSpace').append('<h4 id="id_repo"><?php echo T("Repository"); ?>: ' + hostName + '</h4>');
 
               $.each(hostData, function(hitIndex, hitData) {
                 if (hitData && !hitData['err']) {
                   countRendered++;
-                  html = '<fieldset>';
+                  html = '<fieldset style="border: 1px solid black;">';
                   html += '<form role="form" class="hitForm"><table border="0">';
-                  html += '<tr><td>LCCN</td><td>' + (hitData['010a'] || '') + '</td></tr>';
-                  html += '<tr><td>ISBN</td><td>' + (hitData['020a'] || '') + '</td></tr>';
-                  html += '<tr><td>Title</td><td>' + (hitData['245a'] || '') + '</td></tr>';
-                  html += '<tr><td>Author</td><td>' + (hitData['100a'] || '') + '</td></tr>';
-                  html += '<tr><td>Publisher</td><td>' + (hitData['260b'] || '') + '</td></tr>';
-                  html += '<tr><td>Location</td><td>' + (hitData['260a'] || '') + '</td></tr>';
-                  html += '<tr><td>Date</td><td>' + (hitData['260c'] || '') + '</td>';
+									html += '<p><span style="border: text-align: right;" id="' + id + '"><input type="button" value="<?php echo T("This One"); ?>" /></span></p>';
+                  html += '<tr><td><?php echo T("LCCN"); ?></td><td>' + (hitData['010a'] || '') + '</td></tr>';
+                  html += '<tr><td><?php echo T("ISBN"); ?></td><td>' + (hitData['020a'] || '') + '</td></tr>';
+                  html += '<tr><td><?php echo T("Title"); ?></td><td>' + (hitData['245a'] || '') + '</td></tr>';
+                  html += '<tr><td><?php echo T("Author"); ?></td><td>' + (hitData['100a'] || '') + '</td></tr>';
+                  html += '<tr><td><?php echo T("Publisher"); ?></td><td>' + (hitData['260b'] || '') + '</td></tr>';
+                  html += '<tr><td><?php echo T("Location"); ?></td><td>' + (hitData['260a'] || '') + '</td></tr>';
+                  html += '<tr><td><?php echo T("Date"); ?></td><td>' + (hitData['260c'] || '') + '</td></tr>';
                   var id = 'host' + hostIndex + '-hit' + hitIndex;
-                  html += '<td id="' + id + '"><input type="button" value="<?php echo T("This One"); ?>" /></td></tr>';
                   html += '</table></form>';
                   html += '</fieldset>';
                   $('#choiceSpace').append(html);
