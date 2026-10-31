@@ -35,7 +35,7 @@ require_once(REL(__FILE__, "../shared/logincheck.php"));
 
 ?>
 <script src="./js/chart.js"></script>
-<h2>Circulation Report <?php echo date_default_timezone_get();
+<h2><?php echo T('Circulation Report') . ' ' . date_default_timezone_get();
 echo '<br>';
 echo date('Y-m-d H:i:s T P'); ?></h2>
 <section style="width: 600px;" id="circ_section">
@@ -119,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['start'], $_GET['end'], 
 				responsive: true,
 				plugins: {
 					legend: { position: 'top' },
-					title: { display: true, text: 'Monthly Book Checkouts and Check-ins' }
+					title: { display: true, text: '<?php echo T("Monthly Book Checkouts and Check-ins") ?>' }
 				}
 			}
 		});
