@@ -337,30 +337,30 @@
 
 <div id="helpDiv" style="width: 60vw;">
   <input type="button" class="gobkHistBtn" value="<?php echo T("Go Back"); ?>" />
-  <h3>📚 Checkout Policy & Due Date Guide</h3>
-
-  <p><strong>How Due Dates Are Calculated:</strong><br>
-  The system determines the <em>due date</em> based on the <strong>greater</strong> value between:</p>
+  <h3><?php echo T('Checkout Policy & Due Date..'); ?></h3>
+  <p><strong><?php echo T('How Due Dates Are..'); ?></strong><br>
+  <?php echo T('The system determines the due..'); ?></p>
   <ul>
-    <li><strong>Default Collection Loan</strong> – the standard loan duration (in days) based on the material's collection or type (e.g., Non-fiction, Reference). <b>Late rate fee</b> is the penalty amount per day overdue.</li>
+    <li><?php echo T('Default Collection Loan..'); ?></li>
     <a href="#"><img src="../images/view_collection_sample2.webp" alt="" title="" /></a>
-    <li><strong>Loan Allotment</strong> – the maximum loan period (in days) granted to a borrower depending on their <strong>member type</strong> (e.g., Student, Faculty). <b>Limit (Max Fine)</b> -> If the overdue amount exceeds this limit, the patron's checkout feature gets disabled.</li>
+    <li><?php echo T('Loan Allotment..'); ?></li>
     <a href="#"><img src="../images/loan_allotment_sample.webp" alt="" title="" /></a>
   </ul>
+  <p><?php echo T('Example: A *Non-Fiction*..'); ?></p>
 
-  <p><em>Example:</em> A "Non-Fiction" book might have a 1-day default loan, but if a Faculty member is allowed 5 days, the due date will be based on the <strong>5-day Loan Allotment</strong>.</p>
+  <p><b><?php echo T('Minimum Due Date:'); ?></b><br>
+  <?php echo T('A non-fiction checked out..'); ?></p>
 
-  <p><strong>Minimum Due Date:</strong><br>
-  A non-fiction checked out <em>today</em> will have a minimum due date of <strong>+1 day</strong> (i.e., return expected by tomorrow).</p>
+  <p><b><?php echo T('Closed Days Handling:'); ?></b><br>
+	<?php echo T('Due dates strictly follow the Calendar Menu:'); ?>
+  <br>
+	<?php echo T('If a calculated due date falls..'); ?>
+  </p>
 
-  <p><strong>Closed Days Handling:</strong><br>
-  Due dates strictly <em>follow the Calendar Menu</em>:<br>
-  If a calculated due date falls on a <strong>closed day</strong> (marked with a ❌ in the calendar), the system automatically moves it to the <strong>next open day</strong>.</p>
-
-  <p><strong>Barcode Input Requirements:</strong><br>
-  Barcodes must be <strong>numeric only</strong> and its length is 13-digit.<br>
-  Letters and special characters (e.g., A, #, -) are <strong>not accepted</strong>.<br>
-  You may manually type the barcode if the printed one is damaged — the system will automatically handle zero padding if needed, i.e. 1234 --> 0000000001234 </p>
+  <p><b><?php echo T('Barcode Input Requirements:'); ?></b><br>
+  <?php echo T('Barcodes must be numeric..'); ?><br>
+	<?php echo T('Letters and special..'); ?><br>
+   </p>
 </div>
 
 <?php
