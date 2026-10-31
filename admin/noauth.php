@@ -20,7 +20,7 @@
 </style>
 <section id='welcomediv' >
 <?php
-		echo '<h3 >To-do List Section</h3>';
+		echo '<h3 >' . T("To-do List Section") . '</h3>';
 		echo '<p class="info" style="text-align: center;">🧑 ' . T("Welcome") . $_SESSION["username"] . T(", you are now logged in.") . '</p>';
 	?>
 	
