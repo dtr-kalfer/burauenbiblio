@@ -23,8 +23,7 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 
 <div id="bulkDel_formDiv" style="display: block;">
   <fieldset>
-    <p>To get better result similar to example, use space between call number <br>
-    i.e. FIL 332.10959 C11 2020 and also fill up <input type="button" name="other details" id="toggle_display" value="other details" /> for every biblio records.</p><br>
+    <p><?php echo T("To get better result simi.."); ?><input type="button" name="other details" id="toggle_display" value="other details" /> <?php echo T("for every biblio records."); ?></p><br>
 
     <form name="print_bibid" method="post"
           hx-post="print_bibid.php"
@@ -32,33 +31,33 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
           hx-swap="innerHTML"
           onsubmit="return confirm('Print Bibid ID?');">
 
-      <p><b>Enter two BibID below:</b></p><br>
-      <label for="bibid_fpdf">bibID #1</label>
+      <p><b><?php echo T("Enter two BibID below:") ?></b></p><br>
+      <label for="bibid_fpdf"><?php echo T("bibid") . " #1"; ?></label>
       <input type="text" name="bibid_fpdf"
              oninput="this.value = this.value.replace(/\D/g, '').slice(0, 5)"
              pattern="\d*" maxlength="5" required />
-      <label for="bibid_fpdf2">bibID #2</label>
+      <label for="bibid_fpdf2"><?php echo T("bibid") . " #2"; ?></label>
       <input type="text" name="bibid_fpdf2"
              oninput="this.value = this.value.replace(/\D/g, '').slice(0, 5)"
              pattern="\d*" maxlength="5" required />
 
-      <p><b>Select Card Type:</b></p><br>
+      <p><b><?php echo T("Select Card Type:"); ?></b></p><br>
       <select name="card_type">
-        <option value="author" selected>Author Card</option>
-        <option value="title">Title Card</option>
-        <option value="subject">Subject Card</option>
+        <option value="author" selected><?php echo T("Author"); ?> Card</option>
+        <option value="title"><?php echo T("Title"); ?> Card</option>
+        <option value="subject"><?php echo T("Subject"); ?> Card</option>
       </select>
 
-      <input type="submit" value="Print Bibid ID" />
+      <input type="submit" value="<?php echo T("Print BibId ID"); ?>" />
     </form>
 
     <div id="sample_card_catalog">
-    <h3>Sample Printout</h3>
+    <h3><?php echo T("Sample Printout"); ?></h3>
     <img id="" src="../images/card_catalog_sample3.avif" alt="sample card catalog" />
     </div>
 
     <div id="other_details" style="display: none;">
-		<h3>Completing these info. will fill out the details of your Printed Card Catalog.</h3>
+		<h3><?php echo T("Completing these info..") ?></h3>
       <table border="1" cellpadding="5" cellspacing="0">
       <thead>
         <tr>
