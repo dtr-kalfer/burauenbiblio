@@ -882,6 +882,7 @@ $trans["NothingFoundError"] = "Nothing Found error";
 $trans["Number of Attendees"] = "Number of Attendees";
 $trans["NumberOfLines"] = "Number of lines per Item";
 $trans["NumberOnHand"] = "Nunber on hand";
+$trans["Number of Hits: "] = "Number of Hits: ";
 // O
 $trans["of"] = "of";
 $trans["OFF"] = "OFF";
@@ -1001,6 +1002,8 @@ $trans["ReportMakingVariant"] = "Unexpected error making report variant: %error%
 $trans["ReportNoLoadReport"] = "Couldn't load cached report: %name%";
 $trans["ReportNoParams"] = "Tried to make report variant without cached params";
 $trans["Reports"] = "Reports";
+$trans["Repository"] = "Repository";
+
 $trans["reportsDesc"] = "Choose from one of the following links to run a report.";
 $trans["ReportSelection"] = "Report Selection";
 $trans["Reqd"] = "Reqd";
