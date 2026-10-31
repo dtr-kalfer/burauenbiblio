@@ -404,7 +404,9 @@ var mf = {
     $('#srchRslts tr:odd td').addClass('altBG');
     $('#srchRslts tr:even td').addClass('altBG2');
 
-    $('.rsltQuan').html(`Showing ${start + 1} to ${end} of ${results.length}`);
+		$('.rsltQuan').html(`<?= T('Showing') ?> ${start + 1} <?= T('to') ?> ${end} <?= T('of') ?> ${results.length}`);
+
+    // $('.rsltQuan').html(`Showing ${start + 1} to ${end} of ${results.length}`);
 
     $('#srchRslts a').off('click').on('click', function (e) {
       e.preventDefault();
