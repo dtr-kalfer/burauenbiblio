@@ -33,22 +33,22 @@ if ($stmt['success'] === true) {
     <!-- Export Form Control -->
     <div style="margin-bottom: 15px; background: #fff; padding: 15px; border: 1px solid #ccc; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
         <div>
-            <label for="export_month"><strong>Export Month:</strong></label>
+            <label for="export_month"><strong><?php echo T("Export Month:"); ?></strong></label>
             <input type="month" id="export_month" name="export_month" value="<?= date('Y-m') ?>">
         </div>
 
         <div>
-            <label for="export_limit"><strong>Set Limit:</strong></label>
+            <label for="export_limit"><strong><?php echo T("Set Limit:"); ?></strong></label>
             <select id="export_limit" name="export_limit">
-                <option value="30" selected>Top 30</option>
-                <option value="50">Top 50</option>
-                <option value="100">Top 100</option>
-                <option value="500">Top 500</option>
-                <option value="all">All Books (No Limit)</option>
+                <option value="30" selected><?php echo T('Top 30'); ?></option>
+                <option value="50"><?php echo T('Top 50'); ?></option>
+                <option value="100"><?php echo T('Top 100'); ?></option>
+                <option value="500"><?php echo T('Top 500'); ?></option>
+                <option value="all"><?php echo T('All Books (No Limit)'); ?></option>
             </select>
         </div>
 
-        <button type="button" onclick="triggerJsonExport()">Export to JSON</button>
+        <button type="button" onclick="triggerJsonExport()"><?php echo T("Export to JSON"); ?></button>
     </div>
 
     <table border="1" cellpadding="8" cellspacing="0" style="width: 100%;">
@@ -57,16 +57,16 @@ if ($stmt['success'] === true) {
                 <th colspan="5">
                     <?php 
                         echo "<h2>" . T("top30active") . " (" . $startFormatted . " - " . $endFormatted . ") </h2>";
-                        echo '<p style="text-align: center;">' . $stmt['message'] . '</p>';
+                        echo '<p style="text-align: center;">' . T("Retrieved from: Circulation activity") . '</p>';
                     ?>
                 </th>
             </tr>
             <tr>
-                <th>Rank</th>
-                <th>Title</th>
-                <th>Author</th>
-                <th>ISBN</th>
-                <th>Count</th>
+                <th><?php echo T("Rank"); ?></th>
+                <th><?php echo T("Title"); ?></th>
+                <th><?php echo T("Author"); ?></th>
+                <th><?php echo T("ISBN"); ?></th>
+                <th><?php echo T("Count"); ?></th>
             </tr>
         </thead>
         <tbody>
@@ -88,7 +88,7 @@ function triggerJsonExport() {
     const limitVal = document.getElementById('export_limit').value;
     
     if (!monthVal) {
-        alert('Please select a valid month (YYYY-MM).');
+        alert('<?php echo T("Please select a valid month (YYYY-MM)."); ?>');
         return;
     }
     
