@@ -121,7 +121,7 @@ $total = count($rows);
   📚 <?php echo T("List of tagged items for review"); ?> 📚
 </h2>
 <p class="totalc">
-  Total tagged items: <?php echo $total; ?>
+  <?php echo T("Total tagged items:") . ' ' . $total; ?>
   <br />
   <small style="font-weight: normal; font-size: 0.85em; color: #c00;">
     💡 <?php echo T("Click a BibID or Title to view the full record."); ?>
