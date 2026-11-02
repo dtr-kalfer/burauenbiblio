@@ -584,7 +584,6 @@ var ni = {
                   countRendered++;
                   html = '<fieldset style="border: 1px solid black;">';
                   html += '<form role="form" class="hitForm"><table border="0">';
-									html += '<p><span style="border: text-align: right;" id="' + id + '"><input type="button" value="<?php echo T("This One"); ?>" /></span></p>';
                   html += '<tr><td><?php echo T("LCCN"); ?></td><td>' + (hitData['010a'] || '') + '</td></tr>';
                   html += '<tr><td><?php echo T("ISBN"); ?></td><td>' + (hitData['020a'] || '') + '</td></tr>';
                   html += '<tr><td><?php echo T("Title"); ?></td><td>' + (hitData['245a'] || '') + '</td></tr>';
@@ -593,6 +592,7 @@ var ni = {
                   html += '<tr><td><?php echo T("Location"); ?></td><td>' + (hitData['260a'] || '') + '</td></tr>';
                   html += '<tr><td><?php echo T("Date"); ?></td><td>' + (hitData['260c'] || '') + '</td></tr>';
                   var id = 'host' + hostIndex + '-hit' + hitIndex;
+									html += '<p><span style="border: text-align: right;" id="' + id + '"><input type="button" value="<?php echo T("This One"); ?>" /></span></p>';									
                   html += '</table></form>';
                   html += '</fieldset>';
                   $('#choiceSpace').append(html);
