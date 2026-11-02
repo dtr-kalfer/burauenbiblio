@@ -184,13 +184,11 @@ You may also customize or extend the entries to align with your own country’s 
 
 ### 📌 Z39.50 Online Metadata Retrieval
 
-![metadata retrieval](./readme_assets/metadata_retrieval3.avif "metadata retrieval")
+![metadata retrieval](./readme_assets/british_library_search01.avif "metadata retrieval")
 
 Z39.50 is a client-server information retrieval protocol standardized for communication between computer systems.
 
 It is commonly used to search remote catalogs and retrieve bibliographic records, including records encoded in MARC formats. 
-
-![metadata retrieval](./readme_assets/metadata_retrieval2.avif "metadata retrieval")
 
 BurauenBiblio requires PHP/YAZ extension installed and enabled for the Z39.50 protocol to work.
 
@@ -389,7 +387,7 @@ On the backend, parts of the **legacy procedural PHP code** have been refactored
 
 This modernization effort builds on the original **OpenBiblio system**, tailored to the needs of libraries in the **Philippines**, with a strong focus on **performance, compatibility, and ease of use**.
 
-If you find this project valuable, please support my work.
+If you find this project valuable, please consider supporting my work.
 
 ## 🔖 Attributions
 
