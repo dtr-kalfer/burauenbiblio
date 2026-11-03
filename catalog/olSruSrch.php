@@ -13,7 +13,7 @@ $hits = array();
 $ttlHits = 0;
 $maxHits = 10;
 foreach ($postVars['hosts'] as $host) {
-        $query = '?version=1.1&operation=searchRetrieve&query='.urlencode($_POST['lookupVal']).'&startRecord=1&maximumRecords='.$maxHits.'5&recordSchema=marcxml';
+        $query = '?version=1.1&operation=searchRetrieve&query='.urlencode($_POST['lookupVal']).'&startRecord=1&maximumRecords='.$maxHits.'&recordSchema=marcxml';
         $sruResults = file_get_contents('http://'.$host['host'].':'.$host['port'].'/'.$host['db'].$query);
         $hits[] = $sruResults;
         $xml = new SimpleXMLElement($sruResults);
