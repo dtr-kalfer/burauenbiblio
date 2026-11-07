@@ -195,16 +195,16 @@
         $subFlds = array();
       }
       elseif (preg_match("/^\(3,([^)]*)\)\(3,([^)]*)\)\(3,([^)]*)\)$/", $tagpath, $res)) {
-      $theTag = trim($res[1]);
-      $subfield = trim($res[3]);
+			$theTag = trim($res[1]);
+			$subfield = trim($res[3]);
 
-      $subFlds[$subfield] = (string)$data;
+			$subFlds[$subfield] = (string)$data;
 
-      $data = trim(
-          htmlspecialchars((string)$data, ENT_QUOTES, 'UTF-8')
-      );
+			$data = trim(
+					htmlspecialchars((string)$data, ENT_QUOTES, 'UTF-8')
+			);
 
-      $fldId = $theTag . $subfield;
+			$fldId = $theTag . $subfield;
 
         if ($fldId == '100a')
           $fld100a = true;
@@ -224,23 +224,23 @@
             }
             break;
 
-        case '650':
-            if ($res[3] == 'a') {
-                if (!isset($subjectCnt)) {
-                    $subjectCnt = 0;
-                }
+				case '650':
+						if ($res[3] == 'a') {
+								if (!isset($subjectCnt)) {
+										$subjectCnt = 0;
+								}
 
-                $subjectKey = '650a' . $subjectCnt;
-                $rslt[$subjectKey] = ($rslt[$subjectKey] ?? '') . $data;
+								$subjectKey = '650a' . $subjectCnt;
+								$rslt[$subjectKey] = ($rslt[$subjectKey] ?? '') . $data;
 
-                $subjectCnt++;
-            } else {
-                if (!is_numeric($res[3]) && isset($subjectCnt) && $subjectCnt > 0) {
-                    $subjectKey = '650a' . ($subjectCnt - 1);
-                    $rslt[$subjectKey] = ($rslt[$subjectKey] ?? '') . ', ' . $data;
-                }
-            }
-            break;
+								$subjectCnt++;
+						} else {
+								if (!is_numeric($res[3]) && isset($subjectCnt) && $subjectCnt > 0) {
+										$subjectKey = '650a' . ($subjectCnt - 1);
+										$rslt[$subjectKey] = ($rslt[$subjectKey] ?? '') . ', ' . $data;
+								}
+						}
+						break;
 
           default:
             $rslt[$fldId] .= $data;
