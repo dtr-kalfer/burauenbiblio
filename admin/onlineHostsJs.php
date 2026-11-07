@@ -8,26 +8,17 @@
 const serviceSelect = document.getElementById('service');
 
 function updateHostServiceFields() {
-
     const service = document.getElementById('service');
     const sruNote = document.getElementById('sruConfigNote');
-
     if (!service) {
         return;
     }
-
     const isSru = service.value.trim().toUpperCase() === 'SRU';
-
     document.querySelectorAll('[data-yaz-only="1"]').forEach(function(field) {
-
         field.readOnly = isSru;
-
         field.classList.toggle('sru-managed-field', isSru);
-
         field.setAttribute('aria-readonly', isSru ? 'true' : 'false');
-
     });
-
     if (sruNote) {
         sruNote.hidden = !isSru;
     }
@@ -75,11 +66,8 @@ $(document).ready(function () {
 	var hed = new Hed();
 });
 
-
-
 if (serviceSelect) {
     serviceSelect.addEventListener('change', updateHostServiceFields);
-
     updateHostServiceFields();
 }
 
