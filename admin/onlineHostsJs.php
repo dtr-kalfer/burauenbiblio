@@ -1,9 +1,37 @@
 <script language="JavaScript" >
 /* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
- * See the file COPYRIGHT.html for more details.
+ * See the file COPYRIGHT.html for more details. 
  */
 // JavaScript Document
 "use strict";
+
+const serviceSelect = document.getElementById('service');
+
+function updateHostServiceFields() {
+
+    const service = document.getElementById('service');
+    const sruNote = document.getElementById('sruConfigNote');
+
+    if (!service) {
+        return;
+    }
+
+    const isSru = service.value.trim().toUpperCase() === 'SRU';
+
+    document.querySelectorAll('[data-yaz-only="1"]').forEach(function(field) {
+
+        field.readOnly = isSru;
+
+        field.classList.toggle('sru-managed-field', isSru);
+
+        field.setAttribute('aria-readonly', isSru ? 'true' : 'false');
+
+    });
+
+    if (sruNote) {
+        sruNote.hidden = !isSru;
+    }
+}
 
 class Hed extends Admin {
     constructor () {
@@ -14,7 +42,8 @@ class Hed extends Admin {
     				'editHdr':<?php echo '"'.T("Edit Hosts").'"'; ?>,
     				'newHdr':<?php echo '"'.T("Add New Host").'"'; ?>,
     				};
-    	var listFlds = {'seq':'number',
+    	var listFlds = {'id':'text',
+				'seq':'number',
     					'active':'center',
     					'host':'text',
     					'name':'text',
@@ -45,5 +74,13 @@ class Hed extends Admin {
 $(document).ready(function () {
 	var hed = new Hed();
 });
+
+
+
+if (serviceSelect) {
+    serviceSelect.addEventListener('change', updateHostServiceFields);
+
+    updateHostServiceFields();
+}
 
 </script>

@@ -5,7 +5,6 @@
  
   $cache = NULL;
   require_once("../shared/common.php");
-
   $tab = "admin";
   $nav = "onlineHosts";
   $focus_form_name = "editForm";
@@ -29,6 +28,7 @@
 	<thead>
   <tr>
     <th colspan="1">&nbsp;</th>
+		 <th>Host ID</th>
     <th><?php echo T("Sequence"); ?></th>
     <th><?php echo T("Active"); ?></th>
     <th><?php echo T("Host URL"); ?></th>
@@ -78,30 +78,56 @@
   <tr>
     <td><label for="db"><?php echo T("Port"); ?>:</label></td>
     <td>
-      <input id="port" name="port" type="number" size="5" min="11" pattern="[0-9]{1,5}" required aria-required="true" />
+<input
+    id="port"
+    name="port"
+    type="number"
+    size="5"
+    min="11"
+    pattern="[0-9]{1,5}"
+    required
+    aria-required="true"
+    
+/>
 			<span class="reqd">*</span>    
     </td>
   </tr>
   <tr>
     <td><label for="db"><?php echo T("Database"); ?>:</label></td>
     <td>
-      <input id="db" name="db" type="text" size="20" required aria-required="true" />
+<input id="db" name="db" type="text"
+       size="20" required aria-required="true"
+        />
 			<span class="reqd">*</span>    
     </td>
   </tr>
   <tr>
     <td><label for="syntax"><?php echo T("Syntax"); ?>:</label></td>
     <td>
-      <input id="syntax" name="syntax" type="text" size="20" required aria-required="true" />
+<input id="syntax" name="syntax" type="text"
+       size="20" required aria-required="true"
+        />
 			<span class="reqd">*</span>    
     </td>
   </tr>
-  <tr>
-    <td><label for="service"><?php echo T("Service"); ?>:</label></td>
+<tr>
     <td>
-		<select  id="service" name="service" >to be filled by server</select>
+        <label for="service"><?php echo T("Service"); ?>:</label>
     </td>
-  </tr>
+    <td>
+        <select id="service" name="service">
+            <!-- to be filled by server -->
+        </select>
+
+        <div id="sruConfigNote" class="sru-config-note" hidden>
+            <strong>SRU Configuration:</strong>
+            Endpoint, SRU version, MARCXML schema, CQL indexes,
+            relations, and request settings are managed in
+            <code>sru_providers.php</code>.
+            Please refer to that file when configuring SRU providers. Values contained here (SRU) are mostly for indexing and reference when SRU service is selected. Make sure json *host_id* for every provider match accordingly.
+        </div>
+    </td>
+</tr>
   <tr>
     <td><label for="seq"><?php echo T("Sequence"); ?>:</label></td>
     <td>
@@ -120,13 +146,15 @@
   <tr>
     <td><label for="user"><?php echo T("Userid"); ?>:</label></td>
     <td>
-      <input id="user" name="user" type="text" size="20" />
+<input id="user" name="user" type="text"
+       size="20" data-yaz-only="1" />
     </td>
   </tr>
   <tr>
     <td><label for="pw"><?php echo T("Password"); ?>:</label></td>
     <td class="primary inptFld">
-      <input id="pw" name="pw" type="text" size="20" />
+<input id="pw" name="pw" type="text"
+       size="20" data-yaz-only="1" />
     </td>
   </tr>
   <tr>
@@ -149,13 +177,14 @@
   </tr>
   </tfoot>
 </table>
+
 </fieldset>
 </form>
 </div>
-
+<p>Note: Set only one (1) active endpoints at a time. Simultaneous search still needs improvement</p>
+<p>Note: To add more your SRU host, see ./config/sru_providers.php --F. Tumulak</p>
 <?php
   require_once(REL(__FILE__,'../shared/footer.php'));
-	
 	require_once(REL(__FILE__, "../classes/JSAdmin.php"));
 	require_once(REL(__FILE__, "../admin/onlineHostsJs.php"));
 ?>	
