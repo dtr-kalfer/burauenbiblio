@@ -3,6 +3,15 @@
     $marcFlds = array();
     $subFlds = array();
 
+    // Configure YAZ RPN search
+    $srchType = 'rpn';
+    $query = $zQuery ?? '';
+
+    if (empty($query)) {
+        error_log("YAZ ERROR: Z39.50 query is empty.");
+    }
+
+
     #### pagination search limits
     $startAt = 1;
     $nmbr = isset($maxHits) ? (int)$maxHits : 25;
@@ -25,15 +34,8 @@
       }
       $aSvc = $postVars['hosts'][$ptr]['service'] ?? 'Z3950';
 
-      if ($aSvc == 'Z3950') {
-        $yazOpts['sru'] = '';
-        $srchType = 'rpn';
-        $query = $zQuery;
-      }
-      else {  // SRU/SRW
-        $yazOpts['sru'] = 'get';
-        $srchType = 'cql';
-        $query = $sQuery;
+      if ($aSvc !== 'Z3950') {
+      continue;
       }
 
       $connOK = @yaz_connect($aUrl, $yazOpts);
@@ -51,6 +53,14 @@
       @yaz_element($id[$ptr], "F");
       @yaz_range($id[$ptr], (int)$startAt, (int)$nmbr);
 
+			// error_log("=== YAZ SEARCH DEBUG ===");
+			// error_log("Host: " . $aUrl);
+			// error_log("Database: " . $postVars['hosts'][$ptr]['db']);
+			// error_log("Search type: " . var_export($srchType ?? null, true));
+			// error_log("Query: " . var_export($query ?? null, true));
+			// error_log("Z39.50 query: " . var_export($zQuery ?? null, true));
+			// error_log("========================");
+
       if (!@yaz_search($id[$ptr], $srchType, $query)) {
         $errMsg[$ptr] = "Failed to submit search query to " . ($postVars['hosts'][$ptr]['name'] ?? $aUrl);
         $hits[$ptr] = 0;
@@ -63,18 +73,19 @@
       $timeout = 10; // Cap at 10s to prevent browser AJAX hanging
     }
     $waitOpts = array('timeout' => $timeout);
-  
+	
     @yaz_wait($waitOpts);
 
     $ttlHits = 0;
+		
     for ($i=0; $i<$numHosts; $i++) {
-      if (empty($id[$i])) {
-        $hits[$i] = 0;
-        if (empty($errMsg[$i])) {
-          $errMsg[$i] = "Host not reachable";
-        }
+    $service = strtoupper(trim(
+        $postVars['hosts'][$i]['service'] ?? ''
+    ));
+
+    if ($service !== 'Z3950') {
         continue;
-      }
+    }
 
       $error = yaz_error($id[$i]);
       $errno = yaz_errno($id[$i]);
