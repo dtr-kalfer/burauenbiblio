@@ -75,7 +75,7 @@
     #### Second search criteria line
     $zVal2 = ''; $sVal2 = ''; $sruQry2 = '';
     if (!empty($lookupVal2)) {
-      if ($srchBy2 == "1004") {
+      if ($srchBy2 == "1003") {
         $srchByName2 = 'Author';
         $sruQry2 = "$sruIndexTerm.author=";
       } else if ($srchBy2 == "1016") {
@@ -176,4 +176,3 @@
     if (!empty($sVal3)) $sQuery .= " and $sruQry3$sVal3";
     if (!empty($sVal4)) $sQuery .= " and $sruQry4$sVal4";
     if (!empty($sVal5)) $sQuery .= " and $sruQry5$sVal5";
-
