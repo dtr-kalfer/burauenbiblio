@@ -182,11 +182,14 @@ The included SQL file provides MARC tag entries tailored for **Philippine-compat
 
 You may also customize or extend the entries to align with your own country’s library cataloging standards or institutional requirements via **Biblio Fields** setup.
 
-### 📌 Z39.50 Online Metadata Retrieval
+### 📌 SRU and Z39.50 Online Metadata Retrieval
 
-![metadata retrieval](./readme_assets/british_library_search01.avif "metadata retrieval")
+![metadata retrieval](./readme_assets/sample_sru.avif "metadata retrieval")
 
-Z39.50 is a client-server information retrieval protocol standardized for communication between computer systems.
+- **Generic Library SRU integration** – Added support for searching a generic library catalogue through its SRU endpoint using MARCXML records.
+- **Provider-based SRU configuration** - Manage assorted SRU providers independently, including endpoints, SRU versions, record schemas, CQL indexes, relations, and request settings. (Current SRU endpoints included are few commonly available and public online).
+
+Online catalog searches now determine whether to use Z39.50 or SRU based on each host's configured service, allowing both protocols to coexist.
 
 It is commonly used to search remote catalogs and retrieve bibliographic records, including records encoded in MARC formats. 
 
