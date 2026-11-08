@@ -185,6 +185,7 @@ You may also customize or extend the entries to align with your own country’s 
 ### 📌 SRU and Z39.50 Online Metadata Retrieval
 
 ![metadata retrieval](./readme_assets/sample_sru.avif "metadata retrieval")
+![metadata retrieval](./readme_assets/sample_sru_2.avif "metadata retrieval")
 
 - **Generic Library SRU integration** – Added support for searching a generic library catalogue through its SRU endpoint using MARCXML records.
 - **Provider-based SRU configuration** - Manage assorted SRU providers independently, including endpoints, SRU versions, record schemas, CQL indexes, relations, and request settings. (Current SRU endpoints included are few commonly available and public online).
