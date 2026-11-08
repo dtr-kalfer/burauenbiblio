@@ -12,8 +12,8 @@ return json_decode(<<<'JSON'
 {
     "providers": {
         "library_of_congress": {
-            "host_id": 27,
-            "name": "Library of Congress",
+            "host_id": 24,
+            "name": "Library of Congress - SRU",
             "enabled": true,
             "protocol": "SRU",
             "transport": "CURL",
@@ -62,8 +62,8 @@ return json_decode(<<<'JSON'
             }
         },
         "deutsche_nationalbibliothek": {
-            "host_id": 29,
-            "name": "Deutsche Nationalbibliothek (DNB)",
+            "host_id": 25,
+            "name": "Deutsche Nationalbibliothek (DNB) - SRU",
             "enabled": true,
             "protocol": "SRU",
             "transport": "CURL",
@@ -112,8 +112,8 @@ return json_decode(<<<'JSON'
             }
         },
         "national_library_of_finland_melinda": {
-            "host_id": 30,
-            "name": "National Library of Finland / Melinda",
+            "host_id": 26,
+            "name": "National Library of Finland / Melinda - SRU",
             "enabled": true,
             "protocol": "SRU",
             "transport": "CURL",
@@ -162,8 +162,8 @@ return json_decode(<<<'JSON'
             }
         },
         "k10plus_union_catalogue": {
-            "host_id": 31,
-            "name": "K10plus Union Catalogue",
+            "host_id": 27,
+            "name": "K10plus Union Catalogue - SRU",
             "enabled": true,
             "protocol": "SRU",
             "transport": "CURL",
@@ -215,6 +215,3 @@ return json_decode(<<<'JSON'
 }
 JSON
 , true);
-
-
-

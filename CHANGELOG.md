@@ -19,6 +19,21 @@ Guide:
 	More details here [php2shell](https://www.php2shell.com/)
 
 ## [unreleased] yyyy-mm-dd
+
+### Added SRU Integration and Online Catalog Improvements
+- **Generic Library SRU integration** – Added support for searching a generic library catalogue through its SRU endpoint using MARCXML records.
+- **Provider-based SRU configuration** – Introduced `./catalog/config/sru_providers.php` to manage assorted SRU providers independently, including endpoints, SRU versions, record schemas, CQL indexes, relations, and request settings. (Current SRU endpoints included are few commonly available and public online).
+- **Multiple SRU providers** – Added support for configuring multiple SRU repositories separate from the existing Z39.50 hosts.
+- **SRU MARCXML parser** – Added record parsing and normalization to map retrieved MARCXML records into BurauenBiblio's existing cataloging fields.
+- **Online Hosts ID column** – Added the database host ID to the Online Hosts administration list, making it easier to associate database entries with their corresponding SRU provider configurations.
+
+### Improved
+- **Per-host search protocol selection** – Online catalog searches now determine whether to use Z39.50 or SRU based on each host's configured service, allowing both protocols to coexist.
+- **SRU query generation** – Added provider-specific CQL index and relation mapping for translating catalog search criteria into SRU queries.
+- **Search request handling** – Implemented cURL-based SRU requests with configurable timeouts, result limits, and MARCXML response handling.
+- **YAZ/Z39.50 compatibility** – Improved the existing YAZ search handling to preserve its functionality alongside the new SRU implementation.
+- **Online Hosts administration** – Added an SRU configuration notice and made YAZ-specific fields read-only when an SRU service is selected.
+
 - update: burauenbib_sample_clean.sql with cleaned/tested z39.50 host list.
 - Updated english translation keys to support other languages.
 - Update: z39.50 UI retrieved result / english translation keys.
