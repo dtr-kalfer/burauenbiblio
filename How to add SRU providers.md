@@ -72,5 +72,5 @@ BurauenBiblio supports additional SRU repositories through `./catalog/config/sru
 - Do not copy another provider's CQL indexes without verifying compatibility.
 - Keep credentials and other sensitive connection details out of publicly distributed configuration files.
 - Existing Z39.50 providers can continue using their original host configuration and YAZ search mechanism.
-- An SRU provider's endpoint, version, schema, indexes, relations, and request settings are managed through `sru_providers.json`, not the YAZ-specific fields in Online Hosts.
+- An SRU provider's endpoint, version, schema, indexes, relations, and request settings are managed through `./catalog/config/sru_providers.php`, not the YAZ-specific fields in Online Hosts.
 - Only one (1) active online host at a time. (Concurrent multiple host search not supported yet)
