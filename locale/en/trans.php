@@ -1,8 +1,4 @@
 <?php
-/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
- * See the file COPYRIGHT.html for more details.
- */
-
 /**
  * Translation table for American English (en).
  * typically accessed using the T("...") function
@@ -23,12 +19,9 @@ $trans["headerDateFormat"]	 = "m.d.Y";
 #* Common translation text, arranged alphabetically
 #****************************************************************************
 
-// these are trans immediately inserted, it still needs to get sorted
-
-// "
 $trans["'%t%' is not a string"] = "'%t%' is not a string";
 $trans["'%type%' must be 'order_by'"] = "'%type%' must be 'order_by'";
-// %
+
 $trans["%count% bookings in cart."] = "%count% bookings in cart.";
 $trans["%count% calendars."] = "%count% calendars.";
 $trans["%count% copies with broken status references"] = "%count% copies with broken status references";
@@ -46,14 +39,12 @@ $trans["%count% unattached copy status history records"] = "%count% unattached c
 $trans["%count% unattached images"] = "%count% unattached images";
 $trans["%count% unattached MARC fields"] = "%count% unattached MARC fields";
 $trans["%count% unattached MARC subfields"] = "%count% unattached MARC subfields";
-// (
+
 $trans["(enter 0 for unlimited)"] = "(enter 0 for unlimited)";
 $trans["(when available)"] = "(when available)";
-// ,
 $trans[", you are now logged in."] = ", you are now logged in.";
-// -
 $trans["-- Select Collection --"] = "-- Select Collection --";
-// A
+
 $trans["A valid money amount"] = "A valid money amount";
 $trans["A non-fiction checked out.."] = "A non-fiction checked out today will have a minimum due date of +1 day (i.e., return expected by tomorrow).";
 $trans["About"] = "About";
@@ -522,7 +513,7 @@ $trans["Friday"] = "Friday";
 $trans["From Year"] = "From year";
 $trans["Full Name"] = "Full Name";
 $trans["Function"] = "Function";
-// G
+
 $trans["Gaining Site"] = "Gaining Site";
 $trans["Generate Report"] = "Generate Report";
 $trans["getQuoted() called with empty %str%"] = "getQuoted() called with empty %str%";
@@ -530,7 +521,7 @@ $trans["Go Back"] = "Go Back";
 $trans["Grade"] = "Grade";
 $trans["Grade Level"] = "Grade Level";
 $trans["Growth"] = "Growth";
-// H
+
 $trans["has been added"] = "has been added";
 $trans["has been added."] = "has been added.";
 $trans["has been deleted"] = "has been deleted";
@@ -662,7 +653,6 @@ $trans["Legal last name"] = "Legal last name";
 $trans["Legal Last Name column is missing from Members table"] = "Legal Last Name column is missing from Members table";
 $trans["Length"] = "Length";
 $trans["Letters and special.."] = "Letters and special characters (e.g., A, #, -) are not accepted.";
-
 $trans["Library"] = "Library";
 $trans["Library Address"] = "Library Address";
 $trans["Library Attendance"] = "Library Attendance";
@@ -717,7 +707,7 @@ $trans["lookup_rqdNote"]	= "required field";
 $trans["lookup_tooManyHits"] = "Too many hits!";
 $trans["lookup_yaz_setup_failed"] = "YAZ setup failed";
 $trans["Losing Site"] = "Losing Site";
-// M
+
 $trans["Main Body"] = "Main Body";
 $trans["Make Booking"] = "Make Booking";
 $trans["Make booking"] = "Make booking";
@@ -759,9 +749,10 @@ $trans["Material_type has empty image file name"] = "Material_type has empty ima
 $trans["Max Fine"] = "Max Fine";
 $trans["Maximum Hits"] = "Maximum Hits";
 $trans["Maximum to transfer"] = "Maximum to transfer";
-$trans["mbrFldsMustAddSite"] = "You must %link% add a site%end% before you can edit members.";
+$trans["mbrFldsMustAddSite"] = "You must %link% add a site %end% before you can edit members.";
 $trans["mbrid"] = "Member Id";
 $trans["Media"] = "Media";
+
 $trans["Media Type"] = "Media Type";
 $trans["Media Types"] = "Media Types";
 $trans["mediaListNoteMsg"] = "media List Note Msg";
@@ -804,6 +795,7 @@ $trans["modelBookingsNotEnoughCopies"] = "Not enough copies are available for th
 $trans["modelBookingsNotOnLoan"] = "The copy with barcode %barcode% is restricted, and cannot be checked out.";
 $trans["modelBookingsPayFinesFirst"] = "Checkouts blocked until all fines are paid.";
 $trans["modelBookingsSetForOtherBooking"] = "The copy with barcode %barcode% is set to be checked out for another booking in this batch.";
+
 $trans["Monday"] = "Monday";
 $trans["Month"] = "Month";
 $trans["Monthly Book Checkouts and Check-ins"] = "Monthly Book Checkouts and Check-ins";
@@ -811,7 +803,7 @@ $trans["More info"] = "More info";
 $trans["Must be numeric"] = "Must be numeric";
 $trans["Must Returns"] = "Must Returns";
 $trans["My Account"] = "My Account";
-// N
+
 $trans["N"] = "N";
 $trans["Name"] = "Name";
 $trans["Navigation"] = "Navigation";
@@ -869,6 +861,7 @@ $trans["Not enough arguments given to mkSQL()."] = "Not enough arguments given t
 $trans["Not on loan/on hold"] = "Not on loan/on hold";
 $trans["NotAllowed"] = "Not permitted, total owed exceeds limit.";
 $trans["noTbl"] = "Table not found";
+
 $trans["Note"] = "Note";
 $trans["Note - private"] = "Private Note";
 $trans["Note - public"] = "Public Note";
@@ -883,7 +876,7 @@ $trans["Number of Attendees"] = "Number of Attendees";
 $trans["NumberOfLines"] = "Number of lines per Item";
 $trans["NumberOnHand"] = "Nunber on hand";
 $trans["Number of Hits: "] = "Number of Hits: ";
-// O
+
 $trans["of"] = "of";
 $trans["OFF"] = "OFF";
 $trans["old search results"] = "old search results";
@@ -917,7 +910,7 @@ $trans["Overdue"] = "Overdue";
 $trans["Overdue Calc. (Library work days only)"] = "Overdue Calc. (Library work days only)";
 $trans["Overdue Items"] = "Overdue Items";
 $trans["Overdue Notices"] = "Overdue Notices";
-// P
+
 $trans["Packing List"] = "Packing List";
 $trans["Packing Slips"] = "Packing Slips";
 $trans["Pages"] = "Pages";
@@ -970,13 +963,13 @@ $trans["Publication Location"] = "Publication Location";
 $trans["Publisher"] = "Publisher";
 $trans["Pull List"] = "Pull List";
 $trans["pwd"] = "pwd";
-// Q
+
 $trans["QR code"] = "QR Code";
 $trans["QR Gen."] = "QR Gen.";
 $trans["QR Generator"] = "QR Generator";
 $trans["QueryBeforeConnect"] = "Tried to make database query before connection.";
 $trans["QueryWrongNrRows"] = "Wrong number of result rows: expected 1, got %count%";
-// R
+
 $trans["Rank"] = "Rank";
 $trans["Re-enter"] = "Re-enter";
 $trans["Really delete booking of %item%?"] = "Are you sure you want to delete this booking of %item%?";
@@ -1044,7 +1037,7 @@ $trans["Returned"] = "Returned";
 $trans["Reverse"] = "Reverse";
 $trans["Role MUST be selected"] = "A staff member role MUST be selected";
 $trans["Rpts"] = "Rpts";
-// S
+
 $trans["Saturday"] = "Saturday";
 $trans["Sample Printout"] = "Sample Printout";
 $trans["Scan or Enter Book Barcode"] = "Scan or Enter Book Barcode:";
@@ -1157,7 +1150,7 @@ $trans["Suspended"] = "Suspended";
 $trans["Syntax"] = "Syntax";
 $trans["System Settings"] = "System Settings";
 $trans["SystemDocumentation"] = "System Documentation";
-// T
+
 $trans["Table"] = "Table";
 $trans["Table Border Color"] = "Table Border Color";
 $trans["Table Border Width"] = "Table Border Width";
@@ -1238,7 +1231,7 @@ $trans["True"] = "True";
 $trans["Try to Fix Errors"] = "Try to Fix Errors";
 $trans["Tuesday"] = "Tuesday";
 $trans["Type"] = "Type";
-// U
+
 $trans["Un-tag item"] = "Un-tag item";
 $trans["Unable to connect to a MySQL server"] = "Unable to connect to a MySQL server";
 $trans["Unable to connect to database."] = "Unable to connect to database.";
@@ -1281,7 +1274,7 @@ $trans["Username"] = "Username";
 $trans["Username already taken by another user"] = "Username already taken by another user";
 $trans["Username is required."] = "Username is required.";
 $trans["using default"] = "using default";
-// V
+
 $trans["Valid."] = "Valid.";
 $trans["validation check failed"] = "validation check failed";
 $trans["Validation Patterns"] = "Validation Patterns";
@@ -1295,7 +1288,7 @@ $trans["View Collection"] = "View Collection";
 $trans["View full record"] = "View full record";
 $trans["View member status"] = "View member status";
 $trans["View Opac"] = "View OPAC";
-// W
+
 $trans["waitForServer"] = "Wait For Server";
 $trans["WebServerInformation"] = "Web Server Information";
 $trans["Wednesday"] = "Wednesday";
@@ -1307,7 +1300,7 @@ $trans["workingDesc"] = "This area is for research & develment, use at your own 
 $trans["WorkPhone"] = "Work Phone";
 $trans["Wrong key length"] = "Wrong key length";
 $trans["Wrong Number Found error."] = "Wrong Number Found.";
-// Y
+
 $trans["Y"] = "Y";
 $trans["YAZ"] = "YAZ";
 $trans["Yes"] = "Yes";
@@ -1316,7 +1309,7 @@ $trans["You cannot delete a site that has copies attached to it."] = "You cannot
 $trans["You must settle all outstanding loans before deleting a member."] = "You must settle all outstanding loans before deleting a member.";
 $trans["You may manually type the barcode.."] = "You may manually type the barcode if the printed one is damaged — the system will automatically handle zero padding if needed, i.e. 1234 --> 0000000001234";
 $trans["Your userid has been suspended."] = "Your userid has been suspended.";
-// Z
+
 $trans["ZipCode"] = "ZipCode";
 $trans["ZipCodeExt"] = "Zip Code Ext.";
 
