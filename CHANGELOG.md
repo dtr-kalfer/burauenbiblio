@@ -20,6 +20,10 @@ Guide:
 
 ## [unreleased] yyyy-mm-dd
 
+### Restored Language Support
+- ** Added Bahasa Indonesia Language ** - Still in its dev. state
+- ** Remove other existing language ** - these will be gradually restored back, compatible with the base english language.
+
 ### Added SRU Integration and Online Catalog Improvements
 - **Generic Library SRU integration** – Added support for searching a generic library catalogue through its SRU endpoint using MARCXML records.
 - **Provider-based SRU configuration** – Introduced `./catalog/config/sru_providers.php` to manage assorted SRU providers independently, including endpoints, SRU versions, record schemas, CQL indexes, relations, and request settings. (Current SRU endpoints included are few commonly available and public online).

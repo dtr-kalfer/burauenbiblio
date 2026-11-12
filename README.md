@@ -196,6 +196,10 @@ It is commonly used to search remote catalogs and retrieve bibliographic records
 
 BurauenBiblio requires PHP/YAZ extension installed and enabled for the Z39.50 protocol to work.
 
+### 📌 Other Language Support
+![Bahasa Indonesia](./readme_assets/id_language.avif "Bahasa Indonesia")
+- ** Bahasa Indonesia ** base support (MARC tags remains in english).
+
 ### 📦 Booked Items Cart
 
 ![booked items](./readme_assets/new_bookings_menu.avif "booked items")
