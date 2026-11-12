@@ -55,13 +55,11 @@
 						<img id="libImg" width="150" height="150" />
 					</fieldset>
 				</div>
-				<!-- modify this part to add the timezone block -->
         <div id="localePage" class="block">
-					<!-- This will be fixed later to support other language -->
 					<br />
 					<br />
-          <!-- <label for="locale"><?php // echo T("Available languages"); ?></label> -->
-          <!-- <select id="locale" name="locale" ></select> -->
+						<label for="locale"><?php echo T("Available languages"); ?></label>
+						<select id="locale" name="locale" ></select>
           <br />
           <label for="charset"><?php echo T("Character Set"); ?></label>
           <input type="text" id="charset" name="charset" readonly>
@@ -72,10 +70,6 @@
           <label for="first_day_of_week"><?php echo T("First day of week"); ?></label>
           <select id="first_day_of_week" name="first_day_of_week" ></select>
         </div>
-				
-
-
-
 
 				<hr>
 				<input type="hidden" id="cat" name="cat" value="settings" />
@@ -92,8 +86,7 @@
 </div>
 
 <?php
-  	require_once(REL(__FILE__,'../shared/footer.php'));
-
+ 	require_once(REL(__FILE__,'../shared/footer.php'));
 	require_once(REL(__FILE__, "../admin/settingsJs.php"));
 ?>
 </body>
