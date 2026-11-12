@@ -196,6 +196,9 @@ It is commonly used to search remote catalogs and retrieve bibliographic records
 
 BurauenBiblio requires PHP/YAZ extension installed and enabled for the Z39.50 protocol to work.
 
+📌 See [How to add SRU providers.md](./How to add SRU providers.md) for info in adding SRU providers.
+📌 See [how to install yaz into burauenbiblio container.md](./how to install yaz into burauenbiblio container.md) for info on How to install YAZ extension.
+
 ### 📌 Other Language Support
 ![Bahasa Indonesia](./readme_assets/id_language.avif "Bahasa Indonesia")
 - ** Bahasa Indonesia ** base support (MARC tags remains in english).
