@@ -604,11 +604,11 @@ var bs = {
       });
 
       var N = bs.mediaLineCnt[hdr.material_cd];
-      var emojis = [
-        '\uD83D\uDD16<b> Call Number: </b>',
-        '\uD83D\uDC68\u200D\uD83D\uDCBC<b> Author: </b>',
-        '\uD83D\uDCD9<b> Title: </b>'
-      ];
+			var emojis = [
+				'🔖<b> <?php echo T('Call Number'); ?>: </b>',
+				'👨‍💼<b> <?php echo T('Author'); ?>: </b>',
+				'📖<b> <?php echo T('Title'); ?>: </b>'
+			];
 
       html += '<td id="itemInfo">\n';
       for (var k = 0; k < N && k < lines.length; k++) {
