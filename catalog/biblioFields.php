@@ -9,19 +9,32 @@
 	require_once(REL(__FILE__, "../model/Collections.php"));
 	require_once(REL(__FILE__, "../functions/inputFuncs.php"));
 
-		function getlabel($f) {
-			global $LOC;
-			$label = "";
-			if ($f['label'] != "") {
-				$label = $f['label'];
-			} elseif ($f['subfield'] != "") {
-				$idx = sprintf("%03d$%s", $f['tag'], $f['subfield']);
-				$label = $LOC->getMarc($idx);
-			} else {
-				$label = $LOC->getMarc($f['tag']);
-			}
-			return $label;
-		}
+function getlabel($f) {
+    global $LOC;
+
+    // Use the actual database field name.
+    $subfield = $f['subfield_cd'] ?? '';
+
+    // Build the MARC key.
+    if ($subfield !== '') {
+        $idx = sprintf("%03d$%s", $f['tag'], $subfield);
+    } else {
+        $idx = $f['tag'];
+    }
+
+    // Try the localized MARC description.
+    $marcLabel = $LOC->getMarc($idx);
+
+    // Preserve the database label when no translation exists.
+    if (
+        $marcLabel === $LOC->getText('Undefined') ||
+        $marcLabel === ''
+    ) {
+        return $f['label'] ?? '';
+    }
+
+    return $marcLabel;
+}
 		function mkinput($fid, $sfid, $data, $f, $n) {
 			$ar = array(
 				'fieldid' => $fid,
