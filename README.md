@@ -200,7 +200,7 @@ BurauenBiblio requires PHP/YAZ extension installed and enabled for the Z39.50 pr
 📌 See [how to install yaz into burauenbiblio container.md](./how%20to%20install%20yaz%20into%20burauenbiblio%20container.md) for info on How to install YAZ extension.
 
 ### 📌 Other Language Support
-![Bahasa Indonesia](./readme_assets/id_language.avif "Bahasa Indonesia")
+![Bahasa Indonesia](./readme_assets/bahasa_indonesia_support.avif "Bahasa Indonesia")
 - ** Bahasa Indonesia ** base support (MARC tags remains in english).
 
 ### 📦 Booked Items Cart
