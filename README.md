@@ -201,7 +201,7 @@ BurauenBiblio requires PHP/YAZ extension installed and enabled for the Z39.50 pr
 
 ### 📌 Other Language Support
 ![Bahasa Indonesia](./readme_assets/bahasa_indonesia_support.avif "Bahasa Indonesia")
-- ** Bahasa Indonesia ** base support (MARC tags remains in english).
+- ** Bahasa Indonesia ** base support (MARC tags included).
 
 ### 📦 Booked Items Cart
 
