@@ -3,6 +3,7 @@
  * See the file COPYRIGHT.html for more details. 
  * File is derived from the english base locale/en/marc.php converted into Bahasa Indonesia --F. Tumulak
  */
+
 $trans['000block'] = 'Informasi kontrol, nomor, dan kode';
 $trans['010$8'] = 'Tautan bidang dan nomor urut';
 $trans['010$a'] = 'Nomor kontrol LC';
@@ -42,7 +43,7 @@ $trans['018$a'] = 'Kode biaya artikel hak cipta';
 $trans['018'] = 'Kode biaya artikel hak cipta';
 $trans['020$6'] = 'Keterkaitan';
 $trans['020$8'] = 'Tautan bidang dan nomor urut';
-$trans['020$a'] = 'Nomor Buku Standar Internasional';
+$trans['020$a'] = 'ISBN';
 $trans['020$c'] = 'Ketentuan ketersediaan';
 $trans['020'] = 'Nomor Buku Standar Internasional';
 $trans['020$z'] = 'ISBN yang dibatalkan/tidak valid';
@@ -383,7 +384,7 @@ $trans['100#1'] = 'Jenis elemen entri nama pribadi';
 $trans['100$4'] = 'Kode relator';
 $trans['100$6'] = 'Keterkaitan';
 $trans['100$8'] = 'Tautan bidang dan nomor urut';
-$trans['100$a'] = 'Nama pribadi';
+$trans['100$a'] = 'Penulis';
 $trans['100block'] = 'Entri utama';
 $trans['100$b'] = 'Penomoran';
 $trans['100$c'] = 'Gelar dan kata lain yang terkait dengan nama';
@@ -407,7 +408,7 @@ $trans['110#1'] = 'Jenis elemen entri nama korporasi';
 $trans['110$4'] = 'Kode relator';
 $trans['110$6'] = 'Keterkaitan';
 $trans['110$8'] = 'Tautan bidang dan nomor urut';
-$trans['110$a'] = 'Nama korporasi atau nama yurisdiksi sebagai elemen entri';
+$trans['110$a'] = 'Nama korporasi';
 $trans['110$b'] = 'Unit bawahan';
 $trans['110$c'] = 'Lokasi pertemuan';
 $trans['110$d'] = 'Tanggal pertemuan atau penandatanganan perjanjian';
