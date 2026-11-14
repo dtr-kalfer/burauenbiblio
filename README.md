@@ -176,7 +176,7 @@ The system supports **title card, author card and subject card** print, providin
 
 ### 📌 MARC tags setup
 
-![MARC tags](./readme_assets/marc_tags_ph22.webp "MARC tags")
+![MARC tags](./readme_assets/marc_tags_new.avif "MARC tags")
 
 The included SQL file provides MARC tag entries tailored for **Philippine-compatible** library records.
 
