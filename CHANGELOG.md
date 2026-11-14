@@ -26,13 +26,18 @@ Guide:
 
 ### MARC21 Subject Field Configuration Correction
 
-Corrected the subject-related MARC field mappings:
+Corrected the subject-related MARC with the intended field mappings:
 
 - Replaced `650$b` with `600$a` Personal name.
 - Replaced `650$c` with `610$a` Corporate name or jurisdiction name as entry element.
-- Retained `650$d` and `651$a` Geographic name.
+- Replaced `650$d` and `651$a` Geographic name.
 
-This correction aligns the default bibliographic field configuration with the MARC21 Bibliographic Format and improves compatibility with external MARC records obtained through Z39.50 and SRU services.
+```
+650$a 	Topical term or geographic name as entry element 	
+600$a 	Personal name 	
+610$a 	Corporate name or jurisdiction name as entry element 	
+651$a 	Geographic name
+```
 
 Existing bibliographic records should be reviewed before applying any legacy data migration.
 See the updated seed: sql/burauenbib_sample_clean.sql
