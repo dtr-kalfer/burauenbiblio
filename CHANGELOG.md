@@ -28,9 +28,9 @@ Guide:
 
 Corrected the subject-related MARC field mappings:
 
-- Replaced `650$c` with `610$a` for corporate-name subject entries.
-- Replaced `650$d` with `610$z` for geographic subdivisions of corporate-name subject entries.
-- Retained `650$a` and `650$b` for their respective topical subject functions.
+- Replaced `650$b` with `600$a` for corporate-name subject entries.
+- Replaced `650$c` with `610$a` for geographic subdivisions of corporate-name subject entries.
+- Retained `650$d` and `651$a` for their respective topical subject functions.
 
 This correction aligns the default bibliographic field configuration with the MARC21 Bibliographic Format and improves compatibility with external MARC records obtained through Z39.50 and SRU services.
 
