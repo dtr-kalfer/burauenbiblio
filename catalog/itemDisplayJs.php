@@ -100,29 +100,46 @@ var idis = {
   		    }, 'json');
 		}
 
-	    var txt = '';
-		$.each(idis.theBiblio.marc, function(key,value) {
-		  var tmp = value;
-			tmp.marcTag = key.substr(0,5);
-			if ((tmp.line >= 0) && (tmp.value != '') && tmp.value != null) {
-		  	    txt += "<tr>\n";
-				txt += '	<td class="filterable hilite">'+tmp.marcTag+"</td>\n";
-				txt += "	<td>"+tmp.lbl+"</td>\n";
-				if (tmp.marcTag == '024$a') {
-					txt += '	<td><a class="hotDoi" href="http://dx.doi.org/'+escape(tmp.value)+'">'+tmp.value+'</a></td>\n';
-				} else if (tmp.marcTag == '505$a') {
-					txt += '	<td><textarea wrap="soft" readonly cols="50" >'+tmp.value+"</textarea></td>\n";
-				} else if (tmp.marcTag == '856$u') {
-					txt += '	<td><a href="'+tmp.value+'">'+tmp.value+'</a></td>\n';
-				} else {
-					txt += '	<td><p>'+tmp.value+'</p></td>\n';
+		var txt = '';
+		// this keeps the database clean and make the bibliographic display retrieve its field definitions from material_fields. --F. Tumulak
+		$.each(idis.theBiblio.marc, function(key, value) {
+				var tmp = value;
+				tmp.marcTag = key.substr(0, 5);
+
+				// Display every configured MARC field, including empty fields.
+				if (tmp.line >= 0) {
+
+						// Treat missing, null, and empty values as blank.
+						var displayValue = (tmp.value == null) ? '' : tmp.value;
+
+						txt += "<tr>\n";
+						txt += '    <td class="filterable hilite">' + tmp.marcTag + "</td>\n";
+						txt += "    <td>" + tmp.lbl + "</td>\n";
+
+						if (tmp.marcTag == '024$a' && displayValue !== '') {
+								txt += '    <td><a class="hotDoi" href="http://dx.doi.org/' +
+										escape(displayValue) + '">' + displayValue + '</a></td>\n';
+
+						} else if (tmp.marcTag == '505$a') {
+								txt += '    <td><textarea wrap="soft" readonly cols="50">' +
+										displayValue + "</textarea></td>\n";
+
+						} else if (tmp.marcTag == '856$u' && displayValue !== '') {
+								txt += '    <td><a href="' + displayValue + '">' +
+										displayValue + '</a></td>\n';
+
+						} else {
+								txt += '    <td><p>' + displayValue + '</p></td>\n';
+						}
+
+						txt += "</tr>\n";
+
+						if (tmp.marcTag == '245$a') {
+								idis.crntTitle = displayValue;
+						}
 				}
-				txt += "</tr>\n";
-				if (tmp.marcTag == '245$a') {
-					idis.crntTitle = tmp.value;
-				}
-			}
 		});
+
 		txt += "<tr>\n";
 		txt += "	<td class=\"filterable hilite\">&nbsp</td>\n";
 		txt += "	<td>Date Added</td>\n";
