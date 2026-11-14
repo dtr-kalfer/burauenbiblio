@@ -133,44 +133,64 @@ class Biblio {
     $this->hdrFlds['opac_flg'] = $rslt['opac_flg'];
     $this->hdrFlds['createDt'] = $rslt['create_dt'];
   }
-  private function fetch_marc () {
-    ## get marc field list for this biblio's media type
-    $mat = new MaterialFields;
-    $this->marcFlds = $mat->getMediaTags($this->hdrFlds['material_cd']);
+	
+	private function fetch_marc () {
+			## get marc field list for this biblio's media type
+			$mat = new MaterialFields;
+			$this->marcFlds = $mat->getMediaTags($this->hdrFlds['material_cd']);
 
-    ## retrieve all existing marc data for this biblio
-    $mrc = new MarcStore;
-    $rslt = $mrc->fetchMarcFlds($this->bibid);
 
-    ## post data to relevent display structure
-    //if ($rslt->num_rows <= 1) return 'MARC '.T("Nothing Found");
-    $firstRep = true;
-    //while ($row = $rslt->fetch_assoc()) {
-        foreach ($rslt as $row) {
-      $tag = $row['tag'].'$'.$row['subfield_cd'];
-      //      if ($this->marcFlds[$tag.'$1']['repeatable'] > 0) {  // remove unneded '$' FL May2017
-      $checkTag = $tag . '1';
-      if (isset($this->marcFlds[$checkTag]) && $this->marcFlds[$checkTag]['repeatable'] > 0) {
-          if($firstRep) {
-              $firstRep = false;
-              $rep = 1;
-          } else {
-              $rep++;
-          }
-          $tag .= $rep;
-      }
+			## localize MARC field labels while preserving database labels as fallback
+			global $LOC;
 
-      ## merge data with structure and post to this object
-      if (empty($row['subfield_data'])) {
-                $this->marcFlds[$tag]['value'] = ' ';
-      } else {
-        $this->marcFlds[$tag]['value'] = $row['subfield_data'];
-      }
-      $this->marcFlds[$tag]['fieldid'] = $row['fieldid'];
-      $this->marcFlds[$tag]['subfieldid'] = $row['subfieldid'];
-      //echo"Biblio: marcFlds {$tag} row===>";print_r($row);echo"<br/>\n";
-    }
-  }
+			foreach ($this->marcFlds as $key => &$field) {
+
+					## Remove repeatable field numbering (e.g. 650$a1 becomes 650$a)
+					$marcCode = preg_replace('/(\$[^$])\d+$/', '$1', $key);
+
+					## Retrieve localized MARC description
+					$localizedLabel = $LOC->getMarc($marcCode);
+
+					## Use translation only when available
+					if (!empty($localizedLabel) && $localizedLabel !== T('Undefined')) {
+							$field['lbl'] = $localizedLabel;
+					}
+			}
+
+			unset($field);
+
+			## retrieve all existing marc data for this biblio
+			$mrc = new MarcStore;
+			$rslt = $mrc->fetchMarcFlds($this->bibid);
+
+			## post data to relevent display structure
+			//if ($rslt->num_rows <= 1) return 'MARC '.T("Nothing Found");
+			$firstRep = true;
+			//while ($row = $rslt->fetch_assoc()) {
+					foreach ($rslt as $row) {
+				$tag = $row['tag'].'$'.$row['subfield_cd'];
+				//      if ($this->marcFlds[$tag.'$1']['repeatable'] > 0) {  // remove unneded '$' FL May2017
+				$checkTag = $tag . '1';
+				if (isset($this->marcFlds[$checkTag]) && $this->marcFlds[$checkTag]['repeatable'] > 0) {
+						if($firstRep) {
+								$firstRep = false;
+								$rep = 1;
+						} else {
+								$rep++;
+						}
+						$tag .= $rep;
+				}
+
+				## merge data with structure and post to this object, 
+				
+				/* A workaround for the old JavaScript condition, allowing an otherwise empty value to pass the non-empty check. --F. Tumulak */
+				$this->marcFlds[$tag]['value'] = (string) ($row['subfield_data'] ?? '');
+				
+				$this->marcFlds[$tag]['fieldid'] = $row['fieldid'];
+				$this->marcFlds[$tag]['subfieldid'] = $row['subfieldid'];
+				//echo"Biblio: marcFlds {$tag} row===>";print_r($row);echo"<br/>\n";
+			}
+		}
   private function fetch_title () { // ------------ fixed this function for v8.0 -F. Tumulak
     $bibMarc = $this->marcFlds;
 
