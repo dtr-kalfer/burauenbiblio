@@ -20,10 +20,28 @@ Guide:
 
 ## [unreleased] yyyy-mm-dd
 
+### MARC display enhancement
+
+- MARC display enhancement: Bibliographic detail views now display all configured material fields, including fields without cataloged values. This improves cataloging completeness monitoring while preserving the integrity of existing bibliographic records.
+
+### MARC21 Subject Field Configuration Correction
+
+Corrected the subject-related MARC field mappings:
+
+- Replaced `650$c` with `610$a` for corporate-name subject entries.
+- Replaced `650$d` with `610$z` for geographic subdivisions of corporate-name subject entries.
+- Retained `650$a` and `650$b` for their respective topical subject functions.
+
+This correction aligns the default bibliographic field configuration with the MARC21 Bibliographic Format and improves compatibility with external MARC records obtained through Z39.50 and SRU services.
+
+Existing bibliographic records should be reviewed before applying any legacy data migration.
+See the updated seed: sql/burauenbib_sample_clean.sql
+
 ### Restored Language Support
-- Added Bahasa Indonesia Language
-- Updated MARC records to include Bahasa Indonesia Language
-- Removed other existing language - these will be gradually restored back, compatible with the base english language.
+- Supported: Bahasa Indonesia
+- Updated MARC records to include Bahasa Indonesia language pack.
+
+*note: Removed other existing language - these will be gradually restored back, compatible with the base english language.
 
 ### Added SRU Integration and Online Catalog Improvements
 - **Generic Library SRU integration** – Added support for searching a generic library catalogue through its SRU endpoint using MARCXML records.
