@@ -54,7 +54,7 @@ class Top30inhouse extends \ConnectDB
             return [
                 'success' => true,
                 'content' => $data,
-                'message' => '✅ Retrieved from: Daily Book Tally (In-house Book Activity Tracker)'
+                'message' => T("Retrieved from: Daily Book Tally")
             ];
 
         } catch (\Exception $e) {
