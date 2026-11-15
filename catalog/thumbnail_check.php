@@ -90,7 +90,8 @@ if ($missingThumbs['success'] === true) {
 
   $missing_thumbnails = $results->thumbnail_FailtoAdd();
   $count = 0;
-  echo "<h3>BibID Records that didn't have image thumbnails (Add thumbnail cancelled):</h3>";
+  echo T("BibID Records that didn't have image..");
+	//
   if (!empty($missing_thumbnails)) {
 
       foreach ($missing_thumbnails as $row) {
