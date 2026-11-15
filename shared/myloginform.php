@@ -5,9 +5,16 @@
 
 	setSessionFmSettings();  ## found in ../shared/common.php
 	
+	// validate it against an allowlist of relative paths	
 	$temp_return_page = "";
-	if (isset($_GET["RET"])){
-		$_SESSION["returnPage"] = $_GET["RET"];
+	if (isset($_GET["RET"])) {
+			$ret = $_GET["RET"];
+			// Only allow simple relative paths: alphanumeric, slash, dash, underscore, dot
+			if (is_string($ret) && preg_match('#^[a-zA-Z0-9_./\-]{1,255}$#', $ret) && strpos($ret, '..') === false) {
+					$_SESSION["returnPage"] = $ret;
+			} else {
+					unset($_SESSION["returnPage"]);
+			}
 	}
 
 	$sites_table = new Sites;
