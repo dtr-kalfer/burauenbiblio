@@ -5,6 +5,7 @@
 
 require_once(REL(__FILE__, "../classes/CoreTable.php"));
 require_once(REL(__FILE__, "../classes/Iter.php"));
+require_once(REL(__FILE__, "../classes/Password.php"));
 require_once(REL(__FILE__, "../model/MemberCustomFields.php"));
 require_once(REL(__FILE__, "../model/MemberAccounts.php"));
 
@@ -146,18 +147,26 @@ class Members extends CoreTable {
     if (!$id or !$password) {
       return NULL;
     }
-    $sql = $this->mkSQL('SELECT mbrid FROM member '
-      . 'WHERE password=MD5(%Q) '
-      . 'AND (barcode_nmbr=%Q or email=%Q) ',
-      $password, $id, $id);
+    // Fetch candidate rows by barcode or email, then verify the password
+    // in PHP using the modern Password helper (supports legacy MD5 hashes).
+    $sql = $this->mkSQL('SELECT mbrid, password FROM member '
+      . 'WHERE barcode_nmbr=%Q or email=%Q ',
+      $id, $id);
     $rslt = $this->select($sql);
-    $rows = $rslt->fetchall();
-    if (count($rows) != 1) {
-      return NULL;
+    $rows = $rslt->fetchAll(PDO::FETCH_ASSOC);
+    $matched = NULL;
+    foreach ($rows as $row) {
+      $check = Password::verifyAndUpgrade($password, $row['password']);
+      if ($check['valid']) {
+        $matched = $row['mbrid'];
+        // Transparently upgrade the stored hash to a modern algorithm.
+        if ($check['newHash'] !== null) {
+          $this->update_el(array('mbrid' => $row['mbrid'], 'password' => $check['newHash']));
+        }
+        break;
+      }
     }
-//    $r = $rows->fetch_assoc();
-//    return $r['mbrid'];
-    return $rows['mbrid'];
+    return $matched;
   }
   function insert_el($mbr, $confirmed=false) {
     //echo "in Members::insert_el(); ";
@@ -172,9 +181,9 @@ class Members extends CoreTable {
       if (!isset($mbr['confirm-pw']) or $mbr['confirm-pw'] != $mbr['password']) {
         return new FieldError('password', T("Supplied passwords do not match"));
       }
-      $mbr['password'] = md5($mbr['password']);
+      $mbr['password'] = Password::hash($mbr['password']);
     } else {
-            $mbr['password'] = md5($this->generatePassword(8));
+            $mbr['password'] = Password::hash($this->generatePassword(8));
         }
     $results = parent::insert_el($mbr, $confirmed);
     // Check to make sure insert went through
@@ -206,7 +215,7 @@ class Members extends CoreTable {
       } else if (!isset($mbr['confirm-pw']) or $mbr['confirm-pw'] != $mbr['password']) {
         return array(new FieldError('password', T("Supplied passwords do not match")));
       } else {
-        $mbr['password'] = md5($mbr['password']);
+        $mbr['password'] = Password::hash($mbr['password']);
       }
     }
     return parent::update_el($mbr, $confirmed);
