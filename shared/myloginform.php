@@ -256,8 +256,7 @@ body {
 				<a href="https://github.com/dtr-kalfer" target="_blank"><img src="../images/burauenbiblio2.webp" alt="BurauenBiblio Logo"></a>
     </div>
 
-    <div class="login-title">
-        Welcome to BurauenBiblio
+    <div class="login-title"><?= T("Welcome to BurauenBiblio") ?>
     </div>
 
     <form class="login-form" role="form" name="loginform" method="post" action="../shared/login.php">
@@ -265,7 +264,7 @@ body {
 					id="username" 
 					name="username" 
 					type="text"
-					placeholder="Username"
+					placeholder="<?= T("Username") ?>"
 					required
         >
 
@@ -273,12 +272,12 @@ body {
 					id="password"
 					name="pwd"
 					type="password"
-					placeholder="Password"
+					placeholder="<?= T("Password") ?>"
 					required
         >
 
 		
-<label id="showpass_label"><input type="checkbox" id="showPassword" /> show password</label>
+<label id="showpass_label"><input type="checkbox" id="showPassword" /> <?= T("Show Password")?></label>
 
 
 	<?php if(($_SESSION['multi_site_func'] > 0) || ($_SESSION['site_login'] == 'Y')){ ?>
