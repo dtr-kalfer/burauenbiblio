@@ -4,6 +4,7 @@
  */
 
 require_once(REL(__FILE__, "../classes/CoreTable.php"));
+require_once(REL(__FILE__, "../classes/Password.php"));
 
 class Staff extends CoreTable {
   public function __construct() {
@@ -33,6 +34,22 @@ class Staff extends CoreTable {
     $this->setSequenceField('userid');
   }
 
+	protected function validatePasswordConfirmation($rec) {
+
+			if (isset($rec['pwd'])) {
+
+					if (!isset($rec['pwd2']) || $rec['pwd'] !== $rec['pwd2']) {
+
+							return array(
+									array('NULL', T("Supplied passwords do not match"))
+							);
+					}
+			}
+
+			return array();
+	}
+
+
   public function getStartPage($id) {
     $rslt = $this->getOne($id);
     //echo "in Staff::getStartPage(): rslt=";print_r($rslt);echo "<br /> \n";
@@ -45,13 +62,14 @@ class Staff extends CoreTable {
     // check for required fields done in DBTable
     $errors = parent::validate_el($rec, $insert);
 
-        // login credentials
-    if (isset($rec['pwd'])) {
-      if (!isset($rec['pwd2']) or ($rec['pwd'] != $rec['pwd2']) ) {
-        //$errors[] = new FieldError('pwd', T("Supplied passwords do not match"));
+        
+// login credentials
+if (isset($rec['pwd']) && isset($rec['pwd2'])) {
+    if ($rec['pwd'] !== $rec['pwd2']) {
         $errors[] = array('NULL', T("Supplied passwords do not match"));
-      }
     }
+}
+
     if (isset($rec['username'])) {
       $sql = $this->mkSQL("SELECT 1 FROM staff WHERE username=%Q ", $rec['username']);
       if (isset($rec['userid'])) {
@@ -70,43 +88,62 @@ class Staff extends CoreTable {
 
     return $errors;
   }
-  function insert_el($rec, $confirmed=false) {
-    if(isset($rec['pwd'])) {
-      $rec['pwd'] = md5($rec['pwd']);
-    }
-    if(isset($rec['pwd2'])) {
-      $rec['pwd2'] = md5($rec['pwd2']);
-    }
-    if(!isset($rec['secret_key'])) {
-      $rec['secret_key'] = md5(time());
-    }
+	
+		function insert_el($rec, $confirmed=false) {
 
-    $nFlg = 0;
-    foreach (array('admin','circ','circ_mbr','catalog','reports','tools') as $flg) {
-      if (isset($rec[$flg.'_flg']) && ($rec[$flg.'_flg'] == 'Y')) {
-                $nFlg++;
-      } else {
-                $nFlg++;
-        $rec[$flg.'_flg'] = 'N';
-      }
-      //echo $flg."_flg = '".$rec[$flg.'_flg']."' <br />\n";
-    }
-    // this should be part of validations
-        //if ($nFlg < 1) {
-        //    $errors[] = array('NULL', T("Role MUST be selected"));
-        //}
+				// Validate plaintext passwords BEFORE hashing.
+				$errors = $this->validatePasswordConfirmation($rec);
 
-    unset($rec['userid']);
-    $rslt = parent::insert_el($rec, $confirmed);
-        return $rslt;
-  }
-  function update_el($rec, $confirmed=false) {
-    if(isset($rec['pwd'])) {
-      $rec['pwd'] = md5($rec['pwd']);
-    }
-    if(isset($rec['pwd2'])) {
-      $rec['pwd2'] = md5($rec['pwd2']);
-    }
-    return parent::update_el($rec, $confirmed); // will call above validate_el()
-  }
+				if (!empty($errors)) {
+						return $errors;
+				}
+
+				// Hash the actual password only once.
+				if (isset($rec['pwd'])) {
+						$rec['pwd'] = Password::hash($rec['pwd']);
+				}
+
+				// Confirmation is not needed beyond this point.
+				unset($rec['pwd2']);
+
+				if (!isset($rec['secret_key'])) {
+						$rec['secret_key'] = md5(time());
+				}
+
+				foreach (array('admin','circ','circ_mbr','catalog','reports','tools') as $flg) {
+
+						if (!isset($rec[$flg.'_flg']) || $rec[$flg.'_flg'] != 'Y') {
+								$rec[$flg.'_flg'] = 'N';
+						}
+				}
+
+				unset($rec['userid']);
+
+				return parent::insert_el($rec, $confirmed);
+		}
+
+		function update_el($rec, $confirmed=false) {
+
+				// Only validate if a new password was supplied.
+				if (isset($rec['pwd']) && $rec['pwd'] !== '') {
+
+						$errors = $this->validatePasswordConfirmation($rec);
+
+						if (!empty($errors)) {
+								return $errors;
+						}
+
+						$rec['pwd'] = Password::hash($rec['pwd']);
+
+				} else {
+						// Preserve the existing password.
+						unset($rec['pwd']);
+				}
+
+				// Never pass confirmation to the database layer.
+				unset($rec['pwd2']);
+
+				return parent::update_el($rec, $confirmed);
+		}
+
 }
