@@ -70,19 +70,17 @@ if (isset($_GET['export']) && $_GET['export'] === 'json') {
 <section>
   <h2>Missing Books Report</h2>
 
-  <a href="missing_books_export.php" target="_blank">
-    Export to JSON
-  </a>
+  <a href="missing_books_export.php" target="_blank"><?php echo T("Export to JSON"); ?></a>
 
   <table id="missingBooksTable">
     <thead>
       <tr>
-        <th>bibid</th>
-        <th>barcode_nmbr</th>
-        <th>copy_desc</th>
-        <th>call_number</th>
-        <th>author</th>
-        <th>title</th>
+        <th><?php echo T("bibid"); ?></th>
+        <th><?php echo T("Barcode Number"); ?></th>
+        <th><?php echo T("Copy Description"); ?></th>
+        <th><?php echo T("Call Number"); ?></th>
+        <th><?php echo T("Author"); ?></th>
+        <th><?php echo T("Title"); ?></th>
       </tr>
     </thead>
     <tbody>
