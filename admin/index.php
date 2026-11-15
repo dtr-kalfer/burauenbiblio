@@ -17,7 +17,7 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
     <fieldset> <?php echo T("adminIndexDesc"); ?> </fieldset>
 		<h3><?php  
 			
-			echo "Welcome to BurauenBiblio! Current Date and Time: <b>" . date("m-d-Y H:i:s") . "</b>";
+			echo T("Welcome to BurauenBiblio! Current Date and Time: <b>")  . date("m-d-Y H:i:s") . "</b>";
 		?> </h3>
 <?php
     ReportDisplaysUI::display('admin');
