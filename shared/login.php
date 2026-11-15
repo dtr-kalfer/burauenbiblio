@@ -5,58 +5,70 @@
 
 require_once("../shared/common.php");
 require_once(REL(__FILE__, "../model/Staff.php"));
+require_once(REL(__FILE__, "../classes/Password.php"));
 
 $dbConst = "";
 $pageErrors = "";
 if (count($_POST) == 0) {
-	header("Location: ../shared/myloginform.php");
-	exit();
+  header("Location: ../shared/myloginform.php");
+  exit();
 }
 
 $username = $_POST["username"];
 $error_found = false;
 if ($username == "") {
-	$error_found = true;
-	$pageErrors["username"] = T("Username is required.");
+  $error_found = true;
+  $pageErrors["username"] = T("Username is required.");
 }
 $pwd = $_POST["pwd"];
 if ($pwd == "") {
-	$error_found = true;
-	$pageErrors["pwd"] = T("Password is required.");
+  $error_found = true;
+  $pageErrors["pwd"] = T("Password is required.");
 }
 
 if (!$error_found) {
 
-	$staff = new Staff($dbConst);
-	$rows = $staff->getMatches(array('username'=>$username, 'pwd'=>md5($pwd)));
-	$user = $rows->fetch(PDO::FETCH_ASSOC);
+  $staff = new Staff($dbConst);
+  $rows = $staff->getMatches(array('username'=>$username));
+  $user = $rows->fetch(PDO::FETCH_ASSOC);
 
     if ($user === false) {
-		$error_found = true;
-		$pageErrors = array();
-		$pageErrors["pwd"] = T("Invalid signon.");
-	}
+    $error_found = true;
+    $pageErrors = array();
+    $pageErrors["pwd"] = T("Invalid signon.");
+  } else {
+    // Verify the password using the modern Password helper (supports legacy MD5).
+    $check = Password::verifyAndUpgrade($pwd, $user['pwd']);
+    if (!$check['valid']) {
+      $error_found = true;
+      $pageErrors = array();
+      $pageErrors["pwd"] = T("Invalid signon.");
+    } elseif ($check['newHash'] !== null) {
+      // Transparently upgrade the stored hash to a modern algorithm.
+      $staff->update_el(array('userid' => $user['userid'], 'pwd' => $check['newHash']));
+    }
+  }
 }
 
 if ($error_found == true) {
     echo "login error found<br />\n";
-	$_SESSION["postVars"] = $_POST;
-	$_SESSION["pageErrors"] = $pageErrors;
+  $_SESSION["postVars"] = $_POST;
+  $_SESSION["pageErrors"] = $pageErrors;
     header("Location: ../shared/myloginform.php");
-	exit();
+  exit();
 }
 
 if ($user['suspended_flg'] == 'Y') {
     header("Location: ../shared/suspended.php");
-	exit();
+  exit();
 }
 
 unset($_SESSION["postVars"]);
 unset($_SESSION["pageErrors"]);
 
 if(isset($_REQUEST['selectSite'])){
-	$_SESSION['current_site'] = $_REQUEST['selectSite'];
-	setcookie("OpenBiblioSiteID", $_SESSION['current_site'], time()+60*60*24*365);
+  $_SESSION['current_site'] = $_REQUEST['selectSite'];
+  setcookie("OpenBiblioSiteID", $_SESSION['current_site'], time()+60*60*24*365);
 }
 
 $_SESSION["username"] = $user['username'];
