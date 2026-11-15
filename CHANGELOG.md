@@ -20,6 +20,8 @@ Guide:
 
 ## [unreleased] yyyy-mm-dd
 
+### Moving away from MD5 password storage toward PHP's native password hashing mechanism.
+
 ### MARC display enhancement
 
 - MARC display enhancement: Bibliographic detail views now display all configured material fields, including fields without cataloged values. This improves cataloging completeness monitoring while preserving the integrity of existing bibliographic records.
