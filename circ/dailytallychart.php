@@ -80,15 +80,15 @@ foreach ($rows as $row) {
 ?>
 <script src="./js/chart.js"></script>
 <section>
-	<h2>Daily Book Tally (Not Borrowed - Total number of books per day)</h2>
+	<h2><?php echo T("Daily Book Tally Not Borrowed"); ?></h2>
 
 	<form method="GET">
-			Start Date: <input type="date" name="start_date" value="<?= htmlspecialchars($start_date) ?>">
-			End Date: <input type="date" name="end_date" value="<?= htmlspecialchars($end_date) ?>">
-			<button type="submit">Show</button>
+			<?= T("Start Date") ?>: <input type="date" name="start_date" value="<?= htmlspecialchars($start_date) ?>">
+			<?= T("End Date") ?>: <input type="date" name="end_date" value="<?= htmlspecialchars($end_date) ?>">
+			<button type="submit"><?= T("Show") ?></button>
 
 			<a href="daily_tally_export.php?start_date=<?= urlencode($start_date) ?>&end_date=<?= urlencode($end_date) ?>" target="_blank">
-				Export to JSON
+			<?= T("Export to JSON") ?>	
 			</a>
 	</form>
 	
