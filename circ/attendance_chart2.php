@@ -118,7 +118,7 @@
     <input type="month" name="end_month" value="<?= htmlspecialchars($end) ?>" required>
     <label>
         <input type="checkbox" name="students_only" value="1" <?= isset($_GET['students_only']) ? 'checked' : '' ?>>
-        Show Students Only
+        <?= T("Show Students Only") ?>
     </label>
     <button type="submit" name="action" value="chart"><?= T("Update Chart") ?></button>
     <button type="submit" name="action" value="json"><?= T("Export to JSON") ?></button>
