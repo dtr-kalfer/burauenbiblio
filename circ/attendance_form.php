@@ -124,7 +124,7 @@
     <div style="display: flex; justify-content: space-between; align-items: center;">
         <h2 style="width: 80%;"><?= T("Library Attendance") ?></h2>
         <button type="button" onclick="toggleSections()" style="padding: 5px 10px; cursor: pointer;">
-            <?= "Manage Courses" ?>
+            <?= T("Manage Courses") ?>
         </button>
     </div>
 
@@ -141,7 +141,7 @@
 
         <label for="user_type"><?= T("User Type") ?></label>
         <select name="user_type" id="user_type" required onchange="toggleCourse(this.value)">
-            <option value="">-- Select --</option>
+            <option value=""><?= T("Select") ?></option>
             <option value="Student">Student</option>
             <option value="Faculty">Faculty</option>
             <option value="Visitor">Visitor</option>
@@ -166,16 +166,16 @@
     </form>
 
     <hr>
-    <h3>Library Attendance Records</h3>
+    <h3><?= T("Library Attendance") ?></h3>
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Date</th>
-                <th>User Type</th>
-                <th>Course</th>
-                <th>Count</th>
-                <th>Action</th>
+                <th><?= T("Id") ?></th>
+                <th><?= T("Date") ?></th>
+                <th><?= T("User Type") ?></th>
+                <th><?= T("Program") ?></th>
+                <th><?= T("Count") ?></th>
+                <th><?= T("Actions") ?></th>
             </tr>
         </thead>
         <tbody>
@@ -187,10 +187,10 @@
                 <td><?= htmlspecialchars($row['course'] ?? '-') ?></td>
                 <td><?= htmlspecialchars($row['count']) ?></td>
                 <td>
-                    <form method="POST" action="" onsubmit="return confirm('Delete this record?');">
+                    <form method="POST" action="" onsubmit="return confirm('<?= T("Delete This Item")?>?');">
                         <input type="hidden" name="action" value="attendance">
                         <input type="hidden" name="delete_id" value="<?= $row['id'] ?>">
-                        <button type="submit" style="padding: 0 5px;">Del</button>
+                        <button type="submit" style="padding: 0 5px;">🗑️</button>
                     </form>
                 </td>
             </tr>
