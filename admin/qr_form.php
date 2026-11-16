@@ -64,13 +64,8 @@
 <section class="wrapper-section">
   <h3 class="tagged">📚 <?php echo T("QR Generator"); ?> 📚</h3>
 
-  <p>This section will generate a 6x8 QR Code Sheet</p>
-  <p>
-  Each QR-code requires a 13-digit number and will be printed on a full size A4 paper. Generate 16 qr-code to maximize the A4 size paper.
-  Each QR-code have 3 copies.<br>
-  *Note: Please set printer paper size to A4.
-  <br>
-  </p>
+  <p><?= T("This section will generate a 6x8") ?></p>
+  <p><?= T("Each QR-code requires a 13") ?><br></p>
 
   <form id="qr_form"
     hx-get="qr_preview.php"
@@ -88,13 +83,13 @@
         required
       >
     </label>
-    <button type="submit">Generate QR</button>
+    <button type="submit"><?= T("Generate QR") ?></button>
   </form>
   <div class="preview" style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap; align-items:center;">
-    <label style="font-weight:bold;">Print Layout:</label>
+    <label style="font-weight:bold;"><?= T("Print Layout") ?>:</label>
     <select id="layoutCopies" name="copies" style="padding:4px 8px;">
-      <option value="1">1 Copy per QR (48 QRs per A4 page)</option>
-      <option value="3">3 Copies per QR (16 QRs per A4 page - standard)</option>
+      <option value="1"><?= T("1 Copy per QR") ?></option>
+      <option value="3"><?= T("3 Copies per QR") ?></option>
     </select>
     <button
         hx-get="qr_a4_preview.php"
@@ -103,7 +98,7 @@
         hx-swap="innerHTML"
         class="showlayoutbtn"
     >
-    🖨 Preview A4 Layout
+    🖨 <?= T("Preview A4 Layout") ?>
     </button>
   </div>
 
@@ -119,12 +114,12 @@
   }
   ?>
   <fieldset style="margin-top:25px; border:1px solid #7a9;">
-    <legend>👤 Batch Print — Member QR Labels</legend>
-    <p>Generates labels with the member's <b>name</b>, <b>QR code</b> and <b>student/faculty ID number</b>. Max <?php echo $QR_MAX_IMAGES; ?> per A4 sheet.</p>
+    <legend>👤 <?= T("Batch Print - Member QR Labels") ?></legend>
+    <p><?= T("Generates labels with the member") . $QR_MAX_IMAGES . T("per sheet") ?></p>
     <label>
-      Select member:
+      <?= T("Select member") ?>:
       <select id="mbrQrPick" name="mbrid" style="min-width:320px;">
-        <option value="">— choose a member with a QR number —</option>
+        <option value=""><?= T("choose a member with a QR number") ?></option>
         <?php foreach ($mbrList as $m): ?>
           <option value="<?php echo (int) $m['mbrid']; ?>">
             <?php echo htmlspecialchars($m['last_name'] . ', ' . $m['first_name']
@@ -140,35 +135,30 @@
       hx-include="#mbrQrPick"
       hx-target="#mbr-save-status"
       hx-swap="innerHTML"
-    >➕ Add Selected Member</button>
+    >➕ <?= T("Add Selected Member") ?></button>
 
     <button
       type="button"
       hx-get="qr_member_save.php?all=1"
       hx-target="#mbr-save-status"
       hx-swap="innerHTML"
-    >📦 Add ALL Members (batch)</button>
+    >📦 <?= T("Add ALL Members (batch)") ?></button>
 
     <button
       type="button"
       hx-get="qr_clear.php"
       hx-target="#mbr-save-status"
       hx-swap="innerHTML"
-    >🧹 Clear Batch</button>
+    >🧹 <?= T("Clear Batch") ?></button>
 
     <div id="mbr-save-status" style="margin-top:10px;"></div>
   </fieldset>
   <!-- ================= /MEMBER BATCH SECTION ================= -->
 
-  <p>
-  📦 Saved QR images (max: 48 for 1-copy layout, 16 for 3-copies layout):
+  <p>📦 <?= T("Saved QR images..") ?>
   <strong id="qr-counter"><?php echo $qrCount; ?></strong>
   </p>
 
-
   <section id="qr-result" style="margin-top:20px;"></section>
   <div id="qr-print-preview" style="margin-top:20px;"></div>
-
-
-
 </section>
