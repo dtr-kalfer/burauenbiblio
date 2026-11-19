@@ -1,21 +1,12 @@
 <?php
-/* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
- * See the file COPYRIGHT.html for more details.
- */
 
 require_once(REL(__FILE__, '../classes/Queryi.php'));
 
-/**
- * provides common DB facilities used by various Models
- * @author Micah Stetson
- * modified for PHP 5.0 FL
- * modified to suport required Field validations - June 2016 FL
- */
-
 abstract class DBTable extends Queryi {
+	protected $reqdFlds = array();
   protected $name;
   protected $fields = array();
-    protected $reqFields = array();
+  protected $reqFields = array();
   protected $key = array();
   protected $sequence = NULL;
   protected $iter = NULL;
@@ -47,12 +38,11 @@ abstract class DBTable extends Queryi {
   }
   protected function setFields($fields) {
     $this->fields = $fields;
-    # FIXME - Check that field types are valid.
+
   }
   protected function setReq($fields) {
     $this->reqFields = $fields;
-        //echo "in DBTable::setReq(): ";print_r($this->reqFields);echo "<br />\n";
-    # FIXME - Check that field types are valid.
+
   }
   protected function setKey() {
     $this->key = func_get_args();
@@ -85,40 +75,38 @@ abstract class DBTable extends Queryi {
   ## ------------------------------------------------------------------------ ##
   public function getKeyList($key, $fields) {
     $sql = $this->mkSQL('SELECT %I FROM %I WHERE ', $key, $this->name)
-      . $this->_pairs($fields, ' AND ');
-        //if ($this->name == "biblio_copy") {echo "in DBTable::getKeyList(), sql= $sql <br />\n";}
-    //print_r($fields);
+      . $this->_pairsSql($fields, ' AND ');
+
+    $rslt = $this->_actPrepared($sql, $this->_pairsVals($fields));
         if ($this->iter) {
       $c = $this->iter; # Silly PHP
-      return new $c($this->select($sql));
+      return new $c($rslt);
     } else
-      return $this->select($sql);
+      return $rslt;
   }
   public function maybeGetOne() {
     $key = func_get_args();
     $sql = $this->mkSQL('SELECT * FROM %I WHERE ', $this->name)
       . $this->_keyTerms($key);
-    //echo "in DBTable::maybeGetOne(): ";echo "$sql";echo "<br /> \n";
+
     $row = $this->select01($sql);
-    // echo "in DBTable::maybeGetOne(): ";print_r("$row");echo "<br /> \n";
+
     return $row;
   }
   public function getOne() {
     $key = func_get_args();
     $row = call_user_func_array(array($this, 'maybeGetOne'), $key);
     if (is_null($row)) {
-      //Fatal::internalError(T("Bad key (%key%) for %name% table", array('key'=>implode(', ', $key), 'name'=>$this->name)));
+
             echo "Fatal::internalError";echo "Bad key ";print_r($key);echo" for table $this->name";
-      //echo "sql=$sql<br />\n";
+
     }
-    //echo "in DBTable::getOne(): ";print_r($row);echo "<br /> \n";
+
     return $row;
   }
   public function getAll($orderby = NULL) {
     $sql = $this->mkSQL('SELECT * FROM %I ', $this->name);
     if (!empty($orderby)) {$sql .= "ORDER BY $orderby";}
-        //if ($this->name == 'lookup_settings') echo "in DBTable::getAll() sql = $sql<br />\n";
-        //echo "sql = $sql<br />\n";
 
         $recs = $this->select($sql);
     return $recs;
@@ -126,38 +114,28 @@ abstract class DBTable extends Queryi {
   public function getMatches($fields, $orderby=NULL) {
         //echo "in DBTable::getMatches()";print_r($fields);echo "<br />\n";
     $sql = $this->mkSQL('SELECT * FROM %I WHERE ', $this->name)
-      . $this->_pairs($fields, ' AND ');
+      . $this->_pairsSql($fields, ' AND ');
     if ($orderby)
       $sql .= $this->mkSQL(' ORDER BY %I ', $orderby);
         //echo "in DBTable::getMatches(), sql= $sql <br />\n";
+    $rslt = $this->_actPrepared($sql, $this->_pairsVals($fields));
     if ($this->iter) {
       $c = $this->iter; # Silly PHP
-            $rslt = new $c($this->select($sql));
-            //echo "in DBTable::getMatches() (with itr): ";print_r($rslt);echo "<br />\n";
-      return $rslt;
+            return new $c($rslt);
     } else {
-            $rslt = $this->select($sql);
-            //echo "in DBTable::getMatches() (without itr): ";print_r($rslt);echo "<br />\n";
-      return $rslt;
+            return $rslt;
         }
   }
   public function insert($rec, $confirmed=false) {
         list($seqVal, $errors) = $this->insert_el($rec, $confirmed);
     if ($errors) {
-      //Fatal::internalError(T("DBTableErrorInserting")." '".$this->name."', ".Error::listToStr($errors));
-            //echo "Error: $this->name; ";print_r($errors);echo "<br />\n";
             return array(NULL, $errors);
     }
         return array($seqVal, 'Success');
   }
   public function insert_el($rec, $confirmed=false) {
-    //echo "in DBTbl:insert_el ,";print_r($rec);echo "<br />\n";
+
     $this->lock();
-    //$errs = $this->checkForeignKeys_el($rec);
-    //if (!empty($errs)) {
-    //  $this->unlock();
-    //  return array(NULL, $errs);
-    //}
 
     $errs = $this->validate_el($rec, true);
     if ($confirmed) {
@@ -165,14 +143,14 @@ abstract class DBTable extends Queryi {
     }
     if (!empty($errs)) {
       $this->unlock();
-            //echo "in DBTable::insert_el(), after validate: ";print_r($errs);echo "<br /> \n";
+
       return array(NULL, $errs);
     }
 
     $sql = $this->mkSQL('INSERT INTO %I SET ', $this->name)
-      . $this->_pairs($rec);
+      . $this->_pairsSql($rec);
     //echo "sql = $sql <br />\n";
-    $this->act($sql);
+    $this->_actPrepared($sql, $this->_pairsVals($rec));
     if ($this->sequence) {
       if (isset($rec[$this->sequence])) {
         $seq_val = $rec[$this->sequence];
@@ -221,36 +199,59 @@ abstract class DBTable extends Queryi {
     }
 
     if (!$errs) {
-      $sql = $this->mkSQL('UPDATE %I ', $this->name)
-        . ' SET '.$this->_pairs($rec)
-        . ' WHERE '.$this->_keyTerms($key);
-      //echo "sql = $sql<br />\n";
-      $this->act($sql);
-      $this->unlock();
-      return T("Success");
+      // $sql = $this->mkSQL('UPDATE %I ', $this->name)
+        // . ' SET '.$this->_pairsSql($rec)
+        // . ' WHERE '.$this->_keyTerms($key);
+      // //echo "sql = $sql<br />\n";
+      // $this->_actPrepared($sql, $this->_pairsVals($rec));
+      // $this->unlock();
+      // return T("Success");
+						
+			$sql = $this->mkSQL('UPDATE %I SET ', $this->name)
+			. $this->_pairsSql($rec)
+			. ' WHERE '.$this->_keySql();
+
+			$vals = array_merge(
+					$this->_pairsVals($rec),
+					$this->_keyVals($key)
+			);
+
+			$rslt = $this->_actPrepared($sql, $vals);
     }
   }
 
-public function deleteOne() {
-    $this->lock();
-    $args = func_get_args();
-    //echo "deleteOne args: ";
-    //print_r($args);
 
-    $sql = $this->mkSQL('DELETE FROM %I WHERE ', $this->name)
-         . $this->_keyTerms($args);
+	private function _keySql() {
+			$terms = array();
 
-    echo "Attempting SQL: $sql<br>";
+			foreach ($this->key as $name) {
+					$terms[] = '`'.$this->_ident($name).'` = ?';
+			}
 
-    $result = $this->act($sql);
-    $this->unlock();
+			return implode(' AND ', $terms);
+	}
 
-    //echo "Rows affected: " . $result->rowCount() . "<br>";
-    return $result->rowCount();
-}
+	private function _keyVals($key) {
+			return array_values($key);
+	}
+
+	public function deleteOne() {
+			$this->lock();
+			$args = func_get_args();
+
+			$sql = $this->mkSQL('DELETE FROM %I WHERE ', $this->name)
+					 . $this->_keyTerms($args);
+
+			echo "Attempting SQL: $sql<br>";
+
+			$result = $this->act($sql);
+			$this->unlock();
+
+			return $result->rowCount();
+	}
 
   public function deleteOne_member() { // new function retrieved from orig. --F.T.
-    //echo "in DBTable::deleteOne()";
+
     $this->lock();
     $sql = $this->mkSQL('DELETE FROM %I WHERE ', $this->name)
       . $this->_keyTerms(func_get_args());
@@ -260,25 +261,23 @@ public function deleteOne() {
     return $result->rowCount();
   }
 
-public function deleteOne_new($bibid = null) { //Added new function for exclusive for bulk delete --F.Tumulak
-    $this->lock();
-    //echo "deleteOne received bibid: $bibid<br>";
-    $sql = $this->mkSQL('DELETE FROM %I WHERE %I = %N', $this->name, 'bibid', $bibid); // set correct input 'bibid' --F.Tumulak
-    //$sql = $this->mkSQL('DELETE FROM %I WHERE %I = %N', $this->name, $this->_key, $bibid);
-    //echo "Attempting SQL: $sql<br>";
+	public function deleteOne_new($bibid = null) { //Added new function for exclusive for bulk delete --F.Tumulak
+			$this->lock();
 
-    $result = $this->act($sql);
-    $this->unlock();
+			$sql = $this->mkSQL('DELETE FROM %I WHERE %I = %N', $this->name, 'bibid', $bibid); // set correct input 'bibid' --F.Tumulak
 
-    echo "Records affected: " . $result->rowCount() . "<br>";
-    return $result->rowCount();
-}
+			$result = $this->act($sql);
+			$this->unlock();
+
+			echo "Records affected: " . $result->rowCount() . "<br>";
+			return $result->rowCount();
+	}
 
   public function deleteMatches($fields) {
     $this->lock();
     $sql = $this->mkSQL('DELETE FROM %I WHERE ', $this->name)
-      . $this->_pairs($fields, ' AND ');
-    $this->act($sql);
+      . $this->_pairsSql($fields, ' AND ');
+    $this->_actPrepared($sql, $this->_pairsVals($fields));
     $this->unlock();
   }
 
@@ -320,21 +319,34 @@ public function deleteOne_new($bibid = null) { //Added new function for exclusiv
     }
     return implode(' AND ', $terms);
   }
-  private function _pairs($rec, $separator=', ') {
-//echo "in pairs,";print_r($rec);echo ".:.:."; print_r($separator); echo "<br />\n";
+
+  private function _pairsSql($rec, $separator=', ') {
     $vals = array();
     foreach ($this->fields as $name => $type) {
-//echo "name=$name; type=$type; rec[$name]=$rec[$name] <br/>\n";
       if (isset($rec[$name])) {
-//echo "type ".$this->types[$type]." <br /> \n";
-         //$s = $this->mkSQL('%I='.$this->types[$type], $name, $rec[$name]);
-         //$s = $this->mkSQL("%I=".$this->types[$type], $name, $rec[$name]);
-                 $s = "$name = '".str_replace("'", "''", $rec[$name])."'";
-//echo "mkSql string: $s <br />\n";
-                 $vals[] = $s;
+        $vals[] = $this->_ident($name).' = ?';
       }
     }
-//print_r($vals);
+    return implode($separator, $vals);
+  }
+
+  private function _pairsVals($rec) {
+    $vals = array();
+    foreach ($this->fields as $name => $type) {
+      if (isset($rec[$name])) {
+        $vals[] = $rec[$name];
+      }
+    }
+    return $vals;
+  }
+
+  private function _pairs($rec, $separator=', ') {
+    $vals = array();
+    foreach ($this->fields as $name => $type) {
+      if (isset($rec[$name])) {
+        $vals[] = $this->_ident($name)." = '".addslashes($rec[$name])."'";
+      }
+    }
     return implode($separator, $vals);
   }
 }
