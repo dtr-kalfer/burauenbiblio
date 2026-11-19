@@ -20,6 +20,10 @@ require_once(REL(__FILE__, "../model/Members.php"));
 
 class Bookings extends CoreTable {
   public $outDate;
+	
+	protected $bookingid;
+	protected $statusCd;
+	protected $histid;	
 
   public function __construct() {
     parent::__construct();
