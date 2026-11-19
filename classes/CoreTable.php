@@ -11,6 +11,7 @@ require_once(REL(__FILE__, "../classes/DBTable.php"));
  */
 
 abstract class CoreTable extends DBTable {
+	
 	public function __construct() {
 		parent::__construct();
 	}
