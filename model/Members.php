@@ -15,28 +15,29 @@ class Members extends CoreTable {
   public function __construct() {
     parent::__construct();
     $this->setName('member');
-    $this->setFields(array(
-      'mbrid'=>'number',
-      'siteid'=>'number',
-      'barcode_nmbr'=>'string',
-      'first_name'=>'string',
-      'last_name'=>'string',
-      'first_legal_name'=>'string',
-      'last_legal_name'=>'string',
-      'address1'=>'string',
-      'address2'=>'string',
-      'city'=>'string',
-      'state'=>'string',
-      'zip'=>'string',
-      'zip_ext'=>'string',
-      'home_phone'=>'string',
-      'work_phone'=>'string',
-      'email'=>'string',
-      'classification'=>'string',
-            'password'=>'string',
-      'school_grade'=>'number',
-      'school_teacher'=>'string',
-    ));
+		$this->setFields(array(
+				'mbrid'=>'number',
+				'siteid'=>'number',
+				'barcode_nmbr'=>'string',
+				'qrcode'=>'string', // Generic QR code for students and faculty --F. Tumulak
+				'first_name'=>'string',
+				'last_name'=>'string',
+				'first_legal_name'=>'string',
+				'last_legal_name'=>'string',
+				'address1'=>'string',
+				'address2'=>'string',
+				'city'=>'string',
+				'state'=>'string',
+				'zip'=>'string',
+				'zip_ext'=>'string',
+				'home_phone'=>'string',
+				'work_phone'=>'string',
+				'email'=>'string',
+				'classification'=>'string',
+				'password'=>'string',
+				'school_grade'=>'number',
+				'school_teacher'=>'string',
+		));
     $this->setKey('mbrid');
     $this->setSequenceField('mbrid');
     $this->setForeignKey('siteid', 'site', 'siteid');
