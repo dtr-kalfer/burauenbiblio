@@ -20,6 +20,14 @@ Guide:
 
 ## [unreleased] yyyy-mm-dd
 
+### Maintenance & Security Improvements
+
+- Refactored database operations to support PDO prepared statements, improving SQL injection protection.
+- Improved member record handling, including Student/Faculty ID (`qrcode`) support and legacy barcode compatibility.
+- Fixed PHP 8.2+ dynamic property deprecation warnings in `Members`, `Bookings`, and `OBErr` classes.
+- Improved compatibility and stability of member management, circulation, reservations, and administrative operations.
+- Conducted functional testing of patron and staff management, borrowing, returning, and reservations.
+
 ### Moving away from MD5 password storage toward PHP's native password hashing mechanism.
 
 ### MARC display enhancement
