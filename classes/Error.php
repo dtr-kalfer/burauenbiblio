@@ -16,24 +16,27 @@
  * ending in '_el'.
  */
 class OBErr {
-	public function __construct($msg) {
-		$this->msg = $msg;
-	}
 
-	public function toStr() {
-		return $this->msg;
-	}
+    public $msg;
 
-	static public function listToStr($errors) {
-		$l = array();
-		if ($errors && (!empty($errors))) {
-			foreach ($errors as $e) {
-				$l[] = $e->toStr();
-			}
-			return implode('; ', $l);
-		}
-		return null;
-	}
+    public function __construct($msg) {
+        $this->msg = $msg;
+    }
+
+    public function toStr() {
+        return $this->msg;
+    }
+
+    static public function listToStr($errors) {
+        $l = array();
+        if ($errors && (!empty($errors))) {
+            foreach ($errors as $e) {
+                $l[] = $e->toStr();
+            }
+            return implode('; ', $l);
+        }
+        return null;
+    }
 }
 /**
 * If you use the deprecated Error class (incompatible with
@@ -153,7 +156,7 @@ class IgnorableFieldError extends IgnorableError {
 		}
 		exit(1);
 	}
-	// assert_options(ASSERT_CALLBACK, "obibAssertHandler");
+	//assert_options(ASSERT_CALLBACK, "obibAssertHandler");
 
 /** Fatal Errors */
 class Fatal {
