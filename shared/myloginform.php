@@ -1,48 +1,49 @@
 <?php
-	require_once("../shared/common.php");
-	require_once(REL(__FILE__,"../functions/inputFuncs.php"));
-	require_once(REL(__FILE__, "../model/Sites.php"));
+  require_once("../shared/common.php");
+  require_once(REL(__FILE__,"../functions/inputFuncs.php"));
+  require_once(REL(__FILE__, "../model/Sites.php"));
+  require_once(REL(__FILE__, "../shared/csrf.php"));
 
-	setSessionFmSettings();  ## found in ../shared/common.php
-	
-	// validate it against an allowlist of relative paths	
-	$temp_return_page = "";
-	if (isset($_GET["RET"])) {
-			$ret = $_GET["RET"];
-			// Only allow simple relative paths: alphanumeric, slash, dash, underscore, dot
-			if (is_string($ret) && preg_match('#^[a-zA-Z0-9_./\-]{1,255}$#', $ret) && strpos($ret, '..') === false) {
-					$_SESSION["returnPage"] = $ret;
-			} else {
-					unset($_SESSION["returnPage"]);
-			}
-	}
+  setSessionFmSettings();  ## found in ../shared/common.php
 
-	$sites_table = new Sites;
-	$sites = $sites_table->getSelect();
+  // validate it against an allowlist of relative paths
+  $temp_return_page = "";
+  if (isset($_GET["RET"])) {
+      $ret = $_GET["RET"];
+      // Only allow simple relative paths: alphanumeric, slash, dash, underscore, dot
+      if (is_string($ret) && preg_match('#^[a-zA-Z0-9_./\-]{1,255}$#', $ret) && strpos($ret, '..') === false) {
+          $_SESSION["returnPage"] = $ret;
+      } else {
+          unset($_SESSION["returnPage"]);
+      }
+  }
 
-	if(isset($_REQUEST['selectSite'])){
-		$siteId = $_REQUEST['selectSite'];
-	} elseif(isset($_COOKIE['OpenBiblioSiteID'])) {
-		$site = new Sites;
-		$exists_in_db = $site->maybeGetOne($_COOKIE['OpenBiblioSiteID']);
-		if ($exists_in_db['siteid'] != $_COOKIE['OpenBiblioSiteID']) {
-			$_COOKIE['OpenBiblioSiteID'] = 1;
-		}
-		$siteId = $_COOKIE['OpenBiblioSiteID'];
-	} else {
-		$siteId = Settings::get('multi_site_func');
-		if(!($siteId > 0)){
-			$siteId = 1;
-		}
-		$_REQUEST['selectSite'] = $siteId;
-	}
-	$tab = "circ";
-	$nav = "";
-	$focus_form_name = "loginform";
-	$focus_form_field = "username";
+  $sites_table = new Sites;
+  $sites = $sites_table->getSelect();
 
-	require_once(REL(__FILE__, "../shared/get_form_vars.php"));
-	Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
+  if(isset($_REQUEST['selectSite'])){
+    $siteId = $_REQUEST['selectSite'];
+  } elseif(isset($_COOKIE['OpenBiblioSiteID'])) {
+    $site = new Sites;
+    $exists_in_db = $site->maybeGetOne($_COOKIE['OpenBiblioSiteID']);
+    if ($exists_in_db['siteid'] != $_COOKIE['OpenBiblioSiteID']) {
+      $_COOKIE['OpenBiblioSiteID'] = 1;
+    }
+    $siteId = $_COOKIE['OpenBiblioSiteID'];
+  } else {
+    $siteId = Settings::get('multi_site_func');
+    if(!($siteId > 0)){
+      $siteId = 1;
+    }
+    $_REQUEST['selectSite'] = $siteId;
+  }
+  $tab = "circ";
+  $nav = "";
+  $focus_form_name = "loginform";
+  $focus_form_field = "username";
+
+  require_once(REL(__FILE__, "../shared/get_form_vars.php"));
+  Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
 
 ?>
 <style>
@@ -69,8 +70,8 @@ body {
     max-width: 380px;
     padding: 2.5rem 2rem;
     background: #eee;
-    
-		border-top-right-radius: 30px;
+
+    border-top-right-radius: 30px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
     text-align: center;
 
@@ -109,8 +110,8 @@ body {
 }
 
 .mylink {
-	  font-size: 0.95rem;
-		color: #444;
+    font-size: 0.95rem;
+    color: #444;
 }
 
 .login-form input:focus,
@@ -131,7 +132,7 @@ body {
     background: #079C2F;
     border: none;
     border-radius: 6px;
-		
+
     cursor: pointer;
     transition: background 0.2s, opacity 0.2s;
 }
@@ -158,7 +159,7 @@ body {
 }
 
 .login-footer a {
-	 text-decoration: none;
+   text-decoration: none;
 }
 
 /* ---- MOBILE ---- */
@@ -172,33 +173,33 @@ body {
     top: auto;
     width: auto;
     padding: 0;
-		
-		background: transparent;
-		border: none;
+
+    background: transparent;
+    border: none;
   }
 }
 
 /* Login page layout override */
 @media screen and (max-width: 799px) {
   main#content {
-		border-top-right-radius: 30px;
+    border-top-right-radius: 30px;
     position: static;
     left: auto;
     top: auto;
     width: auto;
     padding: 0;
-		
-		background: transparent;
-		border: none;
+
+    background: transparent;
+    border: none;
   }
 }
 
 #sidebar {
-	display: none;
+  display: none;
 }
 
 .opac-text {
-	display: none;
+  display: none;
 }
 /* ---- OPAC BUTTON (INSIDE CARD) ---- */
 .opac-btn {
@@ -220,7 +221,7 @@ body {
     font-size: 1.45rem;
     font-weight: 700;
     letter-spacing: 0.05em;
-		padding-bottom: 2px;
+    padding-bottom: 2px;
     text-decoration: none;
 
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
@@ -229,17 +230,17 @@ body {
 
 .opac-btn:hover {
     /* background: #09C83C; */
-		background: #079C2F;
+    background: #079C2F;
     transform: translateY(-1px);
     box-shadow: 0 6px 9px rgba(0, 0, 0, 0.3);
-		.opac-text {
-			display: flex;
-			font-size: 0.9rem;
-		}
-		
-		.opac-book {
-			display: none;
-		}
+    .opac-text {
+      display: flex;
+      font-size: 0.9rem;
+    }
+
+    .opac-book {
+      display: none;
+    }
 }
 
 .opac-btn:active {
@@ -248,46 +249,48 @@ body {
 }
 </style>
 <section class="login-container">
-		<a href="../catalog/srchForms.php?tab=OPAC" class="opac-btn"><span class="opac-book">📚</span><span class="opac-text">OPAC</span></a>
-		
-		<div class="login-logo">
+    <a href="../catalog/srchForms.php?tab=OPAC" class="opac-btn"><span class="opac-book">📚</span><span class="opac-text">OPAC</span></a>
+
+    <div class="login-logo">
         <!-- Placeholder logo -->
-        
-				<a href="https://github.com/dtr-kalfer" target="_blank"><img src="../images/burauenbiblio2.webp" alt="BurauenBiblio Logo"></a>
+
+        <a href="https://github.com/dtr-kalfer" target="_blank"><img src="../images/burauenbiblio2.webp" alt="BurauenBiblio Logo"></a>
     </div>
 
-    <div class="login-title"><?= T("Welcome to BurauenBiblio") ?>
+    <div class="login-title">
+        Welcome to BurauenBiblio
     </div>
 
     <form class="login-form" role="form" name="loginform" method="post" action="../shared/login.php">
         <input
-					id="username" 
-					name="username" 
-					type="text"
-					placeholder="<?= T("Username") ?>"
-					required
+          id="username"
+          name="username"
+          type="text"
+          placeholder="Username"
+          required
         >
 
         <input
-					id="password"
-					name="pwd"
-					type="password"
-					placeholder="<?= T("Password") ?>"
-					required
+          id="password"
+          name="pwd"
+          type="password"
+          placeholder="Password"
+          required
         >
 
-		
-<label id="showpass_label"><input type="checkbox" id="showPassword" /> <?= T("Show Password")?></label>
+
+<label id="showpass_label"><input type="checkbox" id="showPassword" /> show password</label>
 
 
-	<?php if(($_SESSION['multi_site_func'] > 0) || ($_SESSION['site_login'] == 'Y')){ ?>
-		<label id="librarysite" for="selectSite"></label>
-			<?php echo inputfield('select', 'selectSite', $siteId, NULL, $sites) ?>	
-	<?php } ?>
+  <?php if(($_SESSION['multi_site_func'] > 0) || ($_SESSION['site_login'] == 'Y')){ ?>
+    <label id="librarysite" for="selectSite"></label>
+      <?php echo inputfield('select', 'selectSite', $siteId, NULL, $sites) ?>
+  <?php } ?>
+    <input type="hidden" name="csrf_token" value="<?php echo Csrf::token(); ?>">
     <button id="login" type="submit"><?php echo T("Login"); ?></button>
-				
-				
-				
+
+
+
     </form>
 
     <div class="login-footer">
@@ -297,9 +300,9 @@ body {
 
 
 <p id="login-error" style="text-align: center;" class="error">
-	<?php 
-		echo $_SESSION["pageErrors"]["pwd"] ?? '';
-	?>
+  <?php
+    echo $_SESSION["pageErrors"]["pwd"] ?? '';
+  ?>
 </p>
 <script>
 "use strict";
@@ -341,4 +344,4 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 <?php
   require_once(REL(__FILE__,'../shared/footer.php'));
-?>	
+?>
