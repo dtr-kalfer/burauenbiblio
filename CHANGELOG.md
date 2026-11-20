@@ -13,6 +13,8 @@ Guide:
 
 (sticky)
 - Major Update / Refactor Burauenbiblio to work with latest PHP 8.3.36
+- Supports PHP 8.3.37 (CVE-2026-129496 Timezone cache use-after-free can lead to remote code execution, CVE-2026-129291 PHP-FPM epoll use-after-free can lead to local privilege escalation.
+	More details here [Version 8.3.37](https://www.php.net/ChangeLog-8.php#PHP_8_3)
 - PHP 8.3.36 was released to counter against:
 	CVE-2026-109618: unauthenticated remote code execution
 	CVE-2026-109619: Trigger a use-after-free to disclose worker memory or execute code
@@ -22,6 +24,7 @@ Guide:
 
 ### Maintenance & Security Improvements
 
+- CSRF (Cross-Site Request Forgery) protection.
 - Refactored database operations to support PDO prepared statements, improving SQL injection protection.
 - Improved member record handling, including Student/Faculty ID (`qrcode`) support and legacy barcode compatibility.
 - Fixed PHP 8.2+ dynamic property deprecation warnings in `Members`, `Bookings`, and `OBErr` classes.
