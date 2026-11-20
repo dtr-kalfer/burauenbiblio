@@ -6,6 +6,7 @@
 require_once("../shared/common.php");
 require_once(REL(__FILE__, "../model/Staff.php"));
 require_once(REL(__FILE__, "../classes/Password.php"));
+require_once(REL(__FILE__, "../shared/csrf.php"));
 
 $dbConst = "";
 $pageErrors = "";
@@ -13,6 +14,9 @@ if (count($_POST) == 0) {
   header("Location: ../shared/myloginform.php");
   exit();
 }
+
+// Login CSRF protection: reject forged login submissions.
+Csrf::verify();
 
 $username = $_POST["username"];
 $error_found = false;
@@ -83,6 +87,9 @@ $_SESSION["hasCatalogAuth"] = ($user['catalog_flg'] == 'Y');
 $_SESSION["hasReportsAuth"] = ($user['reports_flg'] == 'Y');
 $_SESSION["hasToolsAuth"] = ($user['tools_flg'] == 'Y');
 // echo "in login ln#92<br />\n";
+
+// Rotate the CSRF token on login to prevent session fixation.
+Csrf::rotate();
 
 // generate guard token key
 $_SESSION["guard_token_key"] = bin2hex(random_bytes(16));
