@@ -181,8 +181,8 @@
 </fieldset>
 </form>
 </div>
-<p>Note: Set only one (1) active endpoints at a time. Simultaneous search still needs improvement</p>
-<p>Note: To add more your SRU host, see ./config/sru_providers.php --F. Tumulak</p>
+<p><?php echo T("Set only one (1) active endpoints.."); ?></p>
+<p><?php echo T("Note: To add more your SRU host.."); ?> --F. Tumulak</p>
 <?php
   require_once(REL(__FILE__,'../shared/footer.php'));
 	require_once(REL(__FILE__, "../classes/JSAdmin.php"));
