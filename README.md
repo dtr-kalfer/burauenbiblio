@@ -2,6 +2,9 @@
 [![Third-Party Licenses](https://img.shields.io/badge/%F0%9F%93%B1_3rd_party_licenses-included-brightgreen)](CREDITS.md)
 [![DOI|191](https://zenodo.org/badge/979103491.svg)](https://doi.org/10.5281/zenodo.20351658)
 
+🌐 **English:**
+[Bahasa Indonesia](README.id.md) | **Bahasa Indonesia**
+
 # BurauenBiblio 📚🌴
 
 ## Project Credit & Intent
