@@ -377,6 +377,7 @@ $trans['088$8'] = 'Tautan bidang dan nomor urut';
 $trans['088$a'] = 'Nomor laporan';
 $trans['088'] = 'Nomor laporan';
 $trans['088$z'] = 'Nomor laporan yang dibatalkan/tidak valid';
+$trans['099$a'] = 'Nomor Panggil';
 $trans['100#1=0'] = 'Nama depan';
 $trans['100#1=1'] = 'Nama belakang';
 $trans['100#1=3'] = 'Nama keluarga';
