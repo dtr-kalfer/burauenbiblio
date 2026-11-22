@@ -12,7 +12,7 @@ Guide:
 - Date format: YYYY-MM-DD
 
 (sticky)
-- Major Update / Refactor Burauenbiblio to work with latest PHP 8.3.36
+- Major Update / Refactor Burauenbiblio to work with latest PHP 8.3.37
 - Supports PHP 8.3.37 (CVE-2026-129496 Timezone cache use-after-free can lead to remote code execution, CVE-2026-129291 PHP-FPM epoll use-after-free can lead to local privilege escalation.
 	More details here [Version 8.3.37](https://www.php.net/ChangeLog-8.php#PHP_8_3)
 - PHP 8.3.36 was released to counter against:
@@ -21,6 +21,8 @@ Guide:
 	More details here [php2shell](https://www.php2shell.com/)
 
 ## [unreleased] yyyy-mm-dd
+
+### Improved language support and translate keys (trans.php, marc.php)
 
 ### Maintenance & Security Improvements
 

@@ -27,12 +27,16 @@ The book entries are either fictional or based on public domain sources, and any
 
 The member records are entirely fictitious and do not represent real individuals.
 
-## ✅ Supports latest PHP 8.3.36
+## ✅ Supports latest PHP 8.3.37 (Use the PHP 8.3.37 version)
 
-PHP 8.3.36 was released to counter against:
+PHP 8.3.37 was released to counter against:
+- CVE-2026-129496 Timezone cache use-after-free can lead to remote code execution, CVE-2026-129291 PHP-FPM epoll use-after-free can lead to local privilege escalation.
 -	CVE-2026-109618: unauthenticated remote code execution
 -	CVE-2026-109619: Trigger a use-after-free to disclose worker memory or execute code
--	More details here [php2shell](https://www.php2shell.com/)
+- Details: [Version 8.3.37](https://www.php.net/ChangeLog-8.php#PHP_8_3)
+-	Details: [php2shell](https://www.php2shell.com/)
+
+### Development underway for different language support.
 
 ![search sample](./readme_assets/burauenbiblio_search1.webp "search sample")
 
