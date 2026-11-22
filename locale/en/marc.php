@@ -375,6 +375,7 @@ $trans['088$8'] = 'Field link and sequence number';
 $trans['088$a'] = 'Report number';
 $trans['088'] = 'Report number';
 $trans['088$z'] = 'Canceled/invalid report number';
+$trans['099$a'] = 'Call Number';
 $trans['100#1=0'] = 'Forename';
 $trans['100#1=1'] = 'Surname';
 $trans['100#1=3'] = 'Family name';
