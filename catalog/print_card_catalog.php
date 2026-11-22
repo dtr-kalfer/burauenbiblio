@@ -65,26 +65,45 @@ Page::header(array('nav'=>$tab.'/'.$nav, 'title'=>''));
           <th>Description</th>
         </tr>
       </thead>
-      <tbody>
-        <tr><td>099$a</td><td>Call Number</td></tr>
-        <tr><td>100$a</td><td>Author</td></tr>
-        <tr><td>245$a</td><td>Title</td></tr>
-        <tr><td>245$b</td><td>Subtitle</td></tr>
-        <tr><td>700$a</td><td>Additional contributors</td></tr>
-        <tr><td>245$c</td><td>Statement of Responsibility</td></tr>
-        <tr><td>260$a</td><td>Place of Publication</td></tr>
-        <tr><td>260$b</td><td>Publisher</td></tr>
-        <tr><td>260$c</td><td>Date of Publication</td></tr>
-        <tr><td>300$a</td><td>Extent</td></tr>
-        <tr><td>300$b</td><td>Other physical details</td></tr>
-        <tr><td>300$c</td><td>Dimensions</td></tr>
-        <tr><td>504$a</td><td>Bibliography, etc. note</td></tr>
-        <tr><td>020$a</td><td>ISBN</td></tr>
-        <tr><td>650$a</td><td>Subject: Topical</td></tr>
-        <tr><td>650$b</td><td>Subject: Personal</td></tr>
-        <tr><td>650$c</td><td>Subject: Corporate</td></tr>
-        <tr><td>650$d</td><td>Subject: Geographic</td></tr>
-      </tbody>
+<tbody>
+<?php
+// $LOC->loadMarc();
+// echo '<pre>';
+// print_r(array_keys($LOC->marc));
+// echo '</pre>';
+// ?>
+<?php
+$marcFields = array(
+    '099$a' => '099$a',
+    '100$a' => '100$a',
+    '245$a' => '245$a',
+    '110$a' => '110$a',
+    '245$b' => '245$b',
+    '700$a' => '700$a',
+    '250$a' => '250$a',
+    '245$c' => '245$c',
+    '260$a' => '260$a',
+    '260$b' => '260$b',
+    '260$c' => '260$c',
+    '300$a' => '300$a',
+    '300$b' => '300$b',
+    '300$c' => '300$c',
+    '504$a' => '504$a',
+    '020$a' => '020$a',
+    '650$a' => '650$a',
+    '600$a' => '600$a',
+    '610$a' => '610$a',
+    '651$a' => '651$a'
+);
+
+foreach ($marcFields as $key => $tag) {
+    echo '<tr>';
+    echo '<td>' . htmlspecialchars($tag, ENT_QUOTES, 'UTF-8') . '</td>';
+    echo '<td>' . htmlspecialchars($LOC->getMarc($key), ENT_QUOTES, 'UTF-8') . '</td>';
+    echo '</tr>';
+}
+?>
+</tbody>
     </table>
     </div>
 
